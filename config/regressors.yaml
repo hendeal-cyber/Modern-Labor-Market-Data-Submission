@@ -1,0 +1,258 @@
+# Regressor coding dictionary.
+#
+# Every regressor the study codes is declared here, not in code, so the coding
+# rules are auditable and citable in the methods section. Patterns are matched
+# with WORD BOUNDARIES (never bare substring) — see lmstudy.filters._matches.
+#
+# Fields:
+#   group       grouping for the codebook and model selection
+#   type        binary | numeric | categorical
+#   patterns    any match sets the indicator to 1
+#   negations   if one matches, the indicator is forced back to 0
+#   scope       full | requirements | benefits  (which text section to search)
+#   description prose for docs/codebook.md
+
+human_capital:
+  degree_required:
+    type: binary
+    scope: full
+    description: "Posting requires a bachelor's degree or higher."
+    patterns:
+      - "bachelor's degree"
+      - "bachelors degree"
+      - "bachelor degree"
+      - "b.s. degree"
+      - "bs/ba"
+      - "ba/bs"
+      - "four year degree"
+      - "4 year degree"
+      - "undergraduate degree"
+      - "college degree"
+      - "degree in computer science"
+      - "degree required"
+    # Negations are phrased loosely on purpose: postings write "degree is
+    # preferred but not required" as often as "degree preferred but not
+    # required", so the anchor is the qualifying clause, not the word "degree".
+    negations:
+      - "preferred but not required"
+      - "or equivalent experience"
+      - "in lieu of a degree"
+      - "equivalent work experience"
+      - "no degree required"
+      - "degree is not required"
+      - "high school diploma or equivalent"
+  degree_stem:
+    type: binary
+    scope: full
+    description: "Degree must be in a STEM field."
+    patterns:
+      - "computer science"
+      - "computer engineering"
+      - "software engineering"
+      - "information systems"
+      - "data science"
+      - "statistics"
+      - "mathematics"
+      - "engineering degree"
+      - "stem field"
+      - "quantitative field"
+      - "technical degree"
+  advanced_degree_pref:
+    type: binary
+    scope: full
+    description: "Master's or PhD required or preferred."
+    patterns:
+      - "master's degree"
+      - "masters degree"
+      - "m.s."
+      - "msc"
+      - "phd"
+      - "ph.d."
+      - "doctorate"
+      - "advanced degree"
+      - "graduate degree"
+  prior_internship_req:
+    type: binary
+    scope: full
+    description: "Prior internship or co-op experience required or preferred."
+    patterns:
+      - "internship experience"
+      - "intern experience"
+      - "co-op experience"
+      - "prior internship"
+      - "previous internship"
+      - "internships"
+  certification_req:
+    type: binary
+    scope: full
+    description: "A named professional certification is required or preferred."
+    patterns:
+      - "certification"
+      - "certified"
+      - "aws certified"
+      - "azure certified"
+      - "pmp"
+      - "comptia"
+      - "cissp"
+      - "scrum master"
+
+technical_skills:
+  skill_python_r:
+    type: binary
+    scope: full
+    description: "Python or R named as a skill."
+    # A bare "r" is deliberately absent: normalization turns "R&D" into "r d",
+    # which a word-boundary match on "r" would wrongly flag. Only unambiguous
+    # forms of the R language are matched.
+    patterns: ["python", "pandas", "numpy", "rstudio", "r programming",
+               "python/r", "r language", "tidyverse", "ggplot", "python and r",
+               "python or r"]
+  skill_sql:
+    type: binary
+    scope: full
+    description: "SQL or a relational database named."
+    patterns: ["sql", "postgresql", "mysql", "oracle database", "snowflake", "redshift", "bigquery", "t-sql", "pl/sql"]
+  skill_cloud:
+    type: binary
+    scope: full
+    description: "A public cloud platform named."
+    patterns: ["aws", "amazon web services", "azure", "google cloud", "gcp", "cloud platform", "kubernetes", "docker", "terraform"]
+  skill_ml_ai:
+    type: binary
+    scope: full
+    description: "Machine learning or AI named."
+    patterns: ["machine learning", "artificial intelligence", " ai ", "deep learning", "predictive model", "neural network", "tensorflow", "pytorch", "scikit-learn", "nlp"]
+  skill_viz_bi:
+    type: binary
+    scope: full
+    description: "A BI or visualization tool named."
+    patterns: ["tableau", "power bi", "powerbi", "looker", "qlik", "data visualization", "dashboards", "business intelligence"]
+  skill_big_data:
+    type: binary
+    scope: full
+    description: "Distributed data processing tooling named."
+    patterns: ["spark", "hadoop", "kafka", "databricks", "airflow", "dbt", "etl pipeline", "data pipeline"]
+
+soft_skills:
+  soft_teamwork:
+    type: binary
+    scope: full
+    description: "Teamwork or collaboration named as a requirement."
+    patterns:
+      - "team player"
+      - "work in a team"
+      - "collaborate"
+      - "collaborative"
+      - "cross-functional"
+      - "cross functional"
+      - "teamwork"
+      - "work collaboratively"
+      - "team environment"
+  soft_communication:
+    type: binary
+    scope: full
+    description: "Written or verbal communication skills named."
+    patterns:
+      - "communication skills"
+      - "communicate effectively"
+      - "verbal and written"
+      - "written and verbal"
+      - "presentation skills"
+      - "stakeholder communication"
+  soft_leadership:
+    type: binary
+    scope: full
+    description: "Leadership, mentoring, or ownership named."
+    patterns:
+      - "leadership"
+      - "lead projects"
+      - "mentor"
+      - "mentoring"
+      - "take ownership"
+      - "drive initiatives"
+  soft_problem_solving:
+    type: binary
+    scope: full
+    description: "Problem solving or analytical thinking named."
+    patterns:
+      - "problem solving"
+      - "problem-solving"
+      - "analytical skills"
+      - "critical thinking"
+      - "troubleshoot"
+      - "attention to detail"
+
+job_context:
+  travel_required:
+    type: binary
+    scope: full
+    description: "Travel is an expectation of the role."
+    patterns: ["travel required", "willingness to travel", "% travel", "travel up to", "ability to travel", "occasional travel"]
+  on_call:
+    type: binary
+    scope: full
+    description: "On-call or shift rotation expected."
+    patterns: ["on-call", "on call", "rotating shift", "24/7 support", "after hours support", "pager"]
+  security_clearance:
+    type: binary
+    scope: full
+    description: "A security clearance or background investigation is required."
+    patterns: ["security clearance", "secret clearance", "top secret", "nerc cip", "background investigation"]
+  union_role:
+    type: binary
+    scope: full
+    description: "Role is covered by a collective bargaining agreement."
+    patterns: ["union", "collective bargaining", "ibew", "bargaining unit"]
+  sponsorship_unavailable:
+    type: binary
+    scope: full
+    description: "Employer states it will not sponsor a visa."
+    patterns:
+      - "not provide sponsorship"
+      - "unable to sponsor"
+      - "will not sponsor"
+      - "no sponsorship"
+      - "must be authorized to work"
+      - "without sponsorship"
+
+benefits:
+  benefit_health:
+    type: binary
+    scope: full
+    description: "Health, medical, dental, or vision insurance mentioned."
+    patterns: ["health insurance", "medical insurance", "health benefits", "medical, dental", "dental", "vision", "healthcare benefits", "health coverage"]
+  benefit_retirement:
+    type: binary
+    scope: full
+    description: "Retirement plan or employer match mentioned."
+    patterns: ["401(k)", "401k", "retirement plan", "pension", "employer match", "company match", "403(b)"]
+  benefit_bonus:
+    type: binary
+    scope: full
+    description: "Bonus or incentive compensation mentioned."
+    patterns: ["annual bonus", "performance bonus", "incentive compensation", "bonus eligible", "annual incentive", "signing bonus", "short-term incentive"]
+  benefit_equity:
+    type: binary
+    scope: full
+    description: "Equity, stock, or RSUs mentioned."
+    patterns: ["stock options", "equity", "rsu", "restricted stock", "employee stock purchase", "espp", "long-term incentive"]
+  benefit_paid_leave:
+    type: binary
+    scope: full
+    description: "Paid time off, vacation, or parental leave mentioned."
+    patterns: ["paid time off", "pto", "vacation", "paid holidays", "parental leave", "sick leave", "paid leave"]
+  benefit_tuition:
+    type: binary
+    scope: full
+    description: "Tuition reimbursement or education assistance mentioned."
+    patterns: ["tuition reimbursement", "tuition assistance", "education assistance", "continuing education", "professional development funds", "student loan"]
+  benefit_relocation:
+    type: binary
+    scope: full
+    description: "Relocation assistance mentioned."
+    patterns: ["relocation assistance", "relocation package", "relocation support", "relocation benefits"]
+  benefit_wellness:
+    type: binary
+    scope: full
+    description: "Wellness, mental health, or fitness benefits mentioned."
+    patterns: ["wellness program", "mental health", "employee assistance", "gym membership", "wellbeing", "well-being"]
