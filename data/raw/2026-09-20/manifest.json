@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-20",
-  "collected_at": "2026-09-20T22:19:35.865994+00:00",
+  "collected_at": "2026-09-20T22:25:42.742668+00:00",
   "employers_attempted": 30,
   "results": [
     {
@@ -209,5 +209,48 @@
     }
   ],
   "total_postings": 48,
+  "scope_diagnostics": {
+    "listed": 951,
+    "in_place_wrong_role": 116,
+    "titles_in_place": {
+      "Associate, Renewable Procurement": 3,
+      "Associate, Renewable Development": 2,
+      "Senior Staff Engineer, Engineering (Battery Storage)": 2,
+      "Manager of Thermal Development": 2,
+      "Analyst, Compliance": 1,
+      "Manager, Strategy": 1,
+      "Associate, Commercial Contracts": 1,
+      "Accountant, Operations Accounting": 1,
+      "Wind Technician": 1,
+      "Manager, Electrical Engineering - Thermal": 1,
+      "Manager, Inventory Management": 1,
+      "Procurement Analyst, Operations Procurement": 1,
+      "Manager, Enterprise Risk Management": 1,
+      "Sr. Project Manager, Geothermal Project Management": 1,
+      "GIS Manager": 1,
+      "2027 Summer Internships - Electrical Engineering (Grid Focus": 1,
+      "2027 Summer Internships - Engineering (Operations, Thermal, ": 1,
+      "2027 Summer Internships - Engineering (BESS, Wind, Solar)": 1,
+      "2027 Summer Internships - Electrical Engineering": 1,
+      "Principal, NERC Cybersecurity Compliance (CIP)": 1,
+      "Staff Engineer, Thermal Engineering": 1,
+      "Analyst, Development": 1,
+      "Senior Project Manager, Renewable Project Management": 1,
+      "Manager, Instructional Design & Learning Effectiveness": 1,
+      "Principal Geothermal Engineer": 1,
+      "Sr. Project Manager, Thermal Project Management": 1,
+      "Electrical Engineer II (Inverters), Operations Engineering": 1,
+      "Director, Thermal Project Management": 1,
+      "Tax Counsel": 1,
+      "Manager, Financial Reporting": 1
+    },
+    "neither": 832,
+    "kept": 1,
+    "role_ok_wrong_place": 2,
+    "locations_of_in_role": {
+      "Irving, Texas": 1,
+      "Overland Park, KS": 1
+    }
+  },
   "slug_candidates_for_review": 0
 }
