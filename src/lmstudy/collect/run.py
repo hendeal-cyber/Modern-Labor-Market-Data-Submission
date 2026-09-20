@@ -22,7 +22,8 @@ from lmstudy import geo                                      # noqa: E402
 from lmstudy.filters import screen_role, screen_early_career  # noqa: E402
 
 
-def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None):
+def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None,
+                       probe: bool = False):
     """Cheap pre-screen on title and location, for platforms that need a
     separate request per description.
 
@@ -70,6 +71,12 @@ def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None):
             else:
                 diag["neither"] = diag.get("neither", 0) + 1
 
+        # Probe mode keeps every in-metro posting regardless of role, so the
+        # yield of each candidate scope can be MEASURED rather than estimated.
+        # It writes to data/probe/ and never feeds the analysis dataset, so it
+        # widens nothing about the study itself.
+        if probe:
+            return geo_ok
         if not role_ok or senior:
             return False
         return geo_ok
@@ -93,6 +100,10 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=0, help="stop after N employers (smoke test)")
     parser.add_argument("--no-slugs", action="store_true", help="skip slug-based discovery")
     parser.add_argument("--min-interval", type=float, default=1.0)
+    parser.add_argument("--probe", action="store_true",
+                        help="collect every in-metro posting regardless of role, "
+                             "into data/probe/, to measure what each candidate "
+                             "scope would yield. Does not affect the dataset.")
     args = parser.parse_args()
 
     employers = load_employers(pathlib.Path(args.employers))
@@ -102,11 +113,15 @@ def main() -> int:
     scope = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
     gazetteer = geo.load_gazetteer(ROOT / "data" / "gazetteer.json")
     diagnostics: dict = {}
-    detail_filter = make_detail_filter(scope, gazetteer, diagnostics)
+    detail_filter = make_detail_filter(scope, gazetteer, diagnostics,
+                                       probe=args.probe)
 
     session = PoliteSession(min_interval=args.min_interval)
     run_date = dt.date.today().isoformat()
-    out_dir = pathlib.Path(args.out) / run_date
+    base = pathlib.Path(args.out)
+    if args.probe:
+        base = base.parent / "probe"
+    out_dir = base / run_date
     out_dir.mkdir(parents=True, exist_ok=True)
 
     manifest = {
