@@ -33,9 +33,9 @@
     "E. all technical and professional roles": {
       "probe_postings": 752,
       "role_ok": 0,
-      "all_screens_ok": 752,
-      "in_metro": 258,
-      "pay_disclosed": 176
+      "all_screens_ok": 89,
+      "in_metro": 43,
+      "pay_disclosed": 30
     }
   }
 }

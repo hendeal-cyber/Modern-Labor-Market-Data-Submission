@@ -108,8 +108,14 @@ def evaluate(records: list[dict], scope: dict, gazetteer: dict) -> dict:
     for rec in records:
         title = rec.get("title") or ""
         description = rec.get("description") or ""
+        # The wildcard option lifts the ROLE screen only. Early-career,
+        # seniority and internship screening still apply — skipping them would
+        # count senior staff, directors and interns as usable observations and
+        # badly overstate the option's yield.
         if wildcard:
-            passed = True
+            reasons = [r for r in screen_all(title, description, scope)[1]
+                       if r not in ("role_not_software_data", "role_excluded")]
+            passed = not reasons
         else:
             passed, _, _ = screen_all(title, description, scope)
         if not passed:

@@ -50,36 +50,84 @@ the sample.
 
 ## The levers, measured
 
-| Lever | Recovers | Notes |
-|---|---|---|
-| **Widen roles** to technical/engineering | **181 confirmed in-metro postings** | The dominant lever, by 36×. Before experience and pay screens. |
-| **Find the 8 remaining boards** | unknown | 16 of 30 employers are reachable; 6 are blocked on iCIMS or SuccessFactors. |
-| **Widen geography** nationally | **5 postings** | Effectively worthless: these employers post almost no software/data roles anywhere on earth. |
-| **Widen industry** to EPC/vendors | untested | Would admit Sargent & Lundy, Burns & McDonnell, S&C Electric and similar. |
+A probe collection (every in-metro posting regardless of role, in
+`data/probe/`, never feeding the analysis dataset) makes this a count rather
+than an estimate. From **752 in-metro postings** in one cycle across 16 boards:
 
-An earlier recommendation of "geography first" was wrong and is withdrawn. It
-was based on reasoning about where software teams sit, which was correct in
-itself but irrelevant: the postings do not exist to be found in any geography.
+| Candidate scope | Usable observations |
+|---|---|
+| A. software/data/analytics — **current** | **0** |
+| B. + IT, systems, cloud, devops | 0 |
+| C. + network and cybersecurity | 0 |
+| D. + engineering (electrical, thermal, controls, GIS) | 2 |
+| E. **all roles**, early-career still enforced | **30** |
+
+### The binding constraint is not roles
+
+With the role screen lifted **entirely**, the 752 postings are lost like this:
+
+| Lost to | Count |
+|---|---|
+| `seniority_excluded` (Senior/Staff/Principal/Lead/Manager/Director) | **401** |
+| `no_experience_signal` (no stated years, no entry-level title cue) | **227** |
+| `internship` | 35 |
+| `experience_too_high` | 35 |
+| geography | 46 |
+| no pay disclosed | 13 |
+| **usable** | **30** |
+
+Widening the role taxonomy was the wrong diagnosis. **Early career is what
+binds**, and 227 of those losses come from a conservative coding default of
+mine rather than from anything the study specified: a posting that states no
+experience minimum is dropped unless its title carries an entry-level cue.
+Many are probably early-career; the text simply does not say.
+
+The study already carries `yrs_exp_stated` precisely so an unstated minimum can
+be absorbed as a control rather than guessed at. Admitting those postings is a
+coding-rule choice, not a redefinition of the study:
+
+| Variant | Usable |
+|---|---|
+| current: software/data only, strict early-career | **0** |
+| software/data only, admit unstated experience | 1 |
+| all roles, strict early-career | 30 |
+| **all roles, admit unstated experience** | **65** |
+
+Sixty-five from a single cycle, against a floor of 100, with weekly flow, the
+eight unidentified boards, and Tier 3 metros all still available.
+
+### Geography remains worthless here
+
+| Lever | Recovers |
+|---|---|
+| Widen roles to all | +30 |
+| Also admit unstated experience | +35 more |
+| Widen geography nationally | **+5** |
 
 ## Honest expectation
 
 Widening roles alone probably does **not** clear the 100-observation floor.
-The 181 confirmed in-metro postings become perhaps 40–80 usable after the
-early-career screen (≤3 years) and the pay-disclosure requirement, since only
-about 55% are technical and only a minority are early-career. Reaching 100+
-most likely needs **roles plus the remaining employer boards**, and possibly
-industry as a third step.
+Measured, not estimated: the best single-cycle yield available without
+changing industry or geography is **65**, and that requires both admitting
+unstated-experience postings and dropping the role taxonomy entirely. The
+floor of 100 is reachable, but only by combining that with weekly flow, the
+eight unidentified boards, or Tier 3 metros.
 
 ## Options
 
-1. **Roles → technical/engineering, keep industry and geography.** Closest to
+1. **Admit unstated-experience postings**, controlling for it with the
+   `yrs_exp_stated` indicator that already exists. This is a coding-rule change
+   rather than a scope change, and it is the single cheapest gain available
+   (+35 on its own, at all-roles). Worth doing under any of the options below.
+2. **Roles → technical/engineering, keep industry and geography.** Closest to
    the original intent. Pay becomes a function of engineering discipline,
-   licensure, and technical skill rather than software stack.
-2. **Roles + industry.** Adds the engineering and EPC firms serving these
+   licensure, and technical skill rather than software stack. Measured at 2
+   alone; the gains come from going wider still.
+3. **Roles + industry.** Adds the engineering and EPC firms serving these
    sectors, where early-career technical hiring in Chicago is dense.
-3. **Roles + geography.** Keeps the two industries pure, adds metros as a
+4. **Roles + geography.** Keeps the two industries pure, adds metros as a
    regressor.
-4. **Keep the strict definition and report the null.** Defensible as a finding
+5. **Keep the strict definition and report the null.** Defensible as a finding
    in its own right — "these sectors do not hire early-career software talent
    in this market" is a real labor-market result — but it is not the regression
    study that was commissioned.
