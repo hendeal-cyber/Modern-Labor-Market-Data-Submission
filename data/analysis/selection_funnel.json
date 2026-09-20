@@ -1,20 +1,21 @@
 {
-  "built_at": "2026-09-20T21:55:19.465304+00:00",
+  "built_at": "2026-09-20T22:06:52.464520+00:00",
   "snapshots": [
     "2026-09-20"
   ],
   "funnel": {
-    "raw": 7,
-    "rejected_screen": 7,
+    "raw": 53,
+    "rejected_screen": 53,
     "unique_in_scope": 0,
     "usable_with_pay": 0
   },
   "rejection_reasons": {
-    "role_not_software_data": 5,
-    "no_experience_signal": 4,
-    "seniority_excluded": 2,
-    "internship": 1,
-    "role_excluded": 1
+    "role_not_software_data": 39,
+    "no_experience_signal": 34,
+    "seniority_excluded": 16,
+    "role_excluded": 12,
+    "experience_too_high": 2,
+    "internship": 1
   },
   "usable_by_metro": {},
   "usable_by_employer": {},

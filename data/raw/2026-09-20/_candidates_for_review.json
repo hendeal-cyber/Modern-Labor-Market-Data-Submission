@@ -1,0 +1,138 @@
+[
+  {
+    "employer": "Constellation Energy",
+    "platform": "ashby",
+    "token": "constellation",
+    "employer_searched": "Constellation Energy",
+    "distinctive_tokens": [
+      "constellation"
+    ],
+    "n_postings": 7,
+    "sample_titles": [
+      "Shoot Your Shot",
+      "Research Scientist",
+      "Senior Software Engineer",
+      "Intern (Fall/Winter/Summer)",
+      "Data Collection Technician",
+      "Office & Operations Manager",
+      "Research Engineer"
+    ],
+    "locations_seen": [
+      "San Francisco"
+    ],
+    "sample_url": "https://jobs.ashbyhq.com/constellation/44c8675c-5905-4df9-8cb5-8a85f19d330d",
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "QTS Data Centers",
+    "platform": "recruitee",
+    "token": "qts",
+    "employer_searched": "QTS Data Centers",
+    "distinctive_tokens": [
+      "qts"
+    ],
+    "n_postings": 6,
+    "sample_titles": [
+      "Co\u00f6rdinator Examens",
+      "Docent Laag- en/of Hoogspanning Berkel en Rodenrijs",
+      "Docent Laag- en/of Hoogspanning Zwolle",
+      "Inspecteur Elektrische Installaties - Regio Zwolle",
+      "Docent Explosieveiligheid",
+      "Inspecteur Elektrische Installaties - Regio Rotterdam"
+    ],
+    "locations_seen": [
+      "Berkel en Rodenrijs, ZH",
+      "Zwolle, OV"
+    ],
+    "sample_url": "https://qts.recruitee.com/o/coordinator-examens",
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "Aligned Data Centers",
+    "platform": "greenhouse",
+    "token": "aligned",
+    "employer_searched": "Aligned Data Centers",
+    "distinctive_tokens": [
+      "aligned"
+    ],
+    "n_postings": 8,
+    "sample_titles": [
+      "Director of Revenue Enablement | Aligned",
+      "Mid-Market Account Executive (Remote, North America)",
+      "Sales Development Representative (Remote, North America)",
+      "Senior Full Stack Developer",
+      "Senior Product Designer",
+      "Senior Product Manager",
+      "SMB Account Executive (Remote, North America)",
+      "VP Marketing | Aligned"
+    ],
+    "locations_seen": [
+      "North America",
+      "Remote, North America",
+      "Tel Aviv/ Hybrid"
+    ],
+    "sample_url": "https://alignedup.com/careers/?gh_jid=4952223101",
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "Vantage Data Centers",
+    "platform": "ashby",
+    "token": "vantage",
+    "employer_searched": "Vantage Data Centers",
+    "distinctive_tokens": [
+      "vantage"
+    ],
+    "n_postings": 5,
+    "sample_titles": [
+      "Senior Customer Success Manager",
+      "Product Marketing Manager",
+      "Customer Success Manager",
+      "Enterprise Account Executive",
+      "Commercial Account Executive"
+    ],
+    "locations_seen": [
+      "USA (Remote)"
+    ],
+    "sample_url": "https://jobs.ashbyhq.com/vantage/f734c23c-fbaf-4c90-81ab-068349b2bea8",
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "T5 Data Centers",
+    "platform": "lever",
+    "token": "t5datacenters",
+    "employer_searched": "T5 Data Centers",
+    "distinctive_tokens": [],
+    "n_postings": 86,
+    "sample_titles": [
+      "Assistant Critical Facilities Manager",
+      "Assistant Critical Facilities Manager",
+      "Assistant PreConstruction Manager",
+      "Assistant Project Manager",
+      "Assistant Project Manager",
+      "Assistant Superintendent",
+      "Construction Project Manager",
+      "Contract Support Lead"
+    ],
+    "locations_seen": [
+      "121 Riverside Court, Kings Mountain, NC",
+      "Albuquerque, NM",
+      "Alpharetta, GA",
+      "Atlanta, Dallas, or Chicago, GA, TX, or IL",
+      "Atlanta, GA",
+      "Austin, TX",
+      "Bowling Green, OH",
+      "Cheyenne, WY",
+      "Chicago, IL",
+      "Colorado Springs, CO",
+      "Columbus, OH",
+      "Dallas, TX"
+    ],
+    "sample_url": "https://jobs.lever.co/t5datacenters/84292768-8545-4e46-ba5c-fbc17ca7c5d3",
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  }
+]

@@ -1,7 +1,7 @@
 {
   "run_date": "2026-09-20",
-  "collected_at": "2026-09-20T21:53:44.636099+00:00",
-  "employers_attempted": 5,
+  "collected_at": "2026-09-20T21:59:12.929326+00:00",
+  "employers_attempted": 30,
   "results": [
     {
       "employer": "Exelon",
@@ -22,9 +22,7 @@
       "platform": "ashby",
       "token": "constellation",
       "postings": 0,
-      "file": null,
-      "status": "rejected_wrong_company",
-      "note": "Ashby token 'constellation' belongs to an unrelated San Francisco AI startup, not Constellation Energy. Removed from the frame."
+      "status": "slug_candidate_unconfirmed"
     },
     {
       "employer": "Nicor Gas (Southern Company Gas)",
@@ -37,8 +35,179 @@
       "industry": "utility",
       "found": false,
       "postings": 0
+    },
+    {
+      "employer": "Invenergy",
+      "industry": "utility",
+      "found": true,
+      "platform": "workday",
+      "token": "invenergyllc/invenergycareers",
+      "postings": 1,
+      "file": "Invenergy__workday.json"
+    },
+    {
+      "employer": "Vistra",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Illinois American Water",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Aqua Illinois (Essential Utilities)",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "AES Indiana",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Citizens Energy Group",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Duke Energy Indiana",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Indiana American Water",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Equinix",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Digital Realty",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "QTS Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "platform": "recruitee",
+      "token": "qts",
+      "postings": 0,
+      "status": "slug_candidate_unconfirmed"
+    },
+    {
+      "employer": "Aligned Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "platform": "greenhouse",
+      "token": "aligned",
+      "postings": 0,
+      "status": "slug_candidate_unconfirmed"
+    },
+    {
+      "employer": "CyrusOne",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "CoreSite",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Cologix",
+      "industry": "data_center",
+      "found": true,
+      "platform": "lever",
+      "token": "cologix",
+      "postings": 28,
+      "file": "Cologix__lever.json"
+    },
+    {
+      "employer": "DataBank",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "TierPoint",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Flexential",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "NTT Global Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Vantage Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "platform": "ashby",
+      "token": "vantage",
+      "postings": 0,
+      "status": "slug_candidate_unconfirmed"
+    },
+    {
+      "employer": "STACK Infrastructure",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Prime Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "EdgeConneX",
+      "industry": "data_center",
+      "found": true,
+      "platform": "greenhouse",
+      "token": "edgeconnex",
+      "postings": 19,
+      "file": "EdgeConneX__greenhouse.json"
+    },
+    {
+      "employer": "Iron Mountain Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "T5 Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "platform": "lever",
+      "token": "t5datacenters",
+      "postings": 0,
+      "status": "slug_candidate_unconfirmed"
     }
   ],
-  "total_postings": 0,
-  "data_note": "Slug-discovered board was rejected as a wrong-company match. Slug discovery no longer contributes data; see _candidates_for_review.json in later runs."
+  "total_postings": 48,
+  "slug_candidates_for_review": 5
 }
