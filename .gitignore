@@ -3,3 +3,7 @@ __pycache__/
 .venv/
 .env
 data/interim/
+node_modules/
+package-lock.json
+paper/*.pdf
+paper/slide-*.jpg

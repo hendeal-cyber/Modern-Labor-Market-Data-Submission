@@ -72,6 +72,13 @@ jobs:
           python scripts/make_figures.py
           python scripts/make_paper.py
 
+      - name: Rebuild the presentation
+        run: |
+          npm install --no-audit --no-fund pptxgenjs
+          node scripts/make_slides.js
+          pip install python-pptx
+          python scripts/qa_slides.py
+
       - name: Summarize run
         run: |
           {
