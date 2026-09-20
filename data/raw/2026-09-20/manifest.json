@@ -18,11 +18,13 @@
     {
       "employer": "Constellation Energy",
       "industry": "utility",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "constellation",
-      "postings": 7,
-      "file": "Constellation_Energy__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company",
+      "note": "Ashby token 'constellation' belongs to an unrelated San Francisco AI startup, not Constellation Energy. Removed from the frame."
     },
     {
       "employer": "Nicor Gas (Southern Company Gas)",
@@ -37,5 +39,6 @@
       "postings": 0
     }
   ],
-  "total_postings": 7
+  "total_postings": 0,
+  "data_note": "Slug-discovered board was rejected as a wrong-company match. Slug discovery no longer contributes data; see _candidates_for_review.json in later runs."
 }

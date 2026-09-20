@@ -221,7 +221,11 @@ def _ashby_comp(comp: dict | None) -> tuple[float | None, float | None, str | No
 # SmartRecruiters  (list endpoint is a summary; detail fetched per posting)
 # --------------------------------------------------------------------------
 def fetch_smartrecruiters(
-    session: PoliteSession, token: str, employer: str, max_postings: int = 200
+    session: PoliteSession,
+    token: str,
+    employer: str,
+    max_postings: int = 200,
+    detail_filter=None,
 ) -> tuple[list[RawPosting], Response]:
     base = f"https://api.smartrecruiters.com/v1/companies/{token}/postings"
     resp = session.get_json(f"{base}?limit=100")
@@ -230,12 +234,24 @@ def fetch_smartrecruiters(
     out = []
     for job in (resp.data.get("content") or [])[:max_postings]:
         job_id = str(job.get("id", ""))
+        location = job.get("location") or {}
+        location_raw = ", ".join(
+            p for p in (location.get("city"), location.get("region")) if p
+        )
+        # Descriptions need a second request each; skip the ones that cannot
+        # be in scope on title and location alone.
+        stub = RawPosting(
+            platform="smartrecruiters", employer=employer, board_token=token,
+            external_id=job_id, title=job.get("name", "") or "",
+            location_raw=location_raw, description="", url="",
+        )
+        if detail_filter is not None and not detail_filter(stub):
+            continue
         detail = session.get_json(f"{base}/{job_id}")
         description, lo, hi, interval = "", None, None, None
         if detail.ok:
             description = _smartrecruiters_text(detail.data)
             lo, hi, interval = _smartrecruiters_comp(detail.data)
-        location = job.get("location") or {}
         out.append(
             RawPosting(
                 platform="smartrecruiters",
@@ -243,9 +259,7 @@ def fetch_smartrecruiters(
                 board_token=token,
                 external_id=job_id,
                 title=job.get("name", "") or "",
-                location_raw=", ".join(
-                    p for p in (location.get("city"), location.get("region")) if p
-                ),
+                location_raw=location_raw,
                 description=description,
                 url=(job.get("applyUrl") or job.get("ref") or ""),
                 posted_at=job.get("releasedDate"),
@@ -353,7 +367,12 @@ def fetch_workday(
     wd_instance: int = 1,
     page_size: int = 20,
     max_pages: int = 25,
+    detail_filter=None,
 ) -> tuple[list[RawPosting], Response]:
+    """Workday lists postings without descriptions, so each in-scope posting
+    needs a second request. `detail_filter` decides which ones are worth it:
+    a large tenant can list hundreds of jobs of which only a handful are in
+    scope, and fetching every description would be slow and inconsiderate."""
     base = f"https://{tenant}.wd{wd_instance}.myworkdayjobs.com/wday/cxs/{tenant}/{site}"
     out: list[RawPosting] = []
     last: Response | None = None
@@ -384,7 +403,12 @@ def fetch_workday(
             )
         if len(postings) < page_size:
             break
-    # Workday's list response carries no description; fetch each detail record.
+    # Fetch descriptions only for postings that already look in scope.
+    listed = len(out)
+    if detail_filter is not None:
+        out = [p for p in out if detail_filter(p)]
+        print(f"      workday {tenant}/{site}: {listed} listed -> {len(out)} need detail",
+              flush=True)
     for posting in out:
         path = (posting.payload or {}).get("externalPath")
         if not path:

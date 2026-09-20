@@ -12,16 +12,21 @@
 utilities:
   - name: Exelon
     metro: chicago
-    candidates:
-      workday: [{tenant: exelon, site: careers}, {tenant: exeloncorp, site: Exelon_Careers}]
-      greenhouse: [exelon]
+    # BLOCKED: Exelon runs iCIMS (careers-exeloncorp.icims.com). iCIMS has no
+    # free public jobs API — the real API is OAuth-gated to customers and
+    # partners, and portal JSON shapes drift per tenant. Verified 2026-09-20.
+    # This is the single largest expected Chicago contributor, so its absence
+    # materially reduces N. See docs/limitations.md.
+    ats: icims
+    blocked_reason: no_free_public_api
+    candidates: {}
     verified: false
   - name: ComEd
     metro: chicago
     parent: Exelon
-    candidates:
-      workday: [{tenant: exelon, site: careers}]
-      greenhouse: [comed]
+    ats: icims          # same portal as Exelon; see the Exelon entry
+    blocked_reason: no_free_public_api
+    candidates: {}
     verified: false
   - name: Constellation Energy
     metro: chicago
@@ -42,15 +47,13 @@ utilities:
   - name: Invenergy
     metro: chicago
     candidates:
-      greenhouse: [invenergy, invenergyllc]
-      lever: [invenergy]
-      workday: [{tenant: invenergy, site: careers}]
-    verified: false
+      workday: [{tenant: invenergyllc, site: invenergycareers, wd: 1}]
+    verified: true      # invenergyllc.wd1.myworkdayjobs.com/invenergycareers
   - name: Vistra
     metro: chicago
     candidates:
-      workday: [{tenant: vistra, site: vistracareers}, {tenant: vistraenergy, site: careers}]
-    verified: false
+      workday: [{tenant: vst, site: vistra_careers, wd: 5}, {tenant: vst, site: luminant_careers, wd: 5}]
+    verified: true      # vst.wd5.myworkdayjobs.com/vistra_careers
   - name: Illinois American Water
     metro: chicago
     parent: American Water
@@ -90,8 +93,8 @@ data_center_operators:
   - name: Equinix
     metros: [chicago, indianapolis]
     candidates:
-      workday: [{tenant: equinix, site: equinix_careers}, {tenant: equinix, site: careers}]
-    verified: false
+      workday: [{tenant: equinix, site: External, wd: 1}, {tenant: equinix, site: equest, wd: 1}]
+    verified: true      # equinix.wd1.myworkdayjobs.com/External
   - name: Digital Realty
     metros: [chicago]
     candidates:
@@ -101,9 +104,8 @@ data_center_operators:
   - name: QTS Data Centers
     metros: [chicago, indianapolis]
     candidates:
-      workday: [{tenant: qtsdatacenters, site: QTS}]
-      greenhouse: [qtsdatacenters, qts]
-    verified: false
+      workday: [{tenant: qtsdatacenters, site: QTS, wd: 5}]
+    verified: true      # qtsdatacenters.wd5.myworkdayjobs.com/QTS
   - name: Aligned Data Centers
     metros: [chicago]
     candidates:
@@ -191,3 +193,12 @@ data_center_operators:
 discovery:
   platforms: [greenhouse, lever, ashby, smartrecruiters, workable, recruitee]
   slug_transforms: [compact, hyphenated, first_word]
+
+# Tokens confirmed to belong to a DIFFERENT company of the same name.
+# Never admit these, even if slug discovery finds them again.
+rejected_tokens:
+  - platform: ashby
+    token: constellation
+    reason: >
+      Belongs to a San Francisco AI startup, not Constellation Energy.
+      Found by slug discovery on 2026-09-20 and rejected on inspection.
