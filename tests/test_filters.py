@@ -71,6 +71,14 @@ def run():
         ("Rotational Development Program - Data", "Full time program.", True, "rotational kept"),
         ("Software Engineer I", "Prior internship experience preferred.", True,
          "internship only as prior-experience preference"),
+        # Regression: matching is word-bounded, so the plural needs its own
+        # entry. This exact title reached a live measurement before the fix.
+        ("2027 Summer Internships - Electrical Engineering", "Apply now.", False,
+         "plural 'Internships' in title"),
+        ("Data Science Interns - Summer 2027", "Apply now.", False,
+         "plural 'Interns' in title"),
+        ("Engineering Apprenticeship Program", "Apply now.", False,
+         "apprenticeship"),
     ]
     for title, desc, want, label in intern_cases:
         got = screen_internship(title, desc, CFG)

@@ -168,13 +168,24 @@ early_career:
 
 internships:
   exclude: true
+  # Plurals are listed explicitly: matching is word-bounded, so "internship"
+  # does not match "Internships". A real posting, "2027 Summer Internships -
+  # Electrical Engineering", passed the screen and entered a measurement at an
+  # annualized $50,960 before this was caught.
   intern_signals:
     - intern
+    - interns
     - internship
+    - internships
     - co-op
+    - co-ops
     - coop
+    - coops
     - summer analyst
+    - summer analysts
     - apprentice
+    - apprentices
+    - apprenticeship
   # Full-time rotational/development programs are KEPT even though they read
   # as early-career programs; they are permanent roles with benefits.
   keep_despite_signals:
