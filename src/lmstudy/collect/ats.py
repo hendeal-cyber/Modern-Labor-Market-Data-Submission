@@ -423,8 +423,12 @@ def fetch_workday(
             posting.description = strip_html(info.get("jobDescription"))
             posting.posted_at = info.get("startDate") or posting.posted_at
             posting.employment_type = info.get("timeType")
-            if info.get("location"):
-                posting.location_raw = posting.location_raw or info["location"]
+            # Prefer the detail record's concrete locations over the list
+            # view's "N Locations" placeholder.
+            places = [info.get("location")] + list(info.get("additionalLocations") or [])
+            places = [p for p in places if p]
+            if places:
+                posting.location_raw = "; ".join(places)
     return out, (last or Response(base, 0, error="no pages fetched"))
 
 

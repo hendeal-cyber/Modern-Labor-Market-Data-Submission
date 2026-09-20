@@ -36,7 +36,11 @@ def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None):
         role_ok = screen_role(posting.title, "", scope).passed
         senior = screen_early_career(posting.title, "", scope).reason == "seniority_excluded"
         location = posting.location_raw or ""
-        geo_ok = True if not location else geo.resolve(location, metros, gazetteer).in_scope
+        # An unknown location (absent, or Workday's "N Locations") is kept so
+        # the detail record can settle it; only a resolvable, out-of-radius
+        # place is a rejection.
+        geo_ok = (True if geo.is_unknown_location(location)
+                  else geo.resolve(location, metros, gazetteer).in_scope)
 
         # Record WHY each listing was dropped. Knowing whether the binding
         # constraint is the role taxonomy or the 35-mile radius is what decides
@@ -49,7 +53,7 @@ def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None):
             elif role_ok and not senior and not geo_ok:
                 diag["role_ok_wrong_place"] = diag.get("role_ok_wrong_place", 0) + 1
                 diag.setdefault("locations_of_in_role", {})
-                key = location[:40]
+                key = location[:40] or "(blank)"
                 diag["locations_of_in_role"][key] = diag["locations_of_in_role"].get(key, 0) + 1
             elif geo_ok and not (role_ok and not senior):
                 diag["in_place_wrong_role"] = diag.get("in_place_wrong_role", 0) + 1

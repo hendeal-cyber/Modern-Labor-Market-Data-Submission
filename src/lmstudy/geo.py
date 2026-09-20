@@ -16,6 +16,17 @@ from dataclasses import dataclass
 GAZETTEER_PATH = pathlib.Path(__file__).resolve().parents[2] / "data" / "gazetteer.json"
 EARTH_RADIUS_MILES = 3958.8
 
+# Workday collapses a multi-site posting to "3 Locations" rather than listing
+# them. That is an unknown location, not an out-of-scope one: treating it as a
+# place silently drops postings that may well be in a study metro.
+MULTI_LOCATION_RE = re.compile(r"^\s*\d+\s+locations?\s*$", re.IGNORECASE)
+
+
+def is_unknown_location(location_raw: str | None) -> bool:
+    text = (location_raw or "").strip()
+    return not text or bool(MULTI_LOCATION_RE.match(text))
+
+
 REMOTE_MARKERS = ("remote", "work from home", "wfh", "virtual", "anywhere")
 HYBRID_MARKERS = ("hybrid", "flexible location", "partially remote")
 ONSITE_MARKERS = ("on-site", "onsite", "in office", "in-office")

@@ -65,13 +65,23 @@ def run():
     if got.metro != "chicago":
         fails.append(f"multi-site posting -> {got.metro} want chicago")
 
-    # 7. Work arrangement detection.
+    # 7. Workday's "N Locations" placeholder is unknown, not out-of-scope.
+    from lmstudy.geo import is_unknown_location
+    for text, want in [("3 Locations", True), ("2 locations", True), ("", True),
+                       ("Chicago, IL", False), ("Locations", False)]:
+        if is_unknown_location(text) != want:
+            fails.append(f"is_unknown_location({text!r}) -> {not want}, want {want}")
+    # A resolvable but far-away place must still be rejected.
+    if is_unknown_location("Dallas, TX"):
+        fails.append("a real out-of-scope place must not read as unknown")
+
+    # 8. Work arrangement detection.
     for text, want in [("Remote - US", "remote"), ("Chicago, IL (Hybrid)", "hybrid"),
                        ("Chicago, IL - Onsite", "onsite"), ("Chicago, IL", "unspecified")]:
         if detect_arrangement(text) != want:
             fails.append(f"arrangement({text!r}) -> {detect_arrangement(text)} want {want}")
 
-    # 8. Remote posting naming a study state is eligible.
+    # 9. Remote posting naming a study state is eligible.
     got = resolve("Remote - IL", active_metros(), GAZ)
     if got.metro != "chicago" or not got.remote_eligible:
         fails.append(f"remote-IL -> {got.metro} remote={got.remote_eligible}")
