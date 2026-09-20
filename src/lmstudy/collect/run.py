@@ -100,6 +100,11 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=0, help="stop after N employers (smoke test)")
     parser.add_argument("--no-slugs", action="store_true", help="skip slug-based discovery")
     parser.add_argument("--min-interval", type=float, default=1.0)
+    parser.add_argument("--enable-tier3", action="store_true",
+                        help="activate the pre-registered Tier 3 metros for this "
+                             "run only, without editing config/scope.yaml. Used "
+                             "with --probe to measure what escalation would "
+                             "actually yield before committing to it.")
     parser.add_argument("--probe", action="store_true",
                         help="collect every in-metro posting regardless of role, "
                              "into data/probe/, to measure what each candidate "
@@ -111,6 +116,11 @@ def main() -> int:
         employers = employers[: args.limit]
 
     scope = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
+    if args.enable_tier3:
+        for name, spec in scope["metros"].items():
+            if spec.get("tier") == 3:
+                spec["enabled"] = True
+        print("Tier 3 metros activated for this run (measurement only)")
     gazetteer = geo.load_gazetteer(ROOT / "data" / "gazetteer.json")
     diagnostics: dict = {}
     detail_filter = make_detail_filter(scope, gazetteer, diagnostics,
@@ -120,7 +130,7 @@ def main() -> int:
     run_date = dt.date.today().isoformat()
     base = pathlib.Path(args.out)
     if args.probe:
-        base = base.parent / "probe"
+        base = base.parent / ("probe_tier3" if args.enable_tier3 else "probe")
     out_dir = base / run_date
     out_dir.mkdir(parents=True, exist_ok=True)
 

@@ -9,6 +9,12 @@ name: Scope probe
 # be made from counts rather than estimates.
 on:
   workflow_dispatch:
+    inputs:
+      tier3:
+        description: "Also collect the pre-registered Tier 3 metros (measurement only)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -35,10 +41,20 @@ jobs:
           LMSTUDY_USER_AGENT: >-
             lmstudy-research/0.1 (academic labor-market study;
             +https://github.com/${{ github.repository }})
-        run: python src/lmstudy/collect/run.py --probe --no-slugs | tee probe.log
+        run: |
+          EXTRA=""
+          if [ "${{ github.event.inputs.tier3 }}" = "true" ]; then
+            EXTRA="--enable-tier3"
+          fi
+          python src/lmstudy/collect/run.py --probe --no-slugs $EXTRA | tee probe.log
 
       - name: Score the candidate scope options
-        run: python scripts/scope_probe.py | tee scope.log
+        run: |
+          EXTRA=""
+          if [ "${{ github.event.inputs.tier3 }}" = "true" ]; then
+            EXTRA="--tier3"
+          fi
+          python scripts/scope_probe.py $EXTRA | tee scope.log
 
       - name: Summarize
         run: |
@@ -53,7 +69,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/probe data/analysis/scope_probe.json
+          git add data/probe data/probe_tier3 data/analysis/scope_probe*.json
           if git diff --staged --quiet; then
             echo "no changes"
             exit 0

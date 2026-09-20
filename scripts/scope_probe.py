@@ -58,9 +58,9 @@ LIFT_EXCLUSIONS = {
 }
 
 
-def load_probe() -> list[dict]:
+def load_probe(subdir: str = "probe") -> list[dict]:
     records, seen = [], set()
-    for path in sorted(glob.glob(str(ROOT / "data" / "probe" / "*" / "*.json"))):
+    for path in sorted(glob.glob(str(ROOT / "data" / subdir / "*" / "*.json"))):
         name = pathlib.Path(path).name
         if name.startswith("_") or name == "manifest.json":
             continue
@@ -133,11 +133,17 @@ def evaluate(records: list[dict], scope: dict, gazetteer: dict) -> dict:
 
 
 def main() -> int:
-    records = load_probe()
+    tier3 = "--tier3" in sys.argv
+    records = load_probe("probe_tier3" if tier3 else "probe")
     if not records:
         print("No probe data. Run: python src/lmstudy/collect/run.py --probe --no-slugs")
         return 1
     base = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
+    if tier3:
+        for spec in base["metros"].values():
+            if spec.get("tier") == 3:
+                spec["enabled"] = True
+        print("Evaluating WITH Tier 3 metros enabled\n")
     gazetteer = geo.load_gazetteer(ROOT / "data" / "gazetteer.json")
     floor = base["study"]["min_usable_n"]
 
@@ -153,7 +159,8 @@ def main() -> int:
         print(f"{option:52} {stage['all_screens_ok']:8} {stage['in_metro']:9} "
               f"{stage['pay_disclosed']:7}  {met}")
 
-    out = ROOT / "data" / "analysis" / "scope_probe.json"
+    out = ROOT / "data" / "analysis" / (
+        "scope_probe_tier3.json" if tier3 else "scope_probe.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"floor": floor, "corpus": len(records),
                                "options": results}, indent=2))
