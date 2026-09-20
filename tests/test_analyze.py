@@ -37,14 +37,23 @@ def simulate(n=600, seed=7):
             "remote_eligible": d["remote_eligible"],
             "posted_at": "2026-09-01", "posting_age_days": 19,
             "first_seen_run": "2026-09-20", "last_seen_run": "2026-09-20",
-            "yrs_exp_min": d["yrs_exp_min"], "yrs_exp_excerpt": "",
+            # Postings that state no minimum are drawn from those genuinely
+            # requiring zero years, so the imputation is truthful and the
+            # intercept stays comparable to the planted base.
+            "yrs_exp_min": "" if (d["yrs_exp_min"] == 0 and i % 2 == 0)
+                           else d["yrs_exp_min"],
+            "yrs_exp_excerpt": "",
             "pay_disclosed": 1, "pay_min": mid*0.9, "pay_max": mid*1.1,
             "pay_midpoint": mid, "pay_range_width": mid*0.2,
             "pay_source": "text", "pay_unit_original": "year",
             "hourly_original": 0, "pay_single_figure": 0, "pay_excerpt": "",
             "description_hash": "x", "description_chars": 2000,
         }
-        row.update({k: v for k, v in d.items() if k != "industry_data_center"})
+        # industry_data_center is encoded via the industry column, and
+        # yrs_exp_min is set above (blank for one row in five, to exercise the
+        # unstated-experience path) — neither may be overwritten from d here.
+        row.update({k: v for k, v in d.items()
+                    if k not in ("industry_data_center", "yrs_exp_min")})
         for extra in ["degree_required","prior_internship_req","certification_req",
                       "skill_python_r","skill_sql","skill_viz_bi","skill_big_data",
                       "soft_teamwork","soft_communication","soft_problem_solving",
@@ -85,6 +94,8 @@ def run():
             fails.append(f"n_estimation={rep['n_estimation']} want 600")
 
         coefs = rep["models"]["core"]["coefficients"]
+        if "yrs_exp_stated" not in coefs:
+            fails.append("yrs_exp_stated missing: imputed zeros are confounded without it")
         for name, truth in TRUE.items():
             if name not in coefs:
                 fails.append(f"{name} missing from core model"); continue

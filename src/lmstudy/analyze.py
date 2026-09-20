@@ -29,10 +29,13 @@ OBS_PER_REGRESSOR = 20
 
 # Pre-specified. Declared here rather than chosen after seeing results.
 CORE_MODEL = [
-    "degree_stem", "advanced_degree_pref", "yrs_exp_min",
+    "degree_stem", "advanced_degree_pref", "yrs_exp_min", "yrs_exp_stated",
     "skill_cloud", "skill_ml_ai", "soft_leadership",
     "industry_data_center", "remote_eligible", "hourly_original",
 ]
+# `yrs_exp_stated` must travel with `yrs_exp_min`: postings that state no
+# minimum are imputed to zero, and without the indicator that imputation is
+# indistinguishable from a genuine "0 years required".
 EXTENDED_EXTRA = [
     "degree_required", "prior_internship_req", "certification_req",
     "skill_python_r", "skill_sql", "skill_viz_bi", "skill_big_data",
