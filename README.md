@@ -9,20 +9,21 @@ employer-stated pay range, annualized to USD.
 
 ## Status
 
-> **Blocked on a scope decision.** Eleven employer boards are reachable and
-> 2,135 postings have been collected, but the strict scope (software/data roles
-> only, within 35 miles of Chicago or Indianapolis) yields **zero** usable
-> observations. The roles these employers post in these metros are engineering,
-> not software. See **[docs/scope-decision.md](docs/scope-decision.md)** for the
-> measured evidence and the options.
+> **Blocked on a scope decision.** Sixteen employer boards are reachable and
+> ~2,578 postings have been collected, but the strict scope (software/data
+> roles only, within 35 miles of Chicago or Indianapolis) yields **zero** usable
+> observations. Under 0.5% of these employers' postings are software/data roles
+> anywhere on earth; what they post in these metros is engineering. See
+> **[docs/scope-decision.md](docs/scope-decision.md)** for the measured evidence
+> and the options.
 
 | Stage | State |
 |---|---|
 | Collection pipeline | Built and running weekly in Actions |
-| Employer frame | 11 verified boards, 5 iCIMS-blocked, 14 unidentified |
-| Live collection | 2,135 postings listed; 6 pass title/location screening |
+| Employer frame | 16 verified boards, 6 blocked (iCIMS/SuccessFactors), 8 unidentified |
+| Live collection | ~2,578 postings listed; 6 pass title/location screening, 0 survive full screening |
 | Regressor coding | 28 regressors declared and tested |
-| Audit loop | Harness built; first round needs in-scope data |
+| Audit loop | Round 1 complete — 3 systematic false positives found and fixed ([log](docs/audit-log.md)) |
 | Analysis | Code validated on simulated data; awaiting a sample |
 
 ## How it works
