@@ -1,0 +1,41 @@
+{
+  "floor": 100,
+  "corpus": 752,
+  "options": {
+    "A. software/data/analytics (current)": {
+      "probe_postings": 752,
+      "role_ok": 0,
+      "all_screens_ok": 3,
+      "in_metro": 0,
+      "pay_disclosed": 0
+    },
+    "B. + IT, systems, cloud, devops": {
+      "probe_postings": 752,
+      "role_ok": 0,
+      "all_screens_ok": 4,
+      "in_metro": 0,
+      "pay_disclosed": 0
+    },
+    "C. + network and cybersecurity": {
+      "probe_postings": 752,
+      "role_ok": 0,
+      "all_screens_ok": 4,
+      "in_metro": 0,
+      "pay_disclosed": 0
+    },
+    "D. + engineering (electrical, thermal, controls, GIS)": {
+      "probe_postings": 752,
+      "role_ok": 0,
+      "all_screens_ok": 8,
+      "in_metro": 2,
+      "pay_disclosed": 2
+    },
+    "E. all technical and professional roles": {
+      "probe_postings": 752,
+      "role_ok": 0,
+      "all_screens_ok": 752,
+      "in_metro": 258,
+      "pay_disclosed": 176
+    }
+  }
+}

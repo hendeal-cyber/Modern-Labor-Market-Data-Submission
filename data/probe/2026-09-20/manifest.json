@@ -1,0 +1,300 @@
+{
+  "run_date": "2026-09-20",
+  "collected_at": "2026-09-20T22:56:24.143597+00:00",
+  "employers_attempted": 30,
+  "results": [
+    {
+      "employer": "Exelon",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "ComEd",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Constellation Energy",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Nicor Gas (Southern Company Gas)",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Peoples Gas (WEC Energy Group)",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Invenergy",
+      "industry": "utility",
+      "found": true,
+      "platform": "workday",
+      "token": "invenergyllc/invenergycareers",
+      "listed": 192,
+      "postings": 132,
+      "file": "Invenergy__workday.json"
+    },
+    {
+      "employer": "Vistra",
+      "industry": "utility",
+      "found": true,
+      "platform": "workday",
+      "token": "vst/vistra_careers",
+      "listed": 171,
+      "postings": 25,
+      "file": "Vistra__workday.json"
+    },
+    {
+      "employer": "Illinois American Water",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Aqua Illinois (Essential Utilities)",
+      "industry": "utility",
+      "found": true,
+      "platform": "workday",
+      "token": "aquaamerica/Essential_Careers",
+      "listed": 98,
+      "postings": 2,
+      "file": "Aqua_Illinois__Essential_Utilities___workday.json"
+    },
+    {
+      "employer": "AES Indiana",
+      "industry": "utility",
+      "found": true,
+      "platform": "workday",
+      "token": "aes/AES_US",
+      "listed": 166,
+      "postings": 94,
+      "file": "AES_Indiana__workday.json"
+    },
+    {
+      "employer": "Citizens Energy Group",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Duke Energy Indiana",
+      "industry": "utility",
+      "found": true,
+      "platform": "workday",
+      "token": "dukeenergy/search",
+      "listed": 106,
+      "postings": 34,
+      "file": "Duke_Energy_Indiana__workday.json"
+    },
+    {
+      "employer": "Indiana American Water",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Equinix",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "equinix/External",
+      "listed": 283,
+      "postings": 78,
+      "file": "Equinix__workday.json"
+    },
+    {
+      "employer": "Digital Realty",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "QTS Data Centers",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "qtsdatacenters/QTS",
+      "listed": 304,
+      "postings": 83,
+      "file": "QTS_Data_Centers__workday.json"
+    },
+    {
+      "employer": "Aligned Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "CyrusOne",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "cyrusone/CyrusOneCareerPortal",
+      "listed": 119,
+      "postings": 21,
+      "file": "CyrusOne__workday.json"
+    },
+    {
+      "employer": "CoreSite",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Cologix",
+      "industry": "data_center",
+      "found": true,
+      "platform": "lever",
+      "token": "cologix",
+      "listed": 28,
+      "postings": 28,
+      "file": "Cologix__lever.json"
+    },
+    {
+      "employer": "DataBank",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "TierPoint",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Flexential",
+      "industry": "data_center",
+      "found": true,
+      "platform": "greenhouse",
+      "token": "flexentialcorp",
+      "listed": 21,
+      "postings": 21,
+      "file": "Flexential__greenhouse.json"
+    },
+    {
+      "employer": "NTT Global Data Centers",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "nttglobaldatacenters/External",
+      "listed": 227,
+      "postings": 29,
+      "file": "NTT_Global_Data_Centers__workday.json"
+    },
+    {
+      "employer": "Vantage Data Centers",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "vantagedc/Vantage",
+      "listed": 186,
+      "postings": 50,
+      "file": "Vantage_Data_Centers__workday.json"
+    },
+    {
+      "employer": "STACK Infrastructure",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "stackinfra/STACK_AMER",
+      "listed": 72,
+      "postings": 6,
+      "file": "STACK_Infrastructure__workday.json"
+    },
+    {
+      "employer": "Prime Data Centers",
+      "industry": "data_center",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "EdgeConneX",
+      "industry": "data_center",
+      "found": true,
+      "platform": "greenhouse",
+      "token": "edgeconnex",
+      "listed": 19,
+      "postings": 19,
+      "file": "EdgeConneX__greenhouse.json"
+    },
+    {
+      "employer": "Iron Mountain Data Centers",
+      "industry": "data_center",
+      "found": true,
+      "platform": "workday",
+      "token": "ironmountain/iron-mountain-jobs",
+      "listed": 500,
+      "postings": 70,
+      "file": "Iron_Mountain_Data_Centers__workday.json"
+    },
+    {
+      "employer": "T5 Data Centers",
+      "industry": "data_center",
+      "found": true,
+      "platform": "lever",
+      "token": "t5datacenters",
+      "listed": 86,
+      "postings": 86,
+      "file": "T5_Data_Centers__lever.json"
+    }
+  ],
+  "total_postings": 778,
+  "scope_diagnostics": {
+    "listed": 2424,
+    "in_metro_wrong_role": 181,
+    "titles_in_metro": {
+      "CDL B Local Route Driver": 8,
+      "Security Officer L1": 4,
+      "Associate, Renewable Procurement": 3,
+      "Associate, Renewable Development": 2,
+      "Senior Staff Engineer, Engineering (Battery Storage)": 2,
+      "Manager of Thermal Development": 2,
+      "Analyst, Compliance": 1,
+      "Manager, Strategy": 1,
+      "Associate, Commercial Contracts": 1,
+      "Accountant, Operations Accounting": 1,
+      "Wind Technician": 1,
+      "Manager, Electrical Engineering - Thermal": 1,
+      "Manager, Inventory Management": 1,
+      "Procurement Analyst, Operations Procurement": 1,
+      "Manager, Enterprise Risk Management": 1,
+      "Sr. Project Manager, Geothermal Project Management": 1,
+      "GIS Manager": 1,
+      "2027 Summer Internships - Electrical Engineering (Grid Focus": 1,
+      "2027 Summer Internships - Engineering (Operations, Thermal, ": 1,
+      "2027 Summer Internships - Engineering (BESS, Wind, Solar)": 1,
+      "2027 Summer Internships - Electrical Engineering": 1,
+      "Principal, NERC Cybersecurity Compliance (CIP)": 1,
+      "Staff Engineer, Thermal Engineering": 1,
+      "Analyst, Development": 1,
+      "Senior Project Manager, Renewable Project Management": 1,
+      "Manager, Instructional Design & Learning Effectiveness": 1,
+      "Principal Geothermal Engineer": 1,
+      "Sr. Project Manager, Thermal Project Management": 1,
+      "Electrical Engineer II (Inverters), Operations Engineering": 1,
+      "Director, Thermal Project Management": 1
+    },
+    "neither": 1795,
+    "unknown_place_wrong_role": 437,
+    "kept": 6,
+    "role_ok_wrong_place": 5,
+    "locations_of_in_role": {
+      "Irving, Texas": 1,
+      "PA NORTH SHORE - 375": 1,
+      "Overland Park, KS": 1,
+      "IND | Bangalore | Level 10, CITRINE Bloc": 1,
+      "COL | Bogot\u00e1 | Av Cra 45, 114, Oficina 5": 1
+    }
+  },
+  "slug_candidates_for_review": 0
+}
