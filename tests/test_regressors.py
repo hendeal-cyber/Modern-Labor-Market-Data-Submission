@@ -49,6 +49,25 @@ TRAPS = [
      "relocation benefit"),
     ("This position is covered by the IBEW collective bargaining agreement.",
      "union_role", 1, "union role"),
+    # --- Regressions from audit round 1, all found in real collected postings.
+    # Company boilerplate is about the firm, not the job, and it repeats across
+    # every posting an employer publishes, so a false positive here is
+    # perfectly correlated within employer and looks like an employer effect.
+    ("Cologix's experienced leadership team, certified staff and commitment to "
+     "ESG initiatives help form a culture that values our people.",
+     "certification_req", 0, "boilerplate 'certified staff' is not a requirement"),
+    ("Cologix's experienced leadership team, certified staff and commitment to "
+     "ESG initiatives help form a culture that values our people.",
+     "soft_leadership", 0, "boilerplate 'leadership team' is not a requirement"),
+    ("helping our customers define and deliver their own unique vision for the Edge",
+     "benefit_health", 0, "'vision' in a company blurb is not a health benefit"),
+    # The same regressors must still fire when genuinely required.
+    ("Demonstrated leadership experience and the ability to mentor junior engineers.",
+     "soft_leadership", 1, "leadership genuinely asked of the applicant"),
+    ("AWS Certified Solutions Architect certification required.",
+     "certification_req", 1, "certification genuinely required"),
+    ("Benefits include medical, dental and vision insurance.",
+     "benefit_health", 1, "vision named as an actual benefit"),
 ]
 
 def run():

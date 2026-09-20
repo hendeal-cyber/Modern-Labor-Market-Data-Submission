@@ -56,6 +56,51 @@ def stratified_sample(rows: list[dict], n: int, seed: int = 20260920) -> list[di
     return picked
 
 
+def load_raw_rows() -> list[dict]:
+    """Every raw posting carrying a description, coded by the current rules.
+
+    Sampling from raw rather than from the analysis dataset lets coding
+    accuracy be audited before any posting has survived scope screening.
+    """
+    import glob
+    from lmstudy.code_regressors import code_posting
+
+    dictionary = load_dictionary()
+    rows: list[dict] = []
+    seen: set[str] = set()
+
+    for path in sorted(glob.glob(str(ROOT / "data" / "raw" / "*" / "*.json"))):
+        name = pathlib.Path(path).name
+        if name.startswith("_") or name == "manifest.json":
+            continue
+        try:
+            records = json.loads(pathlib.Path(path).read_text())
+        except json.JSONDecodeError:
+            continue
+        for rec in records:
+            description = rec.get("description") or ""
+            if len(description) < 200:
+                continue
+            key = f"{rec.get('employer')}|{rec.get('title')}"
+            if key in seen:
+                continue
+            seen.add(key)
+            coded = code_posting(rec.get("title") or "", description, dictionary)
+            rows.append({
+                "posting_key": key,
+                "employer": rec.get("employer", ""),
+                "industry": rec.get("industry", ""),
+                "metro": "raw",
+                "title": rec.get("title", ""),
+                "url": rec.get("url", ""),
+                "pay_disclosed": "",
+                "pay_midpoint": "",
+                "pay_excerpt": "",
+                **{k: str(v) for k, v in coded.values.items()},
+            })
+    return rows
+
+
 def write_sheet(rows: list[dict], out_path: pathlib.Path, regressors: list[str]) -> None:
     """Blank audit sheet: context columns, then one empty column per regressor."""
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -129,6 +174,11 @@ def main() -> int:
     s.add_argument("--dataset", default=str(ROOT / "data" / "analysis" / "postings.csv"))
     s.add_argument("--out", default=None)
     s.add_argument("--seed", type=int, default=20260920)
+    s.add_argument("--from-raw", action="store_true",
+                   help="sample raw collected postings instead of the analysis "
+                        "dataset. Coding accuracy is a property of the text, not "
+                        "of whether a posting is in scope, so the audit can run "
+                        "before any posting survives screening.")
 
     c = sub.add_parser("score", help="score a filled sheet against the coded dataset")
     c.add_argument("--sheet", required=True)
@@ -137,11 +187,18 @@ def main() -> int:
 
     args = parser.parse_args()
     regressors = list(load_dictionary().keys())
-    dataset = pathlib.Path(args.dataset)
-    if not dataset.exists():
-        print(f"dataset not found: {dataset}")
-        return 1
-    rows = list(csv.DictReader(dataset.open(encoding="utf-8")))
+
+    if getattr(args, "from_raw", False):
+        rows = load_raw_rows()
+        if not rows:
+            print("no raw postings with descriptions found under data/raw/")
+            return 1
+    else:
+        dataset = pathlib.Path(args.dataset)
+        if not dataset.exists():
+            print(f"dataset not found: {dataset}")
+            return 1
+        rows = list(csv.DictReader(dataset.open(encoding="utf-8")))
 
     if args.cmd == "sample":
         picked = stratified_sample(rows, args.n, args.seed)

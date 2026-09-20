@@ -68,6 +68,7 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     first_seen: dict[str, str] = {}
 
     snapshot_dirs = sorted(d for d in raw_root.iterdir() if d.is_dir()) if raw_root.exists() else []
+
     for snapshot in snapshot_dirs:
         run_date = snapshot.name
         for path in sorted(snapshot.glob("*.json")):

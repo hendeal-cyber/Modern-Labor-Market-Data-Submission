@@ -86,14 +86,30 @@ human_capital:
     type: binary
     scope: full
     description: "A named professional certification is required or preferred."
+    # Bare "certification"/"certified" were removed after the first audit: they
+    # matched company boilerplate ("our certified staff") in every Cologix
+    # posting, a 100% false-positive rate. Only a certification asked of the
+    # APPLICANT counts.
     patterns:
-      - "certification"
-      - "certified"
+      - "certification required"
+      - "certification is required"
+      - "certification preferred"
+      - "certifications preferred"
+      - "must be certified"
+      - "professional certification"
+      - "industry certification"
+      - "relevant certification"
+      - "certifications such as"
       - "aws certified"
       - "azure certified"
       - "pmp"
       - "comptia"
       - "cissp"
+      - "ccna"
+      - "ccnp"
+      - "security+"
+      - "professional engineer"
+      - "pe license"
       - "scrum master"
 
 technical_skills:
@@ -162,12 +178,21 @@ soft_skills:
   soft_leadership:
     type: binary
     scope: full
-    description: "Leadership, mentoring, or ownership named."
+    description: "Leadership, mentoring, or ownership asked of the applicant."
+    # Bare "leadership" was removed after the first audit: it matched
+    # "our experienced leadership team" in company boilerplate across every
+    # Cologix posting. The patterns now require leadership of the APPLICANT.
     patterns:
-      - "leadership"
+      - "leadership skills"
+      - "leadership abilities"
+      - "leadership experience"
+      - "demonstrated leadership"
+      - "proven leadership"
       - "lead projects"
+      - "lead a team"
       - "mentor"
       - "mentoring"
+      - "coach and develop"
       - "take ownership"
       - "drive initiatives"
   soft_problem_solving:
@@ -220,7 +245,14 @@ benefits:
     type: binary
     scope: full
     description: "Health, medical, dental, or vision insurance mentioned."
-    patterns: ["health insurance", "medical insurance", "health benefits", "medical, dental", "dental", "vision", "healthcare benefits", "health coverage"]
+    # Bare "vision" was removed after the first audit: it matched "deliver
+    # their own unique vision for the Edge" in a company blurb. Vision now
+    # only counts as a benefit when named as one.
+    patterns: ["health insurance", "medical insurance", "health benefits",
+               "medical, dental", "dental and vision", "dental, vision",
+               "vision insurance", "vision coverage", "vision plan",
+               "dental insurance", "healthcare benefits", "health coverage",
+               "medical benefits"]
   benefit_retirement:
     type: binary
     scope: full
