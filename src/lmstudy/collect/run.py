@@ -22,7 +22,7 @@ from lmstudy import geo                                      # noqa: E402
 from lmstudy.filters import screen_role, screen_early_career  # noqa: E402
 
 
-def make_detail_filter(scope: dict, gazetteer: dict):
+def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None):
     """Cheap pre-screen on title and location, for platforms that need a
     separate request per description.
 
@@ -33,16 +33,35 @@ def make_detail_filter(scope: dict, gazetteer: dict):
     metros = {k: v for k, v in scope["metros"].items() if v.get("enabled") is not False}
 
     def keep(posting) -> bool:
-        if not screen_role(posting.title, "", scope).passed:
-            return False
-        # Only a seniority rejection is actionable here. "No experience signal"
-        # is not: that verdict needs the description we have not fetched yet.
-        if screen_early_career(posting.title, "", scope).reason == "seniority_excluded":
-            return False
+        role_ok = screen_role(posting.title, "", scope).passed
+        senior = screen_early_career(posting.title, "", scope).reason == "seniority_excluded"
         location = posting.location_raw or ""
-        if not location:
-            return True          # unknown location: keep and decide on full text
-        return geo.resolve(location, metros, gazetteer).in_scope
+        geo_ok = True if not location else geo.resolve(location, metros, gazetteer).in_scope
+
+        # Record WHY each listing was dropped. Knowing whether the binding
+        # constraint is the role taxonomy or the 35-mile radius is what decides
+        # which scope lever is worth widening, so it is measured rather than
+        # guessed.
+        if diag is not None:
+            diag["listed"] = diag.get("listed", 0) + 1
+            if role_ok and not senior and geo_ok:
+                diag["kept"] = diag.get("kept", 0) + 1
+            elif role_ok and not senior and not geo_ok:
+                diag["role_ok_wrong_place"] = diag.get("role_ok_wrong_place", 0) + 1
+                diag.setdefault("locations_of_in_role", {})
+                key = location[:40]
+                diag["locations_of_in_role"][key] = diag["locations_of_in_role"].get(key, 0) + 1
+            elif geo_ok and not (role_ok and not senior):
+                diag["in_place_wrong_role"] = diag.get("in_place_wrong_role", 0) + 1
+                diag.setdefault("titles_in_place", {})
+                diag["titles_in_place"][posting.title[:60]] = \
+                    diag["titles_in_place"].get(posting.title[:60], 0) + 1
+            else:
+                diag["neither"] = diag.get("neither", 0) + 1
+
+        if not role_ok or senior:
+            return False
+        return geo_ok
 
     return keep
 
@@ -71,7 +90,8 @@ def main() -> int:
 
     scope = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
     gazetteer = geo.load_gazetteer(ROOT / "data" / "gazetteer.json")
-    detail_filter = make_detail_filter(scope, gazetteer)
+    diagnostics: dict = {}
+    detail_filter = make_detail_filter(scope, gazetteer, diagnostics)
 
     session = PoliteSession(min_interval=args.min_interval)
     run_date = dt.date.today().isoformat()
@@ -138,6 +158,12 @@ def main() -> int:
             )
 
     manifest["total_postings"] = total_postings
+    # Trim the long tails so the manifest stays readable.
+    for field in ("locations_of_in_role", "titles_in_place"):
+        if field in diagnostics:
+            diagnostics[field] = dict(sorted(diagnostics[field].items(),
+                                             key=lambda kv: -kv[1])[:30])
+    manifest["scope_diagnostics"] = diagnostics
     manifest["slug_candidates_for_review"] = len(candidates)
     if candidates:
         (out_dir / "_candidates_for_review.json").write_text(json.dumps(candidates, indent=2))
