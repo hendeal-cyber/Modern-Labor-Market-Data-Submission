@@ -9,13 +9,21 @@ employer-stated pay range, annualized to USD.
 
 ## Status
 
+> **Blocked on a scope decision.** Eleven employer boards are reachable and
+> 2,135 postings have been collected, but the strict scope (software/data roles
+> only, within 35 miles of Chicago or Indianapolis) yields **zero** usable
+> observations. The roles these employers post in these metros are engineering,
+> not software. See **[docs/scope-decision.md](docs/scope-decision.md)** for the
+> measured evidence and the options.
+
 | Stage | State |
 |---|---|
-| Collection pipeline | Built, tested against fixtures |
-| Live collection | **Not yet run** — board tokens unverified until the first Actions run |
+| Collection pipeline | Built and running weekly in Actions |
+| Employer frame | 11 verified boards, 5 iCIMS-blocked, 14 unidentified |
+| Live collection | 2,135 postings listed; 6 pass title/location screening |
 | Regressor coding | 28 regressors declared and tested |
-| Audit loop | Harness pending |
-| Analysis | Pending data |
+| Audit loop | Harness built; first round needs in-scope data |
+| Analysis | Code validated on simulated data; awaiting a sample |
 
 ## How it works
 

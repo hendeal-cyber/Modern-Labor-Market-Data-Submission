@@ -56,10 +56,17 @@ def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None):
                 key = location[:40] or "(blank)"
                 diag["locations_of_in_role"][key] = diag["locations_of_in_role"].get(key, 0) + 1
             elif geo_ok and not (role_ok and not senior):
-                diag["in_place_wrong_role"] = diag.get("in_place_wrong_role", 0) + 1
-                diag.setdefault("titles_in_place", {})
-                diag["titles_in_place"][posting.title[:60]] = \
-                    diag["titles_in_place"].get(posting.title[:60], 0) + 1
+                # An unknown location is not evidence of being in a study
+                # metro, so it is counted apart from a confirmed in-metro
+                # posting. Lumping them together would overstate how much
+                # widening the role taxonomy actually recovers.
+                bucket = ("unknown_place_wrong_role" if geo.is_unknown_location(location)
+                          else "in_metro_wrong_role")
+                diag[bucket] = diag.get(bucket, 0) + 1
+                if bucket == "in_metro_wrong_role":
+                    diag.setdefault("titles_in_metro", {})
+                    diag["titles_in_metro"][posting.title[:60]] = \
+                        diag["titles_in_metro"].get(posting.title[:60], 0) + 1
             else:
                 diag["neither"] = diag.get("neither", 0) + 1
 
@@ -163,7 +170,7 @@ def main() -> int:
 
     manifest["total_postings"] = total_postings
     # Trim the long tails so the manifest stays readable.
-    for field in ("locations_of_in_role", "titles_in_place"):
+    for field in ("locations_of_in_role", "titles_in_metro"):
         if field in diagnostics:
             diagnostics[field] = dict(sorted(diagnostics[field].items(),
                                              key=lambda kv: -kv[1])[:30])
