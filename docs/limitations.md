@@ -60,3 +60,16 @@ The authoring environment had no network access to any ATS host, so board tokens
 in `config/employers.yaml` began as inferred candidates. The first live
 collection run resolves them; any employer still marked `verified: false` after
 that run contributed nothing and should be treated as absent from the frame.
+
+## 9. Few clusters, so standard errors under-cover
+
+Standard errors are clustered by employer because employers contribute many
+postings each. But the study's employer frame is small — on the order of 10–30
+employers actually posting in scope — and cluster-robust standard errors are
+known to be biased downward when the number of clusters is small. Simulation in
+`tests/test_analyze.py` reproduces this: with 12 employers, nominal 95%
+confidence intervals covered the true coefficient about 88% of the time.
+
+Read p-values near conventional thresholds with that in mind. If the realized
+employer count stays low, a wild cluster bootstrap is the appropriate remedy and
+should be run before reporting any headline significance claim.

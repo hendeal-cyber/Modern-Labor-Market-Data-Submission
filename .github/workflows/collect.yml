@@ -63,6 +63,9 @@ jobs:
       - name: Rebuild analysis dataset
         run: python src/lmstudy/build_dataset.py | tee build.log
 
+      - name: Estimate the model
+        run: python src/lmstudy/analyze.py | tee analyze.log
+
       - name: Summarize run
         run: |
           {

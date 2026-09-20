@@ -2,11 +2,13 @@
 import sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import test_pay, test_geo, test_filters, test_regressors, test_pipeline
+import test_audit, test_analyze
 
 def main():
     total = 0
     for name, mod in [("pay", test_pay), ("geo", test_geo), ("filters", test_filters),
-                      ("regressors", test_regressors), ("pipeline", test_pipeline)]:
+                      ("regressors", test_regressors), ("pipeline", test_pipeline),
+                      ("audit", test_audit), ("analyze", test_analyze)]:
         print(f"--- {name} ---")
         total += mod.run()
     print(f"\n{'ALL SUITES PASSED' if total == 0 else f'{total} FAILURE(S)'}")
