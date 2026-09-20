@@ -99,10 +99,23 @@ jobs:
           git add data/ docs/ paper/
           if git diff --staged --quiet; then
             echo "no data changes"
-          else
-            git commit -m "Data: collection run $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "Data: collection run $(date -u +%Y-%m-%d)"
+          # A run that started before someone pushed would otherwise fail on a
+          # non-fast-forward and throw away the data it just collected. Rebase
+          # onto whatever landed meanwhile and retry.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push rejected; rebasing onto origin/${GITHUB_REF_NAME}"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || exit 1
+            sleep $((attempt * 5))
+          done
+          echo "could not push after 3 attempts"
+          exit 1
 
       - name: Open an issue if the sample floor is still unmet
         if: always()
