@@ -1,0 +1,24 @@
+{
+  "built_at": "2026-09-20T21:55:19.465304+00:00",
+  "snapshots": [
+    "2026-09-20"
+  ],
+  "funnel": {
+    "raw": 7,
+    "rejected_screen": 7,
+    "unique_in_scope": 0,
+    "usable_with_pay": 0
+  },
+  "rejection_reasons": {
+    "role_not_software_data": 5,
+    "no_experience_signal": 4,
+    "seniority_excluded": 2,
+    "internship": 1,
+    "role_excluded": 1
+  },
+  "usable_by_metro": {},
+  "usable_by_employer": {},
+  "distinct_employers_with_pay": 0,
+  "min_usable_n": 100,
+  "floor_met": false
+}

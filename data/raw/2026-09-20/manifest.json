@@ -1,0 +1,41 @@
+{
+  "run_date": "2026-09-20",
+  "collected_at": "2026-09-20T21:53:44.636099+00:00",
+  "employers_attempted": 5,
+  "results": [
+    {
+      "employer": "Exelon",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "ComEd",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Constellation Energy",
+      "industry": "utility",
+      "found": true,
+      "platform": "ashby",
+      "token": "constellation",
+      "postings": 7,
+      "file": "Constellation_Energy__ashby.json"
+    },
+    {
+      "employer": "Nicor Gas (Southern Company Gas)",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Peoples Gas (WEC Energy Group)",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    }
+  ],
+  "total_postings": 7
+}
