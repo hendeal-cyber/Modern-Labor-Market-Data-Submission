@@ -1,0 +1,67 @@
+name: Scope probe
+
+# Measures what each candidate scope option would yield. Collects every
+# in-metro posting regardless of role into data/probe/, then scores the
+# candidate role taxonomies against it.
+#
+# This never writes to data/analysis/postings.csv and never changes the study's
+# scope, which lives in config/scope.yaml. It exists so the scope decision can
+# be made from counts rather than estimates.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect          # shares the group with collect.yml; never run together
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Collect in-metro postings regardless of role
+        env:
+          LMSTUDY_USER_AGENT: >-
+            lmstudy-research/0.1 (academic labor-market study;
+            +https://github.com/${{ github.repository }})
+        run: python src/lmstudy/collect/run.py --probe --no-slugs | tee probe.log
+
+      - name: Score the candidate scope options
+        run: python scripts/scope_probe.py | tee scope.log
+
+      - name: Summarize
+        run: |
+          {
+            echo "## Scope option yields"
+            echo '```'
+            cat scope.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit probe results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/probe data/analysis/scope_probe.json
+          if git diff --staged --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "Probe: scope option yields $(date -u +%Y-%m-%d)"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || exit 1
+            sleep $((attempt * 5))
+          done
+          exit 1
