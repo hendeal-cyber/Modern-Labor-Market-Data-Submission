@@ -1,0 +1,193 @@
+# Sampling frame: CORE OPERATORS ONLY.
+# Utilities and data center operators. NOT engineering/EPC firms, NOT equipment
+# or grid-technology vendors. This boundary was set explicitly by the study owner.
+#
+# IMPORTANT ON `verified`:
+#   Board tokens below are CANDIDATES inferred from company naming conventions.
+#   They could NOT be verified from the authoring session (network egress to all
+#   ATS hosts is blocked). `collect/discover.py` probes each candidate on the
+#   first live run and rewrites this file with verified: true/false plus the
+#   endpoint that answered. Treat every unverified row as a hypothesis.
+
+utilities:
+  - name: Exelon
+    metro: chicago
+    candidates:
+      workday: [{tenant: exelon, site: careers}, {tenant: exeloncorp, site: Exelon_Careers}]
+      greenhouse: [exelon]
+    verified: false
+  - name: ComEd
+    metro: chicago
+    parent: Exelon
+    candidates:
+      workday: [{tenant: exelon, site: careers}]
+      greenhouse: [comed]
+    verified: false
+  - name: Constellation Energy
+    metro: chicago
+    candidates:
+      workday: [{tenant: constellation, site: Constellation_Careers}, {tenant: constellationenergy, site: careers}]
+    verified: false
+  - name: Nicor Gas (Southern Company Gas)
+    metro: chicago
+    candidates:
+      workday: [{tenant: southerncompany, site: SouthernCompany}]
+      greenhouse: [nicorgas]
+    verified: false
+  - name: Peoples Gas (WEC Energy Group)
+    metro: chicago
+    candidates:
+      workday: [{tenant: wecenergygroup, site: WEC_Careers}]
+    verified: false
+  - name: Invenergy
+    metro: chicago
+    candidates:
+      greenhouse: [invenergy, invenergyllc]
+      lever: [invenergy]
+      workday: [{tenant: invenergy, site: careers}]
+    verified: false
+  - name: Vistra
+    metro: chicago
+    candidates:
+      workday: [{tenant: vistra, site: vistracareers}, {tenant: vistraenergy, site: careers}]
+    verified: false
+  - name: Illinois American Water
+    metro: chicago
+    parent: American Water
+    candidates:
+      workday: [{tenant: amwater, site: AmericanWater}]
+    verified: false
+  - name: Aqua Illinois (Essential Utilities)
+    metro: chicago
+    candidates:
+      workday: [{tenant: essential, site: EssentialUtilities}]
+    verified: false
+  - name: AES Indiana
+    metro: indianapolis
+    candidates:
+      workday: [{tenant: aes, site: AES_Careers}]
+    verified: false
+  - name: Citizens Energy Group
+    metro: indianapolis
+    candidates:
+      greenhouse: [citizensenergygroup]
+      workday: [{tenant: citizensenergygroup, site: careers}]
+    verified: false
+  - name: Duke Energy Indiana
+    metro: indianapolis
+    parent: Duke Energy
+    candidates:
+      workday: [{tenant: duke-energy, site: search}, {tenant: dukeenergy, site: careers}]
+    verified: false
+  - name: Indiana American Water
+    metro: indianapolis
+    parent: American Water
+    candidates:
+      workday: [{tenant: amwater, site: AmericanWater}]
+    verified: false
+
+data_center_operators:
+  - name: Equinix
+    metros: [chicago, indianapolis]
+    candidates:
+      workday: [{tenant: equinix, site: equinix_careers}, {tenant: equinix, site: careers}]
+    verified: false
+  - name: Digital Realty
+    metros: [chicago]
+    candidates:
+      workday: [{tenant: digitalrealty, site: Digital_Realty_Careers}]
+      greenhouse: [digitalrealty]
+    verified: false
+  - name: QTS Data Centers
+    metros: [chicago, indianapolis]
+    candidates:
+      workday: [{tenant: qtsdatacenters, site: QTS}]
+      greenhouse: [qtsdatacenters, qts]
+    verified: false
+  - name: Aligned Data Centers
+    metros: [chicago]
+    candidates:
+      greenhouse: [aligneddatacenters, alignedenergy]
+      lever: [aligned]
+    verified: false
+  - name: CyrusOne
+    metros: [chicago]
+    candidates:
+      greenhouse: [cyrusone]
+      workday: [{tenant: cyrusone, site: careers}]
+    verified: false
+  - name: CoreSite
+    metros: [chicago]
+    candidates:
+      workday: [{tenant: americantower, site: ATCCareers}]
+      greenhouse: [coresite]
+    verified: false
+  - name: Cologix
+    metros: [chicago]
+    candidates:
+      greenhouse: [cologix]
+      lever: [cologix]
+    verified: false
+  - name: DataBank
+    metros: [chicago, indianapolis]
+    candidates:
+      greenhouse: [databank]
+      lever: [databank]
+    verified: false
+  - name: TierPoint
+    metros: [chicago]
+    candidates:
+      greenhouse: [tierpoint]
+      workday: [{tenant: tierpoint, site: careers}]
+    verified: false
+  - name: Flexential
+    metros: [chicago]
+    candidates:
+      greenhouse: [flexential]
+      workday: [{tenant: flexential, site: careers}]
+    verified: false
+  - name: NTT Global Data Centers
+    metros: [chicago]
+    candidates:
+      workday: [{tenant: services, site: NTT}, {tenant: ntt, site: careers}]
+      greenhouse: [nttglobaldatacenters]
+    verified: false
+  - name: Vantage Data Centers
+    metros: [chicago]
+    candidates:
+      greenhouse: [vantagedatacenters]
+      lever: [vantage-dc]
+    verified: false
+  - name: STACK Infrastructure
+    metros: [chicago]
+    candidates:
+      greenhouse: [stackinfrastructure]
+      lever: [stackinfra]
+    verified: false
+  - name: Prime Data Centers
+    metros: [chicago]
+    candidates:
+      greenhouse: [primedatacenters]
+    verified: false
+  - name: EdgeConneX
+    metros: [chicago]
+    candidates:
+      greenhouse: [edgeconnex]
+      workday: [{tenant: edgeconnex, site: careers}]
+    verified: false
+  - name: Iron Mountain Data Centers
+    metros: [chicago]
+    candidates:
+      workday: [{tenant: ironmountain, site: Iron_Mountain_Careers}]
+    verified: false
+  - name: T5 Data Centers
+    metros: [chicago]
+    candidates:
+      greenhouse: [t5datacenters]
+    verified: false
+
+# Slug patterns discover.py derives candidates from when a company has no
+# confirmed token: lowercase, strip punctuation, with and without spaces/dashes.
+discovery:
+  platforms: [greenhouse, lever, ashby, smartrecruiters, workable, recruitee]
+  slug_transforms: [compact, hyphenated, first_word]

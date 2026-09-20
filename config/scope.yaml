@@ -1,0 +1,188 @@
+# Study scope definition.
+# Every filter the pipeline applies is declared here so the sampling frame is
+# documentable in the methods section rather than buried in code.
+
+study:
+  name: "Early-Career Pay Determinants in Utility & Data Center Software/Data Roles"
+  dependent_variable: "log(pay range midpoint), annualized USD"
+  min_usable_n: 100          # hard floor; pipeline reports against this every run
+
+# ---------------------------------------------------------------------------
+# Geography. Tiers escalate ONLY when the floor is unmet (see escalation).
+# ---------------------------------------------------------------------------
+metros:
+  chicago:
+    tier: 1
+    label: "Chicago, IL"
+    centroid: [41.8781, -87.6298]   # the Loop
+    radius_miles: 35
+    state: IL
+    pay_disclosure_mandate: true    # HB 3129, effective 2025-01-01, 15+ employees
+  indianapolis:
+    tier: 2
+    label: "Indianapolis, IN"
+    centroid: [39.7684, -86.1581]
+    radius_miles: 35
+    state: IN
+    pay_disclosure_mandate: false   # Indiana has no posting-level mandate
+  # Tier 3 is PRE-REGISTERED BUT DORMANT. Activated only if tiers 1+2 fail the
+  # N>=100 floor after 3 collection cycles. Chosen for disclosure mandates.
+  northern_virginia:
+    tier: 3
+    enabled: false
+    label: "Northern Virginia"
+    centroid: [38.9586, -77.3570]   # Ashburn
+    radius_miles: 35
+    state: VA
+    pay_disclosure_mandate: true    # effective 2026-07-01
+  denver:
+    tier: 3
+    enabled: false
+    label: "Denver, CO"
+    centroid: [39.7392, -104.9903]
+    radius_miles: 35
+    state: CO
+    pay_disclosure_mandate: true
+  minneapolis:
+    tier: 3
+    enabled: false
+    label: "Minneapolis-St. Paul, MN"
+    centroid: [44.9778, -93.2650]
+    radius_miles: 35
+    state: MN
+    pay_disclosure_mandate: true    # 30+ employees, effective 2025-01-01
+  seattle:
+    tier: 3
+    enabled: false
+    label: "Seattle, WA"
+    centroid: [47.6062, -122.3321]
+    radius_miles: 35
+    state: WA
+    pay_disclosure_mandate: true
+
+escalation:
+  cycles_before_tier3: 3
+  rule: >
+    If usable observations (in-scope AND pay disclosed) from active tiers remain
+    under min_usable_n after cycles_before_tier3 collection runs, enable tier 3
+    metros. Tier is recorded per observation so tier-1-only results remain
+    reportable as a robustness check.
+
+# ---------------------------------------------------------------------------
+# Role taxonomy: software / data / analytics ONLY.
+# ---------------------------------------------------------------------------
+roles:
+  include_any:
+    - software engineer
+    - software developer
+    - application developer
+    - backend developer
+    - frontend developer
+    - full stack
+    - data engineer
+    - data scientist
+    - data analyst
+    - analytics engineer
+    - business intelligence
+    - bi developer
+    - machine learning engineer
+    - ml engineer
+    - database administrator
+    - database developer
+    - data architect
+    - quantitative analyst
+    - reporting analyst
+    - etl developer
+    - platform engineer
+    - devops engineer
+  # Excluded even when a title partially matches: these are out of the
+  # software/data/analytics category the user defined.
+  exclude_any:
+    - technician
+    - critical facilities
+    - facility
+    - facilities
+    - hvac
+    - mechanical
+    - electrical engineer
+    - power engineer
+    - substation
+    - relay
+    - lineman
+    - line worker
+    - field service
+    - network engineer
+    - network operations
+    - noc
+    - help desk
+    - service desk
+    - desktop support
+    - it support
+    - systems administrator
+    - security analyst
+    - cybersecurity
+    - sales
+    - account executive
+    - marketing
+    - recruiter
+    - accountant
+    - financial analyst
+
+# ---------------------------------------------------------------------------
+# Early career definition.
+# ---------------------------------------------------------------------------
+early_career:
+  max_years_experience: 3
+  # Used when a posting states no experience minimum.
+  entry_title_signals:
+    - associate
+    - junior
+    - " jr"
+    - " i "
+    - " i)"
+    - " ii "
+    - " ii)"
+    - new grad
+    - new graduate
+    - entry level
+    - entry-level
+    - early career
+    - rotational
+    - development program
+    - graduate program
+    - campus
+  seniority_exclusions:
+    - senior
+    - " sr"
+    - staff
+    - principal
+    - lead
+    - manager
+    - director
+    - head of
+    - vp
+    - vice president
+    - architect ii
+    - iii
+    - " iv"
+
+internships:
+  exclude: true
+  intern_signals:
+    - intern
+    - internship
+    - co-op
+    - coop
+    - summer analyst
+    - apprentice
+  # Full-time rotational/development programs are KEPT even though they read
+  # as early-career programs; they are permanent roles with benefits.
+  keep_despite_signals:
+    - rotational
+    - development program
+    - graduate program
+
+pay:
+  hours_per_year: 2080      # hourly -> annual conversion
+  min_plausible_annual: 25000
+  max_plausible_annual: 400000
