@@ -50,7 +50,7 @@ A negation pattern forces an otherwise-positive match back to 0.
 | `degree_stem` | Degree must be in a STEM field. | `computer science`, `computer engineering`, `software engineering`, `information systems`, … (11 total) | — |
 | `advanced_degree_pref` | Master's or PhD required or preferred. | `master's degree`, `masters degree`, `m.s.`, `msc`, … (9 total) | — |
 | `prior_internship_req` | Prior internship or co-op experience required or preferred. | `internship experience`, `intern experience`, `co-op experience`, `prior internship`, … (6 total) | — |
-| `certification_req` | A named professional certification is required or preferred. | `certification`, `certified`, `aws certified`, `azure certified`, … (8 total) | — |
+| `certification_req` | A named professional certification is required or preferred. | `certification required`, `certification is required`, `certification preferred`, `certifications preferred`, … (20 total) | — |
 
 ### Technical Skills
 
@@ -69,7 +69,7 @@ A negation pattern forces an otherwise-positive match back to 0.
 |---|---|---|---|
 | `soft_teamwork` | Teamwork or collaboration named as a requirement. | `team player`, `work in a team`, `collaborate`, `collaborative`, … (9 total) | — |
 | `soft_communication` | Written or verbal communication skills named. | `communication skills`, `communicate effectively`, `verbal and written`, `written and verbal`, … (6 total) | — |
-| `soft_leadership` | Leadership, mentoring, or ownership named. | `leadership`, `lead projects`, `mentor`, `mentoring`, … (6 total) | — |
+| `soft_leadership` | Leadership, mentoring, or ownership asked of the applicant. | `leadership skills`, `leadership abilities`, `leadership experience`, `demonstrated leadership`, … (12 total) | — |
 | `soft_problem_solving` | Problem solving or analytical thinking named. | `problem solving`, `problem-solving`, `analytical skills`, `critical thinking`, … (6 total) | — |
 
 ### Job Context
@@ -86,7 +86,7 @@ A negation pattern forces an otherwise-positive match back to 0.
 
 | Variable | Definition | Example patterns | Negations |
 |---|---|---|---|
-| `benefit_health` | Health, medical, dental, or vision insurance mentioned. | `health insurance`, `medical insurance`, `health benefits`, `medical, dental`, … (8 total) | — |
+| `benefit_health` | Health, medical, dental, or vision insurance mentioned. | `health insurance`, `medical insurance`, `health benefits`, `medical, dental`, … (13 total) | — |
 | `benefit_retirement` | Retirement plan or employer match mentioned. | `401(k)`, `401k`, `retirement plan`, `pension`, … (7 total) | — |
 | `benefit_bonus` | Bonus or incentive compensation mentioned. | `annual bonus`, `performance bonus`, `incentive compensation`, `bonus eligible`, … (7 total) | — |
 | `benefit_equity` | Equity, stock, or RSUs mentioned. | `stock options`, `equity`, `rsu`, `restricted stock`, … (7 total) | — |

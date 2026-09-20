@@ -1,24 +1,24 @@
 {
-  "built_at": "2026-09-20T22:41:48.855078+00:00",
+  "built_at": "2026-09-20T22:51:52.164835+00:00",
   "snapshots": [
     "2026-09-20"
   ],
   "funnel": {
-    "raw": 58,
-    "rejected_screen": 56,
-    "passed_screen": 2,
-    "rejected_geo": 2,
+    "raw": 165,
+    "rejected_screen": 162,
+    "passed_screen": 3,
+    "rejected_geo": 3,
     "unique_in_scope": 0,
     "usable_with_pay": 0
   },
   "rejection_reasons": {
-    "role_not_software_data": 39,
-    "no_experience_signal": 37,
-    "seniority_excluded": 16,
-    "role_excluded": 12,
-    "experience_too_high": 2,
-    "out_of_metro": 2,
-    "internship": 1
+    "role_not_software_data": 96,
+    "no_experience_signal": 72,
+    "seniority_excluded": 63,
+    "role_excluded": 60,
+    "experience_too_high": 17,
+    "internship": 6,
+    "out_of_metro": 3
   },
   "usable_by_metro": {},
   "usable_by_employer": {},
