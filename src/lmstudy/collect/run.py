@@ -121,7 +121,9 @@ def main() -> int:
             path = out_dir / f"{safe}__{hit.platform}.json"
             path.write_text(json.dumps(records, indent=1))
             total_postings += len(records)
-            print(f"    {hit.platform}:{hit.token} -> {len(records)} postings")
+            listed = (hit.detail or {}).get("listed")
+            print(f"    {hit.platform}:{hit.token} -> {len(records)} postings"
+                  + (f" (board listed {listed})" if listed is not None else ""))
             manifest["results"].append(
                 {
                     "employer": name,
@@ -129,6 +131,7 @@ def main() -> int:
                     "found": True,
                     "platform": hit.platform,
                     "token": hit.token,
+                    "listed": listed,
                     "postings": len(records),
                     "file": path.name,
                 }

@@ -39,6 +39,7 @@ class Response:
     etag: str | None = None
     not_modified: bool = False
     error: str | None = None
+    listed: int | None = None   # postings the board listed, before any filtering
 
     @property
     def ok(self) -> bool:

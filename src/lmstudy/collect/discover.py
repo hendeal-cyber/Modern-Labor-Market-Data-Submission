@@ -101,17 +101,25 @@ def probe(
             # A verified candidate names its wd instance, so probe only that one.
             instances = (pinned,) if pinned else (1, 5, 3, 2, 10, 12, 103, 105)
             for instance in instances:
-                postings, _ = fetcher(session, tenant, site, employer,
-                                      wd_instance=instance, detail_filter=detail_filter)
-                if postings:
+                postings, resp = fetcher(session, tenant, site, employer,
+                                         wd_instance=instance, detail_filter=detail_filter)
+                listed = resp.listed or 0
+                # A board that listed jobs exists even when the pre-screen
+                # removed all of them. Conflating the two would make a real
+                # employer look boardless and hide that it simply posts
+                # nothing in scope.
+                if postings or listed:
                     return BoardHit(employer, platform, f"{tenant}/{site}", postings,
-                                    {"wd_instance": instance})
+                                    {"wd_instance": instance, "listed": listed})
             return None
         if platform == "smartrecruiters":
-            postings, _ = fetcher(session, token, employer, detail_filter=detail_filter)
+            postings, resp = fetcher(session, token, employer, detail_filter=detail_filter)
         else:
-            postings, _ = fetcher(session, token, employer)
-        return BoardHit(employer, platform, token, postings) if postings else None
+            postings, resp = fetcher(session, token, employer)
+        listed = resp.listed if resp.listed is not None else len(postings)
+        if postings or listed:
+            return BoardHit(employer, platform, token, postings, {"listed": listed})
+        return None
     except Exception as exc:  # a malformed board must not abort the whole run
         print(f"    probe error {employer}/{platform}/{token}: {type(exc).__name__}: {exc}")
         return None

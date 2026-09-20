@@ -232,7 +232,9 @@ def fetch_smartrecruiters(
     if not resp.ok:
         return [], resp
     out = []
-    for job in (resp.data.get("content") or [])[:max_postings]:
+    content = (resp.data.get("content") or [])[:max_postings]
+    resp.listed = len(content)
+    for job in content:
         job_id = str(job.get("id", ""))
         location = job.get("location") or {}
         location_raw = ", ".join(
@@ -409,6 +411,8 @@ def fetch_workday(
         out = [p for p in out if detail_filter(p)]
         print(f"      workday {tenant}/{site}: {listed} listed -> {len(out)} need detail",
               flush=True)
+    if last is not None:
+        last.listed = listed
     for posting in out:
         path = (posting.payload or {}).get("externalPath")
         if not path:
