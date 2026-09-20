@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-20",
-  "collected_at": "2026-09-20T21:59:12.929326+00:00",
+  "collected_at": "2026-09-20T22:19:35.865994+00:00",
   "employers_attempted": 30,
   "results": [
     {
@@ -19,10 +19,7 @@
       "employer": "Constellation Energy",
       "industry": "utility",
       "found": false,
-      "platform": "ashby",
-      "token": "constellation",
-      "postings": 0,
-      "status": "slug_candidate_unconfirmed"
+      "postings": 0
     },
     {
       "employer": "Nicor Gas (Southern Company Gas)",
@@ -42,14 +39,19 @@
       "found": true,
       "platform": "workday",
       "token": "invenergyllc/invenergycareers",
+      "listed": 192,
       "postings": 1,
       "file": "Invenergy__workday.json"
     },
     {
       "employer": "Vistra",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "vst/vistra_careers",
+      "listed": 171,
+      "postings": 0,
+      "file": "Vistra__workday.json"
     },
     {
       "employer": "Illinois American Water",
@@ -90,8 +92,12 @@
     {
       "employer": "Equinix",
       "industry": "data_center",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "equinix/External",
+      "listed": 284,
+      "postings": 0,
+      "file": "Equinix__workday.json"
     },
     {
       "employer": "Digital Realty",
@@ -102,20 +108,18 @@
     {
       "employer": "QTS Data Centers",
       "industry": "data_center",
-      "found": false,
-      "platform": "recruitee",
-      "token": "qts",
+      "found": true,
+      "platform": "workday",
+      "token": "qtsdatacenters/QTS",
+      "listed": 304,
       "postings": 0,
-      "status": "slug_candidate_unconfirmed"
+      "file": "QTS_Data_Centers__workday.json"
     },
     {
       "employer": "Aligned Data Centers",
       "industry": "data_center",
       "found": false,
-      "platform": "greenhouse",
-      "token": "aligned",
-      "postings": 0,
-      "status": "slug_candidate_unconfirmed"
+      "postings": 0
     },
     {
       "employer": "CyrusOne",
@@ -135,6 +139,7 @@
       "found": true,
       "platform": "lever",
       "token": "cologix",
+      "listed": 28,
       "postings": 28,
       "file": "Cologix__lever.json"
     },
@@ -166,10 +171,7 @@
       "employer": "Vantage Data Centers",
       "industry": "data_center",
       "found": false,
-      "platform": "ashby",
-      "token": "vantage",
-      "postings": 0,
-      "status": "slug_candidate_unconfirmed"
+      "postings": 0
     },
     {
       "employer": "STACK Infrastructure",
@@ -189,6 +191,7 @@
       "found": true,
       "platform": "greenhouse",
       "token": "edgeconnex",
+      "listed": 19,
       "postings": 19,
       "file": "EdgeConneX__greenhouse.json"
     },
@@ -202,12 +205,9 @@
       "employer": "T5 Data Centers",
       "industry": "data_center",
       "found": false,
-      "platform": "lever",
-      "token": "t5datacenters",
-      "postings": 0,
-      "status": "slug_candidate_unconfirmed"
+      "postings": 0
     }
   ],
   "total_postings": 48,
-  "slug_candidates_for_review": 5
+  "slug_candidates_for_review": 0
 }
