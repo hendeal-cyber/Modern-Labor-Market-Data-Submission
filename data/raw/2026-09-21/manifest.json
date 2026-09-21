@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-21",
-  "collected_at": "2026-09-21T18:28:45.001467+00:00",
+  "collected_at": "2026-09-21T22:35:24.980644+00:00",
   "employers_attempted": 269,
   "results": [
     {
@@ -33,7 +33,7 @@
       "found": true,
       "platform": "workday",
       "token": "invenergyllc/invenergycareers",
-      "listed": 192,
+      "listed": 194,
       "postings": 44,
       "file": "Invenergy__workday.json",
       "site_guessed": false
@@ -44,7 +44,7 @@
       "found": true,
       "platform": "workday",
       "token": "vst/vistra_careers",
-      "listed": 172,
+      "listed": 168,
       "postings": 8,
       "file": "Vistra__workday.json",
       "site_guessed": false
@@ -61,7 +61,7 @@
       "found": true,
       "platform": "workday",
       "token": "aquaamerica/Essential_Careers",
-      "listed": 98,
+      "listed": 94,
       "postings": 4,
       "file": "Aqua_Illinois__Essential_Utilities___workday.json",
       "site_guessed": false
@@ -72,8 +72,8 @@
       "found": true,
       "platform": "workday",
       "token": "aes/AES_US",
-      "listed": 169,
-      "postings": 20,
+      "listed": 171,
+      "postings": 19,
       "file": "AES_Indiana__workday.json",
       "site_guessed": false
     },
@@ -106,8 +106,8 @@
       "found": true,
       "platform": "workday",
       "token": "nisource/NiSource",
-      "listed": 65,
-      "postings": 3,
+      "listed": 67,
+      "postings": 4,
       "file": "NiSource___NIPSCO__workday.json",
       "site_guessed": false
     },
@@ -147,8 +147,8 @@
       "found": true,
       "platform": "workday",
       "token": "equinix/External",
-      "listed": 276,
-      "postings": 10,
+      "listed": 273,
+      "postings": 9,
       "file": "Equinix__workday.json",
       "site_guessed": false
     },
@@ -164,7 +164,7 @@
       "found": true,
       "platform": "workday",
       "token": "qtsdatacenters/QTS",
-      "listed": 302,
+      "listed": 303,
       "postings": 14,
       "file": "QTS_Data_Centers__workday.json",
       "site_guessed": false
@@ -181,7 +181,7 @@
       "found": true,
       "platform": "workday",
       "token": "cyrusone/CyrusOneCareerPortal",
-      "listed": 122,
+      "listed": 123,
       "postings": 5,
       "file": "CyrusOne__workday.json",
       "site_guessed": false
@@ -215,8 +215,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "flexentialcorp",
-      "listed": 22,
-      "postings": 22,
+      "listed": 23,
+      "postings": 23,
       "file": "Flexential__greenhouse.json",
       "site_guessed": false
     },
@@ -226,7 +226,7 @@
       "found": true,
       "platform": "workday",
       "token": "nttglobaldatacenters/External",
-      "listed": 229,
+      "listed": 227,
       "postings": 4,
       "file": "NTT_Global_Data_Centers__workday.json",
       "site_guessed": false
@@ -237,7 +237,7 @@
       "found": true,
       "platform": "workday",
       "token": "vantagedc/Vantage",
-      "listed": 189,
+      "listed": 191,
       "postings": 9,
       "file": "Vantage_Data_Centers__workday.json",
       "site_guessed": false
@@ -276,7 +276,7 @@
       "found": true,
       "platform": "workday",
       "token": "ironmountain/iron-mountain-jobs",
-      "listed": 366,
+      "listed": 368,
       "postings": 7,
       "file": "Iron_Mountain_Data_Centers__workday.json",
       "site_guessed": false
@@ -287,8 +287,8 @@
       "found": true,
       "platform": "lever",
       "token": "t5datacenters",
-      "listed": 88,
-      "postings": 88,
+      "listed": 90,
+      "postings": 90,
       "file": "T5_Data_Centers__lever.json",
       "site_guessed": false
     },
@@ -345,8 +345,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "clearwayjobs",
-      "listed": 53,
-      "postings": 53,
+      "listed": 50,
+      "postings": 50,
       "file": "Clearway_Energy__greenhouse.json",
       "site_guessed": false
     },
@@ -356,8 +356,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "arevonenergyimpltest",
-      "listed": 9,
-      "postings": 9,
+      "listed": 10,
+      "postings": 10,
       "file": "Arevon_Energy__greenhouse.json",
       "site_guessed": false
     },
@@ -604,7 +604,7 @@
       "found": true,
       "platform": "workday",
       "token": "xcelenergy/External",
-      "listed": 262,
+      "listed": 271,
       "postings": 33,
       "file": "Xcel_Energy__workday.json",
       "site_guessed": true
@@ -1068,8 +1068,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "aypapower",
-      "listed": 14,
-      "postings": 14,
+      "listed": 13,
+      "postings": 13,
       "file": "Aypa_Power__greenhouse.json",
       "site_guessed": false
     },
@@ -1816,20 +1816,20 @@
       "postings": 0
     }
   ],
-  "total_postings": 730,
+  "total_postings": 729,
   "scope_diagnostics": {
-    "listed": 3667,
-    "unknown_place_wrong_role": 717,
-    "in_metro_wrong_role": 1927,
+    "listed": 3675,
+    "kept": 251,
+    "in_metro_wrong_role": 1933,
     "titles_in_metro": {
+      "Critical Environments Operator IV": 12,
       "Critical Environments Operator III": 12,
       "Critical Operations Technician I": 11,
-      "Critical Environments Operator IV": 11,
       "Solar Technician": 10,
       "Wind Technician": 10,
       "Security Officer L1": 10,
       "Utility Technician": 9,
-      "Critical Environment Engineer": 7,
+      "Critical Environment Engineer": 8,
       "Critical Environments Operator II": 7,
       "Senior Development Project Manager (Data Center Construction": 6,
       "Senior Development Project Engineer (Data Center Constructio": 6,
@@ -1851,10 +1851,10 @@
       "Non CDL Driver": 5,
       "Patient Access Representative": 5,
       "Advanced Solar Technician": 4,
-      "Facility Operator Trainee": 4
+      "Intern Engineering": 4
     },
-    "kept": 252,
-    "neither": 727,
+    "neither": 725,
+    "unknown_place_wrong_role": 722,
     "role_ok_wrong_place": 44,
     "locations_of_in_role": {
       "Bangalore Office BLS2": 10,

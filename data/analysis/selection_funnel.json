@@ -1,33 +1,33 @@
 {
-  "built_at": "2026-09-21T22:31:40.331448+00:00",
+  "built_at": "2026-09-21T23:13:59.448116+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
   ],
   "funnel": {
-    "raw": 897,
+    "raw": 898,
     "rejected_off_umbrella": 0,
-    "rejected_screen": 628,
-    "passed_screen": 269,
+    "rejected_screen": 630,
+    "passed_screen": 268,
     "rejected_geo": 46,
-    "passed_geo": 223,
-    "duplicate_sighting": 19,
+    "passed_geo": 222,
+    "duplicate_sighting": 18,
     "unique_in_scope": 204,
     "usable_with_pay": 137
   },
   "rejection_reasons": {
-    "role_not_software_data": 384,
-    "role_excluded": 211,
+    "role_not_software_data": 383,
+    "role_excluded": 214,
     "internship": 52,
-    "non_us": 30,
-    "no_us_state": 16
+    "non_us": 29,
+    "no_us_state": 17
   },
   "usable_by_metro": {
     "": 20,
-    "northern_virginia": 25,
-    "remote_national": 12,
+    "northern_virginia": 23,
+    "remote_national": 13,
     "denver": 26,
-    "chicago": 33,
+    "chicago": 34,
     "indianapolis": 3,
     "new_york": 4,
     "bay_area": 5,
