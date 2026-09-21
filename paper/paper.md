@@ -118,9 +118,24 @@ Regressors are coded from posting text by word-boundary pattern matching
 against a dictionary declared in `config/regressors.yaml`. Every coded value
 retains the pattern that produced it. Definitions are in `docs/codebook.md`.
 
-*TODO: no audit has been scored yet. Run `src/lmstudy/audit.py sample`,
-hand-code the sheet, then `audit.py score`. Accuracy claims must not be
-made until this exists.*
+Three rounds of hand-auditing are recorded in `docs/audit-log.md`.
+Each read real collected titles rather than a synthetic sample, and
+each found errors the test suite had not:
+
+| Round | Target | Result |
+|---|---|---|
+| 1 | Regressor coding | Three systematic false positives, all firing on company boilerplate rather than on anything asked of the applicant |
+| 2 | `role_family` | 6 of 53 assignments wrong (89%). Four had reached a live measurement and sat in the top eleven rows by pay |
+| 3 | `seniority_rank`, `state` | 21 of 141 wrong (85.1%). One defect changed the headline disclosure contrast |
+
+Every defect found is pinned by a regression test built from the real
+title or location string that produced it, not from a reconstruction.
+
+> The formal gold-set scorer (`audit.py score`) has not been run, so no
+> single per-regressor accuracy figure is quoted here. The rounds above
+> are exhaustive hand-reads of the population, which is a different and
+> in this sample stronger check than a sampled gold set — but it is not
+> the same thing, and is not presented as one.
 
 ## 4. Empirical strategy
 
@@ -305,17 +320,54 @@ Disclosure rate **72.5%** (100 disclosed, 38 withheld).
 
 ## 6. Threats to validity
 
-These are treated at length in `docs/limitations.md`. In short: the outcome is
-advertised pay rather than realized pay; disclosure is selected, and that
-selection is concentrated in Indiana where no mandate applies; the panel has
-no historical backfill, so the opening sample over-represents long-open roles;
-rule-based coding misreads some postings, which the audit measures rather than
-assumes away; standard errors under-cover when employer clusters are few; and
-Exelon and ComEd are absent from the frame entirely.
+These are treated at length in `docs/limitations.md`. In short:
+
+1. The outcome is **advertised** pay, not realized pay. Employers may
+   negotiate away from the posted range in either direction.
+2. **Disclosure is selected.** Where no mandate applies only about a
+   quarter of postings state pay, so every pay coefficient is conditional
+   on disclosure. This is the central threat, and it is why the disclosure
+   model is a headline result rather than a footnote.
+3. The mandate contrast is **associational**. One cross-section admits no
+   difference-in-differences.
+4. Pay is **nominal**. A price-adjusted robustness check is implemented and
+   reported when the BEA table has been fetched.
+5. **Few employer clusters, one of them dominant.** Cluster-robust errors
+   under-cover with few clusters, measured at 88-90% against a nominal 95%.
+   No claim should rest on a marginal p-value without a wild cluster
+   bootstrap.
+6. The scope **widened three times in response to the data**. The
+   specification was pre-registered before the national sample was
+   collected; amendments after that point are dated in
+   `docs/pre-registration.md` section 8.
+7. Exelon, ComEd, Constellation and Citizens Energy are **absent**, all on
+   iCIMS, verified closed rather than assumed.
 
 ## 7. Conclusion
 
-*TODO: write once the results above are stable across collection cycles.*
+Across 100 postings from 20 employers in the US energy and
+data center sector, the sharpest regularity in the data is not about
+the level of pay but about whether pay is named at all. In states
+requiring a pay scale in the posting, 98% of postings
+state one. Where no such requirement exists, 27% do. The
+gap is too large to be explained by employer composition alone,
+though composition cannot be ruled out with a single cross-section.
+
+Within the postings that do disclose, seniority is the dominant
+predictor and the most precisely estimated, which is what the
+pre-registration expected. The prediction that a stated degree
+requirement would raise pay was wrong, and is reported as wrong.
+
+The result a reader should treat most cautiously is any coefficient in
+the pay models, because that sample is selected on the dependent
+variable wherever disclosure is voluntary. The result a reader should
+treat most seriously is the disclosure contrast, because it is measured
+on the full sample and does not depend on pay being observed.
+
+What would most improve this study is **more employers, not more
+postings**. The floor on observations is met; the constraint is that
+too few employers contribute and one contributes too many, which is
+what makes the standard errors fragile.
 
 ## Appendix
 
