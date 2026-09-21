@@ -87,6 +87,8 @@ by a regression test.
 | Bare `certification` / `leadership` / `vision` matched **company boilerplate** | 31/53, 37/53, 20/53 false positives, perfectly correlated within employer |
 | `"internship"` did not match **"Internships"** (plural) | An internship at $50,960 reached a live measurement |
 | Workday `"3 Locations"` read as an out-of-radius place | Multi-site postings silently dropped |
+| **Sector gate substring-matched generic words** | The AI startup returned at 43% — `pipeline` on "architecting pipelines", `load` on "dataloaders", `generation` on "next-generation". **It had been validated against a reconstruction of the board, not the real text** |
+| **Generic single-word slugs matched unrelated companies** | Eleven boards, 366 postings (41% of a run): `via` = public-transit software (168 postings), `pattern` = e-commerce, `tomorrow` = Tomorrow.io weather, `public` = a trading app |
 | Pre-screen made a real board look **unfound** | Conflated "no board" with "nothing in scope" |
 | All-roles probe option **bypassed screening entirely** | Reported 176 usable; true figure 30 |
 
@@ -112,12 +114,30 @@ scripts/                make_codebook / make_figures / make_paper /
 tests/run_all.py        every suite; no network needed
 ```
 
+### The lesson behind the bug table
+
+Most of these are not crashes. They are **confident wrong answers**: a pay
+range parsed as $93,600 instead of $104,000, a regressor firing on every
+posting an employer publishes, 168 transit-dispatcher postings entering an
+energy study. They were found by reading real output, not by tests passing.
+
+The sector-gate failure is the one to internalise. It was validated against a
+*reconstruction* of the offending board rather than the real text, because the
+real data had been deleted. The reconstruction lacked the vocabulary that
+caused the failure, so the check looked sound and was reported as working.
+**When validating a guard against a known bad case, use the real artifact.**
+
 **Key safeguard — `sector_confidence()` in `discover.py`.** Most of the 266
 employer tokens are slug-derived. A slug can land on a different company
 sharing a name. The check measures the share of a board's own postings that
 discuss substations, interconnection, megawatts, colocation. Real energy boards
-score 86–100%; the known false positive scores 0%; threshold is 25%. It applies
-to every entry marked `verified: false`. Hand-verified tokens skip it.
+Terms must be unambiguous in a technology company's postings, and matching is
+word-bounded. Admission needs a 30% share **or** six distinct terms — the
+second gate because Charles River Associates is a genuine energy consultancy at
+7.5% share (most of its practice is antitrust and life sciences) but uses 11
+distinct sector terms. It applies to every entry marked `verified: false`;
+hand-verified tokens skip it. Twelve confirmed wrong tokens are listed under
+`rejected_tokens` in `config/employers.yaml` and skipped at probe time.
 
 ## 6. How to run things
 

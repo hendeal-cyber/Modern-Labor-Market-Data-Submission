@@ -51,6 +51,26 @@ Two consequences a reader should weigh:
   `data/analysis/scope_probe*.json`, so the decision is auditable. But it was
   not pre-registered, and a reader is entitled to discount accordingly.
 
+## 5a. Eleven wrong companies entered a collection run
+
+Slug-derived tokens produced eleven same-name collisions in a single run,
+contributing 366 of 886 postings — 41%. The largest, token `via`, was Via the
+public-transit software company rather than Via Renewables, and supplied 168
+postings of transit dispatch and field operations. Others included an
+e-commerce operator (`pattern`), Tomorrow.io the weather company (`tomorrow`),
+a trading app (`public`) and a Canadian PR firm (`national`).
+
+All were caught by inspection and purged before any model was estimated, and
+all twelve confirmed tokens are now recorded and skipped at probe time. But the
+episode bounds how much confidence the frame deserves: **a reader should assume
+some residual contamination** and treat any employer contributing an unusual
+number of observations as worth checking against its careers page.
+
+The first sector gate did not catch these. It substring-matched generic words,
+scoring an AI startup at 43% on "pipelines", "dataloaders" and
+"next-generation". It had been validated against a reconstruction of the
+offending board rather than the real text.
+
 ## 5b. Slug-derived employer tokens, and what protects them
 
 Most of the 266 employer board tokens were derived from company names rather
