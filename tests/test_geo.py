@@ -48,17 +48,20 @@ def run():
         if got.metro != want:
             fails.append(f"resolve({loc!r}) -> {got.metro} want {want} ({got.note})")
 
-    # 4. Out-of-scope must NOT resolve.
-    for loc in ["Redwood City, CA", "Dallas, TX", "Ashburn, VA", "New York, NY"]:
+    # 4. Out-of-scope must NOT resolve. Ashburn is no longer here: Tier 3 was
+    # activated on 2026-09-21 per the pre-registered escalation, so Northern
+    # Virginia is a study metro.
+    for loc in ["Redwood City, CA", "Dallas, TX", "New York, NY", "Atlanta, GA"]:
         got = resolve(loc, active_metros(), GAZ)
         if got.metro is not None:
             fails.append(f"resolve({loc!r}) wrongly in scope as {got.metro}")
 
-    # 5. Tier 3 dormant: Ashburn resolves only when tier 3 is enabled.
-    t3 = dict(active_metros())
-    t3["northern_virginia"] = {**METROS["northern_virginia"], "enabled": True}
-    if resolve("Ashburn, VA", t3, GAZ).metro != "northern_virginia":
-        fails.append("Ashburn should resolve once tier 3 is enabled")
+    # 5. Tier 3 is active, so its metros resolve.
+    for loc, want in [("Ashburn, VA", "northern_virginia"), ("Denver, CO", "denver"),
+                      ("Bloomington, MN", "minneapolis"), ("Bellevue, WA", "seattle")]:
+        got = resolve(loc, active_metros(), GAZ)
+        if got.metro != want:
+            fails.append(f"tier 3: resolve({loc!r}) -> {got.metro} want {want}")
 
     # 6. Multi-site postings pick the in-scope site.
     got = resolve("Dallas, TX; Chicago, IL", active_metros(), GAZ)

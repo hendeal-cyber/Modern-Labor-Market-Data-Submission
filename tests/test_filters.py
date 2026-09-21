@@ -29,6 +29,33 @@ YEARS = [
 
 def run():
     fails = []
+
+    # Regression, asserted at the matcher rather than through the screen:
+    # " i " must match the roman numeral in "Engineer I" and NOT the letter i
+    # inside "engineer". Substring matching once passed every posting here.
+    from lmstudy.filters import _matches, _norm
+    if _matches(_norm("Software Engineer"), " i "):
+        fails.append("' i ' must not match the i inside 'engineer'")
+    if not _matches(_norm("Software Engineer I"), " i "):
+        fails.append("' i ' must match the roman numeral in 'Engineer I'")
+
+    # With the config flag off, the strict behaviour must still hold.
+    import copy
+    strict = copy.deepcopy(CFG)
+    strict["early_career"]["admit_unstated_experience"] = False
+    if screen_early_career("Data Engineer", "Build pipelines.", strict).passed:
+        fails.append("strict mode must still reject unstated experience")
+    if screen_early_career("Data Engineer", "Build pipelines.", strict).reason != "no_experience_signal":
+        fails.append("strict mode should reject with no_experience_signal")
+
+    # Job level is ordinal and highest-match-wins.
+    from lmstudy.filters import extract_job_level
+    for title, want in [("Grid Integration Engineer I", 1), ("Grid Integration Engineer II", 2),
+                        ("Data Architect III", 3), ("Associate, Renewable Development", 1),
+                        ("Geospatial Scientist", 0), ("Senior Associate, Capital Markets", 3)]:
+        if extract_job_level(title) != want:
+            fails.append(f"extract_job_level({title!r}) -> {extract_job_level(title)} want {want}")
+
     for t in ROLE_KEEP:
         if not screen_role(t, "", CFG).passed:
             fails.append(f"role should KEEP {t!r}: {screen_role(t,'',CFG).reason}")
@@ -49,13 +76,15 @@ def run():
         ("Software Engineer I", "Requires 2 years of experience.", True, "2yr ok"),
         ("Software Engineer", "Requires 7+ years of experience.", False, "7yr too high"),
         ("Associate Data Scientist", "Join our team.", True, "title signal, no years"),
-        ("Data Engineer", "Build pipelines.", False, "no signal at all"),
+        # admit_unstated_experience is on, so a posting with no stated minimum
+        # is kept and yrs_exp_stated carries the imputation into the model.
+        ("Data Engineer", "Build pipelines.", True, "unstated experience admitted"),
         ("Data Analyst - New Grad", "Exciting opportunity.", True, "new grad signal"),
         # Regression: " i " must match the roman numeral in "Engineer I",
         # NOT the letter i inside "engineer". Substring matching passed
         # every posting here before word boundaries were enforced.
         ("Software Engineer I", "Join the platform team.", True, "roman numeral I"),
-        ("Software Engineer", "Join the platform team.", False, "bare title must not match ' i '"),
+        ("Software Engineer", "Join the platform team.", True, "unstated, admitted"),
         ("Data Scientist II", "Build models.", True, "roman numeral II"),
         ("Data Architect III", "Own the design.", False, "III is a seniority exclusion"),
     ]

@@ -17,8 +17,12 @@ def run():
         report = build(ROOT / "tests" / "fixtures" / "raw", out, ROOT / "config")
         f = report["funnel"]
 
-        expect = {"raw": 14, "rejected_screen": 5, "rejected_geo": 1,
-                  "duplicate_sighting": 1, "unique_in_scope": 7, "usable_with_pay": 6}
+        # unique_in_scope rose from 7 to 8 when admit_unstated_experience was
+        # turned on: the "Data Engineer" fixture states no minimum and carries
+        # no entry-level title cue, so it is now kept and controlled for rather
+        # than dropped. It still has no pay, so usable_with_pay is unchanged.
+        expect = {"raw": 14, "rejected_screen": 4, "rejected_geo": 1,
+                  "duplicate_sighting": 1, "unique_in_scope": 8, "usable_with_pay": 6}
         for key, want in expect.items():
             if f.get(key) != want:
                 fails.append(f"funnel[{key}]={f.get(key)} want {want}")
@@ -51,9 +55,9 @@ def run():
             fails.append(f"structured comp wrong: source={ae['pay_source']} mid={ae['pay_midpoint']}")
 
         # Non-disclosure retained in dataset but flagged.
-        nd = [r for r in rows if r["pay_disclosed"] == "0"]
-        if len(nd) != 1 or nd[0]["employer"] != "Nicor Gas":
-            fails.append(f"expected one non-disclosing row (Nicor Gas), got {[r['employer'] for r in nd]}")
+        nd = sorted(r["employer"] for r in rows if r["pay_disclosed"] == "0")
+        if nd != ["Exelon", "Nicor Gas"]:
+            fails.append(f"expected non-disclosing rows [Exelon, Nicor Gas], got {nd}")
 
         # Indianapolis row must carry mandate_state = 0.
         indy = [r for r in rows if r["metro"] == "indianapolis"]

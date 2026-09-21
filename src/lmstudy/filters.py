@@ -112,10 +112,16 @@ def screen_early_career(title: str, description: str, config: dict) -> ScreenRes
             return ScreenResult(True, None, {"years_min": years, "excerpt": excerpt})
         return ScreenResult(False, "experience_too_high", {"years_min": years, "excerpt": excerpt})
 
-    # No stated requirement: accept only on an explicit entry-level title signal.
+    # No stated requirement. An explicit entry-level title signal always passes.
     for signal in ec["entry_title_signals"]:
         if _matches(title_n, signal):
             return ScreenResult(True, None, {"years_min": None, "title_signal": signal})
+
+    # Otherwise admit or reject per config. Admitting is the measured default:
+    # dropping unstated-experience postings cost roughly half the sample, and
+    # `yrs_exp_stated` carries the imputation into the model as a control.
+    if ec.get("admit_unstated_experience"):
+        return ScreenResult(True, None, {"years_min": None, "experience_unstated": True})
 
     return ScreenResult(False, "no_experience_signal", {"title": title})
 
@@ -159,3 +165,28 @@ def screen_all(title: str, description: str, config: dict) -> tuple[bool, list[s
         if not result.passed:
             reasons.append(result.reason or name)
     return (not reasons), reasons, detail
+
+
+# Job level: the rung on the early-career ladder, as an ordinal.
+#   0 = unlevelled   1 = I / Associate   2 = II / Analyst   3 = III / Senior Associate
+LEVEL_PATTERNS = [
+    (3, [r"\biii\b", r"\blevel 3\b", r"\bl3\b", r"senior associate", r"senior analyst"]),
+    (2, [r"\bii\b", r"\blevel 2\b", r"\bl2\b", r"\banalyst\b"]),
+    (1, [r"\bi\b", r"\blevel 1\b", r"\bl1\b", r"\bassociate\b", r"\bjunior\b", r"\bjr\b"]),
+]
+_LEVEL_RE = [(lvl, [re.compile(p, re.IGNORECASE) for p in pats]) for lvl, pats in LEVEL_PATTERNS]
+
+
+def extract_job_level(title: str) -> int:
+    """Ordinal rung from the title, highest match wins.
+
+    Checked high-to-low so "Engineer III" is not read as "I". The numeral does
+    not decide early-career status — the experience parse does — this only
+    records where on the ladder the posting sits, so the within-ladder pay step
+    can be estimated.
+    """
+    text = f" {(title or '').lower()} "
+    for level, patterns in _LEVEL_RE:
+        if any(p.search(text) for p in patterns):
+            return level
+    return 0
