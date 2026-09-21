@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-21",
-  "collected_at": "2026-09-21T02:28:36.184735+00:00",
+  "collected_at": "2026-09-21T04:34:23.560679+00:00",
   "employers_attempted": 266,
   "results": [
     {
@@ -61,7 +61,7 @@
       "found": true,
       "platform": "workday",
       "token": "dukeenergy/search",
-      "listed": 106,
+      "listed": 103,
       "postings": 0,
       "file": "Duke_Energy_Indiana__workday.json"
     },
@@ -74,8 +74,12 @@
     {
       "employer": "NiSource / NIPSCO",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "nisource/NiSource",
+      "listed": 63,
+      "postings": 1,
+      "file": "NiSource___NIPSCO__workday.json"
     },
     {
       "employer": "CenterPoint Energy Indiana",
@@ -113,7 +117,7 @@
       "found": true,
       "platform": "workday",
       "token": "equinix/External",
-      "listed": 282,
+      "listed": 281,
       "postings": 1,
       "file": "Equinix__workday.json"
     },
@@ -188,7 +192,7 @@
       "platform": "workday",
       "token": "nttglobaldatacenters/External",
       "listed": 225,
-      "postings": 0,
+      "postings": 1,
       "file": "NTT_Global_Data_Centers__workday.json"
     },
     {
@@ -198,7 +202,7 @@
       "platform": "workday",
       "token": "vantagedc/Vantage",
       "listed": 187,
-      "postings": 2,
+      "postings": 4,
       "file": "Vantage_Data_Centers__workday.json"
     },
     {
@@ -369,7 +373,7 @@
       "platform": "workday",
       "token": "hitachi/hitachi",
       "listed": 500,
-      "postings": 3,
+      "postings": 4,
       "file": "Hitachi_Energy__workday.json"
     },
     {
@@ -549,8 +553,12 @@
     {
       "employer": "Xcel Energy",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "xcelenergy/External",
+      "listed": null,
+      "postings": 23,
+      "file": "Xcel_Energy__workday.json"
     },
     {
       "employer": "Puget Sound Energy",
@@ -1746,77 +1754,77 @@
       "postings": 0
     }
   ],
-  "total_postings": 529,
+  "total_postings": 557,
   "scope_diagnostics": {
-    "listed": 3445,
-    "kept": 69,
-    "neither": 2368,
-    "in_metro_wrong_role": 310,
+    "listed": 3762,
+    "kept": 116,
+    "neither": 2295,
+    "in_metro_wrong_role": 553,
     "titles_in_metro": {
       "Warehouse Operations Specialist": 11,
+      "Account Executive -  Digital Solutions": 8,
       "CDL B Local Route Driver": 8,
       "Security Officer L1": 7,
       "Critical Operations Technician I": 5,
       "Critical Environments Operator II": 4,
+      "Power Platform Developer": 4,
       "Critical Environments Operator IV": 3,
       "Critical Environments Operator III": 3,
+      "ServiceNow Developer": 3,
       "Senior Staff Engineer, Engineering (Battery Storage)": 2,
       "Manager of Thermal Development": 2,
       "Summer 2027 Internship: Development Capital Strategy": 2,
+      "Environmental Health and Safety Manager": 2,
       "Data Center Technician L1": 2,
+      "Client Delivery Manager": 2,
       "DoW SkillBridge Data Center Technician Apprentice": 2,
       "Senior Manager, Finance Systems & Operations": 2,
       "Controls Project Manager": 2,
       "Director, Mechanical Engineering": 2,
       "Critical Operations Technician": 2,
+      "Strategy & Change Management Specialist": 2,
+      "Credit Balance Specialist - Physician Healthcare Claims": 2,
+      "Oracle PL/SQL Developer / Developer DBA": 2,
+      "Global Manufacturing Process Definition & Improvement Specia": 2,
+      "Senior Operations Work Coordinator": 2,
+      "Administrative Assistant III": 2,
       "Manager, Strategy": 1,
       "Accountant, Operations Accounting": 1,
-      "Wind Technician": 1,
-      "Manager, Electrical Engineering - Thermal": 1,
-      "Manager, Inventory Management": 1,
-      "Manager, Enterprise Risk Management": 1,
-      "Sr. Project Manager, Geothermal Project Management": 1,
-      "GIS Manager": 1,
-      "2027 Summer Internships - Electrical Engineering (Grid Focus": 1,
-      "2027 Summer Internships - Engineering (Operations, Thermal, ": 1,
-      "2027 Summer Internships - Engineering (BESS, Wind, Solar)": 1,
-      "2027 Summer Internships - Electrical Engineering": 1,
-      "Principal, NERC Cybersecurity Compliance (CIP)": 1,
-      "Staff Engineer, Thermal Engineering": 1
+      "Wind Technician": 1
     },
-    "unknown_place_wrong_role": 628,
-    "role_ok_wrong_place": 70,
+    "unknown_place_wrong_role": 748,
+    "role_ok_wrong_place": 50,
     "locations_of_in_role": {
-      "US - VA, Arlington": 11,
       "US - AL, Huntsville": 5,
-      "US - Remote (Any location)": 5,
       "Chennai, Tamil Nadu, India": 4,
       "Irving, Texas": 3,
       "US - MD, Bethesda": 3,
       "PA NORTH SHORE - 375": 2,
       "Redwood City": 2,
       "Irving, TX": 2,
-      "Remote - US": 2,
       "US - VA, Norfolk": 2,
-      "US - VA, McLean": 2,
       "(HTA) NCP (Hillsboro, OR)": 2,
       "Sevlievo, Gabrovo, Bulgaria": 2,
+      "Amarillo, TX, 79101": 2,
       "Home Office (CA)": 1,
       "PA Bryn Mawr": 1,
+      "Columbus OH - Arena District": 1,
       "Amsterdam": 1,
       "Overland Park, KS": 1,
       "Duluth, GA": 1,
       "US KS Overland Park College": 1,
       "Dallas, TX": 1,
-      "Remote, USA": 1,
       "Mumbai, India": 1,
       "IND | Bangalore | Level 10, CITRINE Bloc": 1,
       "MYS | Shah Alam | Persiaran Selangor, Se": 1,
       "COL | Bogot\u00e1 | Av Cra 45, 114, Oficina 5": 1,
-      "US - VA, Springfield": 1,
       "US - DC, Washington": 1,
       "US - MD, Annapolis Junction": 1,
-      "Reading, Pennsylvania, United States": 1
+      "Reading, Pennsylvania, United States": 1,
+      "Pittsburgh, Pennsylvania, United States": 1,
+      "Rotterdam, South Holland, Netherlands": 1,
+      "Vadodara, Gujarat, India": 1,
+      "Ho Chi Minh City, Ho Chi Minh, Vietnam": 1
     }
   },
   "slug_candidates_for_review": 2

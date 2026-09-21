@@ -1,46 +1,48 @@
 {
-  "built_at": "2026-09-21T04:29:08.183891+00:00",
+  "built_at": "2026-09-21T05:04:02.514202+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
   ],
   "funnel": {
-    "raw": 696,
-    "rejected_screen": 624,
-    "passed_screen": 72,
+    "raw": 724,
+    "rejected_screen": 647,
+    "passed_screen": 77,
     "rejected_geo": 21,
-    "passed_geo": 51,
+    "passed_geo": 56,
     "duplicate_sighting": 5,
-    "unique_in_scope": 46,
-    "usable_with_pay": 37
+    "unique_in_scope": 51,
+    "usable_with_pay": 40
   },
   "rejection_reasons": {
     "role_not_software_data": 408,
     "seniority_excluded": 304,
     "role_excluded": 190,
-    "experience_too_high": 53,
-    "internship": 22,
+    "experience_too_high": 54,
+    "internship": 44,
     "out_of_metro": 21
   },
   "usable_by_metro": {
-    "denver": 8,
+    "denver": 10,
     "chicago": 21,
     "northern_virginia": 6,
-    "remote_national": 2
+    "remote_national": 3
   },
   "usable_by_employer": {
     "Invenergy": 21,
     "AES Indiana": 6,
     "Nexamp": 2,
     "STACK Infrastructure": 2,
+    "Xcel Energy": 2,
     "Flexential": 1,
     "Hitachi Energy": 1,
     "Modo Energy": 1,
+    "NTT Global Data Centers": 1,
     "QTS Data Centers": 1,
     "Vantage Data Centers": 1,
     "Yes Energy": 1
   },
-  "distinct_employers_with_pay": 10,
+  "distinct_employers_with_pay": 12,
   "min_usable_n": 100,
   "floor_met": false
 }

@@ -7,16 +7,16 @@
     "distinctive_tokens": [
       "guidehouse"
     ],
-    "n_postings": 18,
+    "n_postings": 37,
     "sample_titles": [
-      "Junior Data Scientist",
-      "Fraud AI / Data Managing Consultant (remote)",
+      "Federal Law Enforcement Data Analyst",
       "Data Scientist",
-      "Full Stack Developer",
-      "Full Stack Developer",
-      "Business Analyst",
       "Junior Data Scientist",
-      "Business Analyst (Health)"
+      "Transportation Security Business Analyst",
+      "Federal Law Enforcement Procurement Analyst",
+      "AI Engineer",
+      "PMO and Reporting Analyst",
+      "Fraud AI / Data Managing Consultant (remote)"
     ],
     "locations_seen": [
       "LT - Vilnius; LT - Kaunas",
@@ -26,14 +26,14 @@
       "US - DC, Washington; US - VA, McLean; US - VA, Arlington",
       "US - GA, Atlanta; US - TX, Austin; US - VA, Arlington; US - VA, McLean; US - IL, Chicago; US - TX, San Antonio; US - MA, Boston",
       "US - MD, Bethesda; US - MD, Baltimore",
+      "US - Remote (Any location)",
       "US - TX, San Antonio; US - Remote (Any location)",
+      "US - VA, Arlington",
       "US - VA, Arlington; US - DC, Washington",
-      "US - VA, Arlington; US - Remote (Any location)",
-      "US - VA, Arlington; US - VA, McLean",
-      "US - VA, McLean; US - NY, New York; US - Remote (Any location); US - VA, Arlington"
+      "US - VA, Arlington; US - Remote (Any location)"
     ],
-    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---VA-Arlington/Junior-Data-Scientist_44662",
-    "sector_confidence": 0.056,
+    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---VA-Arlington/Federal-Law-Enforcement-Data-Analyst_44533",
+    "sector_confidence": 0.027,
     "distinct_sector_terms": 2,
     "review_required": true,
     "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
