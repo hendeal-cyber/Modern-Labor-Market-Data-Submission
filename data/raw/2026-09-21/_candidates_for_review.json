@@ -3,6 +3,9 @@
     "employer": "Guidehouse",
     "platform": "workday",
     "token": "guidehouse/External",
+    "wd_instance": 1,
+    "listed": 500,
+    "site_guessed": false,
     "employer_searched": "Guidehouse",
     "distinctive_tokens": [
       "guidehouse"
@@ -42,6 +45,7 @@
     "employer": "Terra-Gen",
     "platform": "ashby",
     "token": "terra",
+    "listed": 9,
     "employer_searched": "Terra-Gen",
     "distinctive_tokens": [
       "gen",

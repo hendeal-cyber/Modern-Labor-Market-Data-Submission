@@ -1,7 +1,7 @@
 {
   "run_date": "2026-09-21",
-  "collected_at": "2026-09-21T04:34:23.560679+00:00",
-  "employers_attempted": 266,
+  "collected_at": "2026-09-21T05:12:48.122011+00:00",
+  "employers_attempted": 265,
   "results": [
     {
       "employer": "Nicor Gas (Southern Company Gas)",
@@ -17,7 +17,8 @@
       "token": "invenergyllc/invenergycareers",
       "listed": 192,
       "postings": 26,
-      "file": "Invenergy__workday.json"
+      "file": "Invenergy__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Vistra",
@@ -27,7 +28,8 @@
       "token": "vst/vistra_careers",
       "listed": 171,
       "postings": 0,
-      "file": "Vistra__workday.json"
+      "file": "Vistra__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Illinois American Water",
@@ -43,7 +45,8 @@
       "token": "aquaamerica/Essential_Careers",
       "listed": 98,
       "postings": 0,
-      "file": "Aqua_Illinois__Essential_Utilities___workday.json"
+      "file": "Aqua_Illinois__Essential_Utilities___workday.json",
+      "site_guessed": false
     },
     {
       "employer": "AES Indiana",
@@ -51,9 +54,10 @@
       "found": true,
       "platform": "workday",
       "token": "aes/AES_US",
-      "listed": 166,
+      "listed": 165,
       "postings": 11,
-      "file": "AES_Indiana__workday.json"
+      "file": "AES_Indiana__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Duke Energy Indiana",
@@ -63,7 +67,8 @@
       "token": "dukeenergy/search",
       "listed": 103,
       "postings": 0,
-      "file": "Duke_Energy_Indiana__workday.json"
+      "file": "Duke_Energy_Indiana__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Indiana American Water",
@@ -79,7 +84,8 @@
       "token": "nisource/NiSource",
       "listed": 63,
       "postings": 1,
-      "file": "NiSource___NIPSCO__workday.json"
+      "file": "NiSource___NIPSCO__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "CenterPoint Energy Indiana",
@@ -117,9 +123,10 @@
       "found": true,
       "platform": "workday",
       "token": "equinix/External",
-      "listed": 281,
-      "postings": 1,
-      "file": "Equinix__workday.json"
+      "listed": 279,
+      "postings": 3,
+      "file": "Equinix__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Digital Realty",
@@ -135,7 +142,8 @@
       "token": "qtsdatacenters/QTS",
       "listed": 304,
       "postings": 1,
-      "file": "QTS_Data_Centers__workday.json"
+      "file": "QTS_Data_Centers__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Aligned Data Centers",
@@ -151,7 +159,8 @@
       "token": "cyrusone/CyrusOneCareerPortal",
       "listed": 119,
       "postings": 0,
-      "file": "CyrusOne__workday.json"
+      "file": "CyrusOne__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "CoreSite",
@@ -167,7 +176,8 @@
       "token": "cologix",
       "listed": 28,
       "postings": 28,
-      "file": "Cologix__lever.json"
+      "file": "Cologix__lever.json",
+      "site_guessed": false
     },
     {
       "employer": "DataBank",
@@ -183,7 +193,8 @@
       "token": "flexentialcorp",
       "listed": 21,
       "postings": 21,
-      "file": "Flexential__greenhouse.json"
+      "file": "Flexential__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "NTT Global Data Centers",
@@ -193,7 +204,8 @@
       "token": "nttglobaldatacenters/External",
       "listed": 225,
       "postings": 1,
-      "file": "NTT_Global_Data_Centers__workday.json"
+      "file": "NTT_Global_Data_Centers__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Vantage Data Centers",
@@ -203,7 +215,8 @@
       "token": "vantagedc/Vantage",
       "listed": 187,
       "postings": 4,
-      "file": "Vantage_Data_Centers__workday.json"
+      "file": "Vantage_Data_Centers__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "STACK Infrastructure",
@@ -213,7 +226,8 @@
       "token": "stackinfra/STACK_AMER",
       "listed": 72,
       "postings": 2,
-      "file": "STACK_Infrastructure__workday.json"
+      "file": "STACK_Infrastructure__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Prime Data Centers",
@@ -229,7 +243,8 @@
       "token": "edgeconnex",
       "listed": 19,
       "postings": 19,
-      "file": "EdgeConneX__greenhouse.json"
+      "file": "EdgeConneX__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Iron Mountain Data Centers",
@@ -239,7 +254,8 @@
       "token": "ironmountain/iron-mountain-jobs",
       "listed": 500,
       "postings": 5,
-      "file": "Iron_Mountain_Data_Centers__workday.json"
+      "file": "Iron_Mountain_Data_Centers__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "T5 Data Centers",
@@ -249,7 +265,8 @@
       "token": "t5datacenters",
       "listed": 86,
       "postings": 86,
-      "file": "T5_Data_Centers__lever.json"
+      "file": "T5_Data_Centers__lever.json",
+      "site_guessed": false
     },
     {
       "employer": "MISO (Midcontinent ISO)",
@@ -265,7 +282,8 @@
       "token": "pjm/pjmcareers",
       "listed": 23,
       "postings": 0,
-      "file": "PJM_Interconnection__workday.json"
+      "file": "PJM_Interconnection__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Ascend Analytics",
@@ -305,7 +323,8 @@
       "token": "clearwayjobs",
       "listed": 54,
       "postings": 54,
-      "file": "Clearway_Energy__greenhouse.json"
+      "file": "Clearway_Energy__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Arevon Energy",
@@ -315,7 +334,8 @@
       "token": "arevonenergyimpltest",
       "listed": 9,
       "postings": 9,
-      "file": "Arevon_Energy__greenhouse.json"
+      "file": "Arevon_Energy__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Apex Clean Energy",
@@ -356,9 +376,10 @@
       "found": true,
       "platform": "lever",
       "token": "ethree",
-      "listed": null,
+      "listed": 6,
       "postings": 6,
-      "file": "Energy_and_Environmental_Economics__E3___lever.json"
+      "file": "Energy_and_Environmental_Economics__E3___lever.json",
+      "site_guessed": false
     },
     {
       "employer": "The Brattle Group",
@@ -374,7 +395,8 @@
       "token": "hitachi/hitachi",
       "listed": 500,
       "postings": 4,
-      "file": "Hitachi_Energy__workday.json"
+      "file": "Hitachi_Energy__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "GE Vernova",
@@ -556,9 +578,10 @@
       "found": true,
       "platform": "workday",
       "token": "xcelenergy/External",
-      "listed": null,
+      "listed": 254,
       "postings": 23,
-      "file": "Xcel_Energy__workday.json"
+      "file": "Xcel_Energy__workday.json",
+      "site_guessed": true
     },
     {
       "employer": "Puget Sound Energy",
@@ -770,9 +793,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "elementcritical",
-      "listed": null,
+      "listed": 4,
       "postings": 4,
-      "file": "Element_Critical__greenhouse.json"
+      "file": "Element_Critical__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "365 Data Centers",
@@ -810,9 +834,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "tract",
-      "listed": null,
+      "listed": 9,
       "postings": 9,
-      "file": "Tract__greenhouse.json"
+      "file": "Tract__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Ardent Data Centers",
@@ -898,9 +923,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "siliconranch",
-      "listed": null,
+      "listed": 13,
       "postings": 13,
-      "file": "Silicon_Ranch__greenhouse.json"
+      "file": "Silicon_Ranch__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Cypress Creek Renewables",
@@ -908,9 +934,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "cypresscreekrenewables",
-      "listed": null,
+      "listed": 18,
       "postings": 18,
-      "file": "Cypress_Creek_Renewables__greenhouse.json"
+      "file": "Cypress_Creek_Renewables__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Pine Gate Renewables",
@@ -924,9 +951,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "origisenergy",
-      "listed": null,
+      "listed": 10,
       "postings": 10,
-      "file": "Origis_Energy__greenhouse.json"
+      "file": "Origis_Energy__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Nexamp",
@@ -934,9 +962,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "nexamp",
-      "listed": null,
+      "listed": 44,
       "postings": 44,
-      "file": "Nexamp__greenhouse.json"
+      "file": "Nexamp__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Summit Ridge Energy",
@@ -1013,9 +1042,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "aypapower",
-      "listed": null,
+      "listed": 14,
       "postings": 14,
-      "file": "Aypa_Power__greenhouse.json"
+      "file": "Aypa_Power__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Plus Power",
@@ -1023,9 +1053,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "pluspower",
-      "listed": null,
+      "listed": 6,
       "postings": 6,
-      "file": "Plus_Power__greenhouse.json"
+      "file": "Plus_Power__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Key Capture Energy",
@@ -1075,9 +1106,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "amperon",
-      "listed": null,
+      "listed": 2,
       "postings": 2,
-      "file": "Amperon__greenhouse.json"
+      "file": "Amperon__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Yes Energy",
@@ -1085,9 +1117,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "yesenergy",
-      "listed": null,
+      "listed": 14,
       "postings": 14,
-      "file": "Yes_Energy__greenhouse.json"
+      "file": "Yes_Energy__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Voltus",
@@ -1095,9 +1128,10 @@
       "found": true,
       "platform": "lever",
       "token": "voltus",
-      "listed": null,
+      "listed": 19,
       "postings": 19,
-      "file": "Voltus__lever.json"
+      "file": "Voltus__lever.json",
+      "site_guessed": false
     },
     {
       "employer": "CPower Energy",
@@ -1117,9 +1151,10 @@
       "found": true,
       "platform": "ashby",
       "token": "davidenergy",
-      "listed": null,
+      "listed": 2,
       "postings": 2,
-      "file": "David_Energy__ashby.json"
+      "file": "David_Energy__ashby.json",
+      "site_guessed": false
     },
     {
       "employer": "Octopus Energy",
@@ -1181,9 +1216,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "modoenergy",
-      "listed": null,
+      "listed": 14,
       "postings": 14,
-      "file": "Modo_Energy__greenhouse.json"
+      "file": "Modo_Energy__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "PearlX",
@@ -1197,9 +1233,10 @@
       "found": true,
       "platform": "greenhouse",
       "token": "charlesriverassociates",
-      "listed": null,
+      "listed": 86,
       "postings": 86,
-      "file": "Charles_River_Associates__greenhouse.json"
+      "file": "Charles_River_Associates__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "NERA Economic Consulting",
@@ -1384,8 +1421,13 @@
     {
       "employer": "Wabash Valley Power Alliance",
       "industry": "cooperative",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "smartrecruiters",
+      "token": "WabashValleyPowerAlliance",
+      "listed": 23,
+      "postings": 2,
+      "file": "Wabash_Valley_Power_Alliance__smartrecruiters.json",
+      "site_guessed": false
     },
     {
       "employer": "Hoosier Energy",
@@ -1401,12 +1443,6 @@
     },
     {
       "employer": "National Rural Utilities Cooperative Finance Corporation",
-      "industry": "cooperative",
-      "found": false,
-      "postings": 0
-    },
-    {
-      "employer": "Tri-State Generation and Transmission",
       "industry": "cooperative",
       "found": false,
       "postings": 0
@@ -1754,25 +1790,32 @@
       "postings": 0
     }
   ],
-  "total_postings": 557,
+  "total_postings": 561,
   "scope_diagnostics": {
-    "listed": 3762,
-    "kept": 116,
-    "neither": 2295,
-    "in_metro_wrong_role": 553,
+    "listed": 3778,
+    "kept": 120,
+    "neither": 2246,
+    "in_metro_wrong_role": 619,
     "titles_in_metro": {
       "Warehouse Operations Specialist": 11,
       "Account Executive -  Digital Solutions": 8,
+      "Elevator Operator, Crozier": 8,
       "CDL B Local Route Driver": 8,
       "Security Officer L1": 7,
       "Critical Operations Technician I": 5,
       "Critical Environments Operator II": 4,
       "Power Platform Developer": 4,
+      "Data Center Critical Facilities Engineer": 3,
       "Critical Environments Operator IV": 3,
       "Critical Environments Operator III": 3,
+      "Critical Operations Technician": 3,
       "ServiceNow Developer": 3,
+      "Solar Technician": 2,
       "Senior Staff Engineer, Engineering (Battery Storage)": 2,
       "Manager of Thermal Development": 2,
+      "Construction Manager": 2,
+      "Executive Assistant": 2,
+      "Data Center Critical Facilities IV": 2,
       "Summer 2027 Internship: Development Capital Strategy": 2,
       "Environmental Health and Safety Manager": 2,
       "Data Center Technician L1": 2,
@@ -1781,26 +1824,18 @@
       "Senior Manager, Finance Systems & Operations": 2,
       "Controls Project Manager": 2,
       "Director, Mechanical Engineering": 2,
-      "Critical Operations Technician": 2,
       "Strategy & Change Management Specialist": 2,
       "Credit Balance Specialist - Physician Healthcare Claims": 2,
-      "Oracle PL/SQL Developer / Developer DBA": 2,
-      "Global Manufacturing Process Definition & Improvement Specia": 2,
-      "Senior Operations Work Coordinator": 2,
-      "Administrative Assistant III": 2,
-      "Manager, Strategy": 1,
-      "Accountant, Operations Accounting": 1,
-      "Wind Technician": 1
+      "Oracle PL/SQL Developer / Developer DBA": 2
     },
-    "unknown_place_wrong_role": 748,
-    "role_ok_wrong_place": 50,
+    "unknown_place_wrong_role": 745,
+    "role_ok_wrong_place": 48,
     "locations_of_in_role": {
       "US - AL, Huntsville": 5,
       "Chennai, Tamil Nadu, India": 4,
       "Irving, Texas": 3,
       "US - MD, Bethesda": 3,
       "PA NORTH SHORE - 375": 2,
-      "Redwood City": 2,
       "Irving, TX": 2,
       "US - VA, Norfolk": 2,
       "(HTA) NCP (Hillsboro, OR)": 2,
@@ -1824,7 +1859,8 @@
       "Pittsburgh, Pennsylvania, United States": 1,
       "Rotterdam, South Holland, Netherlands": 1,
       "Vadodara, Gujarat, India": 1,
-      "Ho Chi Minh City, Ho Chi Minh, Vietnam": 1
+      "Ho Chi Minh City, Ho Chi Minh, Vietnam": 1,
+      "Baden-Daettwil, Aargau, Switzerland": 1
     }
   },
   "slug_candidates_for_review": 2
