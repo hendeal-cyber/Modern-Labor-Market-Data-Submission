@@ -1,5 +1,5 @@
 {
-  "dataset": "/home/user/modern-labor-market-data-submission/data/analysis/postings.csv",
+  "dataset": "/home/runner/work/Modern-Labor-Market-Data-Submission/Modern-Labor-Market-Data-Submission/data/analysis/postings.csv",
   "n_total": 38,
   "n_with_pay": 35,
   "distinct_employers": 8,

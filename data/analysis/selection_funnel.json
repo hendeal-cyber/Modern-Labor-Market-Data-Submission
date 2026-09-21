@@ -1,26 +1,26 @@
 {
-  "built_at": "2026-09-21T01:33:20.654494+00:00",
+  "built_at": "2026-09-21T02:53:37.876291+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
   ],
   "funnel": {
-    "raw": 686,
-    "rejected_screen": 622,
-    "passed_screen": 64,
-    "rejected_geo": 21,
+    "raw": 696,
+    "rejected_screen": 624,
+    "passed_screen": 72,
+    "rejected_geo": 29,
     "passed_geo": 43,
     "duplicate_sighting": 5,
     "unique_in_scope": 38,
     "usable_with_pay": 35
   },
   "rejection_reasons": {
-    "role_not_software_data": 407,
+    "role_not_software_data": 408,
     "seniority_excluded": 304,
     "role_excluded": 190,
-    "experience_too_high": 52,
-    "internship": 22,
-    "out_of_metro": 21
+    "experience_too_high": 53,
+    "out_of_metro": 29,
+    "internship": 22
   },
   "usable_by_metro": {
     "denver": 8,
