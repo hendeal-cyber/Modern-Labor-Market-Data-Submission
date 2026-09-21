@@ -12,20 +12,20 @@ employers publish through — the upstream source for the job boards those
 postings appear on.
 
 **The clearest result concerns disclosure rather than level.** Pay is
-stated in **82.4%** of postings in states with a posting-level
-pay-transparency mandate, against **32.3%** where there is none —
-a gap of **50 percentage points**. The
+stated in **81.7%** of postings in states with a posting-level
+pay-transparency mandate, against **33.9%** where there is none —
+a gap of **48 percentage points**. The
 contrast is descriptive, not causal: this is a single cross-section with
 no time variation, so no difference-in-differences is available, and
 employers operating in mandate states differ from those that do not in
 ways these data cannot control for.
 
-The gap is large under every cut of the sample (50 to 71 points), but its
+The gap is large under every cut of the sample (48 to 70 points), but its
 size depends heavily on one jurisdiction; see the robustness table
 in section 5 before quoting a single figure.
 
 Within the postings that do disclose, the attributes that predict pay at
-conventional significance are seniority, a stated ML or AI skill, South location and remote eligibility.
+conventional significance are seniority, a stated ML or AI skill, remote eligibility and a required degree.
 Note that a required degree enters **negatively**, which
 was predicted the other way; section 5 reports it as contradicted.
 
@@ -101,9 +101,9 @@ currencies and labour markets would not be meaningful.
 
 | Stage | Postings |
 |---|---|
-| Retrieved from ATS boards | 897 |
-| Passed role, seniority and internship screens | 269 |
-| Within 35 miles of a study metro | 223 |
+| Retrieved from ATS boards | 898 |
+| Passed role, seniority and internship screens | 268 |
+| Within 35 miles of a study metro | 222 |
 | Unique after de-duplication | 204 |
 | With a disclosed pay range (estimation sample) | 137 |
 
@@ -111,13 +111,13 @@ Rejections by reason:
 
 | Reason | Count |
 |---|---|
-| `role_not_software_data` | 384 |
-| `role_excluded` | 211 |
+| `role_not_software_data` | 383 |
+| `role_excluded` | 214 |
 | `internship` | 52 |
-| `non_us` | 30 |
-| `no_us_state` | 16 |
+| `non_us` | 29 |
+| `no_us_state` | 17 |
 
-Distinct employers contributing a disclosed range: **23**. By metro: `{'': 20, 'northern_virginia': 25, 'remote_national': 12, 'denver': 26, 'chicago': 33, 'indianapolis': 3, 'new_york': 4, 'bay_area': 5, 'boston': 8, 'minneapolis': 1}`.
+Distinct employers contributing a disclosed range: **23**. By metro: `{'': 20, 'northern_virginia': 23, 'remote_national': 13, 'denver': 26, 'chicago': 34, 'indianapolis': 3, 'new_york': 4, 'bay_area': 5, 'boston': 8, 'minneapolis': 1}`.
 
 ### 3.4 Regressor coding and audit
 
@@ -166,7 +166,7 @@ bootstrap should precede any claim resting on a marginal p-value.
 > The model below is reported so the pipeline is verifiable end to end,
 > not because the coefficients support conclusions.
 
-Advertised pay in the estimation sample averages **$113,236** (median $113,000, SD $37,483, range $46,500–$233,000).
+Advertised pay in the estimation sample averages **$113,864** (median $113,000, SD $38,053, range $46,500–$233,000).
 
 At N = 137 with 15 regressors, the smallest
 detectable standardized effect is **0.2547**
@@ -176,8 +176,8 @@ log points at 5% significance and 80% power.
 
 | Posting is in | Share stating pay | Postings |
 |---|---|---|
-| a mandate state | 82.4% | 142 |
-| no mandate state | 32.3% | 62 |
+| a mandate state | 81.7% | 142 |
+| no mandate state | 33.9% | 62 |
 
 Coverage follows the job's location, so a posting listing any covered
 location counts as covered. Around a quarter of postings list more
@@ -188,9 +188,9 @@ jurisdiction, so it is cut three ways rather than quoted once:
 
 | Sample | Mandate states | No mandate | Gap |
 |---|---|---|---|
-| All postings | 82.4% (n=142) | 32.3% (n=62) | 50pp |
-| Excluding Virginia | 100.0% (n=85) | 32.3% (n=62) | 68pp |
-| Excluding the largest employer | 97.8% (n=92) | 27.1% (n=48) | 71pp |
+| All postings | 81.7% (n=142) | 33.9% (n=62) | 48pp |
+| Excluding Virginia | 100.0% (n=86) | 33.9% (n=62) | 66pp |
+| Excluding the largest employer | 97.8% (n=92) | 27.7% (n=47) | 70pp |
 
 The gap is large under every cut. Its SIZE is sensitive to Virginia, whose mandate is the newest in the table; outside Virginia, disclosure in mandate states is universal in this sample. Partial compliance with a three-month-old statute is a plausible reading, but this cannot distinguish that from the posting practices of the one employer concerned.
 
@@ -211,89 +211,89 @@ mandate state in this sample states pay.**
 
 | Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
 |---|---|---|---|---|---|
-| `const` | 11.2482*** | 0.0577 | 0.000 | [11.135, 11.361] | — |
-| `seniority_rank` | 0.0675*** | 0.0072 | 0.000 | [0.053, 0.082] | 7.0% |
-| `yrs_exp_min` | 0.0089 | 0.0158 | 0.573 | [-0.022, 0.040] | 0.9% |
-| `yrs_exp_stated` | -0.0900 | 0.1217 | 0.460 | [-0.328, 0.148] | -8.6% |
-| `degree_required` | -0.0939** | 0.0447 | 0.035 | [-0.181, -0.006] | -9.0% |
-| `degree_stem` | 0.1143** | 0.0496 | 0.021 | [0.017, 0.211] | 12.1% |
-| `skill_cloud` | -0.0288 | 0.0653 | 0.660 | [-0.157, 0.099] | -2.8% |
-| `skill_ml_ai` | 0.2370*** | 0.0649 | 0.000 | [0.110, 0.364] | 26.8% |
-| `remote_eligible` | 0.1512*** | 0.0494 | 0.002 | [0.054, 0.248] | 16.3% |
-| `hourly_original` | -0.0460 | 0.2640 | 0.862 | [-0.563, 0.471] | -4.5% |
-| `mandate_state` | -0.0480 | 0.0636 | 0.451 | [-0.173, 0.077] | -4.7% |
-| `region_northeast` | 0.2685** | 0.1062 | 0.011 | [0.060, 0.477] | 30.8% |
-| `region_south` | 0.2083*** | 0.0609 | 0.001 | [0.089, 0.328] | 23.1% |
-| `region_west` | 0.1208*** | 0.0469 | 0.010 | [0.029, 0.213] | 12.8% |
-| `industry_data_center` | 0.1645** | 0.0797 | 0.039 | [0.008, 0.321] | 17.9% |
-| `family_ai_ml` | -0.0296 | 0.0686 | 0.666 | [-0.164, 0.105] | -2.9% |
+| `const` | 11.2654*** | 0.0530 | 0.000 | [11.162, 11.369] | — |
+| `seniority_rank` | 0.0679*** | 0.0081 | 0.000 | [0.052, 0.084] | 7.0% |
+| `yrs_exp_min` | 0.0095 | 0.0165 | 0.567 | [-0.023, 0.042] | 0.9% |
+| `yrs_exp_stated` | -0.0910 | 0.1255 | 0.468 | [-0.337, 0.155] | -8.7% |
+| `degree_required` | -0.1143*** | 0.0381 | 0.003 | [-0.189, -0.040] | -10.8% |
+| `degree_stem` | 0.1007** | 0.0489 | 0.040 | [0.005, 0.197] | 10.6% |
+| `skill_cloud` | -0.0324 | 0.0577 | 0.574 | [-0.145, 0.081] | -3.2% |
+| `skill_ml_ai` | 0.2364*** | 0.0614 | 0.000 | [0.116, 0.357] | 26.7% |
+| `remote_eligible` | 0.1539*** | 0.0486 | 0.002 | [0.059, 0.249] | 16.6% |
+| `hourly_original` | -0.0431 | 0.2751 | 0.876 | [-0.582, 0.496] | -4.2% |
+| `mandate_state` | -0.0385 | 0.0601 | 0.522 | [-0.156, 0.079] | -3.8% |
+| `region_northeast` | 0.2602** | 0.1104 | 0.018 | [0.044, 0.477] | 29.7% |
+| `region_south` | 0.1753** | 0.0702 | 0.013 | [0.038, 0.313] | 19.2% |
+| `region_west` | 0.1065** | 0.0529 | 0.044 | [0.003, 0.210] | 11.2% |
+| `industry_data_center` | 0.1643** | 0.0779 | 0.035 | [0.012, 0.317] | 17.9% |
+| `family_ai_ml` | 0.0169 | 0.0826 | 0.838 | [-0.145, 0.179] | 1.7% |
 
-*** p<0.01, ** p<0.05, * p<0.10. N = 137, R² = 0.525, SE: cluster.
+*** p<0.01, ** p<0.05, * p<0.10. N = 137, R² = 0.524, SE: cluster.
 
 ### Secondary: log(range width)
 
 | Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
 |---|---|---|---|---|---|
-| `const` | 10.1523*** | 0.2168 | 0.000 | [9.727, 10.577] | — |
-| `seniority_rank` | 0.0676 | 0.0859 | 0.432 | [-0.101, 0.236] | 7.0% |
-| `yrs_exp_min` | 0.1177* | 0.0645 | 0.068 | [-0.009, 0.244] | 12.5% |
-| `yrs_exp_stated` | -0.4696 | 0.3693 | 0.203 | [-1.193, 0.254] | -37.5% |
-| `degree_required` | -0.0026 | 0.0782 | 0.973 | [-0.156, 0.151] | -0.3% |
-| `degree_stem` | 0.1718 | 0.1442 | 0.233 | [-0.111, 0.454] | 18.8% |
-| `skill_cloud` | 0.0534 | 0.1578 | 0.735 | [-0.256, 0.363] | 5.5% |
-| `skill_ml_ai` | -0.0031 | 0.2917 | 0.992 | [-0.575, 0.569] | -0.3% |
-| `remote_eligible` | 0.2669 | 0.1790 | 0.136 | [-0.084, 0.618] | 30.6% |
-| `hourly_original` | -0.1282 | 0.2123 | 0.546 | [-0.544, 0.288] | -12.0% |
-| `mandate_state` | 0.3750* | 0.2140 | 0.080 | [-0.044, 0.794] | 45.5% |
-| `region_northeast` | -0.8392*** | 0.3195 | 0.009 | [-1.465, -0.213] | -56.8% |
-| `region_south` | -0.0316 | 0.1568 | 0.840 | [-0.339, 0.276] | -3.1% |
-| `region_west` | -0.0842 | 0.1659 | 0.612 | [-0.409, 0.241] | -8.1% |
-| `industry_data_center` | -0.8603** | 0.4079 | 0.035 | [-1.660, -0.061] | -57.7% |
-| `family_ai_ml` | 0.2766 | 0.2390 | 0.247 | [-0.192, 0.745] | 31.9% |
+| `const` | 10.2544*** | 0.2264 | 0.000 | [9.811, 10.698] | — |
+| `seniority_rank` | 0.0528 | 0.0864 | 0.541 | [-0.116, 0.222] | 5.4% |
+| `yrs_exp_min` | 0.1179* | 0.0632 | 0.062 | [-0.006, 0.242] | 12.5% |
+| `yrs_exp_stated` | -0.4738 | 0.3650 | 0.194 | [-1.189, 0.241] | -37.7% |
+| `degree_required` | -0.0206 | 0.0745 | 0.782 | [-0.167, 0.125] | -2.0% |
+| `degree_stem` | 0.1460 | 0.1355 | 0.281 | [-0.119, 0.411] | 15.7% |
+| `skill_cloud` | 0.0366 | 0.1520 | 0.809 | [-0.261, 0.335] | 3.7% |
+| `skill_ml_ai` | -0.0075 | 0.2919 | 0.980 | [-0.580, 0.565] | -0.7% |
+| `remote_eligible` | 0.2684 | 0.1736 | 0.122 | [-0.072, 0.609] | 30.8% |
+| `hourly_original` | -0.1241 | 0.2165 | 0.566 | [-0.548, 0.300] | -11.7% |
+| `mandate_state` | 0.3289 | 0.2013 | 0.102 | [-0.066, 0.723] | 38.9% |
+| `region_northeast` | -0.8178*** | 0.3066 | 0.008 | [-1.419, -0.217] | -55.9% |
+| `region_south` | -0.0518 | 0.1428 | 0.717 | [-0.332, 0.228] | -5.0% |
+| `region_west` | -0.0838 | 0.1637 | 0.609 | [-0.405, 0.237] | -8.0% |
+| `industry_data_center` | -0.8573** | 0.4013 | 0.033 | [-1.644, -0.071] | -57.6% |
+| `family_ai_ml` | 0.3209 | 0.2130 | 0.132 | [-0.097, 0.738] | 37.8% |
 
-*** p<0.01, ** p<0.05, * p<0.10. N = 134, R² = 0.235, SE: cluster.
+*** p<0.01, ** p<0.05, * p<0.10. N = 134, R² = 0.238, SE: cluster.
 
 ### Model 3: pay disclosed (linear probability)
 
 | Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
 |---|---|---|---|---|---|
-| `const` | 0.3773*** | 0.1169 | 0.001 | [0.148, 0.606] | — |
-| `mandate_state` | 0.5055*** | 0.1086 | 0.000 | [0.293, 0.718] | 65.8% |
-| `seniority_rank` | 0.0170 | 0.0158 | 0.282 | [-0.014, 0.048] | 1.7% |
-| `remote_eligible` | 0.3742*** | 0.0843 | 0.000 | [0.209, 0.539] | 45.4% |
-| `industry_data_center` | -0.1004 | 0.0778 | 0.197 | [-0.253, 0.052] | -9.6% |
-| `region_northeast` | -0.1396 | 0.1141 | 0.221 | [-0.363, 0.084] | -13.0% |
-| `region_south` | -0.3308*** | 0.0921 | 0.000 | [-0.511, -0.150] | -28.2% |
-| `region_west` | 0.1220 | 0.0849 | 0.151 | [-0.044, 0.288] | 13.0% |
+| `const` | 0.4281*** | 0.1248 | 0.001 | [0.183, 0.673] | — |
+| `mandate_state` | 0.4712*** | 0.1191 | 0.000 | [0.238, 0.705] | 60.2% |
+| `seniority_rank` | 0.0057 | 0.0140 | 0.682 | [-0.022, 0.033] | 0.6% |
+| `remote_eligible` | 0.3824*** | 0.0937 | 0.000 | [0.199, 0.566] | 46.6% |
+| `industry_data_center` | -0.1006 | 0.0758 | 0.184 | [-0.249, 0.048] | -9.6% |
+| `region_northeast` | -0.1395 | 0.1201 | 0.245 | [-0.375, 0.096] | -13.0% |
+| `region_south` | -0.3465*** | 0.0909 | 0.000 | [-0.525, -0.168] | -29.3% |
+| `region_west` | 0.1303 | 0.0896 | 0.146 | [-0.045, 0.306] | 13.9% |
 
-*** p<0.01, ** p<0.05, * p<0.10. N = 204, R² = 0.486, SE: cluster.
+*** p<0.01, ** p<0.05, * p<0.10. N = 204, R² = 0.484, SE: cluster.
 
 ### Model 4: early-career subsample (original question)
 
 | Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
 |---|---|---|---|---|---|
-| `const` | 10.9450*** | 0.3590 | 0.000 | [10.241, 11.649] | — |
-| `seniority_rank` | 0.1600 | 0.2736 | 0.559 | [-0.376, 0.696] | 17.4% |
-| `yrs_exp_min` | -0.0929 | 0.1038 | 0.371 | [-0.296, 0.111] | -8.9% |
-| `yrs_exp_stated` | 0.0368 | 0.3563 | 0.918 | [-0.661, 0.735] | 3.8% |
-| `degree_required` | -0.1800 | 0.1710 | 0.293 | [-0.515, 0.155] | -16.5% |
-| `degree_stem` | 0.1875 | 0.2091 | 0.370 | [-0.222, 0.597] | 20.6% |
-| `skill_cloud` | -0.0973 | 0.2429 | 0.689 | [-0.573, 0.379] | -9.3% |
-| `skill_ml_ai` | 0.2723 | 0.2571 | 0.290 | [-0.232, 0.776] | 31.3% |
-| `remote_eligible` | -0.1820 | 0.2066 | 0.378 | [-0.587, 0.223] | -16.6% |
-| `mandate_state` | 0.2038 | 0.3133 | 0.515 | [-0.410, 0.818] | 22.6% |
-| `region_northeast` | 0.5617 | 0.3670 | 0.126 | [-0.158, 1.281] | 75.4% |
-| `region_south` | 0.2840 | 0.2395 | 0.236 | [-0.185, 0.753] | 32.8% |
-| `region_west` | 0.2963 | 0.1872 | 0.114 | [-0.071, 0.663] | 34.5% |
-| `industry_data_center` | 0.3423 | 0.2565 | 0.182 | [-0.160, 0.845] | 40.8% |
-| `family_ai_ml` | -0.0828 | 0.3293 | 0.801 | [-0.728, 0.563] | -8.0% |
+| `const` | 10.8595*** | 0.2516 | 0.000 | [10.366, 11.353] | — |
+| `seniority_rank` | 0.1011 | 0.1971 | 0.608 | [-0.285, 0.487] | 10.6% |
+| `yrs_exp_min` | -0.1194 | 0.0787 | 0.129 | [-0.274, 0.035] | -11.3% |
+| `yrs_exp_stated` | 0.1266 | 0.2837 | 0.655 | [-0.429, 0.683] | 13.5% |
+| `degree_required` | -0.2751*** | 0.0975 | 0.005 | [-0.466, -0.084] | -24.1% |
+| `degree_stem` | 0.2446 | 0.2182 | 0.262 | [-0.183, 0.672] | 27.7% |
+| `skill_cloud` | 0.0791 | 0.1806 | 0.661 | [-0.275, 0.433] | 8.2% |
+| `skill_ml_ai` | 0.1946 | 0.2061 | 0.345 | [-0.209, 0.599] | 21.5% |
+| `remote_eligible` | -0.1590 | 0.1393 | 0.254 | [-0.432, 0.114] | -14.7% |
+| `mandate_state` | 0.4093 | 0.2957 | 0.166 | [-0.170, 0.989] | 50.6% |
+| `region_northeast` | 0.4970 | 0.3261 | 0.128 | [-0.142, 1.136] | 64.4% |
+| `region_south` | 0.0843 | 0.2266 | 0.710 | [-0.360, 0.528] | 8.8% |
+| `region_west` | 0.2657 | 0.1996 | 0.183 | [-0.125, 0.657] | 30.4% |
+| `industry_data_center` | 0.3440** | 0.1531 | 0.025 | [0.044, 0.644] | 41.1% |
+| `family_ai_ml` | -0.0637 | 0.2399 | 0.790 | [-0.534, 0.406] | -6.2% |
 
-*** p<0.01, ** p<0.05, * p<0.10. N = 29, R² = 0.714, SE: cluster.
+*** p<0.01, ** p<0.05, * p<0.10. N = 28, R² = 0.755, SE: cluster.
 
 ### The early-career question
 
 The study began as a question about early-career pay specifically.
-That subsample is **29** postings from
+That subsample is **28** postings from
 **11** employers, estimated above.
 It is reported whether or not it agrees with the full sample: a
 disagreement would be a finding, not a reason to drop it.
@@ -315,10 +315,10 @@ held, which is the point of having written them down.
 |---|---|---|---|
 | H1 | Seniority dominates advertised pay | + | positive, significant — supported |
 | H3 | Required experience raises pay | + | positive, not significant — inconclusive |
-| H4 | AI/ML roles carry a premium | + | negative, not significant — inconclusive |
+| H4 | AI/ML roles carry a premium | + | positive, not significant — inconclusive |
 | H5 | A required degree raises pay | + | negative, significant — **contradicted** |
 | H7 | Data centers pay more than utilities | + | positive, significant — supported |
-| H2 | A mandate raises disclosure | + | 82.4% vs 32.3% — **supported**, descriptively |
+| H2 | A mandate raises disclosure | + | 81.7% vs 33.9% — **supported**, descriptively |
 
 **H5 is contradicted and the reason is not obvious.** A stated degree
 requirement is associated with *lower* advertised pay, conditional on
@@ -336,22 +336,22 @@ Disclosure rate **67.2%** (137 disclosed, 67 withheld).
 
 | Variable | Mean (disclosed) | Mean (withheld) | Difference | p |
 |---|---|---|---|---|
-| `seniority_rank` | 2.54 | 2.478 | 0.063 | 0.6841 |
-| `yrs_exp_min` | 1.117 | 0.97 | 0.147 | 0.622 |
-| `yrs_exp_stated` | 0.292 | 0.284 | 0.008 | 0.9017 |
-| `degree_required` | 0.752 | 0.806 | -0.054 | 0.3775 |
-| `degree_stem` | 0.467 | 0.537 | -0.07 | 0.3501 |
+| `seniority_rank` | 2.584 | 2.537 | 0.047 | 0.7759 |
+| `yrs_exp_min` | 1.117 | 0.94 | 0.176 | 0.5529 |
+| `yrs_exp_stated` | 0.292 | 0.269 | 0.023 | 0.7286 |
+| `degree_required` | 0.745 | 0.821 | -0.076 | 0.2067 |
+| `degree_stem` | 0.46 | 0.537 | -0.077 | 0.3022 |
 | `skill_cloud` | 0.299 | 0.239 | 0.06 | 0.3579 |
 | `skill_ml_ai` | 0.365 | 0.358 | 0.007 | 0.9254 |
-| `remote_eligible` | 0.182 | 0.045 | 0.138 | 0.0012 |
+| `remote_eligible` | 0.204 | 0.045 | 0.16 | 0.0003 |
 | `hourly_original` | 0.022 | 0.0 | 0.022 | 0.0833 |
-| `mandate_state` | 0.854 | 0.373 | 0.481 | 0.0 |
+| `mandate_state` | 0.847 | 0.388 | 0.459 | 0.0 |
 | `region_northeast` | 0.073 | 0.06 | 0.013 | 0.7179 |
-| `region_south` | 0.299 | 0.761 | -0.462 | 0.0 |
+| `region_south` | 0.292 | 0.776 | -0.484 | 0.0 |
 | `region_west` | 0.27 | 0.015 | 0.255 | 0.0 |
 | `industry_data_center` | 0.131 | 0.209 | -0.078 | 0.1825 |
-| `family_ai_ml` | 0.19 | 0.194 | -0.004 | 0.9429 |
-| `metro_indianapolis` | 0.022 | 0.09 | -0.068 | 0.0735 |
+| `family_ai_ml` | 0.197 | 0.194 | 0.003 | 0.9591 |
+| `metro_indianapolis` | 0.022 | 0.075 | -0.053 | 0.1322 |
 
 ## 6. Threats to validity
 
@@ -384,7 +384,7 @@ Across 137 postings from 23 employers in the US energy and
 data center sector, the sharpest regularity in the data is not about
 the level of pay but about whether pay is named at all. In states
 requiring a pay scale in the posting, 82% of postings
-state one. Where no such requirement exists, 32% do. The
+state one. Where no such requirement exists, 34% do. The
 gap is too large to be explained by employer composition alone,
 though composition cannot be ruled out with a single cross-section.
 

@@ -29,6 +29,69 @@ BEA_CSV = (
 )
 
 
+
+# The archive BEA actually serves holds more than one table. SAIRPD is the
+# implicit regional price DEFLATOR on a 2017 base; SARPP is what this study
+# wants. They parse identically. The first successful fetch took SAIRPD,
+# returned 51 states, passed every test then in this file, and was wrong by a
+# factor of ~1.237 — cumulative US inflation 2017-2024 — which would have
+# inflated every real-pay figure in the study by about 24%.
+#
+# The tests below existed and did not catch it, because they were written
+# against a CSV I invented rather than against the archive's real shape. That
+# is the same mistake that shipped a broken sector gate earlier in this
+# project. These cases encode the real failure.
+DEFLATOR_CSV = (
+    "GeoFips,GeoName,LineCode,Description,2023,2024\n"
+    "06000,California,1,Implicit regional price deflator,133.9,136.924\n"
+    "05000,Arkansas,1,Implicit regional price deflator,105.1,107.512\n"
+    "15000,Hawaii,1,Implicit regional price deflator,133.0,135.972\n"
+)
+
+
+def check_deflator_rejected():
+    fails = []
+    states = rpp.load_state_map()
+
+    # A deflator table parses cleanly — that is the danger.
+    values, _ = rpp.parse_rpp_csv(DEFLATOR_CSV, states)
+    if not values:
+        fails.append("the deflator CSV should PARSE; rejection happens later")
+
+    # Real 2024 deflator values for all 51 states are every one above 100.
+    deflator = {f"S{i}": 107.0 + i * 0.6 for i in range(51)}
+    ok, why = rpp.is_plausible_rpp(deflator)
+    if ok:
+        fails.append("a table with no state below 100 was accepted as an RPP")
+    elif "straddle" not in why and "below" not in why:
+        fails.append(f"rejection reason unhelpful: {why!r}")
+
+    # A real RPP table straddles 100 and must be accepted.
+    genuine = {"CA": 110.7, "HI": 110.0, "DC": 109.9, "AR": 86.9, "MS": 87.0,
+               "OK": 87.8, "IL": 100.4, "TX": 97.0}
+    genuine.update({f"S{i}": 92.0 + i * 0.5 for i in range(43)})
+    ok, why = rpp.is_plausible_rpp(genuine)
+    if not ok:
+        fails.append(f"a genuine RPP table was rejected: {why}")
+
+    # Too few states is not an RPP table either.
+    if rpp.is_plausible_rpp({"CA": 110.7, "AR": 86.9})[0]:
+        fails.append("a two-state table was accepted")
+
+    # An empty table must not crash the guard.
+    if rpp.is_plausible_rpp({})[0]:
+        fails.append("an empty table was accepted")
+
+    # SARPP must be preferred over SAIRPD when both are present. Checked on
+    # the sort key rather than by faking a zip, so the test stays honest about
+    # what it is verifying.
+    members = ["SAIRPD_STATE_2008_2024.csv", "SARPP_STATE_2008_2024.csv"]
+    members.sort(key=lambda m: (0 if "rpp" in m.lower() else 1, m))
+    if not members[0].startswith("SARPP"):
+        fails.append(f"SARPP must be tried first, got {members[0]}")
+    return fails
+
+
 def run():
     fails = []
     states = rpp.load_state_map()
@@ -81,7 +144,8 @@ def run():
         if not str(payload.get("_source", "")).startswith("http"):
             fails.append("rpp_by_state.json must record the URL it came from")
 
-    total = 7
+    fails += check_deflator_rejected()
+    total = 12
     print(f"rpp: {total - len(fails)}/{total} checks passed"
           f"{' (no table fetched yet)' if not cfg.exists() else ''}")
     for f in fails:

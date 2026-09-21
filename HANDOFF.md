@@ -47,11 +47,15 @@ README. All regenerate from `data/raw/` with the commands in the README.
 
 ### What is NOT done
 
-1. **BEA price parities have never been fetched.** The first filename guess was
-   wrong (BEA names archives by table prefix — `SARPP.zip`, not `RPP.zip`).
-   Fixed but unverified until a run executes it. Until then pay is nominal and
-   `analyze.py` reports the price-adjusted model as unavailable. **No deflator
-   is imputed.**
+1. **BEA price parities are still not usable, and the near-miss is worth
+   reading.** The filename was fixed (`SARPP.zip`) and the fetch then
+   *succeeded* — 51 states, valid JSON, all tests green — and returned the
+   **wrong table**: BEA's implicit price deflator, ~1.237x the true RPP, which
+   would have inflated every real-pay figure by about 24%. Caught by checking
+   the values against BEA's published figures: no state was below 100, which is
+   impossible for an index centred on 100. `is_plausible_rpp()` now rejects
+   that class outright. Pay remains nominal; **no deflator is imputed**. See
+   `docs/limitations.md` §17.
 2. **More employers.** This is the only thing that fixes the two failing
    conditions, and it is worth more than more postings. Hand-verifying a board
    token takes minutes and adds a cluster; NiSource and Wabash Valley Power

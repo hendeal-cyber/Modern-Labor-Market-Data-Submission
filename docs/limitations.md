@@ -336,3 +336,41 @@ The gap is large under every cut, so the direction is not in doubt. The
 magnitude is. Partial compliance with a statute three months old is a plausible
 reading; so is one firm's posting practice. **These data cannot distinguish
 them**, and the paper does not pick whichever reading is more flattering.
+
+## 17. The first successful price-parity fetch returned the wrong table
+
+Worth recording in full, because it is the closest this study came to
+publishing a fabricated number, and because it defeated a test suite written
+specifically to prevent it.
+
+`scripts/fetch_rpp.py` was written to refuse to invent BEA figures: fetch them
+or report the price-adjusted model as unavailable. The first fetch succeeded —
+51 states, vintage 2024, valid JSON, every unit test green.
+
+It was wrong. The archive BEA serves holds several tables, and the loop took
+the first that parsed: `SAIRPD_STATE_2008_2024.csv`, the **implicit regional
+price deflator** on a 2017 base, not `SARPP`, the Regional Price Parities. Every
+value came back at ~1.237× the true RPP, which is cumulative US inflation
+2017–2024. Applied as a deflator it would have **inflated every real-pay figure
+in the study by about 24%**, silently and uniformly.
+
+It was caught by comparing the fetched values against BEA's published figures
+before using them: California read 136.9 where the real 2024 RPP is 110.7, and
+**no state was below 100** — impossible for an index normalised so the US
+average is 100.
+
+**Why the tests did not catch it.** They were written against a CSV invented
+to look like BEA's, not against the archive's real shape. That is the same
+error that shipped a broken sector gate earlier in this project: a guard
+validated against a reconstruction rather than the real artifact, scoring
+clean and being wrong.
+
+**What now prevents it.** `is_plausible_rpp()` rejects any table that does not
+straddle 100 or whose median falls outside [90, 110]. That check does not
+depend on knowing BEA's filenames, so it catches the whole class rather than
+this instance. Members are additionally tried with `SARPP` before `SAIRPD`, and
+the written file records which member it came from and that it passed
+validation.
+
+No price-adjusted result has ever been published from this study. The table was
+deleted, and pay remains nominal until a fetch passes the guard.

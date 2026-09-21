@@ -100,6 +100,36 @@ def parse_rpp_csv(text: str, states: dict[str, str]) -> tuple[dict[str, float], 
     return out, year
 
 
+def is_plausible_rpp(values: dict[str, float]) -> tuple[bool, str]:
+    """Do these numbers behave like Regional Price Parities?
+
+    RPPs are normalised so the US average is 100, so a real table STRADDLES
+    100: expensive states above, cheap states below. This is the check that
+    matters, because it does not depend on knowing BEA's filenames.
+
+    It was added after the first successful fetch returned 51 states, parsed
+    cleanly, passed every unit test, and was wrong. The archive holds several
+    tables and the loop took the first that parsed — SAIRPD, the implicit
+    regional price DEFLATOR (2017 base), not SARPP. Every value came back
+    ~1.237x the true RPP, which is cumulative US inflation 2017-2024. A
+    deflator applied silently as if it were an RPP would have inflated every
+    real-pay figure in the study by about 24%.
+    """
+    if len(values) < 45:
+        return False, f"only {len(values)} states"
+    below = sum(1 for v in values.values() if v < 100.0)
+    above = sum(1 for v in values.values() if v > 100.0)
+    if below == 0 or above == 0:
+        return False, (f"{len(values)} states and none "
+                       f"{'below' if below == 0 else 'above'} 100 — an RPP "
+                       "table straddles 100 by construction; this looks like a "
+                       "deflator or a differently-based index")
+    median = sorted(values.values())[len(values) // 2]
+    if not 90.0 <= median <= 110.0:
+        return False, f"median {median:.1f} is implausible for an RPP"
+    return True, ""
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="data/rpp_by_state.json")
@@ -123,13 +153,20 @@ def main() -> int:
         except zipfile.BadZipFile as exc:
             print(f"  not a zip: {exc}", flush=True)
             continue
-        for member in archive.namelist():
-            if not member.lower().endswith(".csv"):
-                continue
+        # SARPP is the Regional Price Parity table. The archive also carries
+        # SAIRPD (implicit price deflator), which parses identically and is
+        # NOT what this study wants, so members are tried in name order with
+        # RPP first rather than whatever the archive happens to list first.
+        members = [m for m in archive.namelist() if m.lower().endswith(".csv")]
+        members.sort(key=lambda m: (0 if "rpp" in m.lower() else 1, m))
+        for member in members:
             text = archive.read(member).decode("utf-8-sig", errors="replace")
             values, year = parse_rpp_csv(text, states)
-            # 51 jurisdictions exist; accept a near-complete table but say so.
-            if len(values) >= 45:
+            ok, why = is_plausible_rpp(values)
+            if values and not ok:
+                print(f"  {member}: rejected — {why}", flush=True)
+                continue
+            if ok:
                 payload = {
                     "_source": url,
                     "_member": member,
@@ -138,6 +175,7 @@ def main() -> int:
                               "US average = 100. Fetched by scripts/fetch_rpp.py; "
                               "not hand-entered."),
                     "_n_states": len(values),
+                    "_validated": "straddles 100; median within [90, 110]",
                     "values": dict(sorted(values.items())),
                 }
                 out = pathlib.Path(args.out)

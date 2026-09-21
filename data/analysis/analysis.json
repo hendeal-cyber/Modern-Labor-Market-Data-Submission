@@ -1,5 +1,5 @@
 {
-  "dataset": "/home/runner/work/Modern-Labor-Market-Data-Submission/Modern-Labor-Market-Data-Submission/data/analysis/postings.csv",
+  "dataset": "/home/user/modern-labor-market-data-submission/data/analysis/postings.csv",
   "n_total": 204,
   "n_with_pay": 137,
   "distinct_employers": 30,
@@ -169,8 +169,9 @@
     "n_employers": 11
   },
   "price_adjustment": {
-    "n": 126,
-    "available": true
+    "n": 0,
+    "available": false,
+    "note": "BEA regional price parities were not fetched, so pay is nominal only. No deflator is imputed."
   },
   "interpretability_warnings": [
     "9.1 observations per regressor (137 observations, 15 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.",
@@ -708,159 +709,6 @@
           "ci_low": -0.534,
           "ci_high": 0.4065,
           "pct_effect": -6.18
-        }
-      }
-    },
-    "real_pay": {
-      "label": "Robustness: log(pay), BEA price-adjusted",
-      "n": 126,
-      "r_squared": 0.5105,
-      "adj_r_squared": 0.4437,
-      "cov_type": "cluster",
-      "coefficients": {
-        "const": {
-          "coef": 10.8661,
-          "std_err": 0.1054,
-          "t": 103.107,
-          "p_value": 0.0,
-          "ci_low": 10.6596,
-          "ci_high": 11.0727,
-          "pct_effect": null
-        },
-        "seniority_rank": {
-          "coef": 0.0742,
-          "std_err": 0.0107,
-          "t": 6.918,
-          "p_value": 0.0,
-          "ci_low": 0.0532,
-          "ci_high": 0.0952,
-          "pct_effect": 7.7
-        },
-        "yrs_exp_min": {
-          "coef": 0.0115,
-          "std_err": 0.0186,
-          "t": 0.617,
-          "p_value": 0.5376,
-          "ci_low": -0.025,
-          "ci_high": 0.048,
-          "pct_effect": 1.16
-        },
-        "yrs_exp_stated": {
-          "coef": -0.0915,
-          "std_err": 0.1191,
-          "t": -0.769,
-          "p_value": 0.4421,
-          "ci_low": -0.325,
-          "ci_high": 0.1419,
-          "pct_effect": -8.75
-        },
-        "degree_required": {
-          "coef": -0.0912,
-          "std_err": 0.0431,
-          "t": -2.116,
-          "p_value": 0.0343,
-          "ci_low": -0.1758,
-          "ci_high": -0.0067,
-          "pct_effect": -8.72
-        },
-        "degree_stem": {
-          "coef": 0.1147,
-          "std_err": 0.053,
-          "t": 2.164,
-          "p_value": 0.0305,
-          "ci_low": 0.0108,
-          "ci_high": 0.2186,
-          "pct_effect": 12.15
-        },
-        "skill_cloud": {
-          "coef": -0.0321,
-          "std_err": 0.0558,
-          "t": -0.575,
-          "p_value": 0.5654,
-          "ci_low": -0.1414,
-          "ci_high": 0.0772,
-          "pct_effect": -3.16
-        },
-        "skill_ml_ai": {
-          "coef": 0.1876,
-          "std_err": 0.0784,
-          "t": 2.393,
-          "p_value": 0.0167,
-          "ci_low": 0.0339,
-          "ci_high": 0.3414,
-          "pct_effect": 20.64
-        },
-        "remote_eligible": {
-          "coef": 0.0448,
-          "std_err": 0.043,
-          "t": 1.042,
-          "p_value": 0.2975,
-          "ci_low": -0.0394,
-          "ci_high": 0.129,
-          "pct_effect": 4.58
-        },
-        "hourly_original": {
-          "coef": -0.1163,
-          "std_err": 0.2442,
-          "t": -0.476,
-          "p_value": 0.6341,
-          "ci_low": -0.5949,
-          "ci_high": 0.3624,
-          "pct_effect": -10.98
-        },
-        "mandate_state": {
-          "coef": 0.0839,
-          "std_err": 0.0894,
-          "t": 0.938,
-          "p_value": 0.3484,
-          "ci_low": -0.0914,
-          "ci_high": 0.2591,
-          "pct_effect": 8.75
-        },
-        "region_northeast": {
-          "coef": 0.2794,
-          "std_err": 0.0966,
-          "t": 2.893,
-          "p_value": 0.0038,
-          "ci_low": 0.0901,
-          "ci_high": 0.4687,
-          "pct_effect": 32.24
-        },
-        "region_south": {
-          "coef": 0.2632,
-          "std_err": 0.0342,
-          "t": 7.687,
-          "p_value": 0.0,
-          "ci_low": 0.1961,
-          "ci_high": 0.3304,
-          "pct_effect": 30.11
-        },
-        "region_west": {
-          "coef": 0.1349,
-          "std_err": 0.0547,
-          "t": 2.467,
-          "p_value": 0.0136,
-          "ci_low": 0.0277,
-          "ci_high": 0.242,
-          "pct_effect": 14.44
-        },
-        "industry_data_center": {
-          "coef": 0.1487,
-          "std_err": 0.0999,
-          "t": 1.489,
-          "p_value": 0.1366,
-          "ci_low": -0.0471,
-          "ci_high": 0.3446,
-          "pct_effect": 16.04
-        },
-        "family_ai_ml": {
-          "coef": 0.0066,
-          "std_err": 0.0927,
-          "t": 0.071,
-          "p_value": 0.9436,
-          "ci_low": -0.1751,
-          "ci_high": 0.1882,
-          "pct_effect": 0.66
         }
       }
     }
