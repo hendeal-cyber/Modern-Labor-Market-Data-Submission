@@ -10,34 +10,34 @@
     "distinctive_tokens": [
       "guidehouse"
     ],
-    "n_postings": 36,
+    "n_postings": 62,
     "sample_titles": [
+      "Senior Consultant - Energy Markets",
+      "Technical SETA SME \u2013 Computer Vision AI",
       "Federal Law Enforcement Data Analyst",
       "Data Scientist",
       "Junior Data Scientist",
       "Transportation Security Business Analyst",
-      "Federal Law Enforcement Procurement Analyst",
-      "AI Engineer",
-      "PMO and Reporting Analyst",
-      "Fraud AI / Data Managing Consultant (remote)"
+      "Data Analyst & IT Consultant - Real Estate Portfolio",
+      "Technical SETA SME \u2013 Artificial Intelligence"
     ],
     "locations_seen": [
       "LT - Vilnius; LT - Kaunas",
+      "US - AL, Huntsville",
+      "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
       "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - TX, Austin; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
+      "US - DC, Washington",
       "US - DC, Washington; US - VA, McLean",
       "US - DC, Washington; US - VA, McLean; US - VA, Arlington",
       "US - GA, Atlanta; US - TX, Austin; US - VA, Arlington; US - VA, McLean; US - IL, Chicago; US - TX, San Antonio; US - MA, Boston",
+      "US - MD, Annapolis Junction",
+      "US - MD, Bethesda",
       "US - MD, Bethesda; US - MD, Baltimore",
-      "US - Remote (Any location)",
-      "US - TX, San Antonio; US - Remote (Any location)",
-      "US - VA, Arlington",
-      "US - VA, Arlington; US - DC, Washington",
-      "US - VA, Arlington; US - Remote (Any location)",
-      "US - VA, Arlington; US - VA, McLean"
+      "US - MD, Rockville; US - VA, McLean"
     ],
-    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---VA-Arlington/Federal-Law-Enforcement-Data-Analyst_44533",
-    "sector_confidence": 0.0,
-    "distinct_sector_terms": 0,
+    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---TX-Austin/C3-Senior-Consultant---Energy-Markets_42688",
+    "sector_confidence": 0.025,
+    "distinct_sector_terms": 5,
     "review_required": true,
     "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
   },
@@ -53,7 +53,7 @@
     ],
     "n_postings": 9,
     "sample_titles": [
-      "Video Game Localizers & Subtitlers \u2013 Esports",
+      "Freelance Videogame Subtitlers  \u2013 Esports ",
       "Japanese-to-US English Freelance Video Game Localizers",
       "Freelance On-Site Multilingual LQA Tester \u2013 S\u00e3o Paulo",
       "German-to-English Freelance Healthcare Translators and Editors",

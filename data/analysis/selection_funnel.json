@@ -1,58 +1,62 @@
 {
-  "built_at": "2026-09-21T15:12:56.529461+00:00",
+  "built_at": "2026-09-21T15:57:21.520835+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
   ],
   "funnel": {
-    "raw": 724,
-    "rejected_screen": 624,
-    "passed_screen": 100,
-    "passed_geo": 75,
-    "rejected_geo": 25,
-    "duplicate_sighting": 9,
-    "unique_in_scope": 66,
-    "usable_with_pay": 56
+    "raw": 831,
+    "rejected_off_umbrella": 0,
+    "rejected_screen": 634,
+    "passed_screen": 197,
+    "rejected_geo": 42,
+    "passed_geo": 155,
+    "duplicate_sighting": 11,
+    "unique_in_scope": 144,
+    "usable_with_pay": 103
   },
   "rejection_reasons": {
-    "role_not_software_data": 390,
+    "role_not_software_data": 393,
     "role_excluded": 208,
-    "internship": 45,
-    "non_us": 20,
-    "no_us_state": 5
+    "internship": 52,
+    "non_us": 26,
+    "no_us_state": 16
   },
   "usable_by_metro": {
-    "": 3,
-    "northern_virginia": 4,
-    "remote_national": 6,
-    "denver": 9,
-    "chicago": 22,
-    "new_york": 3,
+    "": 7,
+    "northern_virginia": 10,
+    "remote_national": 9,
+    "denver": 27,
+    "chicago": 32,
+    "indianapolis": 3,
+    "new_york": 4,
     "bay_area": 5,
-    "boston": 4
+    "boston": 5,
+    "minneapolis": 1
   },
   "usable_by_employer": {
-    "Invenergy": 22,
+    "Invenergy": 39,
+    "AES Indiana": 13,
+    "Xcel Energy": 11,
     "Nexamp": 9,
-    "AES Indiana": 4,
+    "Vantage Data Centers": 6,
+    "Equinix": 4,
+    "Hitachi Energy": 3,
+    "STACK Infrastructure": 3,
     "Flexential": 2,
     "Charles River Associates": 2,
-    "Equinix": 2,
-    "STACK Infrastructure": 2,
     "Yes Energy": 2,
     "Cologix": 1,
     "EdgeConneX": 1,
     "Cypress Creek Renewables": 1,
-    "Hitachi Energy": 1,
+    "Iron Mountain Data Centers": 1,
     "Modo Energy": 1,
     "NTT Global Data Centers": 1,
     "Plus Power": 1,
     "QTS Data Centers": 1,
-    "Vantage Data Centers": 1,
-    "Voltus": 1,
-    "Xcel Energy": 1
+    "Voltus": 1
   },
-  "distinct_employers_with_pay": 19,
+  "distinct_employers_with_pay": 20,
   "min_usable_n": 100,
-  "floor_met": false
+  "floor_met": true
 }
