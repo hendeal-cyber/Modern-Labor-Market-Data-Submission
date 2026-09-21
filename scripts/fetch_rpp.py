@@ -37,9 +37,18 @@ import zipfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 from lmstudy.netclient import PoliteSession  # noqa: E402
 
-# BEA publishes its regional datasets as public CSV archives that need no key.
+# BEA publishes its regional datasets as public CSV archives that need no key,
+# listed at https://apps.bea.gov/regional/downloadzip.htm. The archives are
+# named by table prefix — SA* for state annual series, MA* for metro — so the
+# first attempt at a bare "RPP.zip" was a guess at the wrong convention and
+# returned nothing. These are ordered most-likely-first; each miss costs one
+# request and is logged with its status so the next run's log says plainly
+# which shape answered.
 CANDIDATES = (
+    "https://apps.bea.gov/regional/zip/SARPP.zip",     # state annual RPP
     "https://apps.bea.gov/regional/zip/RPP.zip",
+    "https://apps.bea.gov/regional/zip/SARPP.ZIP",
+    "https://apps.bea.gov/regional/zip/MARPP.zip",     # metro; state rows often included
     "https://apps.bea.gov/regional/zip/rpp.zip",
 )
 
@@ -102,8 +111,13 @@ def main() -> int:
         print(f"trying {url}", flush=True)
         resp = session.get_bytes(url)
         if not resp.ok:
-            print(f"  no: {resp.error or resp.status}", flush=True)
+            # Logged with the status code: "no table fetched" is only useful if
+            # the next person can tell a 404 (wrong filename) from a 403
+            # (blocked) from a timeout.
+            print(f"  no: HTTP {resp.status}"
+                  + (f" — {resp.error}" if resp.error else ""), flush=True)
             continue
+        print(f"  got {len(resp.data):,} bytes", flush=True)
         try:
             archive = zipfile.ZipFile(io.BytesIO(resp.data))
         except zipfile.BadZipFile as exc:

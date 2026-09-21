@@ -1,29 +1,29 @@
 {
-  "built_at": "2026-09-21T16:23:38.505879+00:00",
+  "built_at": "2026-09-21T18:29:21.113515+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
   ],
   "funnel": {
-    "raw": 831,
+    "raw": 835,
     "rejected_off_umbrella": 0,
-    "rejected_screen": 638,
-    "passed_screen": 193,
+    "rejected_screen": 635,
+    "passed_screen": 200,
     "rejected_geo": 44,
-    "passed_geo": 149,
-    "duplicate_sighting": 11,
-    "unique_in_scope": 138,
-    "usable_with_pay": 100
+    "passed_geo": 156,
+    "duplicate_sighting": 15,
+    "unique_in_scope": 141,
+    "usable_with_pay": 103
   },
   "rejection_reasons": {
-    "role_not_software_data": 387,
-    "role_excluded": 218,
+    "role_not_software_data": 386,
+    "role_excluded": 216,
     "internship": 52,
     "non_us": 30,
     "no_us_state": 14
   },
   "usable_by_metro": {
-    "": 7,
+    "": 10,
     "northern_virginia": 10,
     "remote_national": 7,
     "denver": 26,
@@ -43,11 +43,13 @@
     "Hitachi Energy": 3,
     "STACK Infrastructure": 3,
     "Flexential": 2,
+    "California ISO": 2,
     "Charles River Associates": 2,
     "Equinix": 2,
     "Yes Energy": 2,
     "Cologix": 1,
     "EdgeConneX": 1,
+    "Avangrid": 1,
     "Cypress Creek Renewables": 1,
     "Iron Mountain Data Centers": 1,
     "Modo Energy": 1,
@@ -56,7 +58,7 @@
     "QTS Data Centers": 1,
     "Voltus": 1
   },
-  "distinct_employers_with_pay": 20,
+  "distinct_employers_with_pay": 22,
   "min_usable_n": 100,
   "floor_met": true
 }
