@@ -130,8 +130,8 @@
   "disclosure": {
     "by_mandate": {
       "no_mandate": {
-        "share_disclosed": 0.2653,
-        "n": 49
+        "share_disclosed": 0.3226,
+        "n": 62
       },
       "mandate": {
         "share_disclosed": 0.9783,
@@ -141,8 +141,8 @@
     "design": "associational; single cross-section, no DiD available"
   },
   "early_career_subsample": {
-    "n": 26,
-    "n_employers": 10
+    "n": 29,
+    "n_employers": 11
   },
   "price_adjustment": {
     "n": 0,
@@ -546,73 +546,145 @@
     },
     "early_career": {
       "label": "Model 4: early-career subsample (original question)",
-      "n": 26,
-      "r_squared": 0.6012,
-      "adj_r_squared": 0.4753,
+      "n": 29,
+      "r_squared": 0.7144,
+      "adj_r_squared": 0.4289,
       "cov_type": "cluster",
       "coefficients": {
         "const": {
-          "coef": 10.9499,
-          "std_err": 0.1434,
-          "t": 76.383,
+          "coef": 10.945,
+          "std_err": 0.359,
+          "t": 30.49,
           "p_value": 0.0,
-          "ci_low": 10.6689,
-          "ci_high": 11.2309,
+          "ci_low": 10.2414,
+          "ci_high": 11.6486,
           "pct_effect": null
         },
         "seniority_rank": {
-          "coef": 0.3844,
-          "std_err": 0.0967,
-          "t": 3.977,
-          "p_value": 0.0001,
-          "ci_low": 0.195,
-          "ci_high": 0.5738,
-          "pct_effect": 46.87
+          "coef": 0.16,
+          "std_err": 0.2736,
+          "t": 0.585,
+          "p_value": 0.5587,
+          "ci_low": -0.3763,
+          "ci_high": 0.6962,
+          "pct_effect": 17.35
         },
         "yrs_exp_min": {
-          "coef": -0.1753,
-          "std_err": 0.0718,
-          "t": -2.44,
-          "p_value": 0.0147,
-          "ci_low": -0.3161,
-          "ci_high": -0.0345,
-          "pct_effect": -16.08
+          "coef": -0.0929,
+          "std_err": 0.1038,
+          "t": -0.895,
+          "p_value": 0.3709,
+          "ci_low": -0.2963,
+          "ci_high": 0.1105,
+          "pct_effect": -8.87
         },
         "yrs_exp_stated": {
-          "coef": 0.2404,
-          "std_err": 0.2955,
-          "t": 0.813,
-          "p_value": 0.4159,
-          "ci_low": -0.3388,
-          "ci_high": 0.8196,
-          "pct_effect": 27.17
+          "coef": 0.0368,
+          "std_err": 0.3563,
+          "t": 0.103,
+          "p_value": 0.9177,
+          "ci_low": -0.6615,
+          "ci_high": 0.7351,
+          "pct_effect": 3.75
         },
         "degree_required": {
-          "coef": -0.1009,
-          "std_err": 0.1365,
-          "t": -0.739,
-          "p_value": 0.46,
-          "ci_low": -0.3685,
-          "ci_high": 0.1667,
-          "pct_effect": -9.6
+          "coef": -0.18,
+          "std_err": 0.171,
+          "t": -1.052,
+          "p_value": 0.2926,
+          "ci_low": -0.5152,
+          "ci_high": 0.1552,
+          "pct_effect": -16.47
         },
         "degree_stem": {
-          "coef": 0.36,
-          "std_err": 0.1448,
-          "t": 2.486,
-          "p_value": 0.0129,
-          "ci_low": 0.0762,
-          "ci_high": 0.6438,
-          "pct_effect": 43.33
+          "coef": 0.1875,
+          "std_err": 0.2091,
+          "t": 0.896,
+          "p_value": 0.3701,
+          "ci_low": -0.2224,
+          "ci_high": 0.5973,
+          "pct_effect": 20.62
         },
         "skill_cloud": {
-          "coef": 0.1636,
-          "std_err": 0.161,
-          "t": 1.016,
-          "p_value": 0.3095,
-          "ci_low": -0.1519,
-          "ci_high": 0.479,
-          "pct_effect": 17.77
+          "coef": -0.0973,
+          "std_err": 0.2429,
+          "t": -0.401,
+          "p_value": 0.6885,
+          "ci_low": -0.5733,
+          "ci_high": 0.3786,
+          "pct_effect": -9.28
+        },
+        "skill_ml_ai": {
+          "coef": 0.2723,
+          "std_err": 0.2571,
+          "t": 1.059,
+          "p_value": 0.2896,
+          "ci_low": -0.2316,
+          "ci_high": 0.7761,
+          "pct_effect": 31.29
+        },
+        "remote_eligible": {
+          "coef": -0.182,
+          "std_err": 0.2066,
+          "t": -0.881,
+          "p_value": 0.3783,
+          "ci_low": -0.5869,
+          "ci_high": 0.2229,
+          "pct_effect": -16.64
+        },
+        "mandate_state": {
+          "coef": 0.2038,
+          "std_err": 0.3133,
+          "t": 0.65,
+          "p_value": 0.5155,
+          "ci_low": -0.4103,
+          "ci_high": 0.8179,
+          "pct_effect": 22.6
+        },
+        "region_northeast": {
+          "coef": 0.5617,
+          "std_err": 0.367,
+          "t": 1.53,
+          "p_value": 0.1259,
+          "ci_low": -0.1577,
+          "ci_high": 1.2811,
+          "pct_effect": 75.37
+        },
+        "region_south": {
+          "coef": 0.284,
+          "std_err": 0.2395,
+          "t": 1.186,
+          "p_value": 0.2358,
+          "ci_low": -0.1855,
+          "ci_high": 0.7534,
+          "pct_effect": 32.84
+        },
+        "region_west": {
+          "coef": 0.2963,
+          "std_err": 0.1872,
+          "t": 1.583,
+          "p_value": 0.1135,
+          "ci_low": -0.0707,
+          "ci_high": 0.6632,
+          "pct_effect": 34.49
+        },
+        "industry_data_center": {
+          "coef": 0.3423,
+          "std_err": 0.2565,
+          "t": 1.335,
+          "p_value": 0.182,
+          "ci_low": -0.1604,
+          "ci_high": 0.8449,
+          "pct_effect": 40.81
+        },
+        "family_ai_ml": {
+          "coef": -0.0828,
+          "std_err": 0.3293,
+          "t": -0.252,
+          "p_value": 0.8014,
+          "ci_low": -0.7283,
+          "ci_high": 0.5626,
+          "pct_effect": -7.95
         }
       }
     }
@@ -632,12 +704,12 @@
       "max": 233000.0
     },
     "by_metro": {
-      "chicago": 32,
+      "chicago": 33,
       "denver": 26,
-      "northern_virginia": 10,
-      "remote_national": 7,
+      "northern_virginia": 25,
+      "remote_national": 12,
+      "boston": 8,
       "bay_area": 5,
-      "boston": 5,
       "new_york": 4,
       "indianapolis": 3,
       "minneapolis": 1

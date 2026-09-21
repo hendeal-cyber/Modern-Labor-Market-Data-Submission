@@ -20,22 +20,23 @@
     "role_excluded": 216,
     "internship": 52,
     "non_us": 30,
-    "no_us_state": 14
+    "no_us_state": 16
   },
   "usable_by_metro": {
     "": 10,
     "northern_virginia": 10,
     "remote_national": 7,
     "denver": 26,
-    "chicago": 32,
+    "chicago": 33,
     "indianapolis": 3,
     "new_york": 4,
     "bay_area": 5,
-    "boston": 5,
+    "boston": 8,
     "minneapolis": 1
   },
   "usable_by_employer": {
     "Invenergy": 39,
+    "Guidehouse": 34,
     "AES Indiana": 13,
     "Xcel Energy": 10,
     "Nexamp": 9,

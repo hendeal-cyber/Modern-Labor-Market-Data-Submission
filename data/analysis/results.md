@@ -12,7 +12,7 @@
 >
 > The model is reported so the pipeline is verifiable end to end, not because the coefficients mean anything yet. Collect more before drawing conclusions.
 
-Regressor budget at 20 observations each: **5** (specification used: **core**).
+Regressor budget at 20 observations each: **6** (specification used: **core**).
 
 Minimum detectable standardized effect: **0.3004** log points (alpha 0.05, power 0.80).
 
@@ -85,17 +85,25 @@ Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Model 4: early-career subsample (original question)
 
-N = 26, R² = 0.6012, adjusted R² = 0.4753, SE: cluster
+N = 29, R² = 0.7144, adjusted R² = 0.4289, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 10.9499*** | 0.1434 | 0.0 | [10.6689, 11.2309] | — |
-| `seniority_rank` | 0.3844*** | 0.0967 | 0.0001 | [0.195, 0.5738] | 46.87% |
-| `yrs_exp_min` | -0.1753** | 0.0718 | 0.0147 | [-0.3161, -0.0345] | -16.08% |
-| `yrs_exp_stated` | 0.2404 | 0.2955 | 0.4159 | [-0.3388, 0.8196] | 27.17% |
-| `degree_required` | -0.1009 | 0.1365 | 0.46 | [-0.3685, 0.1667] | -9.6% |
-| `degree_stem` | 0.36** | 0.1448 | 0.0129 | [0.0762, 0.6438] | 43.33% |
-| `skill_cloud` | 0.1636 | 0.161 | 0.3095 | [-0.1519, 0.479] | 17.77% |
+| `const` | 10.945*** | 0.359 | 0.0 | [10.2414, 11.6486] | — |
+| `seniority_rank` | 0.16 | 0.2736 | 0.5587 | [-0.3763, 0.6962] | 17.35% |
+| `yrs_exp_min` | -0.0929 | 0.1038 | 0.3709 | [-0.2963, 0.1105] | -8.87% |
+| `yrs_exp_stated` | 0.0368 | 0.3563 | 0.9177 | [-0.6615, 0.7351] | 3.75% |
+| `degree_required` | -0.18 | 0.171 | 0.2926 | [-0.5152, 0.1552] | -16.47% |
+| `degree_stem` | 0.1875 | 0.2091 | 0.3701 | [-0.2224, 0.5973] | 20.62% |
+| `skill_cloud` | -0.0973 | 0.2429 | 0.6885 | [-0.5733, 0.3786] | -9.28% |
+| `skill_ml_ai` | 0.2723 | 0.2571 | 0.2896 | [-0.2316, 0.7761] | 31.29% |
+| `remote_eligible` | -0.182 | 0.2066 | 0.3783 | [-0.5869, 0.2229] | -16.64% |
+| `mandate_state` | 0.2038 | 0.3133 | 0.5155 | [-0.4103, 0.8179] | 22.6% |
+| `region_northeast` | 0.5617 | 0.367 | 0.1259 | [-0.1577, 1.2811] | 75.37% |
+| `region_south` | 0.284 | 0.2395 | 0.2358 | [-0.1855, 0.7534] | 32.84% |
+| `region_west` | 0.2963 | 0.1872 | 0.1135 | [-0.0707, 0.6632] | 34.49% |
+| `industry_data_center` | 0.3423 | 0.2565 | 0.182 | [-0.1604, 0.8449] | 40.81% |
+| `family_ai_ml` | -0.0828 | 0.3293 | 0.8014 | [-0.7283, 0.5626] | -7.95% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 

@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-21",
-  "collected_at": "2026-09-21T15:17:23.058440+00:00",
+  "collected_at": "2026-09-21T18:28:45.001467+00:00",
   "employers_attempted": 269,
   "results": [
     {
@@ -33,7 +33,7 @@
       "found": true,
       "platform": "workday",
       "token": "invenergyllc/invenergycareers",
-      "listed": 193,
+      "listed": 192,
       "postings": 44,
       "file": "Invenergy__workday.json",
       "site_guessed": false
@@ -44,8 +44,8 @@
       "found": true,
       "platform": "workday",
       "token": "vst/vistra_careers",
-      "listed": 170,
-      "postings": 9,
+      "listed": 172,
+      "postings": 8,
       "file": "Vistra__workday.json",
       "site_guessed": false
     },
@@ -61,7 +61,7 @@
       "found": true,
       "platform": "workday",
       "token": "aquaamerica/Essential_Careers",
-      "listed": 99,
+      "listed": 98,
       "postings": 4,
       "file": "Aqua_Illinois__Essential_Utilities___workday.json",
       "site_guessed": false
@@ -72,7 +72,7 @@
       "found": true,
       "platform": "workday",
       "token": "aes/AES_US",
-      "listed": 166,
+      "listed": 169,
       "postings": 20,
       "file": "AES_Indiana__workday.json",
       "site_guessed": false
@@ -89,7 +89,7 @@
       "found": true,
       "platform": "workday",
       "token": "dukeenergy/search",
-      "listed": 107,
+      "listed": 116,
       "postings": 1,
       "file": "Duke_Energy_Indiana__workday.json",
       "site_guessed": false
@@ -147,8 +147,8 @@
       "found": true,
       "platform": "workday",
       "token": "equinix/External",
-      "listed": 277,
-      "postings": 9,
+      "listed": 276,
+      "postings": 10,
       "file": "Equinix__workday.json",
       "site_guessed": false
     },
@@ -164,8 +164,8 @@
       "found": true,
       "platform": "workday",
       "token": "qtsdatacenters/QTS",
-      "listed": 305,
-      "postings": 15,
+      "listed": 302,
+      "postings": 14,
       "file": "QTS_Data_Centers__workday.json",
       "site_guessed": false
     },
@@ -181,8 +181,8 @@
       "found": true,
       "platform": "workday",
       "token": "cyrusone/CyrusOneCareerPortal",
-      "listed": 121,
-      "postings": 6,
+      "listed": 122,
+      "postings": 5,
       "file": "CyrusOne__workday.json",
       "site_guessed": false
     },
@@ -198,8 +198,8 @@
       "found": true,
       "platform": "lever",
       "token": "cologix",
-      "listed": 28,
-      "postings": 28,
+      "listed": 27,
+      "postings": 27,
       "file": "Cologix__lever.json",
       "site_guessed": false
     },
@@ -226,8 +226,8 @@
       "found": true,
       "platform": "workday",
       "token": "nttglobaldatacenters/External",
-      "listed": 225,
-      "postings": 5,
+      "listed": 229,
+      "postings": 4,
       "file": "NTT_Global_Data_Centers__workday.json",
       "site_guessed": false
     },
@@ -237,7 +237,7 @@
       "found": true,
       "platform": "workday",
       "token": "vantagedc/Vantage",
-      "listed": 188,
+      "listed": 189,
       "postings": 9,
       "file": "Vantage_Data_Centers__workday.json",
       "site_guessed": false
@@ -248,7 +248,7 @@
       "found": true,
       "platform": "workday",
       "token": "stackinfra/STACK_AMER",
-      "listed": 73,
+      "listed": 64,
       "postings": 3,
       "file": "STACK_Infrastructure__workday.json",
       "site_guessed": false
@@ -276,7 +276,7 @@
       "found": true,
       "platform": "workday",
       "token": "ironmountain/iron-mountain-jobs",
-      "listed": 367,
+      "listed": 366,
       "postings": 7,
       "file": "Iron_Mountain_Data_Centers__workday.json",
       "site_guessed": false
@@ -304,7 +304,7 @@
       "found": true,
       "platform": "workday",
       "token": "pjm/pjmcareers",
-      "listed": 23,
+      "listed": 22,
       "postings": 2,
       "file": "PJM_Interconnection__workday.json",
       "site_guessed": false
@@ -345,8 +345,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "clearwayjobs",
-      "listed": 54,
-      "postings": 54,
+      "listed": 53,
+      "postings": 53,
       "file": "Clearway_Energy__greenhouse.json",
       "site_guessed": false
     },
@@ -388,11 +388,13 @@
     {
       "employer": "Guidehouse",
       "industry": "consulting",
-      "found": false,
+      "found": true,
       "platform": "workday",
       "token": "guidehouse/External",
-      "postings": 0,
-      "status": "slug_candidate_unconfirmed"
+      "listed": 500,
+      "postings": 74,
+      "file": "Guidehouse__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Energy and Environmental Economics (E3)",
@@ -418,7 +420,7 @@
       "platform": "workday",
       "token": "hitachi/hitachi",
       "listed": 500,
-      "postings": 10,
+      "postings": 9,
       "file": "Hitachi_Energy__workday.json",
       "site_guessed": false
     },
@@ -602,8 +604,8 @@
       "found": true,
       "platform": "workday",
       "token": "xcelenergy/External",
-      "listed": 258,
-      "postings": 34,
+      "listed": 262,
+      "postings": 33,
       "file": "Xcel_Energy__workday.json",
       "site_guessed": true
     },
@@ -817,8 +819,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "elementcritical",
-      "listed": 4,
-      "postings": 4,
+      "listed": 3,
+      "postings": 3,
       "file": "Element_Critical__greenhouse.json",
       "site_guessed": false
     },
@@ -1814,28 +1816,26 @@
       "postings": 0
     }
   ],
-  "total_postings": 664,
+  "total_postings": 730,
   "scope_diagnostics": {
-    "listed": 3660,
-    "unknown_place_wrong_role": 716,
-    "kept": 245,
-    "in_metro_wrong_role": 2001,
+    "listed": 3667,
+    "unknown_place_wrong_role": 717,
+    "in_metro_wrong_role": 1927,
     "titles_in_metro": {
-      "Wind Technician": 12,
       "Critical Environments Operator III": 12,
       "Critical Operations Technician I": 11,
+      "Critical Environments Operator IV": 11,
       "Solar Technician": 10,
-      "Utility Technician": 10,
-      "Critical Environments Operator IV": 10,
+      "Wind Technician": 10,
       "Security Officer L1": 10,
-      "Imaging Specialist": 8,
+      "Utility Technician": 9,
       "Critical Environment Engineer": 7,
       "Critical Environments Operator II": 7,
-      "Municiador": 7,
-      "Facility Operator": 6,
       "Senior Development Project Manager (Data Center Construction": 6,
       "Senior Development Project Engineer (Data Center Constructio": 6,
+      "Imaging Specialist": 6,
       "Construction Manager": 5,
+      "Facility Operator": 5,
       "Construction Project Manager": 5,
       "Development Project Manager (Data Center Construction)": 5,
       "Cost Control Manager": 5,
@@ -1845,21 +1845,23 @@
       "Critical Environments Operator (Level 1-4)": 5,
       "Facility Manager": 5,
       "Critical Environments Operator (Level 1-4) - NIGHT SHIFT": 5,
+      "Data Center Technician L1": 5,
       "DoW SkillBridge Data Center Technician Apprentice": 5,
       "Critical Facilities Engineer, NA": 5,
-      "Warehouse Associate": 5,
       "Non CDL Driver": 5,
       "Patient Access Representative": 5,
-      "Advanced Solar Technician": 4
+      "Advanced Solar Technician": 4,
+      "Facility Operator Trainee": 4
     },
-    "neither": 654,
+    "kept": 252,
+    "neither": 727,
     "role_ok_wrong_place": 44,
     "locations_of_in_role": {
       "Bangalore Office BLS2": 10,
       "Chennai, Tamil Nadu, India": 6,
-      "London, England": 3,
       "Amsterdam": 2,
       "Toronto": 2,
+      "London, England": 2,
       "Sevlievo, Gabrovo, Bulgaria": 2,
       "Ho Chi Minh City, Ho Chi Minh, Vietnam": 2,
       "Ciudad de Mexico, D. F.": 1,
@@ -1875,11 +1877,12 @@
       "IN - Chennai": 1,
       "Krakow, Lesser Poland, Poland": 1,
       "Les Ulis, Ile-de-France, France": 1,
+      "Dammam, Eastern Region, Saudi Arabia": 1,
       "Kyushu, Fukuoka, Japan": 1,
       "Rotterdam, South Holland, Netherlands": 1,
       "Zurich, Zurich, Switzerland": 1,
       "Vadodara, Gujarat, India": 1
     }
   },
-  "slug_candidates_for_review": 2
+  "slug_candidates_for_review": 1
 }

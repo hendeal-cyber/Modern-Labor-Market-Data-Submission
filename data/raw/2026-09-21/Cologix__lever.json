@@ -31,8 +31,8 @@
   "updated_at": "2026-04-28T20:46:59.267000+00:00",
   "department": "Data Center Operations - Op\u00e9rations de centre de donn\u00e9es",
   "employment_type": "Full- Time - Temps plein",
-  "comp_min": 50.0,
-  "comp_max": 55.0,
+  "comp_min": 30.0,
+  "comp_max": 33.0,
   "comp_interval": "per-hour-wage",
   "payload": null,
   "industry": "data_center"
