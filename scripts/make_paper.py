@@ -89,11 +89,44 @@ def main() -> int:
         A("no time variation, so no difference-in-differences is available, and")
         A("employers operating in mandate states differ from those that do not in")
         A("ways these data cannot control for.")
+        rb_all = ((analysis or {}).get("disclosure", {}) or {}).get("robustness", {})
+        gaps = [v["gap"] for v in rb_all.values()] if rb_all else []
+        if len(gaps) > 1:
+            A("")
+            A(f"The gap is large under every cut of the sample "
+              f"({min(gaps) * 100:.0f} to {max(gaps) * 100:.0f} points), but its")
+            A("size depends heavily on one jurisdiction; see the robustness table")
+            A("in section 5 before quoting a single figure.")
         A("")
-    A("Seniority, required experience and role family are the attributes that")
-    A("predict advertised pay within the disclosing sample. The early-career")
-    A("subsample that motivated the study is reported separately, so the original")
-    A("question remains answerable alongside the wider one.")
+
+    # Generated from the fitted model rather than asserted. This sentence
+    # previously named "required experience and role family" as predictors when
+    # neither was significant (p = 0.57 and 0.67), which is exactly the kind of
+    # claim a summary written by hand drifts into after the model changes.
+    core_coefs = ((analysis or {}).get("models", {}).get("core", {})
+                  .get("coefficients", {}))
+    sig = sorted(((k, v) for k, v in core_coefs.items()
+                  if k != "const" and v.get("p_value", 1) < 0.05),
+                 key=lambda kv: kv[1]["p_value"])
+    if sig:
+        pretty = {
+            "seniority_rank": "seniority", "skill_ml_ai": "a stated ML or AI skill",
+            "remote_eligible": "remote eligibility", "degree_stem": "a STEM degree",
+            "degree_required": "a required degree", "yrs_exp_min": "required experience",
+            "industry_data_center": "being a data center operator",
+            "region_northeast": "Northeast location", "region_south": "South location",
+            "region_west": "West location", "family_ai_ml": "an AI/ML role family",
+        }
+        named = [pretty.get(k, f"`{k}`") for k, _ in sig[:4]]
+        A("Within the postings that do disclose, the attributes that predict pay at")
+        A(f"conventional significance are {', '.join(named[:-1])} and {named[-1]}.")
+        neg = [k for k, v in sig if v.get("coef", 0) < 0]
+        if neg:
+            A(f"Note that {pretty.get(neg[0], neg[0])} enters **negatively**, which")
+            A("was predicted the other way; section 5 reports it as contradicted.")
+        A("")
+    A("The early-career subsample that motivated the study is reported separately,")
+    A("so the original question remains answerable alongside the wider one.")
     A("")
 
     A("## 1. Introduction")

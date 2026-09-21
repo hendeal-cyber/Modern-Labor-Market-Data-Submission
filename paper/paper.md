@@ -20,10 +20,17 @@ no time variation, so no difference-in-differences is available, and
 employers operating in mandate states differ from those that do not in
 ways these data cannot control for.
 
-Seniority, required experience and role family are the attributes that
-predict advertised pay within the disclosing sample. The early-career
-subsample that motivated the study is reported separately, so the original
-question remains answerable alongside the wider one.
+The gap is large under every cut of the sample (50 to 71 points), but its
+size depends heavily on one jurisdiction; see the robustness table
+in section 5 before quoting a single figure.
+
+Within the postings that do disclose, the attributes that predict pay at
+conventional significance are seniority, a stated ML or AI skill, South location and remote eligibility.
+Note that a required degree enters **negatively**, which
+was predicted the other way; section 5 reports it as contradicted.
+
+The early-career subsample that motivated the study is reported separately,
+so the original question remains answerable alongside the wider one.
 
 ## 1. Introduction
 
