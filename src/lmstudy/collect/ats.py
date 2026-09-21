@@ -12,7 +12,7 @@ import re
 from dataclasses import dataclass, asdict
 from typing import Any, Iterable
 
-from ..http import PoliteSession, Response
+from ..netclient import PoliteSession, Response
 
 TAG_RE = re.compile(r"<[^>]+>")
 WS_RE = re.compile(r"[ \t\r\f\v]+")

@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 import pathlib
 
-from ..http import PoliteSession
+from ..netclient import PoliteSession
 from .ats import FETCHERS, RawPosting
 
 

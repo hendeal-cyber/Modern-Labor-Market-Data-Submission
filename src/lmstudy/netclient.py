@@ -1,5 +1,12 @@
 """Polite HTTP client shared by every ATS adapter.
 
+Named netclient, not http: a module called `http.py` inside this package
+shadows Python's stdlib `http` package whenever a script in this directory is
+run directly, because Python puts the script's own directory on sys.path[0].
+That broke `python src/lmstudy/analyze.py` with "No module named
+'http.client'; 'http' is not a package" — urllib3 resolved `http` to this file.
+Both the README and the workflow invoke scripts that way.
+
 Compliance posture (see docs/methods.md):
   * identifies itself honestly in the User-Agent, with a contact
   * never authenticates and never circumvents any access control

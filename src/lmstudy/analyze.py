@@ -186,8 +186,11 @@ def result_table(res, label: str) -> dict:
                 "ci_low": round(float(res.conf_int().loc[name, 0]), 4),
                 "ci_high": round(float(res.conf_int().loc[name, 1]), 4),
                 # For a binary regressor, exp(coef)-1 is the approximate
-                # percentage pay difference.
-                "pct_effect": round((float(np.exp(res.params[name])) - 1) * 100, 2),
+                # percentage pay difference. It is meaningless for the
+                # intercept, which is a level, not an effect — reporting it
+                # there produced "7,370,111%".
+                "pct_effect": (None if name == "const"
+                               else round((float(np.exp(res.params[name])) - 1) * 100, 2)),
             }
             for name in res.params.index
         },
@@ -244,6 +247,31 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
         )
         models["range_width"] = result_table(res_w, "Secondary: log(range width)")
 
+    obs_per_regressor = len(estimation) / max(1, len(core))
+    n_clusters = int(estimation["employer"].nunique())
+    warnings_list = []
+    if obs_per_regressor < 10:
+        warnings_list.append(
+            f"{obs_per_regressor:.1f} observations per regressor ({len(estimation)} "
+            f"observations, {len(core)} regressors). Below about 10 the estimates "
+            "are overfit and the coefficients should not be interpreted.")
+    if n_clusters < 20:
+        warnings_list.append(
+            f"{n_clusters} employer clusters. Cluster-robust standard errors are "
+            "biased downward with few clusters, so p-values are anti-conservative. "
+            "A wild cluster bootstrap is required before reporting significance.")
+    detectable = detectable_effect(len(estimation), len(core))
+    if detectable and detectable > 0.25:
+        warnings_list.append(
+            f"Minimum detectable effect is {detectable:.2f} log points, roughly a "
+            f"{(np.exp(detectable) - 1) * 100:.0f}% pay difference. Any coefficient "
+            "smaller than that is not distinguishable from noise regardless of its "
+            "p-value.")
+    report["interpretability_warnings"] = warnings_list
+    report["interpretable"] = not warnings_list
+    report["obs_per_regressor"] = round(obs_per_regressor, 2)
+    report["n_clusters"] = n_clusters
+
     report["models"] = models
     report["power"] = {
         "n": len(estimation),
@@ -285,6 +313,15 @@ def _write_markdown(report: dict, path: pathlib.Path) -> None:
         path.write_text("\n".join(lines) + "\n")
         return
 
+    if report.get("interpretability_warnings"):
+        lines += ["> **These estimates are not yet interpretable.**", ">"]
+        for w in report["interpretability_warnings"]:
+            lines.append(f"> - {w}")
+        lines += [">",
+                  "> The model is reported so the pipeline is verifiable end to end, "
+                  "not because the coefficients mean anything yet. Collect more "
+                  "before drawing conclusions.", ""]
+
     power = report["power"]
     lines += [
         f"Regressor budget at {OBS_PER_REGRESSOR} observations each: "
@@ -302,9 +339,10 @@ def _write_markdown(report: dict, path: pathlib.Path) -> None:
                   "|---|---|---|---|---|---|"]
         for name, c in model["coefficients"].items():
             stars = "***" if c["p_value"] < 0.01 else "**" if c["p_value"] < 0.05 else "*" if c["p_value"] < 0.10 else ""
+            pct = "—" if c["pct_effect"] is None else f"{c['pct_effect']}%"
             lines.append(
                 f"| `{name}` | {c['coef']}{stars} | {c['std_err']} | {c['p_value']} | "
-                f"[{c['ci_low']}, {c['ci_high']}] | {c['pct_effect']}% |"
+                f"[{c['ci_low']}, {c['ci_high']}] | {pct} |"
             )
         lines += ["", "Significance: *** p<0.01, ** p<0.05, * p<0.10.", ""]
 

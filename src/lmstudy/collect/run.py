@@ -16,7 +16,7 @@ import yaml
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from lmstudy.http import PoliteSession                      # noqa: E402
+from lmstudy.netclient import PoliteSession                      # noqa: E402
 from lmstudy.collect.discover import discover_employer      # noqa: E402
 from lmstudy import geo                                      # noqa: E402
 from lmstudy.filters import screen_role, screen_early_career  # noqa: E402
