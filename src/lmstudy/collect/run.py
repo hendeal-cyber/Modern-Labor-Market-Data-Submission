@@ -96,6 +96,19 @@ SECTIONS = {
     "developers": "developer",
     "consulting": "consulting",
     "grid_vendors": "grid_vendor",
+    # Batch 2 of the frame expansion. Tokens here are derived from company-name
+    # slugs rather than verified by hand, so they lean on the sector-confidence
+    # check in discover.py: a board is admitted only when its own postings read
+    # as energy or data-center work, which is what distinguishes a real match
+    # from a same-name collision.
+    "utilities_batch2": "utility",
+    "gas_utilities_batch2": "utility",
+    "grid_operators_batch2": "grid_operator",
+    "data_center_operators_batch2": "data_center",
+    "developers_batch2": "developer",
+    "energy_analytics_batch2": "energy_analytics",
+    "consulting_batch2": "consulting",
+    "grid_vendors_batch2": "grid_vendor",
 }
 
 

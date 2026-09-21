@@ -400,6 +400,1101 @@ gas_utilities:           # gas LDCs and combined gas+electric utilities
       workday: [{tenant: southerncompany, site: SouthernCompany}]
     verified: false
 
+# --- frame expansion, batch 2 (39 employers) ---
+utilities_batch2:
+  - name: Ameren
+    candidates:
+      greenhouse: [ameren]
+      lever: [ameren]
+      ashby: [ameren]
+      workday: [{tenant: ameren, site: careers}]
+    verified: false
+  - name: American Electric Power
+    candidates:
+      greenhouse: [americanelectricpower, american-electric-power, americanelectric]
+      lever: [americanelectricpower, american-electric-power, americanelectric]
+      ashby: [americanelectricpower, american-electric-power, americanelectric]
+      workday: [{tenant: americanelectricpower, site: careers}]
+    verified: false
+  - name: Alliant Energy
+    candidates:
+      greenhouse: [alliantenergy, alliant-energy, alliant]
+      lever: [alliantenergy, alliant-energy, alliant]
+      ashby: [alliantenergy, alliant-energy, alliant]
+      workday: [{tenant: alliantenergy, site: careers}]
+    verified: false
+  - name: Avangrid
+    candidates:
+      greenhouse: [avangrid]
+      lever: [avangrid]
+      ashby: [avangrid]
+      workday: [{tenant: avangrid, site: careers}]
+    verified: false
+  - name: Avista
+    candidates:
+      greenhouse: [avista]
+      lever: [avista]
+      ashby: [avista]
+      workday: [{tenant: avista, site: careers}]
+    verified: false
+  - name: Black Hills Energy
+    candidates:
+      greenhouse: [blackhillsenergy, black-hills-energy, blackhills]
+      lever: [blackhillsenergy, black-hills-energy, blackhills]
+      ashby: [blackhillsenergy, black-hills-energy, blackhills]
+      workday: [{tenant: blackhillsenergy, site: careers}]
+    verified: false
+  - name: CMS Energy
+    candidates:
+      greenhouse: [cmsenergy, cms-energy, cms]
+      lever: [cmsenergy, cms-energy, cms]
+      ashby: [cmsenergy, cms-energy, cms]
+      workday: [{tenant: cmsenergy, site: careers}]
+    verified: false
+  - name: Consumers Energy
+    candidates:
+      greenhouse: [consumersenergy, consumers-energy, consumers]
+      lever: [consumersenergy, consumers-energy, consumers]
+      ashby: [consumersenergy, consumers-energy, consumers]
+      workday: [{tenant: consumersenergy, site: careers}]
+    verified: false
+  - name: Con Edison
+    candidates:
+      greenhouse: [conedison, con-edison, con]
+      lever: [conedison, con-edison, con]
+      ashby: [conedison, con-edison, con]
+      workday: [{tenant: conedison, site: careers}]
+    verified: false
+  - name: Dominion Energy
+    candidates:
+      greenhouse: [dominionenergy, dominion-energy, dominion]
+      lever: [dominionenergy, dominion-energy, dominion]
+      ashby: [dominionenergy, dominion-energy, dominion]
+      workday: [{tenant: dominionenergy, site: careers}]
+    verified: false
+  - name: DTE Energy
+    candidates:
+      greenhouse: [dteenergy, dte-energy, dte]
+      lever: [dteenergy, dte-energy, dte]
+      ashby: [dteenergy, dte-energy, dte]
+      workday: [{tenant: dteenergy, site: careers}]
+    verified: false
+  - name: Entergy
+    candidates:
+      greenhouse: [entergy]
+      lever: [entergy]
+      ashby: [entergy]
+      workday: [{tenant: entergy, site: careers}]
+    verified: false
+  - name: Evergy
+    candidates:
+      greenhouse: [evergy]
+      lever: [evergy]
+      ashby: [evergy]
+      workday: [{tenant: evergy, site: careers}]
+    verified: false
+  - name: Eversource Energy
+    candidates:
+      greenhouse: [eversourceenergy, eversource-energy, eversource]
+      lever: [eversourceenergy, eversource-energy, eversource]
+      ashby: [eversourceenergy, eversource-energy, eversource]
+      workday: [{tenant: eversourceenergy, site: careers}]
+    verified: false
+  - name: FirstEnergy
+    candidates:
+      greenhouse: [firstenergy]
+      lever: [firstenergy]
+      ashby: [firstenergy]
+      workday: [{tenant: firstenergy, site: careers}]
+    verified: false
+  - name: IDACORP
+    candidates:
+      greenhouse: [idacorp]
+      lever: [idacorp]
+      ashby: [idacorp]
+      workday: [{tenant: idacorp, site: careers}]
+    verified: false
+  - name: National Grid
+    candidates:
+      greenhouse: [nationalgrid, national-grid, national]
+      lever: [nationalgrid, national-grid, national]
+      ashby: [nationalgrid, national-grid, national]
+      workday: [{tenant: nationalgrid, site: careers}]
+    verified: false
+  - name: NorthWestern Energy
+    candidates:
+      greenhouse: [northwesternenergy, northwestern-energy, northwestern]
+      lever: [northwesternenergy, northwestern-energy, northwestern]
+      ashby: [northwesternenergy, northwestern-energy, northwestern]
+      workday: [{tenant: northwesternenergy, site: careers}]
+    verified: false
+  - name: OGE Energy
+    candidates:
+      greenhouse: [ogeenergy, oge-energy, oge]
+      lever: [ogeenergy, oge-energy, oge]
+      ashby: [ogeenergy, oge-energy, oge]
+      workday: [{tenant: ogeenergy, site: careers}]
+    verified: false
+  - name: Pinnacle West Capital
+    candidates:
+      greenhouse: [pinnaclewestcapital, pinnacle-west-capital, pinnaclewest]
+      lever: [pinnaclewestcapital, pinnacle-west-capital, pinnaclewest]
+      ashby: [pinnaclewestcapital, pinnacle-west-capital, pinnaclewest]
+      workday: [{tenant: pinnaclewestcapital, site: careers}]
+    verified: false
+  - name: PNM Resources
+    candidates:
+      greenhouse: [pnmresources, pnm-resources, pnm]
+      lever: [pnmresources, pnm-resources, pnm]
+      ashby: [pnmresources, pnm-resources, pnm]
+      workday: [{tenant: pnmresources, site: careers}]
+    verified: false
+  - name: PPL Corporation
+    candidates:
+      greenhouse: [ppl]
+      lever: [ppl]
+      ashby: [ppl]
+      workday: [{tenant: ppl, site: careers}]
+    verified: false
+  - name: PSEG
+    candidates:
+      greenhouse: [pseg]
+      lever: [pseg]
+      ashby: [pseg]
+      workday: [{tenant: pseg, site: careers}]
+    verified: false
+  - name: Portland General Electric
+    candidates:
+      greenhouse: [portlandgeneralelectric, portland-general-electric, portlandgeneral]
+      lever: [portlandgeneralelectric, portland-general-electric, portlandgeneral]
+      ashby: [portlandgeneralelectric, portland-general-electric, portlandgeneral]
+      workday: [{tenant: portlandgeneralelectric, site: careers}]
+    verified: false
+  - name: Sempra
+    candidates:
+      greenhouse: [sempra]
+      lever: [sempra]
+      ashby: [sempra]
+      workday: [{tenant: sempra, site: careers}]
+    verified: false
+  - name: TECO Energy
+    candidates:
+      greenhouse: [tecoenergy, teco-energy, teco]
+      lever: [tecoenergy, teco-energy, teco]
+      ashby: [tecoenergy, teco-energy, teco]
+      workday: [{tenant: tecoenergy, site: careers}]
+    verified: false
+  - name: Xcel Energy
+    candidates:
+      greenhouse: [xcelenergy, xcel-energy, xcel]
+      lever: [xcelenergy, xcel-energy, xcel]
+      ashby: [xcelenergy, xcel-energy, xcel]
+      workday: [{tenant: xcelenergy, site: careers}]
+    verified: false
+  - name: Puget Sound Energy
+    candidates:
+      greenhouse: [pugetsoundenergy, puget-sound-energy, pugetsound]
+      lever: [pugetsoundenergy, puget-sound-energy, pugetsound]
+      ashby: [pugetsoundenergy, puget-sound-energy, pugetsound]
+      workday: [{tenant: pugetsoundenergy, site: careers}]
+    verified: false
+  - name: Salt River Project
+    candidates:
+      greenhouse: [saltriverproject, salt-river-project, saltriver]
+      lever: [saltriverproject, salt-river-project, saltriver]
+      ashby: [saltriverproject, salt-river-project, saltriver]
+      workday: [{tenant: saltriverproject, site: careers}]
+    verified: false
+  - name: Austin Energy
+    candidates:
+      greenhouse: [austinenergy, austin-energy, austin]
+      lever: [austinenergy, austin-energy, austin]
+      ashby: [austinenergy, austin-energy, austin]
+      workday: [{tenant: austinenergy, site: careers}]
+    verified: false
+  - name: CPS Energy
+    candidates:
+      greenhouse: [cpsenergy, cps-energy, cps]
+      lever: [cpsenergy, cps-energy, cps]
+      ashby: [cpsenergy, cps-energy, cps]
+      workday: [{tenant: cpsenergy, site: careers}]
+    verified: false
+  - name: JEA
+    candidates:
+      greenhouse: [jea]
+      lever: [jea]
+      ashby: [jea]
+      workday: [{tenant: jea, site: careers}]
+    verified: false
+  - name: Santee Cooper
+    candidates:
+      greenhouse: [santeecooper, santee-cooper, santee]
+      lever: [santeecooper, santee-cooper, santee]
+      ashby: [santeecooper, santee-cooper, santee]
+      workday: [{tenant: santeecooper, site: careers}]
+    verified: false
+  - name: Tennessee Valley Authority
+    candidates:
+      greenhouse: [tennesseevalleyauthority, tennessee-valley-authority, tennesseevalley]
+      lever: [tennesseevalleyauthority, tennessee-valley-authority, tennesseevalley]
+      ashby: [tennesseevalleyauthority, tennessee-valley-authority, tennesseevalley]
+      workday: [{tenant: tennesseevalleyauthority, site: careers}]
+    verified: false
+  - name: Seattle City Light
+    candidates:
+      greenhouse: [seattlecitylight, seattle-city-light, seattlecity]
+      lever: [seattlecitylight, seattle-city-light, seattlecity]
+      ashby: [seattlecitylight, seattle-city-light, seattlecity]
+      workday: [{tenant: seattlecitylight, site: careers}]
+    verified: false
+  - name: Colorado Springs Utilities
+    candidates:
+      greenhouse: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
+      lever: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
+      ashby: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
+      workday: [{tenant: coloradospringsutilities, site: careers}]
+    verified: false
+  - name: Ameren Illinois
+    candidates:
+      greenhouse: [amerenillinois, ameren-illinois, ameren]
+      lever: [amerenillinois, ameren-illinois, ameren]
+      ashby: [amerenillinois, ameren-illinois, ameren]
+      workday: [{tenant: amerenillinois, site: careers}]
+    verified: false
+  - name: Madison Gas and Electric
+    candidates:
+      greenhouse: [madisongasandelectric, madison-gas-and-electric, madisongas]
+      lever: [madisongasandelectric, madison-gas-and-electric, madisongas]
+      ashby: [madisongasandelectric, madison-gas-and-electric, madisongas]
+      workday: [{tenant: madisongasandelectric, site: careers}]
+    verified: false
+  - name: WPS Resources
+    candidates:
+      greenhouse: [wpsresources, wps-resources, wps]
+      lever: [wpsresources, wps-resources, wps]
+      ashby: [wpsresources, wps-resources, wps]
+      workday: [{tenant: wpsresources, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (9 employers) ---
+gas_utilities_batch2:
+  - name: Vectren
+    candidates:
+      greenhouse: [vectren]
+      lever: [vectren]
+      ashby: [vectren]
+      workday: [{tenant: vectren, site: careers}]
+    verified: false
+  - name: New Jersey Resources
+    candidates:
+      greenhouse: [newjerseyresources, new-jersey-resources, newjersey]
+      lever: [newjerseyresources, new-jersey-resources, newjersey]
+      ashby: [newjerseyresources, new-jersey-resources, newjersey]
+      workday: [{tenant: newjerseyresources, site: careers}]
+    verified: false
+  - name: South Jersey Industries
+    candidates:
+      greenhouse: [southjerseyindustries, south-jersey-industries, southjersey]
+      lever: [southjerseyindustries, south-jersey-industries, southjersey]
+      ashby: [southjerseyindustries, south-jersey-industries, southjersey]
+      workday: [{tenant: southjerseyindustries, site: careers}]
+    verified: false
+  - name: Southwest Gas
+    candidates:
+      greenhouse: [southwestgas, southwest-gas, southwest]
+      lever: [southwestgas, southwest-gas, southwest]
+      ashby: [southwestgas, southwest-gas, southwest]
+      workday: [{tenant: southwestgas, site: careers}]
+    verified: false
+  - name: UGI Corporation
+    candidates:
+      greenhouse: [ugi]
+      lever: [ugi]
+      ashby: [ugi]
+      workday: [{tenant: ugi, site: careers}]
+    verified: false
+  - name: Chesapeake Utilities
+    candidates:
+      greenhouse: [chesapeakeutilities, chesapeake-utilities, chesapeake]
+      lever: [chesapeakeutilities, chesapeake-utilities, chesapeake]
+      ashby: [chesapeakeutilities, chesapeake-utilities, chesapeake]
+      workday: [{tenant: chesapeakeutilities, site: careers}]
+    verified: false
+  - name: National Fuel Gas
+    candidates:
+      greenhouse: [nationalfuelgas, national-fuel-gas, nationalfuel]
+      lever: [nationalfuelgas, national-fuel-gas, nationalfuel]
+      ashby: [nationalfuelgas, national-fuel-gas, nationalfuel]
+      workday: [{tenant: nationalfuelgas, site: careers}]
+    verified: false
+  - name: Northwest Natural
+    candidates:
+      greenhouse: [northwestnatural, northwest-natural, northwest]
+      lever: [northwestnatural, northwest-natural, northwest]
+      ashby: [northwestnatural, northwest-natural, northwest]
+      workday: [{tenant: northwestnatural, site: careers}]
+    verified: false
+  - name: Philadelphia Gas Works
+    candidates:
+      greenhouse: [philadelphiagasworks, philadelphia-gas-works, philadelphiagas]
+      lever: [philadelphiagasworks, philadelphia-gas-works, philadelphiagas]
+      ashby: [philadelphiagasworks, philadelphia-gas-works, philadelphiagas]
+      workday: [{tenant: philadelphiagasworks, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (7 employers) ---
+grid_operators_batch2:
+  - name: California ISO
+    candidates:
+      greenhouse: [californiaiso, california-iso, california]
+      lever: [californiaiso, california-iso, california]
+      ashby: [californiaiso, california-iso, california]
+      workday: [{tenant: californiaiso, site: careers}]
+    verified: false
+  - name: ERCOT
+    candidates:
+      greenhouse: [ercot]
+      lever: [ercot]
+      ashby: [ercot]
+      workday: [{tenant: ercot, site: careers}]
+    verified: false
+  - name: Southwest Power Pool
+    candidates:
+      greenhouse: [southwestpowerpool, southwest-power-pool, southwestpower]
+      lever: [southwestpowerpool, southwest-power-pool, southwestpower]
+      ashby: [southwestpowerpool, southwest-power-pool, southwestpower]
+      workday: [{tenant: southwestpowerpool, site: careers}]
+    verified: false
+  - name: New York ISO
+    candidates:
+      greenhouse: [newyorkiso, new-york-iso, newyork]
+      lever: [newyorkiso, new-york-iso, newyork]
+      ashby: [newyorkiso, new-york-iso, newyork]
+      workday: [{tenant: newyorkiso, site: careers}]
+    verified: false
+  - name: ISO New England
+    candidates:
+      greenhouse: [isonewengland, iso-new-england, isonew]
+      lever: [isonewengland, iso-new-england, isonew]
+      ashby: [isonewengland, iso-new-england, isonew]
+      workday: [{tenant: isonewengland, site: careers}]
+    verified: false
+  - name: Bonneville Power Administration
+    candidates:
+      greenhouse: [bonnevillepoweradministration, bonneville-power-administration, bonnevillepower]
+      lever: [bonnevillepoweradministration, bonneville-power-administration, bonnevillepower]
+      ashby: [bonnevillepoweradministration, bonneville-power-administration, bonnevillepower]
+      workday: [{tenant: bonnevillepoweradministration, site: careers}]
+    verified: false
+  - name: Western Area Power Administration
+    candidates:
+      greenhouse: [westernareapoweradministration, western-area-power-administration, westernarea]
+      lever: [westernareapoweradministration, western-area-power-administration, westernarea]
+      ashby: [westernareapoweradministration, western-area-power-administration, westernarea]
+      workday: [{tenant: westernareapoweradministration, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (20 employers) ---
+data_center_operators_batch2:
+  - name: Switch
+    candidates:
+      greenhouse: [switch]
+      lever: [switch]
+      ashby: [switch]
+      workday: [{tenant: switch, site: careers}]
+    verified: false
+  - name: Sabey Data Centers
+    candidates:
+      greenhouse: [sabeydatacenters, sabey-data-centers, sabeydata]
+      lever: [sabeydatacenters, sabey-data-centers, sabeydata]
+      ashby: [sabeydatacenters, sabey-data-centers, sabeydata]
+      workday: [{tenant: sabeydatacenters, site: careers}]
+    verified: false
+  - name: Novva Data Centers
+    candidates:
+      greenhouse: [novvadatacenters, novva-data-centers, novvadata]
+      lever: [novvadatacenters, novva-data-centers, novvadata]
+      ashby: [novvadatacenters, novva-data-centers, novvadata]
+      workday: [{tenant: novvadatacenters, site: careers}]
+    verified: false
+  - name: Compass Datacenters
+    candidates:
+      greenhouse: [compassdatacenters, compass-datacenters, compass]
+      lever: [compassdatacenters, compass-datacenters, compass]
+      ashby: [compassdatacenters, compass-datacenters, compass]
+      workday: [{tenant: compassdatacenters, site: careers}]
+    verified: false
+  - name: Stream Data Centers
+    candidates:
+      greenhouse: [streamdatacenters, stream-data-centers, streamdata]
+      lever: [streamdatacenters, stream-data-centers, streamdata]
+      ashby: [streamdatacenters, stream-data-centers, streamdata]
+      workday: [{tenant: streamdatacenters, site: careers}]
+    verified: false
+  - name: H5 Data Centers
+    candidates:
+      greenhouse: [h5datacenters, h5-data-centers, h5data]
+      lever: [h5datacenters, h5-data-centers, h5data]
+      ashby: [h5datacenters, h5-data-centers, h5data]
+      workday: [{tenant: h5datacenters, site: careers}]
+    verified: false
+  - name: Element Critical
+    candidates:
+      greenhouse: [elementcritical, element-critical, element]
+      lever: [elementcritical, element-critical, element]
+      ashby: [elementcritical, element-critical, element]
+      workday: [{tenant: elementcritical, site: careers}]
+    verified: false
+  - name: 365 Data Centers
+    candidates:
+      greenhouse: [365datacenters, 365-data-centers, 365data]
+      lever: [365datacenters, 365-data-centers, 365data]
+      ashby: [365datacenters, 365-data-centers, 365data]
+      workday: [{tenant: 365datacenters, site: careers}]
+    verified: false
+  - name: American Tower
+    candidates:
+      greenhouse: [americantower, american-tower, american]
+      lever: [americantower, american-tower, american]
+      ashby: [americantower, american-tower, american]
+      workday: [{tenant: americantower, site: careers}]
+    verified: false
+  - name: Crown Castle
+    candidates:
+      greenhouse: [crowncastle, crown-castle, crown]
+      lever: [crowncastle, crown-castle, crown]
+      ashby: [crowncastle, crown-castle, crown]
+      workday: [{tenant: crowncastle, site: careers}]
+    verified: false
+  - name: Yondr Group
+    candidates:
+      greenhouse: [yondr]
+      lever: [yondr]
+      ashby: [yondr]
+      workday: [{tenant: yondr, site: careers}]
+    verified: false
+  - name: PowerHouse Data Centers
+    candidates:
+      greenhouse: [powerhousedatacenters, powerhouse-data-centers, powerhousedata]
+      lever: [powerhousedatacenters, powerhouse-data-centers, powerhousedata]
+      ashby: [powerhousedatacenters, powerhouse-data-centers, powerhousedata]
+      workday: [{tenant: powerhousedatacenters, site: careers}]
+    verified: false
+  - name: Tract
+    candidates:
+      greenhouse: [tract]
+      lever: [tract]
+      ashby: [tract]
+      workday: [{tenant: tract, site: careers}]
+    verified: false
+  - name: Ardent Data Centers
+    candidates:
+      greenhouse: [ardentdatacenters, ardent-data-centers, ardentdata]
+      lever: [ardentdatacenters, ardent-data-centers, ardentdata]
+      ashby: [ardentdatacenters, ardent-data-centers, ardentdata]
+      workday: [{tenant: ardentdatacenters, site: careers}]
+    verified: false
+  - name: Edged Energy
+    candidates:
+      greenhouse: [edgedenergy, edged-energy, edged]
+      lever: [edgedenergy, edged-energy, edged]
+      ashby: [edgedenergy, edged-energy, edged]
+      workday: [{tenant: edgedenergy, site: careers}]
+    verified: false
+  - name: Nautilus Data Technologies
+    candidates:
+      greenhouse: [nautilusdatatechnologies, nautilus-data-technologies, nautilusdata]
+      lever: [nautilusdatatechnologies, nautilus-data-technologies, nautilusdata]
+      ashby: [nautilusdatatechnologies, nautilus-data-technologies, nautilusdata]
+      workday: [{tenant: nautilusdatatechnologies, site: careers}]
+    verified: false
+  - name: Skybox Datacenters
+    candidates:
+      greenhouse: [skyboxdatacenters, skybox-datacenters, skybox]
+      lever: [skyboxdatacenters, skybox-datacenters, skybox]
+      ashby: [skyboxdatacenters, skybox-datacenters, skybox]
+      workday: [{tenant: skyboxdatacenters, site: careers}]
+    verified: false
+  - name: DartPoints
+    candidates:
+      greenhouse: [dartpoints]
+      lever: [dartpoints]
+      ashby: [dartpoints]
+      workday: [{tenant: dartpoints, site: careers}]
+    verified: false
+  - name: Involta
+    candidates:
+      greenhouse: [involta]
+      lever: [involta]
+      ashby: [involta]
+      workday: [{tenant: involta, site: careers}]
+    verified: false
+  - name: TierPoint Data Centers
+    candidates:
+      greenhouse: [tierpointdatacenters, tierpoint-data-centers, tierpointdata]
+      lever: [tierpointdatacenters, tierpoint-data-centers, tierpointdata]
+      ashby: [tierpointdatacenters, tierpoint-data-centers, tierpointdata]
+      workday: [{tenant: tierpointdatacenters, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (26 employers) ---
+developers_batch2:
+  - name: Orsted
+    candidates:
+      greenhouse: [orsted]
+      lever: [orsted]
+      ashby: [orsted]
+      workday: [{tenant: orsted, site: careers}]
+    verified: false
+  - name: EDF Renewables
+    candidates:
+      greenhouse: [edfrenewables, edf-renewables, edf]
+      lever: [edfrenewables, edf-renewables, edf]
+      ashby: [edfrenewables, edf-renewables, edf]
+      workday: [{tenant: edfrenewables, site: careers}]
+    verified: false
+  - name: RWE Clean Energy
+    candidates:
+      greenhouse: [rwecleanenergy, rwe-clean-energy, rweclean]
+      lever: [rwecleanenergy, rwe-clean-energy, rweclean]
+      ashby: [rwecleanenergy, rwe-clean-energy, rweclean]
+      workday: [{tenant: rwecleanenergy, site: careers}]
+    verified: false
+  - name: Enel North America
+    candidates:
+      greenhouse: [enel]
+      lever: [enel]
+      ashby: [enel]
+      workday: [{tenant: enel, site: careers}]
+    verified: false
+  - name: Engie North America
+    candidates:
+      greenhouse: [engie]
+      lever: [engie]
+      ashby: [engie]
+      workday: [{tenant: engie, site: careers}]
+    verified: false
+  - name: Lightsource bp
+    candidates:
+      greenhouse: [lightsourcebp, lightsource-bp, lightsource]
+      lever: [lightsourcebp, lightsource-bp, lightsource]
+      ashby: [lightsourcebp, lightsource-bp, lightsource]
+      workday: [{tenant: lightsourcebp, site: careers}]
+    verified: false
+  - name: Silicon Ranch
+    candidates:
+      greenhouse: [siliconranch, silicon-ranch, silicon]
+      lever: [siliconranch, silicon-ranch, silicon]
+      ashby: [siliconranch, silicon-ranch, silicon]
+      workday: [{tenant: siliconranch, site: careers}]
+    verified: false
+  - name: Cypress Creek Renewables
+    candidates:
+      greenhouse: [cypresscreekrenewables, cypress-creek-renewables, cypresscreek]
+      lever: [cypresscreekrenewables, cypress-creek-renewables, cypresscreek]
+      ashby: [cypresscreekrenewables, cypress-creek-renewables, cypresscreek]
+      workday: [{tenant: cypresscreekrenewables, site: careers}]
+    verified: false
+  - name: Pine Gate Renewables
+    candidates:
+      greenhouse: [pinegaterenewables, pine-gate-renewables, pinegate]
+      lever: [pinegaterenewables, pine-gate-renewables, pinegate]
+      ashby: [pinegaterenewables, pine-gate-renewables, pinegate]
+      workday: [{tenant: pinegaterenewables, site: careers}]
+    verified: false
+  - name: Origis Energy
+    candidates:
+      greenhouse: [origisenergy, origis-energy, origis]
+      lever: [origisenergy, origis-energy, origis]
+      ashby: [origisenergy, origis-energy, origis]
+      workday: [{tenant: origisenergy, site: careers}]
+    verified: false
+  - name: Nexamp
+    candidates:
+      greenhouse: [nexamp]
+      lever: [nexamp]
+      ashby: [nexamp]
+      workday: [{tenant: nexamp, site: careers}]
+    verified: false
+  - name: Summit Ridge Energy
+    candidates:
+      greenhouse: [summitridgeenergy, summit-ridge-energy, summitridge]
+      lever: [summitridgeenergy, summit-ridge-energy, summitridge]
+      ashby: [summitridgeenergy, summit-ridge-energy, summitridge]
+      workday: [{tenant: summitridgeenergy, site: careers}]
+    verified: false
+  - name: Hecate Energy
+    candidates:
+      greenhouse: [hecateenergy, hecate-energy, hecate]
+      lever: [hecateenergy, hecate-energy, hecate]
+      ashby: [hecateenergy, hecate-energy, hecate]
+      workday: [{tenant: hecateenergy, site: careers}]
+    verified: false
+  - name: Leeward Renewable Energy
+    candidates:
+      greenhouse: [leewardrenewableenergy, leeward-renewable-energy, leewardrenewable]
+      lever: [leewardrenewableenergy, leeward-renewable-energy, leewardrenewable]
+      ashby: [leewardrenewableenergy, leeward-renewable-energy, leewardrenewable]
+      workday: [{tenant: leewardrenewableenergy, site: careers}]
+    verified: false
+  - name: Longroad Energy
+    candidates:
+      greenhouse: [longroadenergy, longroad-energy, longroad]
+      lever: [longroadenergy, longroad-energy, longroad]
+      ashby: [longroadenergy, longroad-energy, longroad]
+      workday: [{tenant: longroadenergy, site: careers}]
+    verified: false
+  - name: Onward Energy
+    candidates:
+      greenhouse: [onwardenergy, onward-energy, onward]
+      lever: [onwardenergy, onward-energy, onward]
+      ashby: [onwardenergy, onward-energy, onward]
+      workday: [{tenant: onwardenergy, site: careers}]
+    verified: false
+  - name: Pattern Energy
+    candidates:
+      greenhouse: [patternenergy, pattern-energy, pattern]
+      lever: [patternenergy, pattern-energy, pattern]
+      ashby: [patternenergy, pattern-energy, pattern]
+      workday: [{tenant: patternenergy, site: careers}]
+    verified: false
+  - name: Terra-Gen
+    candidates:
+      greenhouse: [terragen, terra-gen, terra]
+      lever: [terragen, terra-gen, terra]
+      ashby: [terragen, terra-gen, terra]
+      workday: [{tenant: terragen, site: careers}]
+    verified: false
+  - name: Primergy Solar
+    candidates:
+      greenhouse: [primergysolar, primergy-solar, primergy]
+      lever: [primergysolar, primergy-solar, primergy]
+      ashby: [primergysolar, primergy-solar, primergy]
+      workday: [{tenant: primergysolar, site: careers}]
+    verified: false
+  - name: Doral Renewables
+    candidates:
+      greenhouse: [doralrenewables, doral-renewables, doral]
+      lever: [doralrenewables, doral-renewables, doral]
+      ashby: [doralrenewables, doral-renewables, doral]
+      workday: [{tenant: doralrenewables, site: careers}]
+    verified: false
+  - name: Soltage
+    candidates:
+      greenhouse: [soltage]
+      lever: [soltage]
+      ashby: [soltage]
+      workday: [{tenant: soltage, site: careers}]
+    verified: false
+  - name: BrightNight
+    candidates:
+      greenhouse: [brightnight]
+      lever: [brightnight]
+      ashby: [brightnight]
+      workday: [{tenant: brightnight, site: careers}]
+    verified: false
+  - name: Aypa Power
+    candidates:
+      greenhouse: [aypapower, aypa-power, aypa]
+      lever: [aypapower, aypa-power, aypa]
+      ashby: [aypapower, aypa-power, aypa]
+      workday: [{tenant: aypapower, site: careers}]
+    verified: false
+  - name: Plus Power
+    candidates:
+      greenhouse: [pluspower, plus-power, plus]
+      lever: [pluspower, plus-power, plus]
+      ashby: [pluspower, plus-power, plus]
+      workday: [{tenant: pluspower, site: careers}]
+    verified: false
+  - name: Key Capture Energy
+    candidates:
+      greenhouse: [keycaptureenergy, key-capture-energy, keycapture]
+      lever: [keycaptureenergy, key-capture-energy, keycapture]
+      ashby: [keycaptureenergy, key-capture-energy, keycapture]
+      workday: [{tenant: keycaptureenergy, site: careers}]
+    verified: false
+  - name: Jupiter Power
+    candidates:
+      greenhouse: [jupiterpower, jupiter-power, jupiter]
+      lever: [jupiterpower, jupiter-power, jupiter]
+      ashby: [jupiterpower, jupiter-power, jupiter]
+      workday: [{tenant: jupiterpower, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (22 employers) ---
+energy_analytics_batch2:
+  - name: Enverus
+    candidates:
+      greenhouse: [enverus]
+      lever: [enverus]
+      ashby: [enverus]
+      workday: [{tenant: enverus, site: careers}]
+    verified: false
+  - name: Wood Mackenzie
+    candidates:
+      greenhouse: [woodmackenzie, wood-mackenzie, wood]
+      lever: [woodmackenzie, wood-mackenzie, wood]
+      ashby: [woodmackenzie, wood-mackenzie, wood]
+      workday: [{tenant: woodmackenzie, site: careers}]
+    verified: false
+  - name: Gridmatic
+    candidates:
+      greenhouse: [gridmatic]
+      lever: [gridmatic]
+      ashby: [gridmatic]
+      workday: [{tenant: gridmatic, site: careers}]
+    verified: false
+  - name: AutoGrid
+    candidates:
+      greenhouse: [autogrid]
+      lever: [autogrid]
+      ashby: [autogrid]
+      workday: [{tenant: autogrid, site: careers}]
+    verified: false
+  - name: Bidgely
+    candidates:
+      greenhouse: [bidgely]
+      lever: [bidgely]
+      ashby: [bidgely]
+      workday: [{tenant: bidgely, site: careers}]
+    verified: false
+  - name: Amperon
+    candidates:
+      greenhouse: [amperon]
+      lever: [amperon]
+      ashby: [amperon]
+      workday: [{tenant: amperon, site: careers}]
+    verified: false
+  - name: Yes Energy
+    candidates:
+      greenhouse: [yesenergy, yes-energy, yes]
+      lever: [yesenergy, yes-energy, yes]
+      ashby: [yesenergy, yes-energy, yes]
+      workday: [{tenant: yesenergy, site: careers}]
+    verified: false
+  - name: Voltus
+    candidates:
+      greenhouse: [voltus]
+      lever: [voltus]
+      ashby: [voltus]
+      workday: [{tenant: voltus, site: careers}]
+    verified: false
+  - name: CPower Energy
+    candidates:
+      greenhouse: [cpowerenergy, cpower-energy, cpower]
+      lever: [cpowerenergy, cpower-energy, cpower]
+      ashby: [cpowerenergy, cpower-energy, cpower]
+      workday: [{tenant: cpowerenergy, site: careers}]
+    verified: false
+  - name: Enel X
+    candidates:
+      greenhouse: [enelx, enel-x, enel]
+      lever: [enelx, enel-x, enel]
+      ashby: [enelx, enel-x, enel]
+      workday: [{tenant: enelx, site: careers}]
+    verified: false
+  - name: David Energy
+    candidates:
+      greenhouse: [davidenergy, david-energy, david]
+      lever: [davidenergy, david-energy, david]
+      ashby: [davidenergy, david-energy, david]
+      workday: [{tenant: davidenergy, site: careers}]
+    verified: false
+  - name: Octopus Energy
+    candidates:
+      greenhouse: [octopusenergy, octopus-energy, octopus]
+      lever: [octopusenergy, octopus-energy, octopus]
+      ashby: [octopusenergy, octopus-energy, octopus]
+      workday: [{tenant: octopusenergy, site: careers}]
+    verified: false
+  - name: Leap
+    candidates:
+      greenhouse: [leap]
+      lever: [leap]
+      ashby: [leap]
+      workday: [{tenant: leap, site: careers}]
+    verified: false
+  - name: Piclo
+    candidates:
+      greenhouse: [piclo]
+      lever: [piclo]
+      ashby: [piclo]
+      workday: [{tenant: piclo, site: careers}]
+    verified: false
+  - name: Opus One Solutions
+    candidates:
+      greenhouse: [opusonesolutions, opus-one-solutions, opusone]
+      lever: [opusonesolutions, opus-one-solutions, opusone]
+      ashby: [opusonesolutions, opus-one-solutions, opusone]
+      workday: [{tenant: opusonesolutions, site: careers}]
+    verified: false
+  - name: GridPoint
+    candidates:
+      greenhouse: [gridpoint]
+      lever: [gridpoint]
+      ashby: [gridpoint]
+      workday: [{tenant: gridpoint, site: careers}]
+    verified: false
+  - name: Utilidata
+    candidates:
+      greenhouse: [utilidata]
+      lever: [utilidata]
+      ashby: [utilidata]
+      workday: [{tenant: utilidata, site: careers}]
+    verified: false
+  - name: Sense
+    candidates:
+      greenhouse: [sense]
+      lever: [sense]
+      ashby: [sense]
+      workday: [{tenant: sense, site: careers}]
+    verified: false
+  - name: Itron Analytics
+    candidates:
+      greenhouse: [itronanalytics, itron-analytics, itron]
+      lever: [itronanalytics, itron-analytics, itron]
+      ashby: [itronanalytics, itron-analytics, itron]
+      workday: [{tenant: itronanalytics, site: careers}]
+    verified: false
+  - name: Tierra Climate
+    candidates:
+      greenhouse: [tierraclimate, tierra-climate, tierra]
+      lever: [tierraclimate, tierra-climate, tierra]
+      ashby: [tierraclimate, tierra-climate, tierra]
+      workday: [{tenant: tierraclimate, site: careers}]
+    verified: false
+  - name: Modo Energy
+    candidates:
+      greenhouse: [modoenergy, modo-energy, modo]
+      lever: [modoenergy, modo-energy, modo]
+      ashby: [modoenergy, modo-energy, modo]
+      workday: [{tenant: modoenergy, site: careers}]
+    verified: false
+  - name: PearlX
+    candidates:
+      greenhouse: [pearlx]
+      lever: [pearlx]
+      ashby: [pearlx]
+      workday: [{tenant: pearlx, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (18 employers) ---
+consulting_batch2:
+  - name: Charles River Associates
+    candidates:
+      greenhouse: [charlesriverassociates, charles-river-associates, charlesriver]
+      lever: [charlesriverassociates, charles-river-associates, charlesriver]
+      ashby: [charlesriverassociates, charles-river-associates, charlesriver]
+      workday: [{tenant: charlesriverassociates, site: careers}]
+    verified: false
+  - name: NERA Economic Consulting
+    candidates:
+      greenhouse: [neraeconomicconsulting, nera-economic-consulting, neraeconomic]
+      lever: [neraeconomicconsulting, nera-economic-consulting, neraeconomic]
+      ashby: [neraeconomicconsulting, nera-economic-consulting, neraeconomic]
+      workday: [{tenant: neraeconomicconsulting, site: careers}]
+    verified: false
+  - name: Analysis Group
+    candidates:
+      greenhouse: [analysis]
+      lever: [analysis]
+      ashby: [analysis]
+      workday: [{tenant: analysis, site: careers}]
+    verified: false
+  - name: 1898 and Co
+    candidates:
+      greenhouse: [1898and, 1898-and, 1898]
+      lever: [1898and, 1898-and, 1898]
+      ashby: [1898and, 1898-and, 1898]
+      workday: [{tenant: 1898and, site: careers}]
+    verified: false
+  - name: Sargent and Lundy
+    candidates:
+      greenhouse: [sargentandlundy, sargent-and-lundy, sargentand]
+      lever: [sargentandlundy, sargent-and-lundy, sargentand]
+      ashby: [sargentandlundy, sargent-and-lundy, sargentand]
+      workday: [{tenant: sargentandlundy, site: careers}]
+    verified: false
+  - name: Burns and McDonnell
+    candidates:
+      greenhouse: [burnsandmcdonnell, burns-and-mcdonnell, burnsand]
+      lever: [burnsandmcdonnell, burns-and-mcdonnell, burnsand]
+      ashby: [burnsandmcdonnell, burns-and-mcdonnell, burnsand]
+      workday: [{tenant: burnsandmcdonnell, site: careers}]
+    verified: false
+  - name: Black and Veatch
+    candidates:
+      greenhouse: [blackandveatch, black-and-veatch, blackand]
+      lever: [blackandveatch, black-and-veatch, blackand]
+      ashby: [blackandveatch, black-and-veatch, blackand]
+      workday: [{tenant: blackandveatch, site: careers}]
+    verified: false
+  - name: Stantec
+    candidates:
+      greenhouse: [stantec]
+      lever: [stantec]
+      ashby: [stantec]
+      workday: [{tenant: stantec, site: careers}]
+    verified: false
+  - name: POWER Engineers
+    candidates:
+      greenhouse: [powerengineers, power-engineers, power]
+      lever: [powerengineers, power-engineers, power]
+      ashby: [powerengineers, power-engineers, power]
+      workday: [{tenant: powerengineers, site: careers}]
+    verified: false
+  - name: Ulteig
+    candidates:
+      greenhouse: [ulteig]
+      lever: [ulteig]
+      ashby: [ulteig]
+      workday: [{tenant: ulteig, site: careers}]
+    verified: false
+  - name: Quanta Services
+    candidates:
+      greenhouse: [quantaservices, quanta-services, quanta]
+      lever: [quantaservices, quanta-services, quanta]
+      ashby: [quantaservices, quanta-services, quanta]
+      workday: [{tenant: quantaservices, site: careers}]
+    verified: false
+  - name: HDR
+    candidates:
+      greenhouse: [hdr]
+      lever: [hdr]
+      ashby: [hdr]
+      workday: [{tenant: hdr, site: careers}]
+    verified: false
+  - name: Kimley-Horn
+    candidates:
+      greenhouse: [kimleyhorn, kimley-horn, kimley]
+      lever: [kimleyhorn, kimley-horn, kimley]
+      ashby: [kimleyhorn, kimley-horn, kimley]
+      workday: [{tenant: kimleyhorn, site: careers}]
+    verified: false
+  - name: WSP
+    candidates:
+      greenhouse: [wsp]
+      lever: [wsp]
+      ashby: [wsp]
+      workday: [{tenant: wsp, site: careers}]
+    verified: false
+  - name: Exponent
+    candidates:
+      greenhouse: [exponent]
+      lever: [exponent]
+      ashby: [exponent]
+      workday: [{tenant: exponent, site: careers}]
+    verified: false
+  - name: Concentric Energy Advisors
+    candidates:
+      greenhouse: [concentricenergyadvisors, concentric-energy-advisors, concentricenergy]
+      lever: [concentricenergyadvisors, concentric-energy-advisors, concentricenergy]
+      ashby: [concentricenergyadvisors, concentric-energy-advisors, concentricenergy]
+      workday: [{tenant: concentricenergyadvisors, site: careers}]
+    verified: false
+  - name: London Economics International
+    candidates:
+      greenhouse: [londoneconomicsinternational, london-economics-international, londoneconomics]
+      lever: [londoneconomicsinternational, london-economics-international, londoneconomics]
+      ashby: [londoneconomicsinternational, london-economics-international, londoneconomics]
+      workday: [{tenant: londoneconomicsinternational, site: careers}]
+    verified: false
+  - name: Daymark Energy Advisors
+    candidates:
+      greenhouse: [daymarkenergyadvisors, daymark-energy-advisors, daymarkenergy]
+      lever: [daymarkenergyadvisors, daymark-energy-advisors, daymarkenergy]
+      ashby: [daymarkenergyadvisors, daymark-energy-advisors, daymarkenergy]
+      workday: [{tenant: daymarkenergyadvisors, site: careers}]
+    verified: false
+
+# --- frame expansion, batch 2 (12 employers) ---
+grid_vendors_batch2:
+  - name: Schneider Electric
+    candidates:
+      greenhouse: [schneiderelectric, schneider-electric, schneider]
+      lever: [schneiderelectric, schneider-electric, schneider]
+      ashby: [schneiderelectric, schneider-electric, schneider]
+      workday: [{tenant: schneiderelectric, site: careers}]
+    verified: false
+  - name: Eaton
+    candidates:
+      greenhouse: [eaton]
+      lever: [eaton]
+      ashby: [eaton]
+      workday: [{tenant: eaton, site: careers}]
+    verified: false
+  - name: ABB
+    candidates:
+      greenhouse: [abb]
+      lever: [abb]
+      ashby: [abb]
+      workday: [{tenant: abb, site: careers}]
+    verified: false
+  - name: Siemens Energy
+    candidates:
+      greenhouse: [siemensenergy, siemens-energy, siemens]
+      lever: [siemensenergy, siemens-energy, siemens]
+      ashby: [siemensenergy, siemens-energy, siemens]
+      workday: [{tenant: siemensenergy, site: careers}]
+    verified: false
+  - name: Landis and Gyr
+    candidates:
+      greenhouse: [landisandgyr, landis-and-gyr, landisand]
+      lever: [landisandgyr, landis-and-gyr, landisand]
+      ashby: [landisandgyr, landis-and-gyr, landisand]
+      workday: [{tenant: landisandgyr, site: careers}]
+    verified: false
+  - name: Hubbell
+    candidates:
+      greenhouse: [hubbell]
+      lever: [hubbell]
+      ashby: [hubbell]
+      workday: [{tenant: hubbell, site: careers}]
+    verified: false
+  - name: Vertiv
+    candidates:
+      greenhouse: [vertiv]
+      lever: [vertiv]
+      ashby: [vertiv]
+      workday: [{tenant: vertiv, site: careers}]
+    verified: false
+  - name: Generac
+    candidates:
+      greenhouse: [generac]
+      lever: [generac]
+      ashby: [generac]
+      workday: [{tenant: generac, site: careers}]
+    verified: false
+  - name: SEL Schweitzer Engineering Laboratories
+    candidates:
+      greenhouse: [selschweitzerengineeringlaboratories, sel-schweitzer-engineering-laboratories, selschweitzer]
+      lever: [selschweitzerengineeringlaboratories, sel-schweitzer-engineering-laboratories, selschweitzer]
+      ashby: [selschweitzerengineeringlaboratories, sel-schweitzer-engineering-laboratories, selschweitzer]
+      workday: [{tenant: selschweitzerengineeringlaboratories, site: careers}]
+    verified: false
+  - name: Trilliant
+    candidates:
+      greenhouse: [trilliant]
+      lever: [trilliant]
+      ashby: [trilliant]
+      workday: [{tenant: trilliant, site: careers}]
+    verified: false
+  - name: Sensus
+    candidates:
+      greenhouse: [sensus]
+      lever: [sensus]
+      ashby: [sensus]
+      workday: [{tenant: sensus, site: careers}]
+    verified: false
+  - name: Powell Industries
+    candidates:
+      greenhouse: [powellindustries, powell-industries, powell]
+      lever: [powellindustries, powell-industries, powell]
+      ashby: [powellindustries, powell-industries, powell]
+      workday: [{tenant: powellindustries, site: careers}]
+    verified: false
+
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.
 discovery:
