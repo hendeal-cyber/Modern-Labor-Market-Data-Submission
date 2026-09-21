@@ -122,8 +122,12 @@ def load_employers(path: pathlib.Path) -> list[dict]:
     entries = []
     for section, default_industry in SECTIONS.items():
         for entry in raw.get(section) or []:
-            if entry.get("blocked_reason"):
-                continue          # no reachable API; skip rather than probe
+            # A blocked employer has no reachable API and is skipped rather
+            # than probed — unless it opts in to the syndication-feed
+            # experiment, which is the one untested route left for the iCIMS
+            # and SuccessFactors employers. See fetch_syndication in ats.py.
+            if entry.get("blocked_reason") and not entry.get("probe_feeds"):
+                continue
             entries.append({**entry, "industry": entry.get("industry", default_industry)})
     return entries
 

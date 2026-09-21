@@ -454,6 +454,171 @@ def _epoch_ms(value: Any) -> str | None:
         return None
 
 
+
+# --------------------------------------------------------------------------
+# Syndication feeds (RSS/Atom) — an EXPERIMENT, not a trusted source yet.
+#
+# Exelon, ComEd, Constellation and Citizens Energy run iCIMS, and Peoples Gas
+# runs SAP SuccessFactors. Between them they are the largest Chicago-area
+# utility employers and the most consequential gap in the study. Neither
+# platform offers a free public jobs API: iCIMS releases its standard XML feed
+# only to approved job boards and gates its Job Portal API behind a
+# partnership.
+#
+# What is NOT settled is whether these tenants publish an ordinary syndication
+# feed, which is a different thing: RSS exists to be read by machines, so
+# fetching one a company publishes is its intended use, not circumvention.
+#
+# The honest position is that I do not know the URL shapes. Rather than ship a
+# guess dressed as an adapter, this probes an ordered list of candidates and
+# records which, if any, returns a parseable feed. A 404 is an ordinary answer.
+# Treat a hit as a lead to verify by hand, not as data to trust: see
+# feed_quality() below for why.
+ICIMS_FEED_PATTERNS = (
+    "https://careers-{tenant}.icims.com/jobs/search?ss=1&searchRelation=keyword_all&format=rss",
+    "https://careers-{tenant}.icims.com/jobs/search/rss",
+    "https://careers-{tenant}.icims.com/jobs/rss",
+    "https://icims.jobthread.com/jt/syndication/feed.php?c={tenant}",
+)
+
+# DirectEmployers .jobs microsites. employers.yaml already records Southern
+# Company publishing through southerncompany.jobs rather than a supported ATS.
+DOTJOBS_FEED_PATTERNS = (
+    "https://{tenant}.jobs/feed/rss",
+    "https://{tenant}.jobs/jobs/feed",
+    "https://{tenant}.jobs/feed",
+)
+
+FEED_PATTERNS = {"icims": ICIMS_FEED_PATTERNS, "dotjobs": DOTJOBS_FEED_PATTERNS}
+
+_ATOM = "{http://www.w3.org/2005/Atom}"
+
+
+def parse_feed(text: str) -> list[dict[str, str]]:
+    """RSS 2.0 or Atom -> [{title, link, description, location, date}].
+
+    Returns [] for anything that is not a feed, including the HTML error pages
+    that portals serve instead of a 404.
+    """
+    import xml.etree.ElementTree as ET
+
+    if not text or "<" not in text:
+        return []
+    try:
+        root = ET.fromstring(text.strip())
+    except ET.ParseError:
+        return []
+
+    def txt(node, *names):
+        for name in names:
+            found = node.find(name)
+            if found is not None and (found.text or "").strip():
+                return found.text.strip()
+            # Atom links carry the URL in an attribute rather than the body.
+            if found is not None and found.get("href"):
+                return found.get("href").strip()
+        return ""
+
+    items = root.findall(".//item") or root.findall(f".//{_ATOM}entry")
+    out = []
+    for item in items:
+        title = txt(item, "title", f"{_ATOM}title")
+        if not title:
+            continue
+        out.append({
+            "title": title,
+            "link": txt(item, "link", f"{_ATOM}link", "guid"),
+            "description": strip_html(
+                txt(item, "description", f"{_ATOM}summary", f"{_ATOM}content")),
+            "location": txt(item, "location", "{http://www.w3.org/2005/Atom}location"),
+            "date": txt(item, "pubDate", "published", f"{_ATOM}updated"),
+        })
+    return out
+
+
+def feed_quality(postings: list["RawPosting"]) -> dict[str, Any]:
+    """Whether a feed carries enough text to be usable, not just parseable.
+
+    A syndication feed usually carries a teaser, not the full job description.
+    The study needs the full text: pay, benefits, required experience and every
+    coded regressor are extracted from it, and Illinois HB 3129 puts the pay
+    scale in the posting body. A feed of 200-character summaries would parse
+    perfectly and silently produce a dataset with no pay in it, which is a
+    worse outcome than no feed at all. So the length distribution is reported
+    and a person decides.
+    """
+    lengths = sorted(len(p.description or "") for p in postings)
+    if not lengths:
+        return {"n": 0, "usable": False, "reason": "no items"}
+    median = lengths[len(lengths) // 2]
+    with_location = sum(1 for p in postings if (p.location_raw or "").strip())
+    return {
+        "n": len(lengths),
+        "median_description_chars": median,
+        "min_description_chars": lengths[0],
+        "share_with_location": round(with_location / len(lengths), 2),
+        # Real ATS descriptions run to thousands of characters. 1500 is a
+        # deliberately cautious floor for "this is the body, not a teaser".
+        "usable": median >= 1500 and with_location >= len(lengths) // 2,
+        "reason": "" if median >= 1500 else "descriptions look like teasers, not full text",
+    }
+
+
+def fetch_syndication(
+    session: PoliteSession,
+    token: str | dict,
+    employer: str,
+    detail_filter=None,
+) -> tuple[list[RawPosting], Response]:
+    """Probe syndication feeds for one employer. Returns the first that parses."""
+    if isinstance(token, dict):
+        tenant = token.get("tenant") or token.get("token") or ""
+        kind = token.get("kind", "icims")
+    else:
+        tenant, kind = token, "icims"
+    patterns = FEED_PATTERNS.get(kind, ICIMS_FEED_PATTERNS)
+
+    last = Response("", 0, error="no feed pattern tried")
+    for pattern in patterns:
+        url = pattern.format(tenant=tenant)
+        resp = session.get_text(url, use_etag=False)
+        last = resp
+        if not resp.ok:
+            continue
+        items = parse_feed(resp.data or "")
+        if not items:
+            continue
+        out = [
+            RawPosting(
+                platform=f"{kind}_feed",
+                employer=employer,
+                board_token=tenant,
+                external_id=(item["link"] or item["title"]).rsplit("/", 1)[-1],
+                title=item["title"],
+                location_raw=item["location"],
+                description=item["description"],
+                url=item["link"],
+                posted_at=item["date"] or None,
+                payload={"feed_url": url},
+            )
+            for item in items
+        ]
+        resp.listed = len(out)
+        quality = feed_quality(out)
+        print(f"      {kind} feed {url} -> {len(out)} items, "
+              f"median {quality['median_description_chars']} chars, "
+              f"usable={quality['usable']}", flush=True)
+        # A feed that parses but carries teasers is reported, never returned as
+        # data. Half a description would quietly poison every coded regressor.
+        if not quality["usable"]:
+            resp.error = f"feed unusable: {quality['reason']}"
+            return [], resp
+        if detail_filter is not None:
+            out = [p for p in out if detail_filter(p)]
+        return out, resp
+    return [], last
+
+
 FETCHERS = {
     "greenhouse": fetch_greenhouse,
     "lever": fetch_lever,
@@ -462,4 +627,7 @@ FETCHERS = {
     "workable": fetch_workable,
     "recruitee": fetch_recruitee,
     "workday": fetch_workday,
+    # Experimental; only reached for employers that opt in with probe_feeds.
+    "icims": fetch_syndication,
+    "dotjobs": fetch_syndication,
 }

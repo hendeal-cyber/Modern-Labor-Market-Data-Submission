@@ -79,14 +79,25 @@ class PoliteSession:
     def post_json(self, url: str, payload: dict, **kwargs) -> Response:
         return self._request("POST", url, json_body=payload, **kwargs)
 
+    def get_text(self, url: str, **kwargs) -> Response:
+        """Fetch a body that is not JSON — an RSS or Atom feed.
+
+        Same politeness, retry and status handling as get_json; only the Accept
+        header and the body parsing differ. `data` is the raw text.
+        """
+        return self._request("GET", url, want_text=True, **kwargs)
+
     def _request(
         self,
         method: str,
         url: str,
         json_body: dict | None = None,
         use_etag: bool = True,
+        want_text: bool = False,
     ) -> Response:
-        headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+        accept = ("application/rss+xml, application/atom+xml, application/xml, text/xml"
+                  if want_text else "application/json")
+        headers = {"User-Agent": USER_AGENT, "Accept": accept}
         if use_etag and url in self._etags:
             headers["If-None-Match"] = self._etags[url]
         if json_body is not None:
@@ -126,6 +137,8 @@ class PoliteSession:
             etag = resp.headers.get("ETag")
             if etag and use_etag:
                 self._etags[url] = etag
+            if want_text:
+                return Response(url, 200, data=resp.text, etag=etag)
             try:
                 return Response(url, 200, data=resp.json(), etag=etag)
             except json.JSONDecodeError as exc:

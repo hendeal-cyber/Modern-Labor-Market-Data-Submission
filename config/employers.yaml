@@ -19,14 +19,24 @@ utilities:
     # materially reduces N. See docs/limitations.md.
     ats: icims
     blocked_reason: no_free_public_api
-    candidates: {}
+    # Opted in to the syndication-feed experiment 2026-09-21. iCIMS has
+    # no free public jobs API, but whether these tenants publish an
+    # ordinary RSS feed is untested. A 404 is the expected answer.
+    probe_feeds: true
+    candidates:
+      icims: [{tenant: exeloncorp, kind: icims}]
     verified: false
   - name: ComEd
     metro: chicago
     parent: Exelon
     ats: icims          # same portal as Exelon; see the Exelon entry
     blocked_reason: no_free_public_api
-    candidates: {}
+    # Opted in to the syndication-feed experiment 2026-09-21. iCIMS has
+    # no free public jobs API, but whether these tenants publish an
+    # ordinary RSS feed is untested. A 404 is the expected answer.
+    probe_feeds: true
+    candidates:
+      icims: [{tenant: exeloncorp, kind: icims}]
     verified: false
   - name: Constellation Energy
     metro: chicago
@@ -36,7 +46,12 @@ utilities:
     # near Ashby.
     ats: icims
     blocked_reason: no_free_public_api
-    candidates: {}
+    # Opted in to the syndication-feed experiment 2026-09-21. iCIMS has
+    # no free public jobs API, but whether these tenants publish an
+    # ordinary RSS feed is untested. A 404 is the expected answer.
+    probe_feeds: true
+    candidates:
+      icims: [{tenant: constellationenergy, kind: icims}]
     verified: false
   - name: Nicor Gas (Southern Company Gas)
     metro: chicago
@@ -85,7 +100,12 @@ utilities:
     metro: indianapolis
     ats: icims          # careers-citizensenergygroup.icims.com
     blocked_reason: no_free_public_api
-    candidates: {}
+    # Opted in to the syndication-feed experiment 2026-09-21. iCIMS has
+    # no free public jobs API, but whether these tenants publish an
+    # ordinary RSS feed is untested. A 404 is the expected answer.
+    probe_feeds: true
+    candidates:
+      icims: [{tenant: citizensenergygroup, kind: icims}]
     verified: false
   - name: Duke Energy Indiana
     metro: indianapolis
