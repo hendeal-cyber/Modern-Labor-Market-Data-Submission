@@ -114,8 +114,43 @@ def sector_gate_cases():
     return fails
 
 
+def check_workday_site_variants():
+    """The site name NiSource actually uses must be among the ones probed.
+
+    Run 35554269246 resolved 29 of 266 boards. NiSource was one of the misses,
+    and not because it has no board: its declared candidates were
+    "NiSource_Careers" and "careers", while the real board is
+    nisource.wd1.myworkdayjobs.com/NiSource. Workday site paths are
+    case-sensitive, so "nisource" would not have found it either.
+    """
+    import sys, pathlib as _p
+    sys.path.insert(0, str(_p.Path(__file__).resolve().parents[1] / "src"))
+    from lmstudy.collect.discover import workday_site_variants
+
+    fails = []
+    for tenant, employer, required in [
+        ("nisource", "NiSource / NIPSCO", "NiSource"),
+        ("misoenergy", "MISO (Midcontinent ISO)", "MISO"),
+        ("invenergyllc", "Invenergy", "Invenergy"),
+    ]:
+        got = workday_site_variants(tenant, employer)
+        if required not in got:
+            fails.append(f"workday variants for {tenant} miss {required!r}: {got}")
+        # The employer's own casing must be tried before the lowercased tenant,
+        # since that is the form that actually resolves.
+        if required in got and got.index(required) > 2:
+            fails.append(f"{required!r} ranked too low for {tenant}: {got}")
+    if workday_site_variants("", "Nobody"):
+        fails.append("a blank tenant must yield no variants")
+    if len(set(workday_site_variants("acme", "Acme Power"))) != \
+            len(workday_site_variants("acme", "Acme Power")):
+        fails.append("workday variants must not repeat a site")
+    return fails
+
+
 def run():
     fails = []
+    fails += check_workday_site_variants()
     coded = code_posting("Data Engineer I", POSTING, D)
     for name in EXPECT_1:
         if coded.values.get(name) != 1:
@@ -132,7 +167,7 @@ def run():
 
     fails.extend(sector_gate_cases())
 
-    total = len(EXPECT_1) + len(EXPECT_0) + len(TRAPS) + 3
+    total = len(EXPECT_1) + len(EXPECT_0) + len(TRAPS) + 3 + 5   # +5 workday site variants
     print(f"regressors: {total-len(fails)}/{total} passed ({len(D)} regressors in dictionary)")
     for f in fails:
         print("  FAIL", f)

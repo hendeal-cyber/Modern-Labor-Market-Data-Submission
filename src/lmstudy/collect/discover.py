@@ -211,6 +211,46 @@ def load_rejected(path=None) -> set[tuple[str, str]]:
 REJECTED = load_rejected()
 
 
+
+# Workday site names are a small, highly conventional space, and guessing them
+# too narrowly is what hid NiSource: its declared candidates were
+# "NiSource_Careers" and "careers", while the real board is
+# nisource.wd1.myworkdayjobs.com/NiSource — the tenant's own name, which was
+# never tried. Run 35554269246 resolved 29 of 266 boards, and this is a
+# measured cause rather than a suspected one.
+#
+# Ordered most-likely first so a hit usually lands in the first probe or two.
+def workday_site_variants(tenant: str, employer: str = "", limit: int = 7) -> list[str]:
+    """Conventional Workday site paths for a tenant. Case matters to Workday."""
+    tenant = (tenant or "").strip()
+    if not tenant:
+        return []
+    # Workday site paths are case-sensitive, so the employer's own casing
+    # matters: NiSource's board is /NiSource, not /nisource or /Nisource.
+    # "NiSource / NIPSCO" and "MISO (Midcontinent ISO)" both carry the real
+    # brand in their first segment, so each segment is tried.
+    segments = [seg.strip() for seg in re.split(r"[/(]", employer) if seg.strip()]
+    names = [re.sub(r"[^A-Za-z0-9]", "", seg) for seg in segments]
+    names = [n for n in names if n]
+    base = names[0] if names else tenant
+    seen: list[str] = []
+    for candidate in (
+        *names,                     # NiSource/NiSource is the commonest form
+        tenant,
+        tenant.capitalize(),
+        "careers",
+        "Careers",
+        "External",
+        f"{tenant}careers",
+        f"{base}_Careers",
+        f"{base}Careers",
+        "External_Career_Site",
+    ):
+        if candidate and candidate not in seen:
+            seen.append(candidate)
+    return seen[:limit]
+
+
 def probe(
     session: PoliteSession,
     employer: str,
@@ -218,6 +258,7 @@ def probe(
     token: str | dict,
     detail_filter=None,
     unverified_guess: bool = False,
+    expand_sites: bool = False,
 ) -> BoardHit | None:
     """Try one (platform, token). Returns a hit only if postings came back."""
     fetcher = FETCHERS.get(platform)
@@ -241,17 +282,30 @@ def probe(
                 instances = (1, 5)
             else:
                 instances = (1, 5, 3, 2, 10, 12, 103, 105)
-            for instance in instances:
-                postings, resp = fetcher(session, tenant, site, employer,
-                                         wd_instance=instance, detail_filter=detail_filter)
-                listed = resp.listed or 0
-                # A board that listed jobs exists even when the pre-screen
-                # removed all of them. Conflating the two would make a real
-                # employer look boardless and hide that it simply posts
-                # nothing in scope.
-                if postings or listed:
-                    return BoardHit(employer, platform, f"{tenant}/{site}", postings,
-                                    {"wd_instance": instance, "listed": listed})
+            # A declared site is tried first; the conventional variants are a
+            # fallback for employers whose site name was guessed wrong. They
+            # are only expanded for employers inside a study metro, because
+            # each variant costs a request per instance and only a
+            # metro-resident employer can contribute an observation.
+            sites = [site]
+            if expand_sites:
+                sites += [s for s in workday_site_variants(tenant, employer)
+                          if s != site]
+            for site_name in sites:
+                for instance in instances:
+                    postings, resp = fetcher(session, tenant, site_name, employer,
+                                             wd_instance=instance,
+                                             detail_filter=detail_filter)
+                    listed = resp.listed or 0
+                    # A board that listed jobs exists even when the pre-screen
+                    # removed all of them. Conflating the two would make a real
+                    # employer look boardless and hide that it simply posts
+                    # nothing in scope.
+                    if postings or listed:
+                        return BoardHit(employer, platform, f"{tenant}/{site_name}",
+                                        postings,
+                                        {"wd_instance": instance, "listed": listed,
+                                         "site_guessed": site_name != site})
             return None
         if platform == "smartrecruiters":
             postings, resp = fetcher(session, token, employer, detail_filter=detail_filter)
@@ -278,12 +332,18 @@ def discover_employer(
     """
     employer = entry["name"]
     hand_verified = bool(entry.get("verified"))
+    # Only an employer inside a study radius can ever contribute an
+    # observation, so the extra Workday site probes are spent there. Measured
+    # on run 35554269246: the two metro-headquartered utilities supplied 27 of
+    # 35 observations, the other 236 employers supplied 8 between them.
+    metro_resident = bool(entry.get("metro")) and entry.get("metro") != "national"
     hits: list[BoardHit] = []
 
     for platform, tokens in (entry.get("candidates") or {}).items():
         for token in tokens or []:
             hit = probe(session, employer, platform, token, detail_filter,
-                        unverified_guess=not hand_verified)
+                        unverified_guess=not hand_verified,
+                        expand_sites=metro_resident)
             if not hit:
                 continue
             if not hand_verified:
