@@ -1342,6 +1342,10 @@ consulting_batch2:
     verified: false
   - name: Sargent and Lundy
     metro: chicago
+    # Searched 2026-09-21: careers live at sargentlundy.com/careers, no
+    # supported ATS identified. Chicago-headquartered power engineering, so
+    # worth re-checking if a new adapter lands. Do not re-chase by search.
+    ats_unidentified: true
     candidates:
       greenhouse: [sargentandlundy, sargent-and-lundy, sargentand]
       lever: [sargentandlundy, sargent-and-lundy, sargentand]
@@ -1545,14 +1549,22 @@ cooperatives_batch3:
     verified: false
   - name: Wabash Valley Power Alliance
     metro: indianapolis
+    # Hand-verified 2026-09-21: SmartRecruiters, read off the live careers
+    # page. HQ Indianapolis, so it is inside the study radius rather than a
+    # national board that merely happens to list a job here.
+    careers_url: https://careers.smartrecruiters.com/WabashValleyPowerAlliance
     candidates:
-      greenhouse: [wabashvalleypower, wabash-valley-power, wabashvalley]
-      lever: [wabashvalleypower, wabash-valley-power, wabashvalley]
-      ashby: [wabashvalleypower, wabash-valley-power, wabashvalley]
-      workday: [{tenant: wabashvalleypower, site: careers}]
-    verified: false
+      smartrecruiters: [WabashValleyPowerAlliance]
+    verified: true
   - name: Hoosier Energy
+    # HQ is Bloomington IN, roughly 50 miles from the Indianapolis centroid and
+    # so outside the 35-mile radius. Left tagged for probe effort because it
+    # hires into the Indianapolis area, but geo screening is what decides, and
+    # it will exclude Bloomington-sited postings.
     metro: indianapolis
+    # Searched 2026-09-21: careers live at hoosierenergy.com/careers with no
+    # supported ATS identified. Do not re-chase without new evidence.
+    ats_unidentified: true
     candidates:
       greenhouse: [hoosierenergy, hoosier-energy, hoosier]
       lever: [hoosierenergy, hoosier-energy, hoosier]
@@ -1577,6 +1589,12 @@ cooperatives_batch3:
     verified: false
   - name: Tri-State Generation and Transmission
     metro: denver
+    # Searched 2026-09-21: runs Oracle iRecruitment at careers.tristate.coop,
+    # which no adapter covers and which has no free public API. Recorded so it
+    # is not re-chased as merely unfound.
+    ats: oracle_irecruitment
+    blocked_reason: no_free_public_api
+    ats_unidentified: false
     candidates:
       greenhouse: [tristategenerationandtransmission, tri-state-generation-and-transmission, tristate]
       lever: [tristategenerationandtransmission, tri-state-generation-and-transmission, tristate]

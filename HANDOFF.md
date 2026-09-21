@@ -220,3 +220,108 @@ interpretability guards, paper/figures/deck generators, 100+ tests.
 `analyze.py` runs and `results.md` opens with an unmissable block stating the
 estimates are not interpretable at 3.2 observations per regressor and 8
 clusters. **Do not remove that block to make the paper look finished.**
+
+---
+
+## 8. Session 2 (2026-09-21, after compaction) — what changed and why
+
+Nothing in the repo had changed after §7 was written: local and remote were
+both at `3ba1284` and run 15 was the newest. What changed is the **reading** of
+that run. §7's ranked list was written from the funnel summary; the
+per-employer record says something different, and two of its four items were
+wrong.
+
+### The diagnosis §7 missed
+
+**254 of the 266 employers are tagged `national`; only 18 declare a study
+metro, and 16 of those 18 did not resolve.** The frame was expanded 30 → 266 by
+adding national companies, whose boards are overwhelmingly jobs outside the
+study radii. **27 of the 35 observations come from the two metro-headquartered
+utilities** (Invenergy 21, AES Indiana 6); the other 236 employers supplied 8
+between them.
+
+So Invenergy at 60% and the shortfall against the floor are **one problem, not
+two**: the frame optimised for employer count when the binding quantity is
+*metro-resident* employer count.
+
+### Two of §7's levers were measured and are not worth doing
+
+| §7 said | Measured |
+|---|---|
+| Reconsider the seniority screen — 304 rejections | **Worth 1–2 observations.** Only 15 of the 304 also pass the role screen, 6 state ≤3 years, and those 6 are two requisitions duplicated across cities. The funnel counts each rejection reason independently, so it double-counts |
+| 231 employers returned nothing, mostly bad guesses | True, but the *cause* is the national/metro split above, not token quality alone |
+
+Also killed: the Workday pre-screen judges roles on title alone and looked
+likely to over-reject. Of the 86 postings that pass the role screen with their
+full description, **0% fail on title alone.** It is sound; leave it. And the
+six Workday boards that list 742 postings and collect none are **correct** —
+Duke is Charlotte, Vistra Irving, CyrusOne Dallas, Essential Bryn Mawr, PJM
+Audubon PA.
+
+### Two real bugs found and fixed
+
+1. **Workday location format.** `'Arlington, VA'` resolved in scope;
+   `'US - VA, Arlington'` did not. Workday writes `STATE, CITY` behind a
+   country prefix, which parsed to the city "va" and was recorded as out of
+   radius — silently dropping **14 role-matching Northern Virginia postings**.
+   Fixed by `canonicalize_place()` in `geo.py`. The flip is deliberately narrow
+   and the regression cases use the **real strings** from run 35554269246's
+   manifest.
+2. **Workday site names were guessed too narrowly.** NiSource's candidates were
+   `NiSource_Careers` and `careers`; the real board is
+   `nisource.wd1.myworkdayjobs.com/NiSource` — the tenant's own name in the
+   employer's own casing, never tried, so NiSource was recorded as having no
+   board at all. `workday_site_variants()` now derives sites from the tenant
+   and from each segment of the employer name, ordered most-likely-first, and
+   expands only for metro-resident employers.
+
+### What this session unlocked
+
+**`WebSearch` works here.** `WebFetch` is still blocked for every ATS host
+*and* for ordinary corporate careers pages, and collection is still
+Actions-only — but board tokens can now be verified from a session for the
+first time. Hit rate is roughly 1 in 4, so it is worth spending on named
+metro-resident employers, not on sweeping the frame.
+
+Verified this way: **NiSource → Workday `nisource/NiSource`**, **Wabash Valley
+Power → SmartRecruiters `WabashValleyPowerAlliance`**. Recorded as closed:
+Tri-State runs Oracle iRecruitment; Hoosier Energy and Sargent & Lundy have no
+identifiable supported ATS. Negative results are written into
+`config/employers.yaml` so nobody re-chases them.
+
+### iCIMS: the gap is confirmed, not overturned
+
+iCIMS's standard XML feed goes **only to approved job boards** and its Job
+Portal API is partner-gated with no self-serve tier. Three legitimate routes
+remain untried: the JobThread syndication feed, `.jobs`/DirectEmployers, and —
+probably best — the **CareerOneStop / National Labor Exchange API**, which is
+free with a key and carries employer-permissioned postings.
+
+The owner asked for Playwright as a fallback. It is **not built**: it
+contradicts the project's founding constraint, iCIMS portal terms bar automated
+access the way LinkedIn's do, and `docs/methods.md` documents a compliance
+posture it would falsify. That stays an explicit decision on evidence, never a
+default.
+
+### Decisions taken with the owner this session
+
+| Question | Decision |
+|---|---|
+| Frame strategy | **Metro-resident employers only.** Stop adding national firms |
+| Nationwide-remote postings | Admit as a separate `remote_national` category, kept out of the metro contrasts |
+| Fallback if still short | Add more pay-mandate metros (NYC, LA, Bay Area, Boston) |
+
+### Where it stands
+
+Rebuilt offline from the existing snapshots: **35 → 37 usable, 8 → 10 distinct
+employers, Invenergy 60% → 57%.** Every existing metro count is unchanged. The
+14 Northern Virginia postings are **not** in that figure — they were discarded
+by the collection-time pre-screen and never reached `data/raw/`, so that gain
+only lands on a fresh collection. 65 employers now carry a study metro, up
+from 18.
+
+**The floor is still not met, and concentration is still the binding problem.**
+`analyze.py`'s interpretability block stays until both N ≥ 100 *and* the
+cluster count is defensible. Judge the next run on **Invenergy's share
+falling**, not on N alone.
+

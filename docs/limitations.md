@@ -126,6 +126,28 @@ Exelon postings into the same schema (they would need a `source` flag and an
 audit note); or accept the gap and state it. Until one is chosen, any claim about
 "Chicago utilities" should be read as excluding Exelon and ComEd.
 
+**Re-checked 2026-09-21, and the gap is confirmed rather than overturned.**
+iCIMS's standard XML job feed is released only to *approved job boards*, and
+its Job Portal API is part of a partnership agreement with credentials
+provisioned per customer instance — there is no self-serve tier and no public
+pricing. So the door is closed by design, not by our not having found the
+handle.
+
+Two legitimate routes remain untested and are worth one attempt each before the
+gap is called permanent: the third-party JobThread syndication feed that some
+iCIMS tenants publish, and the `.jobs`/DirectEmployers channel that
+`employers.yaml` already records Southern Company Gas using. A third, and
+probably the best of them, is the **CareerOneStop / National Labor Exchange
+API** (US DOL): free with a key, and NLx aggregates employer-direct postings
+*with employer permission*, so it reaches these employers without touching
+iCIMS at all.
+
+Browser automation against the iCIMS portal is **not** on that list. iCIMS
+portal terms bar automated access the way LinkedIn's do, and `docs/methods.md`
+documents a compliance posture that driving the portal with Playwright or
+Selenium would falsify. The study owner raised it as a fallback; it stays a
+decision to be taken explicitly, on evidence, rather than a default.
+
 ## 8b. Board tokens were guesses, and one was wrong
 
 Tokens in `config/employers.yaml` began as inferred candidates because the
@@ -141,6 +163,32 @@ cannot be distinguished from posting text. Slug discovery therefore no longer
 contributes data at all: hits are written to `_candidates_for_review.json` for a
 person to confirm, and only tokens declared in `config/employers.yaml` enter the
 frame. Confirmed-wrong tokens are listed under `rejected_tokens`.
+
+## 8c. Two levers that look large in the funnel and are not
+
+The selection funnel counts each rejection reason independently, so a posting
+that fails several screens is counted several times. Read as a to-do list it
+mis-ranks the work, and it did:
+
+- **The seniority screen is not costing 304 observations.** It reports 304
+  rejections, but only **15** of those also pass the role screen, and only
+  **6** state an experience minimum of three years or less. Those 6 are two
+  requisitions duplicated across cities (one Flexential role posted twice, one
+  Nexamp role posted in four). After deduplication and geography the screen is
+  worth **one to two observations**, not 304. It is left alone.
+- **Workday boards that list hundreds of postings and collect none are mostly
+  correct.** Six boards listed 742 postings between them and contributed
+  nothing, which looks like a collection failure. It is not: Duke Energy is
+  headquartered in Charlotte, Vistra in Irving, CyrusOne in Dallas, Essential
+  Utilities in Bryn Mawr and PJM in Audubon PA. The postings are genuinely
+  outside every study radius.
+- The related worry that the Workday pre-screen judges roles on title alone,
+  and so over-rejects, was measured and is false: of the 86 postings that pass
+  the role screen when their full description is available, **0%** fail on the
+  title alone. The pre-screen is sound.
+
+Recorded here because all three were proposed from the funnel summary and
+survived only until someone read the per-employer record.
 
 ## 9. Few clusters, so standard errors under-cover
 
