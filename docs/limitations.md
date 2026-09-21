@@ -230,3 +230,65 @@ confidence intervals covered the true coefficient about 88% of the time.
 Read p-values near conventional thresholds with that in mind. If the realized
 employer count stays low, a wild cluster bootstrap is the appropriate remedy and
 should be run before reporting any headline significance claim.
+
+## 10. The population is national and all-seniority, and that was not the original design
+
+The study began as a question about early-career software and data roles within
+35 miles of Chicago or Indianapolis. It is now a national study of the energy
+and data center sector at every seniority level except internships. The widening
+happened in four steps, each documented and each **data-driven rather than
+pre-registered**: the original scope returned zero usable observations, and
+every subsequent widening was chosen after measuring what the previous one
+yielded.
+
+A reader is entitled to discount results chosen after seeing the data. Two
+things limit how much: `docs/pre-registration.md` fixes the specification
+*before* the national sample was collected, with dated amendments for every
+change made afterwards; and `scope-decision.md` plus the probe measurements
+record what each option was worth at the time it was chosen.
+
+The early-career question survives as a pre-specified subsample, reported
+whether or not it agrees with the full sample.
+
+## 11. Disclosure selection is the central threat to the pay models
+
+Outside mandate states, stating pay is voluntary, and only about a quarter of
+postings do. The pay models are therefore estimated on a sample that is
+**selected on the dependent variable** wherever no mandate applies.
+
+This is not a nuisance to be noted and moved past. It is why the disclosure
+model is promoted to a headline result rather than a robustness check: what can
+be said confidently is who discloses, and what must be said cautiously is what
+the disclosed numbers imply about the whole market.
+
+Any coefficient in the pay models should be read as conditional on disclosure.
+
+## 12. The mandate contrast is associational, not causal
+
+A single cross-section carries no time variation, so no difference-in-
+differences is available. Employers operating in mandate states differ from
+those that do not in size, sector, geography and sophistication, and these data
+cannot separate those differences from the effect of the law.
+
+The contrast is large — roughly 98% against 26% — and large enough that it is
+unlikely to be composition alone. But "unlikely to be composition alone" is not
+an identified effect, and the paper must not drift into causal language.
+
+## 13. Pay is nominal, not price-adjusted
+
+Comparing advertised pay across states without adjusting for local price levels
+overstates real differences in high-cost states. A BEA Regional Price Parity
+adjustment is implemented (`scripts/fetch_rpp.py`) and reported as a robustness
+check when the table has been fetched; where `pay_midpoint_real` is blank, it
+has not been, and no deflator is imputed in its place.
+
+## 14. Few clusters, and one employer dominates
+
+The pre-registration named three conditions under which the sample would be
+"met in letter and not in substance". Two are unresolved: distinct employers
+remain below 30, and the largest single employer supplies well over a quarter
+of observations. Cluster-robust standard errors under-cover with few clusters —
+measured at 88–90% against a nominal 95% in simulation — so **no claim should
+rest on a marginal p-value without a wild cluster bootstrap.**
+
+More employers, not more postings, is what fixes this.

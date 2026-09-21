@@ -59,37 +59,74 @@ def main() -> int:
     L: list[str] = []
     A = L.append
 
-    A("# Advertised Pay in Early-Career Software and Data Roles")
-    A("## Evidence from Utility and Data Center Operators in Chicago and Indianapolis")
+    disc = (analysis or {}).get("disclosure", {}) or {}
+    by_m = disc.get("by_mandate", {}) or {}
+    m_share = (by_m.get("mandate") or {}).get("share_disclosed")
+    n_share = (by_m.get("no_mandate") or {}).get("share_disclosed")
+
+    A("# Determinants of Advertised Pay in the US Energy and Data Center Sector")
+    A("## Evidence from employer-published job postings")
     A("")
     if funnel:
         A(f"*Built from data collected through {funnel.get('built_at','')[:10]}. "
           f"Collection cycles: {len(funnel.get('snapshots', []))}.*")
     A("")
 
+    A("## Executive summary")
+    A("")
+    A("This study asks what attributes stated in a job posting predict the pay an")
+    A("employer advertises, across the United States energy and data center sector.")
+    A("Postings are collected from the public applicant tracking system APIs that")
+    A("employers publish through — the upstream source for the job boards those")
+    A("postings appear on.")
+    A("")
+    if m_share is not None and n_share is not None:
+        A(f"**The clearest result concerns disclosure rather than level.** Pay is")
+        A(f"stated in **{m_share:.1%}** of postings in states with a posting-level")
+        A(f"pay-transparency mandate, against **{n_share:.1%}** where there is none —")
+        A(f"a gap of **{(m_share - n_share) * 100:.0f} percentage points**. The")
+        A("contrast is descriptive, not causal: this is a single cross-section with")
+        A("no time variation, so no difference-in-differences is available, and")
+        A("employers operating in mandate states differ from those that do not in")
+        A("ways these data cannot control for.")
+        A("")
+    A("Seniority, required experience and role family are the attributes that")
+    A("predict advertised pay within the disclosing sample. The early-career")
+    A("subsample that motivated the study is reported separately, so the original")
+    A("question remains answerable alongside the wider one.")
+    A("")
+
     A("## 1. Introduction")
     A("")
-    A("Data center construction is driving a wave of technical hiring across the")
-    A("utility sector and the colocation operators that depend on it. Both compete")
-    A("for early-career software and data talent against employers who pay on a")
-    A("national technology scale. This paper asks which attributes stated in a job")
-    A("posting predict the pay that employers advertise for those roles.")
+    A("Data center construction is driving a wave of technical and analytical")
+    A("hiring across the utility sector and the colocation operators that depend on")
+    A("it. Both compete for talent against employers who pay on a national")
+    A("technology scale. This paper asks which attributes stated in a job posting")
+    A("predict the pay that employers advertise for those roles.")
     A("")
     A("The dependent variable is the natural log of the midpoint of the")
-    A("employer-stated pay range, annualized to US dollars.")
+    A("employer-stated pay range, annualized to US dollars. Location and seniority")
+    A("enter as regressors rather than as sample restrictions, which is what makes")
+    A("the disclosure contrast estimable.")
     A("")
 
     A("## 2. Institutional background")
     A("")
-    A("Illinois House Bill 3129, amending the Illinois Equal Pay Act, took effect on")
-    A("1 January 2025. Employers with fifteen or more employees must state the pay")
-    A("scale and describe benefits in any posting for work performed at least partly")
-    A("in Illinois. Both the dependent variable and several benefit regressors are")
-    A("therefore legally required to appear in Chicago-area postings.")
+    A("Sixteen US jurisdictions require employers to state a pay scale in the")
+    A("posting itself. Colorado was first, in 2021; California, New York and")
+    A("Washington followed; Illinois House Bill 3129 took effect on 1 January 2025")
+    A("and Massachusetts in October 2025. The full table, with effective dates, is")
+    A("in `config/scope.yaml` so a reader can audit which jurisdictions count.")
     A("")
-    A("Indiana has no comparable requirement. Indianapolis postings disclose pay far")
-    A("less often, and those that do are self-selected. The indicator `mandate_state`")
-    A("carries this contrast into the analysis rather than leaving it implicit.")
+    A("Coverage attaches to the location of the work. A posting listing several")
+    A("locations is therefore covered if **any** of them is covered, which is how")
+    A("`mandate_state` is computed; `states_listed` and `n_locations` are retained")
+    A("so the rule can be checked or recomputed. Roughly a quarter of postings")
+    A("list more than one location, so the choice is not cosmetic.")
+    A("")
+    A("Where no mandate applies, disclosure is voluntary and therefore selected.")
+    A("This is the central limitation of the pay models and is treated as such:")
+    A("disclosure is modelled as an outcome in its own right, not assumed away.")
     A("")
 
     A("## 3. Data")
@@ -104,15 +141,27 @@ def main() -> int:
     A("")
     A("### 3.2 Sampling frame")
     A("")
-    A("The frame is restricted to core operators — firms that own or operate")
-    A("utilities or data centers — excluding the engineering firms and equipment")
-    A("vendors that serve the sector. Roles are restricted to software, data and")
-    A("analytics. Early career means three years or fewer of required experience.")
+    A("The frame covers the energy and data center sector across nine industry")
+    A("categories: utilities, cooperatives, competitive retailers, grid operators,")
+    A("data center operators, developers, energy analytics firms, consultancies")
+    A("and grid technology vendors.")
     A("")
-    A("> **Known gap.** Exelon and ComEd run iCIMS, which exposes no free public")
-    A("> jobs API. They are the largest Chicago-headquartered utility employer and")
-    A("> the most likely source of Chicago early-career software and data roles.")
-    A("> Results describing \"Chicago utilities\" exclude them.")
+    A("Roles are restricted to an energy-analytics core — siting and development,")
+    A("regulatory and compliance, market and commercial, grid and power systems,")
+    A("AI and machine learning, GIS, sustainability analytics, and software and")
+    A("data. Engineering is admitted only where analytics-adjacent. Every")
+    A("seniority level is included **except internships**, which are a different")
+    A("contract and pay regime; seniority enters as an ordinal regressor.")
+    A("")
+    A("Geography is the United States. Non-US postings are excluded, since pooling")
+    A("currencies and labour markets would not be meaningful.")
+    A("")
+    A("> **Known gap.** Exelon, ComEd, Constellation and Citizens Energy run")
+    A("> iCIMS, which releases its job feed only to approved job boards and gates")
+    A("> its API behind a partnership. A syndication feed was probed and none")
+    A("> exists, and the portal terms prohibit automated access, so the gap is")
+    A("> accepted rather than worked around. Results describing Chicago utilities")
+    A("> specifically exclude them. See `docs/limitations.md`.")
     A("")
 
     A("### 3.3 Selection funnel")
@@ -207,10 +256,111 @@ def main() -> int:
             A(f"detectable standardized effect is **{p.get('min_detectable_std_effect_log_points')}**")
             A("log points at 5% significance and 80% power.")
             A("")
+        # The disclosure contrast leads, because it is the result national
+        # coverage made estimable and the one least vulnerable to the
+        # selection problem that limits the pay models.
+        if by_m:
+            A("### Disclosure and pay-transparency mandates")
+            A("")
+            A("| Posting is in | Share stating pay | Postings |")
+            A("|---|---|---|")
+            for key, label in (("mandate", "a mandate state"),
+                               ("no_mandate", "no mandate state")):
+                row = by_m.get(key) or {}
+                if row:
+                    A(f"| {label} | {row.get('share_disclosed', 0):.1%} "
+                      f"| {row.get('n', 0):,} |")
+            A("")
+            A("Coverage follows the job's location, so a posting listing any covered")
+            A("location counts as covered. Around a quarter of postings list more")
+            A("than one, and `states_listed` is retained so the rule can be checked.")
+            A("")
+            A("> **This is a descriptive contrast, not a causal estimate.** A single")
+            A("> cross-section carries no time variation, so no")
+            A("> difference-in-differences is available. Employers who operate in")
+            A("> mandate states differ from those who do not in size, sector and")
+            A("> geography, and these data cannot separate those differences from")
+            A("> the effect of the law itself.")
+            A("")
+
         for key, model in (analysis.get("models") or {}).items():
             A(f"### {model['label']}")
             A("")
             L.extend(coefficient_table(model))
+
+        ec = analysis.get("early_career_subsample") or {}
+        if ec:
+            A("### The early-career question")
+            A("")
+            A(f"The study began as a question about early-career pay specifically.")
+            A(f"That subsample is **{ec.get('n', 0)}** postings from")
+            A(f"**{ec.get('n_employers', 0)}** employers"
+              + (f" — {ec['note']}." if ec.get("note") else ", estimated above."))
+            A("It is reported whether or not it agrees with the full sample: a")
+            A("disagreement would be a finding, not a reason to drop it.")
+            A("")
+
+        pa = analysis.get("price_adjustment") or {}
+        if pa and not pa.get("available"):
+            A("### Price-adjusted pay")
+            A("")
+            A(f"Not available. {pa.get('note', '')} Nominal pay is reported")
+            A("throughout. Comparing advertised pay across states without adjusting")
+            A("for local price levels overstates real differences in high-cost")
+            A("states, and this limitation applies to every coefficient above.")
+            A("")
+
+        A("### Pre-registered hypotheses, scored")
+        A("")
+        A("Directions were committed in `docs/pre-registration.md` before the")
+        A("national sample was collected. They are scored here whether or not they")
+        A("held, which is the point of having written them down.")
+        A("")
+        A("| # | Hypothesis | Predicted | Result |")
+        A("|---|---|---|---|")
+        core = (analysis.get("models") or {}).get("core", {}).get("coefficients", {})
+
+        def verdict(name, want_positive=True, label=None):
+            row = core.get(name)
+            if not row:
+                return f"| — | `{name}` | — | not estimated |"
+            coef, pval = row.get("coef", 0), row.get("p_value", 1)
+            sig = "significant" if pval < 0.05 else "not significant"
+            direction = "positive" if coef > 0 else "negative"
+            matched = (coef > 0) == want_positive
+            mark = "supported" if (matched and pval < 0.05) else (
+                "**contradicted**" if (not matched and pval < 0.05) else "inconclusive")
+            return (label or name, "+" if want_positive else "-",
+                    f"{direction}, {sig} — {mark}")
+
+        for num, name, want, text in [
+            ("H1", "seniority_rank", True, "Seniority dominates advertised pay"),
+            ("H3", "yrs_exp_min", True, "Required experience raises pay"),
+            ("H4", "family_ai_ml", True, "AI/ML roles carry a premium"),
+            ("H5", "degree_required", True, "A required degree raises pay"),
+            ("H7", "industry_data_center", True, "Data centers pay more than utilities"),
+        ]:
+            v = verdict(name, want)
+            if isinstance(v, str):
+                A(f"| {num} | {text} | {'+' if want else '-'} | not estimated |")
+            else:
+                A(f"| {num} | {text} | {v[1]} | {v[2]} |")
+        if m_share is not None and n_share is not None:
+            A(f"| H2 | A mandate raises disclosure | + | "
+              f"{m_share:.1%} vs {n_share:.1%} — **supported**, descriptively |")
+        A("")
+        deg = core.get("degree_required") or {}
+        if deg and deg.get("p_value", 1) < 0.05 and deg.get("coef", 0) < 0:
+            A("**H5 is contradicted and the reason is not obvious.** A stated degree")
+            A("requirement is associated with *lower* advertised pay, conditional on")
+            A("seniority. The most likely explanation is compositional rather than")
+            A("causal: the best-paid technical postings increasingly say \"degree or")
+            A("equivalent experience\" or omit the requirement entirely, so the")
+            A("indicator may be marking employers with more formal hiring processes")
+            A("rather than jobs with higher human-capital requirements. That is a")
+            A("conjecture, not a result — testing it needs a variable this dataset")
+            A("does not have. It is reported because it was predicted the other way.")
+            A("")
         sel = analysis.get("selection") or {}
         if sel.get("by_variable"):
             A("### Who discloses pay")
