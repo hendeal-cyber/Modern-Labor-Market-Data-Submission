@@ -28,17 +28,23 @@ sys.path.insert(0, str(ROOT / "src"))
 OBS_PER_REGRESSOR = 20
 
 # Pre-specified. Declared here rather than chosen after seeing results.
+# Fixed in docs/pre-registration.md BEFORE the national run collected, so the
+# specification cannot be read as chosen after seeing results. Changing this
+# list requires a dated amendment in that document's section 8.
 CORE_MODEL = [
-    "degree_stem", "advanced_degree_pref", "yrs_exp_min", "yrs_exp_stated",
-    "skill_cloud", "skill_ml_ai", "soft_leadership",
-    "industry_data_center", "remote_eligible", "hourly_original",
-    "job_level", "family_ai_ml",
+    "seniority_rank", "yrs_exp_min", "yrs_exp_stated",
+    "degree_required", "degree_stem",
+    "skill_cloud", "skill_ml_ai",
+    "remote_eligible", "hourly_original",
+    "mandate_state", "region_northeast", "region_south", "region_west",
+    "industry_data_center", "family_ai_ml",
 ]
 # `yrs_exp_stated` must travel with `yrs_exp_min`: postings that state no
 # minimum are imputed to zero, and without the indicator that imputation is
 # indistinguishable from a genuine "0 years required".
 EXTENDED_EXTRA = [
-    "degree_required", "prior_internship_req", "certification_req",
+    "advanced_degree_pref", "soft_leadership", "job_level", "study_metro",
+    "prior_internship_req", "certification_req",
     "skill_python_r", "skill_sql", "skill_viz_bi", "skill_big_data",
     "soft_teamwork", "soft_communication", "soft_problem_solving",
     "travel_required", "on_call", "security_clearance",
@@ -61,6 +67,16 @@ def load(path: pathlib.Path) -> pd.DataFrame:
     # pay-disclosure jurisdiction. The dummy absorbs them so they cannot load
     # onto the metro contrasts that identify off Illinois HB 3129.
     df["metro_remote_national"] = (df["metro"] == "remote_national").astype(int)
+    # National scope, 2026-09-21. Census region dummies with Midwest as the
+    # reference category — it holds Chicago and Indianapolis, the metros the
+    # study started from, so every regional coefficient reads against the
+    # original population.
+    for region in ("northeast", "south", "west"):
+        if "census_region" in df:
+            df[f"region_{region}"] = (df["census_region"] == region).astype(int)
+    for col in ("seniority_rank", "mandate_state", "study_metro", "early_career"):
+        if col in df:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
     # industry is categorical now that the frame spans operators, grid
     # operators, analytics firms, developers, consultancies and vendors.
     # Utility is the reference category.
@@ -86,17 +102,54 @@ def load(path: pathlib.Path) -> pd.DataFrame:
     return df
 
 
+# Regressors dropped by available(), and why. Read into the report so a
+# coefficient's absence from the table is explained rather than mysterious.
+DROPPED_REGRESSORS: dict[str, str] = {}
+
+
 def available(df: pd.DataFrame, names: list[str]) -> list[str]:
-    """Keep regressors that exist and actually vary; constants break OLS."""
-    out = []
+    """Keep regressors that exist, vary, and are not perfectly collinear.
+
+    Constant columns break OLS outright. Perfect collinearity is worse: statsmodels
+    returns a rank-deficient fit with a warning and *non-unique* parameters, so
+    coefficients still print and look like estimates. At small N this happens
+    easily — every Midwest posting in this sample is from Illinois, which is a
+    mandate state, so region_* and mandate_state are linearly dependent.
+
+    Dropping the later column of a dependent pair is what the reference-category
+    convention does anyway; the point is to do it deliberately and say so.
+    """
+    DROPPED_REGRESSORS.clear()
+    kept: list[str] = []
     for name in names:
         if name not in df.columns:
+            DROPPED_REGRESSORS[name] = "not in dataset"
             continue
         series = pd.to_numeric(df[name], errors="coerce")
-        if series.notna().sum() == 0 or series.nunique(dropna=True) < 2:
+        if series.notna().sum() == 0:
+            DROPPED_REGRESSORS[name] = "all missing"
             continue
-        out.append(name)
-    return out
+        if series.nunique(dropna=True) < 2:
+            only = series.dropna().unique()
+            DROPPED_REGRESSORS[name] = (
+                f"constant at {only[0]:g} in this sample" if len(only) else "constant")
+            continue
+        kept.append(name)
+
+    # Now remove exact linear dependence, keeping the earlier column of each
+    # dependent pair so the pre-registered ordering decides what survives.
+    if len(kept) > 1:
+        matrix = df[kept].apply(pd.to_numeric, errors="coerce").fillna(0.0)
+        matrix = sm.add_constant(matrix, has_constant="add")
+        surviving = list(kept)
+        while len(surviving) > 1:
+            sub = matrix[["const"] + surviving].to_numpy(dtype=float)
+            if np.linalg.matrix_rank(sub) == sub.shape[1]:
+                break
+            dropped = surviving.pop()
+            DROPPED_REGRESSORS[dropped] = "perfectly collinear with earlier regressors"
+        kept = surviving
+    return kept
 
 
 def fit(df: pd.DataFrame, regressors: list[str], cluster: str = "employer"):
@@ -227,6 +280,9 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
         return report
 
     core = available(estimation, CORE_MODEL)
+    # Captured immediately: available() resets DROPPED_REGRESSORS on every call,
+    # and the secondary models below each call it for their own subsample.
+    report["dropped_regressors"] = dict(DROPPED_REGRESSORS)
     budget = max(1, len(estimation) // OBS_PER_REGRESSOR)
     report["regressor_budget"] = budget
     report["specification_chosen"] = "extended" if budget >= len(core) + 5 else "core"
@@ -246,11 +302,91 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
     width = estimation[estimation["pay_range_width"].notna() & (estimation["pay_range_width"] > 0)]
     if len(width) >= 20:
         y = np.log(width["pay_range_width"])
-        X = sm.add_constant(width[core].astype(float), has_constant="add")
+        # Re-checked on this subsample: a regressor that varies in the full
+        # sample can be constant among postings that disclose a RANGE.
+        width_reg = available(width, CORE_MODEL)
+        X = sm.add_constant(width[width_reg].astype(float), has_constant="add")
         res_w = sm.OLS(y, X, missing="drop").fit(
             cov_type="cluster", cov_kwds={"groups": width["employer"]}
         )
         models["range_width"] = result_table(res_w, "Secondary: log(range width)")
+
+
+    # --- Model 3: disclosure (pre-registered) --------------------------
+    # National coverage is what makes this estimable: at six metros there was
+    # almost no variation in mandate_state to identify it from. Reported as a
+    # finding in its own right, not a footnote.
+    #
+    # ASSOCIATIONAL, NOT CAUSAL. This is a single cross-section with no time
+    # variation, so there is no difference-in-differences here. Employers who
+    # operate in mandate states differ from those who do not in ways this
+    # cannot control for. The write-up must not drift into causal language.
+    if "mandate_state" in df and df["mandate_state"].notna().any():
+        disc = df[df["mandate_state"].notna()].copy()
+        share = disc.groupby("mandate_state")["pay_disclosed"].agg(["mean", "count"])
+        report["disclosure"] = {
+            "by_mandate": {
+                ("mandate" if int(k) == 1 else "no_mandate"): {
+                    "share_disclosed": round(float(v["mean"]), 4),
+                    "n": int(v["count"]),
+                }
+                for k, v in share.iterrows()
+            },
+            "design": "associational; single cross-section, no DiD available",
+        }
+        both = disc["mandate_state"].nunique() > 1
+        varies = disc["pay_disclosed"].nunique() > 1
+        if both and varies and len(disc) >= 30:
+            controls = available(disc, ["seniority_rank", "remote_eligible",
+                                        "industry_data_center", "region_northeast",
+                                        "region_south", "region_west"])
+            X = sm.add_constant(disc[["mandate_state"] + controls].astype(float),
+                                has_constant="add")
+            res_d = sm.OLS(disc["pay_disclosed"].astype(float), X, missing="drop").fit(
+                cov_type="cluster", cov_kwds={"groups": disc["employer"]}
+            )
+            models["disclosure_lpm"] = result_table(
+                res_d, "Model 3: pay disclosed (linear probability)")
+        else:
+            report["disclosure"]["note"] = (
+                "not estimated: needs variation in both mandate status and "
+                "disclosure, and at least 30 postings")
+
+    # --- Model 4: early-career subsample (pre-registered) --------------
+    # The study's original question. Reported whether or not it agrees with the
+    # full sample; a disagreement is a finding, not a reason to drop it.
+    if "early_career" in estimation:
+        ec = estimation[estimation["early_career"] == 1]
+        report["early_career_subsample"] = {"n": int(len(ec)),
+                                            "n_employers": int(ec["employer"].nunique())}
+        if len(ec) >= 20:
+            ec_reg = available(ec, core)
+            res_ec = fit(ec, ec_reg)
+            models["early_career"] = result_table(
+                res_ec, "Model 4: early-career subsample (original question)")
+        else:
+            report["early_career_subsample"]["note"] = (
+                f"{len(ec)} observations; too few to estimate separately")
+
+    # --- Robustness: price-adjusted pay --------------------------------
+    real = estimation[estimation["pay_midpoint_real"].notna()] \
+        if "pay_midpoint_real" in estimation else estimation.iloc[0:0]
+    if len(real) >= 20:
+        y = np.log(real["pay_midpoint_real"].astype(float))
+        real_reg = available(real, CORE_MODEL)
+        X = sm.add_constant(real[real_reg].astype(float), has_constant="add")
+        res_r = sm.OLS(y, X, missing="drop").fit(
+            cov_type="cluster", cov_kwds={"groups": real["employer"]}
+        )
+        models["real_pay"] = result_table(
+            res_r, "Robustness: log(pay), BEA price-adjusted")
+        report["price_adjustment"] = {"n": int(len(real)), "available": True}
+    else:
+        report["price_adjustment"] = {
+            "n": int(len(real)), "available": False,
+            "note": ("BEA regional price parities were not fetched, so pay is "
+                     "nominal only. No deflator is imputed."),
+        }
 
     obs_per_regressor = len(estimation) / max(1, len(core))
     n_clusters = int(estimation["employer"].nunique())

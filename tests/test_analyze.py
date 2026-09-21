@@ -9,10 +9,19 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 from lmstudy.analyze import run_analysis, detectable_effect
 
-# Planted truth, in log points.
-TRUE = {"degree_stem": 0.08, "advanced_degree_pref": 0.15, "skill_cloud": 0.10,
-        "skill_ml_ai": 0.12, "soft_leadership": 0.03, "industry_data_center": -0.05,
-        "remote_eligible": 0.06, "yrs_exp_min": 0.04}
+# Planted truth, in log points. These are exactly the CORE_MODEL regressors
+# the simulation can construct, so the test measures recovery rather than
+# omitted-variable bias: when advanced_degree_pref and soft_leadership moved to
+# the extended model on 2026-09-21 but were still planted here, their effect
+# landed in the intercept and the recovery check read 92,466 against a planted
+# 85,000. That was the test working — but testing the wrong thing.
+TRUE = {"degree_stem": 0.08, "degree_required": 0.05, "skill_cloud": 0.10,
+        "skill_ml_ai": 0.12, "industry_data_center": -0.05,
+        "remote_eligible": 0.06, "yrs_exp_min": 0.04,
+        # National-scope regressors, planted so the model that actually runs is
+        # the model under test.
+        "seniority_rank": 0.11, "mandate_state": -0.02,
+        "region_west": 0.07, "region_northeast": 0.09, "region_south": -0.03}
 INTERCEPT = np.log(85000)
 
 def simulate(n=600, seed=7):
@@ -20,8 +29,17 @@ def simulate(n=600, seed=7):
     employers = [f"Employer{i}" for i in range(12)]
     rows = []
     for i in range(n):
-        d = {k: int(rng.random() < 0.5) for k in TRUE if k != "yrs_exp_min"}
+        d = {k: int(rng.random() < 0.5) for k in TRUE
+             if k not in ("yrs_exp_min", "seniority_rank",
+                          "region_west", "region_northeast", "region_south")}
         d["yrs_exp_min"] = int(rng.integers(0, 4))
+        # Seniority spans the real ladder rather than a coin flip: it is the
+        # headline regressor now, and an ordinal is not a dummy.
+        d["seniority_rank"] = int(rng.integers(1, 7))
+        # Exactly one region dummy is on, Midwest being the omitted reference.
+        region = rng.choice(["midwest", "northeast", "south", "west"])
+        for name in ("northeast", "south", "west"):
+            d[f"region_{name}"] = int(region == name)
         emp = employers[i % len(employers)]
         # Employer-level shock: makes clustered SEs the correct choice.
         shock = rng.normal(0, 0.04) if i < len(employers) else 0
@@ -32,7 +50,16 @@ def simulate(n=600, seed=7):
             "industry": "data_center" if d["industry_data_center"] else "utility",
             "title": "Data Engineer I", "ats_platform": "greenhouse", "url": "",
             "metro": "chicago" if i % 4 else "indianapolis",
-            "tier": 1, "state": "IL", "mandate_state": 1,
+            "tier": 1,
+            "state": {"midwest": "IL", "northeast": "NY",
+                      "south": "TX", "west": "CO"}[region],
+            "census_region": region,
+            "study_metro": 1,
+            "mandate_state": d["mandate_state"],
+            "seniority_rank": d["seniority_rank"],
+            "seniority_label": "mid",
+            "early_career": int(d["seniority_rank"] <= 1),
+            "rpp": "", "pay_midpoint_real": "",
             "distance_miles": 5.0, "work_arrangement": "onsite",
             "remote_eligible": d["remote_eligible"],
             "posted_at": "2026-09-01", "posting_age_days": 19,
