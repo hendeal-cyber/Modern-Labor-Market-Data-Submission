@@ -10,7 +10,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 from lmstudy.geo import (haversine_miles, load_gazetteer, resolve,
                         detect_arrangement, canonicalize_place,
                         resolve_us_state, census_region, is_non_us,
-                        is_us_remote, CENSUS_REGION, STATE_ABBR)
+                        is_us_remote, resolve_us_states,
+                        CENSUS_REGION, STATE_ABBR)
 
 SCOPE = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
 METROS = SCOPE["metros"]
@@ -237,6 +238,41 @@ def run():
             fails.append(f"{loc!r} should resolve to {want_state}")
         if resolve(loc, active_metros(), GAZ).metro == "remote_national":
             fails.append(f"{loc!r} has a state and must not be remote_national")
+
+
+    # 19. Multi-location postings, audit round 3. 24 of 138 rows list more than
+    # one place, and mandate status must consider EVERY one: a pay-transparency
+    # law attaches to the job's location, so a posting naming any covered place
+    # is covered. Taking the first-listed state understated coverage on 9 rows,
+    # seven of which had disclosed pay. Strings verbatim from the dataset.
+    for loc, want in [
+        ("US, Salt Lake City, UT; US, Indianapolis, IN; US, Dayton, OH",
+         ["UT", "IN", "OH"]),
+        ("Chicago, IL; Denver, CO", ["IL", "CO"]),
+        ("Boston, MA, United States; Chicago, IL, United States", ["MA", "IL"]),
+        ("Dallas, TX; Remote", ["TX"]),
+        ("Chicago, IL", ["IL"]),
+        ("Remote Location - PL; POL Warsaw", []),
+        ("", []),
+    ]:
+        got = resolve_us_states(loc)
+        if got != want:
+            fails.append(f"resolve_us_states({loc[:44]!r}) = {got}, want {want}")
+
+    # The single-state resolver must still agree with the first of the list, or
+    # the two are reading the string differently and one of them is wrong.
+    for loc in ("US, Salt Lake City, UT; US, Indianapolis, IN",
+                "Chicago, IL; Denver, CO", "Chicago, IL"):
+        multi = resolve_us_states(loc)
+        if multi and resolve_us_state(loc) != multi[0]:
+            fails.append(f"resolve_us_state disagrees with resolve_us_states on {loc!r}")
+
+    # A mandate state anywhere in the list must be findable, which is the whole
+    # point of the multi-state resolver.
+    mand = {str(k).upper() for k in (SCOPE.get("pay_mandate_states") or {})}
+    covered = resolve_us_states("US, Salt Lake City, UT; US, Denver, CO")
+    if not (set(covered) & mand):
+        fails.append("a listed mandate state (CO) was not found alongside UT")
 
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:

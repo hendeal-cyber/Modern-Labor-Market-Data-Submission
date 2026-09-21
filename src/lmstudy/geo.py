@@ -291,6 +291,26 @@ def resolve_us_state(location_raw: str | None) -> str | None:
     return None
 
 
+
+def resolve_us_states(location_raw: str | None) -> list[str]:
+    """EVERY US state a location lists, not just the first.
+
+    A pay-transparency law attaches to the job's location, so a posting listing
+    several places is covered if ANY of them is covered. Taking the first
+    fragment understated mandate coverage on 9 of 141 rows in the round-3
+    audit, seven of which had disclosed pay — which is what being covered
+    predicts.
+    """
+    if not location_raw:
+        return []
+    out: list[str] = []
+    for fragment in _split_locations(location_raw):
+        state = resolve_us_state(fragment)
+        if state and state not in out:
+            out.append(state)
+    return out
+
+
 def resolve(
     location_raw: str,
     metros: dict[str, dict],

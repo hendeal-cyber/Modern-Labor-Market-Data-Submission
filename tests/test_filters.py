@@ -2,7 +2,7 @@
 import sys, pathlib, yaml
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-from lmstudy.filters import seniority_rank, is_early_career, screen_role, screen_early_career, screen_internship, extract_years
+from lmstudy.filters import seniority_rank, is_early_career, is_level_range, screen_role, screen_early_career, screen_internship, extract_years
 
 CFG = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
 
@@ -134,6 +134,76 @@ def check_seniority_ranks():
     return fails
 
 
+# Audit round 3, 2026-09-21. Utilities routinely advertise several rungs in one
+# requisition. seniority_rank took the highest match, so every one was ranked at
+# its ceiling — biasing the headline regressor upward exactly where the
+# advertised pay range is widest. Ranked at the FLOOR now: the level the
+# employer will actually hire at, and the one the pay floor corresponds to.
+# Averaging was rejected; a midpoint rank is a rung nobody is hired into.
+# Every title is verbatim from the 141-row national dataset.
+RANGE_TITLE_CASES = [
+    # (title, expected rank, expected is_level_range)
+    ("Resource Planning Analyst I or II or Senior", 1, True),
+    ("Senior Resource Planning Analyst (or Resource Planning Analyst II or I)", 1, True),
+    ("Data Scientist I or II (MAD-BS-OR)", 1, True),
+    ("Analyst OR Senior Associate, Capital Markets", 1, True),
+    ("(Sr.) (Lead) (Principal) Energy Analyst/Engineer (II)", 2, True),
+    ("Senior/Principal Data Analyst", 3, True),
+    ("Transmission Planning Engineer, or Staff, or Senior Engineer", 3, True),
+    # NOT a range in this scheme: III and IV are both rank 3, so there is only
+    # one rung advertised and the ceiling is the floor.
+    ("Environmental Analyst III or IV - Amarillo, TX", 3, False),
+    # Known limitation, recorded rather than papered over: an UNLEVELLED base
+    # carries no token to match, so a range from unlevelled to senior cannot be
+    # detected. Ranking senior is the conservative read.
+    ("Data Analyst or Data Analyst Senior - AMLD", 3, False),
+    # Ordinary titles must be untouched by any of this.
+    ("Senior Interconnection Engineer", 3, False),
+    ("Market Analyst", 2, False),
+    ("Associate, Development", 1, False),
+    ("Director, Mechanical Engineering", 6, False),
+]
+
+
+def check_range_titles():
+    fails = []
+    for title, want_rank, want_range in RANGE_TITLE_CASES:
+        got = seniority_rank(title)
+        if got != want_rank:
+            fails.append(f"range rank({title[:48]!r}) = {got}, want {want_rank}")
+        if is_level_range(title) != want_range:
+            fails.append(f"is_level_range({title[:48]!r}) = "
+                         f"{is_level_range(title)}, want {want_range}")
+    # A slash that is not a level alternation must not read as a range.
+    for title in ("Engineer, Grid Integration and Interconnection Services",
+                  "Sustainability Data Lead, Global"):
+        if is_level_range(title):
+            fails.append(f"is_level_range wrongly True for {title!r}")
+    return fails
+
+
+# Round 3 also found three out-of-scope roles in the dataset, and one that was
+# judged borderline and deliberately kept. Excluding the borderline one too
+# would be a pattern broader than the finding justified.
+AUDIT_ROUND_3_ROLES = [
+    ("Corporate Counsel, Corporate & Capital Markets", False),
+    ("Sr. Nuclear Instructor (Database Administrator)", False),
+    ("Senior Security and Compliance Analyst", False),
+    ("AI Data & Security Governance Engineer (MAD-BS-OR)", True),
+    ("Analyst, Compliance", True),
+    ("Senior Interconnection Engineer", True),
+]
+
+
+def check_audit_round_3_roles(config):
+    fails = []
+    for title, want in AUDIT_ROUND_3_ROLES:
+        got = screen_role(title, "", config).passed
+        if got != want:
+            fails.append(f"audit3 role {title[:48]!r} kept={got} want={want}")
+    return fails
+
+
 def run():
     fails = []
 
@@ -238,9 +308,12 @@ def run():
 
     fails += audit_round_2_cases(CFG)
     fails += check_seniority_ranks()
+    fails += check_range_titles()
+    fails += check_audit_round_3_roles(CFG)
     total = (len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)
              +len(intern_cases)+len(AUDIT_ROUND_2)+len(AUDIT_ROUND_2_KEEP)
-             +len(SENIORITY_RANK_CASES)+11)   # +11 rank defaults and early-career logic
+             +len(SENIORITY_RANK_CASES)+11
+             +len(RANGE_TITLE_CASES)*2+2+len(AUDIT_ROUND_3_ROLES))
     print(f"filters: {total-len(fails)}/{total} passed")
     for f in fails:
         print("  FAIL", f)

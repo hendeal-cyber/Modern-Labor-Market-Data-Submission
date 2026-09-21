@@ -137,5 +137,40 @@ Stated in advance so they cannot be rationalized later:
 
 ## 8. Amendments after this commit
 
-*None yet. Each entry: date, what changed, why, and whether it was prompted by
-seeing results.*
+### 2026-09-21 — `mandate_state` computed from any listed location
+
+**What changed.** `mandate_state` was derived from the posting's first-listed
+state. It is now 1 if **any** location the posting lists is in a mandate state.
+
+**Why.** A pay-transparency law attaches to the job's location, so a posting
+naming several places is covered if any one of them is covered. Taking the
+first-listed state was arbitrary: 23% of rows list more than one location, and
+`state` and `metro` were being selected by different rules, so they routinely
+disagreed (`state=UT, metro=indianapolis`).
+
+**Was it prompted by seeing results? Yes — and it moved the headline.** Audit
+round 3 found nine rows carrying `mandate_state=0` while listing a mandate
+state elsewhere in the same posting; seven of the nine had disclosed pay. The
+disclosure contrast widened from a 64.9pp gap to 71.2pp.
+
+**Why it is still defensible.** The change follows from what the statutes
+attach to, not from which direction the number moved, and it was specified and
+its effect predicted (~70.7pp) *before* being implemented; the realized 71.2pp
+differs only because three out-of-scope roles were removed in the same round.
+It would have been reported identically had the gap narrowed. A reader who
+disagrees can recompute with the first-listed rule: `states_listed` and
+`n_locations` are in the dataset for exactly that purpose.
+
+### 2026-09-21 — range titles ranked at their floor
+
+**What changed.** A title advertising several rungs ("Resource Planning Analyst
+I or II or Senior") was ranked at its highest; it is now ranked at its lowest,
+with an `is_level_range` indicator.
+
+**Why.** The ceiling rule biased the headline regressor upward on 6% of rows,
+precisely where the advertised pay range is widest. The floor is the level the
+employer will hire at and the one the pay floor corresponds to. Averaging was
+rejected: a midpoint rank is a rung nobody is hired into.
+
+**Prompted by seeing results?** Found by auditing the assignments, not by
+looking at outcomes. The effect on estimates was not checked before deciding.

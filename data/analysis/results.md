@@ -1,121 +1,121 @@
 # Results
 
-- Postings in scope: **141**
-- With disclosed pay: **101**
-- Used in estimation: **101**
+- Postings in scope: **138**
+- With disclosed pay: **100**
+- Used in estimation: **100**
 - Distinct employers: **27**
 
 > **These estimates are not yet interpretable.**
 >
-> - 7.2 observations per regressor (101 observations, 14 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
-> - Minimum detectable effect is 0.30 log points, roughly a 35% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
+> - 7.1 observations per regressor (100 observations, 14 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
+> - Minimum detectable effect is 0.30 log points, roughly a 36% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
 >
 > The model is reported so the pipeline is verifiable end to end, not because the coefficients mean anything yet. Collect more before drawing conclusions.
 
 Regressor budget at 20 observations each: **5** (specification used: **core**).
 
-Minimum detectable standardized effect: **0.3021** log points (alpha 0.05, power 0.80).
+Minimum detectable standardized effect: **0.3039** log points (alpha 0.05, power 0.80).
 
 ## Core model (pre-specified)
 
-N = 101, R² = 0.5784, adjusted R² = 0.5097, SE: cluster
+N = 100, R² = 0.5681, adjusted R² = 0.4969, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 11.3382*** | 0.0415 | 0.0 | [11.2569, 11.4196] | — |
-| `seniority_rank` | 0.0615*** | 0.0122 | 0.0 | [0.0375, 0.0854] | 6.34% |
-| `yrs_exp_min` | -0.0048 | 0.013 | 0.7107 | [-0.0304, 0.0207] | -0.48% |
-| `yrs_exp_stated` | -0.0339 | 0.131 | 0.7959 | [-0.2907, 0.2229] | -3.33% |
-| `degree_required` | -0.1121** | 0.0551 | 0.0418 | [-0.22, -0.0042] | -10.6% |
-| `degree_stem` | 0.0755 | 0.0586 | 0.1974 | [-0.0393, 0.1903] | 7.84% |
-| `skill_cloud` | 0.0932 | 0.1261 | 0.4596 | [-0.1539, 0.3403] | 9.77% |
-| `skill_ml_ai` | 0.1775 | 0.1215 | 0.1441 | [-0.0606, 0.4156] | 19.42% |
-| `remote_eligible` | 0.171** | 0.0692 | 0.0135 | [0.0354, 0.3067] | 18.65% |
-| `mandate_state` | -0.1377** | 0.0622 | 0.0268 | [-0.2596, -0.0158] | -12.86% |
-| `region_northeast` | 0.3556*** | 0.0978 | 0.0003 | [0.1639, 0.5473] | 42.7% |
-| `region_south` | 0.2274* | 0.1224 | 0.0632 | [-0.0125, 0.4672] | 25.53% |
-| `region_west` | 0.1195** | 0.059 | 0.0426 | [0.004, 0.2351] | 12.7% |
-| `industry_data_center` | 0.1677* | 0.0884 | 0.0576 | [-0.0054, 0.3409] | 18.26% |
-| `family_ai_ml` | -0.0625 | 0.1304 | 0.6316 | [-0.3181, 0.193] | -6.06% |
+| `const` | 11.309*** | 0.0554 | 0.0 | [11.2004, 11.4175] | — |
+| `seniority_rank` | 0.0639*** | 0.0106 | 0.0 | [0.0431, 0.0847] | 6.6% |
+| `yrs_exp_min` | -0.0063 | 0.0139 | 0.6479 | [-0.0336, 0.0209] | -0.63% |
+| `yrs_exp_stated` | -0.0418 | 0.1388 | 0.7632 | [-0.3139, 0.2302] | -4.1% |
+| `degree_required` | -0.1273** | 0.0567 | 0.0247 | [-0.2383, -0.0162] | -11.95% |
+| `degree_stem` | 0.0929 | 0.063 | 0.1406 | [-0.0306, 0.2164] | 9.73% |
+| `skill_cloud` | 0.1009 | 0.1278 | 0.4299 | [-0.1496, 0.3514] | 10.62% |
+| `skill_ml_ai` | 0.1722 | 0.1238 | 0.164 | [-0.0703, 0.4148] | 18.8% |
+| `remote_eligible` | 0.1925** | 0.0772 | 0.0127 | [0.0412, 0.3439] | 21.23% |
+| `mandate_state` | -0.0914 | 0.0929 | 0.3253 | [-0.2736, 0.0907] | -8.74% |
+| `region_northeast` | 0.3414*** | 0.0983 | 0.0005 | [0.1488, 0.534] | 40.7% |
+| `region_south` | 0.2718*** | 0.0944 | 0.004 | [0.0868, 0.4568] | 31.23% |
+| `region_west` | 0.1248** | 0.052 | 0.0165 | [0.0228, 0.2268] | 13.29% |
+| `industry_data_center` | 0.1437* | 0.0863 | 0.0959 | [-0.0255, 0.3129] | 15.46% |
+| `family_ai_ml` | -0.0616 | 0.1347 | 0.6475 | [-0.3256, 0.2024] | -5.97% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Secondary: log(range width)
 
-N = 99, R² = 0.2086, adjusted R² = 0.0767, SE: cluster
+N = 98, R² = 0.1864, adjusted R² = 0.0492, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 9.9781*** | 0.3099 | 0.0 | [9.3708, 10.5855] | — |
-| `seniority_rank` | 0.0936 | 0.0911 | 0.304 | [-0.0849, 0.2722] | 9.82% |
-| `yrs_exp_min` | 0.1259* | 0.0693 | 0.0692 | [-0.0099, 0.2618] | 13.42% |
-| `yrs_exp_stated` | -0.4493 | 0.3911 | 0.2506 | [-1.2158, 0.3172] | -36.19% |
-| `degree_required` | -0.0596 | 0.116 | 0.6073 | [-0.2869, 0.1677] | -5.79% |
-| `degree_stem` | 0.1229 | 0.1484 | 0.4074 | [-0.1679, 0.4138] | 13.08% |
-| `skill_cloud` | 0.0211 | 0.3971 | 0.9575 | [-0.7571, 0.7993] | 2.14% |
-| `skill_ml_ai` | -0.1186 | 0.4401 | 0.7876 | [-0.9812, 0.7441] | -11.18% |
-| `remote_eligible` | 0.3851 | 0.311 | 0.2155 | [-0.2244, 0.9947] | 46.98% |
-| `mandate_state` | 0.5631*** | 0.2138 | 0.0085 | [0.144, 0.9821] | 75.6% |
-| `region_northeast` | -0.888*** | 0.3253 | 0.0063 | [-1.5256, -0.2504] | -58.85% |
-| `region_south` | -0.1181 | 0.1867 | 0.5272 | [-0.484, 0.2479] | -11.14% |
-| `region_west` | -0.1384 | 0.1897 | 0.4654 | [-0.5102, 0.2333] | -12.93% |
-| `industry_data_center` | -0.8348* | 0.4313 | 0.0529 | [-1.6801, 0.0105] | -56.61% |
-| `family_ai_ml` | 0.4993* | 0.2939 | 0.0893 | [-0.0767, 1.0753] | 64.75% |
+| `const` | 10.0737*** | 0.3358 | 0.0 | [9.4155, 10.7319] | — |
+| `seniority_rank` | 0.0619 | 0.1051 | 0.5562 | [-0.1442, 0.2679] | 6.38% |
+| `yrs_exp_min` | 0.1293* | 0.0676 | 0.0557 | [-0.0032, 0.2618] | 13.8% |
+| `yrs_exp_stated` | -0.4382 | 0.4189 | 0.2956 | [-1.2593, 0.383] | -35.48% |
+| `degree_required` | -0.0782 | 0.1139 | 0.4924 | [-0.3015, 0.1451] | -7.52% |
+| `degree_stem` | 0.1163 | 0.1658 | 0.483 | [-0.2086, 0.4411] | 12.33% |
+| `skill_cloud` | -0.0547 | 0.3851 | 0.887 | [-0.8095, 0.7001] | -5.32% |
+| `skill_ml_ai` | -0.0917 | 0.4739 | 0.8466 | [-1.0206, 0.8372] | -8.76% |
+| `remote_eligible` | 0.3798 | 0.392 | 0.3326 | [-0.3885, 1.1481] | 46.2% |
+| `mandate_state` | 0.5101 | 0.3429 | 0.1368 | [-0.162, 1.1822] | 66.55% |
+| `region_northeast` | -0.8382** | 0.3341 | 0.0121 | [-1.493, -0.1833] | -56.75% |
+| `region_south` | -0.226 | 0.1822 | 0.2149 | [-0.5832, 0.1312] | -20.23% |
+| `region_west` | -0.0905 | 0.1812 | 0.6175 | [-0.4456, 0.2647] | -8.65% |
+| `industry_data_center` | -0.8085* | 0.4186 | 0.0534 | [-1.6289, 0.0119] | -55.45% |
+| `family_ai_ml` | 0.5658* | 0.2906 | 0.0516 | [-0.0038, 1.1354] | 76.08% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Model 3: pay disclosed (linear probability)
 
-N = 141, R² = 0.6029, adjusted R² = 0.582, SE: cluster
+N = 138, R² = 0.6947, adjusted R² = 0.6783, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 0.3467*** | 0.0998 | 0.0005 | [0.1511, 0.5422] | — |
-| `mandate_state` | 0.603*** | 0.0766 | 0.0 | [0.4528, 0.7532] | 82.76% |
-| `seniority_rank` | 0.0193 | 0.0245 | 0.431 | [-0.0287, 0.0672] | 1.95% |
-| `remote_eligible` | 0.3039*** | 0.0861 | 0.0004 | [0.1351, 0.4727] | 35.51% |
-| `industry_data_center` | -0.1685* | 0.093 | 0.07 | [-0.3507, 0.0138] | -15.51% |
-| `region_northeast` | -0.1809* | 0.0953 | 0.0578 | [-0.3677, 0.006] | -16.55% |
-| `region_south` | -0.1239 | 0.0902 | 0.1695 | [-0.3008, 0.0529] | -11.66% |
-| `region_west` | 0.089 | 0.0635 | 0.1611 | [-0.0355, 0.2134] | 9.31% |
+| `const` | 0.2816** | 0.1145 | 0.0139 | [0.0572, 0.5059] | — |
+| `mandate_state` | 0.6784*** | 0.0852 | 0.0 | [0.5115, 0.8454] | 97.08% |
+| `seniority_rank` | 0.0059 | 0.0182 | 0.7434 | [-0.0297, 0.0415] | 0.6% |
+| `remote_eligible` | 0.3536*** | 0.0725 | 0.0 | [0.2115, 0.4956] | 42.41% |
+| `industry_data_center` | -0.1359 | 0.0845 | 0.1079 | [-0.3015, 0.0298] | -12.7% |
+| `region_northeast` | -0.1452 | 0.0888 | 0.1021 | [-0.3192, 0.0289] | -13.51% |
+| `region_south` | -0.1284 | 0.0953 | 0.1777 | [-0.3151, 0.0583] | -12.05% |
+| `region_west` | 0.1149 | 0.0744 | 0.1226 | [-0.031, 0.2607] | 12.18% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Model 4: early-career subsample (original question)
 
-N = 23, R² = 0.5887, adjusted R² = 0.4344, SE: cluster
+N = 26, R² = 0.6012, adjusted R² = 0.4753, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 11.0844*** | 0.2372 | 0.0 | [10.6196, 11.5493] | — |
-| `seniority_rank` | 0.2937*** | 0.0923 | 0.0015 | [0.1128, 0.4747] | 34.14% |
-| `yrs_exp_min` | -0.2066*** | 0.0523 | 0.0001 | [-0.3091, -0.1041] | -18.67% |
-| `yrs_exp_stated` | 0.3082 | 0.247 | 0.2122 | [-0.176, 0.7924] | 36.1% |
-| `degree_required` | -0.142* | 0.0803 | 0.0771 | [-0.2995, 0.0155] | -13.24% |
-| `degree_stem` | 0.3903* | 0.201 | 0.0522 | [-0.0037, 0.7842] | 47.74% |
-| `skill_cloud` | 0.2823 | 0.2125 | 0.1839 | [-0.1341, 0.6987] | 32.62% |
+| `const` | 10.9499*** | 0.1434 | 0.0 | [10.6689, 11.2309] | — |
+| `seniority_rank` | 0.3844*** | 0.0967 | 0.0001 | [0.195, 0.5738] | 46.87% |
+| `yrs_exp_min` | -0.1753** | 0.0718 | 0.0147 | [-0.3161, -0.0345] | -16.08% |
+| `yrs_exp_stated` | 0.2404 | 0.2955 | 0.4159 | [-0.3388, 0.8196] | 27.17% |
+| `degree_required` | -0.1009 | 0.1365 | 0.46 | [-0.3685, 0.1667] | -9.6% |
+| `degree_stem` | 0.36** | 0.1448 | 0.0129 | [0.0762, 0.6438] | 43.33% |
+| `skill_cloud` | 0.1636 | 0.161 | 0.3095 | [-0.1519, 0.479] | 17.77% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Disclosure selection
 
-Disclosure rate: **0.716** (101 disclosed, 40 withheld).
+Disclosure rate: **0.725** (100 disclosed, 38 withheld).
 
 | Variable | Mean (disclosed) | Mean (withheld) | Diff | p |
 |---|---|---|---|---|
-| `seniority_rank` | 2.693 | 2.825 | -0.132 | 0.5237 |
-| `yrs_exp_min` | 1.545 | 1.725 | -0.18 | 0.6776 |
-| `yrs_exp_stated` | 0.396 | 0.5 | -0.104 | 0.2716 |
-| `degree_required` | 0.713 | 0.675 | 0.038 | 0.6668 |
-| `degree_stem` | 0.356 | 0.325 | 0.031 | 0.7249 |
-| `skill_cloud` | 0.208 | 0.2 | 0.008 | 0.9171 |
-| `skill_ml_ai` | 0.248 | 0.225 | 0.023 | 0.778 |
-| `remote_eligible` | 0.119 | 0.075 | 0.044 | 0.4121 |
-| `mandate_state` | 0.802 | 0.025 | 0.777 | 0.0 |
-| `region_northeast` | 0.089 | 0.1 | -0.011 | 0.846 |
-| `region_south` | 0.119 | 0.575 | -0.456 | 0.0 |
-| `region_west` | 0.337 | 0.025 | 0.312 | 0.0 |
-| `industry_data_center` | 0.178 | 0.4 | -0.222 | 0.0137 |
-| `family_ai_ml` | 0.109 | 0.05 | 0.059 | 0.2108 |
-| `metro_indianapolis` | 0.03 | 0.15 | -0.12 | 0.0496 |
+| `seniority_rank` | 2.62 | 2.737 | -0.117 | 0.592 |
+| `yrs_exp_min` | 1.52 | 1.711 | -0.191 | 0.6684 |
+| `yrs_exp_stated` | 0.39 | 0.5 | -0.11 | 0.2546 |
+| `degree_required` | 0.72 | 0.711 | 0.009 | 0.9138 |
+| `degree_stem` | 0.36 | 0.342 | 0.018 | 0.8459 |
+| `skill_cloud` | 0.21 | 0.211 | -0.001 | 0.9947 |
+| `skill_ml_ai` | 0.25 | 0.237 | 0.013 | 0.8735 |
+| `remote_eligible` | 0.12 | 0.079 | 0.041 | 0.4581 |
+| `mandate_state` | 0.87 | 0.053 | 0.817 | 0.0 |
+| `region_northeast` | 0.09 | 0.105 | -0.015 | 0.7936 |
+| `region_south` | 0.12 | 0.579 | -0.459 | 0.0 |
+| `region_west` | 0.34 | 0.026 | 0.314 | 0.0 |
+| `industry_data_center` | 0.18 | 0.395 | -0.215 | 0.0194 |
+| `family_ai_ml` | 0.11 | 0.053 | 0.057 | 0.2383 |
+| `metro_indianapolis` | 0.03 | 0.158 | -0.128 | 0.0463 |
 

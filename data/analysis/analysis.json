@@ -1,103 +1,103 @@
 {
   "dataset": "/home/user/modern-labor-market-data-submission/data/analysis/postings.csv",
-  "n_total": 141,
-  "n_with_pay": 101,
+  "n_total": 138,
+  "n_with_pay": 100,
   "distinct_employers": 27,
-  "n_estimation": 101,
+  "n_estimation": 100,
   "selection": {
-    "n_disclosed": 101,
-    "n_withheld": 40,
-    "disclosure_rate": 0.716,
+    "n_disclosed": 100,
+    "n_withheld": 38,
+    "disclosure_rate": 0.725,
     "by_variable": {
       "seniority_rank": {
-        "mean_disclosed": 2.693,
-        "mean_withheld": 2.825,
-        "diff": -0.132,
-        "p_value": 0.5237
+        "mean_disclosed": 2.62,
+        "mean_withheld": 2.737,
+        "diff": -0.117,
+        "p_value": 0.592
       },
       "yrs_exp_min": {
-        "mean_disclosed": 1.545,
-        "mean_withheld": 1.725,
-        "diff": -0.18,
-        "p_value": 0.6776
+        "mean_disclosed": 1.52,
+        "mean_withheld": 1.711,
+        "diff": -0.191,
+        "p_value": 0.6684
       },
       "yrs_exp_stated": {
-        "mean_disclosed": 0.396,
+        "mean_disclosed": 0.39,
         "mean_withheld": 0.5,
-        "diff": -0.104,
-        "p_value": 0.2716
+        "diff": -0.11,
+        "p_value": 0.2546
       },
       "degree_required": {
-        "mean_disclosed": 0.713,
-        "mean_withheld": 0.675,
-        "diff": 0.038,
-        "p_value": 0.6668
+        "mean_disclosed": 0.72,
+        "mean_withheld": 0.711,
+        "diff": 0.009,
+        "p_value": 0.9138
       },
       "degree_stem": {
-        "mean_disclosed": 0.356,
-        "mean_withheld": 0.325,
-        "diff": 0.031,
-        "p_value": 0.7249
+        "mean_disclosed": 0.36,
+        "mean_withheld": 0.342,
+        "diff": 0.018,
+        "p_value": 0.8459
       },
       "skill_cloud": {
-        "mean_disclosed": 0.208,
-        "mean_withheld": 0.2,
-        "diff": 0.008,
-        "p_value": 0.9171
+        "mean_disclosed": 0.21,
+        "mean_withheld": 0.211,
+        "diff": -0.001,
+        "p_value": 0.9947
       },
       "skill_ml_ai": {
-        "mean_disclosed": 0.248,
-        "mean_withheld": 0.225,
-        "diff": 0.023,
-        "p_value": 0.778
+        "mean_disclosed": 0.25,
+        "mean_withheld": 0.237,
+        "diff": 0.013,
+        "p_value": 0.8735
       },
       "remote_eligible": {
-        "mean_disclosed": 0.119,
-        "mean_withheld": 0.075,
-        "diff": 0.044,
-        "p_value": 0.4121
+        "mean_disclosed": 0.12,
+        "mean_withheld": 0.079,
+        "diff": 0.041,
+        "p_value": 0.4581
       },
       "mandate_state": {
-        "mean_disclosed": 0.802,
-        "mean_withheld": 0.025,
-        "diff": 0.777,
+        "mean_disclosed": 0.87,
+        "mean_withheld": 0.053,
+        "diff": 0.817,
         "p_value": 0.0
       },
       "region_northeast": {
-        "mean_disclosed": 0.089,
-        "mean_withheld": 0.1,
-        "diff": -0.011,
-        "p_value": 0.846
+        "mean_disclosed": 0.09,
+        "mean_withheld": 0.105,
+        "diff": -0.015,
+        "p_value": 0.7936
       },
       "region_south": {
-        "mean_disclosed": 0.119,
-        "mean_withheld": 0.575,
-        "diff": -0.456,
+        "mean_disclosed": 0.12,
+        "mean_withheld": 0.579,
+        "diff": -0.459,
         "p_value": 0.0
       },
       "region_west": {
-        "mean_disclosed": 0.337,
-        "mean_withheld": 0.025,
-        "diff": 0.312,
+        "mean_disclosed": 0.34,
+        "mean_withheld": 0.026,
+        "diff": 0.314,
         "p_value": 0.0
       },
       "industry_data_center": {
-        "mean_disclosed": 0.178,
-        "mean_withheld": 0.4,
-        "diff": -0.222,
-        "p_value": 0.0137
+        "mean_disclosed": 0.18,
+        "mean_withheld": 0.395,
+        "diff": -0.215,
+        "p_value": 0.0194
       },
       "family_ai_ml": {
-        "mean_disclosed": 0.109,
-        "mean_withheld": 0.05,
-        "diff": 0.059,
-        "p_value": 0.2108
+        "mean_disclosed": 0.11,
+        "mean_withheld": 0.053,
+        "diff": 0.057,
+        "p_value": 0.2383
       },
       "metro_indianapolis": {
         "mean_disclosed": 0.03,
-        "mean_withheld": 0.15,
-        "diff": -0.12,
-        "p_value": 0.0496
+        "mean_withheld": 0.158,
+        "diff": -0.128,
+        "p_value": 0.0463
       }
     }
   },
@@ -107,37 +107,37 @@
   "regressor_budget": 5,
   "specification_chosen": "core",
   "vif_core": {
-    "seniority_rank": 1.13,
-    "yrs_exp_min": 3.61,
-    "yrs_exp_stated": 3.6,
-    "degree_required": 1.22,
-    "degree_stem": 1.61,
-    "skill_cloud": 3.65,
-    "skill_ml_ai": 3.04,
-    "remote_eligible": 1.68,
-    "mandate_state": 1.58,
-    "region_northeast": 1.43,
-    "region_south": 1.41,
+    "seniority_rank": 1.14,
+    "yrs_exp_min": 3.81,
+    "yrs_exp_stated": 3.75,
+    "degree_required": 1.23,
+    "degree_stem": 1.69,
+    "skill_cloud": 3.68,
+    "skill_ml_ai": 3.14,
+    "remote_eligible": 1.95,
+    "mandate_state": 1.94,
+    "region_northeast": 1.44,
+    "region_south": 1.37,
     "region_west": 1.51,
-    "industry_data_center": 1.34,
-    "family_ai_ml": 2.01
+    "industry_data_center": 1.32,
+    "family_ai_ml": 2.09
   },
   "disclosure": {
     "by_mandate": {
       "no_mandate": {
-        "share_disclosed": 0.339,
-        "n": 59
+        "share_disclosed": 0.2653,
+        "n": 49
       },
       "mandate": {
-        "share_disclosed": 0.9878,
-        "n": 82
+        "share_disclosed": 0.9775,
+        "n": 89
       }
     },
     "design": "associational; single cross-section, no DiD available"
   },
   "early_career_subsample": {
-    "n": 23,
-    "n_employers": 8
+    "n": 26,
+    "n_employers": 10
   },
   "price_adjustment": {
     "n": 0,
@@ -145,472 +145,472 @@
     "note": "BEA regional price parities were not fetched, so pay is nominal only. No deflator is imputed."
   },
   "interpretability_warnings": [
-    "7.2 observations per regressor (101 observations, 14 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.",
-    "Minimum detectable effect is 0.30 log points, roughly a 35% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value."
+    "7.1 observations per regressor (100 observations, 14 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.",
+    "Minimum detectable effect is 0.30 log points, roughly a 36% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value."
   ],
   "interpretable": false,
-  "obs_per_regressor": 7.21,
+  "obs_per_regressor": 7.14,
   "n_clusters": 20,
   "models": {
     "core": {
       "label": "Core model (pre-specified)",
-      "n": 101,
-      "r_squared": 0.5784,
-      "adj_r_squared": 0.5097,
+      "n": 100,
+      "r_squared": 0.5681,
+      "adj_r_squared": 0.4969,
       "cov_type": "cluster",
       "coefficients": {
         "const": {
-          "coef": 11.3382,
-          "std_err": 0.0415,
-          "t": 273.168,
+          "coef": 11.309,
+          "std_err": 0.0554,
+          "t": 204.205,
           "p_value": 0.0,
-          "ci_low": 11.2569,
-          "ci_high": 11.4196,
+          "ci_low": 11.2004,
+          "ci_high": 11.4175,
           "pct_effect": null
         },
         "seniority_rank": {
-          "coef": 0.0615,
-          "std_err": 0.0122,
-          "t": 5.034,
+          "coef": 0.0639,
+          "std_err": 0.0106,
+          "t": 6.021,
           "p_value": 0.0,
-          "ci_low": 0.0375,
-          "ci_high": 0.0854,
-          "pct_effect": 6.34
+          "ci_low": 0.0431,
+          "ci_high": 0.0847,
+          "pct_effect": 6.6
         },
         "yrs_exp_min": {
-          "coef": -0.0048,
-          "std_err": 0.013,
-          "t": -0.371,
-          "p_value": 0.7107,
-          "ci_low": -0.0304,
-          "ci_high": 0.0207,
-          "pct_effect": -0.48
+          "coef": -0.0063,
+          "std_err": 0.0139,
+          "t": -0.457,
+          "p_value": 0.6479,
+          "ci_low": -0.0336,
+          "ci_high": 0.0209,
+          "pct_effect": -0.63
         },
         "yrs_exp_stated": {
-          "coef": -0.0339,
-          "std_err": 0.131,
-          "t": -0.259,
-          "p_value": 0.7959,
-          "ci_low": -0.2907,
-          "ci_high": 0.2229,
-          "pct_effect": -3.33
+          "coef": -0.0418,
+          "std_err": 0.1388,
+          "t": -0.301,
+          "p_value": 0.7632,
+          "ci_low": -0.3139,
+          "ci_high": 0.2302,
+          "pct_effect": -4.1
         },
         "degree_required": {
-          "coef": -0.1121,
-          "std_err": 0.0551,
-          "t": -2.036,
-          "p_value": 0.0418,
-          "ci_low": -0.22,
-          "ci_high": -0.0042,
-          "pct_effect": -10.6
+          "coef": -0.1273,
+          "std_err": 0.0567,
+          "t": -2.247,
+          "p_value": 0.0247,
+          "ci_low": -0.2383,
+          "ci_high": -0.0162,
+          "pct_effect": -11.95
         },
         "degree_stem": {
-          "coef": 0.0755,
-          "std_err": 0.0586,
-          "t": 1.289,
-          "p_value": 0.1974,
-          "ci_low": -0.0393,
-          "ci_high": 0.1903,
-          "pct_effect": 7.84
+          "coef": 0.0929,
+          "std_err": 0.063,
+          "t": 1.474,
+          "p_value": 0.1406,
+          "ci_low": -0.0306,
+          "ci_high": 0.2164,
+          "pct_effect": 9.73
         },
         "skill_cloud": {
-          "coef": 0.0932,
-          "std_err": 0.1261,
-          "t": 0.739,
-          "p_value": 0.4596,
-          "ci_low": -0.1539,
-          "ci_high": 0.3403,
-          "pct_effect": 9.77
+          "coef": 0.1009,
+          "std_err": 0.1278,
+          "t": 0.789,
+          "p_value": 0.4299,
+          "ci_low": -0.1496,
+          "ci_high": 0.3514,
+          "pct_effect": 10.62
         },
         "skill_ml_ai": {
-          "coef": 0.1775,
-          "std_err": 0.1215,
-          "t": 1.461,
-          "p_value": 0.1441,
-          "ci_low": -0.0606,
-          "ci_high": 0.4156,
-          "pct_effect": 19.42
+          "coef": 0.1722,
+          "std_err": 0.1238,
+          "t": 1.392,
+          "p_value": 0.164,
+          "ci_low": -0.0703,
+          "ci_high": 0.4148,
+          "pct_effect": 18.8
         },
         "remote_eligible": {
-          "coef": 0.171,
-          "std_err": 0.0692,
-          "t": 2.471,
-          "p_value": 0.0135,
-          "ci_low": 0.0354,
-          "ci_high": 0.3067,
-          "pct_effect": 18.65
+          "coef": 0.1925,
+          "std_err": 0.0772,
+          "t": 2.493,
+          "p_value": 0.0127,
+          "ci_low": 0.0412,
+          "ci_high": 0.3439,
+          "pct_effect": 21.23
         },
         "mandate_state": {
-          "coef": -0.1377,
-          "std_err": 0.0622,
-          "t": -2.214,
-          "p_value": 0.0268,
-          "ci_low": -0.2596,
-          "ci_high": -0.0158,
-          "pct_effect": -12.86
+          "coef": -0.0914,
+          "std_err": 0.0929,
+          "t": -0.984,
+          "p_value": 0.3253,
+          "ci_low": -0.2736,
+          "ci_high": 0.0907,
+          "pct_effect": -8.74
         },
         "region_northeast": {
-          "coef": 0.3556,
-          "std_err": 0.0978,
-          "t": 3.635,
-          "p_value": 0.0003,
-          "ci_low": 0.1639,
-          "ci_high": 0.5473,
-          "pct_effect": 42.7
+          "coef": 0.3414,
+          "std_err": 0.0983,
+          "t": 3.474,
+          "p_value": 0.0005,
+          "ci_low": 0.1488,
+          "ci_high": 0.534,
+          "pct_effect": 40.7
         },
         "region_south": {
-          "coef": 0.2274,
-          "std_err": 0.1224,
-          "t": 1.858,
-          "p_value": 0.0632,
-          "ci_low": -0.0125,
-          "ci_high": 0.4672,
-          "pct_effect": 25.53
+          "coef": 0.2718,
+          "std_err": 0.0944,
+          "t": 2.879,
+          "p_value": 0.004,
+          "ci_low": 0.0868,
+          "ci_high": 0.4568,
+          "pct_effect": 31.23
         },
         "region_west": {
-          "coef": 0.1195,
-          "std_err": 0.059,
-          "t": 2.028,
-          "p_value": 0.0426,
-          "ci_low": 0.004,
-          "ci_high": 0.2351,
-          "pct_effect": 12.7
+          "coef": 0.1248,
+          "std_err": 0.052,
+          "t": 2.398,
+          "p_value": 0.0165,
+          "ci_low": 0.0228,
+          "ci_high": 0.2268,
+          "pct_effect": 13.29
         },
         "industry_data_center": {
-          "coef": 0.1677,
-          "std_err": 0.0884,
-          "t": 1.898,
-          "p_value": 0.0576,
-          "ci_low": -0.0054,
-          "ci_high": 0.3409,
-          "pct_effect": 18.26
+          "coef": 0.1437,
+          "std_err": 0.0863,
+          "t": 1.665,
+          "p_value": 0.0959,
+          "ci_low": -0.0255,
+          "ci_high": 0.3129,
+          "pct_effect": 15.46
         },
         "family_ai_ml": {
-          "coef": -0.0625,
-          "std_err": 0.1304,
-          "t": -0.48,
-          "p_value": 0.6316,
-          "ci_low": -0.3181,
-          "ci_high": 0.193,
-          "pct_effect": -6.06
+          "coef": -0.0616,
+          "std_err": 0.1347,
+          "t": -0.457,
+          "p_value": 0.6475,
+          "ci_low": -0.3256,
+          "ci_high": 0.2024,
+          "pct_effect": -5.97
         }
       }
     },
     "range_width": {
       "label": "Secondary: log(range width)",
-      "n": 99,
-      "r_squared": 0.2086,
-      "adj_r_squared": 0.0767,
+      "n": 98,
+      "r_squared": 0.1864,
+      "adj_r_squared": 0.0492,
       "cov_type": "cluster",
       "coefficients": {
         "const": {
-          "coef": 9.9781,
-          "std_err": 0.3099,
-          "t": 32.201,
+          "coef": 10.0737,
+          "std_err": 0.3358,
+          "t": 29.997,
           "p_value": 0.0,
-          "ci_low": 9.3708,
-          "ci_high": 10.5855,
+          "ci_low": 9.4155,
+          "ci_high": 10.7319,
           "pct_effect": null
         },
         "seniority_rank": {
-          "coef": 0.0936,
-          "std_err": 0.0911,
-          "t": 1.028,
-          "p_value": 0.304,
-          "ci_low": -0.0849,
-          "ci_high": 0.2722,
-          "pct_effect": 9.82
+          "coef": 0.0619,
+          "std_err": 0.1051,
+          "t": 0.588,
+          "p_value": 0.5562,
+          "ci_low": -0.1442,
+          "ci_high": 0.2679,
+          "pct_effect": 6.38
         },
         "yrs_exp_min": {
-          "coef": 0.1259,
-          "std_err": 0.0693,
-          "t": 1.817,
-          "p_value": 0.0692,
-          "ci_low": -0.0099,
+          "coef": 0.1293,
+          "std_err": 0.0676,
+          "t": 1.913,
+          "p_value": 0.0557,
+          "ci_low": -0.0032,
           "ci_high": 0.2618,
-          "pct_effect": 13.42
+          "pct_effect": 13.8
         },
         "yrs_exp_stated": {
-          "coef": -0.4493,
-          "std_err": 0.3911,
-          "t": -1.149,
-          "p_value": 0.2506,
-          "ci_low": -1.2158,
-          "ci_high": 0.3172,
-          "pct_effect": -36.19
+          "coef": -0.4382,
+          "std_err": 0.4189,
+          "t": -1.046,
+          "p_value": 0.2956,
+          "ci_low": -1.2593,
+          "ci_high": 0.383,
+          "pct_effect": -35.48
         },
         "degree_required": {
-          "coef": -0.0596,
-          "std_err": 0.116,
-          "t": -0.514,
-          "p_value": 0.6073,
-          "ci_low": -0.2869,
-          "ci_high": 0.1677,
-          "pct_effect": -5.79
+          "coef": -0.0782,
+          "std_err": 0.1139,
+          "t": -0.686,
+          "p_value": 0.4924,
+          "ci_low": -0.3015,
+          "ci_high": 0.1451,
+          "pct_effect": -7.52
         },
         "degree_stem": {
-          "coef": 0.1229,
-          "std_err": 0.1484,
-          "t": 0.828,
-          "p_value": 0.4074,
-          "ci_low": -0.1679,
-          "ci_high": 0.4138,
-          "pct_effect": 13.08
+          "coef": 0.1163,
+          "std_err": 0.1658,
+          "t": 0.701,
+          "p_value": 0.483,
+          "ci_low": -0.2086,
+          "ci_high": 0.4411,
+          "pct_effect": 12.33
         },
         "skill_cloud": {
-          "coef": 0.0211,
-          "std_err": 0.3971,
-          "t": 0.053,
-          "p_value": 0.9575,
-          "ci_low": -0.7571,
-          "ci_high": 0.7993,
-          "pct_effect": 2.14
+          "coef": -0.0547,
+          "std_err": 0.3851,
+          "t": -0.142,
+          "p_value": 0.887,
+          "ci_low": -0.8095,
+          "ci_high": 0.7001,
+          "pct_effect": -5.32
         },
         "skill_ml_ai": {
-          "coef": -0.1186,
-          "std_err": 0.4401,
-          "t": -0.269,
-          "p_value": 0.7876,
-          "ci_low": -0.9812,
-          "ci_high": 0.7441,
-          "pct_effect": -11.18
+          "coef": -0.0917,
+          "std_err": 0.4739,
+          "t": -0.193,
+          "p_value": 0.8466,
+          "ci_low": -1.0206,
+          "ci_high": 0.8372,
+          "pct_effect": -8.76
         },
         "remote_eligible": {
-          "coef": 0.3851,
-          "std_err": 0.311,
-          "t": 1.238,
-          "p_value": 0.2155,
-          "ci_low": -0.2244,
-          "ci_high": 0.9947,
-          "pct_effect": 46.98
+          "coef": 0.3798,
+          "std_err": 0.392,
+          "t": 0.969,
+          "p_value": 0.3326,
+          "ci_low": -0.3885,
+          "ci_high": 1.1481,
+          "pct_effect": 46.2
         },
         "mandate_state": {
-          "coef": 0.5631,
-          "std_err": 0.2138,
-          "t": 2.633,
-          "p_value": 0.0085,
-          "ci_low": 0.144,
-          "ci_high": 0.9821,
-          "pct_effect": 75.6
+          "coef": 0.5101,
+          "std_err": 0.3429,
+          "t": 1.488,
+          "p_value": 0.1368,
+          "ci_low": -0.162,
+          "ci_high": 1.1822,
+          "pct_effect": 66.55
         },
         "region_northeast": {
-          "coef": -0.888,
-          "std_err": 0.3253,
-          "t": -2.73,
-          "p_value": 0.0063,
-          "ci_low": -1.5256,
-          "ci_high": -0.2504,
-          "pct_effect": -58.85
+          "coef": -0.8382,
+          "std_err": 0.3341,
+          "t": -2.509,
+          "p_value": 0.0121,
+          "ci_low": -1.493,
+          "ci_high": -0.1833,
+          "pct_effect": -56.75
         },
         "region_south": {
-          "coef": -0.1181,
-          "std_err": 0.1867,
-          "t": -0.632,
-          "p_value": 0.5272,
-          "ci_low": -0.484,
-          "ci_high": 0.2479,
-          "pct_effect": -11.14
+          "coef": -0.226,
+          "std_err": 0.1822,
+          "t": -1.24,
+          "p_value": 0.2149,
+          "ci_low": -0.5832,
+          "ci_high": 0.1312,
+          "pct_effect": -20.23
         },
         "region_west": {
-          "coef": -0.1384,
-          "std_err": 0.1897,
-          "t": -0.73,
-          "p_value": 0.4654,
-          "ci_low": -0.5102,
-          "ci_high": 0.2333,
-          "pct_effect": -12.93
+          "coef": -0.0905,
+          "std_err": 0.1812,
+          "t": -0.499,
+          "p_value": 0.6175,
+          "ci_low": -0.4456,
+          "ci_high": 0.2647,
+          "pct_effect": -8.65
         },
         "industry_data_center": {
-          "coef": -0.8348,
-          "std_err": 0.4313,
-          "t": -1.936,
-          "p_value": 0.0529,
-          "ci_low": -1.6801,
-          "ci_high": 0.0105,
-          "pct_effect": -56.61
+          "coef": -0.8085,
+          "std_err": 0.4186,
+          "t": -1.931,
+          "p_value": 0.0534,
+          "ci_low": -1.6289,
+          "ci_high": 0.0119,
+          "pct_effect": -55.45
         },
         "family_ai_ml": {
-          "coef": 0.4993,
-          "std_err": 0.2939,
-          "t": 1.699,
-          "p_value": 0.0893,
-          "ci_low": -0.0767,
-          "ci_high": 1.0753,
-          "pct_effect": 64.75
+          "coef": 0.5658,
+          "std_err": 0.2906,
+          "t": 1.947,
+          "p_value": 0.0516,
+          "ci_low": -0.0038,
+          "ci_high": 1.1354,
+          "pct_effect": 76.08
         }
       }
     },
     "disclosure_lpm": {
       "label": "Model 3: pay disclosed (linear probability)",
-      "n": 141,
-      "r_squared": 0.6029,
-      "adj_r_squared": 0.582,
+      "n": 138,
+      "r_squared": 0.6947,
+      "adj_r_squared": 0.6783,
       "cov_type": "cluster",
       "coefficients": {
         "const": {
-          "coef": 0.3467,
-          "std_err": 0.0998,
-          "t": 3.474,
-          "p_value": 0.0005,
-          "ci_low": 0.1511,
-          "ci_high": 0.5422,
+          "coef": 0.2816,
+          "std_err": 0.1145,
+          "t": 2.46,
+          "p_value": 0.0139,
+          "ci_low": 0.0572,
+          "ci_high": 0.5059,
           "pct_effect": null
         },
         "mandate_state": {
-          "coef": 0.603,
-          "std_err": 0.0766,
-          "t": 7.871,
+          "coef": 0.6784,
+          "std_err": 0.0852,
+          "t": 7.966,
           "p_value": 0.0,
-          "ci_low": 0.4528,
-          "ci_high": 0.7532,
-          "pct_effect": 82.76
+          "ci_low": 0.5115,
+          "ci_high": 0.8454,
+          "pct_effect": 97.08
         },
         "seniority_rank": {
-          "coef": 0.0193,
-          "std_err": 0.0245,
-          "t": 0.787,
-          "p_value": 0.431,
-          "ci_low": -0.0287,
-          "ci_high": 0.0672,
-          "pct_effect": 1.95
+          "coef": 0.0059,
+          "std_err": 0.0182,
+          "t": 0.327,
+          "p_value": 0.7434,
+          "ci_low": -0.0297,
+          "ci_high": 0.0415,
+          "pct_effect": 0.6
         },
         "remote_eligible": {
-          "coef": 0.3039,
-          "std_err": 0.0861,
-          "t": 3.529,
-          "p_value": 0.0004,
-          "ci_low": 0.1351,
-          "ci_high": 0.4727,
-          "pct_effect": 35.51
+          "coef": 0.3536,
+          "std_err": 0.0725,
+          "t": 4.877,
+          "p_value": 0.0,
+          "ci_low": 0.2115,
+          "ci_high": 0.4956,
+          "pct_effect": 42.41
         },
         "industry_data_center": {
-          "coef": -0.1685,
-          "std_err": 0.093,
-          "t": -1.812,
-          "p_value": 0.07,
-          "ci_low": -0.3507,
-          "ci_high": 0.0138,
-          "pct_effect": -15.51
+          "coef": -0.1359,
+          "std_err": 0.0845,
+          "t": -1.608,
+          "p_value": 0.1079,
+          "ci_low": -0.3015,
+          "ci_high": 0.0298,
+          "pct_effect": -12.7
         },
         "region_northeast": {
-          "coef": -0.1809,
-          "std_err": 0.0953,
-          "t": -1.897,
-          "p_value": 0.0578,
-          "ci_low": -0.3677,
-          "ci_high": 0.006,
-          "pct_effect": -16.55
+          "coef": -0.1452,
+          "std_err": 0.0888,
+          "t": -1.635,
+          "p_value": 0.1021,
+          "ci_low": -0.3192,
+          "ci_high": 0.0289,
+          "pct_effect": -13.51
         },
         "region_south": {
-          "coef": -0.1239,
-          "std_err": 0.0902,
-          "t": -1.374,
-          "p_value": 0.1695,
-          "ci_low": -0.3008,
-          "ci_high": 0.0529,
-          "pct_effect": -11.66
+          "coef": -0.1284,
+          "std_err": 0.0953,
+          "t": -1.348,
+          "p_value": 0.1777,
+          "ci_low": -0.3151,
+          "ci_high": 0.0583,
+          "pct_effect": -12.05
         },
         "region_west": {
-          "coef": 0.089,
-          "std_err": 0.0635,
-          "t": 1.401,
-          "p_value": 0.1611,
-          "ci_low": -0.0355,
-          "ci_high": 0.2134,
-          "pct_effect": 9.31
+          "coef": 0.1149,
+          "std_err": 0.0744,
+          "t": 1.544,
+          "p_value": 0.1226,
+          "ci_low": -0.031,
+          "ci_high": 0.2607,
+          "pct_effect": 12.18
         }
       }
     },
     "early_career": {
       "label": "Model 4: early-career subsample (original question)",
-      "n": 23,
-      "r_squared": 0.5887,
-      "adj_r_squared": 0.4344,
+      "n": 26,
+      "r_squared": 0.6012,
+      "adj_r_squared": 0.4753,
       "cov_type": "cluster",
       "coefficients": {
         "const": {
-          "coef": 11.0844,
-          "std_err": 0.2372,
-          "t": 46.735,
+          "coef": 10.9499,
+          "std_err": 0.1434,
+          "t": 76.383,
           "p_value": 0.0,
-          "ci_low": 10.6196,
-          "ci_high": 11.5493,
+          "ci_low": 10.6689,
+          "ci_high": 11.2309,
           "pct_effect": null
         },
         "seniority_rank": {
-          "coef": 0.2937,
-          "std_err": 0.0923,
-          "t": 3.182,
-          "p_value": 0.0015,
-          "ci_low": 0.1128,
-          "ci_high": 0.4747,
-          "pct_effect": 34.14
+          "coef": 0.3844,
+          "std_err": 0.0967,
+          "t": 3.977,
+          "p_value": 0.0001,
+          "ci_low": 0.195,
+          "ci_high": 0.5738,
+          "pct_effect": 46.87
         },
         "yrs_exp_min": {
-          "coef": -0.2066,
-          "std_err": 0.0523,
-          "t": -3.951,
-          "p_value": 0.0001,
-          "ci_low": -0.3091,
-          "ci_high": -0.1041,
-          "pct_effect": -18.67
+          "coef": -0.1753,
+          "std_err": 0.0718,
+          "t": -2.44,
+          "p_value": 0.0147,
+          "ci_low": -0.3161,
+          "ci_high": -0.0345,
+          "pct_effect": -16.08
         },
         "yrs_exp_stated": {
-          "coef": 0.3082,
-          "std_err": 0.247,
-          "t": 1.248,
-          "p_value": 0.2122,
-          "ci_low": -0.176,
-          "ci_high": 0.7924,
-          "pct_effect": 36.1
+          "coef": 0.2404,
+          "std_err": 0.2955,
+          "t": 0.813,
+          "p_value": 0.4159,
+          "ci_low": -0.3388,
+          "ci_high": 0.8196,
+          "pct_effect": 27.17
         },
         "degree_required": {
-          "coef": -0.142,
-          "std_err": 0.0803,
-          "t": -1.768,
-          "p_value": 0.0771,
-          "ci_low": -0.2995,
-          "ci_high": 0.0155,
-          "pct_effect": -13.24
+          "coef": -0.1009,
+          "std_err": 0.1365,
+          "t": -0.739,
+          "p_value": 0.46,
+          "ci_low": -0.3685,
+          "ci_high": 0.1667,
+          "pct_effect": -9.6
         },
         "degree_stem": {
-          "coef": 0.3903,
-          "std_err": 0.201,
-          "t": 1.942,
-          "p_value": 0.0522,
-          "ci_low": -0.0037,
-          "ci_high": 0.7842,
-          "pct_effect": 47.74
+          "coef": 0.36,
+          "std_err": 0.1448,
+          "t": 2.486,
+          "p_value": 0.0129,
+          "ci_low": 0.0762,
+          "ci_high": 0.6438,
+          "pct_effect": 43.33
         },
         "skill_cloud": {
-          "coef": 0.2823,
-          "std_err": 0.2125,
-          "t": 1.329,
-          "p_value": 0.1839,
-          "ci_low": -0.1341,
-          "ci_high": 0.6987,
-          "pct_effect": 32.62
+          "coef": 0.1636,
+          "std_err": 0.161,
+          "t": 1.016,
+          "p_value": 0.3095,
+          "ci_low": -0.1519,
+          "ci_high": 0.479,
+          "pct_effect": 17.77
         }
       }
     }
   },
   "power": {
-    "n": 101,
+    "n": 100,
     "k_core": 14,
-    "min_detectable_std_effect_log_points": 0.3021,
+    "min_detectable_std_effect_log_points": 0.3039,
     "interpretation": "Smallest standardized effect detectable at alpha=0.05 with 80% power. In log points: 0.05 is roughly a 5% pay difference."
   },
   "descriptives": {
     "pay_midpoint": {
-      "mean": 107861.22,
+      "mean": 107912.5,
       "median": 106500.0,
-      "std": 38505.24,
+      "std": 38695.76,
       "min": 46500.0,
       "max": 233000.0
     },
     "by_metro": {
       "chicago": 32,
-      "denver": 27,
+      "denver": 26,
       "northern_virginia": 10,
       "remote_national": 7,
       "bay_area": 5,
@@ -620,7 +620,7 @@
       "minneapolis": 1
     },
     "by_industry": {
-      "utility": 63,
+      "utility": 62,
       "data_center": 18,
       "developer": 11,
       "energy_analytics": 4,

@@ -277,6 +277,23 @@ roles:
   # the energy/analytics category, and near-misses the widened taxonomy would
   # otherwise pull in ("talent development" is not development work).
   exclude_any:
+    # Audit round 3, 2026-09-21. Three out-of-scope roles reached the dataset:
+    #   "Corporate Counsel, Corporate & Capital Markets"  (a lawyer)
+    #   "Sr. Nuclear Instructor (Database Administrator)" (a training role;
+    #      the DBA reference is parenthetical)
+    #   "Senior Security and Compliance Analyst"          (security; round 2
+    #      added "security analyst" but matching is contiguous and this reads
+    #      "Security AND COMPLIANCE Analyst")
+    - counsel
+    - attorney
+    - general counsel
+    - instructor
+    - trainer
+    - security and compliance
+    # NOT "security governance": it excluded "AI Data & Security Governance
+    # Engineer", which the audit judged a genuine data-governance role and
+    # recorded as borderline-but-kept. A pattern broad enough to catch it is
+    # broader than the finding justified.
     # Security was named as out of scope from the start but never encoded, so
     # "AI Cybersecurity Engineer" entered the sample on a bare "ai" match.
     - cybersecurity

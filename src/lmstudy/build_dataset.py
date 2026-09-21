@@ -24,7 +24,8 @@ sys.path.insert(0, str(ROOT / "src"))
 from lmstudy import geo, pay                                     # noqa: E402
 from lmstudy.code_regressors import load_dictionary, code_posting  # noqa: E402
 from lmstudy.filters import (screen_all, extract_years, extract_job_level,  # noqa: E402
-                            seniority_rank, is_early_career, SENIORITY_LABELS)
+                            seniority_rank, is_early_career, is_level_range,
+                            SENIORITY_LABELS)
 
 
 # Role families, checked in order; the first match wins. Ordered so the more
@@ -176,6 +177,10 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 # posting we cannot place to a state is no use to the pay model
                 # and is rejected here rather than carried with a blank.
                 us_state = geo.resolve_us_state(location_raw) if national else None
+                # EVERY state the posting lists. A pay-transparency law attaches
+                # to the job's location, so a posting naming several places is
+                # covered if any one of them is covered.
+                states_listed = geo.resolve_us_states(location_raw) if national else []
                 if national:
                     if geo.is_non_us(location_raw):
                         funnel["rejected_geo"] += 1
@@ -222,13 +227,24 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     "tier": place.tier if place.tier is not None else "",
                     "state": state,
                     "census_region": geo.census_region(state) or "",
-                    # Mandate status is read from the POSTING's state, not from
-                    # the metro it happens to sit in. Those agree in-metro, but
-                    # nationally the metro table would be silent.
-                    "mandate_state": int(state.upper() in mandate_states),
+                    # Every state the posting lists, so the mandate rule is
+                    # auditable and multi-site postings can be controlled for.
+                    "states_listed": ";".join(states_listed),
+                    "n_locations": len(states_listed),
+                    # Mandate status is read from the POSTING's locations, not
+                    # from the metro it sits in, and ANY covered location counts.
+                    # Taking the first-listed state understated coverage on 9 of
+                    # 141 rows in audit round 3 — seven of which disclosed pay,
+                    # which is what being covered predicts.
+                    "mandate_state": int(
+                        bool({s.upper() for s in states_listed} & mandate_states)
+                        or state.upper() in mandate_states),
                     "seniority_rank": rank,
                     "seniority_label": SENIORITY_LABELS.get(rank, ""),
                     "early_career": int(is_early_career(rank, years_min)),
+                    # One requisition advertising several rungs. Ranked at its
+                    # floor; the flag lets the model absorb the extra variance.
+                    "is_level_range": int(is_level_range(title)),
                     "distance_miles": place.distance_miles,
                     "work_arrangement": place.work_arrangement,
                     "remote_eligible": int(place.remote_eligible),

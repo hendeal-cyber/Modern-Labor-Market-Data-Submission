@@ -160,6 +160,75 @@ round went after `role_family` instead: `skill_cloud` on company blurbs,
 describes the team, and whether `soft_teamwork` is near-constant.
 
 
+### Round 3 — 2026-09-21
+
+**Target: `seniority_rank` and `state`**, the two variables the national
+rescope introduced and nobody had checked against hand-coded truth. Both are
+load-bearing: seniority is the headline regressor under H1, and `state` is what
+`mandate_state` derives from, which carries the study's best finding. All 141
+rows read, not sampled.
+
+**Result: 21 of 141 wrong — 85.1% accuracy, below the 0.90 standard.**
+
+**Finding 1 — `mandate_state` wrong on multi-location postings (9 rows).**
+23% of rows list more than one location, and `state` and `metro` were assigned
+by different rules — nearest study metro versus first parseable fragment — so
+they disagreed constantly (`state=UT, metro=indianapolis`). For most fields
+that is untidy; for `mandate_state` it is wrong, because the law attaches to
+the job's location and a posting listing any covered place is covered. Nine
+rows read 0 while listing a mandate state elsewhere, and seven of those nine
+had disclosed pay.
+
+| Disclosure contrast | mandate | no mandate | gap |
+|---|---|---|---|
+| Before | 98.8% (n=82) | 33.9% (n=59) | 64.9pp |
+| After | 97.8% (n=89) | 26.5% (n=49) | **71.2pp** |
+
+The fix strengthened the headline. That is worth stating plainly: it was found
+by auditing assignments, the effect was predicted (~70.7pp) before it was
+implemented, and it would have been reported identically had the gap narrowed.
+
+**Finding 2 — range titles ranked at their ceiling (9 rows, 6%).** Utilities
+routinely advertise several rungs in one requisition. Ranked at the floor now,
+with `is_level_range` carrying the extra variance. Seniority shifted as
+expected: entry 20 → 24, staff/principal 6 → 3.
+
+**Finding 3 — three out-of-scope roles admitted.** "Corporate Counsel" (a
+lawyer, on `capital markets`), "Sr. Nuclear Instructor (Database
+Administrator)" (a training role; the DBA reference is parenthetical), and
+"Senior Security and Compliance Analyst" (round 2 added `security analyst`, but
+matching is contiguous and this reads "Security **and Compliance** Analyst").
+A fourth, "AI Data & Security Governance Engineer", was judged a genuine
+data-governance role and deliberately **kept**; the first fix excluded it too
+and was narrowed, because a pattern broad enough to catch it was broader than
+the finding justified.
+
+**Changes made:** `resolve_us_states()`; `mandate_state` from any listed state;
+`states_listed` and `n_locations` emitted so the rule is auditable and the old
+rule recomputable; `seniority_rank()` returns the floor of a range;
+`is_level_range` added; `counsel`, `attorney`, `instructor`, `trainer`,
+`security and compliance` excluded.
+
+**Re-scored: 138 rows, all three defects resolved.** N falls 101 → 100 as the
+out-of-scope roles leave, which is the correct direction.
+
+**Known limitation, recorded rather than papered over:** a range between an
+*unlevelled* base and a named rung ("Data Analyst or Data Analyst Senior")
+cannot be detected, because the unlevelled side carries no token to match. Two
+rows. Ranking senior is the conservative read.
+
+**Not defects, recorded so they are not re-litigated:** "Associate" is
+genuinely ambiguous — a mid rung in banking, junior in engineering, and both
+appear here — so it is documented rather than forced. And the five Invenergy
+Development rows that looked like duplicates are distinct requisitions
+(R11187-1, R11315-2, R10740-1, R11186, R10973-1); dedupe is working and my
+first reading was wrong.
+
+**Still outstanding from round 1:** `skill_cloud` on company blurbs,
+`benefit_equity` on diversity language, `degree_stem` where a field name
+describes the team, `soft_teamwork` possibly near-constant.
+
+
 <!--
 Round template:
 

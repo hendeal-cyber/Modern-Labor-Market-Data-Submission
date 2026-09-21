@@ -175,20 +175,48 @@ SENIORITY_LABELS = {
 }
 
 
+# A requisition advertising several rungs at once: "Resource Planning Analyst
+# I or II or Senior", "(Sr.) (Lead) (Principal) Energy Analyst/Engineer (II)",
+# "Senior/Principal Data Analyst". Utilities post these routinely — 9 of 141
+# rows in the round-3 audit — and taking the highest match ranked every one at
+# its ceiling, biasing the headline regressor upward exactly where the
+# advertised pay range is widest.
+_RANGE_SEPARATOR = re.compile(r"\bor\b|/", re.IGNORECASE)
+
+
+def is_level_range(title: str) -> bool:
+    """True when one posting advertises more than one seniority rung."""
+    title_n = _norm(title)
+    if not title_n or not _RANGE_SEPARATOR.search(title_n):
+        return False
+    return len(_ranks_present(title_n)) > 1
+
+
+def _ranks_present(title_n: str) -> set[int]:
+    return {rank for rank, needles in SENIORITY_RANKS
+            for needle in needles if _matches(title_n, needle)}
+
+
 def seniority_rank(title: str, description: str = "") -> int:
     """Ordinal seniority from the title. Higher is more senior.
 
     0 intern, 1 entry, 2 mid or unlevelled, 3 senior, 4 staff/principal,
     5 manager, 6 director, 7 VP and above.
+
+    A title advertising a RANGE of rungs is ranked at its LOWEST — the level
+    the employer will actually hire at, and the one the advertised pay floor
+    corresponds to. Averaging was rejected: a midpoint rank is not a level
+    anyone is hired into, and it would invent a rung the posting never named.
     """
     title_n = _norm(title)
     if not title_n:
         return SENIORITY_DEFAULT
-    for rank, needles in SENIORITY_RANKS:
-        for needle in needles:
-            if _matches(title_n, needle):
-                return rank
-    return SENIORITY_DEFAULT
+    found = _ranks_present(title_n)
+    if not found:
+        return SENIORITY_DEFAULT
+    if len(found) > 1 and _RANGE_SEPARATOR.search(title_n):
+        return min(found)
+    return max(found)
 
 
 def is_early_career(rank: int, years_min: int | None,

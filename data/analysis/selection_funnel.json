@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-21T16:01:24.227855+00:00",
+  "built_at": "2026-09-21T16:23:38.505879+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
@@ -7,26 +7,26 @@
   "funnel": {
     "raw": 831,
     "rejected_off_umbrella": 0,
-    "rejected_screen": 634,
-    "passed_screen": 197,
-    "rejected_geo": 45,
-    "passed_geo": 152,
+    "rejected_screen": 638,
+    "passed_screen": 193,
+    "rejected_geo": 44,
+    "passed_geo": 149,
     "duplicate_sighting": 11,
-    "unique_in_scope": 141,
-    "usable_with_pay": 101
+    "unique_in_scope": 138,
+    "usable_with_pay": 100
   },
   "rejection_reasons": {
-    "role_not_software_data": 393,
-    "role_excluded": 208,
+    "role_not_software_data": 387,
+    "role_excluded": 218,
     "internship": 52,
-    "non_us": 31,
+    "non_us": 30,
     "no_us_state": 14
   },
   "usable_by_metro": {
     "": 7,
     "northern_virginia": 10,
     "remote_national": 7,
-    "denver": 27,
+    "denver": 26,
     "chicago": 32,
     "indianapolis": 3,
     "new_york": 4,
@@ -37,7 +37,7 @@
   "usable_by_employer": {
     "Invenergy": 39,
     "AES Indiana": 13,
-    "Xcel Energy": 11,
+    "Xcel Energy": 10,
     "Nexamp": 9,
     "Vantage Data Centers": 6,
     "Hitachi Energy": 3,
