@@ -128,15 +128,29 @@ jobs:
               exit 0
             fi
             echo "push rejected; rebasing onto origin/${GITHUB_REF_NAME}"
-            # A run owns the snapshot directory it just wrote, so on a conflict
-            # inside data/ take this run's version. Three runs were lost to
-            # rebase conflicts here: first a binary deck, then hand-edits to a
-            # snapshot the run was rewriting.
+            # Raw snapshots are append-only per-employer files, so MERGING
+            # them is correct: two runs' collections should combine.
+            #
+            # Derived files are not. `-X ours` is a merge STRATEGY OPTION, not
+            # "take our file": it resolves conflicting hunks in our favour but
+            # still takes non-conflicting hunks from both sides. Two runs' CSV
+            # rows sit on different lines and do not conflict, so they were
+            # unioned — and run 21 committed a selection_funnel.json whose own
+            # totals disagreed with its own postings.csv. Nothing crashed and
+            # the file was valid JSON.
+            #
+            # So: merge raw, then REGENERATE derived from the merged corpus.
+            # A derived artifact must always be the output of one execution.
             if ! git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}"; then
-              git checkout --ours -- data/ 2>/dev/null || true
-              git add data/ 2>/dev/null || true
+              git checkout --ours -- data/raw/ 2>/dev/null || true
+              git add data/raw/ 2>/dev/null || true
               git rebase --continue || git rebase --abort || true
             fi
+            echo "rebuilding derived artifacts over the merged raw corpus"
+            python src/lmstudy/build_dataset.py
+            python src/lmstudy/analyze.py || true
+            git add data/
+            git commit --amend --no-edit || true
             sleep $((attempt * 5))
           done
           echo "could not push after 3 attempts"

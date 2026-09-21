@@ -296,12 +296,42 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     by_metro = Counter(r["metro"] for r in unique if r["pay_disclosed"] == 1)
     by_employer = Counter(r["employer"] for r in unique if r["pay_disclosed"] == 1)
 
+    # These three are computed from the same rows with the same filter, so they
+    # cannot legitimately disagree. They disagreed anyway in the commit from
+    # run 21 (usable_with_pay 103, by_metro 107, by_employer 137) because the
+    # workflow's `git pull -X ours` textually MERGED two runs' derived files:
+    # -X ours resolves conflicting hunks in our favour but still takes
+    # non-conflicting hunks from both sides, and two runs' CSV rows sit on
+    # different lines and do not conflict.
+    #
+    # Nothing crashed. The artifacts were syntactically valid and claimed 137
+    # observations across 23 employers — better than the truth on every metric
+    # the study is judged by, which is the direction least likely to be
+    # questioned. Asserting here makes that state impossible to write, let
+    # alone commit.
+    n_pay = funnel["usable_with_pay"]
+    if sum(by_metro.values()) != n_pay or sum(by_employer.values()) != n_pay:
+        raise SystemExit(
+            f"funnel totals disagree: usable_with_pay={n_pay}, "
+            f"by_metro={sum(by_metro.values())}, by_employer={sum(by_employer.values())}. "
+            "This means the derived artifacts were merged rather than rebuilt. "
+            "Rebuild from data/raw/, which is authoritative."
+        )
+
+    csv_path = out_dir / "postings.csv"
     if unique:
         fieldnames = list(unique[0].keys())
-        with (out_dir / "postings.csv").open("w", newline="", encoding="utf-8") as fh:
+        with csv_path.open("w", newline="", encoding="utf-8") as fh:
             writer = csv.DictWriter(fh, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(unique)
+    written = (sum(1 for _ in csv_path.open()) - 1) if csv_path.exists() else 0
+    if written != funnel["unique_in_scope"]:
+        raise SystemExit(
+            f"postings.csv has {written} rows but the funnel counted "
+            f"{funnel['unique_in_scope']} unique postings. The CSV was merged, "
+            "not rebuilt."
+        )
 
     report = {
         "built_at": dt.datetime.now(dt.timezone.utc).isoformat(),

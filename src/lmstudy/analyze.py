@@ -334,6 +334,42 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
             },
             "design": "associational; single cross-section, no DiD available",
         }
+        # Robustness. The headline gap moved from 71 to 50 points when the
+        # corpus grew, and the whole move came from ONE employer in ONE state:
+        # 23 of the 25 non-disclosing mandate-state postings are Guidehouse and
+        # 24 of 25 are in Virginia, whose mandate took effect 2026-07-01 and is
+        # under three months old. Cutting each way is what tells a reader
+        # whether the contrast is a finding or an artifact of composition.
+        cuts = {}
+        for label, mask in (
+            ("all", disc.index == disc.index),
+            ("excluding_virginia",
+             ~disc.get("states_listed", pd.Series("", index=disc.index))
+                 .fillna("").astype(str).str.contains("VA")),
+            ("excluding_largest_employer",
+             disc["employer"] != disc["employer"].value_counts().idxmax()),
+        ):
+            sub = disc[mask]
+            m1 = sub[sub["mandate_state"] == 1]
+            m0 = sub[sub["mandate_state"] == 0]
+            if len(m1) and len(m0):
+                a = float(m1["pay_disclosed"].mean())
+                b = float(m0["pay_disclosed"].mean())
+                cuts[label] = {
+                    "mandate": round(a, 4), "n_mandate": int(len(m1)),
+                    "no_mandate": round(b, 4), "n_no_mandate": int(len(m0)),
+                    "gap": round(a - b, 4),
+                }
+        report["disclosure"]["robustness"] = cuts
+        report["disclosure"]["note"] = (
+            "The gap is large under every cut. Its SIZE is sensitive to "
+            "Virginia, whose mandate is the newest in the table; outside "
+            "Virginia, disclosure in mandate states is universal in this "
+            "sample. Partial compliance with a three-month-old statute is a "
+            "plausible reading, but this cannot distinguish that from the "
+            "posting practices of the one employer concerned."
+        )
+
         both = disc["mandate_state"].nunique() > 1
         varies = disc["pay_disclosed"].nunique() > 1
         if both and varies and len(disc) >= 30:

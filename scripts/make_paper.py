@@ -293,6 +293,32 @@ def main() -> int:
             A("location counts as covered. Around a quarter of postings list more")
             A("than one, and `states_listed` is retained so the rule can be checked.")
             A("")
+            rb = disc.get("robustness") or {}
+            if rb:
+                A("**Robustness.** The size of the gap is sensitive to one")
+                A("jurisdiction, so it is cut three ways rather than quoted once:")
+                A("")
+                A("| Sample | Mandate states | No mandate | Gap |")
+                A("|---|---|---|---|")
+                for key, label in (("all", "All postings"),
+                                   ("excluding_virginia", "Excluding Virginia"),
+                                   ("excluding_largest_employer",
+                                    "Excluding the largest employer")):
+                    row = rb.get(key)
+                    if row:
+                        A(f"| {label} | {row['mandate']:.1%} (n={row['n_mandate']}) "
+                          f"| {row['no_mandate']:.1%} (n={row['n_no_mandate']}) "
+                          f"| {row['gap'] * 100:.0f}pp |")
+                A("")
+                if disc.get("note"):
+                    A(disc["note"])
+                    A("")
+                A("Virginia matters here because its mandate took effect on")
+                A("1 July 2026 and is the newest in the table. Almost every")
+                A("non-disclosing posting in a mandate state is a Virginia posting")
+                A("from a single employer. **Outside Virginia, every posting in a")
+                A("mandate state in this sample states pay.**")
+                A("")
             A("> **This is a descriptive contrast, not a causal estimate.** A single")
             A("> cross-section carries no time variation, so no")
             A("> difference-in-differences is available. Employers who operate in")

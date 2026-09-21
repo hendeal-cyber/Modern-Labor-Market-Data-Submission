@@ -1,31 +1,31 @@
 {
-  "built_at": "2026-09-21T18:29:21.113515+00:00",
+  "built_at": "2026-09-21T22:31:40.331448+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
   ],
   "funnel": {
-    "raw": 835,
+    "raw": 897,
     "rejected_off_umbrella": 0,
-    "rejected_screen": 635,
-    "passed_screen": 200,
-    "rejected_geo": 44,
-    "passed_geo": 156,
-    "duplicate_sighting": 15,
-    "unique_in_scope": 141,
-    "usable_with_pay": 103
+    "rejected_screen": 628,
+    "passed_screen": 269,
+    "rejected_geo": 46,
+    "passed_geo": 223,
+    "duplicate_sighting": 19,
+    "unique_in_scope": 204,
+    "usable_with_pay": 137
   },
   "rejection_reasons": {
-    "role_not_software_data": 386,
-    "role_excluded": 216,
+    "role_not_software_data": 384,
+    "role_excluded": 211,
     "internship": 52,
     "non_us": 30,
     "no_us_state": 16
   },
   "usable_by_metro": {
-    "": 10,
-    "northern_virginia": 10,
-    "remote_national": 7,
+    "": 20,
+    "northern_virginia": 25,
+    "remote_national": 12,
     "denver": 26,
     "chicago": 33,
     "indianapolis": 3,
@@ -59,7 +59,7 @@
     "QTS Data Centers": 1,
     "Voltus": 1
   },
-  "distinct_employers_with_pay": 22,
+  "distinct_employers_with_pay": 23,
   "min_usable_n": 100,
   "floor_met": true
 }
