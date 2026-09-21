@@ -133,10 +133,13 @@ provisioned per customer instance — there is no self-serve tier and no public
 pricing. So the door is closed by design, not by our not having found the
 handle.
 
-Two legitimate routes remain untested and are worth one attempt each before the
-gap is called permanent: the third-party JobThread syndication feed that some
-iCIMS tenants publish, and the `.jobs`/DirectEmployers channel that
-`employers.yaml` already records Southern Company Gas using. A third is the **CareerOneStop / National Labor Exchange API** (US DOL). NLx
+**Tested 2026-09-21, run 35564... : no feed.** All four tenants were probed
+across the candidate iCIMS and JobThread patterns and none returned a parseable
+syndication feed. Combined with the terms finding below, the gap is now closed
+on two independent grounds — there is no public feed to read, and automated
+access would not be permitted even if there were. The `.jobs`/DirectEmployers
+channel that `employers.yaml` records Southern Company Gas using remains the
+one untried variant. A third is the **CareerOneStop / National Labor Exchange API** (US DOL). NLx
 aggregates employer-direct postings *with employer permission*, so it carries
 none of the scraping objections and could reach these employers without
 touching iCIMS at all. **But it is not the free self-serve key it first looked
