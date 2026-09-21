@@ -50,13 +50,29 @@ def run():
         if got.metro != want:
             fails.append(f"resolve({loc!r}) -> {got.metro} want {want} ({got.note})")
 
-    # 4. Out-of-scope must NOT resolve. Ashburn is no longer here: Tier 3 was
-    # activated on 2026-09-21 per the pre-registered escalation, so Northern
-    # Virginia is a study metro.
-    for loc in ["Redwood City, CA", "Dallas, TX", "New York, NY", "Atlanta, GA"]:
+    # 4. Out-of-scope must NOT resolve. This list shrinks as the study widens,
+    # and that is the point of keeping it: Ashburn left when Tier 3 was
+    # activated, and Redwood City and New York left on 2026-09-21 when Tier 4
+    # added the Bay Area, New York, Los Angeles and Boston. Dallas and Atlanta
+    # have no pay-disclosure mandate and are not study metros under any tier,
+    # so they are the durable negatives.
+    for loc in ["Dallas, TX", "Atlanta, GA", "Houston, TX", "Phoenix, AZ"]:
         got = resolve(loc, active_metros(), GAZ)
         if got.metro is not None:
             fails.append(f"resolve({loc!r}) wrongly in scope as {got.metro}")
+
+    # 4b. The Tier 4 metros must actually resolve, or the widening is cosmetic.
+    for loc, want in [("New York, NY", "new_york"), ("Jersey City, NJ", "new_york"),
+                      ("Santa Clara, CA", "bay_area"), ("Redwood City, CA", "bay_area"),
+                      ("El Segundo, CA", "los_angeles"), ("Cambridge, MA", "boston")]:
+        got = resolve(loc, active_metros(), GAZ)
+        if got.metro != want:
+            fails.append(f"tier-4 {loc!r} -> {got.metro} want {want}")
+    # Every Tier 4 metro carries a posting-level pay mandate; that is why they
+    # were chosen over larger metros without one.
+    for name in ("new_york", "los_angeles", "bay_area", "boston"):
+        if not METROS[name].get("pay_disclosure_mandate"):
+            fails.append(f"{name} must carry a pay-disclosure mandate")
 
     # 5. Tier 3 is active, so its metros resolve.
     for loc, want in [("Ashburn, VA", "northern_virginia"), ("Denver, CO", "denver"),

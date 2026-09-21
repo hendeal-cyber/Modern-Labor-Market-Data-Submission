@@ -348,15 +348,18 @@ def discover_employer(
                 continue
             if not hand_verified:
                 profile = board_profile(employer, hit.postings)
+                # probe() records whether the board was found under a guessed
+                # site name; the sector profile must not overwrite that.
+                probe_detail = dict(hit.detail or {})
                 if not sector_ok(hit.postings):
                     hit.source = "slug"
-                    hit.detail = profile
+                    hit.detail = {**probe_detail, **profile}
                     print(f"      {platform}:{token} quarantined "
                           f"(sector confidence {profile['sector_confidence']:.0%})",
                           flush=True)
                     hits.append(hit)
                     break
-                hit.detail = {**profile, "review_required": False,
+                hit.detail = {**probe_detail, **profile, "review_required": False,
                               "admitted_by": "sector_confidence"}
             hits.append(hit)
             break              # one confirmed board per platform is enough

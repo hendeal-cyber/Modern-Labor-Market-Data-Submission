@@ -228,6 +228,11 @@ def main() -> int:
                     "listed": listed,
                     "postings": len(records),
                     "file": path.name,
+                    # Whether the board was found under a site name the
+                    # employer file declared, or under one workday_site_variants
+                    # guessed. Without this the manifest cannot say whether the
+                    # variant expansion is earning its request budget.
+                    "site_guessed": bool((hit.detail or {}).get("site_guessed")),
                 }
             )
 

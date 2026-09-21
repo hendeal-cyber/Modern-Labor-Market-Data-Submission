@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-21T05:04:02.514202+00:00",
+  "built_at": "2026-09-21T05:07:18.821932+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
@@ -8,11 +8,11 @@
     "raw": 724,
     "rejected_screen": 647,
     "passed_screen": 77,
-    "rejected_geo": 21,
-    "passed_geo": 56,
+    "rejected_geo": 19,
+    "passed_geo": 58,
     "duplicate_sighting": 5,
-    "unique_in_scope": 51,
-    "usable_with_pay": 40
+    "unique_in_scope": 53,
+    "usable_with_pay": 42
   },
   "rejection_reasons": {
     "role_not_software_data": 408,
@@ -20,18 +20,21 @@
     "role_excluded": 190,
     "experience_too_high": 54,
     "internship": 44,
-    "out_of_metro": 21
+    "out_of_metro": 19
   },
   "usable_by_metro": {
-    "denver": 10,
+    "denver": 9,
     "chicago": 21,
-    "northern_virginia": 6,
-    "remote_national": 3
+    "northern_virginia": 5,
+    "new_york": 2,
+    "bay_area": 1,
+    "remote_national": 2,
+    "boston": 2
   },
   "usable_by_employer": {
     "Invenergy": 21,
     "AES Indiana": 6,
-    "Nexamp": 2,
+    "Nexamp": 4,
     "STACK Infrastructure": 2,
     "Xcel Energy": 2,
     "Flexential": 1,

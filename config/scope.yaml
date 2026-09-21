@@ -60,6 +60,45 @@ metros:
     state: WA
     pay_disclosure_mandate: true
 
+  # Tier 4, activated 2026-09-21. The N>=100 floor was still unmet at 40 usable
+  # observations after the metro-resident frame work, and the owner's chosen
+  # fallback is more pay-mandate metros rather than relaxing what counts as
+  # early career. Every one has a posting-level pay mandate, so the dependent
+  # variable is legally required to be present exactly as it is in Illinois.
+  new_york:
+    tier: 4
+    enabled: true
+    label: "New York City"
+    centroid: [40.7128, -74.0060]
+    radius_miles: 35
+    state: NY
+    pay_disclosure_mandate: true    # NYC LL32 2022-11; NY State 2023-09
+  los_angeles:
+    tier: 4
+    enabled: true
+    label: "Los Angeles, CA"
+    centroid: [34.0522, -118.2437]
+    radius_miles: 35
+    state: CA
+    pay_disclosure_mandate: true    # California SB 1162, 2023-01
+  bay_area:
+    tier: 4
+    enabled: true
+    label: "San Francisco Bay Area"
+    centroid: [37.7749, -122.4194]
+    radius_miles: 45              # the Bay Area is a genuinely wider labour
+                                  # market: SF-San Jose alone is ~45 miles
+    state: CA
+    pay_disclosure_mandate: true    # California SB 1162, 2023-01
+  boston:
+    tier: 4
+    enabled: true
+    label: "Boston, MA"
+    centroid: [42.3601, -71.0589]
+    radius_miles: 35
+    state: MA
+    pay_disclosure_mandate: true    # Massachusetts, 2025-10, 25+ employees
+
   # Not a metro: the bucket for postings advertised as nationwide remote, which
   # name no state and so cannot be placed. It has no centroid, so distance
   # matching skips it, and no pay-disclosure mandate, so it stays out of the
