@@ -34,9 +34,13 @@ def coefficient_table(model: dict) -> list[str]:
     for name, c in model["coefficients"].items():
         stars = ("***" if c["p_value"] < 0.01 else "**" if c["p_value"] < 0.05
                  else "*" if c["p_value"] < 0.10 else "")
+        # pct_effect is None for the intercept, which is a level rather than
+        # an effect. Formatting it as a number produced "7,370,111%" before,
+        # and a TypeError after it was nulled.
+        pct = "—" if c.get("pct_effect") is None else f"{c['pct_effect']:.1f}%"
         lines.append(
             f"| `{name}` | {c['coef']:.4f}{stars} | {c['std_err']:.4f} | {c['p_value']:.3f} | "
-            f"[{c['ci_low']:.3f}, {c['ci_high']:.3f}] | {c['pct_effect']:.1f}% |"
+            f"[{c['ci_low']:.3f}, {c['ci_high']:.3f}] | {pct} |"
         )
     lines += ["", "*** p<0.01, ** p<0.05, * p<0.10. "
               f"N = {model['n']}, R² = {model['r_squared']:.3f}, "
@@ -183,6 +187,13 @@ def main() -> int:
 
     A("## 5. Results")
     A("")
+    for warning in (analysis or {}).get("interpretability_warnings", []):
+        A(f"> **Not yet interpretable.** {warning}")
+        A(">")
+    if (analysis or {}).get("interpretability_warnings"):
+        A("> The model below is reported so the pipeline is verifiable end to end,")
+        A("> not because the coefficients support conclusions.")
+        A("")
     if analysis and analysis.get("status") == "ok":
         d = analysis.get("descriptives", {}).get("pay_midpoint", {})
         if d:

@@ -67,12 +67,14 @@ jobs:
         run: python src/lmstudy/analyze.py | tee analyze.log
 
       - name: Regenerate codebook, figures and paper
+        continue-on-error: true
         run: |
           python scripts/make_codebook.py
           python scripts/make_figures.py
           python scripts/make_paper.py
 
       - name: Rebuild the presentation
+        continue-on-error: true
         run: |
           npm install --no-audit --no-fund pptxgenjs
           node scripts/make_slides.js
@@ -93,6 +95,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit data
+        if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

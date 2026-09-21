@@ -1,7 +1,7 @@
 # Advertised Pay in Early-Career Software and Data Roles
 ## Evidence from Utility and Data Center Operators in Chicago and Indianapolis
 
-*Built from data collected through 2026-09-20. Collection cycles: 1.*
+*Built from data collected through 2026-09-21. Collection cycles: 2.*
 
 ## 1. Introduction
 
@@ -52,24 +52,24 @@ analytics. Early career means three years or fewer of required experience.
 
 | Stage | Postings |
 |---|---|
-| Retrieved from ATS boards | 165 |
-| Passed role, seniority and internship screens | 3 |
-| Unique after de-duplication | 0 |
-| With a disclosed pay range (estimation sample) | 0 |
+| Retrieved from ATS boards | 686 |
+| Passed role, seniority and internship screens | 64 |
+| Within 35 miles of a study metro | 43 |
+| Unique after de-duplication | 38 |
+| With a disclosed pay range (estimation sample) | 35 |
 
 Rejections by reason:
 
 | Reason | Count |
 |---|---|
-| `role_not_software_data` | 96 |
-| `no_experience_signal` | 72 |
-| `seniority_excluded` | 63 |
-| `role_excluded` | 60 |
-| `experience_too_high` | 17 |
-| `internship` | 6 |
-| `out_of_metro` | 3 |
+| `role_not_software_data` | 407 |
+| `seniority_excluded` | 304 |
+| `role_excluded` | 190 |
+| `experience_too_high` | 52 |
+| `internship` | 22 |
+| `out_of_metro` | 21 |
 
-Distinct employers contributing a disclosed range: **0**. By metro: `{}`.
+Distinct employers contributing a disclosed range: **8**. By metro: `{'denver': 8, 'chicago': 21, 'northern_virginia': 6}`.
 
 > The pre-registered floor of 100 usable
 > observations is **not yet met**. Collection continues; the escalation
@@ -100,7 +100,76 @@ bootstrap should precede any claim resting on a marginal p-value.
 
 ## 5. Results
 
-*TODO: no analysis artifact. Run `src/lmstudy/analyze.py`.*
+> **Not yet interpretable.** 3.2 observations per regressor (35 observations, 11 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
+>
+> **Not yet interpretable.** 8 employer clusters. Cluster-robust standard errors are biased downward with few clusters, so p-values are anti-conservative. A wild cluster bootstrap is required before reporting significance.
+>
+> **Not yet interpretable.** Minimum detectable effect is 0.58 log points, roughly a 79% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
+>
+> The model below is reported so the pipeline is verifiable end to end,
+> not because the coefficients support conclusions.
+
+Advertised pay in the estimation sample averages **$90,112** (median $81,000, SD $30,789, range $46,500–$148,500).
+
+At N = 35 with 11 regressors, the smallest
+detectable standardized effect is **0.5842**
+log points at 5% significance and 80% power.
+
+### Core model (pre-specified)
+
+| Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
+|---|---|---|---|---|---|
+| `const` | 11.2078*** | 0.1268 | 0.000 | [10.959, 11.456] | — |
+| `degree_stem` | 0.3072** | 0.1494 | 0.040 | [0.014, 0.600] | 36.0% |
+| `advanced_degree_pref` | 0.4610*** | 0.0428 | 0.000 | [0.377, 0.545] | 58.6% |
+| `yrs_exp_min` | -0.1979*** | 0.0632 | 0.002 | [-0.322, -0.074] | -18.0% |
+| `yrs_exp_stated` | 0.3374*** | 0.1178 | 0.004 | [0.106, 0.568] | 40.1% |
+| `skill_cloud` | -0.2220 | 0.2704 | 0.412 | [-0.752, 0.308] | -19.9% |
+| `skill_ml_ai` | 0.4997*** | 0.1824 | 0.006 | [0.142, 0.857] | 64.8% |
+| `soft_leadership` | 0.2183 | 0.3376 | 0.518 | [-0.443, 0.880] | 24.4% |
+| `industry_data_center` | 0.2461** | 0.1019 | 0.016 | [0.046, 0.446] | 27.9% |
+| `remote_eligible` | 0.2611 | 0.1807 | 0.148 | [-0.093, 0.615] | 29.8% |
+| `job_level` | -0.0237 | 0.0656 | 0.718 | [-0.152, 0.105] | -2.3% |
+| `family_ai_ml` | -0.3247*** | 0.0875 | 0.000 | [-0.496, -0.153] | -27.7% |
+
+*** p<0.01, ** p<0.05, * p<0.10. N = 35, R² = 0.713, SE: cluster.
+
+### Secondary: log(range width)
+
+| Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
+|---|---|---|---|---|---|
+| `const` | 11.4387*** | 0.8952 | 0.000 | [9.684, 13.193] | — |
+| `degree_stem` | -0.1389 | 0.6306 | 0.826 | [-1.375, 1.097] | -13.0% |
+| `advanced_degree_pref` | -0.2788** | 0.1383 | 0.044 | [-0.550, -0.008] | -24.3% |
+| `yrs_exp_min` | 0.7658* | 0.4190 | 0.068 | [-0.055, 1.587] | 115.1% |
+| `yrs_exp_stated` | -1.8673 | 1.6046 | 0.244 | [-5.012, 1.278] | -84.5% |
+| `skill_cloud` | -0.3533 | 0.9915 | 0.722 | [-2.296, 1.590] | -29.8% |
+| `skill_ml_ai` | 0.2498 | 0.9749 | 0.798 | [-1.661, 2.161] | 28.4% |
+| `soft_leadership` | -1.1051 | 1.1748 | 0.347 | [-3.408, 1.198] | -66.9% |
+| `industry_data_center` | -0.5862 | 0.5848 | 0.316 | [-1.732, 0.560] | -44.4% |
+| `remote_eligible` | -1.3993 | 0.8985 | 0.119 | [-3.160, 0.362] | -75.3% |
+| `job_level` | -0.7470 | 0.5030 | 0.138 | [-1.733, 0.239] | -52.6% |
+| `family_ai_ml` | -0.4013 | 0.8437 | 0.634 | [-2.055, 1.252] | -33.1% |
+
+*** p<0.01, ** p<0.05, * p<0.10. N = 35, R² = 0.415, SE: cluster.
+
+### Who discloses pay
+
+Disclosure rate **92.1%** (35 disclosed, 3 withheld).
+
+| Variable | Mean (disclosed) | Mean (withheld) | Difference | p |
+|---|---|---|---|---|
+| `degree_stem` | 0.257 | 0.0 | 0.257 | 0.0016 |
+| `advanced_degree_pref` | 0.114 | 0.333 | -0.219 | 0.5802 |
+| `yrs_exp_min` | 0.629 | 1.333 | -0.705 | 0.403 |
+| `yrs_exp_stated` | 0.257 | 0.667 | -0.41 | 0.3435 |
+| `skill_cloud` | 0.057 | 0.0 | 0.057 | 0.1603 |
+| `skill_ml_ai` | 0.086 | 0.0 | 0.086 | 0.0831 |
+| `soft_leadership` | 0.086 | 0.0 | 0.086 | 0.0831 |
+| `industry_data_center` | 0.143 | 0.0 | 0.143 | 0.023 |
+| `remote_eligible` | 0.057 | 0.0 | 0.057 | 0.1603 |
+| `job_level` | 0.971 | 0.667 | 0.305 | 0.6946 |
+| `family_ai_ml` | 0.086 | 0.0 | 0.086 | 0.0831 |
 
 ## 6. Threats to validity
 
@@ -114,7 +183,7 @@ Exelon and ComEd are absent from the frame entirely.
 
 ## 7. Conclusion
 
-*TODO: pending results.*
+*TODO: write once the results above are stable across collection cycles.*
 
 ## Appendix
 
