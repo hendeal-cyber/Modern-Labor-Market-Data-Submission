@@ -1956,9 +1956,52 @@ discovery:
 
 # Tokens confirmed to belong to a DIFFERENT company of the same name.
 # Never admit these, even if slug discovery finds them again.
+# Tokens confirmed to belong to a DIFFERENT company of the same name. Every
+# one of these was admitted by slug discovery and caught on inspection. They
+# are recorded so they cannot return, and as evidence for why the sector gate
+# exists.
 rejected_tokens:
   - platform: ashby
     token: constellation
     reason: >
-      Belongs to a San Francisco AI startup, not Constellation Energy.
-      Found by slug discovery on 2026-09-20 and rejected on inspection.
+      A San Francisco AI startup, not Constellation Energy. Admitted twice —
+      once before any gate existed, and again by the first sector check, which
+      substring-matched generic words and scored it 43% ("pipeline" on
+      "architecting pipelines", "load" on "dataloaders", "generation" on
+      "next-generation"). The corrected gate scores it 0%.
+  - platform: greenhouse
+    token: via
+    reason: >
+      Via, the public-transit software company (Tel Aviv, NYC, London) — not
+      Via Renewables. Contributed 168 postings of transit dispatch and field
+      operations, the largest single contributor to that run.
+  - platform: lever
+    token: pattern
+    reason: An e-commerce and warehouse operator, not Pattern Energy.
+  - platform: greenhouse
+    token: tomorrow
+    reason: Tomorrow.io, the weather and aerospace company, not Tomorrow Energy.
+  - platform: ashby
+    token: leap
+    reason: A specialty-benefits company, not Leap the energy flexibility firm.
+  - platform: ashby
+    token: yondr
+    reason: The phone-pouch company, not Yondr Group the data center developer.
+  - platform: greenhouse
+    token: david
+    reason: A creative agency (Madrid, Miami), not David Energy.
+  - platform: ashby
+    token: quanta
+    reason: A San Francisco startup, not Quanta Services.
+  - platform: ashby
+    token: dakota
+    reason: A fintech, not Dakota Electric Association.
+  - platform: ashby
+    token: lightsource
+    reason: A software company, not Lightsource bp.
+  - platform: greenhouse
+    token: public
+    reason: Public.com, the trading app, not Public Power.
+  - platform: greenhouse
+    token: national
+    reason: A Canadian public-relations firm, not National Grid.

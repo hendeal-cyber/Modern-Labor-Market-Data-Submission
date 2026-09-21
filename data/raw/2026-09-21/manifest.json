@@ -110,12 +110,13 @@
     {
       "employer": "Equinix",
       "industry": "data_center",
-      "found": true,
+      "found": false,
       "platform": "workday",
       "token": "equinix/External",
       "listed": 283,
-      "postings": 1,
-      "file": "Equinix__workday.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Digital Realty",
@@ -230,12 +231,13 @@
     {
       "employer": "Iron Mountain Data Centers",
       "industry": "data_center",
-      "found": true,
+      "found": false,
       "platform": "workday",
       "token": "ironmountain/iron-mountain-jobs",
       "listed": 500,
-      "postings": 5,
-      "file": "Iron_Mountain_Data_Centers__workday.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "T5 Data Centers",
@@ -340,12 +342,13 @@
     {
       "employer": "Guidehouse",
       "industry": "consulting",
-      "found": true,
+      "found": false,
       "platform": "workday",
       "token": "guidehouse/External",
       "listed": null,
-      "postings": 18,
-      "file": "Guidehouse__workday.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Energy and Environmental Economics (E3)",
@@ -366,12 +369,13 @@
     {
       "employer": "Hitachi Energy",
       "industry": "grid_vendor",
-      "found": true,
+      "found": false,
       "platform": "workday",
       "token": "hitachi/hitachi",
       "listed": 500,
-      "postings": 3,
-      "file": "Hitachi_Energy__workday.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "GE Vernova",
@@ -490,12 +494,13 @@
     {
       "employer": "National Grid",
       "industry": "utility",
-      "found": true,
+      "found": false,
       "platform": "greenhouse",
       "token": "national",
       "listed": null,
-      "postings": 5,
-      "file": "National_Grid__greenhouse.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "NorthWestern Energy",
@@ -792,12 +797,13 @@
     {
       "employer": "Yondr Group",
       "industry": "data_center",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "yondr",
       "listed": null,
-      "postings": 10,
-      "file": "Yondr_Group__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "PowerHouse Data Centers",
@@ -890,12 +896,13 @@
     {
       "employer": "Lightsource bp",
       "industry": "developer",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "lightsource",
       "listed": null,
-      "postings": 4,
-      "file": "Lightsource_bp__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Silicon Ranch",
@@ -976,12 +983,13 @@
     {
       "employer": "Pattern Energy",
       "industry": "developer",
-      "found": true,
+      "found": false,
       "platform": "lever",
       "token": "pattern",
       "listed": null,
-      "postings": 89,
-      "file": "Pattern_Energy__lever.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Terra-Gen",
@@ -1123,12 +1131,13 @@
     {
       "employer": "David Energy",
       "industry": "energy_analytics",
-      "found": true,
+      "found": false,
       "platform": "greenhouse",
       "token": "david",
       "listed": null,
-      "postings": 7,
-      "file": "David_Energy__greenhouse.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "David Energy",
@@ -1149,12 +1158,13 @@
     {
       "employer": "Leap",
       "industry": "energy_analytics",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "leap",
       "listed": null,
-      "postings": 17,
-      "file": "Leap__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Piclo",
@@ -1281,12 +1291,13 @@
     {
       "employer": "Quanta Services",
       "industry": "consulting",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "quanta",
       "listed": null,
-      "postings": 6,
-      "file": "Quanta_Services__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "HDR",
@@ -1459,12 +1470,13 @@
     {
       "employer": "Dakota Electric Association",
       "industry": "cooperative",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "dakota",
       "listed": null,
-      "postings": 4,
-      "file": "Dakota_Electric_Association__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Wright-Hennepin Cooperative Electric",
@@ -1643,12 +1655,13 @@
     {
       "employer": "Via Renewables",
       "industry": "retailer",
-      "found": true,
+      "found": false,
       "platform": "greenhouse",
       "token": "via",
       "listed": null,
-      "postings": 168,
-      "file": "Via_Renewables__greenhouse.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Spark Energy",
@@ -1725,12 +1738,13 @@
     {
       "employer": "Tomorrow Energy",
       "industry": "retailer",
-      "found": true,
+      "found": false,
       "platform": "greenhouse",
       "token": "tomorrow",
       "listed": null,
-      "postings": 20,
-      "file": "Tomorrow_Energy__greenhouse.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Gexa Energy",
@@ -1759,22 +1773,24 @@
     {
       "employer": "Public Power",
       "industry": "retailer",
-      "found": true,
+      "found": false,
       "platform": "greenhouse",
       "token": "public",
       "listed": null,
-      "postings": 2,
-      "file": "Public_Power__greenhouse.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Constellation NewEnergy",
       "industry": "retailer",
-      "found": true,
+      "found": false,
       "platform": "ashby",
       "token": "constellation",
       "listed": null,
-      "postings": 7,
-      "file": "Constellation_NewEnergy__ashby.json"
+      "postings": 0,
+      "file": null,
+      "status": "rejected_wrong_company_or_off_sector"
     },
     {
       "employer": "Vistra Retail",
@@ -1801,7 +1817,7 @@
       "postings": 0
     }
   ],
-  "total_postings": 886,
+  "total_postings": 520,
   "scope_diagnostics": {
     "listed": 3447,
     "kept": 69,
@@ -1874,5 +1890,6 @@
       "Reading, Pennsylvania, United States": 1
     }
   },
-  "slug_candidates_for_review": 1
+  "slug_candidates_for_review": 1,
+  "purge_note": "Boards failing the corrected sector gate were removed. The first sector check substring-matched generic words and let an AI startup through at 43%; these are the boards that admitted under it."
 }

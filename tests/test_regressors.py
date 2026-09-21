@@ -70,6 +70,50 @@ TRAPS = [
      "benefit_health", 1, "vision named as an actual benefit"),
 ]
 
+
+def sector_gate_cases():
+    """The sector gate must reject the wrong-company matches that got through.
+
+    Each of these was admitted by slug discovery and caught on inspection.
+    The first version of the gate substring-matched generic words and let the
+    AI startup through at 43%.
+    """
+    import sys, pathlib as _p
+    sys.path.insert(0, str(_p.Path(__file__).resolve().parents[1] / "src"))
+    from lmstudy.collect.discover import sector_ok, sector_confidence
+    from lmstudy.collect.ats import RawPosting
+
+    def board(*texts):
+        return [RawPosting("x", "y", "z", str(i), t, "", d, "")
+                for i, (t, d) in enumerate(texts)]
+
+    fails = []
+    # The AI startup: ML vocabulary that tripped the old substring terms.
+    ai = board(
+        ("Research Scientist", "architecting pipelines for transforming data"),
+        ("Research Engineer", "write research code, dataloaders, evaluation harnesses"),
+        ("Office & Operations Manager", "building management, hvac maintenance, isps, and utility providers"),
+        ("Senior Software Engineer", "train and serve our next-generation models"),
+    )
+    if sector_ok(ai):
+        fails.append(f"AI startup board admitted at {sector_confidence(ai):.0%}")
+    # Public-transit software, which arrived as "Via Renewables".
+    transit = board(
+        ("Dispatcher", "Via is on a mission to create public transportation systems"),
+        ("Field Operations Manager", "transit networks, smart, data-driven digital networks"),
+    )
+    if sector_ok(transit):
+        fails.append("public-transit board admitted")
+    # A real energy board must still pass.
+    energy = board(
+        ("Associate, Renewable Development", "solar and wind farm development, interconnection queue, megawatt scale"),
+        ("Analyst, Compliance", "NERC compliance, substation records, transmission line outage management"),
+    )
+    if not sector_ok(energy):
+        fails.append("real energy board rejected")
+    return fails
+
+
 def run():
     fails = []
     coded = code_posting("Data Engineer I", POSTING, D)
@@ -86,7 +130,9 @@ def run():
             ev = code_posting("", text, D).evidence[reg]
             fails.append(f"[{label}] {reg}={got} want {want} evidence={ev}")
 
-    total = len(EXPECT_1) + len(EXPECT_0) + len(TRAPS)
+    fails.extend(sector_gate_cases())
+
+    total = len(EXPECT_1) + len(EXPECT_0) + len(TRAPS) + 3
     print(f"regressors: {total-len(fails)}/{total} passed ({len(D)} regressors in dictionary)")
     for f in fails:
         print("  FAIL", f)
@@ -94,3 +140,4 @@ def run():
 
 if __name__ == "__main__":
     raise SystemExit(1 if run() else 0)
+

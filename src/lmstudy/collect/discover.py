@@ -9,6 +9,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+import pathlib
+
 from ..http import PoliteSession
 from .ats import FETCHERS, RawPosting
 
@@ -43,37 +45,110 @@ def distinctive_tokens(name: str) -> set[str]:
 # Vocabulary that an energy, utility, grid or data-center employer's postings
 # will contain and an unrelated company's will not. Used to verify that a
 # discovered board actually belongs to this sector.
-SECTOR_TERMS = (
-    "utility", "utilities", "energy", "electric", "power grid", "grid",
-    "substation", "transmission", "renewable", "solar", "wind", "battery",
-    "data center", "data centre", "datacenter", "megawatt", "kilowatt",
-    "interconnection", "ferc", "nerc", "rto", "iso", "kwh", "mwh",
-    "generation", "natural gas", "pipeline", "electricity", "decarboniz",
-    "colocation", "uptime", "critical facilit", "load", "outage",
+SECTOR_TERMS = tuple()  # superseded by STRONG_TERMS below; kept for imports
+
+# Unambiguous energy / utility / data-center vocabulary.
+#
+# The first version of this list failed in production on the case it was built
+# for. It substring-matched generic words, so an AI startup's board scored 43%
+# and was admitted: "pipeline" hit "architecting pipelines for transforming
+# data", "load" hit "dataloaders", "generation" hit "next-generation clinical",
+# "utility" hit "utility providers" in an office-management posting. Every term
+# below must be unambiguous in a technology-company context, and matching is
+# word-bounded rather than substring.
+STRONG_TERMS = (
+    # physical grid
+    "substation", "switchgear", "transformer", "transmission line", "power grid",
+    "electric grid", "grid operator", "interconnection", "megawatt", "kilowatt",
+    "gigawatt", "kwh", "mwh", "kva", "switchyard", "feeder",
+    # markets and regulation
+    "ferc", "nerc", "caiso", "ercot", "miso", "pjm", "iso-ne", "nyiso",
+    "rate case", "ratepayer", "public utility", "utility commission",
+    "tariff filing", "integrated resource plan", "capacity market",
+    "energy market", "power purchase agreement", "renewable energy credit",
+    # generation and fuels
+    "renewable energy", "solar", "wind farm", "photovoltaic", "turbine",
+    "battery storage", "energy storage", "natural gas", "power generation",
+    "generation capacity", "decarboniz", "grid-scale",
+    # utility operations
+    "demand response", "energy efficiency", "load forecasting", "peak load",
+    "outage management", "smart meter", "distribution utility",
+    # data centers
+    "data center", "data centre", "datacenter", "colocation",
+    "critical facilit", "critical environment", "cooling capacity",
 )
-MIN_SECTOR_SHARE = 0.25
+MIN_SECTOR_SHARE = 0.30
+MIN_DISTINCT_TERMS = 2
+
+_STRONG_RE = [(t, __import__("re").compile(rf"(?<!\w){__import__('re').escape(t)}(?!\w)", __import__("re").IGNORECASE))
+              for t in STRONG_TERMS]
 
 
 def sector_confidence(postings: list[RawPosting]) -> float:
-    """Share of a board's postings that read as energy or data-center work.
+    """Share of a board's postings that are unambiguously energy or data-center work.
 
-    This is the safeguard that makes large-scale token discovery safe. A slug
-    guess can land on a different company sharing a name — an Ashby board at
-    token "constellation" turned out to be a San Francisco AI startup, not
-    Constellation Energy. Checking the employer's NAME against the board does
-    not catch that, because both are called Constellation. Checking the
-    board's SECTOR does: an AI startup's postings do not discuss substations,
-    interconnection or megawatts.
+    This distinguishes a real match from a same-name collision, which name
+    matching cannot: an Ashby board at token "constellation" belongs to a San
+    Francisco AI startup, and both companies are called Constellation.
     """
     sample = postings[:40]
     if not sample:
         return 0.0
     hits = 0
     for posting in sample:
-        blob = f"{posting.title} {posting.description[:3000]}".lower()
-        if any(term in blob for term in SECTOR_TERMS):
+        blob = f"{posting.title} {posting.description[:3000]}"
+        if any(rx.search(blob) for _, rx in _STRONG_RE):
             hits += 1
     return hits / len(sample)
+
+
+def distinct_sector_terms(postings: list[RawPosting]) -> int:
+    """How many different sector terms the board uses.
+
+    A board that trips one term repeatedly is far weaker evidence than one
+    using several, so admission requires breadth as well as share.
+    """
+    blob = " ".join(f"{p.title} {p.description[:3000]}" for p in postings[:40])
+    return sum(1 for _, rx in _STRONG_RE if rx.search(blob))
+
+
+MIN_DISTINCT_FOR_DIVERSIFIED = 6
+
+
+def sector_ok(postings: list[RawPosting]) -> bool:
+    """Either gate is sufficient, and each covers a case the other misses.
+
+    A focused energy employer clears the share gate. A diversified firm whose
+    energy work is a minority of its postings does not — Charles River
+    Associates is a real energy consultancy at 7.5% share, because most of its
+    practice is antitrust and life sciences — but it uses 11 distinct sector
+    terms, which a company in another industry does not. Both of the known
+    wrong-company matches score zero on both gates: the AI startup at token
+    "constellation" and the public-transit company at token "via".
+    """
+    return (sector_confidence(postings) >= MIN_SECTOR_SHARE
+            or distinct_sector_terms(postings) >= MIN_DISTINCT_FOR_DIVERSIFIED)
+
+
+def slug_variants_safe(name: str) -> list[str]:
+    """Slug candidates, minus the ones that invite a collision.
+
+    The bare first word of a multi-word name is dangerously generic: "Via
+    Renewables" produced "via", which is a public-transit software company
+    with 168 postings. A short first word is dropped unless the company name
+    is a single word.
+    """
+    variants = slug_variants(name)
+    words = name.split()
+    if len(words) > 1:
+        # Drop the bare first word entirely, not merely the short ones. A
+        # length threshold was tried and was not enough: "pattern" (7),
+        # "tomorrow" (8), "national" (8) and "lightsource" (11) all cleared it
+        # and all landed on unrelated companies — an e-commerce firm, a weather
+        # company, a PR agency and a software startup.
+        first = words[0].lower().strip(".,")
+        variants = [v for v in variants if v != first]
+    return variants
 
 
 def board_profile(employer: str, postings: list[RawPosting]) -> dict:
@@ -96,6 +171,7 @@ def board_profile(employer: str, postings: list[RawPosting]) -> dict:
         "locations_seen": locations[:12],
         "sample_url": postings[0].url if postings else None,
         "sector_confidence": round(sector_confidence(postings), 3),
+        "distinct_sector_terms": distinct_sector_terms(postings),
         "review_required": True,
         "note": "Unconfirmed slug match. Verify this board belongs to the intended "
                 "employer, then add the token to config/employers.yaml as a declared "
@@ -119,6 +195,22 @@ def slug_variants(name: str) -> list[str]:
     return unique
 
 
+def load_rejected(path=None) -> set[tuple[str, str]]:
+    """(platform, token) pairs confirmed to be a different company."""
+    import yaml
+    path = path or (pathlib.Path(__file__).resolve().parents[3]
+                    / "config" / "employers.yaml")
+    try:
+        raw = yaml.safe_load(pathlib.Path(path).read_text())
+    except (OSError, yaml.YAMLError):
+        return set()
+    return {(r.get("platform"), r.get("token"))
+            for r in (raw.get("rejected_tokens") or [])}
+
+
+REJECTED = load_rejected()
+
+
 def probe(
     session: PoliteSession,
     employer: str,
@@ -130,6 +222,9 @@ def probe(
     """Try one (platform, token). Returns a hit only if postings came back."""
     fetcher = FETCHERS.get(platform)
     if fetcher is None:
+        return None
+    if isinstance(token, str) and (platform, token) in REJECTED:
+        print(f"      skipping {platform}:{token} — known wrong company", flush=True)
         return None
     try:
         if platform == "workday":
@@ -193,7 +288,7 @@ def discover_employer(
                 continue
             if not hand_verified:
                 profile = board_profile(employer, hit.postings)
-                if profile["sector_confidence"] < MIN_SECTOR_SHARE:
+                if not sector_ok(hit.postings):
                     hit.source = "slug"
                     hit.detail = profile
                     print(f"      {platform}:{token} quarantined "
@@ -209,12 +304,12 @@ def discover_employer(
         return hits
 
     for platform in ("greenhouse", "lever", "ashby", "smartrecruiters", "workable", "recruitee"):
-        for token in slug_variants(employer):
+        for token in slug_variants_safe(employer):
             hit = probe(session, employer, platform, token, detail_filter)
             if hit:
                 profile = board_profile(employer, hit.postings)
                 confidence = profile["sector_confidence"]
-                if confidence >= MIN_SECTOR_SHARE:
+                if sector_ok(hit.postings):
                     # The board's own postings are plainly energy or data-center
                     # work, so this is not a same-name collision.
                     hit.source = "declared"
