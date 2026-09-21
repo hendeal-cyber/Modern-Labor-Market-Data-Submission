@@ -1,0 +1,141 @@
+# Pre-registration
+
+**Committed 2026-09-21, before the national collection run.**
+
+This document fixes the specification *before* the data it will be estimated on
+exists. It is written because the study's weakest methodological point is that
+its scope widened three times in response to what the data showed — honestly
+disclosed in `docs/limitations.md`, but a reader is entitled to discount
+results chosen after seeing them.
+
+Everything below is committed in advance. Where a later result contradicts it,
+the contradiction is reported rather than the specification quietly revised.
+Any change made after this commit appears in §8 as a dated amendment with its
+reason, so the distinction between what was planned and what was adapted stays
+visible in the git history.
+
+---
+
+## 1. Research question
+
+**What attributes stated in a job posting predict the pay the employer
+advertises, in the US energy and data center sector?**
+
+Secondary: **does a state pay-transparency mandate change whether pay is
+disclosed at all, and the level and width of the range when it is?**
+
+## 2. Population and sampling frame
+
+- **Sector:** energy, utility and data center employers. Enforced by a curated
+  employer frame (`config/employers.yaml`, 272 employers across nine industry
+  categories) plus a sector-confidence check on any board whose token was not
+  hand-verified.
+- **Roles:** the energy-analytics core taxonomy — siting and development;
+  regulatory, policy and compliance; market, commercial and procurement; grid
+  and power systems; AI/ML; GIS; sustainability analytics; software and data.
+  Engineering is admitted only where analytics-adjacent (interconnection, grid
+  modelling, transmission and resource planning); mechanical, electrical,
+  thermal, commissioning and SCADA are excluded, as are technicians, skilled
+  trades, corporate back-office, sales and security roles.
+- **Geography:** United States only. Non-US postings are excluded — pooling
+  currencies and labour markets would be meaningless.
+- **Seniority:** all levels **except internships**, which are a different
+  contract and pay regime.
+- **Time:** the stock of postings open at collection, plus weekly flow.
+- **Source:** public, unauthenticated ATS APIs. No authenticated source, no
+  scraping of any site whose terms prohibit automated access.
+
+## 3. Dependent variables
+
+| | Definition |
+|---|---|
+| **Primary** | `log(pay_midpoint)`, the log of the midpoint of the employer-stated range, annualized (hourly × 2,080, flagged) |
+| Secondary | `log(pay_min)`, `log(pay_max)`, and **range width** `(max − min) / midpoint` as a measure of employer pay uncertainty |
+| Selection | `pay_disclosed` (binary), modelled in its own right |
+| Robustness | Price-adjusted pay, deflated by BEA Regional Price Parities |
+
+Postings with no disclosed pay are excluded from the pay models and **retained**
+for the disclosure model. This is the selection problem, not a nuisance, and it
+is reported as such.
+
+## 4. Pre-specified models
+
+**Model 1 — core pay model.** OLS on `log(pay_midpoint)`, standard errors
+clustered by employer.
+
+```
+seniority_rank, yrs_exp_min, yrs_exp_stated, degree_required, degree_stem,
+skill_cloud, skill_ml_ai, remote_eligible, hourly_original,
+mandate_state, census_region (3 dummies), industry_data_center, family_ai_ml
+```
+
+`yrs_exp_stated` must always travel with `yrs_exp_min`: postings stating no
+minimum are imputed to zero, and without the indicator that imputation is
+indistinguishable from a genuine "0 years required".
+
+**Model 2 — extended.** Model 1 plus the remaining coded regressors (skills,
+soft skills, benefits, job context, full `role_family` and `industry` sets),
+estimated **only if N supports roughly 20 observations per regressor**.
+
+**Model 3 — disclosure.** Linear probability model of `pay_disclosed` on
+`mandate_state` plus controls. Reported as a headline result, because national
+coverage is what makes it estimable.
+
+**Model 4 — early-career subsample.** Model 1 re-estimated on
+`seniority_rank <= 1 OR yrs_exp_min <= 3`. This preserves the study's original
+question and is reported whether or not it agrees with the full sample.
+
+**Robustness, all pre-specified:** state fixed effects in place of census
+region; price-adjusted DV; employer fixed effects; excluding the largest
+employer; range width and floor/ceiling as DVs.
+
+## 5. Hypotheses, directional and committed in advance
+
+| # | Hypothesis | Direction |
+|---|---|---|
+| H1 | Seniority is the dominant predictor of advertised pay | **+**, largest coefficient |
+| H2 | A state pay-transparency mandate raises the probability pay is disclosed | **+**, large |
+| H3 | Required years of experience raises pay, conditional on seniority rank | **+** |
+| H4 | AI/ML roles carry a premium over other energy-analytics roles | **+** |
+| H5 | A required degree raises pay | **+** |
+| H6 | Mandate states show **wider** advertised ranges, employers hedging under compulsory disclosure | **+** |
+| H7 | Data center operators pay more than utilities for comparable roles | **+** |
+
+H6 is the one I expect to be least sure of, and it is recorded precisely so a
+null cannot be quietly dropped.
+
+## 6. Inference and stopping rules
+
+- **Clustered standard errors by employer.** With few clusters these
+  under-cover; a simulation in `tests/test_analyze.py` measures 88–90% coverage
+  against a nominal 95%. **Wild cluster bootstrap is required before any
+  significance claim** when clusters number under 30.
+- **Interpretability gate.** `analyze.py` prints an unmissable block whenever
+  observations per regressor fall below 10 or clusters below 30. **That block
+  is removed only when the data earns it, never to make the paper look
+  finished.**
+- **No stopping on results.** Collection stops on a fixed schedule, not when
+  the numbers look good.
+- **Minimum detectable effect** is reported at the realized N alongside every
+  model, so a null is distinguishable from an underpowered test.
+
+## 7. What would falsify or embarrass this study
+
+Stated in advance so they cannot be rationalized later:
+
+- If **seniority does not dominate** (H1), the seniority coding is probably
+  wrong, not the labour market.
+- If **mandate states show no disclosure difference** (H2), either the mandate
+  table is wrong or the frame is too tilted toward large multi-state employers
+  who disclose everywhere.
+- If a **single employer still supplies more than a quarter** of observations,
+  clustered errors remain unreliable and the model substantially describes one
+  firm, regardless of N.
+- If **N ≥ 100 is reached but distinct employers stay under 30**, the floor has
+  been met in letter and not in substance. Both numbers get reported together,
+  always.
+
+## 8. Amendments after this commit
+
+*None yet. Each entry: date, what changed, why, and whether it was prompted by
+seeing results.*
