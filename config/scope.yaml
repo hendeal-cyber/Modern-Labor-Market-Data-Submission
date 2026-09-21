@@ -245,8 +245,9 @@ roles:
     - business applications analyst
     - business operations analyst
     - business operations program analyst
-    - cad designer
-    - cad
+    # "cad designer" and a bare "cad" used to live here. A CAD Designer is a
+    # drafting role, not geospatial analytics, and it was the only observation
+    # in the gis family. CAD-GIS below is what the taxonomy actually meant.
     # --- GIS and geospatial ---
     - gis
     - gis analyst
@@ -266,6 +267,14 @@ roles:
   # the energy/analytics category, and near-misses the widened taxonomy would
   # otherwise pull in ("talent development" is not development work).
   exclude_any:
+    # Security was named as out of scope from the start but never encoded, so
+    # "AI Cybersecurity Engineer" entered the sample on a bare "ai" match.
+    - cybersecurity
+    - cyber security
+    - information security
+    - security engineer
+    - security analyst
+    - security officer
     - technician
     - critical facilities
     - facility
@@ -351,6 +360,17 @@ early_career:
     - architect ii
     - iii
     - " iv"
+    # The numeral list used to stop at IV, which let "Environmental Analyst V"
+    # through as early career at $118,100. Matching is word-bounded, so "v"
+    # cannot match inside "revenue" or "v2g".
+    - v
+    - vi
+    - vii
+    - viii
+    # "lead" is word-bounded and so never matched "Leader". "NERC Operations
+    # Team Leader" entered the sample at $122,038.
+    - leader
+    - team lead
 
 internships:
   exclude: true

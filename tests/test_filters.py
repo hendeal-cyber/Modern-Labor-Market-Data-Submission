@@ -27,6 +27,63 @@ YEARS = [
     ("Build dashboards for the analytics team.", None),
 ]
 
+# Audit round 2, 2026-09-21. Every title here is REAL — read out of
+# data/analysis/postings.csv, not invented — and every one of them reached a
+# live measurement wrongly. The four that were kept were ranks 1, 7, 8 and 11
+# by pay in a 42-row sample whose median was $85,750, so between them they
+# pulled the mean up 4.2% and the median up 6.1%.
+AUDIT_ROUND_2 = [
+    # (title, must_be_kept, expected_family_or_None)
+    # Seniority: the roman-numeral list stopped at IV.
+    ("Environmental Analyst V (Construction Stormwater) - Denver, CO", False, None),
+    ("Analyst VI", False, None),
+    # "lead" is word-bounded and never matched "Leader".
+    ("NERC Operations Team Leader", False, None),
+    # Security was named out of scope from the start but never encoded; this
+    # entered on a bare "ai" match at $148,500, the top of the sample.
+    ("AI Cybersecurity Engineer", False, None),
+    ("Information Security Analyst", False, None),
+    # Drafting, not geospatial analytics, and it was the ONLY gis observation.
+    ("CAD Designer", False, None),
+    # Family order: siting_dev's bare "acquisition" beat market_commercial.
+    ("Mergers and Acquisitions Associate", True, "market_commercial"),
+    # software_data had "analytics" but not "data analyst", so this fell to
+    # the catch-all "other" bucket.
+    ("Data Analyst - AMLD", True, "software_data"),
+]
+
+# Roles that must survive all of the above. Tightening a screen is only correct
+# if it does not take the real sample with it.
+AUDIT_ROUND_2_KEEP = [
+    ("Associate, Renewable Development", "siting_dev"),
+    ("Analyst, Compliance", "regulatory"),
+    ("Market Analyst", "market_commercial"),
+    ("Data Engineer II", "software_data"),
+    ("GIS Analyst", "gis"),
+    ("Grid Integration Engineer I", "grid_power"),
+]
+
+
+def audit_round_2_cases(config):
+    """Bugs found by hand-reading role_family against real collected titles."""
+    import sys, pathlib as _p
+    sys.path.insert(0, str(_p.Path(__file__).resolve().parents[1] / "src"))
+    from lmstudy.build_dataset import role_family
+
+    fails = []
+    for title, keep, family in AUDIT_ROUND_2 + [(t, True, f) for t, f in AUDIT_ROUND_2_KEEP]:
+        role = screen_role(title, "", config)
+        early = screen_early_career(title, "", config)
+        kept = role.passed and early.passed
+        if kept != keep:
+            why = role.reason or early.reason or "kept"
+            fails.append(f"audit2: {title!r} kept={kept} want={keep} ({why})")
+            continue
+        if keep and family and role_family(title) != family:
+            fails.append(f"audit2: {title!r} family={role_family(title)} want {family}")
+    return fails
+
+
 def run():
     fails = []
 
@@ -114,7 +171,9 @@ def run():
         if got.passed != want:
             fails.append(f"internship[{label}] -> {got.passed} want {want} ({got.reason})")
 
-    total = len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)+len(intern_cases)
+    fails += audit_round_2_cases(CFG)
+    total = (len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)
+             +len(intern_cases)+len(AUDIT_ROUND_2)+len(AUDIT_ROUND_2_KEEP))
     print(f"filters: {total-len(fails)}/{total} passed")
     for f in fails:
         print("  FAIL", f)

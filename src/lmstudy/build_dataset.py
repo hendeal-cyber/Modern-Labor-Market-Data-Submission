@@ -29,14 +29,20 @@ from lmstudy.filters import screen_all, extract_years, extract_job_level        
 # Role families, checked in order; the first match wins. Ordered so the more
 # specific family beats the generic one ("AI Application Engineer" is ai_ml,
 # not software_data).
+# Order matters: the first pattern that matches wins, so a broad term in an
+# early family silently captures roles belonging to a later one. Hand-auditing
+# the assignments against real titles found two such captures.
+# "Mergers and Acquisitions Associate" matched siting_dev's bare "acquisition"
+# instead of market_commercial's "mergers", and "CAD Designer" matched gis's
+# bare "cad" although it is drafting rather than geospatial analytics.
 ROLE_FAMILIES = [
     ("ai_ml", r"\bai\b|artificial intelligence|machine learning|\bml\b|data scien|geospatial scien"),
-    ("gis", r"\bgis\b|geospatial|\bcad\b"),
-    ("siting_dev", r"siting|site selection|\bland\b|development|permitting|origination|real estate|acquisition"),
+    ("gis", r"\bgis\b|geospatial|cad[- ]gis"),
+    ("siting_dev", r"siting|site selection|\bland\b|development|permitting|origination|real estate|site acquisition|land acquisition"),
     ("regulatory", r"regulator|compliance|policy|legislat|\bnerc\b|tariff|rate case|docket"),
     ("market_commercial", r"market|commercial|procurement|pricing|capital markets|contracts|valuation|investment|fp&a|mergers"),
     ("grid_power", r"grid|transmission|interconnect|resource plan|load forecast|power system|substation"),
-    ("software_data", r"software|developer|data engineer|analytics|business intelligence|platform engineer|servicenow|application|business analyst"),
+    ("software_data", r"software|developer|data engineer|data analyst|analytics|business intelligence|platform engineer|servicenow|application|business analyst"),
     ("sustainability", r"sustainab|\besg\b|energy efficiency|demand response|carbon|environmental"),
 ]
 _FAMILY_RE = [(name, re.compile(pat, re.IGNORECASE)) for name, pat in ROLE_FAMILIES]
