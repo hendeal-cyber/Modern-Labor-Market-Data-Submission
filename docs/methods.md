@@ -2,12 +2,30 @@
 
 ## Research question
 
-What posting-level attributes predict advertised pay for **early-career
-software, data and analytics roles at utility and data center operators** in the
-Chicago and Indianapolis metropolitan areas?
+What posting-level attributes predict advertised pay in the **United States
+energy and data center sector**?
+
+Secondary, and in practice the better-identified question: **does a state
+pay-transparency mandate change whether pay is disclosed at all?**
 
 Dependent variable: `log(pay_midpoint)`, the natural log of the midpoint of the
 employer-stated pay range, annualized to USD.
+
+### How this differs from the original question
+
+The study was designed around early-career software and data roles within 35
+miles of Chicago or Indianapolis. Measured against real postings, that scope
+returned **zero** usable observations, and three successive widenings — role
+taxonomy, then metros, then national scope with seniority as a regressor —
+were each chosen after measuring what the previous one yielded.
+
+The original question survives as a **pre-specified subsample**
+(`early_career`), reported whether or not it agrees with the full sample.
+Because the widening was data-driven rather than pre-registered, the
+specification was fixed in `docs/pre-registration.md` before the national
+sample was collected, and every change made afterwards is a dated amendment in
+its section 8. `docs/limitations.md` §10 states plainly what a reader should
+discount for.
 
 ## Why not LinkedIn
 

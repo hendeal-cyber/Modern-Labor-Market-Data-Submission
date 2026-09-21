@@ -29,7 +29,7 @@ const fig = (n) => (fs.existsSync(path.join(FIGS, n)) ? path.join(FIGS, n) : nul
 const pres = new PptxGenJS();
 pres.layout = "LAYOUT_WIDE";            // 13.3 x 7.5, set before any slide
 pres.author = "Labor market study";
-pres.title = "Advertised Pay in Early-Career Software and Data Roles";
+pres.title = "Determinants of Advertised Pay in the US Energy and Data Center Sector";
 
 const H = 7.5, W = 13.33, M = 0.7;
 
@@ -80,8 +80,8 @@ function bullets(s, items, x, y, w, h) {
 {
   const n = funnel ? (funnel.funnel?.usable_with_pay ?? 0) : 0;
   darkSlide(
-    "Advertised Pay in Early-Career\nSoftware and Data Roles",
-    "Utility and data center operators in the Chicago and Indianapolis metros\n" +
+    "Determinants of Advertised Pay\nin the US Energy and Data Center Sector",
+    "Evidence from employer-published job postings, nationwide\n" +
     "Regressing log advertised pay on attributes stated in the posting",
     "LABOR MARKET STUDY"
   ).addNotes(
@@ -97,14 +97,14 @@ function bullets(s, items, x, y, w, h) {
     { x: M, y: 1.4, w: W - 2 * M, h: 0.8, isTextBox: true, fontSize: 20, italic: true,
       color: DEEP, fontFace: "Calibri" });
   bullets(s, [
-    "Data center buildout is driving technical hiring across the utility sector",
-    "Both sectors compete for early-career software and data talent against national tech pay scales",
+    "Data center buildout is driving technical and analytical hiring across the energy sector",
+    "Seniority and location enter as regressors, not sample filters — which is what makes the disclosure contrast estimable",
     "Postings state requirements, benefits, location and work arrangement — all potential pay determinants",
     "Outcome: log of the employer-stated pay range midpoint, annualized to USD",
   ], M, 2.4, W - 2 * M - 4.6, 3.4);
   statCard(s, W - M - 4.2, 2.5, 4.2, "28", "regressors coded from posting text", TEAL);
-  statCard(s, W - M - 4.2, 4.6, 4.2, "35 mi", "radius around each metro centroid", DEEP);
-  s.addNotes("Scope is deliberately narrow: core operators only, software/data/analytics roles only.");
+  statCard(s, W - M - 4.2, 4.6, 4.2, "16", "states mandating pay in the posting", DEEP);
+  s.addNotes("Roles stay narrow — an energy-analytics core. Geography and seniority are what widened.");
 }
 
 // ---------------------------------------------------------------- 3. Why not LinkedIn
@@ -203,7 +203,7 @@ function bullets(s, items, x, y, w, h) {
   const items = [
     ["Advertised, not realized pay", "Posted ranges reflect compliance and negotiating posture, not earnings."],
     ["Disclosure is selected", "Indiana has no mandate, so its disclosing postings are self-selected."],
-    ["Exelon and ComEd are missing", "They run iCIMS, which has no free public API — the largest Chicago utility employer is absent."],
+    ["Exelon and ComEd are missing", "They run iCIMS: its feed goes only to approved job boards, its API is partner-gated, no syndication feed exists, and its terms bar automated access. Verified by reading them, not assumed."],
     ["No historical backfill", "ATS APIs serve only open postings, so the panel starts when collection starts."],
     ["Few employer clusters", "Clustered standard errors under-covered at 88% in simulation with 12 clusters."],
   ];
