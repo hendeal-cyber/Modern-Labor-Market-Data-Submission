@@ -48,6 +48,7 @@ EXTENDED_EXTRA = [
     "family_grid_power", "family_gis", "family_sustainability",
     "industry_grid_operator", "industry_energy_analytics", "industry_developer",
     "industry_consulting", "industry_grid_vendor",
+    "industry_cooperative", "industry_retailer",
 ]
 
 
@@ -59,7 +60,7 @@ def load(path: pathlib.Path) -> pd.DataFrame:
     # operators, analytics firms, developers, consultancies and vendors.
     # Utility is the reference category.
     for value in ("grid_operator", "energy_analytics", "developer",
-                  "consulting", "grid_vendor"):
+                  "consulting", "grid_vendor", "cooperative", "retailer"):
         if "industry" in df:
             df[f"industry_{value}"] = (df["industry"] == value).astype(int)
     # Role family, with software_data as the reference category.

@@ -1495,6 +1495,459 @@ grid_vendors_batch2:
       workday: [{tenant: powellindustries, site: careers}]
     verified: false
 
+# Electric and gas cooperatives: generation & transmission co-ops,
+# distribution co-ops and the co-op service organisations. Several sit
+# inside study metros — ACES and Wabash Valley in Indianapolis, Tri-State
+# and United Power in Denver, Great River and Connexus in the Twin Cities,
+# NRECA and CFC in Northern Virginia.
+cooperatives_batch3:
+  - name: ACES Alliance for Cooperative Energy Services
+    candidates:
+      greenhouse: [acesforcooperativeenergy, aces-for-cooperative-energy, acesfor]
+      lever: [acesforcooperativeenergy, aces-for-cooperative-energy, acesfor]
+      ashby: [acesforcooperativeenergy, aces-for-cooperative-energy, acesfor]
+      workday: [{tenant: acesforcooperativeenergy, site: careers}]
+    verified: false
+  - name: Wabash Valley Power Alliance
+    candidates:
+      greenhouse: [wabashvalleypower, wabash-valley-power, wabashvalley]
+      lever: [wabashvalleypower, wabash-valley-power, wabashvalley]
+      ashby: [wabashvalleypower, wabash-valley-power, wabashvalley]
+      workday: [{tenant: wabashvalleypower, site: careers}]
+    verified: false
+  - name: Hoosier Energy
+    candidates:
+      greenhouse: [hoosierenergy, hoosier-energy, hoosier]
+      lever: [hoosierenergy, hoosier-energy, hoosier]
+      ashby: [hoosierenergy, hoosier-energy, hoosier]
+      workday: [{tenant: hoosierenergy, site: careers}]
+    verified: false
+  - name: NRECA National Rural Electric Cooperative Association
+    candidates:
+      greenhouse: [nrecanationalruralelectriccooperative, nreca-national-rural-electric-cooperative, nrecanational]
+      lever: [nrecanationalruralelectriccooperative, nreca-national-rural-electric-cooperative, nrecanational]
+      ashby: [nrecanationalruralelectriccooperative, nreca-national-rural-electric-cooperative, nrecanational]
+      workday: [{tenant: nrecanationalruralelectriccooperative, site: careers}]
+    verified: false
+  - name: National Rural Utilities Cooperative Finance Corporation
+    candidates:
+      greenhouse: [nationalruralutilitiescooperativefinance, national-rural-utilities-cooperative-finance, nationalrural]
+      lever: [nationalruralutilitiescooperativefinance, national-rural-utilities-cooperative-finance, nationalrural]
+      ashby: [nationalruralutilitiescooperativefinance, national-rural-utilities-cooperative-finance, nationalrural]
+      workday: [{tenant: nationalruralutilitiescooperativefinance, site: careers}]
+    verified: false
+  - name: Tri-State Generation and Transmission
+    candidates:
+      greenhouse: [tristategenerationandtransmission, tri-state-generation-and-transmission, tristate]
+      lever: [tristategenerationandtransmission, tri-state-generation-and-transmission, tristate]
+      ashby: [tristategenerationandtransmission, tri-state-generation-and-transmission, tristate]
+      workday: [{tenant: tristategenerationandtransmission, site: careers}]
+    verified: false
+  - name: United Power
+    candidates:
+      greenhouse: [unitedpower, united-power, united]
+      lever: [unitedpower, united-power, united]
+      ashby: [unitedpower, united-power, united]
+      workday: [{tenant: unitedpower, site: careers}]
+    verified: false
+  - name: Great River Energy
+    candidates:
+      greenhouse: [greatriverenergy, great-river-energy, greatriver]
+      lever: [greatriverenergy, great-river-energy, greatriver]
+      ashby: [greatriverenergy, great-river-energy, greatriver]
+      workday: [{tenant: greatriverenergy, site: careers}]
+    verified: false
+  - name: Connexus Energy
+    candidates:
+      greenhouse: [connexusenergy, connexus-energy, connexus]
+      lever: [connexusenergy, connexus-energy, connexus]
+      ashby: [connexusenergy, connexus-energy, connexus]
+      workday: [{tenant: connexusenergy, site: careers}]
+    verified: false
+  - name: Dakota Electric Association
+    candidates:
+      greenhouse: [dakotaelectric, dakota-electric, dakota]
+      lever: [dakotaelectric, dakota-electric, dakota]
+      ashby: [dakotaelectric, dakota-electric, dakota]
+      workday: [{tenant: dakotaelectric, site: careers}]
+    verified: false
+  - name: Wright-Hennepin Cooperative Electric
+    candidates:
+      greenhouse: [wrighthennepincooperativeelectric, wright-hennepin-cooperative-electric, wrighthennepin]
+      lever: [wrighthennepincooperativeelectric, wright-hennepin-cooperative-electric, wrighthennepin]
+      ashby: [wrighthennepincooperativeelectric, wright-hennepin-cooperative-electric, wrighthennepin]
+      workday: [{tenant: wrighthennepincooperativeelectric, site: careers}]
+    verified: false
+  - name: Indiana Electric Cooperatives
+    candidates:
+      greenhouse: [indianaelectriccooperatives, indiana-electric-cooperatives, indianaelectric]
+      lever: [indianaelectriccooperatives, indiana-electric-cooperatives, indianaelectric]
+      ashby: [indianaelectriccooperatives, indiana-electric-cooperatives, indianaelectric]
+      workday: [{tenant: indianaelectriccooperatives, site: careers}]
+    verified: false
+  - name: Basin Electric Power Cooperative
+    candidates:
+      greenhouse: [basinelectricpowercooperative, basin-electric-power-cooperative, basinelectric]
+      lever: [basinelectricpowercooperative, basin-electric-power-cooperative, basinelectric]
+      ashby: [basinelectricpowercooperative, basin-electric-power-cooperative, basinelectric]
+      workday: [{tenant: basinelectricpowercooperative, site: careers}]
+    verified: false
+  - name: Old Dominion Electric Cooperative
+    candidates:
+      greenhouse: [olddominionelectriccooperative, old-dominion-electric-cooperative, olddominion]
+      lever: [olddominionelectriccooperative, old-dominion-electric-cooperative, olddominion]
+      ashby: [olddominionelectriccooperative, old-dominion-electric-cooperative, olddominion]
+      workday: [{tenant: olddominionelectriccooperative, site: careers}]
+    verified: false
+  - name: Buckeye Power
+    candidates:
+      greenhouse: [buckeyepower, buckeye-power, buckeye]
+      lever: [buckeyepower, buckeye-power, buckeye]
+      ashby: [buckeyepower, buckeye-power, buckeye]
+      workday: [{tenant: buckeyepower, site: careers}]
+    verified: false
+  - name: Dairyland Power Cooperative
+    candidates:
+      greenhouse: [dairylandpowercooperative, dairyland-power-cooperative, dairylandpower]
+      lever: [dairylandpowercooperative, dairyland-power-cooperative, dairylandpower]
+      ashby: [dairylandpowercooperative, dairyland-power-cooperative, dairylandpower]
+      workday: [{tenant: dairylandpowercooperative, site: careers}]
+    verified: false
+  - name: Associated Electric Cooperative
+    candidates:
+      greenhouse: [associatedelectriccooperative, associated-electric-cooperative, associatedelectric]
+      lever: [associatedelectriccooperative, associated-electric-cooperative, associatedelectric]
+      ashby: [associatedelectriccooperative, associated-electric-cooperative, associatedelectric]
+      workday: [{tenant: associatedelectriccooperative, site: careers}]
+    verified: false
+  - name: Seminole Electric Cooperative
+    candidates:
+      greenhouse: [seminoleelectriccooperative, seminole-electric-cooperative, seminoleelectric]
+      lever: [seminoleelectriccooperative, seminole-electric-cooperative, seminoleelectric]
+      ashby: [seminoleelectriccooperative, seminole-electric-cooperative, seminoleelectric]
+      workday: [{tenant: seminoleelectriccooperative, site: careers}]
+    verified: false
+  - name: Oglethorpe Power
+    candidates:
+      greenhouse: [oglethorpepower, oglethorpe-power, oglethorpe]
+      lever: [oglethorpepower, oglethorpe-power, oglethorpe]
+      ashby: [oglethorpepower, oglethorpe-power, oglethorpe]
+      workday: [{tenant: oglethorpepower, site: careers}]
+    verified: false
+  - name: East Kentucky Power Cooperative
+    candidates:
+      greenhouse: [eastkentuckypowercooperative, east-kentucky-power-cooperative, eastkentucky]
+      lever: [eastkentuckypowercooperative, east-kentucky-power-cooperative, eastkentucky]
+      ashby: [eastkentuckypowercooperative, east-kentucky-power-cooperative, eastkentucky]
+      workday: [{tenant: eastkentuckypowercooperative, site: careers}]
+    verified: false
+  - name: Arkansas Electric Cooperative
+    candidates:
+      greenhouse: [arkansaselectriccooperative, arkansas-electric-cooperative, arkansaselectric]
+      lever: [arkansaselectriccooperative, arkansas-electric-cooperative, arkansaselectric]
+      ashby: [arkansaselectriccooperative, arkansas-electric-cooperative, arkansaselectric]
+      workday: [{tenant: arkansaselectriccooperative, site: careers}]
+    verified: false
+  - name: Golden Spread Electric Cooperative
+    candidates:
+      greenhouse: [goldenspreadelectriccooperative, golden-spread-electric-cooperative, goldenspread]
+      lever: [goldenspreadelectriccooperative, golden-spread-electric-cooperative, goldenspread]
+      ashby: [goldenspreadelectriccooperative, golden-spread-electric-cooperative, goldenspread]
+      workday: [{tenant: goldenspreadelectriccooperative, site: careers}]
+    verified: false
+  - name: Big Rivers Electric
+    candidates:
+      greenhouse: [bigriverselectric, big-rivers-electric, bigrivers]
+      lever: [bigriverselectric, big-rivers-electric, bigrivers]
+      ashby: [bigriverselectric, big-rivers-electric, bigrivers]
+      workday: [{tenant: bigriverselectric, site: careers}]
+    verified: false
+  - name: Minnkota Power Cooperative
+    candidates:
+      greenhouse: [minnkotapowercooperative, minnkota-power-cooperative, minnkotapower]
+      lever: [minnkotapowercooperative, minnkota-power-cooperative, minnkotapower]
+      ashby: [minnkotapowercooperative, minnkota-power-cooperative, minnkotapower]
+      workday: [{tenant: minnkotapowercooperative, site: careers}]
+    verified: false
+  - name: Corn Belt Power Cooperative
+    candidates:
+      greenhouse: [cornbeltpowercooperative, corn-belt-power-cooperative, cornbelt]
+      lever: [cornbeltpowercooperative, corn-belt-power-cooperative, cornbelt]
+      ashby: [cornbeltpowercooperative, corn-belt-power-cooperative, cornbelt]
+      workday: [{tenant: cornbeltpowercooperative, site: careers}]
+    verified: false
+  - name: Central Iowa Power Cooperative
+    candidates:
+      greenhouse: [centraliowapowercooperative, central-iowa-power-cooperative, centraliowa]
+      lever: [centraliowapowercooperative, central-iowa-power-cooperative, centraliowa]
+      ashby: [centraliowapowercooperative, central-iowa-power-cooperative, centraliowa]
+      workday: [{tenant: centraliowapowercooperative, site: careers}]
+    verified: false
+  - name: North Carolina EMC
+    candidates:
+      greenhouse: [northcarolinaemc, north-carolina-emc, northcarolina]
+      lever: [northcarolinaemc, north-carolina-emc, northcarolina]
+      ashby: [northcarolinaemc, north-carolina-emc, northcarolina]
+      workday: [{tenant: northcarolinaemc, site: careers}]
+    verified: false
+  - name: Brazos Electric Power Cooperative
+    candidates:
+      greenhouse: [brazoselectricpowercooperative, brazos-electric-power-cooperative, brazoselectric]
+      lever: [brazoselectricpowercooperative, brazos-electric-power-cooperative, brazoselectric]
+      ashby: [brazoselectricpowercooperative, brazos-electric-power-cooperative, brazoselectric]
+      workday: [{tenant: brazoselectricpowercooperative, site: careers}]
+    verified: false
+  - name: South Mississippi Electric
+    candidates:
+      greenhouse: [southmississippielectric, south-mississippi-electric, southmississippi]
+      lever: [southmississippielectric, south-mississippi-electric, southmississippi]
+      ashby: [southmississippielectric, south-mississippi-electric, southmississippi]
+      workday: [{tenant: southmississippielectric, site: careers}]
+    verified: false
+  - name: Pedernales Electric Cooperative
+    candidates:
+      greenhouse: [pedernaleselectriccooperative, pedernales-electric-cooperative, pedernaleselectric]
+      lever: [pedernaleselectriccooperative, pedernales-electric-cooperative, pedernaleselectric]
+      ashby: [pedernaleselectriccooperative, pedernales-electric-cooperative, pedernaleselectric]
+      workday: [{tenant: pedernaleselectriccooperative, site: careers}]
+    verified: false
+  - name: Jackson EMC
+    candidates:
+      greenhouse: [jacksonemc, jackson-emc, jackson]
+      lever: [jacksonemc, jackson-emc, jackson]
+      ashby: [jacksonemc, jackson-emc, jackson]
+      workday: [{tenant: jacksonemc, site: careers}]
+    verified: false
+  - name: Touchstone Energy Cooperatives
+    candidates:
+      greenhouse: [touchstoneenergycooperatives, touchstone-energy-cooperatives, touchstoneenergy]
+      lever: [touchstoneenergycooperatives, touchstone-energy-cooperatives, touchstoneenergy]
+      ashby: [touchstoneenergycooperatives, touchstone-energy-cooperatives, touchstoneenergy]
+      workday: [{tenant: touchstoneenergycooperatives, site: careers}]
+    verified: false
+  - name: CoBank
+    candidates:
+      greenhouse: [cobank]
+      lever: [cobank]
+      ashby: [cobank]
+      workday: [{tenant: cobank, site: careers}]
+    verified: false
+
+# Competitive electric and gas retailers. Regulatory, market and pricing
+# analysis is the core of their early-career hiring, which is the role
+# family this study centres on.
+retailers_batch3:
+  - name: IGS Energy
+    candidates:
+      greenhouse: [igsenergy, igs-energy, igs]
+      lever: [igsenergy, igs-energy, igs]
+      ashby: [igsenergy, igs-energy, igs]
+      workday: [{tenant: igsenergy, site: careers}]
+    verified: false
+  - name: Santanna Energy Services
+    candidates:
+      greenhouse: [santannaenergy, santanna-energy, santanna]
+      lever: [santannaenergy, santanna-energy, santanna]
+      ashby: [santannaenergy, santanna-energy, santanna]
+      workday: [{tenant: santannaenergy, site: careers}]
+    verified: false
+  - name: AEP Energy
+    candidates:
+      greenhouse: [aepenergy, aep-energy, aep]
+      lever: [aepenergy, aep-energy, aep]
+      ashby: [aepenergy, aep-energy, aep]
+      workday: [{tenant: aepenergy, site: careers}]
+    verified: false
+  - name: NRG Energy
+    candidates:
+      greenhouse: [nrgenergy, nrg-energy, nrg]
+      lever: [nrgenergy, nrg-energy, nrg]
+      ashby: [nrgenergy, nrg-energy, nrg]
+      workday: [{tenant: nrgenergy, site: careers}]
+    verified: false
+  - name: Direct Energy
+    candidates:
+      greenhouse: [directenergy, direct-energy, direct]
+      lever: [directenergy, direct-energy, direct]
+      ashby: [directenergy, direct-energy, direct]
+      workday: [{tenant: directenergy, site: careers}]
+    verified: false
+  - name: Just Energy
+    candidates:
+      greenhouse: [justenergy, just-energy, just]
+      lever: [justenergy, just-energy, just]
+      ashby: [justenergy, just-energy, just]
+      workday: [{tenant: justenergy, site: careers}]
+    verified: false
+  - name: Via Renewables
+    candidates:
+      greenhouse: [viarenewables, via-renewables, via]
+      lever: [viarenewables, via-renewables, via]
+      ashby: [viarenewables, via-renewables, via]
+      workday: [{tenant: viarenewables, site: careers}]
+    verified: false
+  - name: Spark Energy
+    candidates:
+      greenhouse: [sparkenergy, spark-energy, spark]
+      lever: [sparkenergy, spark-energy, spark]
+      ashby: [sparkenergy, spark-energy, spark]
+      workday: [{tenant: sparkenergy, site: careers}]
+    verified: false
+  - name: Genie Energy
+    candidates:
+      greenhouse: [genieenergy, genie-energy, genie]
+      lever: [genieenergy, genie-energy, genie]
+      ashby: [genieenergy, genie-energy, genie]
+      workday: [{tenant: genieenergy, site: careers}]
+    verified: false
+  - name: Green Mountain Energy
+    candidates:
+      greenhouse: [greenmountainenergy, green-mountain-energy, greenmountain]
+      lever: [greenmountainenergy, green-mountain-energy, greenmountain]
+      ashby: [greenmountainenergy, green-mountain-energy, greenmountain]
+      workday: [{tenant: greenmountainenergy, site: careers}]
+    verified: false
+  - name: Champion Energy Services
+    candidates:
+      greenhouse: [championenergy, champion-energy, champion]
+      lever: [championenergy, champion-energy, champion]
+      ashby: [championenergy, champion-energy, champion]
+      workday: [{tenant: championenergy, site: careers}]
+    verified: false
+  - name: Shell Energy North America
+    candidates:
+      greenhouse: [shellenergynorthamerica, shell-energy-north-america, shellenergy]
+      lever: [shellenergynorthamerica, shell-energy-north-america, shellenergy]
+      ashby: [shellenergynorthamerica, shell-energy-north-america, shellenergy]
+      workday: [{tenant: shellenergynorthamerica, site: careers}]
+    verified: false
+  - name: Calpine Energy Solutions
+    candidates:
+      greenhouse: [calpineenergysolutions, calpine-energy-solutions, calpineenergy]
+      lever: [calpineenergysolutions, calpine-energy-solutions, calpineenergy]
+      ashby: [calpineenergysolutions, calpine-energy-solutions, calpineenergy]
+      workday: [{tenant: calpineenergysolutions, site: careers}]
+    verified: false
+  - name: MidAmerican Energy Services
+    candidates:
+      greenhouse: [midamericanenergy, midamerican-energy, midamerican]
+      lever: [midamericanenergy, midamerican-energy, midamerican]
+      ashby: [midamericanenergy, midamerican-energy, midamerican]
+      workday: [{tenant: midamericanenergy, site: careers}]
+    verified: false
+  - name: WGL Energy
+    candidates:
+      greenhouse: [wglenergy, wgl-energy, wgl]
+      lever: [wglenergy, wgl-energy, wgl]
+      ashby: [wglenergy, wgl-energy, wgl]
+      workday: [{tenant: wglenergy, site: careers}]
+    verified: false
+  - name: Washington Gas
+    candidates:
+      greenhouse: [washingtongas, washington-gas, washington]
+      lever: [washingtongas, washington-gas, washington]
+      ashby: [washingtongas, washington-gas, washington]
+      workday: [{tenant: washingtongas, site: careers}]
+    verified: false
+  - name: Clearview Energy
+    candidates:
+      greenhouse: [clearviewenergy, clearview-energy, clearview]
+      lever: [clearviewenergy, clearview-energy, clearview]
+      ashby: [clearviewenergy, clearview-energy, clearview]
+      workday: [{tenant: clearviewenergy, site: careers}]
+    verified: false
+  - name: Rhythm Energy
+    candidates:
+      greenhouse: [rhythmenergy, rhythm-energy, rhythm]
+      lever: [rhythmenergy, rhythm-energy, rhythm]
+      ashby: [rhythmenergy, rhythm-energy, rhythm]
+      workday: [{tenant: rhythmenergy, site: careers}]
+    verified: false
+  - name: Inspire Clean Energy
+    candidates:
+      greenhouse: [inspirecleanenergy, inspire-clean-energy, inspireclean]
+      lever: [inspirecleanenergy, inspire-clean-energy, inspireclean]
+      ashby: [inspirecleanenergy, inspire-clean-energy, inspireclean]
+      workday: [{tenant: inspirecleanenergy, site: careers}]
+    verified: false
+  - name: Tomorrow Energy
+    candidates:
+      greenhouse: [tomorrowenergy, tomorrow-energy, tomorrow]
+      lever: [tomorrowenergy, tomorrow-energy, tomorrow]
+      ashby: [tomorrowenergy, tomorrow-energy, tomorrow]
+      workday: [{tenant: tomorrowenergy, site: careers}]
+    verified: false
+  - name: Gexa Energy
+    candidates:
+      greenhouse: [gexaenergy, gexa-energy, gexa]
+      lever: [gexaenergy, gexa-energy, gexa]
+      ashby: [gexaenergy, gexa-energy, gexa]
+      workday: [{tenant: gexaenergy, site: careers}]
+    verified: false
+  - name: Energy Harbor
+    candidates:
+      greenhouse: [energyharbor, energy-harbor, energy]
+      lever: [energyharbor, energy-harbor, energy]
+      ashby: [energyharbor, energy-harbor, energy]
+      workday: [{tenant: energyharbor, site: careers}]
+    verified: false
+  - name: Liberty Power
+    candidates:
+      greenhouse: [libertypower, liberty-power, liberty]
+      lever: [libertypower, liberty-power, liberty]
+      ashby: [libertypower, liberty-power, liberty]
+      workday: [{tenant: libertypower, site: careers}]
+    verified: false
+  - name: Think Energy
+    candidates:
+      greenhouse: [thinkenergy, think-energy, think]
+      lever: [thinkenergy, think-energy, think]
+      ashby: [thinkenergy, think-energy, think]
+      workday: [{tenant: thinkenergy, site: careers}]
+    verified: false
+  - name: Public Power
+    candidates:
+      greenhouse: [publicpower, public-power, public]
+      lever: [publicpower, public-power, public]
+      ashby: [publicpower, public-power, public]
+      workday: [{tenant: publicpower, site: careers}]
+    verified: false
+  - name: Constellation NewEnergy
+    candidates:
+      greenhouse: [constellationnewenergy, constellation-newenergy, constellation]
+      lever: [constellationnewenergy, constellation-newenergy, constellation]
+      ashby: [constellationnewenergy, constellation-newenergy, constellation]
+      workday: [{tenant: constellationnewenergy, site: careers}]
+    verified: false
+  - name: Vistra Retail
+    candidates:
+      greenhouse: [vistraretail, vistra-retail, vistra]
+      lever: [vistraretail, vistra-retail, vistra]
+      ashby: [vistraretail, vistra-retail, vistra]
+      workday: [{tenant: vistraretail, site: careers}]
+    verified: false
+  - name: Symmetry Energy Solutions
+    candidates:
+      greenhouse: [symmetryenergysolutions, symmetry-energy-solutions, symmetryenergy]
+      lever: [symmetryenergysolutions, symmetry-energy-solutions, symmetryenergy]
+      ashby: [symmetryenergysolutions, symmetry-energy-solutions, symmetryenergy]
+      workday: [{tenant: symmetryenergysolutions, site: careers}]
+    verified: false
+  - name: Hudson Energy
+    candidates:
+      greenhouse: [hudsonenergy, hudson-energy, hudson]
+      lever: [hudsonenergy, hudson-energy, hudson]
+      ashby: [hudsonenergy, hudson-energy, hudson]
+      workday: [{tenant: hudsonenergy, site: careers}]
+    verified: false
+  - name: Tara Energy
+    candidates:
+      greenhouse: [taraenergy, tara-energy, tara]
+      lever: [taraenergy, tara-energy, tara]
+      ashby: [taraenergy, tara-energy, tara]
+      workday: [{tenant: taraenergy, site: careers}]
+    verified: false
+
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.
 discovery:

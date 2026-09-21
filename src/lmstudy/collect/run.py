@@ -109,6 +109,11 @@ SECTIONS = {
     "energy_analytics_batch2": "energy_analytics",
     "consulting_batch2": "consulting",
     "grid_vendors_batch2": "grid_vendor",
+    # Batch 3: cooperatives and competitive retailers. Both are squarely
+    # utility-sector, and several cooperatives are headquartered inside study
+    # metros.
+    "cooperatives_batch3": "cooperative",
+    "retailers_batch3": "retailer",
 }
 
 
