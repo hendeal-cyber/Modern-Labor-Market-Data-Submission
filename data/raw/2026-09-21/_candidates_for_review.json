@@ -10,7 +10,7 @@
     "distinctive_tokens": [
       "guidehouse"
     ],
-    "n_postings": 37,
+    "n_postings": 36,
     "sample_titles": [
       "Federal Law Enforcement Data Analyst",
       "Data Scientist",
@@ -23,7 +23,6 @@
     ],
     "locations_seen": [
       "LT - Vilnius; LT - Kaunas",
-      "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
       "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - TX, Austin; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
       "US - DC, Washington; US - VA, McLean",
       "US - DC, Washington; US - VA, McLean; US - VA, Arlington",
@@ -33,11 +32,12 @@
       "US - TX, San Antonio; US - Remote (Any location)",
       "US - VA, Arlington",
       "US - VA, Arlington; US - DC, Washington",
-      "US - VA, Arlington; US - Remote (Any location)"
+      "US - VA, Arlington; US - Remote (Any location)",
+      "US - VA, Arlington; US - VA, McLean"
     ],
     "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---VA-Arlington/Federal-Law-Enforcement-Data-Analyst_44533",
-    "sector_confidence": 0.027,
-    "distinct_sector_terms": 2,
+    "sector_confidence": 0.0,
+    "distinct_sector_terms": 0,
     "review_required": true,
     "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
   },

@@ -1,80 +1,80 @@
 # Results
 
-- Postings in scope: **56**
-- With disclosed pay: **44**
-- Used in estimation: **44**
+- Postings in scope: **52**
+- With disclosed pay: **40**
+- Used in estimation: **40**
 - Distinct employers: **15**
 
 > **These estimates are not yet interpretable.**
 >
-> - 4.0 observations per regressor (44 observations, 11 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
+> - 3.6 observations per regressor (40 observations, 11 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
 > - 13 employer clusters. Cluster-robust standard errors are biased downward with few clusters, so p-values are anti-conservative. A wild cluster bootstrap is required before reporting significance.
-> - Minimum detectable effect is 0.50 log points, roughly a 64% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
+> - Minimum detectable effect is 0.53 log points, roughly a 70% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
 >
 > The model is reported so the pipeline is verifiable end to end, not because the coefficients mean anything yet. Collect more before drawing conclusions.
 
 Regressor budget at 20 observations each: **2** (specification used: **core**).
 
-Minimum detectable standardized effect: **0.4953** log points (alpha 0.05, power 0.80).
+Minimum detectable standardized effect: **0.5294** log points (alpha 0.05, power 0.80).
 
 ## Core model (pre-specified)
 
-N = 44, R² = 0.6934, adjusted R² = 0.588, SE: cluster
+N = 40, R² = 0.7536, adjusted R² = 0.6568, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 11.1622*** | 0.1151 | 0.0 | [10.9366, 11.3878] | — |
-| `degree_stem` | 0.3419*** | 0.0492 | 0.0 | [0.2454, 0.4384] | 40.77% |
-| `advanced_degree_pref` | 0.3961*** | 0.0757 | 0.0 | [0.2478, 0.5444] | 48.6% |
-| `yrs_exp_min` | -0.2058 | 0.1343 | 0.1253 | [-0.4689, 0.0574] | -18.6% |
-| `yrs_exp_stated` | 0.5353* | 0.3106 | 0.0848 | [-0.0734, 1.1439] | 70.79% |
-| `skill_cloud` | 0.6648*** | 0.2 | 0.0009 | [0.2727, 1.0568] | 94.4% |
-| `skill_ml_ai` | -0.3764 | 0.2349 | 0.1091 | [-0.8369, 0.084] | -31.37% |
-| `soft_leadership` | 0.392 | 0.2522 | 0.1201 | [-0.1023, 0.8864] | 48.0% |
-| `industry_data_center` | 0.1562** | 0.0778 | 0.0445 | [0.0038, 0.3086] | 16.91% |
-| `remote_eligible` | 0.0286 | 0.1103 | 0.7957 | [-0.1876, 0.2448] | 2.9% |
-| `job_level` | -0.0215 | 0.061 | 0.7246 | [-0.1409, 0.098] | -2.12% |
-| `family_ai_ml` | -0.0199 | 0.1016 | 0.8449 | [-0.219, 0.1792] | -1.97% |
+| `const` | 11.1654*** | 0.1202 | 0.0 | [10.9297, 11.4011] | — |
+| `degree_stem` | 0.2705*** | 0.0883 | 0.0022 | [0.0974, 0.4435] | 31.06% |
+| `advanced_degree_pref` | 0.4597*** | 0.0904 | 0.0 | [0.2826, 0.6369] | 58.36% |
+| `yrs_exp_min` | -0.1972 | 0.1309 | 0.1321 | [-0.4538, 0.0595] | -17.89% |
+| `yrs_exp_stated` | 0.4743 | 0.2947 | 0.1074 | [-0.1032, 1.0519] | 60.7% |
+| `skill_cloud` | 1.1986*** | 0.3156 | 0.0001 | [0.58, 1.8171] | 231.54% |
+| `skill_ml_ai` | -0.8084*** | 0.2417 | 0.0008 | [-1.2821, -0.3346] | -55.44% |
+| `soft_leadership` | 0.4303*** | 0.1498 | 0.0041 | [0.1367, 0.7239] | 53.77% |
+| `industry_data_center` | 0.2537*** | 0.0767 | 0.0009 | [0.1033, 0.4041] | 28.88% |
+| `remote_eligible` | 0.1763 | 0.1578 | 0.2639 | [-0.133, 0.4857] | 19.29% |
+| `job_level` | -0.0151 | 0.0684 | 0.8251 | [-0.1491, 0.1189] | -1.5% |
+| `family_ai_ml` | -0.2261 | 0.151 | 0.1344 | [-0.5222, 0.0699] | -20.24% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Secondary: log(range width)
 
-N = 43, R² = 0.2522, adjusted R² = -0.0131, SE: cluster
+N = 39, R² = 0.4339, adjusted R² = 0.2033, SE: cluster
 
 | Variable | Coef | Std err | p | 95% CI | Approx % effect |
 |---|---|---|---|---|---|
-| `const` | 11.0154*** | 0.8595 | 0.0 | [9.3307, 12.7] | — |
-| `degree_stem` | -0.4777 | 0.484 | 0.3236 | [-1.4262, 0.4709] | -37.98% |
-| `advanced_degree_pref` | 0.1425 | 0.3136 | 0.6497 | [-0.4722, 0.7571] | 15.31% |
-| `yrs_exp_min` | 0.6928* | 0.4021 | 0.0849 | [-0.0952, 1.4809] | 99.94% |
-| `yrs_exp_stated` | -1.6362 | 1.4491 | 0.2588 | [-4.4764, 1.2039] | -80.53% |
-| `skill_cloud` | -0.597 | 0.7875 | 0.4484 | [-2.1405, 0.9465] | -44.95% |
-| `skill_ml_ai` | 1.5452** | 0.7572 | 0.0413 | [0.061, 3.0294] | 368.89% |
-| `soft_leadership` | -0.723 | 0.788 | 0.3589 | [-2.2673, 0.8214] | -51.47% |
-| `industry_data_center` | -0.2328 | 0.5611 | 0.6782 | [-1.3325, 0.8669] | -20.77% |
-| `remote_eligible` | -0.3864 | 0.4699 | 0.4109 | [-1.3072, 0.5345] | -32.05% |
-| `job_level` | -0.4701 | 0.4522 | 0.2985 | [-1.3564, 0.4161] | -37.51% |
-| `family_ai_ml` | -0.426 | 0.7691 | 0.5797 | [-1.9335, 1.0815] | -34.69% |
+| `const` | 11.6531*** | 0.5065 | 0.0 | [10.6603, 12.6459] | — |
+| `degree_stem` | -0.409 | 0.59 | 0.4882 | [-1.5654, 0.7474] | -33.57% |
+| `advanced_degree_pref` | -0.3113 | 0.2725 | 0.2533 | [-0.8455, 0.2228] | -26.75% |
+| `yrs_exp_min` | 0.7555** | 0.3539 | 0.0328 | [0.062, 1.4491] | 112.88% |
+| `yrs_exp_stated` | -1.974 | 1.3109 | 0.1321 | [-4.5434, 0.5953] | -86.11% |
+| `skill_cloud` | -3.1705* | 1.8181 | 0.0812 | [-6.7338, 0.3929] | -95.8% |
+| `skill_ml_ai` | 4.292*** | 1.3677 | 0.0017 | [1.6114, 6.9727] | 7211.56% |
+| `soft_leadership` | -1.2009 | 0.8788 | 0.1718 | [-2.9234, 0.5216] | -69.91% |
+| `industry_data_center` | -0.6189 | 0.5849 | 0.29 | [-1.7653, 0.5275] | -46.15% |
+| `remote_eligible` | -0.8724 | 0.7041 | 0.2153 | [-2.2524, 0.5075] | -58.21% |
+| `job_level` | -0.8495*** | 0.2747 | 0.002 | [-1.3878, -0.3112] | -57.24% |
+| `family_ai_ml` | -0.5665 | 0.4861 | 0.2438 | [-1.5191, 0.3862] | -43.25% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
 
 ## Disclosure selection
 
-Disclosure rate: **0.786** (44 disclosed, 12 withheld).
+Disclosure rate: **0.769** (40 disclosed, 12 withheld).
 
 | Variable | Mean (disclosed) | Mean (withheld) | Diff | p |
 |---|---|---|---|---|
-| `degree_stem` | 0.364 | 0.167 | 0.197 | 0.1567 |
-| `advanced_degree_pref` | 0.159 | 0.167 | -0.008 | 0.9526 |
-| `yrs_exp_min` | 0.682 | 1.667 | -0.985 | 0.0127 |
-| `yrs_exp_stated` | 0.273 | 0.833 | -0.561 | 0.0004 |
-| `skill_cloud` | 0.114 | 0.167 | -0.053 | 0.6707 |
-| `skill_ml_ai` | 0.182 | 0.5 | -0.318 | 0.0687 |
-| `soft_leadership` | 0.091 | 0.0 | 0.091 | 0.0441 |
-| `industry_data_center` | 0.182 | 0.167 | 0.015 | 0.9063 |
-| `remote_eligible` | 0.114 | 0.667 | -0.553 | 0.0026 |
-| `job_level` | 1.068 | 1.0 | 0.068 | 0.8363 |
-| `family_ai_ml` | 0.114 | 0.25 | -0.136 | 0.3438 |
+| `degree_stem` | 0.375 | 0.167 | 0.208 | 0.1409 |
+| `advanced_degree_pref` | 0.125 | 0.167 | -0.042 | 0.7416 |
+| `yrs_exp_min` | 0.75 | 1.667 | -0.917 | 0.0208 |
+| `yrs_exp_stated` | 0.3 | 0.833 | -0.533 | 0.0007 |
+| `skill_cloud` | 0.125 | 0.167 | -0.042 | 0.7416 |
+| `skill_ml_ai` | 0.175 | 0.5 | -0.325 | 0.0643 |
+| `soft_leadership` | 0.05 | 0.0 | 0.05 | 0.1599 |
+| `industry_data_center` | 0.2 | 0.167 | 0.033 | 0.7994 |
+| `remote_eligible` | 0.125 | 0.667 | -0.542 | 0.003 |
+| `job_level` | 1.125 | 1.0 | 0.125 | 0.7056 |
+| `family_ai_ml` | 0.1 | 0.25 | -0.15 | 0.299 |
 | `metro_indianapolis` | 0.0 | 0.333 | -0.333 | 0.0388 |
 

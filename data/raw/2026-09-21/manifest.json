@@ -1,8 +1,26 @@
 {
   "run_date": "2026-09-21",
-  "collected_at": "2026-09-21T05:12:48.122011+00:00",
-  "employers_attempted": 265,
+  "collected_at": "2026-09-21T05:46:50.578606+00:00",
+  "employers_attempted": 269,
   "results": [
+    {
+      "employer": "Exelon",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "ComEd",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
+    {
+      "employer": "Constellation Energy",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
+    },
     {
       "employer": "Nicor Gas (Southern Company Gas)",
       "industry": "utility",
@@ -16,7 +34,7 @@
       "platform": "workday",
       "token": "invenergyllc/invenergycareers",
       "listed": 192,
-      "postings": 26,
+      "postings": 25,
       "file": "Invenergy__workday.json",
       "site_guessed": false
     },
@@ -55,9 +73,15 @@
       "platform": "workday",
       "token": "aes/AES_US",
       "listed": 165,
-      "postings": 11,
+      "postings": 9,
       "file": "AES_Indiana__workday.json",
       "site_guessed": false
+    },
+    {
+      "employer": "Citizens Energy Group",
+      "industry": "utility",
+      "found": false,
+      "postings": 0
     },
     {
       "employer": "Duke Energy Indiana",
@@ -579,7 +603,7 @@
       "platform": "workday",
       "token": "xcelenergy/External",
       "listed": 254,
-      "postings": 23,
+      "postings": 22,
       "file": "Xcel_Energy__workday.json",
       "site_guessed": true
     },
@@ -1790,12 +1814,12 @@
       "postings": 0
     }
   ],
-  "total_postings": 561,
+  "total_postings": 557,
   "scope_diagnostics": {
     "listed": 3778,
-    "kept": 120,
-    "neither": 2246,
-    "in_metro_wrong_role": 619,
+    "kept": 115,
+    "neither": 2243,
+    "in_metro_wrong_role": 622,
     "titles_in_metro": {
       "Warehouse Operations Specialist": 11,
       "Account Executive -  Digital Solutions": 8,
@@ -1828,7 +1852,7 @@
       "Credit Balance Specialist - Physician Healthcare Claims": 2,
       "Oracle PL/SQL Developer / Developer DBA": 2
     },
-    "unknown_place_wrong_role": 745,
+    "unknown_place_wrong_role": 750,
     "role_ok_wrong_place": 48,
     "locations_of_in_role": {
       "US - AL, Huntsville": 5,
