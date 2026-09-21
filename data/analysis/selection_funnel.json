@@ -1,28 +1,44 @@
 {
-  "built_at": "2026-09-20T22:51:52.164835+00:00",
+  "built_at": "2026-09-21T01:26:55.414420+00:00",
   "snapshots": [
-    "2026-09-20"
+    "2026-09-20",
+    "2026-09-21"
   ],
   "funnel": {
-    "raw": 165,
-    "rejected_screen": 162,
-    "passed_screen": 3,
-    "rejected_geo": 3,
-    "unique_in_scope": 0,
-    "usable_with_pay": 0
+    "raw": 1052,
+    "rejected_screen": 957,
+    "passed_screen": 95,
+    "rejected_geo": 49,
+    "passed_geo": 46,
+    "duplicate_sighting": 5,
+    "unique_in_scope": 41,
+    "usable_with_pay": 38
   },
   "rejection_reasons": {
-    "role_not_software_data": 96,
-    "no_experience_signal": 72,
-    "seniority_excluded": 63,
-    "role_excluded": 60,
-    "experience_too_high": 17,
-    "internship": 6,
-    "out_of_metro": 3
+    "role_not_software_data": 663,
+    "seniority_excluded": 529,
+    "role_excluded": 245,
+    "experience_too_high": 78,
+    "out_of_metro": 49,
+    "internship": 23
   },
-  "usable_by_metro": {},
-  "usable_by_employer": {},
-  "distinct_employers_with_pay": 0,
+  "usable_by_metro": {
+    "denver": 8,
+    "chicago": 21,
+    "northern_virginia": 9
+  },
+  "usable_by_employer": {
+    "Invenergy": 21,
+    "AES Indiana": 6,
+    "Guidehouse": 3,
+    "Nexamp": 2,
+    "STACK Infrastructure": 2,
+    "Flexential": 1,
+    "QTS Data Centers": 1,
+    "Vantage Data Centers": 1,
+    "Yes Energy": 1
+  },
+  "distinct_employers_with_pay": 9,
   "min_usable_n": 100,
   "floor_met": false
 }
