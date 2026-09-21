@@ -12,6 +12,7 @@ import datetime as dt
 import hashlib
 import json
 import pathlib
+import re
 import sys
 from collections import Counter, defaultdict
 
@@ -22,7 +23,44 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from lmstudy import geo, pay                                     # noqa: E402
 from lmstudy.code_regressors import load_dictionary, code_posting  # noqa: E402
-from lmstudy.filters import screen_all, extract_years            # noqa: E402
+from lmstudy.filters import screen_all, extract_years, extract_job_level            # noqa: E402
+
+
+# Role families, checked in order; the first match wins. Ordered so the more
+# specific family beats the generic one ("AI Application Engineer" is ai_ml,
+# not software_data).
+ROLE_FAMILIES = [
+    ("ai_ml", r"\bai\b|artificial intelligence|machine learning|\bml\b|data scien|geospatial scien"),
+    ("gis", r"\bgis\b|geospatial|\bcad\b"),
+    ("siting_dev", r"siting|site selection|\bland\b|development|permitting|origination|real estate|acquisition"),
+    ("regulatory", r"regulator|compliance|policy|legislat|\bnerc\b|tariff|rate case|docket"),
+    ("market_commercial", r"market|commercial|procurement|pricing|capital markets|contracts|valuation|investment|fp&a|mergers"),
+    ("grid_power", r"grid|transmission|interconnect|resource plan|load forecast|power system|substation"),
+    ("software_data", r"software|developer|data engineer|analytics|business intelligence|platform engineer|servicenow|application|business analyst"),
+    ("sustainability", r"sustainab|\besg\b|energy efficiency|demand response|carbon|environmental"),
+]
+_FAMILY_RE = [(name, re.compile(pat, re.IGNORECASE)) for name, pat in ROLE_FAMILIES]
+
+
+def role_family(title: str) -> str:
+    for name, pattern in _FAMILY_RE:
+        if pattern.search(title or ""):
+            return name
+    return "other"
+
+
+def off_umbrella(record: dict) -> bool:
+    """True when a diversified employer's posting is from another line of business.
+
+    Iron Mountain is a records-management company with a data center arm; its
+    board served CDL drivers and warehouse staff. Hitachi's tenant covers rail
+    and medical imaging. Neither belongs in an energy study, and the employer
+    frame alone cannot tell them apart — the title has to.
+    """
+    if not record.get("diversified"):
+        return False
+    title = (record.get("title") or "").lower()
+    return any(term.lower() in title for term in record.get("off_umbrella") or [])
 
 
 def dedupe_key(record: dict) -> str:
@@ -86,6 +124,11 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 title = rec.get("title") or ""
                 description = rec.get("description") or ""
 
+                if off_umbrella(rec):
+                    funnel["rejected_off_umbrella"] += 1
+                    reject_reasons["off_umbrella_line_of_business"] += 1
+                    continue
+
                 passed, reasons, detail = screen_all(title, description, scope)
                 if not passed:
                     for reason in reasons:
@@ -117,6 +160,8 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     "employer": rec.get("employer"),
                     "industry": rec.get("industry"),
                     "title": title,
+                    "role_family": role_family(title),
+                    "job_level": extract_job_level(title),
                     "ats_platform": rec.get("platform"),
                     "url": rec.get("url"),
                     "metro": place.metro,

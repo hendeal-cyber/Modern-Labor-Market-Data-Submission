@@ -184,6 +184,20 @@ data_center_operators:
     verified: true      # boards-api.greenhouse.io/v1/boards/edgeconnex — 19 postings
   - name: Iron Mountain Data Centers
     metros: [chicago]
+    # Primarily a records-management company; only its data center arm is in
+    # scope. Without this guard it contributed CDL drivers, warehouse staff
+    # and Record Center Specialists.
+    diversified: true
+    off_umbrella:
+      - warehouse
+      - record center
+      - records management
+      - route driver
+      - truck driver
+      - courier
+      - shredding
+      - data entry
+      - mail
     candidates:
       workday: [{tenant: ironmountain, site: iron-mountain-jobs, wd: 5}]
     verified: true      # ironmountain.wd5.myworkdayjobs.com/iron-mountain-jobs
@@ -194,6 +208,197 @@ data_center_operators:
     verified: true      # jobs.lever.co/t5datacenters — confirmed from the
                         # official careers page, which also settles the earlier
                         # unconfirmed slug candidate for this token
+
+# ---------------------------------------------------------------------------
+# Frame expansion, 2026-09-21. Core operators alone yield 32 usable
+# observations under the widened role taxonomy, so the employer frame carries
+# the rest of the way to the floor. `industry` is now categorical rather than
+# binary, and the write-up must describe the population as the energy and data
+# center SECTOR rather than as core operators.
+# ---------------------------------------------------------------------------
+
+grid_operators:          # RTOs/ISOs — the market operators themselves
+  - name: MISO (Midcontinent ISO)
+    industry: grid_operator
+    metro: indianapolis
+    # Headquartered in Carmel, Indiana — inside the Indianapolis radius, and
+    # the RTO whose data the study owner works with directly. Its careers
+    # portal is careers.misoenergy.org; the underlying ATS is not yet
+    # identified, so slug candidates are offered for discovery to confirm.
+    candidates:
+      workday: [{tenant: misoenergy, site: MISO}, {tenant: miso, site: careers}]
+      greenhouse: [misoenergy]
+      icims: [misoenergy]
+    verified: false
+  - name: PJM Interconnection
+    industry: grid_operator
+    candidates:
+      workday: [{tenant: pjm, site: pjmcareers, wd: 5}]
+    verified: true       # pjm.wd5.myworkdayjobs.com/pjmcareers
+
+energy_analytics:        # analytics and grid-software firms
+  - name: Ascend Analytics
+    industry: energy_analytics
+    candidates:
+      greenhouse: [ascendanalytics]
+    verified: true       # job-boards.greenhouse.io/ascendanalytics (Boulder, CO
+                         # — inside the Denver Tier 3 radius)
+  - name: Uplight
+    industry: energy_analytics
+    candidates:
+      greenhouse: [uplight]
+      lever: [uplight]
+    verified: false
+  - name: Arcadia
+    industry: energy_analytics
+    # "Arcadia" is a common company name; treat any slug hit as unconfirmed
+    # until the board's own content is checked, per the Constellation lesson.
+    candidates:
+      greenhouse: [arcadiapower, arcadia]
+    verified: false
+  - name: Aurora Energy Research
+    industry: energy_analytics
+    candidates:
+      greenhouse: [auroraenergyresearch]
+      lever: [auroraer]
+    verified: false
+  - name: Camus Energy
+    industry: energy_analytics
+    candidates:
+      greenhouse: [camusenergy]
+      ashby: [camus]
+    verified: false
+
+developers:              # renewable and data center developers
+  - name: Clearway Energy
+    industry: developer
+    candidates:
+      greenhouse: [clearwayjobs]
+    verified: true       # job-boards.greenhouse.io/clearwayjobs
+  - name: Arevon Energy
+    industry: developer
+    candidates:
+      greenhouse: [arevonenergyimpltest]
+    verified: true       # job-boards.greenhouse.io/arevonenergyimpltest —
+                         # the token reads like a sandbox but serves live
+                         # postings; re-check if its output looks synthetic
+  - name: Apex Clean Energy
+    industry: developer
+    candidates:
+      greenhouse: [apexcleanenergy]
+      lever: [apexcleanenergy]
+    verified: false
+  - name: Intersect Power
+    industry: developer
+    candidates:
+      greenhouse: [intersectpower]
+      ashby: [intersectpower]
+    verified: false
+  - name: NextEra Energy
+    industry: developer
+    candidates:
+      workday: [{tenant: nextera, site: careers}, {tenant: nexteraenergy, site: NextEra}]
+    verified: false
+
+consulting:              # energy consulting and advisory
+  - name: ICF
+    industry: consulting
+    candidates:
+      workday: [{tenant: icf, site: ICF_Careers}, {tenant: icfi, site: careers}]
+    verified: false
+  - name: Guidehouse
+    industry: consulting
+    candidates:
+      workday: [{tenant: guidehouse, site: External, wd: 1}]
+    verified: false
+  - name: Energy and Environmental Economics (E3)
+    industry: consulting
+    candidates:
+      greenhouse: [ethree]
+      lever: [ethree]
+    verified: false
+  - name: The Brattle Group
+    industry: consulting
+    candidates:
+      greenhouse: [brattle]
+      lever: [brattle]
+    verified: false
+
+grid_vendors:            # grid technology manufacturers
+  - name: Hitachi Energy
+    industry: grid_vendor
+    parent: Hitachi
+    # The Workday tenant covers ALL of Hitachi, most of which is not energy.
+    # Treated as diversified so off-umbrella lines are screened out.
+    diversified: true
+    off_umbrella:
+      - rail
+      - elevator
+      - medical
+      - imaging
+      - automotive
+      - construction machinery
+      - appliance
+    candidates:
+      workday: [{tenant: hitachi, site: hitachi, wd: 1}]
+    verified: true       # hitachi.wd1.myworkdayjobs.com/hitachi
+  - name: GE Vernova
+    industry: grid_vendor
+    candidates:
+      workday: [{tenant: gevernova, site: careers}, {tenant: ge, site: GE_ExternalSite}]
+    verified: false
+  - name: S&C Electric Company
+    industry: grid_vendor
+    metro: chicago
+    candidates:
+      workday: [{tenant: sandc, site: careers}]
+      greenhouse: [sandcelectric, scelectric]
+    verified: false
+  - name: Itron
+    industry: grid_vendor
+    candidates:
+      workday: [{tenant: itron, site: Itron_Careers}]
+    verified: false
+
+gas_utilities:           # gas LDCs and combined gas+electric utilities
+  - name: NiSource / NIPSCO
+    industry: utility
+    metro: chicago
+    # Northern Indiana Public Service Company, HQ Merrillville IN. Gas and
+    # electric; serves the Indiana side of the Chicago metro.
+    candidates:
+      workday: [{tenant: nisource, site: NiSource_Careers}, {tenant: nisource, site: careers}]
+    verified: false
+  - name: CenterPoint Energy Indiana
+    industry: utility
+    metro: indianapolis
+    parent: CenterPoint Energy
+    candidates:
+      workday: [{tenant: centerpointenergy, site: CNP_Careers}, {tenant: cnp, site: careers}]
+    verified: false
+  - name: Spire Inc
+    industry: utility
+    candidates:
+      workday: [{tenant: spireenergy, site: Spire_Careers}]
+      greenhouse: [spireenergy]
+    verified: false
+  - name: Atmos Energy
+    industry: utility
+    candidates:
+      workday: [{tenant: atmosenergy, site: Atmos_Careers}]
+    verified: false
+  - name: ONE Gas
+    industry: utility
+    candidates:
+      workday: [{tenant: onegas, site: ONE_Gas_Careers}]
+    verified: false
+  - name: Southern Company Gas
+    industry: utility
+    metro: chicago
+    parent: Southern Company
+    candidates:
+      workday: [{tenant: southerncompany, site: SouthernCompany}]
+    verified: false
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.

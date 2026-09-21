@@ -84,12 +84,29 @@ def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None,
     return keep
 
 
+# Employer sections and the industry each defaults to. An entry may override
+# with its own `industry:` key, which is how gas utilities filed under their
+# own section still count as utilities.
+SECTIONS = {
+    "utilities": "utility",
+    "gas_utilities": "utility",
+    "data_center_operators": "data_center",
+    "grid_operators": "grid_operator",
+    "energy_analytics": "energy_analytics",
+    "developers": "developer",
+    "consulting": "consulting",
+    "grid_vendors": "grid_vendor",
+}
+
+
 def load_employers(path: pathlib.Path) -> list[dict]:
     raw = yaml.safe_load(path.read_text())
     entries = []
-    for section, industry in (("utilities", "utility"), ("data_center_operators", "data_center")):
+    for section, default_industry in SECTIONS.items():
         for entry in raw.get(section) or []:
-            entries.append({**entry, "industry": industry})
+            if entry.get("blocked_reason"):
+                continue          # no reachable API; skip rather than probe
+            entries.append({**entry, "industry": entry.get("industry", default_industry)})
     return entries
 
 
@@ -173,6 +190,9 @@ def main() -> int:
             records = [p.to_dict() for p in hit.postings]
             for record in records:
                 record["industry"] = entry["industry"]
+                if entry.get("diversified"):
+                    record["diversified"] = True
+                    record["off_umbrella"] = entry.get("off_umbrella", [])
             safe = "".join(c if c.isalnum() else "_" for c in name)
             path = out_dir / f"{safe}__{hit.platform}.json"
             path.write_text(json.dumps(records, indent=1))

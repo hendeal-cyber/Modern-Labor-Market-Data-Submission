@@ -74,6 +74,28 @@ def run():
             if de and de.get(reg) != "1":
                 fails.append(f"Data Engineer I {reg}={de.get(reg)} want 1")
 
+        # role_family and job_level are populated on every row.
+        for r in rows:
+            if not r.get("role_family"):
+                fails.append(f"role_family missing on {r['title']!r}")
+            if r.get("job_level") in (None, ""):
+                fails.append(f"job_level missing on {r['title']!r}")
+        if de and de.get("role_family") != "software_data":
+            fails.append(f"Data Engineer I role_family={de.get('role_family')}")
+        if de and de.get("job_level") != "1":
+            fails.append(f"Data Engineer I job_level={de.get('job_level')} want 1")
+
+        # The diversified-employer guard drops other lines of business.
+        from lmstudy.build_dataset import off_umbrella
+        if not off_umbrella({"diversified": True, "off_umbrella": ["warehouse"],
+                             "title": "Warehouse Associate"}):
+            fails.append("guard should drop a warehouse role at a diversified employer")
+        if off_umbrella({"diversified": True, "off_umbrella": ["warehouse"],
+                         "title": "Data Center Technician"}):
+            fails.append("guard must not drop an in-umbrella role")
+        if off_umbrella({"title": "Warehouse Associate"}):
+            fails.append("guard must only apply to employers flagged diversified")
+
         # Dedup collapsed the repeated posting.
         if sum(1 for r in rows if r["title"] == "Data Engineer I") != 1:
             fails.append("duplicate posting was not collapsed")

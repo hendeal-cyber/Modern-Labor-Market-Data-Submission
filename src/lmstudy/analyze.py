@@ -32,6 +32,7 @@ CORE_MODEL = [
     "degree_stem", "advanced_degree_pref", "yrs_exp_min", "yrs_exp_stated",
     "skill_cloud", "skill_ml_ai", "soft_leadership",
     "industry_data_center", "remote_eligible", "hourly_original",
+    "job_level", "family_ai_ml",
 ]
 # `yrs_exp_stated` must travel with `yrs_exp_min`: postings that state no
 # minimum are imputed to zero, and without the indicator that imputation is
@@ -43,6 +44,10 @@ EXTENDED_EXTRA = [
     "travel_required", "on_call", "security_clearance",
     "benefit_bonus", "benefit_equity", "benefit_tuition", "benefit_relocation",
     "posting_age_days",
+    "family_siting_dev", "family_regulatory", "family_market_commercial",
+    "family_grid_power", "family_gis", "family_sustainability",
+    "industry_grid_operator", "industry_energy_analytics", "industry_developer",
+    "industry_consulting", "industry_grid_vendor",
 ]
 
 
@@ -50,6 +55,20 @@ def load(path: pathlib.Path) -> pd.DataFrame:
     df = pd.read_csv(path)
     df["industry_data_center"] = (df["industry"] == "data_center").astype(int)
     df["metro_indianapolis"] = (df["metro"] == "indianapolis").astype(int)
+    # industry is categorical now that the frame spans operators, grid
+    # operators, analytics firms, developers, consultancies and vendors.
+    # Utility is the reference category.
+    for value in ("grid_operator", "energy_analytics", "developer",
+                  "consulting", "grid_vendor"):
+        if "industry" in df:
+            df[f"industry_{value}"] = (df["industry"] == value).astype(int)
+    # Role family, with software_data as the reference category.
+    for value in ("ai_ml", "siting_dev", "regulatory", "market_commercial",
+                  "grid_power", "gis", "sustainability"):
+        if "role_family" in df:
+            df[f"family_{value}"] = (df["role_family"] == value).astype(int)
+    if "job_level" in df:
+        df["job_level"] = pd.to_numeric(df["job_level"], errors="coerce").fillna(0)
     for col in ("yrs_exp_min", "posting_age_days", "pay_midpoint", "pay_range_width"):
         if col in df:
             df[col] = pd.to_numeric(df[col], errors="coerce")
