@@ -147,11 +147,31 @@ time, not a signup. It may still be worth making — the study is exactly the
 research use the hub exists for, and the owner is a university student — but it
 cannot be assumed and nothing should be planned around it landing.
 
-Browser automation against the iCIMS portal is **not** on that list. iCIMS
-portal terms bar automated access the way LinkedIn's do, and `docs/methods.md`
-documents a compliance posture that driving the portal with Playwright or
-Selenium would falsify. The study owner raised it as a fallback; it stays a
-decision to be taken explicitly, on evidence, rather than a default.
+Browser automation against the iCIMS portal is **not** on that list, and as of
+2026-09-21 that is settled by reading rather than by preference.
+
+The study owner raised a fair objection: LinkedIn bans automation outright, but
+that is LinkedIn's rule, and iCIMS is a different company. If iCIMS permitted
+automated access the objection would disappear. So the terms were read.
+
+**They do not permit it.** iCIMS's Terms of Use prohibit "any robot, spider or
+other automatic device, process, or means to access the Website for any
+purpose, including monitoring or copying any of the material on the Website",
+and separately bar the use of "deep-links, page-scrapers, robots, crawlers,
+indexers, spiders, offline readers, click spam, macro programs, internet agents,
+or other automatic devices, programs, algorithms or methodologies". That is
+materially the same prohibition as LinkedIn User Agreement §8.2, and it reaches
+the career portals, not just icims.com.
+
+Per the owner's own ruling — proceed if the terms allow it, otherwise accept the
+gap — **the gap is accepted and documented.** No Playwright, no Selenium, no
+portal automation. This is recorded with the quoted terms so a reader can check
+the reasoning rather than take it on trust.
+
+The practical cost is now much smaller than it was: under the national scope the
+sample no longer depends on these four employers. Any claim about "Chicago
+utilities" should still be read as excluding Exelon, ComEd, Constellation and
+Citizens Energy.
 
 ## 8b. Board tokens were guesses, and one was wrong
 
