@@ -31,7 +31,41 @@ collection starts. The initial stock over-represents long-open roles, which are
 plausibly harder to fill and better paid; `posting_age_days` and
 `first_seen_run` are carried so this can be tested.
 
-## 5. Small, narrow population
+## 5. The population was widened after measurement, and that is a real change
+
+The study began as software/data roles at core operators within 35 miles of
+Chicago or Indianapolis. That scope returned zero usable observations against
+~2,578 real postings, so roles, metros and the employer frame were all widened.
+
+Two consequences a reader should weigh:
+
+- **The population is now the energy and data center sector**, spanning
+  investor-owned utilities, cooperatives, retailers, RTOs, data center
+  operators, developers, analytics firms, consultancies and grid vendors. It is
+  no longer "core operators", and results should not be described that way.
+  `industry` and `role_family` are carried as regressors so the composition is
+  visible rather than hidden, and subsets can be reported as robustness checks.
+- **The widening was driven by the data**, which is a form of specification
+  search. It was done before any pay model was estimated, and the yields of
+  every candidate scope were recorded in `docs/scope-decision.md` and
+  `data/analysis/scope_probe*.json`, so the decision is auditable. But it was
+  not pre-registered, and a reader is entitled to discount accordingly.
+
+## 5b. Slug-derived employer tokens, and what protects them
+
+Most of the 266 employer board tokens were derived from company names rather
+than read off a careers page. A slug can land on a different company sharing a
+name, and did: an Ashby board at `constellation` belonged to a San Francisco AI
+startup, not Constellation Energy.
+
+The protection is a sector-confidence check — the share of a board's own
+postings that read as energy or data-center work — applied to every unverified
+entry at a 25% threshold. Measured separation is wide (real boards 86–100%, the
+false positive 0%), but it is a heuristic, not proof. A same-name company that
+happens to work in energy would pass it. Any employer contributing a surprising
+number of observations is worth spot-checking against its careers page.
+
+## 5c. Small, narrow population
 
 Core operators only, software/data/analytics only, within 35 miles of two metro
 centroids. Software and data teams at data center operators frequently sit at

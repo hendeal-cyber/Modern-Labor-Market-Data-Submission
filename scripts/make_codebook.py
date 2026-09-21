@@ -10,7 +10,9 @@ D = load_dictionary(ROOT / "config" / "regressors.yaml")
 DERIVED = [
  ("posting_key","string","SHA1 of employer + normalized title + location; the dedup key."),
  ("employer","string","Employer name from the sampling frame."),
- ("industry","categorical","utility | data_center."),
+ ("industry","categorical","utility | data_center | cooperative | retailer | grid_operator | energy_analytics | developer | consulting | grid_vendor. Utility is the model's reference category."),
+ ("role_family","categorical","siting_dev | regulatory | market_commercial | grid_power | ai_ml | gis | software_data | sustainability | other. Keeps a widened role taxonomy from silently pooling different pay regimes; software_data is the reference category."),
+ ("job_level","ordinal","0 unlevelled, 1 = I/Associate/Junior, 2 = II/Analyst, 3 = III/Senior Associate. Records the rung on the early-career ladder. It does NOT decide early-career status; the experience parse does."),
  ("title","string","Posting title as published."),
  ("ats_platform","categorical","Which ATS served the posting. Provenance control, not a labor-market attribute."),
  ("metro","categorical","chicago | indianapolis (tier 3 metros if escalation triggers)."),

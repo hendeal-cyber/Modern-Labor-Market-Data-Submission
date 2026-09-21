@@ -41,9 +41,60 @@ pay range. Aggregator APIs were rejected as a backbone because they truncate
 descriptions and often return model-*predicted* salaries; regressing a predicted
 salary on job attributes would be circular.
 
-The employer frame (`config/employers.yaml`) is restricted to **core operators**:
-firms that own or operate utilities or data centers. Engineering/EPC firms and
-equipment vendors serving the sector are deliberately excluded.
+### Scope revision, 2026-09-21
+
+The study originally scoped software/data/analytics roles at core operators
+only, within 35 miles of Chicago or Indianapolis. Measured against ~2,578 real
+postings from 16 employer boards, that scope returned **zero** usable
+observations: under 0.5% of these employers' postings are software/data roles
+anywhere on earth, and what utilities and data center operators post in these
+metros is energy and engineering work.
+
+Rather than estimate the alternatives, a **probe collection** gathered every
+in-metro posting regardless of role into `data/probe/`, separate from the
+analysis dataset, so each candidate scope could be counted. That measurement
+drove three changes, each verified before adoption:
+
+- **Roles** widened from software/data to the energy analytics families these
+  employers actually hire into: siting and development, regulatory and
+  compliance, market and procurement, grid and power-system analytics, AI/ML,
+  GIS, energy finance, and software/data. Engineering is admitted only where
+  analytics-adjacent, so licensure does not become the dominant pay driver.
+- **Metros** extended to Tier 3 (Northern Virginia, Denver, Twin Cities,
+  Seattle) under the escalation pre-registered in `config/scope.yaml`, measured
+  to roughly double the yield.
+- **Experience** postings that state no minimum are admitted rather than
+  dropped, with `yrs_exp_stated` carrying the imputation into the model.
+  Dropping them cost roughly half the sample.
+
+The **population is therefore the energy and data center sector**, not core
+operators, and the write-up must describe it that way. `industry` is a
+categorical regressor across utility, cooperative, retailer, grid operator,
+data center operator, energy analytics, developer, consulting and grid vendor.
+
+### Employer frame and how tokens are trusted
+
+The frame spans 266 employers. A minority were verified by reading the token
+off the employer's own careers URL; most were derived from company-name slugs,
+which carries a real hazard: a slug can land on a different company sharing a
+name. An Ashby board at token `constellation` turned out to belong to a San
+Francisco AI startup rather than Constellation Energy, and only the geography
+filter kept it out of the dataset.
+
+Checking whether the employer's **name** appears on the board does not solve
+this — both companies are called Constellation. Checking the board's **sector**
+does. `sector_confidence()` measures the share of a board's own postings that
+discuss substations, interconnection, megawatts, colocation and similar. Real
+energy boards score 86–100%; the false-positive board scores 0%. Any employer
+entry marked `verified: false` must clear a 25% threshold before contributing
+data; anything below is quarantined to `_candidates_for_review.json` for a
+person to confirm.
+
+**Diversified employers** are declared in `config/employers.yaml` with an
+`off_umbrella` list. Iron Mountain is primarily records management and its
+board served CDL drivers and warehouse staff; Hitachi's Workday tenant covers
+rail, elevators and medical imaging. Neither belongs in an energy study, and
+the employer frame alone cannot tell them apart — the title has to.
 
 ## Compliance posture
 
