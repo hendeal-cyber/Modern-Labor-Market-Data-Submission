@@ -293,9 +293,12 @@ identifiable supported ATS. Negative results are written into
 
 iCIMS's standard XML feed goes **only to approved job boards** and its Job
 Portal API is partner-gated with no self-serve tier. Three legitimate routes
-remain untried: the JobThread syndication feed, `.jobs`/DirectEmployers, and —
-probably best — the **CareerOneStop / National Labor Exchange API**, which is
-free with a key and carries employer-permissioned postings.
+remain untried: the JobThread syndication feed, `.jobs`/DirectEmployers, and
+the **CareerOneStop / National Labor Exchange API**, which carries
+employer-permissioned postings. Note the NLx API is **not** a free self-serve
+key — the Jobs APIs moved from CareerOneStop to NLx and access is granted by
+the NLx Research Hub Governance Board through a data request form. Worth
+applying for as research use; not something to plan around.
 
 The owner asked for Playwright as a fallback. It is **not built**: it
 contradicts the project's founding constraint, iCIMS portal terms bar automated

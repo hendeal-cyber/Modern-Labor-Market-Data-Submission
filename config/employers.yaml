@@ -278,6 +278,7 @@ energy_analytics:        # analytics and grid-software firms
       lever: [auroraer]
     verified: false
   - name: Camus Energy
+    metro: bay_area
     industry: energy_analytics
     candidates:
       greenhouse: [camusenergy]
@@ -446,6 +447,7 @@ utilities_batch2:
       workday: [{tenant: alliantenergy, site: careers}]
     verified: false
   - name: Avangrid
+    metro: new_york
     candidates:
       greenhouse: [avangrid]
       lever: [avangrid]
@@ -481,6 +483,7 @@ utilities_batch2:
       workday: [{tenant: consumersenergy, site: careers}]
     verified: false
   - name: Con Edison
+    metro: new_york
     candidates:
       greenhouse: [conedison, con-edison, con]
       lever: [conedison, con-edison, con]
@@ -516,6 +519,7 @@ utilities_batch2:
       workday: [{tenant: evergy, site: careers}]
     verified: false
   - name: Eversource Energy
+    metro: boston
     candidates:
       greenhouse: [eversourceenergy, eversource-energy, eversource]
       lever: [eversourceenergy, eversource-energy, eversource]
@@ -537,6 +541,7 @@ utilities_batch2:
       workday: [{tenant: idacorp, site: careers}]
     verified: false
   - name: National Grid
+    metro: new_york
     candidates:
       greenhouse: [nationalgrid, national-grid, national]
       lever: [nationalgrid, national-grid, national]
@@ -579,6 +584,7 @@ utilities_batch2:
       workday: [{tenant: ppl, site: careers}]
     verified: false
   - name: PSEG
+    metro: new_york
     candidates:
       greenhouse: [pseg]
       lever: [pseg]
@@ -593,6 +599,7 @@ utilities_batch2:
       workday: [{tenant: portlandgeneralelectric, site: careers}]
     verified: false
   - name: Sempra
+    metro: los_angeles
     candidates:
       greenhouse: [sempra]
       lever: [sempra]
@@ -712,6 +719,7 @@ gas_utilities_batch2:
       workday: [{tenant: vectren, site: careers}]
     verified: false
   - name: New Jersey Resources
+    metro: new_york
     candidates:
       greenhouse: [newjerseyresources, new-jersey-resources, newjersey]
       lever: [newjerseyresources, new-jersey-resources, newjersey]
@@ -1047,6 +1055,7 @@ developers_batch2:
       workday: [{tenant: nexamp, site: careers}]
     verified: false
   - name: Summit Ridge Energy
+    metro: new_york
     candidates:
       greenhouse: [summitridgeenergy, summit-ridge-energy, summitridge]
       lever: [summitridgeenergy, summit-ridge-energy, summitridge]
@@ -1069,6 +1078,7 @@ developers_batch2:
       workday: [{tenant: leewardrenewableenergy, site: careers}]
     verified: false
   - name: Longroad Energy
+    metro: boston
     candidates:
       greenhouse: [longroadenergy, longroad-energy, longroad]
       lever: [longroadenergy, longroad-energy, longroad]
@@ -1111,6 +1121,7 @@ developers_batch2:
       workday: [{tenant: doralrenewables, site: careers}]
     verified: false
   - name: Soltage
+    metro: new_york
     candidates:
       greenhouse: [soltage]
       lever: [soltage]
@@ -1170,6 +1181,7 @@ energy_analytics_batch2:
       workday: [{tenant: woodmackenzie, site: careers}]
     verified: false
   - name: Gridmatic
+    metro: bay_area
     candidates:
       greenhouse: [gridmatic]
       lever: [gridmatic]
@@ -1177,6 +1189,7 @@ energy_analytics_batch2:
       workday: [{tenant: gridmatic, site: careers}]
     verified: false
   - name: AutoGrid
+    metro: bay_area
     candidates:
       greenhouse: [autogrid]
       lever: [autogrid]
@@ -1184,6 +1197,7 @@ energy_analytics_batch2:
       workday: [{tenant: autogrid, site: careers}]
     verified: false
   - name: Bidgely
+    metro: bay_area
     candidates:
       greenhouse: [bidgely]
       lever: [bidgely]
@@ -1205,6 +1219,7 @@ energy_analytics_batch2:
       workday: [{tenant: yesenergy, site: careers}]
     verified: false
   - name: Voltus
+    metro: bay_area
     candidates:
       greenhouse: [voltus]
       lever: [voltus]
@@ -1226,6 +1241,7 @@ energy_analytics_batch2:
       workday: [{tenant: enelx, site: careers}]
     verified: false
   - name: David Energy
+    metro: new_york
     candidates:
       greenhouse: [davidenergy, david-energy, david]
       lever: [davidenergy, david-energy, david]
@@ -1233,6 +1249,7 @@ energy_analytics_batch2:
       workday: [{tenant: davidenergy, site: careers}]
     verified: false
   - name: Octopus Energy
+    metro: boston
     candidates:
       greenhouse: [octopusenergy, octopus-energy, octopus]
       lever: [octopusenergy, octopus-energy, octopus]
@@ -1240,6 +1257,7 @@ energy_analytics_batch2:
       workday: [{tenant: octopusenergy, site: careers}]
     verified: false
   - name: Leap
+    metro: bay_area
     candidates:
       greenhouse: [leap]
       lever: [leap]
@@ -1254,6 +1272,7 @@ energy_analytics_batch2:
       workday: [{tenant: piclo, site: careers}]
     verified: false
   - name: Opus One Solutions
+    metro: bay_area
     candidates:
       greenhouse: [opusonesolutions, opus-one-solutions, opusone]
       lever: [opusonesolutions, opus-one-solutions, opusone]
@@ -1268,6 +1287,7 @@ energy_analytics_batch2:
       workday: [{tenant: gridpoint, site: careers}]
     verified: false
   - name: Utilidata
+    metro: boston
     candidates:
       greenhouse: [utilidata]
       lever: [utilidata]
@@ -1275,6 +1295,7 @@ energy_analytics_batch2:
       workday: [{tenant: utilidata, site: careers}]
     verified: false
   - name: Sense
+    metro: boston
     candidates:
       greenhouse: [sense]
       lever: [sense]
@@ -1303,6 +1324,7 @@ energy_analytics_batch2:
       workday: [{tenant: modoenergy, site: careers}]
     verified: false
   - name: PearlX
+    metro: los_angeles
     candidates:
       greenhouse: [pearlx]
       lever: [pearlx]
@@ -1861,6 +1883,7 @@ retailers_batch3:
       workday: [{tenant: sparkenergy, site: careers}]
     verified: false
   - name: Genie Energy
+    metro: new_york
     candidates:
       greenhouse: [genieenergy, genie-energy, genie]
       lever: [genieenergy, genie-energy, genie]

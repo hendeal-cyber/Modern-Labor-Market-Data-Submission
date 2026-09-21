@@ -136,11 +136,16 @@ handle.
 Two legitimate routes remain untested and are worth one attempt each before the
 gap is called permanent: the third-party JobThread syndication feed that some
 iCIMS tenants publish, and the `.jobs`/DirectEmployers channel that
-`employers.yaml` already records Southern Company Gas using. A third, and
-probably the best of them, is the **CareerOneStop / National Labor Exchange
-API** (US DOL): free with a key, and NLx aggregates employer-direct postings
-*with employer permission*, so it reaches these employers without touching
-iCIMS at all.
+`employers.yaml` already records Southern Company Gas using. A third is the **CareerOneStop / National Labor Exchange API** (US DOL). NLx
+aggregates employer-direct postings *with employer permission*, so it carries
+none of the scraping objections and could reach these employers without
+touching iCIMS at all. **But it is not the free self-serve key it first looked
+like:** the Jobs APIs have moved from CareerOneStop to NLx, and access is now
+reviewed and granted by the NLx Research Hub Governance Board via a data
+request form. That is an application with a human decision and an unknown lead
+time, not a signup. It may still be worth making — the study is exactly the
+research use the hub exists for, and the owner is a university student — but it
+cannot be assumed and nothing should be planned around it landing.
 
 Browser automation against the iCIMS portal is **not** on that list. iCIMS
 portal terms bar automated access the way LinkedIn's do, and `docs/methods.md`
