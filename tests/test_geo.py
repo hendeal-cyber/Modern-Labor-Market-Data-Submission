@@ -8,7 +8,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 from lmstudy.geo import (haversine_miles, load_gazetteer, resolve,
-                        detect_arrangement, canonicalize_place)
+                        detect_arrangement, canonicalize_place,
+                        resolve_us_state, census_region, is_non_us,
+                        CENSUS_REGION, STATE_ABBR)
 
 SCOPE = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
 METROS = SCOPE["metros"]
@@ -150,6 +152,58 @@ def run():
     # 13. A genuinely unresolvable, non-remote place stays out entirely.
     if resolve("Irving, Texas", active_metros(), GAZ).metro is not None:
         fails.append("an out-of-radius onsite place must not fall into remote_national")
+
+
+    # 14. National resolution, 2026-09-21. Every location string below is real,
+    # taken from a collection manifest, not invented.
+    for loc, want in [
+        ("Chicago, IL", "IL"), ("Irving, Texas", "TX"),
+        ("US - VA, Arlington", "VA"), ("Overland Park, KS", "KS"),
+        ("Carmel, IN", "IN"), ("Reading, Pennsylvania, United States", "PA"),
+        ("Dublin, OH", "OH"),          # must not read as Ireland
+        ("Indianapolis, Indiana", "IN"),   # must not read as India
+        ("Chennai, Tamil Nadu, India", None),
+        ("Shah Alam, Selangor", None),
+        ("Bogot\u00e1", None),             # accented, must still be caught
+        ("Toronto, ON", None),
+        ("US - Remote (Any location)", None),
+        ("3 Locations", None), ("", None),
+    ]:
+        got = resolve_us_state(loc)
+        if got != want:
+            fails.append(f"resolve_us_state({loc!r}) = {got}, want {want}")
+
+    # 15. The substring traps that have produced four bugs in this codebase.
+    # "India" inside "Indiana" and "Ireland" near "Dublin, OH" must not fire.
+    for loc in ("Indianapolis, Indiana", "Indiana", "Dublin, OH", "Moscow, ID"):
+        if is_non_us(loc):
+            fails.append(f"is_non_us({loc!r}) wrongly True")
+    for loc in ("Chennai, Tamil Nadu, India", "Amsterdam", "Toronto, ON"):
+        if not is_non_us(loc):
+            fails.append(f"is_non_us({loc!r}) wrongly False")
+
+    # 16. Census regions cover every state exactly once, and nothing else.
+    seen = [st for states in CENSUS_REGION.values() for st in states]
+    if len(seen) != len(set(seen)):
+        dupes = {st for st in seen if seen.count(st) > 1}
+        fails.append(f"states in more than one census region: {dupes}")
+    codes = set(STATE_ABBR.values())
+    missing = codes - set(seen)
+    if missing:
+        fails.append(f"states with no census region: {sorted(missing)}")
+    if census_region("IL") != "midwest" or census_region("VA") != "south":
+        fails.append("census_region mis-assigns a known state")
+    if census_region(None) is not None or census_region("ZZ") is not None:
+        fails.append("census_region must return None for an unknown state")
+
+    # 17. Every mandate state in config must be a real state code, or the
+    # mandate flag silently reads 0 for a jurisdiction that has a law.
+    mandates = SCOPE.get("pay_mandate_states") or {}
+    for code in mandates:
+        if str(code).upper() not in codes:
+            fails.append(f"pay_mandate_states has a non-state code: {code!r}")
+        elif census_region(str(code)) is None:
+            fails.append(f"mandate state {code} has no census region")
 
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:

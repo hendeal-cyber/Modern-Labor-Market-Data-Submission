@@ -11,6 +11,7 @@ import json
 import math
 import pathlib
 import re
+import unicodedata
 from dataclasses import dataclass
 
 GAZETTEER_PATH = pathlib.Path(__file__).resolve().parents[2] / "data" / "gazetteer.json"
@@ -35,9 +36,21 @@ HYBRID_MARKERS = ("hybrid", "flexible location", "partially remote")
 ONSITE_MARKERS = ("on-site", "onsite", "in office", "in-office")
 
 STATE_ABBR = {
-    "illinois": "IL", "indiana": "IN", "virginia": "VA", "colorado": "CO",
-    "minnesota": "MN", "washington": "WA", "california": "CA", "new york": "NY",
-    "maryland": "MD", "wisconsin": "WI",
+    "alabama": "AL", "alaska": "AK", "arizona": "AZ", "arkansas": "AR",
+    "california": "CA", "colorado": "CO", "connecticut": "CT", "delaware": "DE",
+    "district of columbia": "DC", "washington dc": "DC", "washington d.c.": "DC",
+    "florida": "FL", "georgia": "GA", "hawaii": "HI", "idaho": "ID",
+    "illinois": "IL", "indiana": "IN", "iowa": "IA", "kansas": "KS",
+    "kentucky": "KY", "louisiana": "LA", "maine": "ME", "maryland": "MD",
+    "massachusetts": "MA", "michigan": "MI", "minnesota": "MN",
+    "mississippi": "MS", "missouri": "MO", "montana": "MT", "nebraska": "NE",
+    "nevada": "NV", "new hampshire": "NH", "new jersey": "NJ",
+    "new mexico": "NM", "new york": "NY", "north carolina": "NC",
+    "north dakota": "ND", "ohio": "OH", "oklahoma": "OK", "oregon": "OR",
+    "pennsylvania": "PA", "rhode island": "RI", "south carolina": "SC",
+    "south dakota": "SD", "tennessee": "TN", "texas": "TX", "utah": "UT",
+    "vermont": "VT", "virginia": "VA", "washington": "WA",
+    "west virginia": "WV", "wisconsin": "WI", "wyoming": "WY",
 }
 
 
@@ -143,6 +156,97 @@ def _normalize_place(fragment: str) -> tuple[str, str] | None:
     if not city:
         return None
     return city, (state or "")
+
+
+
+# --------------------------------------------------------------------------
+# National (US) resolution.
+#
+# The gazetteer holds coordinates for the study metros only, and seeding it for
+# every US place is a week of work that this study does not need. Almost every
+# ATS location string carries its state — "Irving, Texas", "US - VA, Arlington",
+# "Overland Park, KS" — so national coverage resolves to STATE rather than to
+# coordinates. resolve() is untouched and still assigns study metros by
+# distance, so `study_metro` survives as a regressor alongside `state`.
+
+# Countries seen in real collected payloads. Non-US postings are excluded:
+# pooling currencies and labour markets would be meaningless, and the run
+# already returns Chennai, Mumbai, Bangalore, Bogota, Amsterdam and Shah Alam.
+NON_US_MARKERS = (
+    "india", "canada", "mexico", "united kingdom", "england", "scotland",
+    "ireland", "germany", "france", "spain", "netherlands", "amsterdam",
+    "belgium", "poland", "romania", "bulgaria", "sweden", "norway", "denmark",
+    "finland", "portugal", "italy", "switzerland", "austria", "czech",
+    "hungary", "greece", "turkey", "israel", "uae", "dubai", "singapore",
+    "malaysia", "philippines", "japan", "china", "hong kong", "korea",
+    "australia", "new zealand", "brazil", "colombia", "chile", "argentina",
+    "peru", "south africa", "kenya", "nigeria", "egypt", "vietnam",
+    "thailand", "indonesia", "taiwan", "pakistan", "bangladesh",
+    "bogota", "chennai", "mumbai", "bangalore", "bengaluru", "hyderabad",
+    "pune", "delhi", "shah alam", "selangor", "gabrovo", "sevlievo",
+    "toronto", "vancouver", "montreal", "london", "paris", "berlin", "madrid",
+)
+
+# US Census regions. Used instead of state fixed effects when N is too small to
+# support 50 dummies.
+CENSUS_REGION = {
+    "northeast": ("CT", "ME", "MA", "NH", "RI", "VT", "NJ", "NY", "PA"),
+    "midwest": ("IL", "IN", "MI", "OH", "WI", "IA", "KS", "MN", "MO",
+                "NE", "ND", "SD"),
+    "south": ("DE", "DC", "FL", "GA", "MD", "NC", "SC", "VA", "WV", "AL",
+              "KY", "MS", "TN", "AR", "LA", "OK", "TX"),
+    "west": ("AZ", "CO", "ID", "MT", "NV", "NM", "UT", "WY", "AK", "CA",
+             "HI", "OR", "WA"),
+}
+_STATE_TO_REGION = {st: region for region, states in CENSUS_REGION.items()
+                    for st in states}
+
+
+def census_region(state: str | None) -> str | None:
+    return _STATE_TO_REGION.get((state or "").upper()) or None
+
+
+def is_non_us(location_raw: str | None) -> bool:
+    """True when the location names a country other than the United States.
+
+    Matched on word boundaries so "Ireland" cannot fire inside a US place name
+    and "India" cannot fire inside "Indiana" — the exact substring trap that
+    has produced four separate bugs in this codebase already.
+    """
+    # Fold accents first: "Bogota" must match the marker even when the
+    # payload spells it "Bogota" with an acute accent, which stripping
+    # non-ASCII would otherwise turn into "bogot".
+    folded = unicodedata.normalize("NFKD", location_raw or "")
+    folded = "".join(c for c in folded if not unicodedata.combining(c))
+    text = re.sub(r"[^a-z0-9 ]+", " ", folded.lower())
+    text = re.sub(r"\s+", " ", text).strip()
+    if not text:
+        return False
+    return any(re.search(rf"(?<!\w){re.escape(marker)}(?!\w)", text)
+               for marker in NON_US_MARKERS)
+
+
+def resolve_us_state(location_raw: str | None) -> str | None:
+    """Two-letter US state code for a free-text location, or None.
+
+    Returns None for non-US locations, for nationwide-remote strings that name
+    no state, and for anything unparseable. Runs canonicalize_place() first so
+    Workday's "US - VA, Arlington" form resolves like everything else.
+    """
+    if not location_raw or is_non_us(location_raw):
+        return None
+    for fragment in _split_locations(location_raw):
+        parsed = _normalize_place(canonicalize_place(fragment))
+        if not parsed:
+            continue
+        city, state = parsed
+        if state and state.upper() in _STATE_CODES:
+            return state.upper()
+        # A bare state name with no city: "Illinois", "Remote - Texas".
+        code = STATE_ABBR.get(city.lower())
+        if code:
+            return code
+    return None
 
 
 def resolve(

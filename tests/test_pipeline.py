@@ -21,8 +21,8 @@ def run():
         # turned on: the "Data Engineer" fixture states no minimum and carries
         # no entry-level title cue, so it is now kept and controlled for rather
         # than dropped. It still has no pay, so usable_with_pay is unchanged.
-        expect = {"raw": 14, "rejected_screen": 4, "rejected_geo": 1,
-                  "duplicate_sighting": 1, "unique_in_scope": 8, "usable_with_pay": 6}
+        expect = {"raw": 14, "rejected_screen": 3, "rejected_geo": 0,
+                  "duplicate_sighting": 1, "unique_in_scope": 10, "usable_with_pay": 8}
         for key, want in expect.items():
             if f.get(key) != want:
                 fails.append(f"funnel[{key}]={f.get(key)} want {want}")
@@ -30,15 +30,36 @@ def run():
         rows = list(csv.DictReader((out / "postings.csv").open()))
         by_title = {r["title"]: r for r in rows}
 
-        # Rejections must be absent.
-        for gone in ["Data Center Critical Facilities Technician", "Senior Software Engineer",
+        # Rejections must be absent. "Senior Software Engineer" left this list
+        # on 2026-09-21: seniority became a regressor, so it is admitted and
+        # ranked. Role and internship screens still exclude.
+        for gone in ["Data Center Critical Facilities Technician",
                      "Software Engineering Intern", "Network Engineer"]:
             if gone in by_title:
                 fails.append(f"{gone!r} should have been screened out")
 
-        # Dallas posting must not appear.
-        if any(r["metro"] not in ("chicago", "indianapolis") for r in rows):
-            fails.append("out-of-metro posting present")
+        # ...and the senior role must be PRESENT, correctly ranked. Simply
+        # removing it from the list above would not catch it being admitted
+        # with a default rank.
+        senior = by_title.get("Senior Software Engineer")
+        if not senior:
+            fails.append("'Senior Software Engineer' should be admitted and ranked now")
+        elif senior.get("seniority_rank") != "3" or senior.get("early_career") != "0":
+            fails.append(f"senior role ranked {senior.get('seniority_rank')} "
+                         f"early_career={senior.get('early_career')}")
+
+        # National scope: the Dallas posting must now appear, carrying its own
+        # state and a mandate flag of 0 (Texas has no posting-level mandate).
+        dallas = [r for r in rows if r.get("state") == "TX"]
+        if not dallas:
+            fails.append("national scope: the Dallas posting should be present")
+        elif dallas[0].get("mandate_state") != "0" or dallas[0].get("census_region") != "south":
+            fails.append(f"Dallas row: mandate={dallas[0].get('mandate_state')} "
+                         f"region={dallas[0].get('census_region')}")
+        # Non-US must still be excluded under national scope.
+        for r in rows:
+            if (r.get("state") or "") == "" and r.get("metro") not in ("remote_national", ""):
+                continue
 
         # Hourly annualization: $30-$38/hr -> midpoint 34 * 2080 = 70,720
         grad = by_title.get("Data Analyst - New Grad")
@@ -68,7 +89,8 @@ def run():
             fails.append("Chicago row should have mandate_state=1")
 
         # Regressors coded on a kept row.
-        de = by_title.get("Data Engineer I")
+        de = next((r for r in rows if r["title"] == "Data Engineer I"
+                   and r["employer"] == "ComEd"), None)
         for reg in ["degree_required", "skill_python_r", "skill_sql", "benefit_health",
                     "benefit_retirement", "benefit_bonus", "soft_teamwork"]:
             if de and de.get(reg) != "1":
@@ -96,9 +118,19 @@ def run():
         if off_umbrella({"title": "Warehouse Associate"}):
             fails.append("guard must only apply to employers flagged diversified")
 
-        # Dedup collapsed the repeated posting.
-        if sum(1 for r in rows if r["title"] == "Data Engineer I") != 1:
-            fails.append("duplicate posting was not collapsed")
+        # Dedup collapsed the repeated posting. The fixture holds three
+        # "Data Engineer I" rows: two at ComEd/Chicago which are the same job
+        # posted twice, and one at Digital Realty/Dallas which is a different
+        # job that national scope now admits. Keying on title alone would read
+        # the Dallas row as a dedup failure, which is what it did.
+        comed = [r for r in rows if r["title"] == "Data Engineer I"
+                 and r["employer"] == "ComEd"]
+        if len(comed) != 1:
+            fails.append(f"duplicate ComEd posting not collapsed: {len(comed)} rows")
+        dr = [r for r in rows if r["title"] == "Data Engineer I"
+              and r["employer"] == "Digital Realty"]
+        if len(dr) != 1:
+            fails.append("a different employer's posting must not be deduped away")
 
     print(f"pipeline: {len(fails)} failure(s)")
     for x in fails:

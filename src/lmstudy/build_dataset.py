@@ -23,7 +23,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from lmstudy import geo, pay                                     # noqa: E402
 from lmstudy.code_regressors import load_dictionary, code_posting  # noqa: E402
-from lmstudy.filters import screen_all, extract_years, extract_job_level            # noqa: E402
+from lmstudy.filters import (screen_all, extract_years, extract_job_level,  # noqa: E402
+                            seniority_rank, is_early_career, SENIORITY_LABELS)
 
 
 # Role families, checked in order; the first match wins. Ordered so the more
@@ -103,10 +104,21 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     dictionary = load_dictionary(config_dir / "regressors.yaml")
     gazetteer = geo.load_gazetteer(ROOT / "data" / "gazetteer.json")
     metros = {k: v for k, v in scope["metros"].items() if v.get("enabled") is not False}
+    national = bool(scope.get("geography", {}).get("national"))
+    # Mandate status is a property of the posting's state, read from config
+    # so a reader can audit which jurisdictions count and why.
+    mandate_states = {str(k).upper() for k in (scope.get("pay_mandate_states") or {})}
     hours = scope["pay"]["hours_per_year"]
     today = dt.date.today()
 
-    funnel = Counter()
+    # Seeded so every stage reports a number, including zero. A Counter drops
+    # keys that never increment, which made "nothing was rejected on geography"
+    # and "the geography stage did not run" indistinguishable in the funnel.
+    funnel = Counter({
+        "raw": 0, "rejected_off_umbrella": 0, "rejected_screen": 0,
+        "passed_screen": 0, "rejected_geo": 0, "passed_geo": 0,
+        "duplicate_sighting": 0, "unique_in_scope": 0, "usable_with_pay": 0,
+    })
     reject_reasons = Counter()
     rows: dict[str, dict] = {}
     first_seen: dict[str, str] = {}
@@ -143,8 +155,24 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     continue
                 funnel["passed_screen"] += 1
 
-                place = geo.resolve(rec.get("location_raw") or "", metros, gazetteer, description)
-                if not place.in_scope:
+                location_raw = rec.get("location_raw") or ""
+                place = geo.resolve(location_raw, metros, gazetteer, description)
+                # National scope: a posting qualifies on being in the US, and
+                # study-metro membership becomes a regressor rather than a gate.
+                # The state is what identifies the mandate contrast, so a US
+                # posting we cannot place to a state is no use to the pay model
+                # and is rejected here rather than carried with a blank.
+                us_state = geo.resolve_us_state(location_raw) if national else None
+                if national:
+                    if geo.is_non_us(location_raw):
+                        funnel["rejected_geo"] += 1
+                        reject_reasons["non_us"] += 1
+                        continue
+                    if us_state is None and not place.in_scope:
+                        funnel["rejected_geo"] += 1
+                        reject_reasons["no_us_state"] += 1
+                        continue
+                elif not place.in_scope:
                     funnel["rejected_geo"] += 1
                     reject_reasons["out_of_metro"] += 1
                     continue
@@ -159,7 +187,12 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 )
                 coded = code_posting(title, description, dictionary)
                 years_min, years_excerpt = extract_years(description)
-                metro_spec = scope["metros"][place.metro]
+                metro_spec = scope["metros"].get(place.metro) or {}
+                # State comes from the national resolver first: it reads the
+                # posting's own location, where a metro's declared state is
+                # only the metro's. They agree for in-metro postings.
+                state = us_state or place.state or metro_spec.get("state") or ""
+                rank = seniority_rank(title, description)
 
                 row = {
                     "posting_key": key,
@@ -170,10 +203,19 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     "job_level": extract_job_level(title),
                     "ats_platform": rec.get("platform"),
                     "url": rec.get("url"),
-                    "metro": place.metro,
-                    "tier": place.tier,
-                    "state": place.state or metro_spec.get("state"),
-                    "mandate_state": int(bool(metro_spec.get("pay_disclosure_mandate"))),
+                    "metro": place.metro or "",
+                    "study_metro": int(bool(place.metro)
+                                       and place.metro != geo.REMOTE_NATIONAL),
+                    "tier": place.tier if place.tier is not None else "",
+                    "state": state,
+                    "census_region": geo.census_region(state) or "",
+                    # Mandate status is read from the POSTING's state, not from
+                    # the metro it happens to sit in. Those agree in-metro, but
+                    # nationally the metro table would be silent.
+                    "mandate_state": int(state.upper() in mandate_states),
+                    "seniority_rank": rank,
+                    "seniority_label": SENIORITY_LABELS.get(rank, ""),
+                    "early_career": int(is_early_career(rank, years_min)),
                     "distance_miles": place.distance_miles,
                     "work_arrangement": place.work_arrangement,
                     "remote_eligible": int(place.remote_eligible),

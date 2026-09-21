@@ -10,6 +10,16 @@ study:
 # ---------------------------------------------------------------------------
 # Geography. Tiers escalate ONLY when the floor is unmet (see escalation).
 # ---------------------------------------------------------------------------
+
+# Geography. National since 2026-09-21: every US location is in scope and
+# location enters the model as state, census region and mandate status rather
+# than as a filter. The metro definitions below are retained and still used —
+# `study_metro` remains a regressor, and reverting to metro-only scope is this
+# one flag.
+geography:
+  national: true
+  countries: [US]
+
 metros:
   chicago:
     tier: 1
@@ -328,6 +338,11 @@ early_career:
   # cost roughly half the sample, and many are plainly early-career roles whose
   # text simply never names a number.
   admit_unstated_experience: true
+  # Seniority became a regressor rather than a filter on 2026-09-21, by the
+  # owner's decision. seniority_rank() in filters.py reads the same vocabulary
+  # the exclusion list below is written in, so nothing here is deleted and
+  # reverting the study to early-career-only is this one line.
+  admit_all_seniority: true
   # Used when a posting states no experience minimum.
   entry_title_signals:
     - associate
@@ -371,6 +386,37 @@ early_career:
     # Team Leader" entered the sample at $122,038.
     - leader
     - team lead
+
+# State pay-transparency mandates: states requiring a pay scale IN THE POSTING.
+# This is the identification behind the disclosure model, so it lives in config
+# where a reader can audit it rather than buried in code. Effective dates are
+# recorded because a posting collected before a state's date is not covered by
+# it — relevant if this study is ever re-run over a longer window.
+#
+# Deliberately EXCLUDED: states requiring disclosure only on request or only to
+# candidates already in process (e.g. Cincinnati/Toledo-style ordinances,
+# Connecticut's on-request rule predating its posting rule). Those do not put a
+# number in the posting and would dilute the contrast.
+pay_mandate_states:
+  CA: 2023-01-01   # SB 1162, 15+ employees
+  CO: 2021-01-01   # Equal Pay for Equal Work Act, the first
+  CT: 2021-10-01   # posting-level for advertised roles
+  DC: 2024-06-30   # Wage Transparency Omnibus Amendment
+  HI: 2024-01-01   # 50+ employees
+  IL: 2025-01-01   # HB 3129, 15+ employees — the study's original anchor
+  MD: 2024-10-01   # Wage Range Transparency Act
+  MA: 2025-10-29   # 25+ employees
+  MN: 2025-01-01   # 30+ employees
+  NV: 2021-10-01   # disclosure to applicants after interview; posting in practice
+  NJ: 2025-06-01   # 10+ employees
+  NY: 2023-09-17   # statewide; NYC LL32 from 2022-11-01
+  RI: 2023-01-01
+  VT: 2025-07-01
+  VA: 2026-07-01   # newest; check coverage before relying on it
+  WA: 2023-01-01   # 15+ employees
+
+# Census regions are defined in src/lmstudy/geo.py (CENSUS_REGION), not here,
+# because they are a fixed US Census definition rather than a study choice.
 
 internships:
   exclude: true

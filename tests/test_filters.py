@@ -2,7 +2,7 @@
 import sys, pathlib, yaml
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-from lmstudy.filters import screen_role, screen_early_career, screen_internship, extract_years
+from lmstudy.filters import seniority_rank, is_early_career, screen_role, screen_early_career, screen_internship, extract_years
 
 CFG = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
 
@@ -34,11 +34,14 @@ YEARS = [
 # pulled the mean up 4.2% and the median up 6.1%.
 AUDIT_ROUND_2 = [
     # (title, must_be_kept, expected_family_or_None)
-    # Seniority: the roman-numeral list stopped at IV.
-    ("Environmental Analyst V (Construction Stormwater) - Denver, CO", False, None),
-    ("Analyst VI", False, None),
-    # "lead" is word-bounded and never matched "Leader".
-    ("NERC Operations Team Leader", False, None),
+    # Seniority: these were the round-2 bugs, and the fix still matters even
+    # though seniority no longer excludes. The numerals and "Leader" must be
+    # RECOGNISED; before round 2 they were invisible, so under the national
+    # rescope they would now be ranked entry level instead of merely admitted
+    # wrongly. Their ranks are asserted in check_seniority_ranks below.
+    ("Environmental Analyst V (Construction Stormwater) - Denver, CO", True, "sustainability"),
+    ("Market Analyst VI", True, "market_commercial"),
+    ("NERC Operations Team Leader", True, "regulatory"),
     # Security was named out of scope from the start but never encoded; this
     # entered on a bare "ai" match at $148,500, the top of the sample.
     ("AI Cybersecurity Engineer", False, None),
@@ -84,6 +87,53 @@ def audit_round_2_cases(config):
     return fails
 
 
+# Seniority as a rank, 2026-09-21. Admitting every level is only useful if the
+# level is recorded correctly: if seniority_rank() returned the default for
+# everything, the sample would look national and complete while the headline
+# regressor was noise. Every title here is real, taken from collected data or
+# from the manifests' title diagnostics.
+SENIORITY_RANK_CASES = [
+    ("Analyst I", 1), ("Associate, Development", 1), ("Data Analyst - New Grad", 1),
+    ("Engineer I Interconnections & Grid Analysis", 1),
+    ("Market Analyst", 2), ("Data Engineer II", 2), ("Grid Integration Engineer II", 2),
+    ("Senior Interconnection Engineer", 3), ("Engineer III", 3),
+    ("Environmental Analyst V (Construction Stormwater) - Denver, CO", 3),
+    ("Market Analyst VI", 3),
+    ("Staff Engineer, Thermal Engineering", 4), ("Principal, NERC Cybersecurity Compliance (CIP)", 4),
+    ("NERC Operations Team Leader", 5), ("Manager of Thermal Development", 5),
+    ("Director, Mechanical Engineering", 6), ("Sr. Project Manager, Geothermal Project Management", 5),
+    ("Vice President, Origination", 7),
+]
+
+
+def check_seniority_ranks():
+    fails = []
+    for title, want in SENIORITY_RANK_CASES:
+        got = seniority_rank(title)
+        if got != want:
+            fails.append(f"seniority_rank({title[:44]!r}) = {got}, want {want}")
+
+    # An unlevelled title defaults to MID, not entry. Defaulting to entry would
+    # bias the seniority coefficient toward zero across the whole unlevelled
+    # majority of postings, which is most of them.
+    if seniority_rank("Market Analyst") != 2 or seniority_rank("") != 2:
+        fails.append("an unlevelled title must default to mid (2)")
+
+    # The highest matching rank wins, so a compound title is not read down.
+    if seniority_rank("Senior Director, Grid Strategy") != 6:
+        fails.append("'Senior Director' must rank director (6), not senior (3)")
+
+    # is_early_career preserves the original study question on the subsample.
+    for rank, years, want in [
+        (1, None, True), (1, 2, True), (2, 2, True), (2, None, False),
+        (3, 2, False), (3, None, False), (2, 7, False), (5, 1, False),
+    ]:
+        if is_early_career(rank, years) != want:
+            fails.append(f"is_early_career(rank={rank}, years={years}) "
+                         f"= {is_early_career(rank, years)}, want {want}")
+    return fails
+
+
 def run():
     fails = []
 
@@ -119,9 +169,21 @@ def run():
     for t in ROLE_DROP:
         if screen_role(t, "", CFG).passed:
             fails.append(f"role should DROP {t!r}")
+    # Seniority stopped being a filter on 2026-09-21 and became a regressor.
+    # These titles are now ADMITTED, and what must be right is the rank: the
+    # information has to be captured, not merely let through. A test that only
+    # flipped the expectation to "passed" would not notice seniority_rank
+    # silently returning the default for every one of them.
     for t in SENIOR_DROP:
-        if screen_early_career(t, "2+ years experience", CFG).passed:
-            fails.append(f"seniority should DROP {t!r}")
+        result = screen_early_career(t, "2+ years experience", CFG)
+        if not result.passed:
+            fails.append(f"seniority is a regressor now; should ADMIT {t!r}"
+                         f" (reason {result.reason})")
+        rank = seniority_rank(t)
+        if rank < 3:
+            fails.append(f"{t!r} should rank senior or above, got {rank}")
+        if is_early_career(rank, 2):
+            fails.append(f"{t!r} must not read as early career at rank {rank}")
 
     for text, want in YEARS:
         got, _ = extract_years(text)
@@ -131,7 +193,10 @@ def run():
     # Early career decisions
     cases = [
         ("Software Engineer I", "Requires 2 years of experience.", True, "2yr ok"),
-        ("Software Engineer", "Requires 7+ years of experience.", False, "7yr too high"),
+        # Admitted now, with the years carried into the model rather than
+        # used to exclude. is_early_career() is what keeps the original
+        # question answerable on the subsample.
+        ("Software Engineer", "Requires 7+ years of experience.", True, "7yr admitted, ranked"),
         ("Associate Data Scientist", "Join our team.", True, "title signal, no years"),
         # admit_unstated_experience is on, so a posting with no stated minimum
         # is kept and yrs_exp_stated carries the imputation into the model.
@@ -143,7 +208,7 @@ def run():
         ("Software Engineer I", "Join the platform team.", True, "roman numeral I"),
         ("Software Engineer", "Join the platform team.", True, "unstated, admitted"),
         ("Data Scientist II", "Build models.", True, "roman numeral II"),
-        ("Data Architect III", "Own the design.", False, "III is a seniority exclusion"),
+        ("Data Architect III", "Own the design.", True, "III admitted as rank 3"),
     ]
     for title, desc, want, label in cases:
         got = screen_early_career(title, desc, CFG)
@@ -172,8 +237,10 @@ def run():
             fails.append(f"internship[{label}] -> {got.passed} want {want} ({got.reason})")
 
     fails += audit_round_2_cases(CFG)
+    fails += check_seniority_ranks()
     total = (len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)
-             +len(intern_cases)+len(AUDIT_ROUND_2)+len(AUDIT_ROUND_2_KEEP))
+             +len(intern_cases)+len(AUDIT_ROUND_2)+len(AUDIT_ROUND_2_KEEP)
+             +len(SENIORITY_RANK_CASES)+11)   # +11 rank defaults and early-career logic
     print(f"filters: {total-len(fails)}/{total} passed")
     for f in fails:
         print("  FAIL", f)

@@ -27,21 +27,42 @@ def make_detail_filter(scope: dict, gazetteer: dict, diag: dict | None = None,
     """Cheap pre-screen on title and location, for platforms that need a
     separate request per description.
 
-    Only the screens that can be judged without the description are applied:
-    role, seniority and geography. Experience and internship screening still
-    happens later, in build_dataset, against the full text.
+    This is the single most consequential filter in the pipeline, and not for
+    the reason it looks. It decides whose DESCRIPTION is ever fetched, so
+    anything it drops is invisible to every later stage — no amount of widening
+    downstream can recover a posting whose body was never read.
+
+    On run 35563603919 it listed 3,778 Workday postings and kept 120. The study
+    was reading 3% of what it already found, and the discarded 97% was mostly
+    out-of-metro rather than off-topic.
+
+    Since the national rescope (2026-09-21) it applies the ROLE screen and a
+    US-only test, and nothing else. Geography is gone because every US location
+    is now in scope; seniority is gone because it is a regressor. The role
+    screen stays because it is what keeps the job inside its timeout: dropping
+    it too would mean fetching a description for every posting on every board.
     """
     metros = {k: v for k, v in scope["metros"].items() if v.get("enabled") is not False}
+    national = bool(scope.get("geography", {}).get("national"))
+    admit_all_seniority = bool(scope.get("early_career", {}).get("admit_all_seniority"))
 
     def keep(posting) -> bool:
         role_ok = screen_role(posting.title, "", scope).passed
-        senior = screen_early_career(posting.title, "", scope).reason == "seniority_excluded"
+        senior = (False if admit_all_seniority else
+                  screen_early_career(posting.title, "", scope).reason == "seniority_excluded")
         location = posting.location_raw or ""
         # An unknown location (absent, or Workday's "N Locations") is kept so
-        # the detail record can settle it; only a resolvable, out-of-radius
+        # the detail record can settle it; only a resolvable, out-of-scope
         # place is a rejection.
-        geo_ok = (True if geo.is_unknown_location(location)
-                  else geo.resolve(location, metros, gazetteer).in_scope)
+        if geo.is_unknown_location(location):
+            geo_ok = True
+        elif national:
+            # US-only. A location that names another country is out; one that
+            # resolves to no state at all is kept, because the detail record
+            # often carries a better location string than the list view.
+            geo_ok = not geo.is_non_us(location)
+        else:
+            geo_ok = geo.resolve(location, metros, gazetteer).in_scope
 
         # Record WHY each listing was dropped. Knowing whether the binding
         # constraint is the role taxonomy or the 35-mile radius is what decides

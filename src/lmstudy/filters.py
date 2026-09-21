@@ -102,13 +102,20 @@ def screen_early_career(title: str, description: str, config: dict) -> ScreenRes
     ec = config["early_career"]
     title_n = _norm(title)
 
-    for senior in ec["seniority_exclusions"]:
-        if _matches(title_n, senior):
-            return ScreenResult(False, "seniority_excluded", {"matched": senior})
+    # Since 2026-09-21 seniority is a REGRESSOR, not a filter. With the flag
+    # set, every level is admitted and seniority_rank() carries the information
+    # into the model instead. The exclusion lists are kept, not deleted: they
+    # are what SENIORITY_RANKS is built from, and reverting is a config edit.
+    admit_all = ec.get("admit_all_seniority", False)
+
+    if not admit_all:
+        for senior in ec["seniority_exclusions"]:
+            if _matches(title_n, senior):
+                return ScreenResult(False, "seniority_excluded", {"matched": senior})
 
     years, excerpt = extract_years(description)
     if years is not None:
-        if years <= ec["max_years_experience"]:
+        if admit_all or years <= ec["max_years_experience"]:
             return ScreenResult(True, None, {"years_min": years, "excerpt": excerpt})
         return ScreenResult(False, "experience_too_high", {"years_min": years, "excerpt": excerpt})
 
@@ -120,10 +127,81 @@ def screen_early_career(title: str, description: str, config: dict) -> ScreenRes
     # Otherwise admit or reject per config. Admitting is the measured default:
     # dropping unstated-experience postings cost roughly half the sample, and
     # `yrs_exp_stated` carries the imputation into the model as a control.
+    # Deliberately NOT `admit_all or ...`. Admitting every seniority level says
+    # nothing about whether a posting that states no minimum should be kept;
+    # those are separate policies and conflating them made strict mode
+    # unreachable.
     if ec.get("admit_unstated_experience"):
         return ScreenResult(True, None, {"years_min": None, "experience_unstated": True})
 
     return ScreenResult(False, "no_experience_signal", {"title": title})
+
+
+
+# --------------------------------------------------------------------------
+# Seniority as a RANK, not a gate.
+#
+# Until 2026-09-21 seniority was a screen: anything matching "senior", "lead",
+# a numeral above II and so on was dropped, and the study was early-career by
+# construction. The owner's decision to admit every level turns that screen
+# into a classifier — the same vocabulary, read for what it says rather than
+# used to exclude.
+#
+# Order matters: the highest matching rank wins, so "Senior Director" is 6 and
+# not 3. Audit round 2 is what makes this trustworthy: before it, "Analyst V"
+# and "Team Leader" were not recognised at all, so they would have been ranked
+# entry level here rather than merely admitted wrongly.
+SENIORITY_RANKS = [
+    (7, ["vp", "vice president", "chief", "head of", "svp", "evp", "c-level"]),
+    (6, ["director", "sr director", "senior director"]),
+    (5, ["manager", "mgr", "supervisor", "team lead", "leader"]),
+    (4, ["staff", "principal", "distinguished", "fellow", "architect"]),
+    (3, ["senior", "sr", "iii", "iv", "v", "vi", "vii", "viii", "lead",
+         "senior associate", "senior analyst"]),
+    (2, ["ii", "mid-level", "intermediate"]),
+    (1, ["i", "associate", "junior", "jr", "entry level", "entry-level",
+         "new grad", "new graduate", "early career", "rotational",
+         "development program", "graduate program", "campus", "trainee"]),
+]
+
+# Rank 2 is also the default for a title carrying no level signal at all: an
+# unlevelled "Market Analyst" is a mid-level posting, not an entry-level one,
+# and assuming otherwise would bias the seniority coefficient.
+SENIORITY_DEFAULT = 2
+
+SENIORITY_LABELS = {
+    0: "intern", 1: "entry", 2: "mid", 3: "senior", 4: "staff_principal",
+    5: "manager", 6: "director", 7: "executive",
+}
+
+
+def seniority_rank(title: str, description: str = "") -> int:
+    """Ordinal seniority from the title. Higher is more senior.
+
+    0 intern, 1 entry, 2 mid or unlevelled, 3 senior, 4 staff/principal,
+    5 manager, 6 director, 7 VP and above.
+    """
+    title_n = _norm(title)
+    if not title_n:
+        return SENIORITY_DEFAULT
+    for rank, needles in SENIORITY_RANKS:
+        for needle in needles:
+            if _matches(title_n, needle):
+                return rank
+    return SENIORITY_DEFAULT
+
+
+def is_early_career(rank: int, years_min: int | None,
+                    max_years: int = 3) -> bool:
+    """The study's original question, now derived rather than enforced.
+
+    Early career means an entry-level rung OR a stated experience minimum
+    within the threshold. A posting stating no minimum is judged on its rank
+    alone, which is why the rank defaults to mid rather than entry.
+    """
+    if years_min is not None:
+        return years_min <= max_years and rank <= 2
+    return rank <= 1
 
 
 def screen_internship(title: str, description: str, config: dict) -> ScreenResult:
