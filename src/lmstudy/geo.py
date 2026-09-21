@@ -27,6 +27,9 @@ def is_unknown_location(location_raw: str | None) -> bool:
     return not text or bool(MULTI_LOCATION_RE.match(text))
 
 
+# Nationwide-remote postings live here rather than being discarded.
+REMOTE_NATIONAL = "remote_national"
+
 REMOTE_MARKERS = ("remote", "work from home", "wfh", "virtual", "anywhere")
 HYBRID_MARKERS = ("hybrid", "flexible location", "partially remote")
 ONSITE_MARKERS = ("on-site", "onsite", "in office", "in-office")
@@ -35,6 +38,14 @@ STATE_ABBR = {
     "illinois": "IL", "indiana": "IN", "virginia": "VA", "colorado": "CO",
     "minnesota": "MN", "washington": "WA", "california": "CA", "new york": "NY",
     "maryland": "MD", "wisconsin": "WI",
+}
+
+
+_STATE_CODES = set(STATE_ABBR.values()) | {
+    "AL", "AK", "AZ", "AR", "CT", "DE", "DC", "FL", "GA", "HI", "IA", "ID",
+    "KS", "KY", "LA", "ME", "MA", "MI", "MS", "MO", "MT", "NE", "NV", "NH",
+    "NJ", "NM", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN",
+    "TX", "UT", "VT", "WV", "WY",
 }
 
 
@@ -82,6 +93,34 @@ def detect_arrangement(location_raw: str, description: str = "") -> str:
     return "unspecified"
 
 
+# Workday tenants render a location as "US - VA, Arlington": a country prefix
+# followed by STATE, CITY, which is the reverse of the "City, ST" form every
+# other ATS uses. Measured on run 35554269246 this silently dropped 14
+# role-matching postings in Northern Virginia, because "- VA, Arlington" parses
+# to the city "va". The strings handled here are taken verbatim from that run's
+# manifest (scope_diagnostics.locations_of_in_role) rather than invented.
+_COUNTRY_PREFIX_RE = re.compile(r"^\s*(?:US|USA|U\.S\.|United States)\s*[-\u2013]\s*", re.IGNORECASE)
+_STATE_FIRST_RE = re.compile(r"^\s*([A-Z]{2})\s*,\s*(.+?)\s*$")
+
+
+def canonicalize_place(fragment: str) -> str:
+    """'US - VA, Arlington' -> 'Arlington, VA'. Leaves 'Chicago, IL' alone.
+
+    Only the comma-separated STATE, CITY form is flipped. A bare "PA Bryn Mawr"
+    is left as-is on purpose: guessing at forms that were not observed is how
+    the sector gate was broken.
+    """
+    text = _COUNTRY_PREFIX_RE.sub("", fragment or "")
+    match = _STATE_FIRST_RE.match(text)
+    if match:
+        state, city = match.group(1), match.group(2)
+        # Only flip when the leading token is a real state code and the trailing
+        # token is not, so "IL, Chicago" flips but "Chicago, IL" cannot.
+        if state.upper() in _STATE_CODES and city.strip().upper() not in _STATE_CODES:
+            return f"{city}, {state.upper()}"
+    return text.strip() or (fragment or "")
+
+
 def _split_locations(location_raw: str) -> list[str]:
     """A posting may list several sites; each is considered separately."""
     parts = re.split(r"\s*(?:;|\||\bor\b|\band\b|/)\s*", location_raw or "")
@@ -117,7 +156,7 @@ def resolve(
     best: GeoResult | None = None
 
     for fragment in _split_locations(location_raw):
-        parsed = _normalize_place(fragment)
+        parsed = _normalize_place(canonicalize_place(fragment))
         if not parsed:
             continue
         city, state = parsed
@@ -130,7 +169,7 @@ def resolve(
             continue
         lat, lon, place_state = coords
         for name, spec in metros.items():
-            if spec.get("enabled") is False:
+            if spec.get("enabled") is False or not spec.get("centroid"):
                 continue
             distance = haversine_miles((lat, lon), tuple(spec["centroid"]))
             if distance <= spec.get("radius_miles", 35):
@@ -165,5 +204,19 @@ def resolve(
                     remote_eligible=True,
                     note="remote posting matched by state, distance undefined",
                 )
+
+    # A remote posting that names no state at all ("US - Remote (Any location)",
+    # "Remote - US") cannot be attributed to a metro, but it is a real
+    # early-career energy posting and is kept in its own category. It must never
+    # enter the metro or mandate-state contrasts: those identify off Illinois
+    # HB 3129, and a nationwide posting has no determinate jurisdiction.
+    if arrangement == "remote" and REMOTE_NATIONAL in metros:
+        return GeoResult(
+            metro=REMOTE_NATIONAL,
+            tier=metros[REMOTE_NATIONAL].get("tier"),
+            work_arrangement="remote",
+            remote_eligible=True,
+            note="nationwide remote, no metro attribution",
+        )
 
     return GeoResult(work_arrangement=arrangement, note=f"unresolved location: {location_raw!r}")

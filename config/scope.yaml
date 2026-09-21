@@ -60,6 +60,15 @@ metros:
     state: WA
     pay_disclosure_mandate: true
 
+  # Not a metro: the bucket for postings advertised as nationwide remote, which
+  # name no state and so cannot be placed. It has no centroid, so distance
+  # matching skips it, and no pay-disclosure mandate, so it stays out of the
+  # HB 3129 contrast. Added 2026-09-21; see plan revision 3.
+  remote_national:
+    tier: 0
+    pay_disclosure_mandate: false
+    label: Nationwide remote
+
 escalation:
   cycles_before_tier3: 3
   status: >

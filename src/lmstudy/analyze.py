@@ -49,6 +49,7 @@ EXTENDED_EXTRA = [
     "industry_grid_operator", "industry_energy_analytics", "industry_developer",
     "industry_consulting", "industry_grid_vendor",
     "industry_cooperative", "industry_retailer",
+    "metro_remote_national",
 ]
 
 
@@ -56,6 +57,10 @@ def load(path: pathlib.Path) -> pd.DataFrame:
     df = pd.read_csv(path)
     df["industry_data_center"] = (df["industry"] == "data_center").astype(int)
     df["metro_indianapolis"] = (df["metro"] == "indianapolis").astype(int)
+    # Nationwide-remote postings name no state, so they carry no determinate
+    # pay-disclosure jurisdiction. The dummy absorbs them so they cannot load
+    # onto the metro contrasts that identify off Illinois HB 3129.
+    df["metro_remote_national"] = (df["metro"] == "remote_national").astype(int)
     # industry is categorical now that the frame spans operators, grid
     # operators, analytics firms, developers, consultancies and vendors.
     # Utility is the reference category.

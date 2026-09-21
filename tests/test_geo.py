@@ -7,14 +7,16 @@ import sys, pathlib, yaml
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-from lmstudy.geo import haversine_miles, load_gazetteer, resolve, detect_arrangement
+from lmstudy.geo import (haversine_miles, load_gazetteer, resolve,
+                        detect_arrangement, canonicalize_place)
 
 SCOPE = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
 METROS = SCOPE["metros"]
 GAZ = load_gazetteer(ROOT / "data" / "gazetteer.json")
 
 def all_metros():
-    return {k: v for k, v in METROS.items()}
+    """Only metros with a centroid; remote_national is a category, not a place."""
+    return {k: v for k, v in METROS.items() if v.get("centroid")}
 
 def active_metros():
     return {k: v for k, v in METROS.items() if v.get("enabled") is not False}
@@ -88,6 +90,50 @@ def run():
     got = resolve("Remote - IL", active_metros(), GAZ)
     if got.metro != "chicago" or not got.remote_eligible:
         fails.append(f"remote-IL -> {got.metro} remote={got.remote_eligible}")
+
+
+    # 10. Workday renders locations as "US - VA, Arlington" (country prefix,
+    # then STATE, CITY). Every string below is taken verbatim from run
+    # 35554269246's manifest, scope_diagnostics.locations_of_in_role, not
+    # invented: a guard validated against a reconstruction rather than the real
+    # artifact is what let the sector gate through.
+    for loc, want in [
+        ("US - VA, Arlington", "northern_virginia"),
+        ("US - VA, McLean", "northern_virginia"),
+        ("US - VA, Springfield", "northern_virginia"),
+        ("US - VA, Norfolk", None),        # ~200mi away, must stay out
+        ("US - AL, Huntsville", None),
+        ("US - MD, Annapolis Junction", None),
+    ]:
+        got = resolve(loc, active_metros(), GAZ)
+        if got.metro != want:
+            fails.append(f"workday format {loc!r} -> {got.metro} want {want}")
+
+    # 11. Flipping must be narrow. "Chicago, IL" is already CITY, STATE and
+    # must survive untouched, and a city that shares a state abbreviation's
+    # spelling must not be mistaken for one.
+    for loc in ("Chicago, IL", "Oak Brook, Illinois", "Carmel, IN", "Irving, Texas"):
+        if canonicalize_place(loc) != loc:
+            fails.append(f"canonicalize_place mangled an ordinary place: {loc!r}"
+                         f" -> {canonicalize_place(loc)!r}")
+    if resolve("Chicago, IL", active_metros(), GAZ).metro != "chicago":
+        fails.append("canonicalisation broke the ordinary City, ST form")
+
+    # 12. Nationwide remote: kept in its own category, never attributed to a
+    # metro. A remote posting that DOES name a study state still wins its metro.
+    for loc in ("US - Remote (Any location)", "Remote - US", "Remote, USA"):
+        got = resolve(loc, active_metros(), GAZ)
+        if got.metro != "remote_national" or not got.remote_eligible:
+            fails.append(f"nationwide remote {loc!r} -> {got.metro}")
+    got = resolve("Chicago, IL (Remote)", active_metros(), GAZ)
+    if got.metro != "chicago":
+        fails.append(f"state-naming remote must beat remote_national, got {got.metro}")
+    if METROS["remote_national"].get("pay_disclosure_mandate"):
+        fails.append("remote_national must carry no pay-disclosure mandate")
+
+    # 13. A genuinely unresolvable, non-remote place stays out entirely.
+    if resolve("Irving, Texas", active_metros(), GAZ).metro is not None:
+        fails.append("an out-of-radius onsite place must not fall into remote_national")
 
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:
