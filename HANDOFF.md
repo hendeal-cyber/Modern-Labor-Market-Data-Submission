@@ -154,3 +154,69 @@ Collection is Actions-only: dispatch `collect.yml` (inputs `limit`,
 `no_slugs`) or `scope-probe.yml` (input `tier3`). Use `no_slugs: true` — the
 employer file already carries slug candidates, so the fallback only doubles
 runtime.
+
+
+---
+
+## 7. Where the data actually stands (2026-09-21, run 35554269246)
+
+**The floor is not met. 35 usable observations against a required 100.**
+
+| | |
+|---|---|
+| Employers probed | 266 |
+| Boards resolved | **35** (13%) |
+| Postings collected | 529 |
+| Passed screening | 72 |
+| Unique in scope | 38 |
+| **Usable (pay disclosed)** | **35** |
+| Distinct employers | **8** |
+
+Metros: Chicago 21, Denver 8, Northern Virginia 6.
+Pay: median $81,000, mean $90,112, range $46,500–$148,500.
+
+Role families are well spread, which is the encouraging part — the widened
+taxonomy is capturing the intended work:
+siting_dev 10, market_commercial 8, software_data 4, grid_power 4,
+regulatory 4, ai_ml 3, gis 1.
+
+### The three problems that matter, in order
+
+1. **Employer concentration. Invenergy alone is 21 of 35 observations (60%).**
+   With 8 clusters and one supplying most of the sample, employer-clustered
+   standard errors are close to meaningless and the model is effectively
+   describing one firm's pay ladder. This is more damaging than the raw N.
+2. **Only 13% of employer boards resolved.** 231 of 266 employers returned
+   nothing. Most tokens are slug-derived guesses; co-ops and retailers in
+   particular tend to run smaller ATS platforms or plain career pages that
+   none of the seven adapters cover.
+3. **The screens, not collection, are the bottleneck.** Of 696 raw postings,
+   624 fail screening — role 408, seniority 304, role-excluded 190. Collection
+   is working; the population of early-career energy-analytics postings with
+   disclosed pay is simply thin at any one moment.
+
+### What would actually move N, in order of expected value
+
+1. **Verify board tokens by hand for the largest employers.** The 231 that
+   returned nothing are mostly wrong guesses, not absent boards. Reading a
+   careers URL takes a minute per employer and converts directly into data.
+   Start with the utilities and co-ops, which are regionally headquartered.
+2. **Accumulate weekly flow.** The Monday cron adds new postings; the stock is
+   a snapshot. This is the cheapest path and needs only time.
+3. **Add an iCIMS or SuccessFactors adapter.** Exelon, ComEd, Constellation,
+   Citizens Energy, TierPoint and Peoples Gas are all blocked on these, and
+   they include the largest Chicago-area utility employer.
+4. **Reconsider the seniority screen.** 304 rejections. Some "Senior
+   Associate" roles at 2–4 years are arguably early career; the numeral
+   currently excludes them regardless of stated experience.
+
+### What is already done and should not be redone
+
+Pipeline, 7 ATS adapters, 28 audited regressors, audit round 1 with three
+systematic false positives fixed, sector gate rebuilt after a production
+failure, `role_family`/`job_level`, regression with employer-clustered SEs and
+interpretability guards, paper/figures/deck generators, 100+ tests.
+
+`analyze.py` runs and `results.md` opens with an unmissable block stating the
+estimates are not interpretable at 3.2 observations per regressor and 8
+clusters. **Do not remove that block to make the paper look finished.**

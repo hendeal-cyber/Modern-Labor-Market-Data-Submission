@@ -52,8 +52,8 @@ analytics. Early career means three years or fewer of required experience.
 
 | Stage | Postings |
 |---|---|
-| Retrieved from ATS boards | 686 |
-| Passed role, seniority and internship screens | 64 |
+| Retrieved from ATS boards | 696 |
+| Passed role, seniority and internship screens | 72 |
 | Within 35 miles of a study metro | 43 |
 | Unique after de-duplication | 38 |
 | With a disclosed pay range (estimation sample) | 35 |
@@ -62,12 +62,12 @@ Rejections by reason:
 
 | Reason | Count |
 |---|---|
-| `role_not_software_data` | 407 |
+| `role_not_software_data` | 408 |
 | `seniority_excluded` | 304 |
 | `role_excluded` | 190 |
-| `experience_too_high` | 52 |
+| `experience_too_high` | 53 |
+| `out_of_metro` | 29 |
 | `internship` | 22 |
-| `out_of_metro` | 21 |
 
 Distinct employers contributing a disclosed range: **8**. By metro: `{'denver': 8, 'chicago': 21, 'northern_virginia': 6}`.
 
