@@ -108,6 +108,19 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     # Mandate status is a property of the posting's state, read from config
     # so a reader can audit which jurisdictions count and why.
     mandate_states = {str(k).upper() for k in (scope.get("pay_mandate_states") or {})}
+    # BEA regional price parities, if a collection run fetched them. Absent is
+    # a normal state: the price-adjusted column is then blank and analyze.py
+    # reports that model as unavailable. Nothing is imputed — a fabricated
+    # deflator applied to every row would be invisible and wrong.
+    rpp_path = ROOT / "data" / "rpp_by_state.json"
+    rpp_table, rpp_vintage = {}, None
+    if rpp_path.exists():
+        _rpp = json.loads(rpp_path.read_text())
+        rpp_table = {k.upper(): float(v) for k, v in (_rpp.get("values") or {}).items()}
+        rpp_vintage = _rpp.get("_vintage")
+        print(f"price parities: {len(rpp_table)} states, vintage {rpp_vintage}")
+    else:
+        print("price parities: none fetched; real-pay columns will be blank")
     hours = scope["pay"]["hours_per_year"]
     today = dt.date.today()
 
@@ -229,6 +242,15 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     "pay_min": money.pay_min if money.pay_min is not None else "",
                     "pay_max": money.pay_max if money.pay_max is not None else "",
                     "pay_midpoint": money.midpoint if money.midpoint is not None else "",
+                    # Nominal pay deflated to national price levels. RPP is a
+                    # percentage of the US average, so dividing by RPP/100
+                    # expresses the wage in national-average dollars.
+                    "rpp": rpp_table.get(state.upper(), ""),
+                    "pay_midpoint_real": (
+                        round(money.midpoint / (rpp_table[state.upper()] / 100.0), 2)
+                        if money.midpoint is not None and state.upper() in rpp_table
+                        else ""
+                    ),
                     "pay_range_width": (
                         money.pay_max - money.pay_min
                         if money.pay_max is not None and money.pay_min is not None

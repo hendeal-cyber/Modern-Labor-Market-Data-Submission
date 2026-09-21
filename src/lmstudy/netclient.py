@@ -79,6 +79,13 @@ class PoliteSession:
     def post_json(self, url: str, payload: dict, **kwargs) -> Response:
         return self._request("POST", url, json_body=payload, **kwargs)
 
+    def get_bytes(self, url: str, **kwargs) -> Response:
+        """Fetch a binary body — a zip archive of public statistics.
+
+        Same politeness and retry handling as the JSON path; `data` is bytes.
+        """
+        return self._request("GET", url, want_bytes=True, **kwargs)
+
     def get_text(self, url: str, **kwargs) -> Response:
         """Fetch a body that is not JSON — an RSS or Atom feed.
 
@@ -94,9 +101,15 @@ class PoliteSession:
         json_body: dict | None = None,
         use_etag: bool = True,
         want_text: bool = False,
+        want_bytes: bool = False,
     ) -> Response:
-        accept = ("application/rss+xml, application/atom+xml, application/xml, text/xml"
-                  if want_text else "application/json")
+        if want_bytes:
+            accept = "application/zip, application/octet-stream, */*"
+        elif want_text:
+            accept = ("application/rss+xml, application/atom+xml, "
+                      "application/xml, text/xml")
+        else:
+            accept = "application/json"
         headers = {"User-Agent": USER_AGENT, "Accept": accept}
         if use_etag and url in self._etags:
             headers["If-None-Match"] = self._etags[url]
@@ -137,6 +150,8 @@ class PoliteSession:
             etag = resp.headers.get("ETag")
             if etag and use_etag:
                 self._etags[url] = etag
+            if want_bytes:
+                return Response(url, 200, data=resp.content, etag=etag)
             if want_text:
                 return Response(url, 200, data=resp.text, etag=etag)
             try:

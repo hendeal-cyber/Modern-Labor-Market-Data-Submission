@@ -44,6 +44,13 @@ jobs:
       - name: Run test suite
         run: python tests/run_all.py
 
+      # Public BEA statistics, no key. continue-on-error because a missing
+      # price index must never discard a successful collection: analyze.py
+      # reports the price-adjusted model as unavailable instead.
+      - name: Fetch BEA regional price parities
+        continue-on-error: true
+        run: python scripts/fetch_rpp.py
+
       - name: Collect from ATS boards
         id: collect
         env:
