@@ -104,6 +104,62 @@ language, `degree_stem` where a field name describes the team rather than the
 requirement, and whether `soft_teamwork` is near-constant and therefore
 uninformative.
 
+### Round 2 — 2026-09-21
+
+**Target: `role_family`, which had never been checked against hand-coded
+truth.** Rather than a sampled sheet, this round hand-read *all 53* assignments
+in `data/analysis/postings.csv` against their real titles — the population was
+small enough to audit exhaustively, which is stronger than a sample.
+
+**Result: 6 of 53 assignments wrong (89% accuracy), below the 0.90 standard.**
+Four of the six had reached a live measurement and sat at ranks 1, 7, 8 and 11
+by pay in a 42-row sample. Together they raised the mean 4.2% and the median
+6.1%, all in the direction that flatters an early-career study.
+
+| Title | Was | Should be | Pay |
+|---|---|---|---|
+| AI Cybersecurity Engineer | `ai_ml`, kept | excluded (security) | $148,500 |
+| Mergers and Acquisitions Associate | `siting_dev` | `market_commercial` | $127,262 |
+| NERC Operations Team Leader | `regulatory`, kept | excluded (seniority) | $122,038 |
+| Environmental Analyst V | `sustainability`, kept | excluded (seniority) | $118,100 |
+| CAD Designer | `gis`, kept | excluded (drafting) | $74,800 |
+| Data Analyst - AMLD | `other` | `software_data` | $77,533 |
+
+**Causes — all the same class as round 1's, a pattern matching confidently and
+wrongly:**
+
+1. Seniority numerals stopped at IV, so "Analyst V" read as early career.
+2. `lead` is word-bounded and so never matched "Leader".
+3. Security roles were named out of scope in the original plan but never
+   encoded, so a cybersecurity role entered on a bare `ai` match.
+4. `role_family` returns the first matching pattern, so a broad term in an
+   early family captures later ones: `acquisition` in `siting_dev` beat
+   `mergers` in `market_commercial`, and bare `cad` in `gis` caught a drafter.
+5. `software_data` listed `analytics` but not `data analyst`.
+
+**Changes made:** V–VIII, `leader` and `team lead` added to
+`seniority_exclusions`; six security terms added to `roles.exclude_any`;
+`cad designer` and bare `cad` removed from `include_any`; `gis` narrowed to
+`cad[- ]gis`; `siting_dev` narrowed to `site acquisition`/`land acquisition`;
+`data analyst` added to `software_data`.
+
+**Re-scored: 53/53 correct on the same titles.** Usable observations fall
+42 → 38 and the median falls to $81,750. That is the correct direction — a
+floor met by counting senior and out-of-scope roles is not worth meeting.
+`gis` and `sustainability` now have zero observations, which is the honest
+state: each had exactly one and both were misclassified.
+
+**Pinned by tests.** Every title in `tests/test_filters.py::AUDIT_ROUND_2` is
+real, read out of `postings.csv` rather than invented, and the roles that must
+survive the tightening are pinned beside them so a tighter screen cannot
+quietly take the sample with it.
+
+**Still outstanding from round 1's list**, and not addressed here because this
+round went after `role_family` instead: `skill_cloud` on company blurbs,
+`benefit_equity` against diversity language, `degree_stem` where a field name
+describes the team, and whether `soft_teamwork` is near-constant.
+
+
 <!--
 Round template:
 

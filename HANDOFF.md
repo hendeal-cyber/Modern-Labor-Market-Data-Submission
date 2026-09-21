@@ -328,3 +328,36 @@ from 18.
 cluster count is defensible. Judge the next run on **Invenergy's share
 falling**, not on N alone.
 
+### Audit round 2 found four wrong rows in the top eleven by pay
+
+`role_family` had never been checked against hand-coded truth. All 53
+assignments were read against their real titles — the sample was small enough
+to audit exhaustively rather than sample. **Six were wrong (89%, below the 0.90
+standard), and four had reached a live measurement at ranks 1, 7, 8 and 11 by
+pay.** They raised the mean 4.2% and the median 6.1%.
+
+Causes, all the same class as the bugs already in §4 — a pattern matching
+confidently and wrongly: the seniority numerals stopped at IV so "Analyst V"
+read as early career; `lead` is word-bounded so it never matched "Leader";
+security roles were named out of scope in the original plan but never encoded,
+so "AI Cybersecurity Engineer" entered on a bare `ai` match at $148,500;
+`role_family` returns the first match, so `acquisition` in `siting_dev` beat
+`mergers` and bare `cad` in `gis` caught a drafter.
+
+**Usable observations fell 42 → 38 as a result, and that is the right
+direction.** A floor met by counting senior and out-of-scope roles is not worth
+meeting. `gis` and `sustainability` now have zero observations — each had
+exactly one and both were misclassified. Full entry in `docs/audit-log.md`.
+
+**The lesson to carry forward:** both audit rounds found the same failure mode,
+and neither was found by tests passing. Round 1 found regressors firing on
+company boilerplate; round 2 found screens admitting senior roles. If you
+change a pattern, read the real output it produces — `postings.csv` is small
+enough to read end to end, and that is exactly how these were caught.
+
+### Still open from round 1
+
+`skill_cloud` firing on company blurbs, `benefit_equity` on diversity
+language, `degree_stem` where a field name describes the team rather than the
+requirement, and whether `soft_teamwork` is near-constant and uninformative.
+Round 2 went after `role_family` instead and did not touch these.
