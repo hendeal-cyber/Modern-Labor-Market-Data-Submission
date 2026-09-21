@@ -229,6 +229,31 @@ first reading was wrong.
 describes the team, `soft_teamwork` possibly near-constant.
 
 
+### Interim check — 2026-09-21, artifact integrity
+
+Not a coding round. A check of the committed artifacts themselves, prompted by
+reading run 21's output before rebuilding on it.
+
+**Found:** `selection_funnel.json` reported `usable_with_pay` 103, its
+`usable_by_metro` summed to 107, its `usable_by_employer` to 137, and the
+committed `postings.csv` held 204 rows. Those quantities are computed from one
+list with one filter in one pass, so no execution produces them.
+
+**Cause:** the workflow's `-X ours` merged two runs' derived files. Detail in
+`docs/limitations.md` §15.
+
+**Resolution:** rebuilt from `data/raw/`, which was intact apart from four
+duplicated records in one snapshot, also repaired. Post-rebuild all four
+totals agree: 204 unique, 137 usable, 23 employers.
+
+**Prevention:** `build_dataset.py` now refuses to write a funnel whose totals
+disagree or a CSV whose row count differs from the count it just reported, and
+the workflow regenerates derived artifacts rather than merging them.
+
+**Why it is in the audit log.** The defect was in the artifact, not the coding
+rules, so it belongs here for the same reason the coding rounds do: it was
+found by reading real output, and it would not have been found by any test.
+
 <!--
 Round template:
 

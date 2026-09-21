@@ -1,5 +1,74 @@
 # Handoff — Modern Labor Market Data Submission
 
+## 0. Current state — READ THIS FIRST
+
+*Everything below section 0 is layered history, oldest first. Where they
+conflict, this section wins.*
+
+| | |
+|---|---|
+| Usable observations (pay disclosed) | **137** |
+| Unique postings in scope | 204 |
+| Distinct employers | **23** |
+| Largest employer | Invenergy, **28%** |
+| Observations per regressor | 9.13 |
+| Raw postings collected | 897 |
+
+**The N ≥ 100 floor is met. The pre-registered SUBSTANCE conditions are not:**
+employers are 23 against a target of 30, and the largest supplies 28%
+against a ceiling of 25%. `docs/pre-registration.md` §7 called this "met in
+letter and not in substance" before any of it was known. No significance claim
+should rest on a marginal p-value without a wild cluster bootstrap.
+
+### The headline result
+
+Pay is stated in **82.4%** of postings in mandate states
+(n=142) against **32.3%** where none applies
+(n=62). It is **associational, not causal** — one
+cross-section, no difference-in-differences.
+
+Its *size* is sensitive to one jurisdiction, so it is always reported cut:
+
+| Sample | Mandate | No mandate | Gap |
+|---|---|---|---|
+| All | 82.4% | 32.3% | 50pp |
+| Excluding Virginia | 100.0% | 32.3% | 68pp |
+| Excluding largest employer | 97.8% | 27.1% | 71pp |
+
+Virginia's mandate took effect 2026-07-01. Almost every non-disclosing
+mandate-state posting is a Virginia posting from one employer. **Outside
+Virginia every mandate-state posting in this sample states pay.**
+
+### Deliverables: complete
+
+Paper (0 TODO markers), slide deck (QA clean), dataset, code, pre-registration,
+codebook, audit log (3 rounds), limitations (14 entries), reproducibility
+README. All regenerate from `data/raw/` with the commands in the README.
+
+### What is NOT done
+
+1. **BEA price parities have never been fetched.** The first filename guess was
+   wrong (BEA names archives by table prefix — `SARPP.zip`, not `RPP.zip`).
+   Fixed but unverified until a run executes it. Until then pay is nominal and
+   `analyze.py` reports the price-adjusted model as unavailable. **No deflator
+   is imputed.**
+2. **More employers.** This is the only thing that fixes the two failing
+   conditions, and it is worth more than more postings. Hand-verifying a board
+   token takes minutes and adds a cluster; NiSource and Wabash Valley Power
+   both resolved that way.
+3. **Audit round 4.** Rounds 1-3 each found real errors in the top rows by pay.
+   Assume round 4 would too.
+
+### The one rule to carry forward
+
+**Read the real output before believing it.** Every serious defect in this
+project was found that way and none by a test passing: a Warsaw role at
+$309,500 that had entered the US sample twice, a funnel whose own totals
+disagreed with its own CSV, four misclassified rows sitting in the top eleven
+by pay. `postings.csv` is small enough to read end to end.
+
+---
+
 Written 2026-09-21. Read this first; it is the fastest path to being useful.
 
 **Repo:** `hendeal-cyber/Modern-Labor-Market-Data-Submission`
@@ -158,7 +227,10 @@ runtime.
 
 ---
 
-## 7. Where the data actually stands (2026-09-21, run 35554269246)
+## 7. Historical: where the data stood at run 35554269246
+
+*Superseded. Kept because the reasoning in it is still how the levers were
+measured. For current numbers read section 0 at the top of this file.*
 
 **The floor is not met. 35 usable observations against a required 100.**
 

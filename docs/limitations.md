@@ -292,3 +292,47 @@ measured at 88–90% against a nominal 95% in simulation — so **no claim shoul
 rest on a marginal p-value without a wild cluster bootstrap.**
 
 More employers, not more postings, is what fixes this.
+
+## 15. One derived artifact was committed in an inconsistent state, and how it is prevented
+
+Run 21 committed a `selection_funnel.json` whose own totals disagreed with its
+own `postings.csv` — 103, 107, 137 and 204 for quantities that are computed
+from one list with one filter in one pass. Nothing crashed and the JSON was
+valid.
+
+The cause was `git pull --rebase -X ours` in the collection workflow. `-X ours`
+is a merge *strategy option*: it resolves conflicting hunks in our favour but
+still takes non-conflicting hunks from both sides. Two runs' CSV rows sit on
+different lines, so they were combined.
+
+Raw snapshots *should* merge — they are append-only per-employer files and two
+collections ought to combine. Derived artifacts must not; they are pure
+functions of the raw corpus and must be the output of a single execution. The
+workflow now merges only `data/raw/` and regenerates `data/analysis/` over the
+merged corpus, and `build_dataset.py` refuses to write a funnel whose totals
+disagree or a CSV whose row count differs from the count it just reported.
+
+**What this means for a reader.** No published number came from the
+inconsistent artifact: it was caught by reading the committed output before
+using it, and everything was rebuilt from `data/raw/`, which was intact. But it
+is recorded because the failure was silent, and because the same class of
+failure — a valid-looking artifact that is not what it claims to be — is the
+one this project has hit most often.
+
+## 16. The disclosure gap depends on one jurisdiction
+
+The headline contrast is reported as a range, not a point, because its size
+moves with a single state. Virginia's posting-level mandate took effect on
+1 July 2026. Almost every non-disclosing posting in a mandate state in this
+sample is a Virginia posting, and almost all of those come from one employer.
+
+| Sample | Mandate | No mandate | Gap |
+|---|---|---|---|
+| All postings | 82.4% | 32.3% | 50pp |
+| Excluding Virginia | 100.0% | 32.3% | 68pp |
+| Excluding the largest employer | 97.8% | 27.1% | 71pp |
+
+The gap is large under every cut, so the direction is not in doubt. The
+magnitude is. Partial compliance with a statute three months old is a plausible
+reading; so is one firm's posting practice. **These data cannot distinguish
+them**, and the paper does not pick whichever reading is more flattering.
