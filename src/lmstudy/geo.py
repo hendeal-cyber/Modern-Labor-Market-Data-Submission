@@ -185,6 +185,13 @@ NON_US_MARKERS = (
     "bogota", "chennai", "mumbai", "bangalore", "bengaluru", "hyderabad",
     "pune", "delhi", "shah alam", "selangor", "gabrovo", "sevlievo",
     "toronto", "vancouver", "montreal", "london", "paris", "berlin", "madrid",
+    # Seen in real payloads as country codes rather than names. "Remote
+    # Location - PL; POL Warsaw" is how a Warsaw role reached the US sample.
+    "pol", "warsaw", "dammam", "saudi arabia", "riyadh", "jeddah",
+    "deu", "gbr", "fra", "esp", "ita", "nld", "bel", "che", "aut", "swe",
+    "nor", "dnk", "fin", "irl", "prt", "grc", "rou", "bgr", "hun", "cze",
+    "pln", "ind", "chn", "jpn", "kor", "aus", "nzl", "bra", "mex", "can",
+    "zaf", "are", "sgp", "mys", "phl", "tha", "vnm", "idn", "twn",
 )
 
 # US Census regions. Used instead of state fixed effects when N is too small to
@@ -213,17 +220,52 @@ def is_non_us(location_raw: str | None) -> bool:
     and "India" cannot fire inside "Indiana" — the exact substring trap that
     has produced four separate bugs in this codebase already.
     """
-    # Fold accents first: "Bogota" must match the marker even when the
-    # payload spells it "Bogota" with an acute accent, which stripping
-    # non-ASCII would otherwise turn into "bogot".
-    folded = unicodedata.normalize("NFKD", location_raw or "")
-    folded = "".join(c for c in folded if not unicodedata.combining(c))
-    text = re.sub(r"[^a-z0-9 ]+", " ", folded.lower())
+    text = _fold(location_raw)
     text = re.sub(r"\s+", " ", text).strip()
     if not text:
         return False
     return any(re.search(rf"(?<!\w){re.escape(marker)}(?!\w)", text)
                for marker in NON_US_MARKERS)
+
+
+
+# Tokens that positively assert US scope in a remote posting.
+US_MARKERS = ("us", "usa", "u s", "united states", "america", "nationwide",
+              "domestic", "conus")
+# What is left once remoteness and US markers are stripped. If anything
+# substantive remains, the posting names somewhere else.
+_REMOTE_WORDS = ("remote", "location", "locations", "any", "work from home",
+                 "wfh", "virtual", "anywhere", "home", "based", "flexible",
+                 "hybrid", "onsite", "on site", "field")
+
+
+def is_us_remote(location_raw: str | None) -> bool:
+    """True when a remote posting is plausibly US-scoped.
+
+    Accepts "Remote", "Remote - US", "US (Remote)", "Remote, United States".
+    Rejects "Remote Location - PL; POL Warsaw" and "Dammam, Eastern Region,
+    Saudi Arabia" — both of which reached the dataset as "nationwide remote"
+    before this existed.
+    """
+    text = _fold(location_raw)
+    if not text:
+        return False
+    if is_non_us(location_raw):
+        return False
+    words = [w for w in text.split() if w]
+    if any(re.search(rf"(?<!\w){re.escape(m)}(?!\w)", text) for m in US_MARKERS):
+        return True
+    # No US marker: accept only when the string says nothing but "remote".
+    leftover = [w for w in words if w not in _REMOTE_WORDS]
+    return not leftover
+
+
+def _fold(value: str | None) -> str:
+    """Lowercase, accent-folded, punctuation-stripped."""
+    folded = unicodedata.normalize("NFKD", value or "")
+    folded = "".join(c for c in folded if not unicodedata.combining(c))
+    text = re.sub(r"[^a-z0-9 ]+", " ", folded.lower())
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def resolve_us_state(location_raw: str | None) -> str | None:
@@ -309,12 +351,18 @@ def resolve(
                     note="remote posting matched by state, distance undefined",
                 )
 
-    # A remote posting that names no state at all ("US - Remote (Any location)",
-    # "Remote - US") cannot be attributed to a metro, but it is a real
-    # early-career energy posting and is kept in its own category. It must never
-    # enter the metro or mandate-state contrasts: those identify off Illinois
-    # HB 3129, and a nationwide posting has no determinate jurisdiction.
-    if arrangement == "remote" and REMOTE_NATIONAL in metros:
+    # A remote posting that names no state cannot be attributed to a metro, but
+    # it is a real posting and is kept in its own category.
+    #
+    # This requires POSITIVE evidence that the posting is US-scoped. Accepting
+    # every unresolved remote posting let a Warsaw role in twice at $309,500 —
+    # "Remote Location - PL; POL Warsaw" resolved to no US state, read as
+    # remote, and became "nationwide remote". It was the highest-paid
+    # observation in the sample. A Dammam role came in the same way.
+    #
+    # So: the location must name the US, or name nothing but remoteness.
+    # Anything that names another place and not the US is out.
+    if arrangement == "remote" and REMOTE_NATIONAL in metros and is_us_remote(location_raw):
         return GeoResult(
             metro=REMOTE_NATIONAL,
             tier=metros[REMOTE_NATIONAL].get("tier"),

@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-21T15:57:21.520835+00:00",
+  "built_at": "2026-09-21T16:01:24.227855+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21"
@@ -9,23 +9,23 @@
     "rejected_off_umbrella": 0,
     "rejected_screen": 634,
     "passed_screen": 197,
-    "rejected_geo": 42,
-    "passed_geo": 155,
+    "rejected_geo": 45,
+    "passed_geo": 152,
     "duplicate_sighting": 11,
-    "unique_in_scope": 144,
-    "usable_with_pay": 103
+    "unique_in_scope": 141,
+    "usable_with_pay": 101
   },
   "rejection_reasons": {
     "role_not_software_data": 393,
     "role_excluded": 208,
     "internship": 52,
-    "non_us": 26,
-    "no_us_state": 16
+    "non_us": 31,
+    "no_us_state": 14
   },
   "usable_by_metro": {
     "": 7,
     "northern_virginia": 10,
-    "remote_national": 9,
+    "remote_national": 7,
     "denver": 27,
     "chicago": 32,
     "indianapolis": 3,
@@ -40,11 +40,11 @@
     "Xcel Energy": 11,
     "Nexamp": 9,
     "Vantage Data Centers": 6,
-    "Equinix": 4,
     "Hitachi Energy": 3,
     "STACK Infrastructure": 3,
     "Flexential": 2,
     "Charles River Associates": 2,
+    "Equinix": 2,
     "Yes Energy": 2,
     "Cologix": 1,
     "EdgeConneX": 1,

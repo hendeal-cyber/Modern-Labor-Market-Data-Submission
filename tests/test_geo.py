@@ -10,7 +10,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 from lmstudy.geo import (haversine_miles, load_gazetteer, resolve,
                         detect_arrangement, canonicalize_place,
                         resolve_us_state, census_region, is_non_us,
-                        CENSUS_REGION, STATE_ABBR)
+                        is_us_remote, CENSUS_REGION, STATE_ABBR)
 
 SCOPE = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
 METROS = SCOPE["metros"]
@@ -204,6 +204,39 @@ def run():
             fails.append(f"pay_mandate_states has a non-state code: {code!r}")
         elif census_region(str(code)) is None:
             fails.append(f"mandate state {code} has no census region")
+
+
+    # 18. The remote fallback must require POSITIVE evidence of US scope.
+    # Found 2026-09-21 in the first national run: a Warsaw role entered the US
+    # sample twice at $309,500 — the highest-paid observation in it — because
+    # "Remote Location - PL; POL Warsaw" resolved to no US state, read as
+    # remote, and fell into "nationwide remote". A Dammam role came the same
+    # way. Every string here is verbatim from that run.
+    for loc in ("Remote Location - PL; POL Warsaw",
+                "Warsaw; Remote Location - PL",
+                "Dammam, Eastern Region, Saudi Arabia"):
+        if is_us_remote(loc):
+            fails.append(f"foreign remote accepted as US: {loc!r}")
+        got = resolve(loc, active_metros(), GAZ)
+        if got.metro is not None:
+            fails.append(f"foreign posting {loc!r} resolved to {got.metro}")
+
+    # Genuine US remote forms must still be admitted, or the guard has simply
+    # traded one silent error for another.
+    for loc in ("US (Remote)", "Remote - US", "Remote, USA", "Remote",
+                "Remote, United States", "(DEAI HV) US Remote DC"):
+        if not is_us_remote(loc):
+            fails.append(f"US remote wrongly rejected: {loc!r}")
+        if resolve(loc, active_metros(), GAZ).metro != "remote_national":
+            fails.append(f"{loc!r} should be remote_national")
+
+    # A posting that names a US state is placed by that state, not swept into
+    # the remote bucket just because its description mentions remote work.
+    for loc, want_state in (("Dallas, TX; Remote", "TX"), ("Irving, Texas", "TX")):
+        if resolve_us_state(loc) != want_state:
+            fails.append(f"{loc!r} should resolve to {want_state}")
+        if resolve(loc, active_metros(), GAZ).metro == "remote_national":
+            fails.append(f"{loc!r} has a state and must not be remote_national")
 
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:
