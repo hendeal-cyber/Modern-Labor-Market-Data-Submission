@@ -921,15 +921,26 @@ employers:
     resolved_in_last_run: true
     metro: northern_virginia
   Itron:
-    status: unchecked
+    status: confirmed
     industry: grid_vendor
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: itron/Itron/wd5
+    evidence: https://itron.wd5.myworkdayjobs.com/Itron
+    checked_on: '2026-09-22'
+    note: 'Liberty Lake WA, a mandate state. Smart-meter and grid-software vendor. NOTE: the frame also
+      carries ''Itron Analytics'' as a separate entry -- same company, same board. Marked duplicate_of
+      so it cannot become a second cluster.'
   Itron Analytics:
-    status: unchecked
+    status: denied
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: 'Same company and same Workday board as ''Itron'' (itron/Itron/wd5), already confirmed. Given
+      no token: one board, one cluster.'
+    checked_on: '2026-09-22'
+    duplicate_of: Itron
   JEA:
     status: unchecked
     industry: utility
@@ -1293,10 +1304,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Piclo:
-    status: unchecked
+    status: denied
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: UK-based; piclo.com/careers with listings via Welcome to the Jungle. No supported ATS host
+      surfaced.
+    checked_on: '2026-09-22'
   Pine Gate Renewables:
     status: unchecked
     industry: developer
@@ -1638,10 +1652,16 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Tierra Climate:
-    status: unchecked
+    status: confirmed
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    platform: workable
+    token: tierra-climate
+    evidence: https://apply.workable.com/tierra-climate/
+    checked_on: '2026-09-22'
+    note: Houston TX, not a mandate state. Grid-scale storage; its 'Lead Data Scientist' is a taxonomy
+      fit. Very small company, so expect one or two postings.
   Tomorrow Energy:
     status: unchecked
     industry: retailer

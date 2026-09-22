@@ -435,11 +435,15 @@ grid_vendors:            # grid technology manufacturers
       workday: [{tenant: sandc, site: careers}]
       greenhouse: [sandcelectric, scelectric]
     verified: false
+  # Verified 2026-09-22: itron.wd5.myworkdayjobs.com/Itron. Liberty Lake WA is
+  # a mandate state. "Itron Analytics" below is the same company on the same
+  # board and is neutralised, not given this token.
   - name: Itron
     industry: grid_vendor
+    careers_url: https://itron.wd5.myworkdayjobs.com/Itron
     candidates:
-      workday: [{tenant: itron, site: Itron_Careers}]
-    verified: false
+      workday: [{tenant: itron, site: Itron, instance: wd5}]
+    verified: true
 
 gas_utilities:           # gas LDCs and combined gas+electric utilities
   - name: NiSource / NIPSCO
@@ -1409,20 +1413,21 @@ energy_analytics_batch2:
     candidates:
       workable: [sense]
     verified: true
+  # Same company and board as Itron above. No candidates deliberately: one
+  # board must not become two employer clusters.
   - name: Itron Analytics
-    candidates:
-      greenhouse: [itronanalytics, itron-analytics, itron]
-      lever: [itronanalytics, itron-analytics, itron]
-      ashby: [itronanalytics, itron-analytics, itron]
-      workday: [{tenant: itronanalytics, site: careers}]
+    duplicate_of: Itron
+    ats_unidentified: true
+    candidates: {}
     verified: false
+  # Verified 2026-09-22: apply.workable.com/tierra-climate. Houston TX, not a
+  # mandate state. Very small company -- expect one or two postings.
   - name: Tierra Climate
+    industry: energy_analytics
+    careers_url: https://apply.workable.com/tierra-climate/
     candidates:
-      greenhouse: [tierraclimate, tierra-climate, tierra]
-      lever: [tierraclimate, tierra-climate, tierra]
-      ashby: [tierraclimate, tierra-climate, tierra]
-      workday: [{tenant: tierraclimate, site: careers}]
-    verified: false
+      workable: [tierra-climate]
+    verified: true
   - name: Modo Energy
     candidates:
       greenhouse: [modoenergy, modo-energy, modo]
