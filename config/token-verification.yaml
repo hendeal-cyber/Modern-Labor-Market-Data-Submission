@@ -1,9 +1,13 @@
 employers:
   1898 and Co:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: 'A Burns & McDonnell brand; hiring runs through burnsmcd.jobs, already denied for the parent.
+      A real loss: ''Energy & Utilities Analyst - 1898 & Co. (Chicago)'' is an exact taxonomy fit in a
+      mandate state.'
+    checked_on: '2026-09-22'
   365 Data Centers:
     status: unchecked
     industry: data_center
@@ -15,11 +19,15 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   ACES Alliance for Cooperative Energy Services:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: indianapolis
+    reason: acespower.com/careers; no supported ATS host surfaced. Carmel IN, inside the Indianapolis
+      radius, and the co-op services organisation the original plan named specifically. Seventh cooperative
+      lost this way.
+    checked_on: '2026-09-22'
   AEP Energy:
     status: confirmed
     industry: retailer
@@ -749,10 +757,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   HDR:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: Oracle SelectMinds/Taleo (hdr.referrals.selectminds.com). Not among the seven supported adapters.
+    checked_on: '2026-09-22'
   Hecate Energy:
     status: denied
     industry: developer
@@ -821,17 +831,23 @@ employers:
       SuccessFactors has no free public API -- already closed on the same grounds as iCIMS.
     checked_on: '2026-09-22'
   Indiana American Water:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: indianapolis
+    reason: SAP SuccessFactors (career4.successfactors.com/career?company=amwater), same board as Illinois
+      American Water. No free public API.
+    checked_on: '2026-09-22'
   Indiana Electric Cooperatives:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: indianapolis
+    reason: wepowerindiana.org and careers.electric.coop; no supported ATS host surfaced. Eighth cooperative
+      lost this way.
+    checked_on: '2026-09-22'
   Inspire Clean Energy:
     status: unchecked
     industry: retailer
@@ -899,10 +915,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Kimley-Horn:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: iCIMS (careers-kimley-horn.icims.com). Closed on terms.
+    checked_on: '2026-09-22'
   Landis and Gyr:
     status: unchecked
     industry: grid_vendor
@@ -1182,10 +1200,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   POWER Engineers:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: No ATS host surfaced; the firm's own site carries the listings.
+    checked_on: '2026-09-22'
   PPL Corporation:
     status: unchecked
     industry: utility
@@ -1205,11 +1225,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   PearlX:
-    status: unchecked
+    status: denied
     industry: energy_analytic
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: los_angeles
+    reason: pearlx.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Pedernales Electric Cooperative:
     status: unchecked
     industry: cooperative
@@ -1300,10 +1322,12 @@ employers:
     resolved_in_last_run: true
     metro: northern_virginia
   Quanta Services:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: iCIMS (careers-quanta.icims.com). Closed on terms; see docs/limitations.md.
+    checked_on: '2026-09-22'
   RWE Clean Energy:
     status: unchecked
     industry: developer
@@ -1483,10 +1507,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Stantec:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: Oracle Taleo (stantec.taleo.net) plus Oracle Cloud HCM (hdhl.fa.us6.oraclecloud.com). Neither
+      is among the seven supported adapters.
+    checked_on: '2026-09-22'
   Stream Data Centers:
     status: unchecked
     industry: data_center
@@ -1603,10 +1630,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Ulteig:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: ulteig.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   United Power:
     status: denied
     industry: cooperative
@@ -1696,10 +1725,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   WSP:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: DirectEmployers (wspgroup.dejobs.org); no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Wabash Valley Power Alliance:
     status: confirmed
     evidence: resolved in collection manifest
