@@ -485,15 +485,22 @@ gas_utilities:           # gas LDCs and combined gas+electric utilities
       workday: [{tenant: spireenergy, site: Spire_Careers}]
       greenhouse: [spireenergy]
     verified: false
+  # Verified 2026-09-22 from live job URLs in search results:
+  # atmosenergy.wd5.myworkdayjobs.com/External_Career_Site/job/Texas---Dallas/Gas-Scheduling-Analyst_JR12003
+  # The guessed tenant was right and the guessed site ("Atmos_Careers") wrong.
   - name: Atmos Energy
     industry: utility
+    careers_url: https://atmosenergy.wd5.myworkdayjobs.com/External_Career_Site
     candidates:
-      workday: [{tenant: atmosenergy, site: Atmos_Careers}]
-    verified: false
+      workday: [{tenant: atmosenergy, site: External_Career_Site, wd: 5}]
+    verified: true
+  # Checked 2026-09-22: posts on jobs.onegas.com / onegas.jobs. CAUTION, a
+  # same-name trap: oneok.wd1.myworkdayjobs.com/ONEOK is ONEOK, the midstream
+  # company ONE Gas was spun off from, not ONE Gas.
   - name: ONE Gas
     industry: utility
-    candidates:
-      workday: [{tenant: onegas, site: ONE_Gas_Careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Southern Company Gas
     industry: utility
@@ -675,12 +682,11 @@ utilities_batch2:
       ashby: [pnmresources, pnm-resources, pnm]
       workday: [{tenant: pnmresources, site: careers}]
     verified: false
+  # Checked 2026-09-22: jobs are served from its own careers.pplweb.com/jobs;
+  # platform not identified from search results.
   - name: PPL Corporation
-    candidates:
-      greenhouse: [ppl]
-      lever: [ppl]
-      ashby: [ppl]
-      workday: [{tenant: ppl, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: PSEG
     metro: new_york

@@ -175,10 +175,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Atmos Energy:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: atmosenergy/External_Career_Site/wd5
+    evidence: https://atmosenergy.wd5.myworkdayjobs.com/External_Career_Site/job/Texas---Dallas/Gas-Scheduling-Analyst_JR12003
+    checked_on: '2026-09-22'
   Aurora Energy Research:
     status: denied
     industry: energy_analytics
@@ -1218,10 +1222,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   ONE Gas:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own jobs.onegas.com / onegas.jobs; oneok.wd1 Workday is ONEOK (former parent), a same-name
+      trap
+    checked_on: '2026-09-22'
   Octopus Energy:
     status: confirmed
     industry: retailer
@@ -1295,10 +1302,12 @@ employers:
     reason: No ATS host surfaced; the firm's own site carries the listings.
     checked_on: '2026-09-22'
   PPL Corporation:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own careers.pplweb.com/jobs; platform not identified
+    checked_on: '2026-09-22'
   PSEG:
     status: denied
     industry: utility
