@@ -141,16 +141,42 @@ jobs:
             #
             # So: merge raw, then REGENERATE derived from the merged corpus.
             # A derived artifact must always be the output of one execution.
-            if ! git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}"; then
+            # DISCARD the regenerated deliverables before pulling. Steps 10
+            # and 11 rewrite paper/paper.md and paper/presentation.pptx but
+            # only data/ is committed, so they sit dirty in the tree. On run
+            # 23 `--autostash` stashed them, failed to reapply them, and left
+            # BOTH files unmerged -- which then made `git commit --amend`
+            # fail with "Committing is not possible because you have unmerged
+            # files". `|| true` swallowed that, so the pre-rebuild commit was
+            # pushed instead of the rebuilt one: a postings.csv with 221 rows
+            # beside an analysis.json describing 137. The rebuild itself had
+            # worked perfectly. They are pure functions of data/ and are
+            # regenerated locally, so there is nothing here worth keeping.
+            git checkout -- paper/ docs/ 2>/dev/null || true
+            git clean -fd paper/figures 2>/dev/null || true
+            if ! git pull --rebase -X ours origin "${GITHUB_REF_NAME}"; then
               git checkout --ours -- data/raw/ 2>/dev/null || true
               git add data/raw/ 2>/dev/null || true
               git rebase --continue || git rebase --abort || true
             fi
+            # An unmerged path anywhere blocks the amend, so fail loudly here
+            # rather than push a mismatched pair of artifacts.
+            if git diff --name-only --diff-filter=U | grep -q .; then
+              echo "::error::unmerged paths remain after rebase:"
+              git diff --name-only --diff-filter=U
+              exit 1
+            fi
             echo "rebuilding derived artifacts over the merged raw corpus"
             python src/lmstudy/build_dataset.py
-            python src/lmstudy/analyze.py || true
+            # NOT `|| true`. A failed estimation leaves analysis.json
+            # describing an older dataset, which is precisely the
+            # inconsistency the integrity assertions exist to prevent.
+            python src/lmstudy/analyze.py
+            # The committed pair must agree. Run 23 pushed a CSV and an
+            # analysis.json from different executions and nothing objected.
+            python tests/test_consistency.py
             git add data/
-            git commit --amend --no-edit || true
+            git commit --amend --no-edit
             sleep $((attempt * 5))
           done
           echo "could not push after 3 attempts"

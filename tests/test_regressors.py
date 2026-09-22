@@ -140,6 +140,18 @@ def check_workday_site_variants():
         # since that is the form that actually resolves.
         if required in got and got.index(required) > 2:
             fails.append(f"{required!r} ranked too low for {tenant}: {got}")
+    # "External" must stay among the probed sites: it is the site name of all
+    # three employers in the frame whose Workday site is known -- Xcel Energy
+    # (found only because of it), NRECA and Ameren. This pins that it is
+    # probed at all, which is what matters; it is deliberately NOT a test of
+    # its position, because measuring all 252 Workday tenants showed every one
+    # reached it inside the limit under the old ordering too.
+    for tenant, employer in [("ameren", "Ameren Illinois"),
+                             ("nreca", "NRECA National Rural Electric Cooperative"),
+                             ("xcelenergy", "Xcel Energy")]:
+        got = workday_site_variants(tenant, employer)
+        if "External" not in got:
+            fails.append(f"'External' missing for {tenant}: {got}")
     if workday_site_variants("", "Nobody"):
         fails.append("a blank tenant must yield no variants")
     if len(set(workday_site_variants("acme", "Acme Power"))) != \
@@ -151,6 +163,7 @@ def check_workday_site_variants():
 def run():
     fails = []
     fails += check_workday_site_variants()
+    fails += check_posting_sector_evidence()
     coded = code_posting("Data Engineer I", POSTING, D)
     for name in EXPECT_1:
         if coded.values.get(name) != 1:
@@ -173,6 +186,84 @@ def run():
         print("  FAIL", f)
     return len(fails)
 
+
+
+
+def check_posting_sector_evidence():
+    """Per-posting sector evidence for multi-sector consultancies.
+
+    Audit round 4. Guidehouse supplied 65 in-scope rows -- 22% of the
+    estimation sample -- of which three were energy work. Every case below is
+    a REAL title from the committed snapshots, including each one that broke
+    an earlier version of this test:
+
+      * "Financial Transformation Business Analyst" passed on the STRONG_TERM
+        "feeder", matching "feeder systems (procurement, travel, payroll,
+        asset, grants)". `feeder` is now `distribution feeder`.
+      * CRA's cybersecurity roles passed on "NERC-CIP" listed beside NIST,
+        HIPAA, ISO 27001 and SOC2 -- generic cyber-compliance boilerplate.
+      * CRA's "Management Advisory Analyst" passed on three distinct core
+        sector words drawn from the firm's own practice-area boilerplate,
+        which is audit round 1's failure mode exactly.
+      * "Data Analyst/Power Platform" says "power" eleven times and is a
+        Microsoft Power Platform role, which is why "power" cannot be
+        title-sufficient.
+    """
+    import sys, pathlib as _p
+    sys.path.insert(0, str(_p.Path(__file__).resolve().parents[1] / "src"))
+    from lmstudy.collect.discover import posting_shows_sector as P
+
+    fails = []
+    admit = [
+        "Associate Director - AI & Data, Energy Providers",
+        "Data Scientist, Consultant (Utilities)",
+        "Senior Consultant - Energy Markets",
+        "Associate Principal/Utility Regulation and Finance (Energy practice)",
+        "Principal/Transmission Strategy and Planning Expert  (Energy practice)",
+        "Associate Principal/Wholesale Power Markets Consultant (Energy practice)",
+        "Energy Analyst (Economics) - July 2027",
+        "(2027 Bachelor's/Master's graduates) Management Advisory Analyst/Associate (Energy)",
+    ]
+    reject = [
+        "Epidemiologist Data Scientist",
+        "Public Health Data Engineer",
+        "Data Scientist - National Security",
+        "Federal Law Enforcement Data Analyst",
+        "Fraud AI / Data Consultant",
+        "ServiceNow Business Analyst",
+        "Palantir Platform Engineer",
+        "Data Analyst/Power Platform",
+        "Financial Transformation Business Analyst",
+        "Associate/Cybersecurity & Incident Response (Forensic Services practice)",
+        "Senior Associate (Antitrust & Competition Economics practice)",
+        "Analyst/Associate - Litigation (Life Sciences practice)",
+        "Cloud and Health AI FinOps and Technology Value Optimization",
+        "AI Strategy Associate Director - State Health",
+        "(2028 Bachelor's/Master's graduates) Management Advisory Analyst/Associate Intern (Summer 2027)",
+    ]
+    for t in admit:
+        if not P(t, ""):
+            fails.append(f"sector evidence WRONGLY rejected: {t!r}")
+    for t in reject:
+        if P(t, ""):
+            fails.append(f"sector evidence WRONGLY admitted: {t!r}")
+
+    # The description must NOT be able to admit a posting on its own: it is the
+    # firm's marketing, and every attempt to use it failed on real rows.
+    boiler = ("CRA's Energy practice advises utilities on electric transmission, "
+              "grid interconnection, megawatt-scale renewable energy and substation "
+              "investment across power markets.")
+    if P("Senior Associate/eDiscovery (Forensic Services practice)", boiler):
+        fails.append("firm boilerplate in the description admitted a forensics role")
+
+    # "feeder" must no longer be a standalone sector term.
+    from lmstudy.collect.discover import has_strong_sector_term
+    if has_strong_sector_term("assess feeder systems for procurement and payroll"):
+        fails.append("'feeder' still matches a generic financial-systems posting")
+    if not has_strong_sector_term("upgrade of the distribution feeder and switchyard"):
+        fails.append("'distribution feeder' must still match real grid work")
+    return fails
+
+
 if __name__ == "__main__":
     raise SystemExit(1 if run() else 0)
-

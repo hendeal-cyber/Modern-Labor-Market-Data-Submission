@@ -512,14 +512,32 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
                     "gap": round(a - b, 4),
                 }
         report["disclosure"]["robustness"] = cuts
-        report["disclosure"]["note"] = (
-            "The gap is large under every cut. Its SIZE is sensitive to "
-            "Virginia, whose mandate is the newest in the table; outside "
-            "Virginia, disclosure in mandate states is universal in this "
-            "sample. Partial compliance with a three-month-old statute is a "
-            "plausible reading, but this cannot distinguish that from the "
-            "posting practices of the one employer concerned."
-        )
+        # Measured, not asserted. This note read "its SIZE is sensitive to
+        # Virginia ... partial compliance with a three-month-old statute"
+        # unconditionally. That was true at a 50-71 point spread and became
+        # false once audit round 4 removed a federal consultancy's
+        # off-umbrella postings, which WERE the Virginia non-disclosers. A
+        # caveat that cannot stop applying is not a caveat; it is a claim.
+        _gaps = [v["gap"] for v in cuts.values()] if cuts else []
+        _spread = (max(_gaps) - min(_gaps)) if len(_gaps) > 1 else 0.0
+        if _spread > 0.10:
+            report["disclosure"]["note"] = (
+                "The gap is large under every cut, but its SIZE is sensitive "
+                f"to one jurisdiction: the cuts span {_spread * 100:.0f} "
+                "points. Read the robustness table rather than a single "
+                "figure, and treat a very recent mandate as partially "
+                "complied with rather than assuming otherwise."
+            )
+        else:
+            report["disclosure"]["note"] = (
+                "The gap is large under every cut and stable across them, a "
+                f"spread of {_spread * 100:.0f} points. An earlier version of "
+                "this study reported it swinging from 50 to 71 points and "
+                "sensitive to Virginia alone; that sensitivity was an "
+                "artifact of including a federal consultancy's public health, "
+                "national security and law-enforcement postings, removed in "
+                "audit round 4 as outside the sector under study."
+            )
 
         both = disc["mandate_state"].nunique() > 1
         varies = disc["pay_disclosed"].nunique() > 1

@@ -142,10 +142,33 @@ def main() -> int:
         gaps = [v["gap"] for v in rb_all.values()] if rb_all else []
         if len(gaps) > 1:
             A("")
+            spread = (max(gaps) - min(gaps)) * 100
             A(f"The gap is large under every cut of the sample "
-              f"({min(gaps) * 100:.0f} to {max(gaps) * 100:.0f} points), but its")
-            A("size depends heavily on one jurisdiction; see the robustness table")
-            A("in section 5 before quoting a single figure.")
+              f"({min(gaps) * 100:.0f} to {max(gaps) * 100:.0f} points)")
+            # Whether the gap is fragile is a measured property, not a fixed
+            # caveat. It read "its size depends heavily on one jurisdiction"
+            # unconditionally, which was true at a 50-71 point spread and
+            # false once audit round 4 removed a federal consultancy's
+            # off-umbrella postings -- those WERE the Virginia non-disclosers,
+            # and the spread fell to a few points. A caveat that cannot stop
+            # applying is not a caveat.
+            if spread > 10:
+                A("but its size depends heavily on one jurisdiction; see the")
+                A("robustness table in section 5 before quoting a single figure.")
+            else:
+                A(f"and stable across them, a spread of only {spread:.0f} points. "
+                  "Earlier versions")
+                A("of this study reported a gap swinging from 50 to 71 points, "
+                  "sensitive to")
+                A("Virginia alone. That sensitivity was an artifact: the "
+                  "non-disclosing")
+                A("mandate-state postings were a federal consultancy's public "
+                  "health, national")
+                A("security and law-enforcement work, which audit round 4 "
+                  "removed as outside")
+                A("the sector under study. Removing it removed the fragility "
+                  "rather than")
+                A("explaining it away. Section 5 reports every cut.")
         A("")
 
     # Generated from the fitted model rather than asserted. This sentence

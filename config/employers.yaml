@@ -362,6 +362,11 @@ consulting:              # energy consulting and advisory
   - name: Guidehouse
     metro: northern_virginia
     industry: consulting
+    # Multi-sector consultancy: requires POSITIVE sector evidence in each
+    # posting's title. Without it this board contributed public health,
+    # national security, federal law enforcement, fraud and generic IT work to
+    # an energy study. See docs/audit-log.md round 4.
+    requires_sector_evidence: true
     candidates:
       workday: [{tenant: guidehouse, site: External, wd: 1}]
     verified: false
@@ -374,6 +379,11 @@ consulting:              # energy consulting and advisory
   - name: The Brattle Group
     industry: consulting
     metro: boston
+    # Multi-sector consultancy: requires POSITIVE sector evidence in each
+    # posting's title. Without it this board contributed public health,
+    # national security, federal law enforcement, fraud and generic IT work to
+    # an energy study. See docs/audit-log.md round 4.
+    requires_sector_evidence: true
     # Hand-verified 2026-09-22: job-boards.greenhouse.io/thebrattlegroup
     # Economics consultancy whose entry-level role is literally "Research
     # Analyst" — the closest fit in the frame to this study's role taxonomy.
@@ -1231,14 +1241,16 @@ energy_analytics_batch2:
       ashby: [woodmackenzie, wood-mackenzie, wood]
       workday: [{tenant: woodmackenzie, site: careers}]
     verified: false
+  # Verified 2026-09-22 from a live board. The Greenhouse token carries an
+  # "inc" suffix no slug derivation would try.
   - name: Gridmatic
     metro: bay_area
+    industry: energy_analytics
+    careers_url: https://job-boards.greenhouse.io/gridmaticinc
     candidates:
-      greenhouse: [gridmatic]
+      greenhouse: [gridmaticinc]
       lever: [gridmatic]
-      ashby: [gridmatic]
-      workday: [{tenant: gridmatic, site: careers}]
-    verified: false
+    verified: true
   - name: AutoGrid
     metro: bay_area
     candidates:
@@ -1345,14 +1357,15 @@ energy_analytics_batch2:
       ashby: [utilidata]
       workday: [{tenant: utilidata, site: careers}]
     verified: false
+  # Verified 2026-09-22. Workable, not Greenhouse. Cambridge MA is a mandate
+  # state, which is what makes this worth a cluster and not just postings.
   - name: Sense
     metro: boston
+    industry: energy_analytics
+    careers_url: https://apply.workable.com/sense/
     candidates:
-      greenhouse: [sense]
-      lever: [sense]
-      ashby: [sense]
-      workday: [{tenant: sense, site: careers}]
-    verified: false
+      workable: [sense]
+    verified: true
   - name: Itron Analytics
     candidates:
       greenhouse: [itronanalytics, itron-analytics, itron]
@@ -1386,6 +1399,12 @@ energy_analytics_batch2:
 # --- frame expansion, batch 2 (18 employers) ---
 consulting_batch2:
   - name: Charles River Associates
+    industry: consulting
+    # Multi-sector consultancy: requires POSITIVE sector evidence in each
+    # posting's title. Without it this board contributed public health,
+    # national security, federal law enforcement, fraud and generic IT work to
+    # an energy study. See docs/audit-log.md round 4.
+    requires_sector_evidence: true
     candidates:
       greenhouse: [charlesriverassociates, charles-river-associates, charlesriver]
       lever: [charlesriverassociates, charles-river-associates, charlesriver]
@@ -1650,14 +1669,16 @@ cooperatives_batch3:
       ashby: [hoosierenergy, hoosier-energy, hoosier]
       workday: [{tenant: hoosierenergy, site: careers}]
     verified: false
+  # Verified 2026-09-22. The tenant is the acronym, not the expanded name the
+  # slug derivation built, and the site is "External" -- the same variant that
+  # found Xcel Energy. Try "External" first on any unresolved Workday tenant.
   - name: NRECA National Rural Electric Cooperative Association
     metro: northern_virginia
+    industry: cooperative
+    careers_url: https://nreca.wd1.myworkdayjobs.com/External
     candidates:
-      greenhouse: [nrecanationalruralelectriccooperative, nreca-national-rural-electric-cooperative, nrecanational]
-      lever: [nrecanationalruralelectriccooperative, nreca-national-rural-electric-cooperative, nrecanational]
-      ashby: [nrecanationalruralelectriccooperative, nreca-national-rural-electric-cooperative, nrecanational]
-      workday: [{tenant: nrecanationalruralelectriccooperative, site: careers}]
-    verified: false
+      workday: [{tenant: nreca, site: External, instance: wd1}]
+    verified: true
   - name: National Rural Utilities Cooperative Finance Corporation
     metro: northern_virginia
     candidates:

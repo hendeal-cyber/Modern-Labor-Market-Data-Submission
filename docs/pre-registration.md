@@ -238,3 +238,34 @@ not bind. The corrected figure is 92%. It also explains why a placebo-based
 test of the bootstrap's per-cluster weighting passed under deliberate
 sabotage — there was no correlation to preserve — and why that property is now
 pinned structurally instead.
+
+### 2026-09-22 — multi-sector consultancies must show sector evidence per posting
+
+**What changed.** Employers marked `requires_sector_evidence` admit a posting
+only when its title names energy, utility or data-center work. Applied to
+Guidehouse, Charles River Associates and The Brattle Group.
+
+**Why.** §2 of this document fixes the population as energy, utility and data
+center employers, and audit round 4 found the frame was not delivering it.
+Guidehouse supplied 65 in-scope rows — 22% of the estimation sample — of which
+three were energy work; the rest were public health, national security,
+federal law enforcement, fraud and generic IT. The existing guards could not
+catch it: `sector_confidence()` judges a board rather than a posting, and
+Guidehouse's board does discuss energy, so it passed honestly.
+
+**Prompted by seeing results? Found by reading the artifacts, and it cost the
+study on every headline number.** Usable observations fall 154 → 120,
+observations per regressor 9.6 → 8.0, and the largest employer's share rises
+25.3% → 32.5%, taking a failing pre-registered condition further from passing.
+Two findings previously reported as significant do not survive: `skill_ml_ai`
+goes from a bootstrap p of 0.003 to 0.270, so the "AI premium attaches to the
+skill" result was substantially an artifact of a consultancy's AI work in
+health and national security.
+
+**The one thing it improved, stated plainly because it is the flattering
+part.** The disclosure contrast was sensitive to Virginia, swinging 50–71
+points; it is now stable at 57–61. The non-disclosing mandate-state postings
+were the same off-umbrella federal consulting rows. The direction of that
+improvement played no part in the decision — the guard was specified from the
+umbrella constraint, and its cost to N and concentration was accepted before
+the disclosure numbers were recomputed.

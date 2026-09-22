@@ -254,6 +254,125 @@ the workflow regenerates derived artifacts rather than merging them.
 rules, so it belongs here for the same reason the coding rounds do: it was
 found by reading real output, and it would not have been found by any test.
 
+### Round 4 — 2026-09-22
+
+**Target:** the industry umbrella itself, on the run-23 sample (221 unique in
+scope, 154 usable). Rounds 1–3 audited the coding rules; nobody had audited
+whether every admitted observation is actually energy, utility or data-center
+work. That is the owner's one non-negotiable scope constraint.
+
+**How it was found.** By reading the pay extremes after the rebuild, which is
+the standing rule. Two titles in the top twelve did not belong in an energy
+study: "Cloud and Health AI FinOps and Technology Value Optimization" and
+"AWS Lakehouse Data Engineer", both Guidehouse. Reading all 65 Guidehouse rows
+then showed the scale of it.
+
+**Finding 1 — a multi-sector consultancy was 22% of the sample and almost none
+of it was energy.** Guidehouse contributed 65 in-scope rows, 34 with disclosed
+pay, making it the second-largest employer. Of its 74 postings, **three** are
+energy work:
+
+| Kept |
+|---|
+| Associate Director - AI & Data, Energy Providers |
+| Data Scientist, Consultant (Utilities) |
+| Senior Consultant - Energy Markets |
+
+The rest are public health ("Epidemiologist Data Scientist", "Public Health
+Data Engineer", "Business Analyst (Health)", "AI Strategy Associate Director -
+State Health"), national security, federal law enforcement, fraud consulting,
+and generic IT ("ServiceNow Business Analyst", "Palantir Platform Engineer",
+"Senior Financial Management Data Engineer"). Charles River Associates was the
+same story at smaller scale: antitrust, life sciences, forensics, intellectual
+property and European competition, against ten roles explicitly labelled
+"(Energy practice)".
+
+**Why no existing guard caught it.** `sector_confidence()` judges a *board*,
+and these boards genuinely do discuss energy, so they pass honestly; it also
+applies only to unverified tokens, and Guidehouse's is hand-verified. The
+`diversified` guard needs every off-umbrella line of business enumerated in
+advance, which for a consultancy serving every sector of the economy is the
+"pattern matching confidently and wrongly" failure this project keeps finding.
+
+**Fix.** The burden is inverted for multi-sector employers:
+`requires_sector_evidence: true` makes the *posting* prove it is energy work.
+Applied to Guidehouse, Charles River Associates and The Brattle Group. It is
+deliberately **not** applied to pure-play energy firms — E3's "Analyst" and
+"Associate Consultant" are energy work by virtue of the firm, and the test
+would wrongly drop them.
+
+**Three versions of the test were measured against the committed snapshots and
+two were discarded**, which is worth recording because each failed on real
+rows rather than in principle:
+
+| Test | Why it was rejected |
+|---|---|
+| One `STRONG_TERM` anywhere | Kept "Financial Transformation Business Analyst" on `feeder`, matching "feeder systems (procurement, travel, payroll, asset, grants)". Kept every CRA cybersecurity role on "NERC-CIP" listed beside NIST, HIPAA, ISO 27001 and SOC2 |
+| Three distinct core sector words | Kept those same forensics roles and CRA's generic "Management Advisory Analyst", because the firm's boilerplate recites its practice areas and one of them is energy — **audit round 1's failure mode exactly** |
+| Raw word counts | "Data Analyst/Power Platform" says "power" eleven times and is a Microsoft Power Platform role |
+| **Sector word in the TITLE** (adopted) | A multi-sector consultancy states the practice in the title. Measured on all three boards: 3 of 74 at Guidehouse, 11 at CRA (every one energy-labelled), 3 at Brattle (all "Energy Analyst") |
+
+The description is the firm's marketing; the title is the job. `power` is
+excluded from the title-sufficient words for the Power Platform reason above,
+while still counting toward board-level breadth.
+
+**Finding 2 — `feeder` was an ambiguous `STRONG_TERM`.** Found by sweeping
+every snapshot for a strong term firing on a posting containing no plain
+sector word at all. `feeder` matched a federal financial-systems posting;
+qualified to `distribution feeder`. The same sweep confirmed `data center`
+(212), `colocation` (16), `switchgear` (4, on a posting sourcing switchgear
+and transformers), `pjm` (2, on PJM's own board) and `demand response` (2) are
+all firing correctly, so only one term needed changing.
+
+**Finding 3 — screening flags were stamped at collection time.** `diversified`
+and `off_umbrella` were written into each record by `collect/run.py`, so a new
+guard could not be applied to snapshots already committed — it needed a fresh
+collection to take effect. Screening is a decision about the corpus, not a
+property of the fetch. `build_dataset.py` now reads the flags from
+`config/employers.yaml` at build time, and config wins over the snapshot.
+
+**Effect on the sample.** 337 postings rejected for lack of sector evidence.
+
+| | Before | After |
+|---|---|---|
+| Usable observations | 154 | **120** |
+| Distinct employers | 26 | **25** |
+| Largest employer share | 25.3% | **32.5%** |
+| Observations per regressor | 9.6 | **8.0** |
+
+N falls and concentration gets **worse**, and both are the right direction:
+Invenergy's 25.3% was flattered by off-umbrella rows padding the denominator,
+so 32.5% is the honest figure. A floor met by counting public-health and
+national-security consulting is not worth meeting.
+
+**Effect on the headline, which is the important part.** The disclosure
+contrast was previously sensitive to one jurisdiction, swinging from 50 to 71
+points depending on the cut, and the paper had to hedge at length about
+Virginia's three-month-old statute. It is now stable:
+
+| Sample | Mandate | No mandate | Gap |
+|---|---|---|---|
+| All | 98.0% | 39.3% | 58.7pp |
+| Excluding Virginia | 100.0% | 39.3% | 60.7pp |
+| Excluding largest employer | 96.7% | 39.3% | 57.4pp |
+
+**The "Virginia partial compliance" story was largely an artifact of including
+a federal consultancy's non-energy postings.** 23 of the 25 non-disclosing
+mandate-state postings were Guidehouse, and they were federal consulting work
+in Virginia that never belonged in the study. Removing them removes the
+sensitivity rather than explaining it away.
+
+**Recorded as NOT a defect.** Eleven rows carry an empty `state` — these are
+`remote_national` postings with no resolvable state, which is by design. But
+see `docs/limitations.md`: they fall into the Midwest reference category of the
+region dummies without being Midwest, which is a live misspecification and is
+reported rather than silently fixed.
+
+**Still open from earlier rounds.** `skill_cloud` on company blurbs,
+`benefit_equity` on diversity language, `degree_stem` where a field name
+describes the team rather than the requirement, and whether `soft_teamwork` is
+near-constant. Round 4 went after the umbrella instead; these remain unchecked.
+
 <!--
 Round template:
 

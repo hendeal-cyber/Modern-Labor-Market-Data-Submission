@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-22T03:20:15.277056+00:00",
+  "built_at": "2026-09-22T03:33:00.820668+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21",
@@ -8,48 +8,49 @@
   "funnel": {
     "raw": 1716,
     "rejected_off_umbrella": 0,
-    "rejected_screen": 1180,
-    "passed_screen": 536,
-    "rejected_geo": 86,
-    "passed_geo": 450,
-    "duplicate_sighting": 229,
-    "unique_in_scope": 221,
-    "usable_with_pay": 154
+    "rejected_no_sector_evidence": 337,
+    "rejected_screen": 990,
+    "passed_screen": 389,
+    "rejected_geo": 82,
+    "passed_geo": 307,
+    "duplicate_sighting": 151,
+    "unique_in_scope": 156,
+    "usable_with_pay": 120
   },
   "rejection_reasons": {
-    "role_not_software_data": 743,
-    "role_excluded": 366,
-    "internship": 109,
+    "role_not_software_data": 577,
+    "role_excluded": 342,
+    "no_sector_evidence_in_posting": 337,
+    "internship": 91,
     "non_us": 52,
-    "no_us_state": 34
+    "no_us_state": 30
   },
   "usable_by_metro": {
-    "": 33,
-    "northern_virginia": 23,
-    "remote_national": 14,
+    "": 23,
+    "northern_virginia": 11,
+    "remote_national": 8,
     "denver": 26,
-    "chicago": 34,
+    "chicago": 32,
     "indianapolis": 3,
     "new_york": 4,
-    "bay_area": 6,
-    "boston": 10,
+    "bay_area": 4,
+    "boston": 8,
     "minneapolis": 1
   },
   "usable_by_employer": {
     "Invenergy": 39,
-    "Guidehouse": 34,
     "AES Indiana": 13,
     "Xcel Energy": 10,
     "Nexamp": 9,
     "ERCOT": 9,
     "Vantage Data Centers": 6,
     "New York ISO": 4,
-    "The Brattle Group": 4,
+    "Guidehouse": 3,
     "Hitachi Energy": 3,
     "STACK Infrastructure": 3,
+    "The Brattle Group": 3,
     "Flexential": 2,
     "California ISO": 2,
-    "Charles River Associates": 2,
     "Equinix": 2,
     "Yes Energy": 2,
     "Cologix": 1,
@@ -63,7 +64,7 @@
     "QTS Data Centers": 1,
     "Voltus": 1
   },
-  "distinct_employers_with_pay": 26,
+  "distinct_employers_with_pay": 25,
   "min_usable_n": 100,
   "floor_met": true
 }

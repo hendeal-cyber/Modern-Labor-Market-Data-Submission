@@ -60,7 +60,11 @@ STRONG_TERMS = (
     # physical grid
     "substation", "switchgear", "transformer", "transmission line", "power grid",
     "electric grid", "grid operator", "interconnection", "megawatt", "kilowatt",
-    "gigawatt", "kwh", "mwh", "kva", "switchyard", "feeder",
+    "gigawatt", "kwh", "mwh", "kva", "switchyard",
+    # "feeder" alone was ambiguous -- it matched "feeder systems
+    # (procurement, travel, payroll, asset, grants)" in a federal finance
+    # posting. Qualified so it means the distribution asset.
+    "distribution feeder",
     # markets and regulation
     "ferc", "nerc", "caiso", "ercot", "miso", "pjm", "iso-ne", "nyiso",
     "rate case", "ratepayer", "public utility", "utility commission",
@@ -110,6 +114,65 @@ def distinct_sector_terms(postings: list[RawPosting]) -> int:
     """
     blob = " ".join(f"{p.title} {p.description[:3000]}" for p in postings[:40])
     return sum(1 for _, rx in _STRONG_RE if rx.search(blob))
+
+
+def has_strong_sector_term(text: str) -> bool:
+    """Whether one unambiguous sector term appears in this text, word-bounded."""
+    return any(rx.search(text or "") for _, rx in _STRONG_RE)
+
+
+# Plain sector vocabulary, for judging a single POSTING rather than a board.
+# STRONG_TERMS alone is the wrong test here: measured against the real
+# snapshots it dropped "Associate Director - AI & Data, Energy Providers" and
+# "Data Scientist, Consultant (Utilities)" -- both genuinely energy -- because
+# real consulting prose says "energy" and "utilities" rather than "substation"
+# or "integrated resource plan".
+CORE_SECTOR_WORDS = (
+    "energy", "utility", "utilities", "electric", "grid", "power", "renewable",
+    "substation", "megawatt", "interconnection", "transmission", "solar", "wind",
+)
+_CORE_RE = tuple((w, re.compile(rf"\b{w}\b", re.I)) for w in CORE_SECTOR_WORDS)
+
+# "power" is deliberately absent. In a consulting or IT title it is far more
+# often Microsoft Power Platform, Power BI or PowerPoint than electric power:
+# Guidehouse's "Data Analyst/Power Platform" trips "power" eleven times in its
+# description and is not an energy role. It still counts toward the breadth
+# test below, where needing three DIFFERENT words neutralises it.
+_TITLE_SECTOR_WORDS = tuple(w for w in CORE_SECTOR_WORDS if w != "power")
+_TITLE_RE = tuple(re.compile(rf"\b{w}\b", re.I) for w in _TITLE_SECTOR_WORDS)
+
+MIN_DISTINCT_CORE_WORDS = 3
+
+
+def posting_shows_sector(title: str, description: str) -> bool:
+    """Positive energy / utility / data-center evidence in ONE posting's TITLE.
+
+    Title only, and the description deliberately ignored. Three attempts at
+    using the description were measured against the committed snapshots and
+    each failed on real rows:
+
+    * one STRONG_TERM kept Guidehouse's "Financial Transformation Business
+      Analyst" (on "feeder systems", since fixed) and every Charles River
+      Associates cybersecurity role (on "NERC-CIP" listed beside NIST, HIPAA,
+      ISO 27001 and SOC2 -- generic cyber-compliance boilerplate);
+    * three distinct core sector words kept those same CRA forensics roles and
+      its generic "Management Advisory Analyst", because the firm's boilerplate
+      recites its practice areas and one of them is energy. That is audit round
+      1's failure exactly: a pattern matching company prose rather than the
+      job;
+    * raw counts were worse still -- Guidehouse's "Data Analyst/Power Platform"
+      says "power" eleven times and is a Microsoft Power Platform role.
+
+    A multi-sector consultancy states the practice in the title, and measuring
+    all three boards confirms it: CRA labels them "(Energy practice)", Brattle
+    "Energy Analyst", Guidehouse "Energy Providers", "(Utilities)", "Energy
+    Markets". The description is the firm's marketing; the title is the job.
+
+    Only for employers carrying `requires_sector_evidence`. A pure-play energy
+    firm must NOT carry it -- E3's "Analyst" and "Associate Consultant" are
+    energy work by virtue of the firm, and this test would wrongly drop them.
+    """
+    return any(rx.search(title or "") for rx in _TITLE_RE)
 
 
 MIN_DISTINCT_FOR_DIVERSIFIED = 6
@@ -236,11 +299,18 @@ def workday_site_variants(tenant: str, employer: str = "", limit: int = 7) -> li
     seen: list[str] = []
     for candidate in (
         *names,                     # NiSource/NiSource is the commonest form
+        # "External" is tried early because it is the commonest real site name
+        # in this frame: all three whose site is known use it -- Xcel Energy
+        # (found only because of it), NRECA and Ameren. Promoting it saves
+        # probe requests per tenant, which matters against the job timeout at
+        # 252 Workday tenants. It does NOT unlock anyone: I checked all 252
+        # and every one of them already reached "External" inside the limit of
+        # 7, so the ordering is a cost saving and not a fix.
+        "External",
         tenant,
         tenant.capitalize(),
         "careers",
         "Careers",
-        "External",
         f"{tenant}careers",
         f"{base}_Careers",
         f"{base}Careers",

@@ -241,6 +241,29 @@ all of them, so the evidence for clustering had been measured on data with no
 within-employer correlation. Both the fixture and the figure are corrected; see
 `docs/pre-registration.md` §8.
 
+## 9a. Nationwide-remote postings sit in the Midwest reference category
+
+Eleven observations are nationwide-remote with no resolvable state. That is by
+design — `remote_national` is a deliberate category, kept out of the metro
+contrasts — but the census-region dummies are built from `state`, so a posting
+with no state has `region_northeast`, `region_south` and `region_west` all
+zero, which is the **Midwest reference level**. Those rows are therefore
+pooled with Midwest postings in every regional comparison without being
+Midwest.
+
+At 11 of 120 observations this is roughly 9% of the sample loading onto the
+reference category for the wrong reason, and `region_south` is one of the few
+coefficients that survives the wild cluster bootstrap, so it is not harmless.
+`metro_remote_national` exists as an indicator and is in the extended model,
+which the realized N does not unlock.
+
+It is reported rather than silently patched because the fix is a modelling
+choice with a real trade-off: a fourth "no region" dummy would absorb them
+cleanly but spends a degree of freedom the sample can barely afford at 8
+observations per regressor. Anyone re-estimating can identify the rows —
+`metro == "remote_national"` and `state` empty — and either drop them or add
+the dummy. Found in audit round 4.
+
 ## 10. The population is national and all-seniority, and that was not the original design
 
 The study began as a question about early-career software and data roles within

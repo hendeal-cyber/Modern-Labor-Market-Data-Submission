@@ -71,6 +71,39 @@ def off_umbrella(record: dict) -> bool:
     return any(term.lower() in title for term in record.get("off_umbrella") or [])
 
 
+def lacks_sector_evidence(record: dict) -> bool:
+    """True when an employer needing positive sector evidence has none in the posting.
+
+    Multi-sector consultancies are the hole the umbrella constraint fell
+    through. Guidehouse supplied 65 in-scope rows -- 22% of the estimation
+    sample, the second-largest employer -- of which exactly three were energy
+    work: "Associate Director - AI & Data, Energy Providers", "Data Scientist,
+    Consultant (Utilities)" and "Senior Consultant - Energy Markets". The rest
+    were public health ("Epidemiologist Data Scientist", "Public Health Data
+    Engineer"), national security, federal law enforcement, fraud, and generic
+    IT ("ServiceNow Business Analyst", "Palantir Platform Engineer").
+
+    Neither existing guard could catch it. sector_confidence() judges a BOARD,
+    and Guidehouse's board does discuss energy, so it passes honestly; it also
+    only applies to unverified tokens, and this one is hand-verified. The
+    diversified guard needs every off-umbrella line of business enumerated in
+    advance, which for a consultancy serving every sector of the economy is
+    precisely the "pattern matching confidently and wrongly" failure this
+    project keeps finding.
+
+    So the burden is inverted for these employers: the POSTING must show
+    positive energy, utility or data-center evidence, using the same
+    word-bounded STRONG_TERMS vocabulary that sector_confidence() already
+    relies on -- a list written after its substring-matching predecessor
+    admitted an AI startup at 43%.
+    """
+    if not record.get("requires_sector_evidence"):
+        return False
+    from lmstudy.collect.discover import posting_shows_sector
+    return not posting_shows_sector(record.get("title") or "",
+                                    record.get("description") or "")
+
+
 def dedupe_key(record: dict) -> str:
     """Same employer + same normalized title + same location = one job."""
     parts = [
@@ -100,8 +133,34 @@ def days_since(iso: str | None, today: dt.date) -> int | None:
         return None
 
 
+def employer_screen_flags(config_dir: pathlib.Path) -> dict[str, dict]:
+    """Per-employer screening flags, read at BUILD time rather than collection.
+
+    `diversified` / `off_umbrella` used to be stamped onto each record by
+    collect/run.py, which meant a new guard could not be applied to snapshots
+    already committed -- it needed a fresh collection to take effect. Screening
+    is a decision about the corpus, not a property of the fetch, so it is read
+    here and applies to every snapshot on disk immediately.
+    """
+    cfg = yaml.safe_load((config_dir / "employers.yaml").read_text())
+    flags: dict[str, dict] = {}
+    for group, entries in (cfg or {}).items():
+        if group in ("discovery", "rejected_tokens") or not isinstance(entries, list):
+            continue
+        for e in entries:
+            if not isinstance(e, dict) or not e.get("name"):
+                continue
+            flags[e["name"]] = {
+                "diversified": bool(e.get("diversified")),
+                "off_umbrella": e.get("off_umbrella") or [],
+                "requires_sector_evidence": bool(e.get("requires_sector_evidence")),
+            }
+    return flags
+
+
 def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Path) -> dict:
     scope = yaml.safe_load((config_dir / "scope.yaml").read_text())
+    screen_flags = employer_screen_flags(config_dir)
     dictionary = load_dictionary(config_dir / "regressors.yaml")
     gazetteer = geo.load_gazetteer(ROOT / "data" / "gazetteer.json")
     metros = {k: v for k, v in scope["metros"].items() if v.get("enabled") is not False}
@@ -129,7 +188,8 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     # keys that never increment, which made "nothing was rejected on geography"
     # and "the geography stage did not run" indistinguishable in the funnel.
     funnel = Counter({
-        "raw": 0, "rejected_off_umbrella": 0, "rejected_screen": 0,
+        "raw": 0, "rejected_off_umbrella": 0,
+        "rejected_no_sector_evidence": 0, "rejected_screen": 0,
         "passed_screen": 0, "rejected_geo": 0, "passed_geo": 0,
         "duplicate_sighting": 0, "unique_in_scope": 0, "usable_with_pay": 0,
     })
@@ -156,9 +216,18 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 title = rec.get("title") or ""
                 description = rec.get("description") or ""
 
+                # Config wins over whatever the snapshot happened to record,
+                # so a guard added today applies to data collected yesterday.
+                rec = {**rec, **screen_flags.get(rec.get("employer") or "", {})}
+
                 if off_umbrella(rec):
                     funnel["rejected_off_umbrella"] += 1
                     reject_reasons["off_umbrella_line_of_business"] += 1
+                    continue
+
+                if lacks_sector_evidence(rec):
+                    funnel["rejected_no_sector_evidence"] += 1
+                    reject_reasons["no_sector_evidence_in_posting"] += 1
                     continue
 
                 passed, reasons, detail = screen_all(title, description, scope)

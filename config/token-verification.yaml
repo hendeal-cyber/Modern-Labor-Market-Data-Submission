@@ -53,11 +53,17 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Ameren Illinois:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    platform: workday
+    token: ameren/External/wd1
+    evidence: https://ameren.wd1.myworkdayjobs.com/External
+    checked_on: '2026-09-22'
+    note: Illinois mandate state. Site 'External' again -- third employer with that site name after Xcel
+      and NRECA.
   American Electric Power:
     status: unchecked
     industry: utility
@@ -164,11 +170,20 @@ employers:
       aggregators.
     checked_on: '2026-09-22'
   Avangrid:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    platform: workday
+    token: iberdrola/Iberdrola/wd3
+    evidence: https://iberdrola.wd3.myworkdayjobs.com/en-US/Iberdrola
+    checked_on: '2026-09-22'
+    note: ATTRIBUTION RISK, must be checked after the next collection. The tenant is the PARENT, Iberdrola,
+      so the board carries group postings; Avangrid is its US business. A Boston MA nodal market analyst
+      at $108,600-$135,800 is visible, an exact role and mandate-state fit. Unlike NERA/Marsh this is
+      the US entity's own career center, so attribution is defensible -- but verify the collected rows
+      are Avangrid US roles and not Iberdrola corporate before trusting the cluster.
   Avista:
     status: unchecked
     industry: utility
@@ -233,11 +248,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Burns and McDonnell:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: Own application portal at apply.burnsmcd.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   CMS Energy:
     status: unchecked
     industry: utility
@@ -543,11 +560,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: true
   Enel North America:
-    status: unchecked
+    status: denied
     industry: developer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: Own portal at jobs.enel.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Enel X:
     status: unchecked
     industry: energy_analytic
@@ -852,11 +871,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Leap:
-    status: unchecked
+    status: denied
     industry: energy_analytic
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
+    reason: Careers on leap.energy/careers; no supported ATS host surfaced. Fully distributed company.
+    checked_on: '2026-09-22'
   Leeward Renewable Energy:
     status: unchecked
     industry: developer
@@ -878,11 +899,13 @@ employers:
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Longroad Energy:
-    status: unchecked
+    status: denied
     industry: developer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: boston
+    reason: Paylocity (recruiting.paylocity.com). Not among the seven supported adapters.
+    checked_on: '2026-09-22'
   MISO (Midcontinent ISO):
     status: unchecked
     industry: grid_operator
@@ -931,11 +954,13 @@ employers:
     note: Arlington VA (mandate state). Site name 'External' -- the same variant that found Xcel Energy,
       and worth trying first on any unresolved Workday tenant.
   NRG Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: Own portal at careers.nrgenergy.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   NTT Global Data Centers:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1041,11 +1066,19 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Octopus Energy:
-    status: unchecked
+    status: confirmed
     industry: energy_analytic
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: boston
+    platform: lever
+    token: octoenergy
+    evidence: https://jobs.lever.co/octoenergy/5c278544-8b5f-4396-ab79-485578005b76
+    checked_on: '2026-09-22'
+    note: Global Lever board; the US-only screen handles the non-US rows. Houston roles include Energy
+      Markets Analyst and Senior Power Market Analyst -- exact market_commercial fits. Texas is not a
+      mandate state, so this enriches the non-mandate side of the disclosure contrast even if it adds
+      no cluster.
   Oglethorpe Power:
     status: unchecked
     industry: cooperative
@@ -1385,11 +1418,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Summit Ridge Energy:
-    status: unchecked
+    status: denied
     industry: developer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    reason: Careers on srenergy.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Switch:
     status: unchecked
     industry: data_center
