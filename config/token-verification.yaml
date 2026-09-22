@@ -21,11 +21,17 @@ employers:
     resolved_in_last_run: false
     metro: indianapolis
   AEP Energy:
-    status: unchecked
+    status: confirmed
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    platform: workday
+    token: aep/AEPCareerSite/wd1
+    evidence: https://aep.wd1.myworkdayjobs.com/AEPCareerSite
+    checked_on: '2026-09-22'
+    note: Site is 'AEPCareerSite', another variant not previously probed. Columbus OH is not a mandate
+      state, but AEP operates across many states so individual postings may be covered.
   AES Indiana:
     status: confirmed
     evidence: resolved in collection manifest
@@ -151,10 +157,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Aurora Energy Research:
-    status: unchecked
+    status: denied
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: 'auroraer.com/careers; no supported ATS host surfaced. A real loss: ''Nodal Analyst, US West''
+      in Oakland CA is an exact taxonomy fit in a mandate state.'
+    checked_on: '2026-09-22'
   Austin Energy:
     status: unchecked
     industry: utility
@@ -385,11 +394,14 @@ employers:
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Connexus Energy:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: minneapolis
+    reason: connexusenergy.com/company/careers; no supported ATS host surfaced. Fourth cooperative lost
+      this way -- its Business Systems Analyst posts $89-117k disclosed, MN mandate.
+    checked_on: '2026-09-22'
   Constellation Energy:
     status: denied
     reason: 'blocked: no_free_public_api'
@@ -484,10 +496,12 @@ employers:
     resolved_in_last_run: true
     metro: new_york
   Daymark Energy Advisors:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: No ATS at all -- daymarkea.com lists roles and applications go by email to humanresources@daymarkea.com.
+    checked_on: '2026-09-22'
   Digital Realty:
     status: denied
     industry: data_center
@@ -639,10 +653,12 @@ employers:
     resolved_in_last_run: false
     metro: chicago
   Exponent:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: Own portal at exponent.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   FirstEnergy:
     status: unchecked
     industry: utility
@@ -909,10 +925,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   London Economics International:
-    status: unchecked
+    status: denied
     industry: consulting
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: Own recruitment page at londoneconomics.co.uk/recruitment; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Longroad Energy:
     status: denied
     industry: developer
@@ -1114,11 +1132,17 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Opus One Solutions:
-    status: unchecked
+    status: confirmed
     industry: energy_analytic
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
+    platform: workable
+    token: opusonesolutions
+    evidence: https://apply.workable.com/opusonesolutions/
+    checked_on: '2026-09-22'
+    note: Workable, a supported adapter. Now part of GE Digital, so the board may carry few independent
+      postings.
   Origis Energy:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1633,11 +1657,17 @@ employers:
     resolved_in_last_run: true
     metro: bay_area
   WGL Energy:
-    status: unchecked
+    status: confirmed
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: northern_virginia
+    platform: workday
+    token: wgl/AltaGas/wd5
+    evidence: https://wgl.wd5.myworkdayjobs.com/AltaGas
+    checked_on: '2026-09-22'
+    note: Same board as Washington Gas (both WGL/AltaGas subsidiaries). Keep ONE of the two in the frame
+      or the employer will be double-counted as two clusters off one board.
   WPS Resources:
     status: unchecked
     industry: utility
@@ -1657,11 +1687,17 @@ employers:
     resolved_in_last_run: true
     metro: indianapolis
   Washington Gas:
-    status: unchecked
+    status: confirmed
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: northern_virginia
+    platform: workday
+    token: wgl/AltaGas/wd5
+    evidence: https://wgl.wd5.myworkdayjobs.com/AltaGas
+    checked_on: '2026-09-22'
+    note: DC is a mandate state. The SITE is the parent company's name, AltaGas -- not derivable from
+      'Washington Gas' by any rule. Live 'Associate Analyst' and 'Director of Regulatory Affairs'.
   Western Area Power Administration:
     status: unchecked
     industry: grid_operator

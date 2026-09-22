@@ -1351,14 +1351,15 @@ energy_analytics_batch2:
       ashby: [piclo]
       workday: [{tenant: piclo, site: careers}]
     verified: false
+  # Verified 2026-09-22: apply.workable.com/opusonesolutions. Now part of GE
+  # Digital, so the board may carry few independent postings.
   - name: Opus One Solutions
     metro: bay_area
+    industry: energy_analytics
+    careers_url: https://apply.workable.com/opusonesolutions/
     candidates:
-      greenhouse: [opusonesolutions, opus-one-solutions, opusone]
-      lever: [opusonesolutions, opus-one-solutions, opusone]
-      ashby: [opusonesolutions, opus-one-solutions, opusone]
-      workday: [{tenant: opusonesolutions, site: careers}]
-    verified: false
+      workable: [opusonesolutions]
+    verified: true
   - name: GridPoint
     candidates:
       greenhouse: [gridpoint]
@@ -1933,14 +1934,17 @@ retailers_batch3:
       ashby: [santannaenergy, santanna-energy, santanna]
       workday: [{tenant: santannaenergy, site: careers}]
     verified: false
+  # Verified 2026-09-22: aep.wd1.myworkdayjobs.com/AEPCareerSite. Tenant is
+  # the parent "aep"; site is "AEPCareerSite", another variant not previously
+  # probed. Columbus OH is not a mandate state, but AEP operates across many
+  # states so individual postings may be covered.
   - name: AEP Energy
     metro: chicago
+    industry: retailer
+    careers_url: https://aep.wd1.myworkdayjobs.com/AEPCareerSite
     candidates:
-      greenhouse: [aepenergy, aep-energy, aep]
-      lever: [aepenergy, aep-energy, aep]
-      ashby: [aepenergy, aep-energy, aep]
-      workday: [{tenant: aepenergy, site: careers}]
-    verified: false
+      workday: [{tenant: aep, site: AEPCareerSite, instance: wd1}]
+    verified: true
   - name: NRG Energy
     metro: chicago
     candidates:
@@ -2020,22 +2024,31 @@ retailers_batch3:
       ashby: [midamericanenergy, midamerican-energy, midamerican]
       workday: [{tenant: midamericanenergy, site: careers}]
     verified: false
+  # Searched 2026-09-22: shares the wgl/AltaGas Workday board with Washington
+  # Gas. Deliberately NOT given that token -- one board must not become two
+  # employer clusters. Its postings arrive attributed to Washington Gas.
   - name: WGL Energy
     metro: northern_virginia
-    candidates:
-      greenhouse: [wglenergy, wgl-energy, wgl]
-      lever: [wglenergy, wgl-energy, wgl]
-      ashby: [wglenergy, wgl-energy, wgl]
-      workday: [{tenant: wglenergy, site: careers}]
+    duplicate_of: Washington Gas
+    ats_unidentified: true
+    candidates: {}
     verified: false
+  # Verified 2026-09-22: wgl.wd5.myworkdayjobs.com/AltaGas. The SITE is the
+  # parent company's name, AltaGas, which no rule derives from "Washington
+  # Gas". DC is a mandate state. Live "Associate Analyst" and "Director of
+  # Regulatory Affairs".
+  #
+  # This one board covers every WGL company, so WGL Energy below is marked as
+  # a duplicate of it rather than given the same token. Collecting it twice
+  # would invent a second employer cluster out of one board, which is exactly
+  # the misattribution the study is meant to guard against.
   - name: Washington Gas
     metro: northern_virginia
+    industry: gas_utility
+    careers_url: https://wgl.wd5.myworkdayjobs.com/AltaGas
     candidates:
-      greenhouse: [washingtongas, washington-gas, washington]
-      lever: [washingtongas, washington-gas, washington]
-      ashby: [washingtongas, washington-gas, washington]
-      workday: [{tenant: washingtongas, site: careers}]
-    verified: false
+      workday: [{tenant: wgl, site: AltaGas, instance: wd5}]
+    verified: true
   - name: Clearview Energy
     candidates:
       greenhouse: [clearviewenergy, clearview-energy, clearview]
