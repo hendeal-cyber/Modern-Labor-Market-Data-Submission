@@ -35,6 +35,13 @@ def cached(external_id="1", platform="workday", days_ago=0, updated_at=None,
 
 def run():
     fails = []
+    checks = 0
+
+    def check(ok, message):
+        nonlocal checks
+        checks += 1
+        if not ok:
+            fails.append(message)
 
     def cache(records, max_age_days=7):
         keyed = {f"{r['platform']}|{r['employer']}|{r['external_id']}": r
@@ -44,38 +51,38 @@ def run():
     # 1. A posting read yesterday and unchanged is reused, not re-fetched.
     c = cache([cached(days_ago=1)])
     p = stub()
-    if not c.apply(p):
-        fails.append("an unchanged posting read yesterday must be reused")
-    if p.description != "full text":
-        fails.append("a reused posting must carry its cached description")
-    if c.hits != 1:
-        fails.append(f"hits={c.hits}, want 1")
+    check(c.apply(p),
+          "an unchanged posting read yesterday must be reused")
+    check(p.description == "full text",
+          "a reused posting must carry its cached description")
+    check(c.hits == 1,
+          f"hits={c.hits}, want 1")
 
     # 2. A posting the platform says changed is re-fetched. This is the guard
     #    that catches an employer adding a pay range to a live posting.
     c = cache([cached(days_ago=1, platform="greenhouse", updated_at="2026-09-01")])
-    if c.apply(stub(platform="greenhouse", updated_at="2026-09-21")):
-        fails.append("an edited posting must be re-fetched, not reused")
-    if c.edited != 1:
-        fails.append(f"edited={c.edited}, want 1")
+    check(not c.apply(stub(platform="greenhouse", updated_at="2026-09-21")),
+          "an edited posting must be re-fetched, not reused")
+    check(c.edited == 1,
+          f"edited={c.edited}, want 1")
 
     # 3. A posting older than the window is re-read whatever the platform says.
     #    Workday reports NO `updated_at` on any of the 298 Workday records in
     #    the corpus, so for the largest platform in the frame this is the ONLY
     #    thing that ever catches an edit.
     c = cache([cached(days_ago=8)])
-    if c.apply(stub()):
-        fails.append("a posting past the refresh window must be re-read")
-    if c.stale != 1:
-        fails.append(f"stale={c.stale}, want 1")
+    check(not c.apply(stub()),
+          "a posting past the refresh window must be re-read")
+    check(c.stale == 1,
+          f"stale={c.stale}, want 1")
     c = cache([cached(days_ago=7)])
-    if not c.apply(stub()):
-        fails.append("a posting exactly at the window edge must still be reused")
+    check(c.apply(stub()),
+          "a posting exactly at the window edge must still be reused")
 
     # 4. Never serve an empty description as though it were a real one.
     c = cache([cached(days_ago=1, description="")])
-    if c.apply(stub()):
-        fails.append("an empty cached description must not count as a hit")
+    check(not c.apply(stub()),
+          "an empty cached description must not count as a hit")
 
     # 5. The key is platform + employer + id. A different employer sharing an
     #    external id must never collide -- Workday ids are only unique within
@@ -83,14 +90,14 @@ def run():
     c = cache([cached(days_ago=1)])
     other = stub()
     other.employer = "AES Indiana"
-    if c.apply(other):
-        fails.append("a different employer must not hit another's cache entry")
+    check(not c.apply(other),
+          "a different employer must not hit another's cache entry")
 
     # 6. A record with no stamp at all is re-read rather than trusted.
     entry = cached(days_ago=1)
     del entry["detail_fetched_at"]
-    if cache([entry]).apply(stub()):
-        fails.append("a record with no fetch date must be re-read")
+    check(not cache([entry]).apply(stub()),
+          "a record with no fetch date must be re-read")
 
     # 7. load_detail_cache reads real snapshots, newest first.
     import tempfile
@@ -108,16 +115,15 @@ def run():
              "external_id": "1", "description": "todays partial run"}]))
         c = load_detail_cache(root, today=TODAY, skip_run_date="2026-09-22")
         p = stub()
-        if not c.apply(p):
-            fails.append("a snapshot-loaded posting must be reusable")
-        elif p.description != "newer":
-            fails.append(f"newest snapshot must win, got {p.description!r}")
+        reusable = c.apply(p)
+        check(reusable, "a snapshot-loaded posting must be reusable")
+        check(not reusable or p.description == "newer",
+              f"newest snapshot must win, got {p.description!r}")
         # The run currently being written must not seed its own cache.
-        if "todays partial run" in json.dumps(c.stats()):
-            fails.append("the in-progress run must be skipped")
+        check("todays partial run" not in json.dumps(c.stats()),
+              "the in-progress run must be skipped")
 
-    print(f"cache: {7 - len(set(f[:12] for f in fails))}/7 checks passed"
-          if fails else "cache: 7/7 checks passed")
+    print(f"cache: {checks - len(fails)}/{checks} checks passed")
     for f in fails:
         print("  FAIL", f)
     return len(fails)

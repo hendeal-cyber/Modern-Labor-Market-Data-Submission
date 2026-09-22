@@ -1,87 +1,84 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-22, end of session
+## RESUME HERE — handoff of 2026-09-22, after audit round 6
 
 *A new conversation starts here. This block wins over everything below it.
-§0 below describes the last **audited** state (N = 165, commit `7180497`).
-This block describes what has happened since and what to do next, in order.*
+§0 and later sections are history: §0 describes N = 165 (commit `7180497`),
+which round 6 showed carried halved pay, misattributed employers and a
+misdated mandate. Do not quote numbers from below this block.*
 
-### State at handoff
+### State at handoff — AUDITED
 
 | | Value |
 |---|---|
-| Branch | `claude/wonderful-tesla-53lgo4` |
-| Last audited commit | `7180497`: concept role screen, nested-repost dedupe, gate fixes. **N 165, 33 clusters, Invenergy 23.6%**. Deliverables match this |
-| Run 26 | Actions #35744479596, **success**, pushed `28244ea` |
-| Run 26 data, **UNAUDITED** | raw 2,084 → unique in scope 325 → **usable 231**; **36 clusters; Invenergy 19.1%; 15.4 obs/regressor; `interpretable: true`** |
-| Bootstrap survivors in run 26, **UNAUDITED** | `seniority_rank` 0.0001, `region_south` 0.0128, `region_northeast` 0.0285, `region_west` 0.0384, `mandate_state` 0.0446 |
-| Deliverables | **Deliberately stale.** Paper, summary, figures and deck quote 165. `tests/test_consistency.py` is **26/29**, failing only the three checks that catch this. Do not regenerate before the audit |
-| Detail cache + daily cron | Committed in `fe87597`. Unit-tested 7/7. **Never run against a live API** |
+| Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch** (GitHub API `default_branch`), so its `schedule:` crons fire: the daily 09:17 UTC collection is live. A scheduled run has fired before (run 20, 2026-09-21) |
+| Audited commits | `7b386d3` (fixes + rebuilt data), `934fe45` (deliverables + docs) |
+| **Usable N** | **214** (unique in scope 290, raw 2,084) |
+| **Employer clusters** | **34** |
+| **Largest employer** | **Invenergy 20.6%** (44 of 214) |
+| Obs per regressor | 14.3. `interpretable: true`, no warnings. All four pre-registered conditions pass |
+| Disclosure gap (H2) | 93.9% (n=164) vs 47.6% (n=126), **46pp**, 44–49 across cuts. **Associational, not causal** |
+| Survives bootstrap AND region check | **`seniority_rank` only** (+0.121/rung, p 0.0001 / 0.0005). H1 supported |
+| Passes bootstrap, withdrawn by region check | `region_northeast` (0.032 / 0.057), `skill_cloud` (0.046 / 0.058). Inconclusive |
+| Not significant | `mandate_state` (−0.038, p 0.25), `region_south` (0.11), `region_west` (0.64), everything else |
+| Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
+| Run 27 | Actions **35781235535**, dispatched 20:35 UTC with `no_slugs: true` at `934fe45`. **First live test of the detail cache.** Result not yet read |
 
-Why the deliverables are stale on purpose: the workflow commits only `data/`,
-and the standing rule is that new rows are read before any number built on
-them is published. Regenerating now would put 66 unread rows into the paper.
+### What round 6 found (full record: `docs/audit-log.md` round 6)
 
-### Do these in order
+1. **The pay parser was still halving Invenergy.** The 2026-09-22 "fix"
+   (`d9e6a7b`) only refused a leading zero. A window opening at
+   "0,000.00 - $93,000.00" still parsed (0, 93000). 17 rows in run 26, 14 in
+   the N = 165 deliverables, including the row round 5 called "a genuine
+   entry-level band". Also: a "k" written once ("$200-235k"), Greenhouse's
+   pay widget recording NYISO at its floor, and "$30 billion" / "25 states"
+   read as hourly pay.
+2. **This one defect manufactured two findings.** The halved rows were all in
+   mandate states, mostly Illinois (the Midwest reference). With them fixed,
+   `mandate_state` goes −0.171 → −0.038 and `region_west` +0.116 → +0.018.
+   The "negative mandate level = disclosure selection" story in earlier
+   deliverables is **withdrawn**.
+3. Multi-rung titles were floored over keywords, not alternatives
+   ("Manager/Sr Manager" ranked senior IC).
+4. Off-taxonomy roles via variant wordings (HR, legal, accounting, security,
+   civil drafting, equipment/IT reliability engineering, construction PMs).
+5. **Group tenants**: every usable "Hitachi Energy" row was Hitachi High-Tech
+   or Hitachi Vantara; Iron Mountain's was corporate IT.
+   `requires_company_mention` now guards both.
+6. **Connecticut** was coded as a posting mandate. Its posting law (Public Act
+   26-12) takes effect **2026-10-01**. Mandate dates are now applied per
+   snapshot. **From the first snapshot dated 2026-10-01 on, CT postings will
+   count as covered automatically.** Expect the contrast to move then, and
+   read it as a coding event, not a finding.
+7. Where the run-26 jump came from: the round-5 concept screen reaching
+   Workday's detail pre-screen (96 of 115 rows), **not** the page cap (8 Hitachi
+   rows, none usable). Hitachi's tenant is truncated again, at exactly 3,000.
 
-1. **Audit round 6: read run 26 before trusting it.**
-   - `git diff 7180497 HEAD -- data/analysis/postings.csv`. Read all 66 added
-     rows (the round-5 script diffed on employer + title + location).
-   - Read the pay extremes, highest and lowest.
-   - Find where the jump came from. The prime suspect is the Workday page cap
-     rising from 25 to 150: Guidehouse and Hitachi Energy both listed exactly
-     500 before, the signature of truncation. Check every Guidehouse row
-     against `requires_sector_evidence`; it once supplied 65 rows of which 3
-     were energy work. Check Hitachi Energy rows against the umbrella.
-   - `region_west` and `mandate_state` pass the bootstrap for the first time.
-     Treat them as claims to verify. Also re-run the region-robustness check
-     and note that `mandate_state` did NOT survive it at N = 165.
-   - Record the round in `docs/audit-log.md` as `### Round 6 — ...`, before
-     the `### Round N` template. The paper's audit table in
-     `scripts/make_paper.py` needs a row 6 (`if _rounds >= 6`), or consistency
-     check 18c fails.
-2. **Regenerate the deliverables**: `make_codebook.py`,
-   `make_exec_summary.py`, `make_figures.py`, `make_paper.py` (all with
-   `PYTHONPATH=src`), then `node scripts/make_slides.js`. `tests/run_all.py`
-   must be green, with consistency at **29/29**.
-3. Add a pre-registration §8 amendment for anything the audit changes. Refresh
-   §0 below with the audited numbers.
-4. **Prove the detail cache live.**
-   - Dispatch `collect.yml` with `no_slugs: true`.
-   - Read `manifest["detail_cache"]` in the new `data/raw/<date>/manifest.json`:
-     `reused` should be most of the Workday and SmartRecruiters detail fetches.
-   - Compare `pay_disclosed` on reused rows with the previous run's values
-     for drift.
-   - If anything is off, set the cron back to weekly rather than leave it
-     hopeful.
-5. **Check which branch is the default.** GitHub runs `schedule:` crons only
-   from the default branch, so the new daily cron (and the old weekly one) do
-   nothing unless this branch is the default or is merged. Report which it
-   is; **do not merge without the owner.**
-6. Lower priority:
-   - 118 employers in `config/token-verification.yaml` are still unchecked.
-     The value is in retailers, utilities and co-ops (yield table in §0.5).
-   - `tests/test_cache.py` computes its printed pass count with a
-     `len(set(f[:12] ...))` hack. Replace it with a plain count of checks.
+### Do these next, in order
 
-### The owner's question this session, answered (so it is not re-asked)
-
-*"Can we fetch rate-limited sites daily, appending only new postings? Do the
-sites refresh daily?"*
-
-- **Nothing is rate-limiting us.** No run has recorded a 429 or an error. The
-  cost is our own 1 request/second throttle and the job timeout.
-- **Sites have no refresh cycle.** Postings change when a requisition opens or
-  closes. Measured day-over-day churn, on the 40 employers present in both the
-  09-21 and 09-22 snapshots, is 1.6% new and 1.1% removed.
-- **Daily is still better, for coverage.** A weekly run misses any posting
-  that opens and closes within the week.
-- **"Only new" has one catch.** Workday gives no `updated_at`, so an employer
-  adding pay to a live posting would never be seen. That is why the cache
-  re-reads every description after 7 days and the Monday run re-reads
-  everything.
-- **The saving is modest today**: about 5 of a 46-minute run. Board probing
-  and listing dominate.
+1. **Read run 27** (a check-in is scheduled for ~21:31 UTC). Find its data
+   commit with `git fetch origin claude/wonderful-tesla-53lgo4` and look for
+   "Data: collection run". Then:
+   - `manifest["detail_cache"]` in `data/raw/<date>/manifest.json`: `reused`
+     should cover most Workday and SmartRecruiters detail fetches.
+   - Compare `pay_disclosed` on reused rows with the same postings' values in
+     the previous snapshot.
+   - Review new rows as in round 6: every added row, then the pay extremes.
+   - **If the cache misbehaves, set the cron in `collect.yml` back to weekly
+     before 09:17 UTC.** That cron is live, because this is the default branch.
+2. **Every daily run makes the deliverables stale.** The workflow commits only
+   `data/`. After each run, read the new rows, then rebuild and regenerate:
+   `PYTHONPATH=src python3 -m lmstudy.build_dataset`, `... -m lmstudy.analyze`,
+   `PYTHONPATH=src python3 scripts/make_{codebook,exec_summary,figures,paper}.py`,
+   `node scripts/make_slides.js`, `python3 tests/run_all.py`. Then commit.
+   Consistency will show 26/29 until you do. That is the check working.
+3. **Owner decision pending:** three QTS "Development Project Manager" rows are
+   construction PMs by description (TX, GA, W. Texas; none discloses pay). A
+   title-only screen cannot remove them without an employer-specific rule,
+   which would be a new screening mechanism. Keeping them widens the gap by
+   1.2pp.
+4. Lower priority: 118 unchecked employers in
+   `config/token-verification.yaml`. Retailers and utilities first (§0.5).
 
 ### Standing rules (unchanged, all still binding)
 
@@ -89,18 +86,21 @@ sites refresh daily?"*
   or iCIMS portal automation.
 - **N ≥ 100 is non-negotiable.** Every observation must sit under the energy,
   utility or data center umbrella.
-- Audit frequently. Read the pay extremes after every rebuild.
-- Never remove `analyze.py`'s interpretability block by hand. It comes down
-  only by its own gate, which now also checks concentration (≤ 25%).
+- Audit frequently. Read the pay extremes after every rebuild, **and check
+  that the low bound is a plausible number and not just the midpoint**. Round
+  5 read a halved row and passed it.
+- Never remove `analyze.py`'s interpretability block by hand.
 - Report N, clusters and largest-employer share together, always.
-- Sabotage tests use a **backup copy** of the file, never `git checkout`
-  (that once destroyed uncommitted work).
+- Sabotage tests use a **backup copy** of the file, never `git checkout`.
 - In test files, put the `if __name__ == "__main__":` guard at the **very
-  end** (this bug happened four times).
+  end**.
+- **Do not use `pkill -f <pattern>` or `pgrep -f` in a loop** in this
+  environment. The pattern matches the shell running it. That killed a rebuild
+  this session and hung a wait loop.
 - `WebSearch` works from the session; `WebFetch` to ATS or careers hosts does
   not. Collection happens only in GitHub Actions.
 
-## 0. Last audited state (N = 165, commit `7180497`) — superseded by RESUME HERE above
+## 0. Superseded state (N = 165, commit `7180497`) — contained round-6 defects; see RESUME HERE above
 
 *Everything below section 0 is layered history, oldest first. Where they
 conflict, this section wins.*
