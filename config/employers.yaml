@@ -436,11 +436,18 @@ grid_vendors:            # grid technology manufacturers
     candidates:
       workday: [{tenant: hitachi, site: hitachi, wd: 1}]
     verified: true       # hitachi.wd1.myworkdayjobs.com/hitachi
+  # Verified 2026-09-22 from a live job URL in search results:
+  # gevernova.wd5.myworkdayjobs.com/Vernova_ExternalSite/job/Wilmington-NC-USA/Sales-Ops-Analyst_R5037599-2
+  # The tenant is Vernova's own, not GE's group tenant (the old "ge" guess is
+  # dropped), and Vernova is an energy pure-play (power, wind,
+  # electrification), so no requires_company_mention guard is needed. A large
+  # global board: watch for the 150-page cap as with Hitachi.
   - name: GE Vernova
     industry: grid_vendor
+    careers_url: https://gevernova.wd5.myworkdayjobs.com/Vernova_ExternalSite
     candidates:
-      workday: [{tenant: gevernova, site: careers}, {tenant: ge, site: GE_ExternalSite}]
-    verified: false
+      workday: [{tenant: gevernova, site: Vernova_ExternalSite, wd: 5}]
+    verified: true
   - name: S&C Electric Company
     industry: grid_vendor
     metro: chicago
@@ -2132,12 +2139,12 @@ retailers_batch3:
       ashby: [tomorrowenergy, tomorrow-energy, tomorrow]
       workday: [{tenant: tomorrowenergy, site: careers}]
     verified: false
+  # Checked 2026-09-22: a NextEra brand; jobs on jobs.nexteraenergy.com
+  # (/job/<city-title>/<id>/, /go/Gexa/2673900/, ?locale=en_US), the SAP
+  # SuccessFactors Career Site Builder pattern. No adapter supports it.
   - name: Gexa Energy
-    candidates:
-      greenhouse: [gexaenergy, gexa-energy, gexa]
-      lever: [gexaenergy, gexa-energy, gexa]
-      ashby: [gexaenergy, gexa-energy, gexa]
-      workday: [{tenant: gexaenergy, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Energy Harbor
     candidates:

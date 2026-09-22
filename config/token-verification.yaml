@@ -740,10 +740,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: true
   GE Vernova:
-    status: unchecked
+    status: confirmed
     industry: grid_vendor
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: gevernova/Vernova_ExternalSite/wd5
+    evidence: https://gevernova.wd5.myworkdayjobs.com/Vernova_ExternalSite/job/Wilmington-NC-USA/Sales-Ops-Analyst_R5037599-2
+    checked_on: '2026-09-22'
   Generac:
     status: unchecked
     industry: grid_vendor
@@ -759,10 +763,13 @@ employers:
       supported adapters.
     checked_on: '2026-09-22'
   Gexa Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: NextEra brand; jobs.nexteraenergy.com is SAP SuccessFactors Career Site Builder (/go/Gexa/2673900/);
+      unsupported
+    checked_on: '2026-09-22'
   Golden Spread Electric Cooperative:
     status: unchecked
     industry: cooperative
