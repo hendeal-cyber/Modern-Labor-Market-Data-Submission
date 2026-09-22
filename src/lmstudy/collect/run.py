@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from lmstudy.netclient import PoliteSession                      # noqa: E402
 from lmstudy.collect.discover import discover_employer      # noqa: E402
+from lmstudy.collect.cache import load_detail_cache, DEFAULT_MAX_AGE_DAYS  # noqa: E402
 from lmstudy import geo                                      # noqa: E402
 from lmstudy.filters import screen_role, screen_early_career  # noqa: E402
 
@@ -160,6 +161,13 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=0, help="stop after N employers (smoke test)")
     parser.add_argument("--no-slugs", action="store_true", help="skip slug-based discovery")
     parser.add_argument("--min-interval", type=float, default=1.0)
+    parser.add_argument("--no-detail-cache", action="store_true",
+                        help="re-fetch every posting description, ignoring "
+                             "earlier snapshots (a full refresh)")
+    parser.add_argument("--detail-max-age-days", type=int,
+                        default=DEFAULT_MAX_AGE_DAYS,
+                        help="re-read a cached description once it is older "
+                             "than this many days")
     parser.add_argument("--enable-tier3", action="store_true",
                         help="activate the pre-registered Tier 3 metros for this "
                              "run only, without editing config/scope.yaml. Used "
@@ -200,6 +208,17 @@ def main() -> int:
         "employers_attempted": len(employers),
         "results": [],
     }
+    # Reuse descriptions read on earlier runs. The per-posting detail fetch is
+    # the entire cost of a run on Workday and SmartRecruiters, and measured
+    # day-over-day churn in this frame is 1.6% new and 1.1% removed, so the
+    # overwhelming majority of that cost is re-reading text we already have.
+    detail_cache = None
+    if not args.no_detail_cache:
+        detail_cache = load_detail_cache(base, max_age_days=args.detail_max_age_days,
+                                         skip_run_date=run_date)
+        print(f"detail cache: {len(detail_cache)} postings read on earlier runs, "
+              f"re-read after {detail_cache.max_age_days} days", flush=True)
+
     total_postings = 0
     candidates: list[dict] = []
 
@@ -207,7 +226,8 @@ def main() -> int:
         name = entry["name"]
         print(f"[{i}/{len(employers)}] {name}", flush=True)
         hits = discover_employer(session, entry, try_slugs=not args.no_slugs,
-                                 detail_filter=detail_filter)
+                                 detail_filter=detail_filter,
+                                 detail_cache=detail_cache)
         if not hits:
             print("    no board found")
             manifest["results"].append(
@@ -261,6 +281,12 @@ def main() -> int:
                 }
             )
 
+    if detail_cache is not None:
+        manifest["detail_cache"] = detail_cache.stats()
+        st = detail_cache.stats()
+        print(f"detail cache: reused {st['reused']}, fetched {st['fetched']} "
+              f"({st['refetched_stale']} stale, {st['refetched_edited']} edited)",
+              flush=True)
     manifest["total_postings"] = total_postings
     # Trim the long tails so the manifest stays readable.
     for field in ("locations_of_in_role", "titles_in_metro"):

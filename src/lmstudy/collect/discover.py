@@ -333,6 +333,7 @@ def probe(
     detail_filter=None,
     unverified_guess: bool = False,
     expand_sites: bool = False,
+    detail_cache=None,
 ) -> BoardHit | None:
     """Try one (platform, token). Returns a hit only if postings came back."""
     fetcher = FETCHERS.get(platform)
@@ -369,7 +370,8 @@ def probe(
                 for instance in instances:
                     postings, resp = fetcher(session, tenant, site_name, employer,
                                              wd_instance=instance,
-                                             detail_filter=detail_filter)
+                                             detail_filter=detail_filter,
+                                             detail_cache=detail_cache)
                     listed = resp.listed or 0
                     # A board that listed jobs exists even when the pre-screen
                     # removed all of them. Conflating the two would make a real
@@ -382,7 +384,9 @@ def probe(
                                          "site_guessed": site_name != site})
             return None
         if platform == "smartrecruiters":
-            postings, resp = fetcher(session, token, employer, detail_filter=detail_filter)
+            postings, resp = fetcher(session, token, employer,
+                                     detail_filter=detail_filter,
+                                     detail_cache=detail_cache)
         else:
             postings, resp = fetcher(session, token, employer)
         listed = resp.listed if resp.listed is not None else len(postings)
@@ -395,7 +399,8 @@ def probe(
 
 
 def discover_employer(
-    session: PoliteSession, entry: dict, try_slugs: bool = True, detail_filter=None
+    session: PoliteSession, entry: dict, try_slugs: bool = True, detail_filter=None,
+    detail_cache=None,
 ) -> list[BoardHit]:
     """Probe declared candidates first, then derived slugs as a fallback.
 
@@ -417,7 +422,8 @@ def discover_employer(
         for token in tokens or []:
             hit = probe(session, employer, platform, token, detail_filter,
                         unverified_guess=not hand_verified,
-                        expand_sites=metro_resident)
+                        expand_sites=metro_resident,
+                        detail_cache=detail_cache)
             if not hit:
                 continue
             if not hand_verified:
@@ -442,7 +448,8 @@ def discover_employer(
 
     for platform in ("greenhouse", "lever", "ashby", "smartrecruiters", "workable", "recruitee"):
         for token in slug_variants_safe(employer):
-            hit = probe(session, employer, platform, token, detail_filter)
+            hit = probe(session, employer, platform, token, detail_filter,
+                        detail_cache=detail_cache)
             if hit:
                 profile = board_profile(employer, hit.postings)
                 confidence = profile["sector_confidence"]

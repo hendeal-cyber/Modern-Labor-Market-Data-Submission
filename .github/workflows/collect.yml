@@ -1,11 +1,24 @@
 name: Collect postings
 
-# Weekly flow collection. The first run captures the current open stock; each
+# Daily flow collection. The first run captured the current open stock; each
 # later run appends newly appeared postings, building the panel prospectively.
 # ATS APIs expose only currently-open postings, so history cannot be backfilled.
+#
+# DAILY, not weekly, and the reason is coverage rather than freshness. Measured
+# between the 2026-09-21 and 2026-09-22 snapshots over the 40 employers in
+# both: 12 postings appeared (1.6%) and 8 disappeared (1.1%) in one day. A
+# weekly cadence never sees a posting that opens and closes inside the week,
+# and at that rate roughly fifty postings a week are exposed to that gap.
+#
+# What makes daily affordable and polite is the detail cache
+# (src/lmstudy/collect/cache.py): Workday and SmartRecruiters need a second,
+# throttled request per posting, and a next-day run serves all 299 of them
+# from the previous snapshot. Monday forces a full re-read, because Workday
+# reports no `updated_at` and the age window is the only thing that catches
+# an employer adding a pay range to a live posting.
 on:
   schedule:
-    - cron: "17 9 * * 1"      # Mondays 09:17 UTC
+    - cron: "17 9 * * *"      # daily 09:17 UTC
   workflow_dispatch:
     inputs:
       limit:
@@ -14,6 +27,11 @@ on:
         default: "0"
       no_slugs:
         description: "Skip slug-based board discovery"
+        type: boolean
+        required: false
+        default: false
+      full_refresh:
+        description: "Re-read every description, ignoring the detail cache"
         type: boolean
         required: false
         default: false
@@ -64,6 +82,15 @@ jobs:
           fi
           if [ "${{ github.event.inputs.no_slugs }}" = "true" ]; then
             ARGS="$ARGS --no-slugs"
+          fi
+          # A full re-read every Monday, plus on demand. Workday populates no
+          # `updated_at`, so nothing else would ever notice a pay range added
+          # to a posting already in the corpus -- and pay disclosure is the
+          # dependent variable.
+          if [ "${{ github.event.inputs.full_refresh }}" = "true" ] \
+             || [ "$(date -u +%u)" = "1" ]; then
+            ARGS="$ARGS --no-detail-cache"
+            echo "full refresh: re-reading every description"
           fi
           python src/lmstudy/collect/run.py $ARGS | tee collect.log
 

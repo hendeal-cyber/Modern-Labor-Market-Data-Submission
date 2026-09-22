@@ -43,6 +43,11 @@ def strip_html(raw: str | None) -> str:
     return "\n".join(line.strip() for line in text.split("\n")).strip()
 
 
+def _today_iso() -> str:
+    import datetime as _dt
+    return _dt.date.today().isoformat()
+
+
 @dataclass
 class RawPosting:
     """One posting as retrieved, before any study-specific interpretation."""
@@ -197,6 +202,8 @@ def fetch_ashby(
                 comp_min=lo,
                 comp_max=hi,
                 comp_interval=interval,
+                payload={"detail_fetched_at": fetched_at,
+                         "detail_from_cache": cached is not None},
             )
         )
     return out, resp
@@ -226,6 +233,7 @@ def fetch_smartrecruiters(
     employer: str,
     max_postings: int = 200,
     detail_filter=None,
+    detail_cache=None,
 ) -> tuple[list[RawPosting], Response]:
     base = f"https://api.smartrecruiters.com/v1/companies/{token}/postings"
     # Paginated. It used to be a single `?limit=100` with no offset, so any
@@ -269,11 +277,21 @@ def fetch_smartrecruiters(
         )
         if detail_filter is not None and not detail_filter(stub):
             continue
-        detail = session.get_json(f"{base}/{job_id}")
-        description, lo, hi, interval = "", None, None, None
-        if detail.ok:
-            description = _smartrecruiters_text(detail.data)
-            lo, hi, interval = _smartrecruiters_comp(detail.data)
+        cached = None
+        if detail_cache is not None:
+            cached = detail_cache.get(stub)
+        if cached is not None:
+            description = cached.get("description") or ""
+            lo, hi, interval = (cached.get("comp_min"), cached.get("comp_max"),
+                                cached.get("comp_interval"))
+            fetched_at = cached.get("detail_fetched_at")
+        else:
+            detail = session.get_json(f"{base}/{job_id}")
+            description, lo, hi, interval = "", None, None, None
+            if detail.ok:
+                description = _smartrecruiters_text(detail.data)
+                lo, hi, interval = _smartrecruiters_comp(detail.data)
+            fetched_at = _today_iso()
         out.append(
             RawPosting(
                 platform="smartrecruiters",
@@ -398,6 +416,7 @@ def fetch_workday(
     # instead of passing silently.
     max_pages: int = 150,
     detail_filter=None,
+    detail_cache=None,
 ) -> tuple[list[RawPosting], Response]:
     """Workday lists postings without descriptions, so each in-scope posting
     needs a second request. `detail_filter` decides which ones are worth it:
@@ -450,6 +469,12 @@ def fetch_workday(
         path = (posting.payload or {}).get("externalPath")
         if not path:
             continue
+        # Already read on a recent run and unchanged: reuse it rather than
+        # spending a throttled request. Workday reports no `updated_at`, so
+        # the cache's age window is what eventually re-reads an edited
+        # posting -- see collect/cache.py.
+        if detail_cache is not None and detail_cache.apply(posting):
+            continue
         detail = session.get_json(f"{base}{path}")
         if detail.ok:
             info = detail.data.get("jobPostingInfo") or {}
@@ -462,6 +487,8 @@ def fetch_workday(
             places = [p for p in places if p]
             if places:
                 posting.location_raw = "; ".join(places)
+            posting.payload = {**(posting.payload or {}),
+                               "detail_fetched_at": _today_iso()}
     return out, (last or Response(base, 0, error="no pages fetched"))
 
 
