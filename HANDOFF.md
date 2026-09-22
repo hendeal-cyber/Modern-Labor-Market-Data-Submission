@@ -243,10 +243,16 @@ pattern in the confirmations is worth more than the count:
   Ameren Illinois is `ameren`, not `amerenillinois`. Avangrid is `iberdrola`.
   No slug derivation from the subsidiary name reaches either. When a utility is
   a subsidiary, **try the parent's name as the tenant.**
-- **Workday site names matter and are case-sensitive.** `External` is used by
-  Xcel, NRECA and Ameren; `ExternalSite` by Eversource. Both are now probed.
-  A tenant using an unprobed site name reads as *having no board at all*, which
-  is how NiSource and Eversource were missed.
+- **Casing is part of the token, on every platform.** NiSource's Workday site
+  is `/NiSource`, not `/nisource`. Eversource's is `/ExternalSite`, not
+  `/External`. GridPoint's SmartRecruiters token is `Gridpoint` — lower-case p,
+  which is not how the company spells its own name. Guessing the casing from
+  the brand fails, and a board probed with the wrong casing reads as *not
+  existing at all*, which is how NiSource and Eversource were both missed.
+- **Workday site names are a small, learnable set.** `External` (Xcel, NRECA,
+  Ameren), `ExternalSite` (Eversource), `AEPCareerSite` (AEP), `AltaGas` (WGL —
+  the parent's name), or the employer's own name. All are probed now; a tenant
+  using something else will still read as boardless.
 - **Tokens carry suffixes.** `gridmaticinc`, `arcadiacareers`, `thebrattlegroup`,
   `octoenergy`.
 - **Query shape:** `"<company> careers job openings greenhouse board apply
