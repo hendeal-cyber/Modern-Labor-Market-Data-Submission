@@ -82,6 +82,121 @@ Written 2026-09-21. Read this first; it is the fastest path to being useful.
 
 ---
 
+## 0.5 THE NEXT TASK — finish the token verification pass
+
+**This is the single highest-value thing left, and it is the owner's explicit
+instruction: verify every remaining source until each is either confirmed or
+denied.** It is also the only thing that fixes the two failing pre-registered
+conditions, because those are cluster problems and only employers fix them.
+
+### Why this and nothing else
+
+More postings from boards already resolving makes concentration **worse**.
+Reading the manifest shows the ceiling plainly: **39 boards resolve but only
+23 contribute a disclosed-pay observation**, and the gap is not a bug.
+
+- **Collect but nothing in scope** — T5 Data Centers 90 postings → 0, Clearway
+  50 → 0, Silicon Ranch, Origis, Tract. Construction and facilities work. The
+  role screen is correct to drop them.
+- **In scope but no pay** — Vistra 8 → 0, CyrusOne 5 → 0, PJM, Duke Indiana,
+  Wabash Valley. All non-mandate states. They already count in the disclosure
+  model's denominator.
+
+So: **230 unresolved employers**, by industry —
+utility 59, cooperative 31, retailer 30, data_center 23, developer 23, energy_analytics 22, consulting 19, grid_vendor 15, grid_operator 8.
+
+### The method, including what does NOT work
+
+- **`WebSearch` works. `WebFetch` does not** — it is blocked for every ATS host
+  *and* for ordinary corporate careers pages (`sandc.com` was refused). So a
+  token is confirmed by finding a **live job URL in search results**, never by
+  opening the careers page.
+- **Query shape matters a lot.** What worked:
+  `"<company> careers job openings greenhouse board apply <city>"` — the engine
+  surfaces `job-boards.greenhouse.io/<token>/jobs/<id>` in the results list.
+  What failed: `boards.greenhouse.io OR jobs.lever.co OR ...` boolean forms, and
+  quoting the host directly. Roughly **1 in 2** with the good shape.
+- **Confirm from the URL, not the prose.** The summary text often says "no
+  information found" while the results list contains the board URL. Read the
+  links.
+
+### Prioritise by mandate state, not by company size
+
+A new board only becomes a **cluster** if its postings disclose pay. Disclosure
+is near-universal in mandate states and about a quarter elsewhere, so an
+employer headquartered in CA, CO, CT, DC, HI, IL, MD, MA, MN, NV, NJ, NY, RI,
+VT, VA or WA is worth several times one that is not. The full table with
+effective dates is `pay_mandate_states` in `config/scope.yaml`.
+
+Within that, energy-analytics firms and economics consultancies beat developers
+and data-centre builders: they post analyst roles the taxonomy admits, and they
+tend to sit on Greenhouse, Lever or Ashby, which resolve reliably and return
+full description text plus structured compensation.
+
+### Build a ledger first
+
+I was about to do this when the session ended, and it is the right first step.
+Nothing durable currently records verification *attempts* — only outcomes — so
+an interrupted pass gets re-chased. Create `config/token-verification.yaml`
+keyed by employer with `status` (`confirmed` / `denied` / `unchecked`), the date,
+the evidence URL for a confirmation, and the reason for a denial. Then work it
+in priority order and commit as you go, so a usage-limit stop costs nothing.
+
+### Already confirmed — do not re-verify (27 employers)
+
+Hand-verified tokens carry `verified: true` and a `careers_url` in
+`config/employers.yaml`. The four from the last pass, all wrong in ways no slug
+derivation reaches:
+
+| Employer | Token | Was |
+|---|---|---|
+| Arcadia | greenhouse `arcadiacareers` | `arcadiapower`, `arcadia` |
+| The Brattle Group | greenhouse `thebrattlegroup` | `brattle` |
+| New York ISO | greenhouse `nyiso` | `newyorkiso` + 2 variants |
+| ERCOT | workday `ercot` / `ercot_careers` | site was `careers` |
+
+### Already denied — do not re-chase (9 marked `ats_unidentified`)
+
+Analysis Group, Concentric Energy Advisors, Enverus, Hoosier Energy, ICF, ISO New England, NERA Economic Consulting, Sargent and Lundy, Uplight.
+
+Notable: **Concentric Energy Advisors** runs its own portal, and its
+Marlborough MA Energy Analyst posts **$93,000 disclosed** — an exact role and
+mandate-state fit. Genuinely unreachable. **NERA** routes to parent company
+Marsh, where employer attribution would be wrong and the sector gate would
+rightly reject it. **ICF** is Workday behind the `careers.icf.com` vanity
+domain with the tenant not exposed.
+
+Separately blocked with `blocked_reason` (7): Citizens Energy Group, ComEd, Constellation Energy, Exelon, Peoples Gas (WEC Energy Group), TierPoint, Tri-State Generation and Transmission —
+iCIMS and SuccessFactors, verified closed by reading the terms, not assumed.
+See §17 of `docs/limitations.md` before revisiting.
+
+### One open anomaly
+
+**Ascend Analytics is correctly verified and returns nothing.** 16 other
+Greenhouse boards resolved on the same run, so it is not an API problem. Likely
+an empty board, or its only open req is the evergreen "General Interest"
+posting the API does not list. If it stays empty across several runs, look
+closer rather than changing the token.
+
+### Honest expectation
+
+The last pass converted 4 tokens into roughly 3 expected clusters. Reaching 30
+from 23 needs on the order of **10 more confirmed boards in mandate
+states**, which at a 1-in-2 search hit rate and 1-2 searches per employer is a
+few hundred searches. It is worth doing and it will not finish in one sitting —
+which is exactly why the ledger comes first.
+
+### A collection run was in flight when this was written
+
+Dispatched on the four new tokens and **had not committed yet**. Check it
+before dispatching another: `git fetch` and see whether the remote is ahead. If
+it landed, rebuild (`build_dataset.py`, `analyze.py`, then the `scripts/make_*`
+generators) and **read the pay extremes before believing the numbers** — a
+Warsaw role at $309,500 entered the US sample on exactly this kind of frame
+expansion.
+
+---
+
 ## 1. What the study is
 
 A regression of **advertised pay** on attributes stated in early-career job
