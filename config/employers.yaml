@@ -509,13 +509,15 @@ utilities_batch2:
       ashby: [americanelectricpower, american-electric-power, americanelectric]
       workday: [{tenant: americanelectricpower, site: careers}]
     verified: false
+  # Verified 2026-09-22: alliantenergy.wd1.myworkdayjobs.com/alliant. The site
+  # is a TRUNCATION of the tenant -- not a variant any rule generates. WI/IA,
+  # neither a mandate state, so expect postings rather than a cluster.
   - name: Alliant Energy
+    industry: utility
+    careers_url: https://alliantenergy.wd1.myworkdayjobs.com/alliant
     candidates:
-      greenhouse: [alliantenergy, alliant-energy, alliant]
-      lever: [alliantenergy, alliant-energy, alliant]
-      ashby: [alliantenergy, alliant-energy, alliant]
-      workday: [{tenant: alliantenergy, site: careers}]
-    verified: false
+      workday: [{tenant: alliantenergy, site: alliant, instance: wd1}]
+    verified: true
   # Verified 2026-09-22: iberdrola.wd3.myworkdayjobs.com/en-US/Iberdrola.
   # The tenant is the PARENT, Iberdrola; Avangrid is its US business, so no
   # slug derivation from "Avangrid" could reach it.

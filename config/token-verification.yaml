@@ -57,10 +57,17 @@ employers:
     reason: Careers on aligneddc.com; no supported ATS host surfaced.
     checked_on: '2026-09-22'
   Alliant Energy:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: alliantenergy/alliant/wd1
+    evidence: https://alliantenergy.wd1.myworkdayjobs.com/alliant
+    checked_on: '2026-09-22'
+    note: 112 open jobs. Wisconsin/Iowa -- neither is a mandate state, so expect postings more than a
+      cluster. The site 'alliant' is a TRUNCATION of the tenant and is not among the variants workday_site_variants
+      generates, so no derivation reaches it.
   Ameren:
     status: denied
     industry: utility
