@@ -276,20 +276,26 @@ whoever continues:
 
 | Industry | Searched | Confirmed | Rate |
 |---|---|---|---|
-| energy analytics | 14 | 5 | **36%** |
-| retailer | 8 | 4 | **50%** |
-| grid operator | 4 | 2 | 50% |
+| energy analytics | 13 | 4 | **31%** |
+| retailer | 12 | 4 | **33%** |
 | utility | 19 | 3 | 16% |
 | cooperative | 11 | 1 | 9% |
-| consulting | 19 | 1 | 5% |
-| developer / data_center / grid_vendor | 29 | **0** | **0%** |
+| consulting | 18 | 0 | 0% |
+| developer / data_center / grid_vendor / gas_utility / grid_operator | 16 | **0** | **0%** |
+| **overall** | **89** | **12** | **13%** |
 
-So among the 144 unlocated employers, the expected yield is roughly **21
-confirmations, and about half of them sit in the 23 retailers and 32
-utilities**. Developers, data-center operators and grid vendors returned
-nothing at all in 29 attempts — skip them unless something else changes.
-Cooperatives are near-hopeless for a structural reason (see below), not for
-want of trying.
+Among the 140 still unchecked the expected yield is roughly **14
+confirmations**, concentrated in the 19 retailers (≈6) and 32 utilities (≈5).
+Developers, data-center operators, grid vendors and gas utilities returned
+nothing in 16 attempts; consulting nothing in 18. Cooperatives fail for a
+structural reason (below), not for want of trying.
+
+**Treat these rates as soft.** An earlier version of this table read 50% for
+retailers on 8 searches; four more searches took it to 33%, and the projected
+total fell from 21 to 14. They are small samples and they move. The *ordering*
+has been stable — retailers and utilities ahead of everything else, the
+hardware-ish industries at zero — and the ordering is what the targeting
+advice rests on.
 
 **Do not expect the concentration condition to be reachable.** Invenergy
 supplies 39 observations; getting its share under 25% needs the usable sample

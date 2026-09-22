@@ -293,10 +293,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Calpine Energy Solutions:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: calpine.com/careers and calpinesolutions.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Camus Energy:
     status: denied
     industry: energy_analytics
@@ -810,10 +812,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   IGS Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: igs.com/our-story/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   ISO New England:
     status: denied
     reason: no supported ATS identified (from employers.yaml)
@@ -849,10 +853,12 @@ employers:
       lost this way.
     checked_on: '2026-09-22'
   Inspire Clean Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: inspire-ce.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Intersect Power:
     status: unchecked
     industry: developer
@@ -1334,10 +1340,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Rhythm Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: Rippling ATS (ats.rippling.com/rhythm-energy/jobs) plus careers-page.com. Neither is supported.
+      Adds Rippling to the unsupported-platform list.
+    checked_on: '2026-09-22'
   S&C Electric Company:
     status: denied
     industry: grid_vendor
