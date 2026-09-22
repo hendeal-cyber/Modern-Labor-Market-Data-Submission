@@ -299,11 +299,13 @@ employers:
       In, Wellfound, Climatebase) carry the listings, not an ATS board.
     checked_on: '2026-09-22'
   CenterPoint Energy Indiana:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: indianapolis
+    reason: centerpointenergy.com career center; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Central Iowa Power Cooperative:
     status: unchecked
     industry: cooperative
@@ -469,11 +471,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Dakota Electric Association:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: minneapolis
+    reason: dakotaelectric.com/careers; no supported ATS host surfaced. Fifth cooperative lost this way.
+    checked_on: '2026-09-22'
   DartPoints:
     status: unchecked
     industry: data_center
@@ -682,11 +686,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Genie Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    reason: Trakstar, formerly Recruiterbox (genieenergy.hire.trakstar.com/jobs). Not among the seven
+      supported adapters.
+    checked_on: '2026-09-22'
   Gexa Energy:
     status: unchecked
     industry: retailer
@@ -940,11 +947,15 @@ employers:
     reason: Paylocity (recruiting.paylocity.com). Not among the seven supported adapters.
     checked_on: '2026-09-22'
   MISO (Midcontinent ISO):
-    status: unchecked
+    status: denied
     industry: grid_operator
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: indianapolis
+    reason: 'careers.misoenergy.org -- a vanity domain with the ATS not exposed, the same pattern as ICF
+      behind careers.icf.com. Probing vanity hosts is out of scope. A real loss: Carmel IN is inside the
+      Indianapolis radius and ''Data Analyst II/Senior Data Analyst'' is an exact fit.'
+    checked_on: '2026-09-22'
   Madison Gas and Electric:
     status: unchecked
     industry: utility
@@ -1067,11 +1078,14 @@ employers:
     resolved_in_last_run: true
     metro: chicago
   Nicor Gas (Southern Company Gas):
-    status: unchecked
+    status: denied
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: Southern Company Gas subsidiary; hiring runs through the southerncompany.jobs / .jobs DirectEmployers
+      network already denied for the parent. No supported ATS.
+    checked_on: '2026-09-22'
   North Carolina EMC:
     status: unchecked
     industry: cooperative
@@ -1247,11 +1261,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   PowerHouse Data Centers:
-    status: unchecked
+    status: denied
     industry: data_center
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: northern_virginia
+    reason: Own site at powerhousedata.com; no supported ATS host surfaced. A division of AREP.
+    checked_on: '2026-09-22'
   Prime Data Centers:
     status: unchecked
     industry: data_center
@@ -1333,11 +1349,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Santanna Energy Services:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: Own careers page at santannaenergyservices.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Santee Cooper:
     status: unchecked
     industry: utility
@@ -1371,11 +1389,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Sempra:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 3_known_metro
     resolved_in_last_run: false
     metro: los_angeles
+    reason: sempra.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Sense:
     status: confirmed
     industry: energy_analytics
@@ -1415,11 +1435,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Soltage:
-    status: unchecked
+    status: denied
     industry: developer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    reason: No ATS -- soltage.com/about/careers takes resumes by email to HR@soltage.com.
+    checked_on: '2026-09-22'
   South Jersey Industries:
     status: unchecked
     industry: gas_utility
@@ -1709,11 +1731,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Wright-Hennepin Cooperative Electric:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: minneapolis
+    reason: whe.org/careers; no supported ATS host surfaced. Sixth cooperative lost this way.
+    checked_on: '2026-09-22'
   Xcel Energy:
     status: confirmed
     evidence: resolved in collection manifest
