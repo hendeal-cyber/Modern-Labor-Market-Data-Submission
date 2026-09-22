@@ -1829,12 +1829,13 @@ cooperatives_batch3:
       ashby: [indianaelectriccooperatives, indiana-electric-cooperatives, indianaelectric]
       workday: [{tenant: indianaelectriccooperatives, site: careers}]
     verified: false
+  # Checked 2026-09-22: syndicates to careers.electric.coop (NRECA's
+  # Cooperative Career Center; not automated until its terms can be read --
+  # limitations 9b) and careers.basinelectric.com. It posts exact-fit roles
+  # ("Market Operations Analyst II, III, or Sr (Energy Market)").
   - name: Basin Electric Power Cooperative
-    candidates:
-      greenhouse: [basinelectricpowercooperative, basin-electric-power-cooperative, basinelectric]
-      lever: [basinelectricpowercooperative, basin-electric-power-cooperative, basinelectric]
-      ashby: [basinelectricpowercooperative, basin-electric-power-cooperative, basinelectric]
-      workday: [{tenant: basinelectricpowercooperative, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Old Dominion Electric Cooperative
     candidates:
@@ -1871,12 +1872,12 @@ cooperatives_batch3:
       ashby: [seminoleelectriccooperative, seminole-electric-cooperative, seminoleelectric]
       workday: [{tenant: seminoleelectriccooperative, site: careers}]
     verified: false
+  # Checked 2026-09-22: ApplicantPro (applicantpro.com/openings/opc/...),
+  # which no adapter supports. A real loss: its Financial Systems Analyst
+  # discloses $99,360-$136,620 and it posts load-forecasting roles.
   - name: Oglethorpe Power
-    candidates:
-      greenhouse: [oglethorpepower, oglethorpe-power, oglethorpe]
-      lever: [oglethorpepower, oglethorpe-power, oglethorpe]
-      ashby: [oglethorpepower, oglethorpe-power, oglethorpe]
-      workday: [{tenant: oglethorpepower, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: East Kentucky Power Cooperative
     candidates:
@@ -1948,12 +1949,11 @@ cooperatives_batch3:
       ashby: [southmississippielectric, south-mississippi-electric, southmississippi]
       workday: [{tenant: southmississippielectric, site: careers}]
     verified: false
+  # Checked 2026-09-22: its own jobs.mypec.com, plus dejobs.org syndication;
+  # platform not identified.
   - name: Pedernales Electric Cooperative
-    candidates:
-      greenhouse: [pedernaleselectriccooperative, pedernales-electric-cooperative, pedernaleselectric]
-      lever: [pedernaleselectriccooperative, pedernales-electric-cooperative, pedernaleselectric]
-      ashby: [pedernaleselectriccooperative, pedernales-electric-cooperative, pedernaleselectric]
-      workday: [{tenant: pedernaleselectriccooperative, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Jackson EMC
     candidates:

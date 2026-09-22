@@ -236,10 +236,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: true
   Basin Electric Power Cooperative:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: careers.electric.coop (NRECA, terms unread, limitations 9b) and careers.basinelectric.com
+    checked_on: '2026-09-22'
   Bidgely:
     status: denied
     industry: energy_analytics
@@ -1251,10 +1253,12 @@ employers:
       mandate state, so this enriches the non-mandate side of the disclosure contrast even if it adds
       no cluster.
   Oglethorpe Power:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: ApplicantPro (applicantpro.com/openings/opc/); unsupported
+    checked_on: '2026-09-22'
   Old Dominion Electric Cooperative:
     status: unchecked
     industry: cooperative
@@ -1337,10 +1341,12 @@ employers:
     reason: pearlx.com/careers; no supported ATS host surfaced.
     checked_on: '2026-09-22'
   Pedernales Electric Cooperative:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own jobs.mypec.com; platform not identified
+    checked_on: '2026-09-22'
   Peoples Gas (WEC Energy Group):
     status: denied
     reason: 'blocked: no_free_public_api'
