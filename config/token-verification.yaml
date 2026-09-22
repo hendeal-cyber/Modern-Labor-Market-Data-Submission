@@ -70,6 +70,7 @@ employers:
       given no token: one board must not become two employer clusters, which would inflate the distinct-employer
       count -- a failing pre-registered condition -- in the flattering direction.'
     checked_on: '2026-09-22'
+    duplicate_of: Ameren Illinois
   Ameren Illinois:
     status: confirmed
     industry: utility
@@ -295,7 +296,7 @@ employers:
   CPower Energy:
     status: confirmed
     industry: energy_analytics
-    priority: 2_analyst_roles_good_ats
+    priority: 1_mandate_metro
     resolved_in_last_run: false
     platform: workable
     token: cpower-energy-management
@@ -303,6 +304,7 @@ employers:
     checked_on: '2026-09-22'
     note: Baltimore MD, a mandate state. Demand-response / virtual power plant company -- 'demand response'
       is in STRONG_TERMS, so the sector fit is direct. Workable is supported.
+    metro: northern_virginia
   California ISO:
     status: unchecked
     industry: grid_operator
@@ -461,6 +463,7 @@ employers:
     reason: Careers on coresite.com/about/careers; no supported ATS host surfaced. Discloses pay (Denver,
       CO mandate) -- a real loss.
     checked_on: '2026-09-22'
+    duplicate_of: American Tower
   Corn Belt Power Cooperative:
     status: unchecked
     industry: cooperative
@@ -626,6 +629,7 @@ employers:
     resolved_in_last_run: false
     reason: no supported ATS identified (from employers.yaml)
     checked_on: '2026-09-22'
+    duplicate_of: Enel North America
   Energy Harbor:
     status: unchecked
     industry: retailer
@@ -754,7 +758,7 @@ employers:
   GridPoint:
     status: confirmed
     industry: energy_analytics
-    priority: 2_analyst_roles_good_ats
+    priority: 1_mandate_metro
     resolved_in_last_run: false
     platform: smartrecruiters
     token: Gridpoint
@@ -762,6 +766,7 @@ employers:
     checked_on: '2026-09-22'
     note: Arlington VA, a mandate state. SmartRecruiters is supported. Small board (3-6 open roles), so
       expect few observations.
+    metro: northern_virginia
   Gridmatic:
     status: confirmed
     industry: energy_analytics
@@ -872,6 +877,7 @@ employers:
     reason: SAP SuccessFactors (career4.successfactors.com/career?company=amwater), same board as Illinois
       American Water. No free public API.
     checked_on: '2026-09-22'
+    duplicate_of: Illinois American Water
   Indiana Electric Cooperatives:
     status: denied
     industry: cooperative
@@ -1139,6 +1145,7 @@ employers:
     reason: Southern Company Gas subsidiary; hiring runs through the southerncompany.jobs / .jobs DirectEmployers
       network already denied for the parent. No supported ATS.
     checked_on: '2026-09-22'
+    duplicate_of: Southern Company Gas
   North Carolina EMC:
     status: unchecked
     industry: cooperative
@@ -1760,6 +1767,7 @@ employers:
     checked_on: '2026-09-22'
     note: Same board as Washington Gas (both WGL/AltaGas subsidiaries). Keep ONE of the two in the frame
       or the employer will be double-counted as two clusters off one board.
+    duplicate_of: Washington Gas
   WPS Resources:
     status: unchecked
     industry: utility

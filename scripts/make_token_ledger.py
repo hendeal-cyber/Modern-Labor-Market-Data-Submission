@@ -153,6 +153,15 @@ def main() -> int:
         row["industry"] = ind
         row["priority"] = priority(e, ind)
         row["resolved_in_last_run"] = resolved
+        # Carried through so a confirmed employer with no token in the frame
+        # reads as a deliberate decision rather than an oversight. WGL Energy
+        # is confirmed -- its board was found and verified -- and deliberately
+        # given no candidates, because it shares that board with Washington
+        # Gas and one board must not become two employer clusters.
+        if e.get("duplicate_of"):
+            row["duplicate_of"] = e["duplicate_of"]
+        else:
+            row.pop("duplicate_of", None)
         if e.get("metro"):
             row["metro"] = e["metro"]
 
