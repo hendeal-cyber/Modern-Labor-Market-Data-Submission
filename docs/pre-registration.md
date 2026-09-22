@@ -107,9 +107,11 @@ null cannot be quietly dropped.
 ## 6. Inference and stopping rules
 
 - **Clustered standard errors by employer.** With few clusters these
-  under-cover; a simulation in `tests/test_analyze.py` measures 88–90% coverage
-  against a nominal 95%. **Wild cluster bootstrap is required before any
-  significance claim** when clusters number under 30.
+  under-cover; a simulation in `tests/test_analyze.py` measures 92% coverage
+  against a nominal 95% and rejects a cluster-level placebo at 9.5% against a
+  nominal 5%. **Wild cluster bootstrap is required before any significance
+  claim** when clusters number under 30. Implemented 2026-09-22 — see the
+  amendment in §8; before that date it was required here and not computed.
 - **Interpretability gate.** `analyze.py` prints an unmissable block whenever
   observations per regressor fall below 10 or clusters below 30. **That block
   is removed only when the data earns it, never to make the paper look
@@ -174,3 +176,65 @@ rejected: a midpoint rank is a rung nobody is hired into.
 
 **Prompted by seeing results?** Found by auditing the assignments, not by
 looking at outcomes. The effect on estimates was not checked before deciding.
+
+### 2026-09-22 — the required wild cluster bootstrap was implemented, and it changed seven verdicts
+
+**What changed.** §6 above has required a wild cluster bootstrap before any
+significance claim since this document was committed. It was cited in eight
+places across the code, paper and limitations and **never computed**. It is now
+estimated on every run while clusters remain under 30: the restricted
+(null-imposed) variant of Cameron, Gelbach and Miller (2008), Rademacher
+weights drawn once per employer, 9,999 replications.
+
+**What it did to the results.** Nothing to the point estimates; a great deal to
+what the study claims. **Seven of the nine core coefficients significant at 5%
+under clustered standard errors do not survive:** `degree_required`
+(0.003 → 0.069), `degree_stem` (0.040 → 0.160), `remote_eligible`
+(0.002 → 0.102), `region_northeast` (0.018 → 0.253), `region_south`
+(0.013 → 0.212), `region_west` (0.044 → 0.221) and `industry_data_center`
+(0.035 → 0.102). Only `seniority_rank` (0.000 → 0.005) and `skill_ml_ai`
+(0.000 → 0.003) remain significant.
+
+Two pre-registered hypotheses move as a result. **H7** (data centers pay more)
+goes from supported to inconclusive. **H5** goes from *contradicted* to
+inconclusive: the negative sign on a required degree stands, but at 23 clusters
+it cannot be distinguished from zero. Both are now reported that way.
+
+**Prompted by seeing results? No — the opposite.** This was required in advance
+by this document, and implementing it destroyed most of the study's
+significance claims. It is the clearest case in the project of the
+pre-registration constraining the result rather than the result shaping the
+report.
+
+**Replication count.** 9,999, not the more common 999. At 999 replications
+`degree_required` returned 0.049, 0.063 and 0.082 on three seeds — straddling
+the 0.05 line its verdict is read from. At 9,999 it is stable at 0.066–0.073
+across four seeds. Monte Carlo error has to be small relative to the decision
+being made.
+
+### 2026-09-22 — interpretability gate corrected from 20 clusters to the 30 stated here
+
+**What changed.** §6 specifies that the interpretability block fires whenever
+clusters fall below 30. `analyze.py` tested `n_clusters < 20`.
+
+**Why it matters.** At the 23 clusters realized, the cluster warning did not
+fire at all, and had observations per regressor risen above 10 the entire block
+would have disappeared while a pre-registered condition still failed. The
+deviation was in the direction that flatters the study. Pinned by a test.
+
+### 2026-09-22 — the simulation justifying clustered errors had no within-cluster correlation
+
+**What changed.** `simulate()` in `tests/test_analyze.py` drew an
+employer-level shock as `rng.normal(0, 0.04) if i < len(employers) else 0`,
+which gave each employer's shock to exactly **one** of its ~50 postings. The
+comment beside it claimed it "makes clustered SEs the correct choice". It did
+not: the fixture had no within-employer error correlation at all. One shock per
+employer is now applied to every posting that employer makes.
+
+**What it corrects.** The 88–90% coverage figure cited in §6, in
+`docs/limitations.md` and in the paper was measured on that fixture, so the
+evidence offered for clustering had been computed on data where clustering does
+not bind. The corrected figure is 92%. It also explains why a placebo-based
+test of the bootstrap's per-cluster weighting passed under deliberate
+sabotage — there was no correlation to preserve — and why that property is now
+pinned structurally instead.

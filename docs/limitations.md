@@ -225,11 +225,21 @@ postings each. But the study's employer frame is small — on the order of 10–
 employers actually posting in scope — and cluster-robust standard errors are
 known to be biased downward when the number of clusters is small. Simulation in
 `tests/test_analyze.py` reproduces this: with 12 employers, nominal 95%
-confidence intervals covered the true coefficient about 88% of the time.
+confidence intervals cover the true coefficient 92% of the time, and a
+cluster-level placebo is rejected at 9.5% against a nominal 5%.
 
-Read p-values near conventional thresholds with that in mind. If the realized
-employer count stays low, a wild cluster bootstrap is the appropriate remedy and
-should be run before reporting any headline significance claim.
+**The remedy is now applied rather than recommended.** A wild cluster bootstrap
+(Cameron, Gelbach & Miller 2008, restricted variant, Rademacher weights, 9,999
+replications) runs on every estimation while clusters stay under 30, and its
+p-values are the ones the paper reports. It matters: **seven of the nine core
+coefficients significant at 5% under clustered standard errors do not survive
+it.** Only `seniority_rank` and `skill_ml_ai` do.
+
+An earlier version of this section cited 88% coverage. That figure came from a
+fixture whose employer-level shock reached one posting per employer instead of
+all of them, so the evidence for clustering had been measured on data with no
+within-employer correlation. Both the fixture and the figure are corrected; see
+`docs/pre-registration.md` §8.
 
 ## 10. The population is national and all-seniority, and that was not the original design
 
@@ -289,8 +299,10 @@ The pre-registration named three conditions under which the sample would be
 "met in letter and not in substance". Two are unresolved: distinct employers
 remain below 30, and the largest single employer supplies well over a quarter
 of observations. Cluster-robust standard errors under-cover with few clusters —
-measured at 88–90% against a nominal 95% in simulation — so **no claim should
-rest on a marginal p-value without a wild cluster bootstrap.**
+measured at 92% against a nominal 95% in simulation — so **every significance
+claim is read off the wild cluster bootstrap**, which is implemented and run on
+every estimation. Under it, seven of the nine coefficients clustered errors
+called significant are inconclusive.
 
 More employers, not more postings, is what fixes this.
 

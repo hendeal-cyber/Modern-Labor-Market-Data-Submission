@@ -205,7 +205,7 @@ function bullets(s, items, x, y, w, h) {
     ["Disclosure is selected", "Indiana has no mandate, so its disclosing postings are self-selected."],
     ["Exelon and ComEd are missing", "They run iCIMS: its feed goes only to approved job boards, its API is partner-gated, no syndication feed exists, and its terms bar automated access. Verified by reading them, not assumed."],
     ["No historical backfill", "ATS APIs serve only open postings, so the panel starts when collection starts."],
-    ["Few employer clusters", "Clustered standard errors under-covered at 88% in simulation with 12 clusters."],
+    ["Few employer clusters", "Clustered errors cover at 92% against a nominal 95%. Significance is read off a wild cluster bootstrap, which leaves only seniority and the ML/AI skill premium standing."],
   ];
   let y = 1.35;
   for (const [head, body] of items) {

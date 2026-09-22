@@ -95,6 +95,73 @@ def run():
     # 13. The paper must be finished, not a draft.
     chk("paper carries no TODO markers", "TODO" not in paper)
 
+    # --- 14-19. Added 2026-09-22, each pinning a defect found by reading the
+    # real artifacts rather than by any test failing.
+
+    # 14. `distinct_employers` must describe the ESTIMATION sample. It counted
+    # the whole in-scope corpus, so results.md and the deck reported 30
+    # employers beside 137 estimation rows when the cluster count was 23 --
+    # which is exactly the pre-registered target, shown as met while failing.
+    chk("distinct_employers equals the cluster count",
+        a.get("distinct_employers") == a.get("n_clusters"),
+        f"distinct_employers={a.get('distinct_employers')} "
+        f"n_clusters={a.get('n_clusters')}")
+    chk("distinct_employers equals employers among disclosed rows",
+        a.get("distinct_employers") == len({r["employer"] for r in disc}))
+
+    # 15. results.md must not print a bare employer count that reads as the
+    # cluster count while describing the wider corpus.
+    results_md = ANALYSIS / "results.md"
+    if results_md.exists():
+        rmd = results_md.read_text()
+        chk("results.md labels which sample each employer count describes",
+            "estimation sample" in rmd and "all postings in scope" in rmd)
+
+    # 16. The bootstrap is REQUIRED by pre-registration section 6 below 30
+    # clusters. It was cited in eight places and never computed.
+    gate = 30
+    if a.get("n_clusters", gate) < gate:
+        boot = a.get("wild_cluster_bootstrap") or {}
+        chk("wild cluster bootstrap ran (pre-registration requires it "
+            f"below {gate} clusters)", bool(boot.get("by_variable")))
+        if boot.get("by_variable"):
+            core = a["models"]["core"]["coefficients"]
+            fitted = [c for c in core if c != "const"]
+            chk("bootstrap covers every fitted core regressor",
+                set(boot["by_variable"]) == set(fitted),
+                str(set(fitted) ^ set(boot["by_variable"])))
+            # 17. No bootstrap p may be exactly 0: the observed statistic is
+            # itself a draw from the null, so (extreme + 1) / (reps + 1).
+            chk("no bootstrap p-value is exactly zero",
+                all(v["p_value"] != 0.0 for v in boot["by_variable"].values()
+                    if v.get("p_value") is not None))
+            # 18. The paper must REPORT the bootstrap, not just cite it. Seven
+            # of nine clustered-significant coefficients do not survive here,
+            # so a paper that quietly kept reading the clustered column would
+            # be making claims its own pre-registered procedure rejects.
+            chk("paper reports the bootstrap p-values",
+                "Bootstrap p" in paper or "bootstrap p" in paper)
+            overturned = [nm for nm, b in boot["by_variable"].items()
+                          if b.get("p_value") is not None
+                          and core.get(nm, {}).get("p_value", 1) < 0.05
+                          <= b["p_value"]]
+            chk("paper names the coefficients the bootstrap overturns",
+                not overturned
+                or all(f"`{nm}`" in paper for nm in overturned),
+                str([nm for nm in overturned if f"`{nm}`" not in paper]))
+
+    # 19. The coverage figure offered as evidence for clustering must be the
+    # measured one. 88% was computed on a fixture whose employer shock reached
+    # one posting per employer, i.e. on data with no within-employer
+    # correlation -- so the justification for clustering had been measured
+    # where clustering does not bind.
+    limitations = ROOT / "docs" / "limitations.md"
+    if limitations.exists():
+        lim = limitations.read_text()
+        stale = [d for d in ("88-90%", "88\u201390%") if d in lim or d in paper]
+        chk("no stale cluster-coverage figure in paper or limitations",
+            not stale, str(stale))
+
     print(f"consistency: {n - len(fails)}/{n} checks passed")
     for x in fails:
         print("  FAIL", x)

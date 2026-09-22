@@ -27,6 +27,19 @@ INTERCEPT = np.log(85000)
 def simulate(n=600, seed=7):
     rng = np.random.default_rng(seed)
     employers = [f"Employer{i}" for i in range(12)]
+    # One shock per EMPLOYER, applied to every posting that employer makes.
+    # It used to read `rng.normal(0, 0.04) if i < len(employers) else 0` inside
+    # the row loop, which gave each employer's shock to exactly ONE of its ~50
+    # postings -- an idiosyncratic bump on a single row, not a cluster effect.
+    # So the fixture had no within-employer error correlation at all while its
+    # comment claimed it "makes clustered SEs the correct choice", and every
+    # property that depends on clustering was being measured on data where
+    # clustering does not bind: the CI coverage figure, and the bootstrap's
+    # per-cluster weighting, which a sabotage check could not distinguish from
+    # per-observation weighting because there was no correlation to preserve.
+    # 0.06 log points of employer-level dispersion is conservative beside the
+    # real sample, where employer pay levels differ by far more than that.
+    shocks = {e: float(rng.normal(0, 0.06)) for e in employers}
     rows = []
     for i in range(n):
         d = {k: int(rng.random() < 0.5) for k in TRUE
@@ -41,8 +54,7 @@ def simulate(n=600, seed=7):
         for name in ("northeast", "south", "west"):
             d[f"region_{name}"] = int(region == name)
         emp = employers[i % len(employers)]
-        # Employer-level shock: makes clustered SEs the correct choice.
-        shock = rng.normal(0, 0.04) if i < len(employers) else 0
+        shock = shocks[emp]
         log_pay = INTERCEPT + sum(TRUE[k] * d[k] for k in TRUE) + rng.normal(0, 0.10) + shock
         mid = float(np.exp(log_pay))
         row = {
@@ -111,7 +123,7 @@ def run():
         tmp = pathlib.Path(tmp)
         ds = tmp / "postings.csv"
         write(simulate(), ds)
-        rep = run_analysis(ds, tmp / "out")
+        rep = run_analysis(ds, tmp / "out", bootstrap_reps=0)
 
         if rep["status"] != "ok":
             fails.append(f"status={rep['status']}")
@@ -159,7 +171,7 @@ def run():
         # Small-N path must refuse to estimate rather than produce noise.
         small = tmp / "small.csv"
         write(simulate(n=15), small)
-        rep_small = run_analysis(small, tmp / "out_small")
+        rep_small = run_analysis(small, tmp / "out_small", bootstrap_reps=0)
         if rep_small["status"] != "insufficient data":
             fails.append(f"small-N status={rep_small['status']} want 'insufficient data'")
 
@@ -171,7 +183,7 @@ def run():
             tmp2 = pathlib.Path(tmp2)
             ds2 = tmp2 / "p.csv"
             write(simulate(seed=seed), ds2)
-            r2 = run_analysis(ds2, tmp2 / "o")
+            r2 = run_analysis(ds2, tmp2 / "o", bootstrap_reps=0)
             c2 = r2["models"]["core"]["coefficients"]
             for name, truth in TRUE.items():
                 if name in c2:
@@ -184,6 +196,8 @@ def run():
     else:
         print(f"  CI coverage {coverage:.0%} over {total} intervals across 5 seeds")
 
+    fails += bootstrap_checks()
+
     # Power calculation sanity: more data detects smaller effects.
     if not (detectable_effect(500, 10) < detectable_effect(100, 10)):
         fails.append("power: larger N should detect smaller effects")
@@ -192,6 +206,127 @@ def run():
     for f in fails:
         print("  FAIL", f)
     return len(fails)
+
+
+
+# --- Wild cluster bootstrap -------------------------------------------------
+# The pre-registration requires this before any significance claim below 30
+# clusters, so it has to be tested like a load-bearing part, not a diagnostic.
+#
+# The rule this project learned twice the hard way — validate a guard against
+# the REAL artifact, never a reconstruction — is why bootstrap_t_matches_
+# statsmodels runs against the committed dataset when one is present. A
+# bootstrap is only valid if t* and the observed t are computed identically,
+# and a t-statistic I wrote agreeing with a t-statistic I also wrote proves
+# nothing.
+def bootstrap_checks():
+    import pandas as pd
+    import statsmodels.api as sm
+    from lmstudy.analyze import (_cluster_t, wild_cluster_bootstrap, available,
+                                 CORE_MODEL, fit, load, CLUSTER_GATE)
+    fails = []
+
+    # 1. The clustered t must equal statsmodels' to numerical precision.
+    def check_t_against_statsmodels(df, label):
+        core = available(df, CORE_MODEL)
+        res = fit(df, core)
+        if res.cov_type != "cluster":
+            fails.append(f"{label}: expected clustered cov, got {res.cov_type}")
+            return
+        y = np.log(df["pay_midpoint"].astype(float)).to_numpy()
+        X = np.column_stack([np.ones(len(df))]
+                            + [df[r].astype(float).to_numpy() for r in core])
+        groups = df["employer"].to_numpy()
+        worst = 0.0
+        for j, name in enumerate(core, start=1):
+            _, t = _cluster_t(X, y, groups, j)
+            worst = max(worst, abs(t - float(res.tvalues[name])))
+        if worst > 1e-8:
+            fails.append(f"{label}: _cluster_t diverges from statsmodels by {worst:.2e}")
+
+    # Round-tripped through CSV and load(), so the frame under test has the
+    # same dtypes the real pipeline produces rather than object columns.
+    with tempfile.TemporaryDirectory() as tmpb:
+        simpath = pathlib.Path(tmpb) / "sim.csv"
+        write(simulate(), simpath)
+        sim = load(simpath)
+    sim = sim[(sim["pay_disclosed"] == 1) & sim["pay_midpoint"].notna()].copy()
+    check_t_against_statsmodels(sim, "simulated")
+
+    real = pathlib.Path(__file__).resolve().parents[1] / "data" / "analysis" / "postings.csv"
+    if real.exists():
+        rdf = load(real)
+        rdf = rdf[(rdf["pay_disclosed"] == 1) & rdf["pay_midpoint"].notna()].copy()
+        if len(rdf) >= 30:
+            check_t_against_statsmodels(rdf, "committed dataset")
+
+    # 2. A planted strong effect must survive; a planted zero must not be
+    #    manufactured. Both directions, so a bootstrap that always returned a
+    #    large p would fail as loudly as one that always returned a small one.
+    boot = wild_cluster_bootstrap(sim, available(sim, CORE_MODEL), reps=399, seed=3)
+    bv = boot["by_variable"]
+    strong = bv.get("seniority_rank", {}).get("p_value")   # planted 0.11
+    if strong is None or strong > 0.05:
+        fails.append(f"planted seniority effect not recovered: bootstrap p={strong}")
+    null = bv.get("mandate_state", {}).get("p_value")      # planted -0.02, noise
+    if null is None or null < 0.05:
+        fails.append(f"planted near-zero read as significant: bootstrap p={null}")
+
+    # 3. p can never be exactly 0: the observed statistic is itself a draw from
+    #    the null distribution, so (extreme + 1) / (reps + 1) is the estimator.
+    zeros = [k for k, v in bv.items() if v.get("p_value") == 0.0]
+    if zeros:
+        fails.append(f"bootstrap p of exactly 0 is not attainable: {zeros}")
+
+    # 4. Same seed, same answer. A published p-value has to be reproducible.
+    again = wild_cluster_bootstrap(sim, available(sim, CORE_MODEL), reps=399, seed=3)
+    if {k: v["p_value"] for k, v in again["by_variable"].items()} != \
+       {k: v["p_value"] for k, v in bv.items()}:
+        fails.append("bootstrap is not reproducible at a fixed seed")
+
+    # 5. THE load-bearing property: exactly one Rademacher draw per CLUSTER,
+    #    so within-employer dependence survives into the bootstrap world.
+    #    Tested as a mechanism, not through its statistical consequence. A
+    #    placebo-rejection test was written first and DELETED because it did
+    #    not work: a deliberately sabotaged version drawing weights per
+    #    OBSERVATION passed it. Measuring properly (200 placebo draws, 12
+    #    clusters, intra-cluster correlation 0.97) put per-cluster at 4.5% and
+    #    per-observation at 6.0% against a nominal 5% — a gap inside sampling
+    #    noise. So the consequence is not cheaply detectable; the mechanism is
+    #    deterministic and is checked directly.
+    from lmstudy.analyze import _expand_cluster_weights
+    groups = sim["employer"].to_numpy()
+    uniq = np.unique(groups)
+    masks = [groups == g for g in uniq]
+    rng = np.random.default_rng(17)
+    seen_patterns = set()
+    for _ in range(50):
+        w = _expand_cluster_weights(rng, masks, len(sim))
+        if set(np.unique(w)) - {-1.0, 1.0}:
+            fails.append(f"weights must be Rademacher, got {set(np.unique(w))}")
+            break
+        # Constant within every cluster. This is the whole point: a single sign
+        # flip inside a cluster would break the dependence being preserved.
+        for m in masks:
+            if len(np.unique(w[m])) != 1:
+                fails.append("weight varies WITHIN a cluster; drawn per observation")
+                break
+        seen_patterns.add(tuple(w[m][0] for m in masks))
+    # Clusters must be drawn independently of one another: 50 draws over 23+
+    # clusters should not collapse onto a handful of patterns, which is what a
+    # single shared draw or a seeded-per-cluster constant would look like.
+    if len(seen_patterns) < 40:
+        fails.append(f"only {len(seen_patterns)} distinct sign patterns in 50 draws; "
+                     "cluster draws may not be independent")
+
+    # 6. The gate is the pre-registered one. docs/pre-registration.md section 6
+    #    says the block fires below 30 clusters; the code read 20 for a while,
+    #    which silenced the warning at the 23 clusters actually realized.
+    if CLUSTER_GATE != 30:
+        fails.append(f"CLUSTER_GATE={CLUSTER_GATE}, pre-registration says 30")
+
+    return fails
+
 
 if __name__ == "__main__":
     raise SystemExit(1 if run() else 0)

@@ -2,8 +2,9 @@
   "dataset": "/home/user/modern-labor-market-data-submission/data/analysis/postings.csv",
   "n_total": 204,
   "n_with_pay": 137,
-  "distinct_employers": 30,
+  "distinct_employers_in_scope": 30,
   "n_estimation": 137,
+  "distinct_employers": 23,
   "selection": {
     "n_disclosed": 137,
     "n_withheld": 67,
@@ -175,11 +176,111 @@
   },
   "interpretability_warnings": [
     "9.1 observations per regressor (137 observations, 15 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.",
+    "23 employer clusters, against the 30 pre-registered. Cluster-robust standard errors are biased downward with few clusters, so the asymptotic p-values are anti-conservative. Read the wild cluster bootstrap p-values below, not these.",
     "Minimum detectable effect is 0.25 log points, roughly a 29% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value."
   ],
   "interpretable": false,
   "obs_per_regressor": 9.13,
   "n_clusters": 23,
+  "wild_cluster_bootstrap": {
+    "method": "restricted wild cluster bootstrap, Rademacher weights",
+    "reference": "Cameron, Gelbach & Miller (2008)",
+    "reps_requested": 9999,
+    "n_clusters": 23,
+    "seed": 20260922,
+    "by_variable": {
+      "seniority_rank": {
+        "coef": 0.0679,
+        "t_observed": 8.388,
+        "p_value": 0.0053,
+        "reps": 9999
+      },
+      "yrs_exp_min": {
+        "coef": 0.0095,
+        "t_observed": 0.572,
+        "p_value": 0.6197,
+        "reps": 9999
+      },
+      "yrs_exp_stated": {
+        "coef": -0.091,
+        "t_observed": -0.725,
+        "p_value": 0.4719,
+        "reps": 9999
+      },
+      "degree_required": {
+        "coef": -0.1143,
+        "t_observed": -3.0,
+        "p_value": 0.0693,
+        "reps": 9999
+      },
+      "degree_stem": {
+        "coef": 0.1007,
+        "t_observed": 2.058,
+        "p_value": 0.1603,
+        "reps": 9999
+      },
+      "skill_cloud": {
+        "coef": -0.0324,
+        "t_observed": -0.563,
+        "p_value": 0.6528,
+        "reps": 9999
+      },
+      "skill_ml_ai": {
+        "coef": 0.2364,
+        "t_observed": 3.851,
+        "p_value": 0.0028,
+        "reps": 9999
+      },
+      "remote_eligible": {
+        "coef": 0.1539,
+        "t_observed": 3.166,
+        "p_value": 0.1017,
+        "reps": 9999
+      },
+      "hourly_original": {
+        "coef": -0.0431,
+        "t_observed": -0.157,
+        "p_value": 0.7225,
+        "reps": 9999
+      },
+      "mandate_state": {
+        "coef": -0.0385,
+        "t_observed": -0.64,
+        "p_value": 0.6351,
+        "reps": 9999
+      },
+      "region_northeast": {
+        "coef": 0.2602,
+        "t_observed": 2.356,
+        "p_value": 0.2529,
+        "reps": 9999
+      },
+      "region_south": {
+        "coef": 0.1753,
+        "t_observed": 2.499,
+        "p_value": 0.2117,
+        "reps": 9999
+      },
+      "region_west": {
+        "coef": 0.1065,
+        "t_observed": 2.012,
+        "p_value": 0.2206,
+        "reps": 9999
+      },
+      "industry_data_center": {
+        "coef": 0.1643,
+        "t_observed": 2.109,
+        "p_value": 0.102,
+        "reps": 9999
+      },
+      "family_ai_ml": {
+        "coef": 0.0169,
+        "t_observed": 0.205,
+        "p_value": 0.8339,
+        "reps": 9999
+      }
+    }
+  },
   "models": {
     "core": {
       "label": "Core model (pre-specified)",

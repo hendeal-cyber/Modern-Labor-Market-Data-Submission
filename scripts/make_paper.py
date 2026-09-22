@@ -28,7 +28,56 @@ def pct(x) -> str:
     return f"{x*100:.1f}%" if isinstance(x, (int, float)) else "n/a"
 
 
-def coefficient_table(model: dict) -> list[str]:
+def bootstrap_p(analysis: dict | None) -> dict[str, float]:
+    """Bootstrap p-values by variable, empty when the bootstrap did not run.
+
+    The pre-registration (section 6) makes the wild cluster bootstrap the
+    inference procedure while employer clusters number under 30, so wherever
+    it exists it is what this paper reports. Before it was implemented the
+    paper read significance off the asymptotic clustered p-values, and seven
+    of the nine it called significant do not survive the bootstrap -- so this
+    is not a presentational preference, it decides what the study claims.
+    """
+    boot = (analysis or {}).get("wild_cluster_bootstrap") or {}
+    return {k: v["p_value"] for k, v in (boot.get("by_variable") or {}).items()
+            if v.get("p_value") is not None}
+
+
+def reported_p(name: str, model_coefs: dict, boot: dict) -> tuple[float, str]:
+    """The p-value the paper stands behind, and which procedure produced it."""
+    if name in boot:
+        return boot[name], "bootstrap"
+    row = model_coefs.get(name) or {}
+    return row.get("p_value", 1.0), "clustered"
+
+
+def coefficient_table(model: dict, boot: dict | None = None) -> list[str]:
+    boot = boot or {}
+    if boot:
+        lines = ["| Variable | Coef. | Std. err. | Clustered p | **Bootstrap p** | "
+                 "95% CI | Approx. % effect |",
+                 "|---|---|---|---|---|---|---|"]
+        for name, c in model["coefficients"].items():
+            bp = boot.get(name)
+            # Stars follow the BOOTSTRAP where there is one. Starring the
+            # clustered p beside a bootstrap p that disagrees would put the
+            # paper's own emphasis on the number it does not stand behind.
+            basis = bp if bp is not None else c["p_value"]
+            stars = ("***" if basis < 0.01 else "**" if basis < 0.05
+                     else "*" if basis < 0.10 else "")
+            pct = "—" if c.get("pct_effect") is None else f"{c['pct_effect']:.1f}%"
+            lines.append(
+                f"| `{name}` | {c['coef']:.4f}{stars} | {c['std_err']:.4f} | "
+                f"{c['p_value']:.3f} | "
+                f"{'—' if bp is None else f'**{bp:.3f}**'} | "
+                f"[{c['ci_low']:.3f}, {c['ci_high']:.3f}] | {pct} |")
+        lines += ["", "*** p<0.01, ** p<0.05, * p<0.10, **on the bootstrap p-value** "
+                  "where one is reported. "
+                  f"N = {model['n']}, R² = {model['r_squared']:.3f}, "
+                  f"SE: {model['cov_type']}.", ""]
+        return lines
+    lines = ["| Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |",
+             "|---|---|---|---|---|---|"]
     lines = ["| Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |",
              "|---|---|---|---|---|---|"]
     for name, c in model["coefficients"].items():
@@ -105,9 +154,15 @@ def main() -> int:
     # claim a summary written by hand drifts into after the model changes.
     core_coefs = ((analysis or {}).get("models", {}).get("core", {})
                   .get("coefficients", {}))
+    # Significance is read from the BOOTSTRAP where one exists. Read off the
+    # clustered p-values this sentence named seven attributes that the
+    # pre-registered procedure cannot distinguish from zero -- the same class
+    # of drift as the earlier hand-written version, one layer deeper.
+    _boot = bootstrap_p(analysis)
     sig = sorted(((k, v) for k, v in core_coefs.items()
-                  if k != "const" and v.get("p_value", 1) < 0.05),
-                 key=lambda kv: kv[1]["p_value"])
+                  if k != "const"
+                  and reported_p(k, core_coefs, _boot)[0] < 0.05),
+                 key=lambda kv: reported_p(kv[0], core_coefs, _boot)[0])
     if sig:
         pretty = {
             "seniority_rank": "seniority", "skill_ml_ai": "a stated ML or AI skill",
@@ -118,8 +173,23 @@ def main() -> int:
             "region_west": "West location", "family_ai_ml": "an AI/ML role family",
         }
         named = [pretty.get(k, f"`{k}`") for k, _ in sig[:4]]
+        basis = "the wild cluster bootstrap" if _boot else "clustered standard errors"
         A("Within the postings that do disclose, the attributes that predict pay at")
-        A(f"conventional significance are {', '.join(named[:-1])} and {named[-1]}.")
+        if len(named) == 1:
+            A(f"conventional significance under {basis} are limited to one:")
+            A(f"{named[0]}.")
+        else:
+            A(f"conventional significance under {basis} are "
+              f"{', '.join(named[:-1])} and {named[-1]}.")
+        if _boot:
+            dropped = [k for k, v in core_coefs.items()
+                       if k != "const" and v.get("p_value", 1) < 0.05
+                       and _boot.get(k, 0) >= 0.05]
+            if dropped:
+                A(f"A further {len(dropped)} attributes reach significance under")
+                A("clustered standard errors but not under the bootstrap, which is")
+                A("the inference this study pre-registered; they are reported as")
+                A("inconclusive, not as findings.")
         neg = [k for k, v in sig if v.get("coef", 0) < 0]
         if neg:
             A(f"Note that {pretty.get(neg[0], neg[0])} enters **negatively**, which")
@@ -280,9 +350,15 @@ def main() -> int:
     A("the specification is chosen by sample size rather than by results.")
     A("")
     A("Cluster-robust standard errors are biased downward when clusters are few.")
-    A("Simulation with twelve employer clusters recovered nominal 95% coverage of")
-    A("only about 88%. Where the realized employer count is small, a wild cluster")
-    A("bootstrap should precede any claim resting on a marginal p-value.")
+    A("Simulation with twelve employer clusters covers the planted coefficient 92%")
+    A("of the time against a nominal 95%, and rejects a cluster-level placebo at")
+    A("9.5% against a nominal 5%. A **wild cluster bootstrap is therefore estimated")
+    A("and reported**, not merely recommended, whenever the realized employer count")
+    A("falls below thirty; section 5 gives it. An earlier version of this paper")
+    A("cited 88% coverage, measured on a simulation whose employer-level shock was")
+    A("applied to one posting per employer instead of to all of them — so the")
+    A("figure justifying clustered errors had been computed on data with no")
+    A("within-employer correlation. The fixture and the figure are both corrected.")
     A("")
 
     A("## 5. Results")
@@ -360,10 +436,58 @@ def main() -> int:
             A("> the effect of the law itself.")
             A("")
 
+        boot_ps = bootstrap_p(analysis)
         for key, model in (analysis.get("models") or {}).items():
             A(f"### {model['label']}")
             A("")
-            L.extend(coefficient_table(model))
+            # The bootstrap is estimated on the core specification only, so its
+            # column belongs to that table and nowhere else.
+            L.extend(coefficient_table(model, boot_ps if key == "core" else None))
+
+        boot = analysis.get("wild_cluster_bootstrap") or {}
+        if boot.get("by_variable"):
+            core_c = (analysis.get("models") or {}).get("core", {}).get("coefficients", {})
+            A("### Inference: the wild cluster bootstrap")
+            A("")
+            A(f"With {boot.get('n_clusters')} employer clusters, the asymptotic")
+            A("clustered p-values above are anti-conservative, and the")
+            A("pre-registration requires a wild cluster bootstrap before any")
+            A("significance claim at this cluster count. It is estimated here, not")
+            A("merely recommended: the restricted (null-imposed) variant of Cameron,")
+            A(f"Gelbach and Miller (2008) with Rademacher weights drawn once per")
+            A(f"employer, {boot.get('reps_requested')} replications.")
+            A("")
+            lost = [n for n, b in boot["by_variable"].items()
+                    if b.get("p_value") is not None
+                    and (core_c.get(n, {}).get("p_value", 1) < 0.05 <= b["p_value"])]
+            kept = [n for n, b in boot["by_variable"].items()
+                    if b.get("p_value") is not None and b["p_value"] < 0.05]
+            if lost:
+                A(f"**{len(lost)} of the {len(lost) + len(kept)} coefficients significant")
+                A("at the 5% level under clustered standard errors do not survive the")
+                A("bootstrap:** " + ", ".join(f"`{n}`" for n in lost) + ".")
+                A("")
+                A("This is the correction the pre-registered procedure exists to make.")
+                A("Nothing about the point estimates changed; what changed is the")
+                A("reference distribution the estimates are judged against, and at")
+                A(f"{boot.get('n_clusters')} clusters the asymptotic one is simply the")
+                A("wrong yardstick. The coefficients concerned are reported below as")
+                A("inconclusive rather than deleted, because an underpowered null is")
+                A("not the same finding as a measured zero.")
+                A("")
+            if kept:
+                A("Surviving at the 5% level: "
+                  + ", ".join(f"`{n}` (p = {boot['by_variable'][n]['p_value']:.3f})"
+                              for n in kept) + ".")
+                A("")
+            A("Monte Carlo error is small relative to the decisions being read off")
+            A(f"these numbers: at {boot.get('reps_requested')} replications every")
+            A("p-value above is stable to within about 0.005 across seeds. An earlier")
+            A("run at 999 replications returned 0.049, 0.063 and 0.082 for")
+            A("`degree_required` on three different seeds, straddling the very")
+            A("threshold its verdict is read from, which is why the replication count")
+            A("is what it is.")
+            A("")
 
         ec = analysis.get("early_career_subsample") or {}
         if ec:
@@ -401,8 +525,10 @@ def main() -> int:
             row = core.get(name)
             if not row:
                 return f"| — | `{name}` | — | not estimated |"
-            coef, pval = row.get("coef", 0), row.get("p_value", 1)
-            sig = "significant" if pval < 0.05 else "not significant"
+            coef = row.get("coef", 0)
+            pval, basis = reported_p(name, core, bootstrap_p(analysis))
+            sig = ("significant" if pval < 0.05 else "not significant") + (
+                " (bootstrap)" if basis == "bootstrap" else "")
             direction = "positive" if coef > 0 else "negative"
             matched = (coef > 0) == want_positive
             mark = "supported" if (matched and pval < 0.05) else (
@@ -427,7 +553,21 @@ def main() -> int:
               f"{m_share:.1%} vs {n_share:.1%} — **supported**, descriptively |")
         A("")
         deg = core.get("degree_required") or {}
-        if deg and deg.get("p_value", 1) < 0.05 and deg.get("coef", 0) < 0:
+        deg_p = reported_p("degree_required", core, bootstrap_p(analysis))[0]
+        if deg and deg_p >= 0.05 and deg.get("coef", 0) < 0 and bootstrap_p(analysis):
+            A("**H5 is inconclusive, and it was nearly reported as contradicted.**")
+            A("The point estimate is negative — a stated degree requirement sits")
+            A("alongside *lower* advertised pay, conditional on seniority — and under")
+            A(f"clustered standard errors that reads p = {deg.get('p_value', 0):.3f},")
+            A("comfortably significant and opposite to the prediction. The wild")
+            A(f"cluster bootstrap puts it at p = {deg_p:.3f}. So the sign is worth")
+            A("recording and the finding is not: at this cluster count the data")
+            A("cannot distinguish the negative coefficient from zero. It is reported")
+            A("because it was predicted the other way, and because the asymptotic")
+            A("and bootstrap procedures disagree about it, which is precisely the")
+            A("case the pre-registration anticipated.")
+            A("")
+        elif deg and deg_p < 0.05 and deg.get("coef", 0) < 0:
             A("**H5 is contradicted and the reason is not obvious.** A stated degree")
             A("requirement is associated with *lower* advertised pay, conditional on")
             A("seniority. The most likely explanation is compositional rather than")
@@ -476,9 +616,11 @@ def main() -> int:
     A("4. Pay is **nominal**. A price-adjusted robustness check is implemented and")
     A("   reported when the BEA table has been fetched.")
     A("5. **Few employer clusters, one of them dominant.** Cluster-robust errors")
-    A("   under-cover with few clusters, measured at 88-90% against a nominal 95%.")
-    A("   No claim should rest on a marginal p-value without a wild cluster")
-    A("   bootstrap.")
+    A("   under-cover with few clusters, measured at 92% against a nominal 95% and")
+    A("   over-rejecting a cluster-level placebo at 9.5% against 5%. Every")
+    A("   significance claim in section 5 is therefore read off the wild cluster")
+    A("   bootstrap, under which seven of the nine coefficients that clustered")
+    A("   errors called significant become inconclusive.")
     A("6. The scope **widened three times in response to the data**. The")
     A("   specification was pre-registered before the national sample was")
     A("   collected; amendments after that point are dated in")

@@ -3,11 +3,13 @@
 - Postings in scope: **204**
 - With disclosed pay: **137**
 - Used in estimation: **137**
-- Distinct employers: **30**
+- Distinct employers in the estimation sample (**the cluster count**): **23**
+- Distinct employers across all postings in scope: **30**
 
 > **These estimates are not yet interpretable.**
 >
 > - 9.1 observations per regressor (137 observations, 15 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
+> - 23 employer clusters, against the 30 pre-registered. Cluster-robust standard errors are biased downward with few clusters, so the asymptotic p-values are anti-conservative. Read the wild cluster bootstrap p-values below, not these.
 > - Minimum detectable effect is 0.25 log points, roughly a 29% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
 >
 > The model is reported so the pipeline is verifiable end to end, not because the coefficients mean anything yet. Collect more before drawing conclusions.
@@ -106,6 +108,32 @@ N = 28, R² = 0.7547, adjusted R² = 0.4904, SE: cluster
 | `family_ai_ml` | -0.0637 | 0.2399 | 0.7905 | [-0.534, 0.4065] | -6.18% |
 
 Significance: *** p<0.01, ** p<0.05, * p<0.10.
+
+## Wild cluster bootstrap
+
+Restricted wild cluster bootstrap, rademacher weights, 9999 replications over 23 employer clusters (Cameron, Gelbach & Miller (2008), seed 20260922).
+
+**These are the p-values to read.** The asymptotic clustered p-values in the table above are anti-conservative at this cluster count, and the pre-registration requires the bootstrap before any significance claim while clusters stay under 30.
+
+| Variable | Coef | Clustered p | Bootstrap p | Verdict at 0.05 |
+|---|---|---|---|---|
+| `seniority_rank` | 0.0679 | 0.0 | 0.0053 | unchanged (significant) |
+| `yrs_exp_min` | 0.0095 | 0.5673 | 0.6197 | unchanged (null) |
+| `yrs_exp_stated` | -0.091 | 0.4682 | 0.4719 | unchanged (null) |
+| `degree_required` | -0.1143 | 0.0027 | 0.0693 | **no longer significant** |
+| `degree_stem` | 0.1007 | 0.0396 | 0.1603 | **no longer significant** |
+| `skill_cloud` | -0.0324 | 0.5737 | 0.6528 | unchanged (null) |
+| `skill_ml_ai` | 0.2364 | 0.0001 | 0.0028 | unchanged (significant) |
+| `remote_eligible` | 0.1539 | 0.0015 | 0.1017 | **no longer significant** |
+| `hourly_original` | -0.0431 | 0.8756 | 0.7225 | unchanged (null) |
+| `mandate_state` | -0.0385 | 0.5223 | 0.6351 | unchanged (null) |
+| `region_northeast` | 0.2602 | 0.0184 | 0.2529 | **no longer significant** |
+| `region_south` | 0.1753 | 0.0125 | 0.2117 | **no longer significant** |
+| `region_west` | 0.1065 | 0.0442 | 0.2206 | **no longer significant** |
+| `industry_data_center` | 0.1643 | 0.0349 | 0.102 | **no longer significant** |
+| `family_ai_ml` | 0.0169 | 0.8376 | 0.8339 | unchanged (null) |
+
+Conclusions that change once clustering is bootstrapped: `degree_required`, `degree_stem`, `remote_eligible`, `region_northeast`, `region_south`, `region_west`, `industry_data_center`. Any claim about these rests on the bootstrap column, not the clustered one.
 
 ## Disclosure selection
 

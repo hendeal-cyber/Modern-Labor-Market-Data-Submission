@@ -25,9 +25,11 @@ size depends heavily on one jurisdiction; see the robustness table
 in section 5 before quoting a single figure.
 
 Within the postings that do disclose, the attributes that predict pay at
-conventional significance are seniority, a stated ML or AI skill, remote eligibility and a required degree.
-Note that a required degree enters **negatively**, which
-was predicted the other way; section 5 reports it as contradicted.
+conventional significance under the wild cluster bootstrap are a stated ML or AI skill and seniority.
+A further 7 attributes reach significance under
+clustered standard errors but not under the bootstrap, which is
+the inference this study pre-registered; they are reported as
+inconclusive, not as findings.
 
 The early-career subsample that motivated the study is reported separately,
 so the original question remains answerable alongside the wider one.
@@ -153,13 +155,21 @@ only when the sample supports roughly twenty observations per regressor, so
 the specification is chosen by sample size rather than by results.
 
 Cluster-robust standard errors are biased downward when clusters are few.
-Simulation with twelve employer clusters recovered nominal 95% coverage of
-only about 88%. Where the realized employer count is small, a wild cluster
-bootstrap should precede any claim resting on a marginal p-value.
+Simulation with twelve employer clusters covers the planted coefficient 92%
+of the time against a nominal 95%, and rejects a cluster-level placebo at
+9.5% against a nominal 5%. A **wild cluster bootstrap is therefore estimated
+and reported**, not merely recommended, whenever the realized employer count
+falls below thirty; section 5 gives it. An earlier version of this paper
+cited 88% coverage, measured on a simulation whose employer-level shock was
+applied to one posting per employer instead of to all of them — so the
+figure justifying clustered errors had been computed on data with no
+within-employer correlation. The fixture and the figure are both corrected.
 
 ## 5. Results
 
 > **Not yet interpretable.** 9.1 observations per regressor (137 observations, 15 regressors). Below about 10 the estimates are overfit and the coefficients should not be interpreted.
+>
+> **Not yet interpretable.** 23 employer clusters, against the 30 pre-registered. Cluster-robust standard errors are biased downward with few clusters, so the asymptotic p-values are anti-conservative. Read the wild cluster bootstrap p-values below, not these.
 >
 > **Not yet interpretable.** Minimum detectable effect is 0.25 log points, roughly a 29% pay difference. Any coefficient smaller than that is not distinguishable from noise regardless of its p-value.
 >
@@ -209,26 +219,26 @@ mandate state in this sample states pay.**
 
 ### Core model (pre-specified)
 
-| Variable | Coef. | Std. err. | p | 95% CI | Approx. % effect |
-|---|---|---|---|---|---|
-| `const` | 11.2654*** | 0.0530 | 0.000 | [11.162, 11.369] | — |
-| `seniority_rank` | 0.0679*** | 0.0081 | 0.000 | [0.052, 0.084] | 7.0% |
-| `yrs_exp_min` | 0.0095 | 0.0165 | 0.567 | [-0.023, 0.042] | 0.9% |
-| `yrs_exp_stated` | -0.0910 | 0.1255 | 0.468 | [-0.337, 0.155] | -8.7% |
-| `degree_required` | -0.1143*** | 0.0381 | 0.003 | [-0.189, -0.040] | -10.8% |
-| `degree_stem` | 0.1007** | 0.0489 | 0.040 | [0.005, 0.197] | 10.6% |
-| `skill_cloud` | -0.0324 | 0.0577 | 0.574 | [-0.145, 0.081] | -3.2% |
-| `skill_ml_ai` | 0.2364*** | 0.0614 | 0.000 | [0.116, 0.357] | 26.7% |
-| `remote_eligible` | 0.1539*** | 0.0486 | 0.002 | [0.059, 0.249] | 16.6% |
-| `hourly_original` | -0.0431 | 0.2751 | 0.876 | [-0.582, 0.496] | -4.2% |
-| `mandate_state` | -0.0385 | 0.0601 | 0.522 | [-0.156, 0.079] | -3.8% |
-| `region_northeast` | 0.2602** | 0.1104 | 0.018 | [0.044, 0.477] | 29.7% |
-| `region_south` | 0.1753** | 0.0702 | 0.013 | [0.038, 0.313] | 19.2% |
-| `region_west` | 0.1065** | 0.0529 | 0.044 | [0.003, 0.210] | 11.2% |
-| `industry_data_center` | 0.1643** | 0.0779 | 0.035 | [0.012, 0.317] | 17.9% |
-| `family_ai_ml` | 0.0169 | 0.0826 | 0.838 | [-0.145, 0.179] | 1.7% |
+| Variable | Coef. | Std. err. | Clustered p | **Bootstrap p** | 95% CI | Approx. % effect |
+|---|---|---|---|---|---|---|
+| `const` | 11.2654*** | 0.0530 | 0.000 | — | [11.162, 11.369] | — |
+| `seniority_rank` | 0.0679*** | 0.0081 | 0.000 | **0.005** | [0.052, 0.084] | 7.0% |
+| `yrs_exp_min` | 0.0095 | 0.0165 | 0.567 | **0.620** | [-0.023, 0.042] | 0.9% |
+| `yrs_exp_stated` | -0.0910 | 0.1255 | 0.468 | **0.472** | [-0.337, 0.155] | -8.7% |
+| `degree_required` | -0.1143* | 0.0381 | 0.003 | **0.069** | [-0.189, -0.040] | -10.8% |
+| `degree_stem` | 0.1007 | 0.0489 | 0.040 | **0.160** | [0.005, 0.197] | 10.6% |
+| `skill_cloud` | -0.0324 | 0.0577 | 0.574 | **0.653** | [-0.145, 0.081] | -3.2% |
+| `skill_ml_ai` | 0.2364*** | 0.0614 | 0.000 | **0.003** | [0.116, 0.357] | 26.7% |
+| `remote_eligible` | 0.1539 | 0.0486 | 0.002 | **0.102** | [0.059, 0.249] | 16.6% |
+| `hourly_original` | -0.0431 | 0.2751 | 0.876 | **0.723** | [-0.582, 0.496] | -4.2% |
+| `mandate_state` | -0.0385 | 0.0601 | 0.522 | **0.635** | [-0.156, 0.079] | -3.8% |
+| `region_northeast` | 0.2602 | 0.1104 | 0.018 | **0.253** | [0.044, 0.477] | 29.7% |
+| `region_south` | 0.1753 | 0.0702 | 0.013 | **0.212** | [0.038, 0.313] | 19.2% |
+| `region_west` | 0.1065 | 0.0529 | 0.044 | **0.221** | [0.003, 0.210] | 11.2% |
+| `industry_data_center` | 0.1643 | 0.0779 | 0.035 | **0.102** | [0.012, 0.317] | 17.9% |
+| `family_ai_ml` | 0.0169 | 0.0826 | 0.838 | **0.834** | [-0.145, 0.179] | 1.7% |
 
-*** p<0.01, ** p<0.05, * p<0.10. N = 137, R² = 0.524, SE: cluster.
+*** p<0.01, ** p<0.05, * p<0.10, **on the bootstrap p-value** where one is reported. N = 137, R² = 0.524, SE: cluster.
 
 ### Secondary: log(range width)
 
@@ -290,6 +300,38 @@ mandate state in this sample states pay.**
 
 *** p<0.01, ** p<0.05, * p<0.10. N = 28, R² = 0.755, SE: cluster.
 
+### Inference: the wild cluster bootstrap
+
+With 23 employer clusters, the asymptotic
+clustered p-values above are anti-conservative, and the
+pre-registration requires a wild cluster bootstrap before any
+significance claim at this cluster count. It is estimated here, not
+merely recommended: the restricted (null-imposed) variant of Cameron,
+Gelbach and Miller (2008) with Rademacher weights drawn once per
+employer, 9999 replications.
+
+**7 of the 9 coefficients significant
+at the 5% level under clustered standard errors do not survive the
+bootstrap:** `degree_required`, `degree_stem`, `remote_eligible`, `region_northeast`, `region_south`, `region_west`, `industry_data_center`.
+
+This is the correction the pre-registered procedure exists to make.
+Nothing about the point estimates changed; what changed is the
+reference distribution the estimates are judged against, and at
+23 clusters the asymptotic one is simply the
+wrong yardstick. The coefficients concerned are reported below as
+inconclusive rather than deleted, because an underpowered null is
+not the same finding as a measured zero.
+
+Surviving at the 5% level: `seniority_rank` (p = 0.005), `skill_ml_ai` (p = 0.003).
+
+Monte Carlo error is small relative to the decisions being read off
+these numbers: at 9999 replications every
+p-value above is stable to within about 0.005 across seeds. An earlier
+run at 999 replications returned 0.049, 0.063 and 0.082 for
+`degree_required` on three different seeds, straddling the very
+threshold its verdict is read from, which is why the replication count
+is what it is.
+
 ### The early-career question
 
 The study began as a question about early-career pay specifically.
@@ -313,22 +355,24 @@ held, which is the point of having written them down.
 
 | # | Hypothesis | Predicted | Result |
 |---|---|---|---|
-| H1 | Seniority dominates advertised pay | + | positive, significant — supported |
-| H3 | Required experience raises pay | + | positive, not significant — inconclusive |
-| H4 | AI/ML roles carry a premium | + | positive, not significant — inconclusive |
-| H5 | A required degree raises pay | + | negative, significant — **contradicted** |
-| H7 | Data centers pay more than utilities | + | positive, significant — supported |
+| H1 | Seniority dominates advertised pay | + | positive, significant (bootstrap) — supported |
+| H3 | Required experience raises pay | + | positive, not significant (bootstrap) — inconclusive |
+| H4 | AI/ML roles carry a premium | + | positive, not significant (bootstrap) — inconclusive |
+| H5 | A required degree raises pay | + | negative, not significant (bootstrap) — inconclusive |
+| H7 | Data centers pay more than utilities | + | positive, not significant (bootstrap) — inconclusive |
 | H2 | A mandate raises disclosure | + | 81.7% vs 33.9% — **supported**, descriptively |
 
-**H5 is contradicted and the reason is not obvious.** A stated degree
-requirement is associated with *lower* advertised pay, conditional on
-seniority. The most likely explanation is compositional rather than
-causal: the best-paid technical postings increasingly say "degree or
-equivalent experience" or omit the requirement entirely, so the
-indicator may be marking employers with more formal hiring processes
-rather than jobs with higher human-capital requirements. That is a
-conjecture, not a result — testing it needs a variable this dataset
-does not have. It is reported because it was predicted the other way.
+**H5 is inconclusive, and it was nearly reported as contradicted.**
+The point estimate is negative — a stated degree requirement sits
+alongside *lower* advertised pay, conditional on seniority — and under
+clustered standard errors that reads p = 0.003,
+comfortably significant and opposite to the prediction. The wild
+cluster bootstrap puts it at p = 0.069. So the sign is worth
+recording and the finding is not: at this cluster count the data
+cannot distinguish the negative coefficient from zero. It is reported
+because it was predicted the other way, and because the asymptotic
+and bootstrap procedures disagree about it, which is precisely the
+case the pre-registration anticipated.
 
 ### Who discloses pay
 
@@ -368,9 +412,11 @@ These are treated at length in `docs/limitations.md`. In short:
 4. Pay is **nominal**. A price-adjusted robustness check is implemented and
    reported when the BEA table has been fetched.
 5. **Few employer clusters, one of them dominant.** Cluster-robust errors
-   under-cover with few clusters, measured at 88-90% against a nominal 95%.
-   No claim should rest on a marginal p-value without a wild cluster
-   bootstrap.
+   under-cover with few clusters, measured at 92% against a nominal 95% and
+   over-rejecting a cluster-level placebo at 9.5% against 5%. Every
+   significance claim in section 5 is therefore read off the wild cluster
+   bootstrap, under which seven of the nine coefficients that clustered
+   errors called significant become inconclusive.
 6. The scope **widened three times in response to the data**. The
    specification was pre-registered before the national sample was
    collected; amendments after that point are dated in

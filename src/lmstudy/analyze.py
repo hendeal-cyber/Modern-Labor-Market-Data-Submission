@@ -26,6 +26,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 OBS_PER_REGRESSOR = 20
+# Pre-registration section 6: the interpretability block fires below this
+# many employer clusters. Changing it needs a dated amendment there.
+CLUSTER_GATE = 30
 
 # Pre-specified. Declared here rather than chosen after seeing results.
 # Fixed in docs/pre-registration.md BEFORE the national run collected, so the
@@ -255,7 +258,146 @@ def result_table(res, label: str) -> dict:
     }
 
 
-def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
+# --- Wild cluster bootstrap ------------------------------------------------
+# Required by docs/pre-registration.md section 6 before ANY significance claim
+# while employer clusters number under 30. It is not decoration: the coverage
+# simulation in tests/test_analyze.py measures cluster-robust errors covering
+# 92% against a nominal 95%, and over-rejecting a cluster-level placebo at 9.5%
+# against a nominal 5%, so the asymptotic p-values are anti-conservative and a
+# marginal one cannot be trusted. (The 88% previously cited here was measured
+# on a fixture whose employer shock reached one posting per employer rather
+# than all of them, so it described data with no within-employer correlation.)
+#
+# Cameron, Gelbach and Miller (2008), restricted ("null-imposed") variant,
+# which is what the literature recommends for few clusters: the bootstrap
+# data-generating process satisfies the null being tested, so the reference
+# distribution is the distribution of t under H0 rather than around the
+# estimate. Rademacher weights, drawn once per CLUSTER per replication -- the
+# whole point is to preserve within-employer dependence, and drawing per
+# observation would destroy exactly the correlation being corrected for.
+# 9999, not 999. At 999 replications `degree_required` returned 0.049, 0.063
+# and 0.082 across three seeds, straddling the very threshold its verdict is
+# read off. Monte Carlo error must be small relative to the decision being
+# made, and at 9999 the same coefficient is stable at 0.069. Costs ~100s.
+BOOTSTRAP_REPS = 9999
+BOOTSTRAP_SEED = 20260922
+
+
+def _cluster_t(X: np.ndarray, y: np.ndarray, groups: np.ndarray,
+               idx: int) -> tuple[float, float]:
+    """OLS coefficient idx and its cluster-robust t, computed in numpy.
+
+    Matches statsmodels cov_type="cluster" with use_correction=True, whose
+    finite-sample factor is (G/(G-1)) * ((N-1)/(N-K)). Verified against a
+    statsmodels fit in tests/test_analyze.py rather than assumed -- the
+    bootstrap is only valid if t* and the observed t are on the same scale.
+    """
+    n, k = X.shape
+    xtx_inv = np.linalg.pinv(X.T @ X)
+    beta = xtx_inv @ (X.T @ y)
+    resid = y - X @ beta
+    uniq = np.unique(groups)
+    meat = np.zeros((k, k))
+    for g in uniq:
+        m = groups == g
+        xu = X[m].T @ resid[m]
+        meat += np.outer(xu, xu)
+    g_count = len(uniq)
+    correction = (g_count / max(1, g_count - 1)) * ((n - 1) / max(1, n - k))
+    cov = xtx_inv @ meat @ xtx_inv * correction
+    var = cov[idx, idx]
+    se = float(np.sqrt(var)) if var > 0 else float("nan")
+    return float(beta[idx]), (float(beta[idx]) / se if se and se == se else float("nan"))
+
+
+def _expand_cluster_weights(rng, masks: list[np.ndarray], n: int) -> np.ndarray:
+    """One Rademacher draw per CLUSTER, expanded to that cluster's rows.
+
+    Extracted so the property the bootstrap depends on can be tested exactly.
+    A Monte Carlo test was tried first and abandoned: at 12 clusters and an
+    intra-cluster correlation of 0.97, the per-cluster and per-observation
+    variants rejected a cluster-level placebo at 4.5% and 6.0% over 200 draws,
+    a gap well inside sampling noise, so a sabotaged implementation passed the
+    statistical check. The mechanism is deterministic, so it is tested as a
+    mechanism.
+    """
+    draws = rng.choice(np.array([-1.0, 1.0]), size=len(masks))
+    weights = np.empty(n)
+    for mask, w in zip(masks, draws):
+        weights[mask] = w
+    return weights
+
+
+def wild_cluster_bootstrap(df: pd.DataFrame, regressors: list[str],
+                           cluster: str = "employer",
+                           reps: int = BOOTSTRAP_REPS,
+                           seed: int = BOOTSTRAP_SEED) -> dict:
+    """Restricted wild cluster bootstrap p-value for each regressor.
+
+    For each regressor j the null b_j = 0 is imposed by re-fitting WITHOUT j,
+    then each replication rebuilds the outcome as fitted_restricted + w_g *
+    residual_restricted and re-estimates the FULL model. The p-value is the
+    share of replications whose |t*| reaches the observed |t|.
+    """
+    y_full = np.log(df["pay_midpoint"].astype(float)).to_numpy()
+    X_full = np.column_stack([
+        np.ones(len(df)),
+        *[df[r].astype(float).to_numpy() for r in regressors],
+    ])
+    groups = df[cluster].to_numpy()
+    uniq = np.unique(groups)
+    # Precomputed once: which rows belong to which cluster. Rebuilding this
+    # inside the replication loop dominated the runtime.
+    masks = [groups == g for g in uniq]
+    rng = np.random.default_rng(seed)
+
+    out: dict[str, dict] = {}
+    for j, name in enumerate(regressors, start=1):
+        beta_hat, t_hat = _cluster_t(X_full, y_full, groups, j)
+        if not np.isfinite(t_hat):
+            out[name] = {"coef": round(beta_hat, 4), "t_observed": None,
+                         "p_value": None, "reps": 0,
+                         "note": "standard error not estimable"}
+            continue
+        # Restricted fit: the null is imposed by omitting the regressor.
+        keep = [c for c in range(X_full.shape[1]) if c != j]
+        X_r = X_full[:, keep]
+        beta_r = np.linalg.pinv(X_r.T @ X_r) @ (X_r.T @ y_full)
+        fitted_r = X_r @ beta_r
+        resid_r = y_full - fitted_r
+
+        extreme = 0
+        valid = 0
+        for _ in range(reps):
+            weights = _expand_cluster_weights(rng, masks, len(df))
+            y_star = fitted_r + weights * resid_r
+            _, t_star = _cluster_t(X_full, y_star, groups, j)
+            if np.isfinite(t_star):
+                valid += 1
+                if abs(t_star) >= abs(t_hat):
+                    extreme += 1
+        # (extreme + 1) / (reps + 1): the observed statistic is itself one
+        # draw from the null distribution, so a p-value of exactly zero is not
+        # attainable and is not claimed.
+        p = (extreme + 1) / (valid + 1) if valid else None
+        out[name] = {
+            "coef": round(beta_hat, 4),
+            "t_observed": round(t_hat, 3),
+            "p_value": round(p, 4) if p is not None else None,
+            "reps": valid,
+        }
+    return {
+        "method": "restricted wild cluster bootstrap, Rademacher weights",
+        "reference": "Cameron, Gelbach & Miller (2008)",
+        "reps_requested": reps,
+        "n_clusters": int(len(uniq)),
+        "seed": seed,
+        "by_variable": out,
+    }
+
+
+def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
+                 bootstrap_reps: int = BOOTSTRAP_REPS) -> dict:
     df = load(dataset)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -263,11 +405,20 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
         "dataset": str(dataset),
         "n_total": int(len(df)),
         "n_with_pay": int((df["pay_disclosed"] == 1).sum()),
-        "distinct_employers": int(df["employer"].nunique()),
+        # Counted over the in-scope corpus, which is NOT the cluster count.
+        "distinct_employers_in_scope": int(df["employer"].nunique()),
     }
 
     estimation = df[(df["pay_disclosed"] == 1) & df["pay_midpoint"].notna()].copy()
     report["n_estimation"] = int(len(estimation))
+    # `distinct_employers` is the ESTIMATION sample's employer count, because
+    # that is the number every consumer of this field means: the clusters the
+    # standard errors rest on and the figure the pre-registered 30-employer
+    # condition is judged against. It previously counted the whole in-scope
+    # corpus, so results.md and the slide deck both reported 30 employers
+    # beside 137 estimation rows when the true cluster count was 23 -- which
+    # is exactly the pre-registered target, displayed as met while failing.
+    report["distinct_employers"] = int(estimation["employer"].nunique())
     report["selection"] = selection_report(df, CORE_MODEL)
 
     if len(estimation) < 20:
@@ -432,11 +583,17 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
             f"{obs_per_regressor:.1f} observations per regressor ({len(estimation)} "
             f"observations, {len(core)} regressors). Below about 10 the estimates "
             "are overfit and the coefficients should not be interpreted.")
-    if n_clusters < 20:
+    # 30, not 20. docs/pre-registration.md section 6 fixes the gate at "clusters
+    # below 30", and the code read 20 -- lenient in exactly the direction that
+    # flatters the study. At 23 clusters the warning did not fire at all, and
+    # had observations per regressor risen above 10 the whole block would have
+    # disappeared while the pre-registered condition still failed.
+    if n_clusters < CLUSTER_GATE:
         warnings_list.append(
-            f"{n_clusters} employer clusters. Cluster-robust standard errors are "
-            "biased downward with few clusters, so p-values are anti-conservative. "
-            "A wild cluster bootstrap is required before reporting significance.")
+            f"{n_clusters} employer clusters, against the {CLUSTER_GATE} "
+            "pre-registered. Cluster-robust standard errors are biased downward "
+            "with few clusters, so the asymptotic p-values are anti-conservative. "
+            "Read the wild cluster bootstrap p-values below, not these.")
     detectable = detectable_effect(len(estimation), len(core))
     if detectable and detectable > 0.25:
         warnings_list.append(
@@ -448,6 +605,13 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path) -> dict:
     report["interpretable"] = not warnings_list
     report["obs_per_regressor"] = round(obs_per_regressor, 2)
     report["n_clusters"] = n_clusters
+
+    # Run unconditionally while the cluster gate binds. Deciding to run it only
+    # when a p-value looks marginal would make the reported inference depend on
+    # the result, which is the thing the pre-registration exists to prevent.
+    if n_clusters < CLUSTER_GATE and bootstrap_reps > 0:
+        report["wild_cluster_bootstrap"] = wild_cluster_bootstrap(
+            estimation, core, reps=bootstrap_reps)
 
     report["models"] = models
     report["power"] = {
@@ -484,7 +648,10 @@ def _write_markdown(report: dict, path: pathlib.Path) -> None:
              f"- Postings in scope: **{report['n_total']}**",
              f"- With disclosed pay: **{report['n_with_pay']}**",
              f"- Used in estimation: **{report['n_estimation']}**",
-             f"- Distinct employers: **{report['distinct_employers']}**", ""]
+             f"- Distinct employers in the estimation sample "
+             f"(**the cluster count**): **{report['distinct_employers']}**",
+             f"- Distinct employers across all postings in scope: "
+             f"**{report.get('distinct_employers_in_scope', 'n/a')}**", ""]
     if report.get("status") != "ok":
         lines += [f"> {report.get('note', 'Analysis not run.')}", ""]
         path.write_text("\n".join(lines) + "\n")
@@ -522,6 +689,52 @@ def _write_markdown(report: dict, path: pathlib.Path) -> None:
                 f"[{c['ci_low']}, {c['ci_high']}] | {pct} |"
             )
         lines += ["", "Significance: *** p<0.01, ** p<0.05, * p<0.10.", ""]
+
+    boot = report.get("wild_cluster_bootstrap")
+    if boot and boot.get("by_variable"):
+        core_coeffs = (report.get("models", {}).get("core", {}) or {}).get("coefficients", {})
+        lines += ["## Wild cluster bootstrap", "",
+                  f"{boot['method'].capitalize()}, {boot['reps_requested']} replications "
+                  f"over {boot['n_clusters']} employer clusters "
+                  f"({boot['reference']}, seed {boot['seed']}).", "",
+                  "**These are the p-values to read.** The asymptotic clustered "
+                  "p-values in the table above are anti-conservative at this cluster "
+                  "count, and the pre-registration requires the bootstrap before any "
+                  "significance claim while clusters stay under "
+                  f"{CLUSTER_GATE}.", "",
+                  "| Variable | Coef | Clustered p | Bootstrap p | Verdict at 0.05 |",
+                  "|---|---|---|---|---|"]
+        changed = []
+        for name, b in boot["by_variable"].items():
+            clustered_p = core_coeffs.get(name, {}).get("p_value")
+            bp = b["p_value"]
+            if clustered_p is None or bp is None:
+                verdict = "not estimable"
+            else:
+                was = clustered_p < 0.05
+                now = bp < 0.05
+                if was and not now:
+                    verdict = "**no longer significant**"
+                    changed.append(name)
+                elif now and not was:
+                    verdict = "**becomes significant**"
+                    changed.append(name)
+                else:
+                    verdict = "unchanged" + (" (significant)" if now else " (null)")
+            lines.append(
+                f"| `{name}` | {b['coef']} | "
+                f"{'—' if clustered_p is None else clustered_p} | "
+                f"{'—' if bp is None else bp} | {verdict} |")
+        lines += [""]
+        if changed:
+            lines += ["Conclusions that change once clustering is bootstrapped: "
+                      + ", ".join(f"`{c}`" for c in changed)
+                      + ". Any claim about these rests on the bootstrap column, "
+                        "not the clustered one.", ""]
+        else:
+            lines += ["No variable's significance verdict changes at the 0.05 level. "
+                      "The clustered p-values survive the bootstrap here; that is a "
+                      "result of the check, not a reason to have skipped it.", ""]
 
     sel = report.get("selection") or {}
     if sel.get("by_variable"):
