@@ -2150,12 +2150,12 @@ retailers_batch3:
       ashby: [constellationnewenergy, constellation-newenergy, constellation]
       workday: [{tenant: constellationnewenergy, site: careers}]
     verified: false
+  # Same Workday board as Vistra (vst/vistra_careers), which is already
+  # verified and resolving. No candidates: one board, one cluster.
   - name: Vistra Retail
-    candidates:
-      greenhouse: [vistraretail, vistra-retail, vistra]
-      lever: [vistraretail, vistra-retail, vistra]
-      ashby: [vistraretail, vistra-retail, vistra]
-      workday: [{tenant: vistraretail, site: careers}]
+    duplicate_of: Vistra
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Symmetry Energy Solutions
     candidates:

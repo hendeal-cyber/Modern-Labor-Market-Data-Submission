@@ -957,10 +957,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Just Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: justenergy.com/about-us/career-center; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Key Capture Energy:
     status: unchecked
     industry: developer
@@ -1496,10 +1498,22 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Shell Energy North America:
-    status: unchecked
+    status: confirmed
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: shell/ShellCareers/wd3
+    evidence: https://shell.wd3.myworkdayjobs.com/ShellCareers
+    checked_on: '2026-09-22'
+    note: 'TOKEN CORRECT BUT DELIBERATELY NOT ADOPTED INTO THE FRAME, a judgment call the owner can reverse.
+      The board is Shell plc''s global career site, overwhelmingly upstream oil and gas, refining, chemicals
+      and retail stations -- the Guidehouse problem at far larger scale, and this session has just spent
+      an audit round removing exactly that kind of off-umbrella data. Shell Energy North America itself
+      IS in scope as a competitive power and gas retailer, and its ''Sr. Analyst, Retail Energy'' in Houston
+      is a taxonomy fit. To adopt it, add the token WITH requires_sector_evidence: true so the title must
+      show sector evidence, and check attribution on the collected rows. Texas is not a mandate state,
+      so the cluster value is low against that risk.'
   Siemens Energy:
     status: unchecked
     industry: grid_vendor
@@ -1750,10 +1764,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Via Renewables:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: Formerly Spark Energy; no supported ATS host surfaced. Listings only on aggregators.
+    checked_on: '2026-09-22'
   Vistra:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1763,10 +1779,14 @@ employers:
     resolved_in_last_run: true
     metro: chicago
   Vistra Retail:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: 'Same Workday board as Vistra (vst/vistra_careers/wd5), already verified and resolving with
+      168 listed postings. No token: one board, one cluster. Seventh duplicate pair found.'
+    checked_on: '2026-09-22'
+    duplicate_of: Vistra
   Voltus:
     status: confirmed
     evidence: resolved in collection manifest
