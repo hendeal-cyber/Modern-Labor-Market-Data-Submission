@@ -99,6 +99,35 @@ def check_mandate_dates_in_dataset():
     return fails[:5]
 
 
+def check_verified_workday_pins():
+    """Every hand-verified Workday entry pins an instance the prober reads.
+
+    Checked against the real config/employers.yaml. Eight verified entries
+    wrote `instance: wdN` where the prober read only `wd`, so their pins were
+    ignored without any error (audit round 6).
+    """
+    import pathlib, yaml
+    from lmstudy.collect.discover import pinned_workday_instance
+    root = pathlib.Path(__file__).resolve().parents[1]
+    cfg = yaml.safe_load((root / "config" / "employers.yaml").read_text())
+    fails = []
+    for group, entries in cfg.items():
+        if not isinstance(entries, list):
+            continue
+        for e in entries:
+            if not isinstance(e, dict) or not e.get("verified"):
+                continue
+            for tok in (e.get("candidates") or {}).get("workday") or []:
+                if pinned_workday_instance(tok) is None:
+                    fails.append(f"verified Workday entry {e['name']!r} pins no "
+                                 f"instance the prober reads: {tok}")
+    for tok, want in (({"wd": 5}, 5), ({"instance": "wd3"}, 3), ({}, None),
+                      ("tenant", None)):
+        if pinned_workday_instance(tok) != want:
+            fails.append(f"pinned_workday_instance({tok!r}) != {want}")
+    return fails
+
+
 def run():
     fails = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -231,6 +260,7 @@ def run():
 
     fails += check_nested_repost_collapse()
     fails += check_mandate_dates_in_dataset()
+    fails += check_verified_workday_pins()
 
     print(f"pipeline: {len(fails)} failure(s)")
     for x in fails:

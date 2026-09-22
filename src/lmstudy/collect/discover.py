@@ -325,6 +325,25 @@ def workday_site_variants(tenant: str, employer: str = "", limit: int = 7) -> li
     return seen[:limit]
 
 
+def pinned_workday_instance(token) -> int | None:
+    """The wd instance a verified Workday candidate pins, if any.
+
+    Two spellings are in config/employers.yaml: `wd: 5` and `instance: wd5`.
+    Only `wd` was read, so the eight entries written the second way (Itron,
+    Alliant, Avangrid, Eversource, Ameren, NRECA, AEP, WGL) had their pin
+    silently ignored and probed every instance. Harmless for the data, since
+    the full list contains theirs, but a verified pin that does nothing is a
+    config key that lies. Found in audit round 6.
+    """
+    if not isinstance(token, dict):
+        return None
+    raw = token.get("wd", token.get("instance"))
+    if raw is None:
+        return None
+    digits = str(raw).lower().removeprefix("wd")
+    return int(digits) if digits.isdigit() else None
+
+
 def probe(
     session: PoliteSession,
     employer: str,
@@ -346,7 +365,7 @@ def probe(
         if platform == "workday":
             tenant = token.get("tenant") if isinstance(token, dict) else token
             site = token.get("site", "careers") if isinstance(token, dict) else "careers"
-            pinned = token.get("wd") if isinstance(token, dict) else None
+            pinned = pinned_workday_instance(token)
             # A verified candidate names its wd instance, so probe only that one.
             if pinned:
                 instances = (pinned,)

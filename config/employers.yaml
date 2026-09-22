@@ -687,13 +687,15 @@ utilities_batch2:
       ashby: [pseg]
       workday: [{tenant: pseg, site: careers}]
     verified: false
+  # Verified 2026-09-22 from a live job URL in search results:
+  # portlandgeneral.wd5.myworkdayjobs.com/pgn/job/Portland-Oregon/Operational-Analyst_R6931-1
+  # Tenant "portlandgeneral" (not the guessed "portlandgeneralelectric"), site
+  # "pgn". Oregon has no posting mandate, so this adds to the non-mandate side.
   - name: Portland General Electric
+    careers_url: https://portlandgeneral.wd5.myworkdayjobs.com/pgn
     candidates:
-      greenhouse: [portlandgeneralelectric, portland-general-electric, portlandgeneral]
-      lever: [portlandgeneralelectric, portland-general-electric, portlandgeneral]
-      ashby: [portlandgeneralelectric, portland-general-electric, portlandgeneral]
-      workday: [{tenant: portlandgeneralelectric, site: careers}]
-    verified: false
+      workday: [{tenant: portlandgeneral, site: pgn, wd: 5}]
+    verified: true
   - name: Sempra
     metro: los_angeles
     candidates:
@@ -775,12 +777,12 @@ utilities_batch2:
       ashby: [seattlecitylight, seattle-city-light, seattlecity]
       workday: [{tenant: seattlecitylight, site: careers}]
     verified: false
+  # Checked 2026-09-22: postings live on coloradospringsutilities.jobs, a
+  # DirectEmployers .jobs site, not a supported ATS. A municipal utility in a
+  # mandate state, so a real loss; recorded so it is not re-chased.
   - name: Colorado Springs Utilities
-    candidates:
-      greenhouse: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
-      lever: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
-      ashby: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
-      workday: [{tenant: coloradospringsutilities, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   # Verified 2026-09-22: ameren.wd1.myworkdayjobs.com/External. The tenant is
   # the parent "ameren", not "amerenillinois", and the site is "External".
@@ -852,12 +854,12 @@ gas_utilities_batch2:
       ashby: [chesapeakeutilities, chesapeake-utilities, chesapeake]
       workday: [{tenant: chesapeakeutilities, site: careers}]
     verified: false
+  # Checked 2026-09-22: postings are served from its own careers pages
+  # (nationalfuel.com/careers/<role>/); two searches found no ATS URL. A NY
+  # (mandate-state) utility, so a real loss; recorded so it is not re-chased.
   - name: National Fuel Gas
-    candidates:
-      greenhouse: [nationalfuelgas, national-fuel-gas, nationalfuel]
-      lever: [nationalfuelgas, national-fuel-gas, nationalfuel]
-      ashby: [nationalfuelgas, national-fuel-gas, nationalfuel]
-      workday: [{tenant: nationalfuelgas, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Northwest Natural
     candidates:

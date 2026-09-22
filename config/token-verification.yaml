@@ -32,7 +32,7 @@ employers:
     status: confirmed
     industry: retailer
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: chicago
     platform: workday
     token: aep/AEPCareerSite/wd1
@@ -60,7 +60,7 @@ employers:
     status: confirmed
     industry: utility
     priority: 4_unlocated
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     platform: workday
     token: alliantenergy/alliant/wd1
     evidence: https://alliantenergy.wd1.myworkdayjobs.com/alliant
@@ -82,7 +82,7 @@ employers:
     status: confirmed
     industry: utility
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: chicago
     platform: workday
     token: ameren/External/wd1
@@ -205,7 +205,7 @@ employers:
     status: confirmed
     industry: utility
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: new_york
     platform: workday
     token: iberdrola/Iberdrola/wd3
@@ -397,10 +397,13 @@ employers:
     resolved_in_last_run: true
     metro: denver
   Colorado Springs Utilities:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: postings on coloradospringsutilities.jobs (DirectEmployers .jobs network); no supported ATS
+      URL in search results
+    checked_on: '2026-09-22'
   ComEd:
     status: denied
     reason: 'blocked: no_free_public_api'
@@ -690,7 +693,7 @@ employers:
     status: confirmed
     industry: utility
     priority: 4_unlocated
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: boston
     platform: workday
     token: eversource/ExternalSite/wd1
@@ -775,7 +778,7 @@ employers:
     status: confirmed
     industry: energy_analytics
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     platform: smartrecruiters
     token: Gridpoint
     evidence: https://careers.smartrecruiters.com/Gridpoint
@@ -787,7 +790,7 @@ employers:
     status: confirmed
     industry: energy_analytics
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: bay_area
     platform: greenhouse
     token: gridmaticinc
@@ -801,7 +804,7 @@ employers:
     checked_on: '2026-09-22'
     industry: consulting
     priority: 1_mandate_metro
-    resolved_in_last_run: true
+    resolved_in_last_run: false
     metro: northern_virginia
   H5 Data Centers:
     status: unchecked
@@ -940,7 +943,7 @@ employers:
     status: confirmed
     industry: grid_vendor
     priority: 4_unlocated
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     platform: workday
     token: itron/Itron/wd5
     evidence: https://itron.wd5.myworkdayjobs.com/Itron
@@ -1077,7 +1080,7 @@ employers:
     status: confirmed
     industry: cooperative
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: northern_virginia
     platform: workday
     token: nreca/External/wd1
@@ -1102,10 +1105,13 @@ employers:
     resolved_in_last_run: true
     metro: northern_virginia
   National Fuel Gas:
-    status: unchecked
+    status: denied
     industry: gas_utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own careers pages (nationalfuel.com/careers/energy-consultant-3/); no supported ATS URL in
+      two searches
+    checked_on: '2026-09-22'
   National Grid:
     status: denied
     industry: utility
@@ -1209,7 +1215,7 @@ employers:
     status: confirmed
     industry: retailer
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: boston
     platform: lever
     token: octoenergy
@@ -1347,10 +1353,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: true
   Portland General Electric:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: portlandgeneral/pgn/wd5
+    evidence: https://portlandgeneral.wd5.myworkdayjobs.com/pgn/job/Portland-Oregon/Operational-Analyst_R6931-1
+    checked_on: '2026-09-22'
   Powell Industries:
     status: unchecked
     industry: grid_vendor
@@ -1501,7 +1511,7 @@ employers:
     status: confirmed
     industry: energy_analytics
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: boston
     platform: workable
     token: sense
@@ -1848,7 +1858,7 @@ employers:
     status: confirmed
     industry: gas_utility
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: northern_virginia
     platform: workday
     token: wgl/AltaGas/wd5
