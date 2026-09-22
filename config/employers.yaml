@@ -555,12 +555,12 @@ utilities_batch2:
       ashby: [avista]
       workday: [{tenant: avista, site: careers}]
     verified: false
+  # Checked 2026-09-22: postings on its own careers.blackhillsenergy.com
+  # (/jobs/17858907-settlements-analyst); platform not identified. The
+  # Settlements Analyst there discloses $72,900-$109,250 -- a real loss.
   - name: Black Hills Energy
-    candidates:
-      greenhouse: [blackhillsenergy, black-hills-energy, blackhills]
-      lever: [blackhillsenergy, black-hills-energy, blackhills]
-      ashby: [blackhillsenergy, black-hills-energy, blackhills]
-      workday: [{tenant: blackhillsenergy, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: CMS Energy
     candidates:
@@ -629,13 +629,14 @@ utilities_batch2:
       ashby: [firstenergy]
       workday: [{tenant: firstenergy, site: careers}]
     verified: false
+  # Verified 2026-09-22 from a live job URL in search results:
+  # idahopowercompany.wd1.myworkdayjobs.com/External/job/Boise-ID/Risk-Analyst-or-Senior_R0004695
+  # The tenant is the operating utility, Idaho Power, not the holding company.
   - name: IDACORP
+    careers_url: https://idahopowercompany.wd1.myworkdayjobs.com/External
     candidates:
-      greenhouse: [idacorp]
-      lever: [idacorp]
-      ashby: [idacorp]
-      workday: [{tenant: idacorp, site: careers}]
-    verified: false
+      workday: [{tenant: idahopowercompany, site: External, wd: 1}]
+    verified: true
   - name: National Grid
     metro: new_york
     candidates:
@@ -658,13 +659,15 @@ utilities_batch2:
       ashby: [ogeenergy, oge-energy, oge]
       workday: [{tenant: ogeenergy, site: careers}]
     verified: false
+  # Verified 2026-09-22 from a live job URL in search results:
+  # jobs.smartrecruiters.com/ArizonaPublicServiceAPS/743999675585619-energy-innovation-consultant
+  # The board is the operating utility's, Arizona Public Service; casing as
+  # written is part of the token.
   - name: Pinnacle West Capital
+    careers_url: https://careers.smartrecruiters.com/ArizonaPublicServiceAPS
     candidates:
-      greenhouse: [pinnaclewestcapital, pinnacle-west-capital, pinnaclewest]
-      lever: [pinnaclewestcapital, pinnacle-west-capital, pinnaclewest]
-      ashby: [pinnaclewestcapital, pinnacle-west-capital, pinnaclewest]
-      workday: [{tenant: pinnaclewestcapital, site: careers}]
-    verified: false
+      smartrecruiters: [ArizonaPublicServiceAPS]
+    verified: true
   - name: PNM Resources
     candidates:
       greenhouse: [pnmresources, pnm-resources, pnm]
@@ -727,12 +730,11 @@ utilities_batch2:
       ashby: [pugetsoundenergy, puget-sound-energy, pugetsound]
       workday: [{tenant: pugetsoundenergy, site: careers}]
     verified: false
+  # Checked 2026-09-22: its own portal, careers.srpnet.com (talent
+  # community); platform not identified from search results.
   - name: Salt River Project
-    candidates:
-      greenhouse: [saltriverproject, salt-river-project, saltriver]
-      lever: [saltriverproject, salt-river-project, saltriver]
-      ashby: [saltriverproject, salt-river-project, saltriver]
-      workday: [{tenant: saltriverproject, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Austin Energy
     candidates:
@@ -840,12 +842,11 @@ gas_utilities_batch2:
       ashby: [southwestgas, southwest-gas, southwest]
       workday: [{tenant: southwestgas, site: careers}]
     verified: false
+  # Checked 2026-09-22: careers.ugicorp.com/UGIUtilities/content/...?locale=
+  # is SAP SuccessFactors Career Site Builder, which no adapter supports.
   - name: UGI Corporation
-    candidates:
-      greenhouse: [ugi]
-      lever: [ugi]
-      ashby: [ugi]
-      workday: [{tenant: ugi, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Chesapeake Utilities
     candidates:
@@ -861,12 +862,13 @@ gas_utilities_batch2:
     ats_unidentified: true
     candidates: {}
     verified: false
+  # Checked 2026-09-22: posts on its own careers.nwnatural.com. CAUTION, a
+  # same-name trap: northwest.wd1.myworkdayjobs.com/Northwest_Careers is
+  # Northwest BANK (its job links are tellers in Depew, NY), and the generic
+  # "northwest" slug guesses below it were removed for the same reason.
   - name: Northwest Natural
-    candidates:
-      greenhouse: [northwestnatural, northwest-natural, northwest]
-      lever: [northwestnatural, northwest-natural, northwest]
-      ashby: [northwestnatural, northwest-natural, northwest]
-      workday: [{tenant: northwestnatural, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Philadelphia Gas Works
     candidates:
@@ -2000,12 +2002,12 @@ retailers_batch3:
       ashby: [nrgenergy, nrg-energy, nrg]
       workday: [{tenant: nrgenergy, site: careers}]
     verified: false
+  # Checked 2026-09-22: an NRG Energy brand; postings are on
+  # careers.nrgenergy.com, platform not identified from search results. The
+  # generic "direct" slug guesses were removed.
   - name: Direct Energy
-    candidates:
-      greenhouse: [directenergy, direct-energy, direct]
-      lever: [directenergy, direct-energy, direct]
-      ashby: [directenergy, direct-energy, direct]
-      workday: [{tenant: directenergy, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Just Energy
     candidates:

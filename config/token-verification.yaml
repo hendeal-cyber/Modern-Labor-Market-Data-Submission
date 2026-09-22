@@ -250,10 +250,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Black Hills Energy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own careers.blackhillsenergy.com/jobs/<id>-<slug>; platform not identified
+    checked_on: '2026-09-22'
   Black and Veatch:
     status: denied
     industry: consulting
@@ -557,10 +559,12 @@ employers:
       see the Oracle Cloud lead in docs/limitations.md.
     checked_on: '2026-09-22'
   Direct Energy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: NRG brand; postings on careers.nrgenergy.com, platform not identified
+    checked_on: '2026-09-22'
   Dominion Energy:
     status: denied
     industry: utility
@@ -860,10 +864,14 @@ employers:
     resolved_in_last_run: false
     metro: northern_virginia
   IDACORP:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: idahopowercompany/External/wd1
+    evidence: https://idahopowercompany.wd1.myworkdayjobs.com/External/job/Boise-ID/Risk-Analyst-or-Senior_R0004695
+    checked_on: '2026-09-22'
   IGS Energy:
     status: denied
     industry: retailer
@@ -1192,10 +1200,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Northwest Natural:
-    status: unchecked
+    status: denied
     industry: gas_utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own careers.nwnatural.com; northwest.wd1.myworkdayjobs.com is Northwest Bank (teller job,
+      Depew NY), a same-name trap
+    checked_on: '2026-09-22'
   Novva Data Centers:
     status: unchecked
     industry: data_center
@@ -1341,10 +1352,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Pinnacle West Capital:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: smartrecruiters
+    token: ArizonaPublicServiceAPS
+    evidence: https://jobs.smartrecruiters.com/ArizonaPublicServiceAPS/743999675585619-energy-innovation-consultant
+    checked_on: '2026-09-22'
   Plus Power:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1455,10 +1470,12 @@ employers:
     reason: Hirebridge ATS (hirebridge.com); not among the seven supported adapters.
     checked_on: '2026-09-22'
   Salt River Project:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: own portal careers.srpnet.com; platform not identified
+    checked_on: '2026-09-22'
   Santanna Energy Services:
     status: denied
     industry: retailer
@@ -1733,10 +1750,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   UGI Corporation:
-    status: unchecked
+    status: denied
     industry: gas_utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: careers.ugicorp.com is SAP SuccessFactors Career Site Builder; unsupported
+    checked_on: '2026-09-22'
   Ulteig:
     status: denied
     industry: consulting
