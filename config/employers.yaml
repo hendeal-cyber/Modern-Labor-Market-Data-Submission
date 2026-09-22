@@ -578,14 +578,16 @@ utilities_batch2:
       ashby: [evergy]
       workday: [{tenant: evergy, site: careers}]
     verified: false
+  # Verified 2026-09-22: eversource.wd1.myworkdayjobs.com/ExternalSite.
+  # Site is "ExternalSite", not "External". Live "Associate Analyst, Energy
+  # Supply (Hybrid)" and "Energy Supply Analyst" -- exact taxonomy fits. CT
+  # and MA are both mandate states, so these postings should disclose.
   - name: Eversource Energy
-    metro: boston
+    industry: utility
+    careers_url: https://eversource.wd1.myworkdayjobs.com/ExternalSite
     candidates:
-      greenhouse: [eversourceenergy, eversource-energy, eversource]
-      lever: [eversourceenergy, eversource-energy, eversource]
-      ashby: [eversourceenergy, eversource-energy, eversource]
-      workday: [{tenant: eversourceenergy, site: careers}]
-    verified: false
+      workday: [{tenant: eversource, site: ExternalSite, instance: wd1}]
+    verified: true
   - name: FirstEnergy
     candidates:
       greenhouse: [firstenergy]

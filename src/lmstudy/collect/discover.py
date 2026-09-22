@@ -307,6 +307,10 @@ def workday_site_variants(tenant: str, employer: str = "", limit: int = 7) -> li
         # and every one of them already reached "External" inside the limit of
         # 7, so the ordering is a cost saving and not a fix.
         "External",
+        # Eversource's board is /ExternalSite, verified 2026-09-22. Distinct
+        # from "External" and not previously among the candidates, so a
+        # Workday tenant using it read as having no board at all.
+        "ExternalSite",
         tenant,
         tenant.capitalize(),
         "careers",

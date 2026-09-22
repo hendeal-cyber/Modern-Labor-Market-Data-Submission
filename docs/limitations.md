@@ -264,6 +264,56 @@ observations per regressor. Anyone re-estimating can identify the rows —
 `metro == "remote_national"` and `state` empty — and either drop them or add
 the dummy. Found in audit round 4.
 
+## 9b. The frame is bounded by ATS platform, not by effort — and that is selective
+
+A hand verification pass over the employer frame (2026-09-22, recorded
+employer-by-employer in `config/token-verification.yaml`) resolved 97 of 272
+employers to a confirmed or denied outcome. The denials are not random: they
+cluster by **applicant-tracking platform**, and the platforms the study cannot
+reach map onto *kinds of employer*.
+
+| Platform found instead of a supported one | Employers |
+|---|---|
+| Employer's own portal, no ATS identifiable | 19 |
+| iCIMS | 4 (+3 already blocked) |
+| `careers.electric.coop` (NRECA Cooperative Career Center) | 3 |
+| SAP SuccessFactors, Oracle Cloud HCM, NEOGOV/GovernmentJobs, gr8people, Paylocity, JazzHR, Hirebridge, `.jobs`/DirectEmployers | 1 each |
+
+The study reads seven ATS platforms — Greenhouse, Lever, Ashby,
+SmartRecruiters, Workable, Recruitee and Workday — chosen because each exposes
+a public, unauthenticated endpoint with full description text and no terms
+prohibiting automated reading. Everything above is outside that set, and the
+selection this creates is systematic rather than incidental:
+
+- **Municipal and public power utilities** hire through NEOGOV/GovernmentJobs.
+  Seattle City Light is a City of Seattle department and unreachable for that
+  reason alone.
+- **Electric cooperatives** syndicate to NRECA's own Cooperative Career Center.
+  Three were lost to it, and all three were exact fits in mandate states:
+  Great River Energy's Maple Grove analyst roles at \$105–144k, \$78–106k and
+  \$102–140k (Minnesota), United Power's "GIS and Data Analyst I-IV" and
+  "Financial Analyst II" in Brighton (Colorado), and CFC in Dulles (Virginia).
+  Cooperatives are non-profit and set pay differently from an investor-owned
+  utility, so their absence is not neutral for a pay study.
+- **Large investor-owned utilities** are split: some run Workday and are
+  reachable (Ameren, Eversource, Xcel, NiSource, Avangrid), while others run
+  iCIMS or SuccessFactors and are not (Exelon, ComEd, Con Edison, Constellation,
+  American Water, Peoples Gas).
+
+Two of these are worth revisiting and neither is done here. **Oracle Cloud
+HCM** exposes a public candidate-experience REST endpoint behind an ordinary
+career site — the same shape as Workday CXS, which this study already reads —
+so an adapter may well be defensible. And `careers.electric.coop` could reach
+many of the 31 unresolved cooperatives at once. Both are left alone for the
+same reason iCIMS is: **the terms cannot be read from this environment**, and
+this project does not automate a platform whose terms it has not read. That is
+a deliberate cost, recorded rather than quietly paid.
+
+The practical consequence for a reader: the sample tilts toward employers
+modern enough to run a Greenhouse/Lever/Ashby-class ATS or a Workday tenant,
+which correlates with size, sector and how recently the firm was founded. It is
+not a random sample of energy-sector employers and is not claimed to be.
+
 ## 10. The population is national and all-seniority, and that was not the original design
 
 The study began as a question about early-career software and data roles within

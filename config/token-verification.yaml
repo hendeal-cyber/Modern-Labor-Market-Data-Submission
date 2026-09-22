@@ -399,11 +399,14 @@ employers:
     resolved_in_last_run: false
     metro: chicago
   Constellation NewEnergy:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: jobs.constellationenergy.com, iCIMS -- confirms the existing blocked_reason on Constellation
+      Energy. Closed on terms; see docs/limitations.md.
+    checked_on: '2026-09-22'
   Consumers Energy:
     status: unchecked
     industry: utility
@@ -528,7 +531,7 @@ employers:
     checked_on: '2026-09-22'
     industry: grid_operator
     priority: 4_unlocated
-    resolved_in_last_run: false
+    resolved_in_last_run: true
   East Kentucky Power Cooperative:
     status: unchecked
     industry: cooperative
@@ -615,11 +618,18 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Eversource Energy:
-    status: unchecked
+    status: confirmed
     industry: utility
-    priority: 1_mandate_metro
+    priority: 4_unlocated
     resolved_in_last_run: false
     metro: boston
+    platform: workday
+    token: eversource/ExternalSite/wd1
+    evidence: https://eversource.wd1.myworkdayjobs.com/ExternalSite
+    checked_on: '2026-09-22'
+    note: CT/MA/NH -- CT and MA are mandate states. Live 'Associate Analyst, Energy Supply (Hybrid)' and
+      'Energy Supply Analyst', exact taxonomy fits. Site name is 'ExternalSite', a variant distinct from
+      the 'External' used by Xcel, NRECA and Ameren.
   Exelon:
     status: denied
     reason: 'blocked: no_free_public_api'
@@ -692,7 +702,7 @@ employers:
     resolved_in_last_run: false
   Gridmatic:
     status: confirmed
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
@@ -721,11 +731,13 @@ employers:
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Hecate Energy:
-    status: unchecked
+    status: denied
     industry: developer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: Careers on hecateenergy.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Hitachi Energy:
     status: confirmed
     evidence: resolved in collection manifest
@@ -777,11 +789,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Illinois American Water:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: SAP SuccessFactors (career4.successfactors.com/career?company=amwater), plus jobs.amwater.com.
+      SuccessFactors has no free public API -- already closed on the same grounds as iCIMS.
+    checked_on: '2026-09-22'
   Indiana American Water:
     status: unchecked
     industry: utility
@@ -975,11 +990,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   National Grid:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    reason: Own portal at careers.nationalgrid.com / jobs.nationalgrid.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   National Rural Utilities Cooperative Finance Corporation:
     status: denied
     industry: cooperative
@@ -995,18 +1012,20 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   New Jersey Resources:
-    status: unchecked
+    status: denied
     industry: gas_utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    reason: No supported ATS host surfaced; careers routed via a shortlink to their own portal.
+    checked_on: '2026-09-22'
   New York ISO:
     status: confirmed
     evidence: https://job-boards.greenhouse.io/nyiso
     checked_on: '2026-09-22'
     industry: grid_operator
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: new_york
   Nexamp:
     status: confirmed
@@ -1067,7 +1086,7 @@ employers:
     resolved_in_last_run: false
   Octopus Energy:
     status: confirmed
-    industry: energy_analytic
+    industry: retailer
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: boston
@@ -1135,11 +1154,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   PSEG:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    reason: gr8people ATS at pseg.gr8people.com; not among the seven supported adapters.
+    checked_on: '2026-09-22'
   Pattern Energy:
     status: unchecked
     industry: developer
@@ -1223,11 +1244,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Puget Sound Energy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: seattle
+    reason: Own portal at jobs.pse.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   QTS Data Centers:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1273,11 +1296,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: true
   Sabey Data Centers:
-    status: unchecked
+    status: denied
     industry: data_center
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: seattle
+    reason: Hirebridge ATS (hirebridge.com); not among the seven supported adapters.
+    checked_on: '2026-09-22'
   Salt River Project:
     status: unchecked
     industry: utility
@@ -1329,7 +1354,7 @@ employers:
     metro: los_angeles
   Sense:
     status: confirmed
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: boston
@@ -1382,11 +1407,15 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Southern Company Gas:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: chicago
+    reason: 'Own portal at southerncompany.jobs / southerncompany-gas.jobs (DirectEmployers .jobs network).
+      No supported ATS. NOTE: the .jobs syndication route is one of the untried iCIMS alternatives; its
+      terms cannot be read from here, so it stays a lead rather than an adapter.'
+    checked_on: '2026-09-22'
   Southwest Gas:
     status: unchecked
     industry: gas_utility
@@ -1468,7 +1497,7 @@ employers:
     checked_on: '2026-09-22'
     industry: consulting
     priority: 1_mandate_metro
-    resolved_in_last_run: false
+    resolved_in_last_run: true
     metro: boston
   Think Energy:
     status: unchecked
@@ -1533,11 +1562,15 @@ employers:
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   United Power:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: denver
+    reason: 'unitedpower.com/careers; listings syndicate to careers.electric.coop. Third cooperative lost
+      this way, and a painful one: ''GIS and Data Analyst I-IV'' and ''Financial Analyst II'' in Brighton
+      CO are exact taxonomy fits in a mandate state.'
+    checked_on: '2026-09-22'
   Uplight:
     status: denied
     reason: no supported ATS identified (from employers.yaml)
