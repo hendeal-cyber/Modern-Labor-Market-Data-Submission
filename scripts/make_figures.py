@@ -114,11 +114,33 @@ def fig_pay_distribution(rows: list[dict]) -> str | None:
     return out.name
 
 
-def fig_coefficients(model: dict) -> str | None:
-    """Signed effects: diverging blue/red around a neutral zero line."""
+def fig_coefficients(model: dict, boot: dict | None = None,
+                     fragile: set | None = None) -> str | None:
+    """Signed effects around a neutral zero line.
+
+    The intervals are the CLUSTERED 95% CIs, and at this cluster count they are
+    anti-conservative: seven of them exclude zero for coefficients the
+    pre-registered wild cluster bootstrap cannot distinguish from zero. A
+    reader looking only at this figure would take those seven as findings,
+    which is the same error the paper and the deck both made today.
+
+    So intervals the bootstrap does not support are drawn muted and hollow,
+    and only the ones that survive it (and the region-robustness check) are
+    drawn solid. The encoding is stated in the title rather than left to a
+    legend nobody reads.
+    """
     items = [(n, c) for n, c in model["coefficients"].items() if n != "const"]
     if not items:
         return None
+    boot = boot or {}
+    fragile = fragile or set()
+
+    def survives(name: str) -> bool:
+        if not boot:
+            return True          # no bootstrap: nothing to distinguish
+        b = boot.get(name) or {}
+        pv = b.get("p_value")
+        return pv is not None and pv < 0.05 and name not in fragile
     items.sort(key=lambda kv: kv[1]["coef"])
     names = [n for n, _ in items]
     coefs = np.array([c["coef"] for _, c in items])
@@ -128,14 +150,28 @@ def fig_coefficients(model: dict) -> str | None:
     fig, ax = plt.subplots(figsize=(7.2, 0.42 * len(items) + 1.8))
     y = np.arange(len(items))
     ax.axvline(0, color=NEUTRAL, linewidth=1.5, zorder=2)
-    for yi, c, l, h in zip(y, coefs, lo, hi):
-        color = POS if c >= 0 else NEG
-        ax.plot([l, h], [yi, yi], color=color, linewidth=2, solid_capstyle="round", zorder=3)
-        ax.plot([c], [yi], "o", color=color, markersize=8,
-                markeredgecolor=SURFACE, markeredgewidth=2, zorder=4)
+    for yi, (name, c, l, h) in enumerate(zip(names, coefs, lo, hi)):
+        ok = survives(name)
+        color = (POS if c >= 0 else NEG) if ok else NEUTRAL
+        ax.plot([l, h], [yi, yi], color=color, linewidth=2 if ok else 1.4,
+                alpha=1.0 if ok else 0.55, solid_capstyle="round", zorder=3)
+        ax.plot([c], [yi], "o", color=color if ok else SURFACE, markersize=8,
+                markeredgecolor=color if ok else NEUTRAL,
+                markeredgewidth=2, alpha=1.0 if ok else 0.75, zorder=4)
     ax.set_yticks(y, [f"{n}" for n in names], fontsize=9)
-    ax.set_xlabel("Effect on log advertised pay (95% CI)")
-    ax.set_title(f"{model['label']} — coefficient estimates")
+    for tick, name in zip(ax.get_yticklabels(), names):
+        if not survives(name):
+            tick.set_color(INK_2)
+    ax.set_xlabel("Effect on log advertised pay (clustered 95% CI)")
+    if boot:
+        # Two short lines. The single long subtitle overflowed the axes to the
+        # right at this figure width, and qa_slides does not check figure
+        # titles, so nothing would have caught it but looking.
+        ax.set_title(f"{model['label']} — coefficient estimates\n"
+                     "solid: survives the bootstrap\n"
+                     "faded: inconclusive under it", fontsize=9)
+    else:
+        ax.set_title(f"{model['label']} — coefficient estimates")
     _clean(ax)
     ax.tick_params(length=0)
     out = FIGS / "fig3_coefficients.png"
@@ -192,8 +228,12 @@ def main() -> int:
     if analysis and analysis.get("status") == "ok":
         model = (analysis.get("models") or {}).get("core")
         if model:
-            (made if (f := fig_coefficients(model)) else skipped).append(
-                f or "fig3_coefficients (no coefficients)")
+            _boot = ((analysis.get("wild_cluster_bootstrap") or {})
+                     .get("by_variable") or {})
+            _fragile = set((analysis.get("region_robustness") or {})
+                           .get("verdicts_changed") or [])
+            (made if (f := fig_coefficients(model, _boot, _fragile))
+             else skipped).append(f or "fig3_coefficients (no coefficients)")
     else:
         skipped.append("fig3_coefficients (no estimated model yet)")
 
