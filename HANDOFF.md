@@ -42,7 +42,8 @@ Virginia every mandate-state posting in this sample states pay.**
 ### Deliverables: complete
 
 Paper (0 TODO markers), slide deck (QA clean), dataset, code, pre-registration,
-codebook, audit log (3 rounds), limitations (14 entries), reproducibility
+codebook, audit log (3 rounds + an integrity check), limitations (17
+entries), decision log, reproducibility
 README. All regenerate from `data/raw/` with the commands in the README.
 
 ### What is NOT done
@@ -63,13 +64,69 @@ README. All regenerate from `data/raw/` with the commands in the README.
 3. **Audit round 4.** Rounds 1-3 each found real errors in the top rows by pay.
    Assume round 4 would too.
 
+
+### What the model actually says
+
+Three results a reader should know before opening the paper, because two of
+them are easy to get backwards.
+
+**Seniority dominates, as pre-registered (H1).** `seniority_rank`
++0.0679 per rung, p=0.0000 — the most precisely
+estimated coefficient in the model.
+
+**The AI premium attaches to the SKILL, not the role label.**
+`skill_ml_ai` is +0.2364 (≈27%) at
+p=0.0001, while `family_ai_ml` — the role-family classification —
+is +0.0169 at p=0.8376, indistinguishable from zero.
+Postings that *mention* ML or AI skills pay more; roles *classified* as AI/ML
+do not differ. H4 was written against the role family and reads inconclusive,
+which understates what is there. **Do not restate this as "AI roles pay
+more".**
+
+**H5 is contradicted.** `degree_required` is -0.1143
+(≈-11%) at p=0.0027 —
+a stated degree requirement is associated with **lower** advertised pay,
+conditional on seniority. The paper reports it as contradicted and offers a
+compositional conjecture (the best-paid technical postings increasingly say
+"degree or equivalent experience"), labelled as a conjecture because testing it
+needs a variable this dataset lacks. It was predicted positive; that is why it
+is reported rather than quietly dropped.
+
+### Operational cautions — two things that cost this session time
+
+**A collection run can hang, and it blocks the queue.** `collect.yml` uses a
+concurrency group, so a stuck run leaves the next one `pending` indefinitely.
+One Monday cron sat `in_progress` for ~115 minutes with no step transition
+against 41 minutes for an identical commit; cancelling it released the queued
+run within minutes. If nothing lands, check whether an older run is wedged
+before assuming your own run failed.
+
+**Do not watch for a data commit by comparing the remote to a fixed baseline.**
+It cannot tell your own pushes from the run's, and it produced two false
+"the run landed" reports here. Test **ancestry** instead: the run has committed
+when the remote tip is *not* an ancestor of local `HEAD`:
+
+```bash
+git fetch -q origin <branch>
+git merge-base --is-ancestor FETCH_HEAD HEAD || echo "run committed"
+```
+
 ### The one rule to carry forward
 
 **Read the real output before believing it.** Every serious defect in this
 project was found that way and none by a test passing: a Warsaw role at
 $309,500 that had entered the US sample twice, a funnel whose own totals
 disagreed with its own CSV, four misclassified rows sitting in the top eleven
-by pay. `postings.csv` is small enough to read end to end.
+by pay, a BEA deflator fetched in place of a price index, and an executive
+summary naming predictors that were not significant. `postings.csv` is small
+enough to read end to end; do that after every rebuild.
+
+**And validate a guard against the real artifact, never a reconstruction.**
+This project made that mistake twice. The sector gate was checked against a
+rebuilt version of the board it was meant to reject, scored clean, and shipped
+broken. Then the BEA parser was tested against a CSV written to look like
+BEA's, passed every case, and fetched the wrong table. A test built from
+something you wrote tests your imagination.
 
 ---
 
@@ -289,27 +346,68 @@ by a regression test.
 | Pre-screen made a real board look **unfound** | Conflated "no board" with "nothing in scope" |
 | All-roles probe option **bypassed screening entirely** | Reported 176 usable; true figure 30 |
 
+Added in the national-scope session. Same character: valid output, wrong
+content.
+
+| Bug | Consequence |
+|---|---|
+| Workday writes `US - VA, Arlington` — country prefix, then **STATE, CITY** | Parsed to the city "va", resolved to nothing, recorded as out of radius. **14 role-matching Northern Virginia postings dropped** |
+| The remote fallback accepted **absence of evidence** as US scope | A **Warsaw, Poland** role entered the US sample **twice at $309,500** — the highest-paid observation at the time — because it resolved to no US state and read as "remote". A Dammam role came the same way. `is_us_remote()` now demands positive evidence |
+| `git pull -X ours` in the workflow **merged derived artifacts** | `-X ours` resolves conflicting hunks our way but still takes non-conflicting hunks from BOTH sides. Two runs' outputs combined: a funnel reporting 103 while its own CSV held 204 rows. Raw snapshots *should* merge; derived files must be **regenerated** |
+| BEA archive holds several tables; the loop took **the first that parsed** | Fetched `SAIRPD` (implicit price **deflator**, 2017 base) instead of `SARPP`. Every value 1.237x the true RPP — cumulative US inflation. Would have inflated every real-pay figure ~24%. **Tests passed; they were written against a CSV I invented** |
+| `seniority_rank` took the **highest** match on a range title | "Resource Planning Analyst I or II or Senior" ranked at its ceiling. 6% of rows, biasing the headline regressor upward exactly where the pay range is widest. Ranked at the **floor** now |
+| `mandate_state` read the **first-listed** state only | 23% of postings list several locations, and coverage attaches to the job's location, so any covered location counts. 9 rows wrong; 7 of them disclosed pay. Fix moved the headline gap 65pp → 71pp |
+| Three out-of-scope roles admitted | A **lawyer** on `capital markets`; a **nuclear instructor** whose title mentions a DBA parenthetically; a **security analyst** that round 2's `security analyst` term missed because the title reads "Security **and Compliance** Analyst" and matching is contiguous |
+| `admit_all_seniority` silently switched on `admit_unstated_experience` | Made strict mode unreachable. Whether every level is admitted says nothing about whether unstated-minimum postings are kept — separate policies, now separate code |
+| The funnel is a `Counter`, so a stage that rejected nothing **dropped its key** | "Nothing was rejected on geography" was indistinguishable from "the geography stage did not run". Seeded so every stage reports a number, including zero |
+| The **executive summary** named predictors that were not significant | Claimed "seniority, required experience and role family" predict pay; required experience is p=0.57 and AI/ML role family p=0.67. True of an earlier specification, drifted when the model changed, in the section most readers read. Now **generated from the fitted coefficients** |
+| `yrs_exp_stated` was in the fitted model but **absent from the codebook** | A reader could not look up the variable doing the imputation work — and it is load-bearing: unstated postings are imputed to zero, so without the indicator that imputation is indistinguishable from a genuine "no experience required" |
+
 ## 5. Architecture
 
 ```
-config/scope.yaml       metros, role taxonomy, early-career rules, escalation
-config/employers.yaml   266 employers, industry, ATS tokens, diversified guards
+config/scope.yaml       metros, geography.national, role taxonomy, seniority
+                        ranks, pay_mandate_states (16 jurisdictions + dates)
+config/employers.yaml   272 employers, industry, ATS tokens, diversified
+                        guards, rejected_tokens, ats_unidentified markers
 config/regressors.yaml  28 coded regressors — patterns live here, not in code
 src/lmstudy/
-  collect/ats.py        7 ATS adapters (Greenhouse, Lever, Ashby,
-                        SmartRecruiters, Workable, Recruitee, Workday CXS)
-  collect/discover.py   token probing + sector_confidence() safeguard
-  collect/run.py        orchestration; --probe and --enable-tier3 modes
-  filters.py            role/seniority/experience/internship; extract_job_level
+  netclient.py          PoliteSession: get_json / get_text (feeds) /
+                        get_bytes (archives). Named so it cannot shadow the
+                        stdlib `http` package, which it once did
+  collect/ats.py        7 ATS adapters + fetch_syndication (RSS/Atom probe for
+                        the iCIMS employers) and feed_quality(), which refuses
+                        a feed of teasers rather than returning half a body
+  collect/discover.py   token probing, sector_confidence(),
+                        workday_site_variants()
+  collect/run.py        orchestration; --probe and --enable-tier3 modes.
+                        make_detail_filter() is the highest-stakes filter here
+  geo.py                canonicalize_place(), resolve() for study metros,
+                        resolve_us_state/resolve_us_states(), census_region(),
+                        is_non_us(), is_us_remote()
+  filters.py            role screen; seniority_rank() and is_level_range();
+                        is_early_career() derived, not enforced
   pay.py                range parsing, hourly annualization, log midpoint
   code_regressors.py    rule-based coding from config/regressors.yaml
-  build_dataset.py      screening funnel -> postings.csv; role_family
+  build_dataset.py      screening funnel -> postings.csv; role_family;
+                        asserts its own totals agree before writing
   audit.py              stratified sampling + precision/recall/kappa
-  analyze.py            OLS, employer-clustered SE, VIF, power, selection
+  analyze.py            four pre-registered models, employer-clustered SE,
+                        VIF, power, selection, disclosure robustness cuts
 scripts/                make_codebook / make_figures / make_paper /
-                        make_slides.js / qa_slides / scope_probe
-tests/run_all.py        every suite; no network needed
+                        make_slides.js / qa_slides / scope_probe / fetch_rpp
+tests/run_all.py        every suite; no network needed. Suites: pay, geo,
+                        filters, regressors, pipeline, audit, analyze, feeds,
+                        rpp, consistency
 ```
+
+**Second safeguard — `tests/test_consistency.py`.** Every other suite tests a
+function; this one tests that the paper, codebook, dataset and model output
+agree. It exists because two failures here were invisible to unit tests: the
+merged funnel, and a fitted regressor missing from the codebook. It also guards
+the honesty properties that are one edit from vanishing — the interpretability
+block, the non-causal label on the mandate contrast, the "price adjustment
+unavailable" note, and the absence of TODO markers. Verified by breaking it.
 
 ### The lesson behind the bug table
 
@@ -345,6 +443,13 @@ python src/lmstudy/build_dataset.py          # rebuild from data/raw/
 python src/lmstudy/analyze.py                # estimate the model
 python src/lmstudy/audit.py sample --from-raw --n 100   # audit sheet
 python scripts/scope_probe.py [--tier3]      # score candidate scopes
+
+# deliverables — pure functions of data/analysis/, safe to delete and rebuild
+python scripts/make_figures.py
+python scripts/make_paper.py                 # prints its TODO-marker count
+python scripts/make_codebook.py
+node   scripts/make_slides.js && python scripts/qa_slides.py
+python scripts/fetch_rpp.py                  # Actions only; egress blocked here
 ```
 
 Collection is Actions-only: dispatch `collect.yml` (inputs `limit`,
@@ -554,6 +659,41 @@ and neither was found by tests passing. Round 1 found regressors firing on
 company boilerplate; round 2 found screens admitting senior roles. If you
 change a pattern, read the real output it produces — `postings.csv` is small
 enough to read end to end, and that is exactly how these were caught.
+
+### Audit round 3 changed the headline number
+
+Target was `seniority_rank` and `state` — the two variables the national
+rescope introduced and nobody had checked against hand-coded truth. All 141
+rows read, not sampled. **21 wrong: 85.1% accuracy, below the 0.90 standard.**
+
+The one that mattered: **23% of rows list more than one location**, and `state`
+and `metro` were assigned by *different* rules — nearest study metro versus
+first parseable fragment — so they disagreed constantly (`state=UT` with
+`metro=indianapolis`). For most fields that is untidy. For `mandate_state` it
+is **wrong**, because a pay-transparency law attaches to the job's location, so
+a posting naming any covered place is covered. Nine rows read 0 while listing a
+mandate state elsewhere, and **seven of those nine disclosed pay** — which is
+what coverage predicts.
+
+That widened the disclosure gap from 65 to 71 points. **The fix strengthened
+the headline, which is exactly why it needs stating clearly**: it was found by
+auditing assignments rather than looking for a better number, its effect was
+predicted (~70.7pp) *before* implementation, and it would have been reported
+identically had the gap narrowed. It is a dated amendment in
+`docs/pre-registration.md` §8, not a silent edit, and `states_listed` plus
+`n_locations` are in the dataset so a reader preferring the first-listed rule
+can recompute it.
+
+The other two findings — range titles ranked at their ceiling, and three
+out-of-scope roles admitted — are in the bug table above. Full entry in
+`docs/audit-log.md`.
+
+**Two things recorded as NOT defects so they are not re-litigated.**
+"Associate" is genuinely ambiguous (a mid rung in banking, junior in
+engineering, and both appear here), so it is documented rather than forced. And
+five Invenergy rows that looked like duplicates are distinct requisitions
+(R11187-1, R11315-2, R10740-1, R11186, R10973-1) — dedupe is working and my
+first reading was wrong.
 
 ### Still open from round 1
 
