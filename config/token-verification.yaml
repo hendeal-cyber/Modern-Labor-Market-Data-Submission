@@ -546,7 +546,7 @@ employers:
     checked_on: '2026-09-22'
     industry: energy_analytics
     priority: 1_mandate_metro
-    resolved_in_last_run: true
+    resolved_in_last_run: false
     metro: new_york
   Daymark Energy Advisors:
     status: denied
