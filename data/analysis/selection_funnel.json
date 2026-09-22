@@ -1,37 +1,38 @@
 {
-  "built_at": "2026-09-21T23:16:26.594211+00:00",
+  "built_at": "2026-09-22T03:20:15.277056+00:00",
   "snapshots": [
     "2026-09-20",
-    "2026-09-21"
+    "2026-09-21",
+    "2026-09-22"
   ],
   "funnel": {
-    "raw": 898,
+    "raw": 1716,
     "rejected_off_umbrella": 0,
-    "rejected_screen": 630,
-    "passed_screen": 268,
-    "rejected_geo": 46,
-    "passed_geo": 222,
-    "duplicate_sighting": 18,
-    "unique_in_scope": 204,
-    "usable_with_pay": 137
+    "rejected_screen": 1180,
+    "passed_screen": 536,
+    "rejected_geo": 86,
+    "passed_geo": 450,
+    "duplicate_sighting": 229,
+    "unique_in_scope": 221,
+    "usable_with_pay": 154
   },
   "rejection_reasons": {
-    "role_not_software_data": 383,
-    "role_excluded": 214,
-    "internship": 52,
-    "non_us": 29,
-    "no_us_state": 17
+    "role_not_software_data": 743,
+    "role_excluded": 366,
+    "internship": 109,
+    "non_us": 52,
+    "no_us_state": 34
   },
   "usable_by_metro": {
-    "": 20,
+    "": 33,
     "northern_virginia": 23,
-    "remote_national": 13,
+    "remote_national": 14,
     "denver": 26,
     "chicago": 34,
     "indianapolis": 3,
     "new_york": 4,
-    "bay_area": 5,
-    "boston": 8,
+    "bay_area": 6,
+    "boston": 10,
     "minneapolis": 1
   },
   "usable_by_employer": {
@@ -40,7 +41,10 @@
     "AES Indiana": 13,
     "Xcel Energy": 10,
     "Nexamp": 9,
+    "ERCOT": 9,
     "Vantage Data Centers": 6,
+    "New York ISO": 4,
+    "The Brattle Group": 4,
     "Hitachi Energy": 3,
     "STACK Infrastructure": 3,
     "Flexential": 2,
@@ -59,7 +63,7 @@
     "QTS Data Centers": 1,
     "Voltus": 1
   },
-  "distinct_employers_with_pay": 23,
+  "distinct_employers_with_pay": 26,
   "min_usable_n": 100,
   "floor_met": true
 }
