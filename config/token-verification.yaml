@@ -982,10 +982,12 @@ employers:
     checked_on: '2026-09-22'
     duplicate_of: Itron
   JEA:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: Oracle Taleo (jea.taleo.net); unsupported
+    checked_on: '2026-09-22'
   Jackson EMC:
     status: unchecked
     industry: cooperative

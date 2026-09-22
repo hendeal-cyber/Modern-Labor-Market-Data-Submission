@@ -763,12 +763,11 @@ utilities_batch2:
       ashby: [cpsenergy, cps-energy, cps]
       workday: [{tenant: cpsenergy, site: careers}]
     verified: false
+  # Checked 2026-09-22: Oracle Taleo (jea.taleo.net/careersection/...),
+  # which no adapter supports.
   - name: JEA
-    candidates:
-      greenhouse: [jea]
-      lever: [jea]
-      ashby: [jea]
-      workday: [{tenant: jea, site: careers}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Santee Cooper
     candidates:
