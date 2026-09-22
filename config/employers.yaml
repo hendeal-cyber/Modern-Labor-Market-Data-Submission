@@ -1317,13 +1317,16 @@ energy_analytics_batch2:
       ashby: [voltus]
       workday: [{tenant: voltus, site: careers}]
     verified: false
+  # Verified 2026-09-22: apply.workable.com/cpower-energy-management. The token
+  # carries the full legal name; no cpower* slug reaches it. Baltimore MD is a
+  # mandate state, and demand response is directly in the sector vocabulary.
   - name: CPower Energy
+    metro: northern_virginia
+    industry: energy_analytics
+    careers_url: https://apply.workable.com/cpower-energy-management/
     candidates:
-      greenhouse: [cpowerenergy, cpower-energy, cpower]
-      lever: [cpowerenergy, cpower-energy, cpower]
-      ashby: [cpowerenergy, cpower-energy, cpower]
-      workday: [{tenant: cpowerenergy, site: careers}]
-    verified: false
+      workable: [cpower-energy-management]
+    verified: true
   # Shares a board with Enel North America. Given no candidates deliberately: one
   # board must not become two employer clusters. distinct_employers is a
   # FAILING pre-registered condition, so a phantom cluster would inflate
@@ -1378,13 +1381,17 @@ energy_analytics_batch2:
     candidates:
       workable: [opusonesolutions]
     verified: true
+  # Verified 2026-09-22: careers.smartrecruiters.com/Gridpoint. Note the
+  # casing -- SmartRecruiters tokens are case-sensitive and it is "Gridpoint",
+  # not "GridPoint". Arlington VA, a mandate state. Small board, so expect few
+  # observations rather than none.
   - name: GridPoint
+    metro: northern_virginia
+    industry: energy_analytics
+    careers_url: https://careers.smartrecruiters.com/Gridpoint
     candidates:
-      greenhouse: [gridpoint]
-      lever: [gridpoint]
-      ashby: [gridpoint]
-      workday: [{tenant: gridpoint, site: careers}]
-    verified: false
+      smartrecruiters: [Gridpoint]
+    verified: true
   - name: Utilidata
     metro: boston
     candidates:

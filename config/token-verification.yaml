@@ -293,10 +293,16 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   CPower Energy:
-    status: unchecked
+    status: confirmed
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    platform: workable
+    token: cpower-energy-management
+    evidence: https://apply.workable.com/cpower-energy-management/
+    checked_on: '2026-09-22'
+    note: Baltimore MD, a mandate state. Demand-response / virtual power plant company -- 'demand response'
+      is in STRONG_TERMS, so the sector fit is direct. Workable is supported.
   California ISO:
     status: unchecked
     industry: grid_operator
@@ -746,10 +752,16 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   GridPoint:
-    status: unchecked
+    status: confirmed
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    platform: smartrecruiters
+    token: Gridpoint
+    evidence: https://careers.smartrecruiters.com/Gridpoint
+    checked_on: '2026-09-22'
+    note: Arlington VA, a mandate state. SmartRecruiters is supported. Small board (3-6 open roles), so
+      expect few observations.
   Gridmatic:
     status: confirmed
     industry: energy_analytics
@@ -1786,10 +1798,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Wood Mackenzie:
-    status: unchecked
+    status: denied
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: woodmac.com/careers; no supported ATS host surfaced. Its Research Analyst role is a taxonomy
+      fit, so a loss.
+    checked_on: '2026-09-22'
   Wright-Hennepin Cooperative Electric:
     status: denied
     industry: cooperative
