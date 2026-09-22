@@ -94,6 +94,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true",
                     help="print the priority-ordered worklist and exit")
+    ap.add_argument("--rates", action="store_true",
+                    help="print measured hit rate by industry and the expected "
+                         "yield from what is left, then exit")
     args = ap.parse_args()
 
     ledger = {}
@@ -152,6 +155,47 @@ def main() -> int:
     counts = collections.Counter(r["status"] for r in entries.values())
     by_pri = collections.Counter(
         r["priority"] for r in entries.values() if r["status"] == "unchecked")
+
+    if args.rates:
+        # Computed rather than written down. An earlier version of this table
+        # lived in HANDOFF.md as literals, read 50% for retailers on 8
+        # searches, and was 33% four searches later -- a number that goes
+        # stale every batch does not belong in a document.
+        searched = collections.Counter()
+        confd = collections.Counter()
+        for row in entries.values():
+            ind = row.get("industry", "?")
+            if row["status"] == "confirmed" and row.get("platform") and row.get("token"):
+                searched[ind] += 1
+                confd[ind] += 1
+            elif row["status"] == "denied" and row.get("checked_on"):
+                searched[ind] += 1
+        if not searched:
+            print("nothing searched yet")
+            return 0
+        tot_s = sum(searched.values())
+        tot_c = sum(confd.values())
+        print(f"{'industry':24s} {'searched':>9s} {'confirmed':>10s} {'rate':>7s}")
+        for ind in sorted(searched, key=lambda i: -searched[i]):
+            sn, cn = searched[ind], confd[ind]
+            print(f"{ind:24s} {sn:9d} {cn:10d} {cn / sn * 100:6.0f}%")
+        print(f"{'OVERALL':24s} {tot_s:9d} {tot_c:10d} {tot_c / tot_s * 100:6.0f}%")
+
+        left = collections.Counter(r.get("industry", "?") for r in entries.values()
+                                   if r["status"] == "unchecked")
+        expected = 0.0
+        print(f"\n{sum(left.values())} unchecked; expected confirmations at the "
+              f"observed rate:")
+        for ind in sorted(left, key=lambda i: -left[i]):
+            rate = (confd[ind] / searched[ind]) if searched.get(ind) else tot_c / tot_s
+            expected += left[ind] * rate
+            print(f"  {ind:24s} {left[ind]:4d} x {rate * 100:5.1f}% = "
+                  f"{left[ind] * rate:5.1f}")
+        print(f"  TOTAL expected: ~{expected:.0f} confirmations")
+        print("\nRates are small samples and they move -- retailers read 50% on "
+              "8 searches\nand 33% on 12. The ORDERING has been stable; the "
+              "levels have not.")
+        return 0
 
     if args.report:
         print(f"{sum(counts.values())} employers: " +

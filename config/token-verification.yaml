@@ -209,10 +209,13 @@ employers:
       the US entity's own career center, so attribution is defensible -- but verify the collected rows
       are Avangrid US roles and not Iberdrola corporate before trusting the cluster.
   Avista:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: myavista.com/about-us/working-at-avista; no supported ATS host surfaced. Washington is a mandate
+      state and its Energy Analyst role is an exact taxonomy fit, so a real loss.
+    checked_on: '2026-09-22'
   Aypa Power:
     status: confirmed
     evidence: resolved in collection manifest
@@ -478,10 +481,12 @@ employers:
     resolved_in_last_run: true
     metro: northern_virginia
   DTE Energy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: careers.dteenergy.com -- vanity domain, ATS not exposed. Same pattern as ICF, MISO and Dominion.
+    checked_on: '2026-09-22'
   Dairyland Power Cooperative:
     status: unchecked
     industry: cooperative
@@ -538,10 +543,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Dominion Energy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: careers.dominionenergy.com -- a vanity domain with the ATS not exposed, the same pattern as
+      ICF and MISO. Virginia is a mandate state, so this is a real loss.
+    checked_on: '2026-09-22'
   Doral Renewables:
     status: unchecked
     industry: developer
@@ -1483,10 +1491,13 @@ employers:
     reason: No ATS -- soltage.com/about/careers takes resumes by email to HR@soltage.com.
     checked_on: '2026-09-22'
   South Jersey Industries:
-    status: unchecked
+    status: denied
     industry: gas_utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: jobs.sjindustries.com, own portal; no supported ATS host surfaced. New Jersey is a mandate
+      state.
+    checked_on: '2026-09-22'
   South Mississippi Electric:
     status: unchecked
     industry: cooperative
