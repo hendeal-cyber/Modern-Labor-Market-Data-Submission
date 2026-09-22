@@ -1,0 +1,1636 @@
+employers:
+  1898 and Co:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  365 Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ABB:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ACES Alliance for Cooperative Energy Services:
+    status: unchecked
+    industry: cooperative
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  AEP Energy:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  AES Indiana:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 3_known_metro
+    resolved_in_last_run: true
+    metro: indianapolis
+  Aligned Data Centers:
+    status: denied
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+    reason: Careers on aligneddc.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
+  Alliant Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Ameren:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Ameren Illinois:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  American Electric Power:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  American Tower:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Amperon:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Analysis Group:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Apex Clean Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Aqua Illinois (Essential Utilities):
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: chicago
+  Arcadia:
+    status: confirmed
+    evidence: https://job-boards.greenhouse.io/arcadiacareers
+    checked_on: '2026-09-22'
+    industry: energy_analytics
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+  Ardent Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Arevon Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Arkansas Electric Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Ascend Analytics:
+    status: confirmed
+    evidence: https://job-boards.greenhouse.io/ascendanalytics/jobs/4574486005
+    checked_on: '2026-09-22'
+    industry: energy_analytics
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: denver
+    platform: greenhouse
+    token: ascendanalytics
+    note: Token correct and board live (Energy Analyst, Data Scientist, General Interest visible 2026-09-22),
+      yet the collection manifest records found=false while 16 other Greenhouse boards resolved. Not a
+      token problem; likely the board's API endpoint is disabled or embed-only. Diagnose from a run, not
+      by changing the token.
+  Associated Electric Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Atmos Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Aurora Energy Research:
+    status: unchecked
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Austin Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  AutoGrid:
+    status: denied
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: bay_area
+    reason: Acquired by Schneider Electric; no independent ATS board surfaced. Listings appear only on
+      aggregators.
+    checked_on: '2026-09-22'
+  Avangrid:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  Avista:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Aypa Power:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Basin Electric Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Bidgely:
+    status: denied
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: bay_area
+    reason: Job board hosted on bidgely.com/careers; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
+  Big Rivers Electric:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Black Hills Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Black and Veatch:
+    status: denied
+    industry: consulting
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+    reason: Careers portal at careers.bv.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
+  Bonneville Power Administration:
+    status: unchecked
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Brazos Electric Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  BrightNight:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Buckeye Power:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Burns and McDonnell:
+    status: unchecked
+    industry: consulting
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  CMS Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  CPS Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  CPower Energy:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  California ISO:
+    status: unchecked
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Calpine Energy Solutions:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Camus Energy:
+    status: denied
+    industry: energy_analytics
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: bay_area
+    reason: Careers hosted on camus.energy; no supported ATS host surfaced in search. Aggregators (Built
+      In, Wellfound, Climatebase) carry the listings, not an ATS board.
+    checked_on: '2026-09-22'
+  CenterPoint Energy Indiana:
+    status: unchecked
+    industry: utility
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  Central Iowa Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Champion Energy Services:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Charles River Associates:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: true
+  Chesapeake Utilities:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Citizens Energy Group:
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  Clearview Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Clearway Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  CoBank:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Cologix:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: denver
+  Colorado Springs Utilities:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ComEd:
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Compass Datacenters:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Con Edison:
+    status: denied
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+    reason: iCIMS (careers.coned.com; careers-conedcss.icims.com for Con Edison Solutions). iCIMS is closed
+      on terms -- see docs/limitations.md §17.
+    checked_on: '2026-09-22'
+  Concentric Energy Advisors:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Connexus Energy:
+    status: unchecked
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: minneapolis
+  Constellation Energy:
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Constellation NewEnergy:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Consumers Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  CoreSite:
+    status: denied
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: denver
+    reason: Careers on coresite.com/about/careers; no supported ATS host surfaced. Discloses pay (Denver,
+      CO mandate) -- a real loss.
+    checked_on: '2026-09-22'
+  Corn Belt Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Crown Castle:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Cypress Creek Renewables:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  CyrusOne:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: northern_virginia
+  DTE Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Dairyland Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Dakota Electric Association:
+    status: unchecked
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: minneapolis
+  DartPoints:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  DataBank:
+    status: denied
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+    reason: Careers on databankcareers.com / careers.databankimx.com; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
+  David Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: new_york
+  Daymark Energy Advisors:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Digital Realty:
+    status: denied
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+    reason: Oracle Cloud HCM (hdep.fa.us2.oraclecloud.com/hcmUI/CandidateExperience). No supported adapter;
+      see the Oracle Cloud lead in docs/limitations.md.
+    checked_on: '2026-09-22'
+  Direct Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Dominion Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Doral Renewables:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Duke Energy Indiana:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 3_known_metro
+    resolved_in_last_run: true
+    metro: indianapolis
+  EDF Renewables:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ERCOT:
+    status: confirmed
+    evidence: https://ercot.wd1.myworkdayjobs.com/ercot_careers
+    checked_on: '2026-09-22'
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  East Kentucky Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Eaton:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  EdgeConneX:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: northern_virginia
+  Edged Energy:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Element Critical:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Enel North America:
+    status: unchecked
+    industry: developer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Enel X:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Energy Harbor:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Energy and Environmental Economics (E3):
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: true
+  Engie North America:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Entergy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Enverus:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Equinix:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: chicago
+  Evergy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Eversource Energy:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: boston
+  Exelon:
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Exponent:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  FirstEnergy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Flexential:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  GE Vernova:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Generac:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Genie Energy:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  Gexa Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Golden Spread Electric Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Great River Energy:
+    status: denied
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: minneapolis
+    reason: Applies via greatriverenergy.com careers tab; no supported ATS host surfaced. Postings DO
+      disclose pay (MN mandate) and appear on careers.electric.coop -- see the NRECA board lead in docs/limitations.md.
+    checked_on: '2026-09-22'
+  Green Mountain Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  GridPoint:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Gridmatic:
+    status: confirmed
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: bay_area
+    platform: greenhouse
+    token: gridmaticinc
+    evidence: https://job-boards.greenhouse.io/gridmaticinc
+    checked_on: '2026-09-22'
+    note: Also runs Lever 'gridmatic'. Greenhouse token is gridmaticinc -- the 'inc' suffix is unreachable
+      by slug derivation. Bay Area (CA) and Houston.
+  Guidehouse:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: northern_virginia
+  H5 Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  HDR:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Hecate Energy:
+    status: unchecked
+    industry: developer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Hitachi Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Hoosier Energy:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: cooperative
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  Hubbell:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Hudson Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ICF:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+  IDACORP:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  IGS Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ISO New England:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Illinois American Water:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Indiana American Water:
+    status: unchecked
+    industry: utility
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  Indiana Electric Cooperatives:
+    status: unchecked
+    industry: cooperative
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  Inspire Clean Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Intersect Power:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Invenergy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: chicago
+  Involta:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Iron Mountain Data Centers:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: northern_virginia
+  Itron:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Itron Analytics:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  JEA:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Jackson EMC:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Jupiter Power:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Just Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Key Capture Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Kimley-Horn:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Landis and Gyr:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Leap:
+    status: unchecked
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: bay_area
+  Leeward Renewable Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Liberty Power:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Lightsource bp:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  London Economics International:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Longroad Energy:
+    status: unchecked
+    industry: developer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: boston
+  MISO (Midcontinent ISO):
+    status: unchecked
+    industry: grid_operator
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: indianapolis
+  Madison Gas and Electric:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  MidAmerican Energy Services:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Minnkota Power Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Modo Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  NERA Economic Consulting:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  NRECA National Rural Electric Cooperative Association:
+    status: confirmed
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+    platform: workday
+    token: nreca/External/wd1
+    evidence: https://nreca.wd1.myworkdayjobs.com/External
+    checked_on: '2026-09-22'
+    note: Arlington VA (mandate state). Site name 'External' -- the same variant that found Xcel Energy,
+      and worth trying first on any unresolved Workday tenant.
+  NRG Energy:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  NTT Global Data Centers:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: northern_virginia
+  National Fuel Gas:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  National Grid:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  National Rural Utilities Cooperative Finance Corporation:
+    status: denied
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+    reason: Careers on nrucfc.coop; listings syndicate to careers.electric.coop. No supported ATS host
+      surfaced.
+    checked_on: '2026-09-22'
+  Nautilus Data Technologies:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  New Jersey Resources:
+    status: unchecked
+    industry: gas_utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  New York ISO:
+    status: confirmed
+    evidence: https://job-boards.greenhouse.io/nyiso
+    checked_on: '2026-09-22'
+    industry: grid_operator
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  Nexamp:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: chicago
+  NextEra Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  NiSource / NIPSCO:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: chicago
+  Nicor Gas (Southern Company Gas):
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  North Carolina EMC:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  NorthWestern Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Northwest Natural:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Novva Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  OGE Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  ONE Gas:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Octopus Energy:
+    status: unchecked
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: boston
+  Oglethorpe Power:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Old Dominion Electric Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Onward Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Opus One Solutions:
+    status: unchecked
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: bay_area
+  Origis Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Orsted:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  PJM Interconnection:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  PNM Resources:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  POWER Engineers:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  PPL Corporation:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  PSEG:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  Pattern Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  PearlX:
+    status: unchecked
+    industry: energy_analytic
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: los_angeles
+  Pedernales Electric Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Peoples Gas (WEC Energy Group):
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Philadelphia Gas Works:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Piclo:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Pine Gate Renewables:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Pinnacle West Capital:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Plus Power:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Portland General Electric:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Powell Industries:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  PowerHouse Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+  Prime Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Primergy Solar:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Public Power:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Puget Sound Energy:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: seattle
+  QTS Data Centers:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: northern_virginia
+  Quanta Services:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  RWE Clean Energy:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Rhythm Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  S&C Electric Company:
+    status: denied
+    industry: grid_vendor
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+    reason: No ATS host surfaced in search; sandc.com careers page is also refused by the egress proxy
+      so it cannot be read from here.
+    checked_on: '2026-09-22'
+  SEL Schweitzer Engineering Laboratories:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  STACK Infrastructure:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Sabey Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: seattle
+  Salt River Project:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Santanna Energy Services:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Santee Cooper:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Sargent and Lundy:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Schneider Electric:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Seattle City Light:
+    status: denied
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: seattle
+    reason: City of Seattle department; hiring runs through governmentjobs.com/careers/seattle (NEOGOV).
+      No supported ATS.
+    checked_on: '2026-09-22'
+  Seminole Electric Cooperative:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Sempra:
+    status: unchecked
+    industry: utility
+    priority: 3_known_metro
+    resolved_in_last_run: false
+    metro: los_angeles
+  Sense:
+    status: confirmed
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: boston
+    platform: workable
+    token: sense
+    evidence: https://apply.workable.com/sense/
+    checked_on: '2026-09-22'
+    note: Cambridge MA (mandate state). Workable is a supported adapter.
+  Sensus:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Shell Energy North America:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Siemens Energy:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Silicon Ranch:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Skybox Datacenters:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Soltage:
+    status: unchecked
+    industry: developer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  South Jersey Industries:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  South Mississippi Electric:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Southern Company Gas:
+    status: unchecked
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: chicago
+  Southwest Gas:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Southwest Power Pool:
+    status: unchecked
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Spark Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Spire Inc:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Stantec:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Stream Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Summit Ridge Energy:
+    status: unchecked
+    industry: developer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: new_york
+  Switch:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Symmetry Energy Solutions:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  T5 Data Centers:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  TECO Energy:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Tara Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Tennessee Valley Authority:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Terra-Gen:
+    status: unchecked
+    industry: developer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  The Brattle Group:
+    status: confirmed
+    evidence: https://job-boards.greenhouse.io/thebrattlegroup
+    checked_on: '2026-09-22'
+    industry: consulting
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: boston
+  Think Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  TierPoint:
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  TierPoint Data Centers:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Tierra Climate:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Tomorrow Energy:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Touchstone Energy Cooperatives:
+    status: unchecked
+    industry: cooperative
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Tract:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Tri-State Generation and Transmission:
+    status: denied
+    reason: 'blocked: no_free_public_api'
+    checked_on: '2026-09-22'
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: denver
+  Trilliant:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  UGI Corporation:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Ulteig:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  United Power:
+    status: unchecked
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: denver
+  Uplight:
+    status: denied
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
+    industry: energy_analytics
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: denver
+  Utilidata:
+    status: denied
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: boston
+    reason: JazzHR at utilidata.applytojob.com. Not among the seven supported adapters; see the JazzHR
+      note in docs/limitations.md.
+    checked_on: '2026-09-22'
+  Vantage Data Centers:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: data_center
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: denver
+  Vectren:
+    status: unchecked
+    industry: gas_utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Vertiv:
+    status: unchecked
+    industry: grid_vendor
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Via Renewables:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Vistra:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: chicago
+  Vistra Retail:
+    status: unchecked
+    industry: retailer
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Voltus:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: energy_analytic
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: bay_area
+  WGL Energy:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+  WPS Resources:
+    status: unchecked
+    industry: utility
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  WSP:
+    status: unchecked
+    industry: consulting
+    priority: 2_analyst_roles_good_ats
+    resolved_in_last_run: false
+  Wabash Valley Power Alliance:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: cooperative
+    priority: 3_known_metro
+    resolved_in_last_run: true
+    metro: indianapolis
+  Washington Gas:
+    status: unchecked
+    industry: retailer
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: northern_virginia
+  Western Area Power Administration:
+    status: unchecked
+    industry: grid_operator
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Wood Mackenzie:
+    status: unchecked
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: false
+  Wright-Hennepin Cooperative Electric:
+    status: unchecked
+    industry: cooperative
+    priority: 1_mandate_metro
+    resolved_in_last_run: false
+    metro: minneapolis
+  Xcel Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: utility
+    priority: 1_mandate_metro
+    resolved_in_last_run: true
+    metro: minneapolis
+  Yes Energy:
+    status: confirmed
+    evidence: resolved in collection manifest
+    checked_on: '2026-09-22'
+    industry: energy_analytic
+    priority: 4_unlocated
+    resolved_in_last_run: true
+  Yondr Group:
+    status: unchecked
+    industry: data_center
+    priority: 4_unlocated
+    resolved_in_last_run: false
+_note: 'Verification ledger. status: confirmed | denied | unchecked. A confirmation needs an evidence
+  URL (a live job URL seen in search results) or ''resolved in collection manifest''. A denial needs a
+  reason. Regenerate derived fields with scripts/make_token_ledger.py; it never overwrites a status, date,
+  evidence or reason.'
