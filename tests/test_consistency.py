@@ -200,6 +200,41 @@ def run():
         chk("paper's audit table lists every round",
             all(f"| {i} |" in paper for i in range(1, n_rounds + 1)))
 
+    # 18d. The DECK must not name a predictor the bootstrap rejects. It said
+    # significance "leaves only seniority and the ML/AI skill premium
+    # standing" for hours after audit round 4 withdrew the ML/AI premium --
+    # and the deck is the artifact most likely to be presented without the
+    # paper beside it.
+    deck = ROOT / "paper" / "presentation.pptx"
+    boot_d = (a.get("wild_cluster_bootstrap") or {}).get("by_variable") or {}
+    if deck.exists() and boot_d:
+        import re as _re, zipfile
+        try:
+            with zipfile.ZipFile(deck) as z:
+                text = " ".join(
+                    " ".join(_re.findall(r"<a:t>([^<]*)</a:t>",
+                                         z.read(n).decode("utf8", "ignore")))
+                    for n in z.namelist()
+                    if _re.match(r"ppt/slides/slide\d+\.xml$", n))
+        except Exception:
+            text = ""
+        if text:
+            fragile = set((a.get("region_robustness") or {}).get(
+                "verdicts_changed") or [])
+            phrases = {
+                "skill_ml_ai": "ML/AI skill",
+                "remote_eligible": "remote eligibility",
+                "degree_required": "a required degree",
+                "industry_data_center": "being a data center operator",
+            }
+            named = [n for n, ph in phrases.items()
+                     if ph in text
+                     and (n in fragile
+                          or (boot_d.get(n, {}).get("p_value") is not None
+                              and boot_d[n]["p_value"] >= 0.05))]
+            chk("deck names no predictor the bootstrap or region check rejects",
+                not named, str(named))
+
     # 19. The coverage figure offered as evidence for clustering must be the
     # measured one. 88% was computed on a fixture whose employer shock reached
     # one posting per employer, i.e. on data with no within-employer

@@ -24,6 +24,34 @@ const load = (f) => {
 };
 const analysis = load("analysis.json");
 const funnel = load("selection_funnel.json");
+
+// Significance is read off the wild cluster bootstrap wherever it exists,
+// because that is what docs/pre-registration.md section 6 requires below 30
+// clusters. A slide naming a predictor the bootstrap rejects would be
+// asserting a finding the study has withdrawn -- this deck did exactly that
+// with the ML/AI skill premium until audit round 4 removed the off-umbrella
+// postings it was resting on.
+const BOOT = (analysis && analysis.wild_cluster_bootstrap
+              && analysis.wild_cluster_bootstrap.by_variable) || {};
+const PRETTY = {
+  seniority_rank: "seniority", skill_ml_ai: "a stated ML/AI skill",
+  remote_eligible: "remote eligibility", degree_stem: "a STEM degree",
+  degree_required: "a required degree", region_south: "a South location",
+  region_northeast: "a Northeast location", region_west: "a West location",
+  industry_data_center: "being a data center operator",
+  mandate_state: "a pay-transparency mandate",
+};
+const FRAGILE = new Set((analysis && analysis.region_robustness
+                         && analysis.region_robustness.verdicts_changed) || []);
+const SURVIVORS = Object.entries(BOOT)
+  .filter(([k, v]) => v && v.p_value !== null && v.p_value < 0.05 && !FRAGILE.has(k))
+  .sort((a, b) => a[1].p_value - b[1].p_value)
+  .map(([k]) => PRETTY[k] || k);
+const OVERTURNED = Object.entries(BOOT).filter(([k, v]) => {
+  const c = ((analysis.models || {}).core || {}).coefficients || {};
+  return v && v.p_value !== null && c[k] && c[k].p_value < 0.05 && v.p_value >= 0.05;
+}).length;
+
 const fig = (n) => (fs.existsSync(path.join(FIGS, n)) ? path.join(FIGS, n) : null);
 
 const pres = new PptxGenJS();
@@ -125,20 +153,27 @@ function bullets(s, items, x, y, w, h) {
   s.addNotes("The compliance posture — rate limiting, identifying User-Agent, no circumvention — is documented in docs/methods.md.");
 }
 
-// ---------------------------------------------------------------- 4. Illinois law
+// ------------------------------------------------- 4. Pay-transparency mandates
 {
-  const s = contentSlide("Why Illinois makes this possible");
-  statCard(s, M, 1.5, 3.7, "HB 3129", "effective 1 Jan 2025", DEEP);
-  statCard(s, M + 3.95, 1.5, 3.7, "15+", "employees covered", TEAL);
-  statCard(s, M + 7.9, 1.5, 3.7, "IN: none", "no Indiana mandate", WARN);
+  // Rewritten from the original Illinois-vs-Indiana framing, which belonged to
+  // the six-metro design this study replaced. The population is national and
+  // the contrast is mandate vs no-mandate across 16 jurisdictions; the old
+  // slide described a comparison the paper no longer makes.
+  const s = contentSlide("Why pay-transparency mandates make this possible");
+  const bm = (analysis && analysis.disclosure && analysis.disclosure.by_mandate) || {};
+  const md = bm.mandate || {}, nm = bm.no_mandate || {};
+  const pct = (x) => `${((x || 0) * 100).toFixed(0)}%`;
+  statCard(s, M, 1.5, 3.7, "16", "US jurisdictions requiring a pay scale", DEEP);
+  statCard(s, M + 3.95, 1.5, 3.7, pct(md.share_disclosed), `disclose (n=${md.n || 0})`, TEAL);
+  statCard(s, M + 7.9, 1.5, 3.7, pct(nm.share_disclosed), `disclose without one (n=${nm.n || 0})`, WARN);
   bullets(s, [
-    "Illinois employers must state the pay scale AND describe benefits in any posting for Illinois work",
-    "The dependent variable and several benefit regressors are therefore legally required to appear",
-    "Indiana has no comparable law, so Indianapolis postings disclose far less often",
-    "Those that do disclose are self-selected — the metro comparison carries that caveat explicitly",
-    "mandate_state is carried as a regressor so the contrast can be examined, not assumed away",
+    "Where a mandate applies, the employer must state a pay scale in the posting itself — so the dependent variable is legally required to appear",
+    "Coverage attaches to the JOB's location, so a posting listing any covered place is covered",
+    "That asymmetry is what makes the disclosure contrast estimable at all, and it is the study's clearest result",
+    "mandate_state is carried as a regressor, so the contrast is examined rather than assumed away",
+    "It is associational: one cross-section, no time variation, no difference-in-differences available",
   ], M, 3.7, W - 2 * M, 3.0);
-  s.addNotes("This asymmetry is the study's main source of disclosure variation and its main threat to the metro comparison.");
+  s.addNotes("Illinois HB 3129 was the original motivation; the study is national now and the contrast spans 16 jurisdictions.");
 }
 
 // ---------------------------------------------------------------- 5. Funnel
@@ -173,12 +208,26 @@ function bullets(s, items, x, y, w, h) {
   const ok = analysis && analysis.status === "ok";
   if (ok) {
     const core = analysis.models?.core;
-    const d = analysis.descriptives?.pay_midpoint || {};
-    statCard(s, M, 1.35, 3.7, `$${Math.round(d.mean || 0).toLocaleString()}`, "mean advertised pay", DEEP);
-    statCard(s, M + 3.95, 1.35, 3.7, String(core?.n ?? 0), "postings in the model", TEAL);
-    statCard(s, M + 7.9, 1.35, 3.7, (core?.r_squared ?? 0).toFixed(2), "R-squared", MIDNIGHT);
-    const cf = fig("fig3_coefficients.png");
-    if (cf) s.addImage({ path: cf, x: M, y: 3.5, w: 11.9, h: 3.5 });
+    const rb = (analysis.disclosure && analysis.disclosure.robustness) || {};
+    const gaps = Object.values(rb).map((v) => v.gap).filter((g) => g != null);
+    // The headline leads. This slide used to open with mean pay and R-squared
+    // and never mention the disclosure result at all -- the study's clearest
+    // finding was absent from the results slide.
+    const gapTxt = gaps.length
+      ? `${Math.round(Math.min(...gaps) * 100)}–${Math.round(Math.max(...gaps) * 100)}pp`
+      : "—";
+    statCard(s, M, 1.35, 3.7, gapTxt, "disclosure gap, every cut of the sample", DEEP);
+    statCard(s, M + 3.95, 1.35, 3.7, String(core?.n ?? 0), `postings, ${analysis.n_clusters ?? 0} employers`, TEAL);
+    statCard(s, M + 7.9, 1.35, 3.7, String(SURVIVORS.length),
+             "predictors surviving the bootstrap", MIDNIGHT);
+    bullets(s, [
+      `Pay is stated far more often where a mandate applies, and the gap is stable across every cut — this is the result the study stands behind`,
+      SURVIVORS.length
+        ? `Within disclosed pay, ${SURVIVORS.join(", ")} ${SURVIVORS.length === 1 ? "is the only attribute" : "are the only attributes"} distinguishable from zero`
+        : "Within disclosed pay, no attribute is distinguishable from zero under the pre-registered inference",
+      `${OVERTURNED} coefficients reach significance under clustered standard errors and do NOT survive the wild cluster bootstrap — reported as inconclusive, not as findings`,
+      "Seniority was predicted to dominate and does; it also survives every robustness cut applied",
+    ], M, 3.4, W - 2 * M, 2.6);
   } else {
     s.addShape(pres.ShapeType.roundRect, { x: M, y: 1.6, w: W - 2 * M, h: 2.2,
       rectRadius: 0.12, fill: { color: LIGHT }, line: { color: LIGHT } });
@@ -202,10 +251,10 @@ function bullets(s, items, x, y, w, h) {
   const s = contentSlide("What this data cannot support");
   const items = [
     ["Advertised, not realized pay", "Posted ranges reflect compliance and negotiating posture, not earnings."],
-    ["Disclosure is selected", "Indiana has no mandate, so its disclosing postings are self-selected."],
+    ["Disclosure is selected", "Outside mandate jurisdictions most postings state no pay, so every pay coefficient is conditional on disclosure. This is the central threat."],
     ["Exelon and ComEd are missing", "They run iCIMS: its feed goes only to approved job boards, its API is partner-gated, no syndication feed exists, and its terms bar automated access. Verified by reading them, not assumed."],
     ["No historical backfill", "ATS APIs serve only open postings, so the panel starts when collection starts."],
-    ["Few employer clusters", "Clustered errors cover at 92% against a nominal 95%. Significance is read off a wild cluster bootstrap, which leaves only seniority and the ML/AI skill premium standing."],
+    ["Few employer clusters", `Clustered errors cover at 92% against a nominal 95%. Significance is read off a wild cluster bootstrap, which leaves ${SURVIVORS.length} predictor(s) standing: ${SURVIVORS.join(", ") || "none"}.`],
   ];
   let y = 1.35;
   for (const [head, body] of items) {
