@@ -128,6 +128,51 @@ def check_verified_workday_pins():
     return fails
 
 
+def check_same_day_merge_and_same_url():
+    """Audit round 7: a same-date run overwrote the earlier run's file, and an
+    edited requisition was counted twice. Both cases from runs 26 and 27."""
+    import json, tempfile, pathlib
+    from lmstudy.collect.run import merge_same_day
+    from lmstudy.build_dataset import collapse_same_url
+    fails = []
+    alliant = {"platform": "workday", "external_id": "JR-9932",
+               "title": "Engineer I - Grid Planning"}
+    kept = {"platform": "workday", "external_id": "JR-9931",
+            "title": "Engineer II - Grid Planning", "description": "earlier"}
+    with tempfile.TemporaryDirectory() as d:
+        path = pathlib.Path(d) / "Alliant_Energy__workday.json"
+        path.write_text(json.dumps([alliant, kept]))
+        newer = dict(kept, description="later")
+        merged = merge_same_day(path, [newer])
+        ids = {r["external_id"] for r in merged}
+        if "JR-9932" not in ids:
+            fails.append("a posting an earlier same-day run collected was discarded")
+        if [r["description"] for r in merged if r["external_id"] == "JR-9931"] != ["later"]:
+            fails.append("the later run's copy of a posting must win")
+        if merge_same_day(pathlib.Path(d) / "absent.json", [newer]) != [newer]:
+            fails.append("with no earlier file, records pass through unchanged")
+
+    url = "https://boards.greenhouse.io/ccrenew/jobs/1"
+    rows = {
+        "old": {"url": url, "employer": "Cypress Creek Renewables", "title": "Director, Interconnection Execution",
+                "pay_min": 200000, "first_seen_run": "2026-09-21",
+                "last_seen_run": "2026-09-21"},
+        "new": {"url": url, "employer": "Cypress Creek Renewables",
+                "title": "Associate Director / Director, Interconnection Execution",
+                "pay_min": 180000, "first_seen_run": "2026-09-22",
+                "last_seen_run": "2026-09-22"},
+        "other": {"url": "https://boards.greenhouse.io/nexamp/jobs/2", "employer": "Nexamp",
+                  "title": "Senior Interconnection Engineer",
+                  "first_seen_run": "2026-09-21", "last_seen_run": "2026-09-22"},
+    }
+    dropped = collapse_same_url(rows)
+    if dropped != 1 or set(rows) != {"new", "other"}:
+        fails.append(f"same-URL rows not collapsed to the latest: {sorted(rows)}")
+    elif rows["new"]["first_seen_run"] != "2026-09-21":
+        fails.append("the kept row must carry the earliest first_seen_run")
+    return fails
+
+
 def run():
     fails = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -261,6 +306,7 @@ def run():
     fails += check_nested_repost_collapse()
     fails += check_mandate_dates_in_dataset()
     fails += check_verified_workday_pins()
+    fails += check_same_day_merge_and_same_url()
 
     print(f"pipeline: {len(fails)} failure(s)")
     for x in fails:

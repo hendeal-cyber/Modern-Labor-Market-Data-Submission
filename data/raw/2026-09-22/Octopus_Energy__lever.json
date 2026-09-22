@@ -3285,5 +3285,24 @@
   "comp_interval": null,
   "payload": null,
   "industry": "retailer"
+ },
+ {
+  "platform": "lever",
+  "employer": "Octopus Energy",
+  "board_token": "octoenergy",
+  "external_id": "2319c454-2288-4d37-9880-b1dae42d7d49",
+  "title": "Administrativo/a de PRL y Calidad",
+  "location_raw": "Valencia (ES)",
+  "description": "\ud83c\udf0d Revolucionamos la energ\u00eda para cambiar el mundo\n\nEn Octopus Energy, no somos una el\u00e9ctrica tradicional. Somos un equipo de personas apasionadas que trabaja cada d\u00eda para hacer que la energ\u00eda sea 100% renovable, accesible y justa para todos.\n\nCreemos en la tecnolog\u00eda y la innovaci\u00f3n como motores del cambio. Queremos transformar la forma en que el mundo consume energ\u00eda, eliminando barreras, simplificando procesos y ofreciendo un servicio m\u00e1s humano y transparente.\n\nPor esto mismo, nuestro compromiso es claro: la energ\u00eda limpia debe ser la norma, no la excepci\u00f3n. Para lograrlo, combinamos sostenibilidad con un enfoque centrado en las personas, impulsando un servicio excepcional y construyendo un equipo incre\u00edble que comparte nuestra visi\u00f3n.\n\n\ud83d\udca1 Pero nada de esto ser\u00eda posible sin personas como t\u00fa. Para seguir creciendo y transformando el mercado, buscamos talento con ganas de marcar la diferencia. Si quieres formar parte de este cambio, aportar tu energ\u00eda y ayudar a construir un futuro m\u00e1s verde.\n\n\ud83d\udd0d \u00bfQu\u00e9 estamos buscando?\nBuscamos un/a Administrativo/a de PRL y Calidad para unirse a nuestro equipo en Valencia. Tu misi\u00f3n no ser\u00e1 solo gestionar documentaci\u00f3n, sino ser la pieza clave que asegure que todos los procesos de calidad, prevenci\u00f3n de riesgos laborales y medio ambiente funcionen con orden y precisi\u00f3n.\nSi eres una persona organizada, orientada al detalle, con experiencia en gesti\u00f3n documental de prevenci\u00f3n de riesgos laborales y quieres formar parte de un equipo donde tu trabajo tiene un impacto real en el cumplimiento normativo de la compa\u00f1\u00eda, \u00a1tenemos un hueco para ti!\n\ud83d\udc19 Lo llamamos el \u2018Efecto Octopus\u2019\nTrabajar en Octopus Energy significa formar parte de una compa\u00f1\u00eda donde la cultura y las personas son lo m\u00e1s importante.\n\ud83d\udc9c Apostamos por la flexibilidad y la conciliaci\u00f3n. \ud83d\ude80 Queremos que desarrolles tu potencial al m\u00e1ximo. \ud83c\udf31 Creemos en un modelo energ\u00e9tico m\u00e1s justo y sostenible.\n\u00a1Te estamos esperando! \ud83d\ude80",
+  "url": "https://jobs.lever.co/octoenergy/2319c454-2288-4d37-9880-b1dae42d7d49",
+  "posted_at": "2026-08-28T10:46:07.546000+00:00",
+  "updated_at": "2026-08-28T10:46:07.546000+00:00",
+  "department": "Admin / Field Operations",
+  "employment_type": "Full-time",
+  "comp_min": null,
+  "comp_max": null,
+  "comp_interval": null,
+  "payload": null,
+  "industry": "retailer"
  }
 ]

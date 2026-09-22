@@ -139,6 +139,35 @@ SECTIONS = {
 }
 
 
+def _record_id(record: dict) -> tuple[str, str]:
+    return (str(record.get("platform") or ""), str(record.get("external_id") or ""))
+
+
+def merge_same_day(path: pathlib.Path, records: list[dict]) -> list[dict]:
+    """This run's records, plus any an earlier run TODAY saw and this one did not.
+
+    Snapshots are one directory per date and one file per board, so a second
+    run on the same date used to overwrite the first run's file. A posting
+    that closed between the two runs vanished from the corpus even though it
+    had been collected. Run 27 dropped Alliant's "Engineer I - Grid Planning"
+    ($66,000-$85,000, disclosed) that way, six hours after run 26 read it
+    (audit round 7). This run's copy of a posting wins; nothing collected is
+    discarded.
+    """
+    if not path.exists():
+        return records
+    try:
+        earlier = json.loads(path.read_text())
+    except (ValueError, OSError):
+        return records
+    if not isinstance(earlier, list):
+        return records
+    seen = {_record_id(r) for r in records}
+    kept = [r for r in earlier
+            if isinstance(r, dict) and r.get("external_id") and _record_id(r) not in seen]
+    return records + kept
+
+
 def load_employers(path: pathlib.Path) -> list[dict]:
     raw = yaml.safe_load(path.read_text())
     entries = []
@@ -258,6 +287,7 @@ def main() -> int:
                     record["off_umbrella"] = entry.get("off_umbrella", [])
             safe = "".join(c if c.isalnum() else "_" for c in name)
             path = out_dir / f"{safe}__{hit.platform}.json"
+            records = merge_same_day(path, records)
             path.write_text(json.dumps(records, indent=1))
             total_postings += len(records)
             listed = (hit.detail or {}).get("listed")

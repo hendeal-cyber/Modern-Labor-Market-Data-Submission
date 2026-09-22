@@ -149,6 +149,43 @@ def _location_set(location_raw: str) -> frozenset:
     )
 
 
+def collapse_same_url(rows: dict) -> int:
+    """One job URL is one requisition, whatever its title or location says.
+
+    The dedupe key is employer + title + location, so a requisition an
+    employer EDITS gets a second key and was counted twice. Run 27 did both
+    ways: Cypress Creek retitled "Director, Interconnection Execution"
+    ($200,000-$230,000) to "Associate Director / Director, ..."
+    ($180,000-$230,000) on the same Greenhouse job id, and Origis reformatted
+    a location string on an unchanged posting (audit round 7). Before run 27
+    no two rows in 290 shared a URL, and Nexamp's four-city openings, the
+    case that ruled out a description rule, carry four different URLs.
+
+    The latest sighting is kept, because it is what the employer advertises
+    now, with the EARLIEST first_seen_run, because that is when the job was
+    first seen. Rows without a URL are left alone.
+    """
+    # Keyed with the employer too: a URL shared ACROSS employers cannot be one
+    # requisition, whatever produced it.
+    by_url: dict[tuple, list[str]] = {}
+    for key, row in rows.items():
+        url = (row.get("url") or "").strip()
+        if url:
+            by_url.setdefault(((row.get("employer") or "").lower(), url), []).append(key)
+    dropped = 0
+    for keys in by_url.values():
+        if len(keys) < 2:
+            continue
+        # Sort by (last seen, first seen): the final key is the newest version.
+        keys.sort(key=lambda k: (rows[k]["last_seen_run"], rows[k]["first_seen_run"]))
+        keep = keys[-1]
+        rows[keep]["first_seen_run"] = min(rows[k]["first_seen_run"] for k in keys)
+        for k in keys[:-1]:
+            del rows[k]
+            dropped += 1
+    return dropped
+
+
 def collapse_nested_reposts(rows: dict, locations: dict) -> int:
     """Drop a posting whose locations are a strict subset of another repost.
 
@@ -479,7 +516,8 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     rows[key] = row
                     row_locations[key] = location_raw
 
-    funnel["duplicate_repost"] = collapse_nested_reposts(rows, row_locations)
+    funnel["duplicate_repost"] = (collapse_nested_reposts(rows, row_locations)
+                                  + collapse_same_url(rows))
 
     out_dir.mkdir(parents=True, exist_ok=True)
     unique = list(rows.values())

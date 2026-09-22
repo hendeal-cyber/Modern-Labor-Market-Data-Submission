@@ -5638,5 +5638,36 @@
    "construction machinery",
    "appliance"
   ]
+ },
+ {
+  "platform": "workday",
+  "employer": "Hitachi Energy",
+  "board_token": "hitachi/hitachi",
+  "external_id": "Senior-Service-Product-Specialist---AIS-and-GIS_R0143453",
+  "title": "Senior Service Product Specialist \u2013 AIS and GIS",
+  "location_raw": "Mount Pleasant, Pennsylvania, United States of America",
+  "description": "Location:\nMount Pleasant, Pennsylvania, United States of America\nJob ID:\nR0143453\nDate Posted:\n2026-09-14\nCompany Name:\nHITACHI ENERGY USA INC\nProfession (Job Category):\nEngineering & Science\nJob Schedule:\nFull time\nRemote:\nNo\nJob Description:\nThe Opportunity\n\nAs a Senior Service Product Specialist, you will serve as the technical authority for air-insulated switchgear (AIS) and gas-insulated switchgear (GIS) service products and solutions within an assigned region. You will support field operations, engineering, sales, and customers by providing advanced technical expertise throughout the equipment lifecycle, including maintenance, troubleshooting, modernization, training, and service development. You will help improve technical excellence, operational readiness, customer satisfaction, and the growth of the AIS and GIS service business. This is a hybrid position requiring a minimum of two days per week in the office, with domestic travel of up to 50% to support customer meetings, site visits, field activities, training, and business needs.\n\nOther U.S.-based locations may be considered if they are near a major airport.\n\nHow You\u2019ll Make an Impact\n\n- Serve as the technical subject matter resource for AIS and GIS service products, systems, and applications.\n\n- Provide advanced technical support to Field Service, Project Management, Operations, Supply Chain Management, and customers.\n\n- Manage technical troubleshooting, root-cause investigations, failure investigations, and corrective actions for complex AIS and GIS service issues.\n\n- Support regional field teams in planning and executing service projects, outages, upgrades, and emergency interventions.\n\n- Support equipment lifecycle activities, including maintenance programs, modernization solutions, obsolescence management, and service offering development.\n\n- Develop technical training materials, application guidance, and knowledge-sharing content for field execution, project management, tendering, and regional service sales.\n\n- Support Sales and Tendering teams through technical expertise, scope validation, risk assessment, and solution recommendations.\n\n- Collaborate across Operations, Supply Chain Management, Quality, Product Service Centers, factories, and engineering organizations to improve service delivery, reliability, safety, and execution efficiency.\n\n- Responsible to ensure compliance with applicable external and internal regulations, procedures, and guidelines.\n\nYour Background\n\n- Candidate must already have work authorization that would permit them to work for Hitachi Energy in the United States.\n\n- Bachelor\u2019s degree in Electrical Engineering, Mechanical Engineering, or a related technical discipline.\n\n- Eight or more years of experience in high-voltage products, field service, engineering, product support, technical sales support, or technical customer support environments.\n\n- Technical knowledge of AIS, GIS, circuit breakers, or related high-voltage substation equipment, with an understanding of electrical power systems, substations, and utility or industrial customer applications.\n\n- Ability to investigate technical problems, support troubleshooting, recommend practical solutions, and read and interpret technical drawings, specifications, manuals, and test reports.\n\n- Sound communication and presentation skills, proficiency with Microsoft Office applications, and willingness and ability to travel domestically up to 50%; experience with SAP, Salesforce, Power BI, or similar business tools is preferred.\n\nMore About Us\n\nAt Hitachi Energy, you can grow your capabilities while contributing within a collaborative and technology-focused environment.\n\n- Opportunities to work on innovative technologies shaping the future of energy\n\n- A collaborative environment with experienced professionals\n\n- Access to learning platforms and career development programs\n\n- Attractive health and retirement benefits\n\n- Paid leave and flexible work arrangements\n\nEqual Employment Opportunity (EEO)-Females/Minorities/Protected Veterans/Individuals with Disabilities\n\nEqual Employment Opportunity\nHitachi is an Equal Employment Opportunity (EEO) employer. We welcome applications from all qualified individuals, including females, minorities, protected veterans, and individuals\nwith disabilities.\n\nAccessibility and reasonable accommodation\nProtected veterans and qualified individuals with a disability may request a reasonable accommodation if you are unable or limited in your ability to use or access the Hitachi Energy career site as a result of your disability. You may request reasonable accommodations by completing a general inquiry form on our website. Please include your contact information and specific details about your required accommodation to support you during the job application process.\nThis accommodation channel is solely for job seekers with disabilities requiring accessibility assistance or an accommodation in the job application process. Messages left for other purposes will not receive a response.\n\nUse of Al and automated tools in recruitment\nAs part of our recruitment process, Hitachi Energy uses digital and automated tools, including Al-supported solutions, to assist with activities such as application screening, job matching, and interview scheduling. These tools are designed to support our recruiters and do not replace human decision-making. Candidate data is processed in accordance with applicable data protection and employment laws as well as Hitachi's Global Data Privacy Notice.",
+  "url": "https://hitachi.wd1.myworkdayjobs.com/hitachi/job/Mount-Pleasant-Pennsylvania-United-States-of-America/Senior-Service-Product-Specialist---AIS-and-GIS_R0143453",
+  "posted_at": "2026-09-21",
+  "updated_at": null,
+  "department": null,
+  "employment_type": "Full time",
+  "comp_min": null,
+  "comp_max": null,
+  "comp_interval": null,
+  "payload": {
+   "externalPath": "/job/Mount-Pleasant-Pennsylvania-United-States-of-America/Senior-Service-Product-Specialist---AIS-and-GIS_R0143453"
+  },
+  "industry": "grid_vendor",
+  "diversified": true,
+  "off_umbrella": [
+   "rail",
+   "elevator",
+   "medical",
+   "imaging",
+   "automotive",
+   "construction machinery",
+   "appliance"
+  ]
  }
 ]
