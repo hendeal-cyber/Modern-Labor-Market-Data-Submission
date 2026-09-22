@@ -16,7 +16,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Manager--System-Planning--Transmission-Reliability--Hybrid-Schedule-_R-031875-1"
+   "externalPath": "/job/Westwood-MA/Manager--System-Planning--Transmission-Reliability--Hybrid-Schedule-_R-031875-1",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -37,7 +38,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Project-Manager-II--Transmission--hybrid-schedule-_R-029937-1"
+   "externalPath": "/job/Westwood-MA/Project-Manager-II--Transmission--hybrid-schedule-_R-029937-1",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -58,7 +60,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Project-Cost-Analyst--Transmission--Hybrid-Schedule-_R-030268"
+   "externalPath": "/job/Westwood-MA/Project-Cost-Analyst--Transmission--Hybrid-Schedule-_R-030268",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -79,7 +82,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Analyst--Project-Cost--Transmission--Hybrid-Schedule-_R-030267"
+   "externalPath": "/job/Westwood-MA/Senior-Analyst--Project-Cost--Transmission--Hybrid-Schedule-_R-030267",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -100,7 +104,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Program-Manager--Strategic-Project-Development-Transmission--Hybrid-Schedule-_R-031770"
+   "externalPath": "/job/Westwood-MA/Program-Manager--Strategic-Project-Development-Transmission--Hybrid-Schedule-_R-031770",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -121,7 +126,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Program-Manager--Strategic-Project-Development--Hybrid-Schedule-_R-031769"
+   "externalPath": "/job/Westwood-MA/Senior-Program-Manager--Strategic-Project-Development--Hybrid-Schedule-_R-031769",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -142,7 +148,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/Senior-Project-Analyst--Estimating--Transmission--Hybrid-Schedule-_R-031689"
+   "externalPath": "/job/Hartford-CT/Senior-Project-Analyst--Estimating--Transmission--Hybrid-Schedule-_R-031689",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -163,7 +170,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Engineer--Distribution-System-Planning--Hybrid-Schedule-_R-031513"
+   "externalPath": "/job/Westwood-MA/Senior-Engineer--Distribution-System-Planning--Hybrid-Schedule-_R-031513",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -184,7 +192,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Engineer---Distribution-System-Planning--hybrid-schedule-_R-030864"
+   "externalPath": "/job/Westwood-MA/Senior-Engineer---Distribution-System-Planning--hybrid-schedule-_R-030864",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -205,7 +214,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/Associate-Engineer--Transmission-System-Planning--MA--CT--NH-_R-031081"
+   "externalPath": "/job/Hartford-CT/Associate-Engineer--Transmission-System-Planning--MA--CT--NH-_R-031081",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -226,7 +236,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Associate-Analyst--Transmission--Hybrid-Schedule-_R-031417"
+   "externalPath": "/job/Westwood-MA/Associate-Analyst--Transmission--Hybrid-Schedule-_R-031417",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -247,7 +258,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Dorchester-MA/Senior-Engineer--Grid-Operations-Technology--Hybrid-Schedule-_R-031625"
+   "externalPath": "/job/Dorchester-MA/Senior-Engineer--Grid-Operations-Technology--Hybrid-Schedule-_R-031625",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -268,7 +280,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Dorchester-MA/Engineer--Grid-Operations-Technology--Hybrid-Schedule-_R-031606"
+   "externalPath": "/job/Dorchester-MA/Engineer--Grid-Operations-Technology--Hybrid-Schedule-_R-031606",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -289,7 +302,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/XMLNAME-2026-Transmission-System-Planning-Intern_R-029918"
+   "externalPath": "/job/Hartford-CT/XMLNAME-2026-Transmission-System-Planning-Intern_R-029918",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -310,7 +324,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/East-Springfield-MA/Project-Manager-II--Transmission--Hybrid-Schedule-_R-030327"
+   "externalPath": "/job/East-Springfield-MA/Project-Manager-II--Transmission--Hybrid-Schedule-_R-030327",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -331,7 +346,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Berlin-CT/Supervisor--Energy-Efficiency--Hybrid-Schedule-_R-031207"
+   "externalPath": "/job/Berlin-CT/Supervisor--Energy-Efficiency--Hybrid-Schedule-_R-031207",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -352,7 +368,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Manchester-NH/Energy-Efficiency-Consultant--NH--Hybrid-Schedule-_R-031482"
+   "externalPath": "/job/Manchester-NH/Energy-Efficiency-Consultant--NH--Hybrid-Schedule-_R-031482",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -373,7 +390,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Manager--Regulatory-Policy-and-Stakeholder-Engagement--hybrid-schedule-_R-031812"
+   "externalPath": "/job/Westwood-MA/Manager--Regulatory-Policy-and-Stakeholder-Engagement--hybrid-schedule-_R-031812",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -394,7 +412,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Dorchester-MA/Engineer--Grid-Operations-Technology--Hybrid-Schedule-_R-031711"
+   "externalPath": "/job/Dorchester-MA/Engineer--Grid-Operations-Technology--Hybrid-Schedule-_R-031711",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -415,7 +434,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Associate-Engineer--Reliability-Compliance--Hybrid-Schedule-_R-031418"
+   "externalPath": "/job/Westwood-MA/Associate-Engineer--Reliability-Compliance--Hybrid-Schedule-_R-031418",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -436,7 +456,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hooksett-NH/Project-Manager-II--Transmission--Hybrid-Schedule-_R-031394"
+   "externalPath": "/job/Hooksett-NH/Project-Manager-II--Transmission--Hybrid-Schedule-_R-031394",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -457,7 +478,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Project-Manager--Transmission--Hybrid-Schedule-_R-029933-1"
+   "externalPath": "/job/Westwood-MA/Senior-Project-Manager--Transmission--Hybrid-Schedule-_R-029933-1",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -478,7 +500,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Project-Manager-II--Transmission--Hybrid-Schedule-_R-030218"
+   "externalPath": "/job/Westwood-MA/Project-Manager-II--Transmission--Hybrid-Schedule-_R-030218",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -499,7 +522,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Manchester-NH/Senior-Engineer---Transmission-System-Planning--Hybrid-_R-029377"
+   "externalPath": "/job/Manchester-NH/Senior-Engineer---Transmission-System-Planning--Hybrid-_R-029377",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -520,7 +544,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/Principal-Engineer-Transmission-System-Planning--Hybrid-_R-029655"
+   "externalPath": "/job/Hartford-CT/Principal-Engineer-Transmission-System-Planning--Hybrid-_R-029655",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -541,7 +566,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/Engineer--Systems-Planning--Transmission---Hybrid-Schedule_R-029736"
+   "externalPath": "/job/Hartford-CT/Engineer--Systems-Planning--Transmission---Hybrid-Schedule_R-029736",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -562,7 +588,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/Senior-Engineer--Transmission-System-Planning--Non-Wires-Alternative--NWA--hybrid-schedule-_R-029656-1"
+   "externalPath": "/job/Hartford-CT/Senior-Engineer--Transmission-System-Planning--Non-Wires-Alternative--NWA--hybrid-schedule-_R-029656-1",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -583,7 +610,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Hartford-CT/Senior-Engineer--Systems-Planning--Transmission---Hybrid-Schedule_R-029654"
+   "externalPath": "/job/Hartford-CT/Senior-Engineer--Systems-Planning--Transmission---Hybrid-Schedule_R-029654",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -604,7 +632,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Engineer--System-Planning_R-030928"
+   "externalPath": "/job/Westwood-MA/Senior-Engineer--System-Planning_R-030928",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -625,7 +654,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Dorchester-MA/Senior-Engineer--Grid-Operations-Technology--Hybrid-_R-030831"
+   "externalPath": "/job/Dorchester-MA/Senior-Engineer--Grid-Operations-Technology--Hybrid-_R-030831",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -646,7 +676,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Principal-Engineer--Transmission-System-Planning--Hybrid-Schedule-_R-029730"
+   "externalPath": "/job/Westwood-MA/Principal-Engineer--Transmission-System-Planning--Hybrid-Schedule-_R-029730",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -667,7 +698,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Senior-Engineer--Transmission-System-Planning--Hybrid-_R-029729"
+   "externalPath": "/job/Westwood-MA/Senior-Engineer--Transmission-System-Planning--Hybrid-_R-029729",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -688,7 +720,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Westwood-MA/Lead-Engineer--Transmission-System-Planning--hybrid-_R-029731"
+   "externalPath": "/job/Westwood-MA/Lead-Engineer--Transmission-System-Planning--hybrid-_R-029731",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  }

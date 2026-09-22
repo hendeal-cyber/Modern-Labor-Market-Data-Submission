@@ -4,74 +4,40 @@
     "platform": "workday",
     "token": "guidehouse/External",
     "wd_instance": 1,
-    "listed": 794,
+    "listed": 799,
     "site_guessed": false,
     "employer_searched": "Guidehouse",
     "distinctive_tokens": [
       "guidehouse"
     ],
-    "n_postings": 112,
+    "n_postings": 111,
     "sample_titles": [
+      "Business Intelligence Communications Specialist",
+      "Governance Business Analyst",
+      "Data Analyst/FM Product Specialist (Multiple Levels)",
+      "Lead Business Analyst",
       "Data Scientist",
-      "AI Engineer",
-      "Associate Director, Lead Data Architect - Databricks",
-      "AI Strategy Associate Director - State Health",
-      "Public Health Data Engineer",
-      "Fraud AI / Data Senior Consultant (remote)",
-      "Financial Transformation Business Analyst",
-      "Data Analyst (Visualization)"
+      "Palantir Data Engineer",
+      "DoW Financial Policy Manager",
+      "AI and Data Consultant - Public Sector"
     ],
     "locations_seen": [
       "IN - Trivandrum; IN - Chennai",
       "LT - Vilnius; GH Office: Kaunas, Lithuania",
       "LT - Vilnius; LT - Kaunas",
       "US - AL, Huntsville",
-      "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
-      "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - TX, Austin; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
       "US - CO, Denver; US - MN, Minneapolis",
       "US - DC, Washington",
       "US - DC, Washington; US - VA, Arlington",
       "US - DC, Washington; US - VA, McLean",
       "US - DC, Washington; US - VA, McLean; US - VA, Arlington",
-      "US - GA, Atlanta; US - IL, Chicago; US - IL, Fairview Heights; US - TX, Houston; US - VA, Arlington"
+      "US - GA, Atlanta; US - IL, Chicago; US - IL, Fairview Heights; US - TX, Houston; US - VA, Arlington",
+      "US - GA, Atlanta; US - NC, Charlotte; US - FL, Tampa; US - NC, Raleigh; US - VA, Arlington",
+      "US - GA, Atlanta; US - NY, New York; US - VA, Arlington; US - TX, Austin; US - IL, Chicago; US - CO, Boulder; US - CA, Sacramento; US - TX, Houston; US - TX, San Antonio; US - MA, Boston"
     ],
-    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---VA-Arlington/Data-Scientist_43937",
+    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---AL-Huntsville/Business-Intelligence-Communications-Specialist_44652",
     "sector_confidence": 0.025,
     "distinct_sector_terms": 5,
-    "review_required": true,
-    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
-  },
-  {
-    "employer": "Terra-Gen",
-    "platform": "ashby",
-    "token": "terra",
-    "listed": 9,
-    "employer_searched": "Terra-Gen",
-    "distinctive_tokens": [
-      "gen",
-      "terra"
-    ],
-    "n_postings": 9,
-    "sample_titles": [
-      "Freelance Videogame Subtitlers  \u2013 Esports ",
-      "Japanese-to-US English Freelance Video Game Localizers",
-      "Freelance On-Site Multilingual LQA Tester \u2013 S\u00e3o Paulo",
-      "German-to-English Freelance Healthcare Translators and Editors",
-      "General Application for Freelance Video Game Localizers",
-      "Freelance On-Site Multilingual LQA Tester \u2013 Buenos Aires",
-      "Freelance On-Site Multilingual LQA Tester \u2013 Milwaukee",
-      "Join Our Healthcare Linguist Talent Pool"
-    ],
-    "locations_seen": [
-      "Buenos Aires",
-      "Milwaukee",
-      "Remote",
-      "S\u00e3o Paulo, Brazil",
-      "Worldwide"
-    ],
-    "sample_url": "https://jobs.ashbyhq.com/terra/64a6ecbb-b4bb-4423-866e-a8b85b153b85",
-    "sector_confidence": 0.0,
-    "distinct_sector_terms": 0,
     "review_required": true,
     "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
   }

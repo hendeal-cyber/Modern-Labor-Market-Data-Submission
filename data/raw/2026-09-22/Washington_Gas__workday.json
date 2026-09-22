@@ -16,7 +16,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Washington-DC/WGL---Senior-Manager--Commercial-Development---Data-Centers---Power-Solutions_R7227"
+   "externalPath": "/job/Washington-DC/WGL---Senior-Manager--Commercial-Development---Data-Centers---Power-Solutions_R7227",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "gas_utility"
  },
@@ -37,7 +38,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Springfield-VA/WGL---Senior-Gas-Transmission-Engineer_R6996"
+   "externalPath": "/job/Springfield-VA/WGL---Senior-Gas-Transmission-Engineer_R6996",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "gas_utility"
  },
@@ -58,7 +60,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/Springfield-VA/WGL---Gas-Transmission-Engineer--Level-I--II-III-or-IV-_R6817"
+   "externalPath": "/job/Springfield-VA/WGL---Gas-Transmission-Engineer--Level-I--II-III-or-IV-_R6817",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "gas_utility"
  }

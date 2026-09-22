@@ -16,7 +16,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/St-Louis-MO/Senior-Lead-Data-Engineer_034190"
+   "externalPath": "/job/St-Louis-MO/Senior-Lead-Data-Engineer_034190",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -37,7 +38,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/St-Louis-MO/Senior-Program-Supervisor--Demand-Response_034148"
+   "externalPath": "/job/St-Louis-MO/Senior-Program-Supervisor--Demand-Response_034148",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -58,28 +60,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/St-Louis-MO/Grid-Solutions-Engineer_033944"
-  },
-  "industry": "utility"
- },
- {
-  "platform": "workday",
-  "employer": "Ameren Illinois",
-  "board_token": "ameren/External",
-  "external_id": "Benefits-Compliance-and-Legal-Analyst---Legal_033996",
-  "title": "Benefits Compliance and Legal Analyst - Legal",
-  "location_raw": "St. Louis, MO",
-  "description": "About Ameren Services (B&CS)\nAmeren Services provides administrative support and services to Ameren Corporation and its operating companies, subsidiaries and affiliates. Ameren Services includes a wide range of skill sets and roles, from finance and legal experts to digital and cyber specialists, plus those charged with ensuring environmental compliance and operational safety. Together, we help execute a strategy that enables Ameren to deliver superior long-term value to customers, shareholders and the environment.\n\nOur benefits include:\n\n- Medical coverage on date of hire\n\n- 100% employer paid cash balance pension plan\n\n- 401(k) with company match fully vested on date of hire\n\n- Minimum of 15 days paid vacation and 12 paid holidays\n\n- Paid parental\u00a0leave and family caregiver leave\n\nVisit our Benefits & Perks Page for more information on benefits provided to regular full-time employees. \u200b\n\nAbout The Position\nThe Benefits Compliance and Legal Analyst provides legal and compliance support for employee benefit plans, including plan documentation, regulatory filings, vendor agreements, fiduciary governance, and stakeholder guidance. This role monitors applicable benefits laws and regulations, identifies compliance risks, and supports proactive recommendations to ensure effective plan administration.\n\nKey responsibilities include:\nConduct legal and compliance analysis for employee benefit plans\n\n- Research regulatory requirements and provide timely recommendations\n\n- Review and draft vendor-related agreements, including service agreements, data sharing agreements, business associate agreements, amendments, and related communications\n\n- Advise internal stakeholders regarding plan interpretation and administration\n\nPrepare and maintain benefit plan documents, filings, and governance materials\n\n- Draft and review plan amendments, SPDs, SMMs, notices, administration forms, and related communications\n\n- Assist with Forms 5500 and coordinate required IRS and DOL filings\n\n- Prepare plan committee materials, including agendas, minutes, resolutions, bylaws, policies, claims and appeals documentation, and related decisions\n\n- Support plan committee delegations and training materials\n\n- Review vendor work and recommendations for accuracy and completeness\n\n- Coordinate with actuaries, attorneys, accountants, and Human Resources\n\nMonitor regulatory changes and support proactive compliance initiatives\n\n- Maintain compliance calendars and track required notices, filings, amendments, and deadlines\n\n- Monitor federal and state benefits laws, regulations, and agency guidance, including IRS, DOL, and HHS updates\n\n- Prepare recommendations, legal memoranda, summaries, and guidance documents regarding benefits compliance matters\n\n- Support responses to governmental audits and inquiries\n\n- Evaluate fiduciary obligations and identify potential compliance risks related to plan administration\n\n- Develop and deliver training for internal stakeholders and plan committees\n\n- Support compliance initiatives and special projects involving employee benefits matters\n\nQualifications\nBachelor\u2019s degree required. Minimum of five years of relevant experience required; ten years preferred. Strong attention to detail, organizational skills, communication skills, critical thinking, and document drafting ability required. Preferred qualifications include CEBS, SHRM certification, law firm or legal department experience, and experience with employee benefits compliance, including ERISA, the Internal Revenue Code, fiduciary governance, Form 5500 filings, welfare and retirement plans, COBRA, HIPAA, ACA, and qualified retirement plans. Demonstrated ability to manage multiple projects and willingness to learn and take on additional responsibilities preferred.\n\nAdditional Information\nAmeren\u2019s selection process includes a series of interviews and may include a leadership assessment process.\u00a0 Specific details will be provided to qualified candidates.\n\nCompensation Range:\n$88,500.00 - $137,200.00\n\nAt Ameren, base salary is one component of a competitive compensation package for employees. Our pay ranges are broad to allow for movement within our organization and to accommodate different skill sets and levels of expertise. We take into consideration a variety of factors including, but not limited to, skills, abilities, experience, education, credentials, and internal equity when determining the base salary offered. Roles are eligible for additional rewards including annual incentive payments based on individual and company performance.\n\nIf end date is listed, the posting will come down at 12:00 am on that date:\n\nAll qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, ethnicity, age, disability, genetic information, military service or status, pregnancy, marital status, sexual orientation, gender identity or expression, or any other class, trait, or status protected by law.",
-  "url": "https://ameren.wd1.myworkdayjobs.com/External/job/St-Louis-MO/Benefits-Compliance-and-Legal-Analyst---Legal_033996",
-  "posted_at": "2026-08-19",
-  "updated_at": null,
-  "department": null,
-  "employment_type": "Full time",
-  "comp_min": null,
-  "comp_max": null,
-  "comp_interval": null,
-  "payload": {
-   "externalPath": "/job/St-Louis-MO/Benefits-Compliance-and-Legal-Analyst---Legal_033996"
+   "externalPath": "/job/St-Louis-MO/Grid-Solutions-Engineer_033944",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -100,7 +82,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/St-Louis-MO/GIS-Co-op--Real-Estate-_033670-1"
+   "externalPath": "/job/St-Louis-MO/GIS-Co-op--Real-Estate-_033670-1",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  },
@@ -121,7 +104,8 @@
   "comp_max": null,
   "comp_interval": null,
   "payload": {
-   "externalPath": "/job/St-Louis-MO/Senior-Software-Engineer-Oracle-EPM_033238"
+   "externalPath": "/job/St-Louis-MO/Senior-Software-Engineer-Oracle-EPM_033238",
+   "detail_fetched_at": "2026-09-22"
   },
   "industry": "utility"
  }
