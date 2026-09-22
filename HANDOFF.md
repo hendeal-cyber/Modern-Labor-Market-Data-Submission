@@ -1,6 +1,106 @@
 # Handoff — Modern Labor Market Data Submission
 
-## 0. Current state — READ THIS FIRST
+## RESUME HERE — handoff of 2026-09-22, end of session
+
+*A new conversation starts here. This block wins over everything below it.
+§0 below describes the last **audited** state (N = 165, commit `7180497`).
+This block describes what has happened since and what to do next, in order.*
+
+### State at handoff
+
+| | Value |
+|---|---|
+| Branch | `claude/wonderful-tesla-53lgo4` |
+| Last audited commit | `7180497`: concept role screen, nested-repost dedupe, gate fixes. **N 165, 33 clusters, Invenergy 23.6%**. Deliverables match this |
+| Run 26 | Actions #35744479596, **success**, pushed `28244ea` |
+| Run 26 data, **UNAUDITED** | raw 2,084 → unique in scope 325 → **usable 231**; **36 clusters; Invenergy 19.1%; 15.4 obs/regressor; `interpretable: true`** |
+| Bootstrap survivors in run 26, **UNAUDITED** | `seniority_rank` 0.0001, `region_south` 0.0128, `region_northeast` 0.0285, `region_west` 0.0384, `mandate_state` 0.0446 |
+| Deliverables | **Deliberately stale.** Paper, summary, figures and deck quote 165. `tests/test_consistency.py` is **26/29**, failing only the three checks that catch this. Do not regenerate before the audit |
+| Detail cache + daily cron | Committed in `fe87597`. Unit-tested 7/7. **Never run against a live API** |
+
+Why the deliverables are stale on purpose: the workflow commits only `data/`,
+and the standing rule is that new rows are read before any number built on
+them is published. Regenerating now would put 66 unread rows into the paper.
+
+### Do these in order
+
+1. **Audit round 6: read run 26 before trusting it.**
+   - `git diff 7180497 HEAD -- data/analysis/postings.csv`. Read all 66 added
+     rows (the round-5 script diffed on employer + title + location).
+   - Read the pay extremes, highest and lowest.
+   - Find where the jump came from. The prime suspect is the Workday page cap
+     rising from 25 to 150: Guidehouse and Hitachi Energy both listed exactly
+     500 before, the signature of truncation. Check every Guidehouse row
+     against `requires_sector_evidence`; it once supplied 65 rows of which 3
+     were energy work. Check Hitachi Energy rows against the umbrella.
+   - `region_west` and `mandate_state` pass the bootstrap for the first time.
+     Treat them as claims to verify. Also re-run the region-robustness check
+     and note that `mandate_state` did NOT survive it at N = 165.
+   - Record the round in `docs/audit-log.md` as `### Round 6 — ...`, before
+     the `### Round N` template. The paper's audit table in
+     `scripts/make_paper.py` needs a row 6 (`if _rounds >= 6`), or consistency
+     check 18c fails.
+2. **Regenerate the deliverables**: `make_codebook.py`,
+   `make_exec_summary.py`, `make_figures.py`, `make_paper.py` (all with
+   `PYTHONPATH=src`), then `node scripts/make_slides.js`. `tests/run_all.py`
+   must be green, with consistency at **29/29**.
+3. Add a pre-registration §8 amendment for anything the audit changes. Refresh
+   §0 below with the audited numbers.
+4. **Prove the detail cache live.**
+   - Dispatch `collect.yml` with `no_slugs: true`.
+   - Read `manifest["detail_cache"]` in the new `data/raw/<date>/manifest.json`:
+     `reused` should be most of the Workday and SmartRecruiters detail fetches.
+   - Compare `pay_disclosed` on reused rows with the previous run's values
+     for drift.
+   - If anything is off, set the cron back to weekly rather than leave it
+     hopeful.
+5. **Check which branch is the default.** GitHub runs `schedule:` crons only
+   from the default branch, so the new daily cron (and the old weekly one) do
+   nothing unless this branch is the default or is merged. Report which it
+   is; **do not merge without the owner.**
+6. Lower priority:
+   - 118 employers in `config/token-verification.yaml` are still unchecked.
+     The value is in retailers, utilities and co-ops (yield table in §0.5).
+   - `tests/test_cache.py` computes its printed pass count with a
+     `len(set(f[:12] ...))` hack. Replace it with a plain count of checks.
+
+### The owner's question this session, answered (so it is not re-asked)
+
+*"Can we fetch rate-limited sites daily, appending only new postings? Do the
+sites refresh daily?"*
+
+- **Nothing is rate-limiting us.** No run has recorded a 429 or an error. The
+  cost is our own 1 request/second throttle and the job timeout.
+- **Sites have no refresh cycle.** Postings change when a requisition opens or
+  closes. Measured day-over-day churn, on the 40 employers present in both the
+  09-21 and 09-22 snapshots, is 1.6% new and 1.1% removed.
+- **Daily is still better, for coverage.** A weekly run misses any posting
+  that opens and closes within the week.
+- **"Only new" has one catch.** Workday gives no `updated_at`, so an employer
+  adding pay to a live posting would never be seen. That is why the cache
+  re-reads every description after 7 days and the Monday run re-reads
+  everything.
+- **The saving is modest today**: about 5 of a 46-minute run. Board probing
+  and listing dominate.
+
+### Standing rules (unchanged, all still binding)
+
+- **$0 spend.** Do not bypass anyone's terms: no LinkedIn, Indeed, Handshake,
+  or iCIMS portal automation.
+- **N ≥ 100 is non-negotiable.** Every observation must sit under the energy,
+  utility or data center umbrella.
+- Audit frequently. Read the pay extremes after every rebuild.
+- Never remove `analyze.py`'s interpretability block by hand. It comes down
+  only by its own gate, which now also checks concentration (≤ 25%).
+- Report N, clusters and largest-employer share together, always.
+- Sabotage tests use a **backup copy** of the file, never `git checkout`
+  (that once destroyed uncommitted work).
+- In test files, put the `if __name__ == "__main__":` guard at the **very
+  end** (this bug happened four times).
+- `WebSearch` works from the session; `WebFetch` to ATS or careers hosts does
+  not. Collection happens only in GitHub Actions.
+
+## 0. Last audited state (N = 165, commit `7180497`) — superseded by RESUME HERE above
 
 *Everything below section 0 is layered history, oldest first. Where they
 conflict, this section wins.*
