@@ -79,6 +79,9 @@ def run():
     glued = check_glued_digits_and_cents()
     failures += glued
     total += 9   # the cases inside check_glued_digits_and_cents
+    edge_fails, edge_total = check_window_edges()
+    failures += edge_fails
+    total += edge_total
     print(f"{total - len(failures)}/{total} pay tests passed")
     for f in failures:
         print("  FAIL", f)
@@ -139,6 +142,105 @@ def check_glued_digits_and_cents():
         if r and r.pay_min:
             fails.append(f"{junk[:34]!r} parsed as pay: {r.pay_min}-{r.pay_max}")
     return fails
+
+
+def check_window_edges():
+    """Real posting text, parsed through the full window machinery.
+
+    check_glued_digits_and_cents() hands the parser a fragment directly, so it
+    never exercised _pay_windows(), and it stayed green while the halving it
+    was written for went on happening. The fragment is manufactured by the
+    window slice: Invenergy's "$80,000.00 - $93,000.00" sits about 60
+    characters before a later "compensation" cue, so the window opened at
+    "0,000.00 - $93,000.00" and parsed (0, 93000). Fourteen Invenergy rows
+    were at half pay in the N = 165 deliverables (seventeen in run 26),
+    including the lowest-paid
+    row, which audit round 5 read and accepted as "a genuine entry-level
+    band". Found in audit round 6.
+
+    The "k" cases are the same kind of confident wrong number: "$200-235k"
+    read as (200, 235000) still gives a midpoint inside the plausible window.
+    """
+    from lmstudy.pay import from_text, MIN_PLAUSIBLE_BOUND
+    fails = []
+    invenergy = (
+        "- Must be self-directed and driven, with the ability and desire to "
+        "effectively lead.\n\nBase Pay\n\n$80,000.00 - $93,000.00 USD Annual\n"
+        "Bonus: 20% - 30%\n\nThe base pay range reflects the minimum and maximum "
+        "target salary for the position. Invenergy considers a number of factors "
+        "when determining base pay offers such as the scope and responsibilities "
+        "of the position and the candidate's experience, education and skills."
+        "\n\nIn addition to base pay, the total annual compensation package may "
+        "also include a discretionary annual bonus.")
+    cases = [
+        ("Invenergy, Associate, Land Development", invenergy, 80000.0, 93000.0),
+        ("Cypress Creek, Senior Director, Development",
+         '<p><strong><span data-contrast="auto">Compensation:</span></strong>'
+         '<span data-contrast="auto"> The salary range for the position is '
+         '$200-235k plus bonus and benefits. Compensation may vary outside of '
+         'this range depending on a number of factors.</span></p>',
+         200000.0, 235000.0),
+        ("Sense, Corporate Development Associate",
+         "- Authorized to work in the US\n\n- Compensation is $100 - 150k\n\n"
+         "Benefits\nHealth Care Plan (Medical, Dental & Vision) Retirement Plan "
+         "(401k, IRA)", 100000.0, 150000.0),
+        ("Sense, Staff Backend Software Engineer",
+         "- Authorized to work in the US\n\n- Compensation is 180 - 200k\n\n"
+         "Benefits\n\n- Health Care Plan (Medical, Dental & Vision)",
+         180000.0, 200000.0),
+        ("Plus Power, single figure behind markup",
+         '<span class="EOP SCXW75530381 BCX8" data-ccp-props="{"201341983":0,'
+         '"335559740":240}"> </span></p>\n<p><span data-contrast="auto">The '
+         'expected salary range* for this position </span><span '
+         'data-contrast="auto">begins</span><span data-contrast="auto"> at '
+         '$105,000. </span><span data-ccp-props="{"201341983":0,"335559740":259}">',
+         105000.0, 105000.0),
+    ]
+    for label, text, lo, hi in cases:
+        r = from_text(text)
+        if r.pay_min is None or abs(r.pay_min - lo) > 0.01 or abs((r.pay_max or 0) - hi) > 0.01:
+            fails.append(f"[{label}] got ({r.pay_min}, {r.pay_max}), want ({lo}, {hi})")
+
+    # Greenhouse's pay-transparency widget, verbatim from New York ISO: the
+    # tags between the figures stopped the range pattern and the floor was
+    # recorded as a point value on every NYISO row.
+    nyiso = ('<div class="pay-input"><div class="title">Salary Range</div>'
+             '<div class="pay-range"><span>$68,900</span><span class="divider">'
+             '-</span><span>$115,200 USD</span></div></div></div>')
+    r = from_text(nyiso)
+    if (r.pay_min, r.pay_max, r.single_figure) != (68900.0, 115200.0, False):
+        fails.append(f"[NYISO widget] got ({r.pay_min}, {r.pay_max}, "
+                     f"single={r.single_figure}), want (68900, 115200, range)")
+
+    # Avangrid's boilerplate, verbatim, on a posting that states no pay. It was
+    # the lowest-paid row in the dataset: "$30 billion" read as $30 an hour,
+    # and with that closed, "25 states" read as $25 an hour.
+    avangrid = ("About AVANGRID: AVANGRID, Inc. (NYSE:AGR) is a diversified "
+                "energy and utility company with $30 billion in assets and "
+                "operations in 25 states. The company operates regulated "
+                "utilities, electricity generation, and natural gas storage.")
+    r = from_text(avangrid)
+    if r.usable:
+        fails.append(f"[Avangrid boilerplate] parsed as pay: {r.raw_excerpt!r} -> {r.midpoint}")
+
+    # The window edges on their own: no window may open or close mid-token,
+    # whatever the bound check downstream would have caught.
+    from lmstudy.pay import _pay_windows
+    for w in _pay_windows(invenergy):
+        at = invenergy.find(w)
+        end = at + len(w)
+        if (at > 0 and not invenergy[at - 1].isspace()) or (
+                end < len(invenergy) and not invenergy[end].isspace()):
+            fails.append(f"window cuts a token: {w[:30]!r}...{w[-20:]!r}")
+            break
+
+    # The bound check on its own, independent of how the fragment arises.
+    for fragment in ("Base pay 5,000.00 - 235,000.00 USD Annual",
+                     "Salary: 0,000.00 - $93,000.00 USD Annual"):
+        r = from_text(fragment)
+        if r.usable and r.pay_min < MIN_PLAUSIBLE_BOUND:
+            fails.append(f"{fragment!r} accepted with a low bound of {r.pay_min}")
+    return fails, len(cases) + 5
 
 
 if __name__ == "__main__":

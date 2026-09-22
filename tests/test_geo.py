@@ -128,6 +128,20 @@ def run():
         if got.metro != want:
             fails.append(f"workday format {loc!r} -> {got.metro} want {want}")
 
+    # 10b. Audit round 6. A stated state the gazetteer does not hold is an
+    # answer, not a gap. "Quincy, Washington" (verbatim, Vantage run 26) fell
+    # through to the only Quincy on file, Quincy MA, and landed in Boston. A
+    # bare city with no state may still use the unique-name fallback.
+    for loc, want in [
+        ("Quincy, Washington", None),
+        ("Denver, Colorado; Quincy, Washington; Ashburn, Virginia; Phoenix, "
+         "Arizona; Santa Clara, California", "northern_virginia"),
+        ("Quincy, MA", "boston"),
+    ]:
+        got = resolve(loc, all_metros(), GAZ)
+        if got.metro != want:
+            fails.append(f"stated state ignored: {loc[:40]!r} -> {got.metro} want {want}")
+
     # 11. Flipping must be narrow. "Chicago, IL" is already CITY, STATE and
     # must survive untouched, and a city that shares a state abbreviation's
     # spelling must not be mistaken for one.
@@ -273,6 +287,21 @@ def run():
     covered = resolve_us_states("US, Salt Lake City, UT; US, Denver, CO")
     if not (set(covered) & mand):
         fails.append("a listed mandate state (CO) was not found alongside UT")
+
+    # 19. Effective dates are read, not decorative (audit round 6).
+    # Connecticut's posting rule starts 2026-10-01, after every snapshot.
+    from lmstudy.build_dataset import mandate_effective_dates, mandates_in_force
+    dates = mandate_effective_dates(SCOPE)
+    if "CT" in mandates_in_force(dates, "2026-09-22"):
+        fails.append("CT counted as a posting mandate before 2026-10-01")
+    if "CT" not in mandates_in_force(dates, "2026-10-01"):
+        fails.append("CT not counted from its effective date")
+    if "IL" not in mandates_in_force(dates, "2026-09-22"):
+        fails.append("IL (in force 2025-01-01) missing on 2026-09-22")
+    # On-request regimes are excluded by the rule written above the table.
+    for code in ("NV", "RI"):
+        if code in dates:
+            fails.append(f"{code} is disclosure-on-request, not a posting mandate")
 
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:

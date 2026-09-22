@@ -146,17 +146,36 @@ RANGE_TITLE_CASES = [
     ("Resource Planning Analyst I or II or Senior", 1, True),
     ("Senior Resource Planning Analyst (or Resource Planning Analyst II or I)", 1, True),
     ("Data Scientist I or II (MAD-BS-OR)", 1, True),
-    ("Analyst OR Senior Associate, Capital Markets", 1, True),
+    # Was expected at 1 until audit round 6: "associate" inside "senior
+    # associate" was read as a rung of its own. The alternatives are Analyst
+    # (unlevelled, 2) and Senior Associate (3).
+    ("Analyst OR Senior Associate, Capital Markets", 2, True),
     ("(Sr.) (Lead) (Principal) Energy Analyst/Engineer (II)", 2, True),
     ("Senior/Principal Data Analyst", 3, True),
-    ("Transmission Planning Engineer, or Staff, or Senior Engineer", 3, True),
+    # The floor is the unlevelled Engineer (2). Expected 3 until audit round 6,
+    # when an unlevelled alternative carried no token and could not be seen.
+    ("Transmission Planning Engineer, or Staff, or Senior Engineer", 2, True),
     # NOT a range in this scheme: III and IV are both rank 3, so there is only
     # one rung advertised and the ceiling is the floor.
     ("Environmental Analyst III or IV - Amarillo, TX", 3, False),
-    # Known limitation, recorded rather than papered over: an UNLEVELLED base
-    # carries no token to match, so a range from unlevelled to senior cannot be
-    # detected. Ranking senior is the conservative read.
-    ("Data Analyst or Data Analyst Senior - AMLD", 3, False),
+    # Recorded as a known limitation until audit round 6: an UNLEVELLED base
+    # carried no token, so the range read as senior. An "or"-alternative that
+    # names a job now counts at the default.
+    ("Data Analyst or Data Analyst Senior - AMLD", 2, True),
+    # Audit round 6, verbatim from run 26. Each was misranked by taking the
+    # minimum over rung KEYWORDS instead of over the listed alternatives.
+    ("Manager/Sr Manager Grid Implementation", 5, False),
+    ("Director or Senior Director Project Development - ERCOT", 6, False),
+    ("Senior Manager or Director Project Development", 5, True),
+    ("Senior Associate/Transmission Strategy and Planning (Energy practice)", 3, False),
+    ("Associate Principal/Wholesale Power Markets Consultant (Energy practice)", 4, False),
+    ("Engineer I, Engineer II, Engineer III Grid Operations", 1, True),
+    ("Tariff Administration - Transmission Contract Analyst (or Senior)", 2, True),
+    ("(Sr./Lead) Market Design Specialist I (II)", 3, True),
+    ("Sr. (Lead) Market Design Specialist I (II)", 3, True),
+    ("WGL - Gas Transmission Engineer (Level I, II, III or IV)", 1, True),
+    # "or" joining two practice areas is not a second rung.
+    ("Manager, Wind or Solar Development", 5, False),
     # Ordinary titles must be untouched by any of this.
     ("Senior Interconnection Engineer", 3, False),
     ("Market Analyst", 2, False),
@@ -201,6 +220,49 @@ def check_audit_round_3_roles(config):
         got = screen_role(title, "", config).passed
         if got != want:
             fails.append(f"audit3 role {title[:48]!r} kept={got} want={want}")
+    return fails
+
+
+# Audit round 6, 2026-09-22. Every title verbatim from run 26 (or, for the
+# financial-reporting rows, run 25), each read against its description. The
+# kept rows are the look-alikes each new exclusion must NOT catch.
+AUDIT_ROUND_6_ROLES = [
+    ("Lead Talent & Organizational Development Consultant", False),
+    ("Benefits Compliance and Legal Analyst - Legal", False),
+    ("Manager, Procurement Compliance", False),
+    ("Accounting Manager - Accounting Manager Sr. - Nuclear Development", False),
+    ("Senior Financial Reporting Analyst", False),
+    ("Transmission Workplace Services Manager", False),
+    ("Principal, AI Security", False),
+    ("Site/Civil Land Development Designer (Prin-Staff)", False),
+    ("Engineer, Reliability", False),
+    ("Senior Reliability Engineer", False),
+    ("Plant Reliability Engineering Manager", False),
+    ("Reliability Engineer, Control Systems, NA", False),
+    ("Infrastructure Reliability Engineer", False),
+    ("Senior Systems Reliability Engineer", False),
+    ("Development Program Manager (Q-Systems: Connectivity)", False),
+    ("Development Project Manager Q Systems (Security)", False),
+    ("Development Project Manager – Fire Protection & Fire Alarm Subject Matter Expert (SME)", False),
+    ("Director, Development Schedule Management", False),
+    # Kept: grid reliability, data governance, siting and power delivery.
+    ("Distribution System Operations Real-Time Reliability Engineer", True),
+    ("Associate Engineer, Reliability Compliance (Hybrid Schedule)", True),
+    ("Associate, Reliability Compliance", True),
+    ("AI Data & Security Governance Engineer (MAD-BS-OR)", True),
+    ("Pre-Development Program Manager", True),
+    ("Utility Development Project Manager", True),
+    ("Senior Analyst, Complex Settlements", True),
+    ("CAD-GIS Designer", True),
+]
+
+
+def check_audit_round_6_roles(config):
+    fails = []
+    for title, want in AUDIT_ROUND_6_ROLES:
+        got = screen_role(title, "", config).passed
+        if got != want:
+            fails.append(f"audit6 role {title[:48]!r} kept={got} want={want}")
     return fails
 
 
@@ -310,7 +372,8 @@ def run():
     fails += check_seniority_ranks()
     fails += check_range_titles()
     fails += check_audit_round_3_roles(CFG)
-    total = (len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)
+    fails += check_audit_round_6_roles(CFG)
+    total = (len(AUDIT_ROUND_6_ROLES)+len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)
              +len(intern_cases)+len(AUDIT_ROUND_2)+len(AUDIT_ROUND_2_KEEP)
              +len(SENIORITY_RANK_CASES)+11
              +len(RANGE_TITLE_CASES)*2+2+len(AUDIT_ROUND_3_ROLES)

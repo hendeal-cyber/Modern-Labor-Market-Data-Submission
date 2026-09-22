@@ -68,7 +68,34 @@ def off_umbrella(record: dict) -> bool:
     if not record.get("diversified"):
         return False
     title = (record.get("title") or "").lower()
-    return any(term.lower() in title for term in record.get("off_umbrella") or [])
+    # Word-bounded, like every other keyword rule here: as a substring "rail"
+    # matches "trail" and "mail" matches "email". Measured in audit round 6 to
+    # change no row in the committed snapshots; fixed before it could.
+    return any(re.search(r"(?<![a-z0-9])" + re.escape(term.lower()) + r"(?![a-z0-9])", title)
+               for term in record.get("off_umbrella") or [])
+
+
+def other_group_company(record: dict) -> bool:
+    """True when a group-wide board serves a posting from a different company.
+
+    Hitachi Energy's Workday tenant is Hitachi's, and the off_umbrella title
+    list (rail, medical, elevator, ...) cannot see a data job at a sister
+    company, because the title of a semiconductor data scientist reads like
+    anyone's. Audit round 6 found every usable "Hitachi Energy" row belonged
+    to another Hitachi company: two at Hitachi High-Tech America (metrology
+    for chip fabs) and one at Hitachi Vantara Federal, alongside six
+    undisclosed rows from Hitachi Digital Services and Hitachi Vantara.
+
+    Every genuine posting names the company ("Company Name: HITACHI ENERGY USA
+    INC", or Sweden or Poland), and across all 33 Hitachi records in the
+    committed snapshots none from a sister company does, so the posting is
+    required to name it. Word-bounded and case-insensitive.
+    """
+    phrase = record.get("requires_company_mention")
+    if not phrase:
+        return False
+    text = f"{record.get('title') or ''} {record.get('description') or ''}".lower()
+    return not re.search(r"(?<![a-z0-9])" + re.escape(phrase.lower()) + r"(?![a-z0-9])", text)
 
 
 def lacks_sector_evidence(record: dict) -> bool:
@@ -193,6 +220,29 @@ def days_since(iso: str | None, today: dt.date) -> int | None:
         return None
 
 
+def mandate_effective_dates(scope: dict) -> dict[str, dt.date]:
+    """State code -> the date its posting-level pay mandate took effect."""
+    out = {}
+    for code, when in (scope.get("pay_mandate_states") or {}).items():
+        out[str(code).upper()] = (when if isinstance(when, dt.date)
+                                  else dt.date.fromisoformat(str(when)))
+    return out
+
+
+def mandates_in_force(dates: dict[str, dt.date], on: str | dt.date) -> set[str]:
+    """States whose posting mandate was in force on the observation date.
+
+    The config has always recorded effective dates, "because a posting
+    collected before a state's date is not covered by it", and nothing read
+    them: every listed state counted from the beginning of time. That was
+    harmless while every date was in the past, and wrong the moment one was
+    not. Connecticut's posting-level requirement (Public Act 26-12) starts
+    2026-10-01, after every snapshot in this study.
+    """
+    day = on if isinstance(on, dt.date) else dt.date.fromisoformat(str(on))
+    return {code for code, when in dates.items() if when <= day}
+
+
 def employer_screen_flags(config_dir: pathlib.Path) -> dict[str, dict]:
     """Per-employer screening flags, read at BUILD time rather than collection.
 
@@ -214,6 +264,7 @@ def employer_screen_flags(config_dir: pathlib.Path) -> dict[str, dict]:
                 "diversified": bool(e.get("diversified")),
                 "off_umbrella": e.get("off_umbrella") or [],
                 "requires_sector_evidence": bool(e.get("requires_sector_evidence")),
+                "requires_company_mention": e.get("requires_company_mention") or "",
             }
     return flags
 
@@ -227,7 +278,7 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     national = bool(scope.get("geography", {}).get("national"))
     # Mandate status is a property of the posting's state, read from config
     # so a reader can audit which jurisdictions count and why.
-    mandate_states = {str(k).upper() for k in (scope.get("pay_mandate_states") or {})}
+    mandate_dates = mandate_effective_dates(scope)
     # BEA regional price parities, if a collection run fetched them. Absent is
     # a normal state: the price-adjusted column is then blank and analyze.py
     # reports that model as unavailable. Nothing is imputed — a fabricated
@@ -262,6 +313,10 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
 
     for snapshot in snapshot_dirs:
         run_date = snapshot.name
+        # A law not yet in force on the day a posting was observed does not
+        # cover it. Connecticut's posting rule starts 2026-10-01; the config
+        # dated it 2021 and the dates were never read (audit round 6).
+        mandate_states = mandates_in_force(mandate_dates, run_date)
         for path in sorted(snapshot.glob("*.json")):
             if path.name == "manifest.json":
                 continue
@@ -284,6 +339,11 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 if off_umbrella(rec):
                     funnel["rejected_off_umbrella"] += 1
                     reject_reasons["off_umbrella_line_of_business"] += 1
+                    continue
+
+                if other_group_company(rec):
+                    funnel["rejected_off_umbrella"] += 1
+                    reject_reasons["other_group_company"] += 1
                     continue
 
                 if lacks_sector_evidence(rec):
@@ -474,6 +534,11 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
         "usable_by_metro": dict(by_metro),
         "usable_by_employer": dict(by_employer.most_common()),
         "distinct_employers_with_pay": len(by_employer),
+        # For the deck, which cannot read YAML. It carried "16" as a literal
+        # for a table that had become 14 entries, 13 of them in force.
+        "mandate_states_in_force": sorted(
+            mandates_in_force(mandate_dates, snapshot_dirs[-1].name)
+            if snapshot_dirs else []),
         "min_usable_n": scope["study"]["min_usable_n"],
         "floor_met": funnel["usable_with_pay"] >= scope["study"]["min_usable_n"],
     }

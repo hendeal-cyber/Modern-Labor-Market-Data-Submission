@@ -189,6 +189,12 @@ roles:
     - reliability compliance
     - nerc compliance
     - nerc operations
+    # Real-time reliability is grid-operations language (NERC's real-time
+    # operations standards). Listed literally so that excluding equipment
+    # "reliability engineer" titles on the concept path cannot drop it: AEP's
+    # "Distribution System Operations Real-Time Reliability Engineer" analyses
+    # DER impacts on distribution operations. Audit round 6.
+    - real-time reliability
     - policy analyst
     - legislative analyst
     - energy policy
@@ -360,6 +366,35 @@ roles:
     - site reliability
     - transfer pricing
     - market access
+    # Audit round 6, 2026-09-22. "reliability" admits three different jobs,
+    # and only one is grid work. Read against their descriptions:
+    #   AES "Engineer, Reliability", "Senior Reliability Engineer"
+    #       PV+BESS inverter maintenance strategy, CMMS failure data
+    #   Xcel "Plant Reliability Engineering Manager"   generating-plant O&M
+    #   Vantage "Reliability Engineer, Control Systems", STACK
+    #       "Infrastructure Reliability Engineer"      data-center electrical,
+    #       mechanical and controls critical systems
+    #   ERCOT "Senior Systems Reliability Engineer"    SLOs and observability:
+    #       site reliability engineering by another name
+    # All are equipment or IT reliability, which §2 of the pre-registration
+    # excludes with maintenance, mechanical, electrical and commissioning work.
+    # Grid reliability is written differently -- "reliability compliance",
+    # "NERC", "real-time reliability" -- and those are literal includes, which
+    # run before this list and are unaffected by it.
+    - reliability engineer
+    - reliability engineering
+    - engineer reliability
+    # QTS "Q-Systems" project managers deliver the in-house connectivity,
+    # security and quality systems through design, installation and
+    # commissioning; the fire-protection SME is the same job for life safety.
+    # Construction project management, beside "construction project manager"
+    # above. "Director, Development Schedule Management" owns construction
+    # scheduling and progress KPIs across builds.
+    - q-systems
+    - q systems
+    - fire protection
+    - fire alarm
+    - schedule management
     - business development
   exclude_any:
     # Audit round 3, 2026-09-21. Three out-of-scope roles reached the dataset:
@@ -429,6 +464,41 @@ roles:
     - warehouse
     - route driver
     - truck driver
+    # Audit round 6, 2026-09-22. Run 26 admitted back-office and security
+    # roles through variant wordings of exclusions already listed above. Each
+    # term below is the sibling of one that is already here, found in a real
+    # title, and read against its description before being added:
+    #   "Lead Talent & Organizational Development Consultant"  HR; "talent
+    #       development" is listed but the ampersand breaks the phrase
+    #   "Benefits Compliance and Legal Analyst - Legal"         HR benefits /
+    #       legal, beside "legal operations" and "counsel"
+    #   "Manager, Procurement Compliance"                       supplier-policy
+    #       audit, not energy regulatory compliance
+    #   "Accounting Manager - Accounting Manager Sr. - Nuclear Development"
+    #       back office, beside "accountant"; admitted on "development"
+    #   "Senior Financial Reporting Analyst" (AES, QTS)         same
+    #   "Transmission Workplace Services Manager"               facilities
+    #   "Principal, AI Security"                                security. NOT
+    #       "security" alone: round 3 kept "AI Data & Security Governance
+    #       Engineer" as a genuine data-governance role
+    #   "Site/Civil Land Development Designer (Prin-Staff)"     AutoCAD Civil 3D
+    #       drafting; "civil" was already excluded on the concept path but
+    #       this title entered on the literal "land development"
+    - organizational development
+    - benefits compliance
+    - legal analyst
+    - procurement compliance
+    - accounting
+    - financial reporting
+    - workplace services
+    - ai security
+    - civil
+    # "Senior Service Product Specialist – AIS and GIS" (Hitachi Energy)
+    # entered on the literal "gis": here it is gas-insulated SWITCHGEAR beside
+    # air-insulated, not geographic information systems. A service product
+    # role for substation equipment, which §2 excludes with field service.
+    - ais and gis
+    - switchgear
 
 # ---------------------------------------------------------------------------
 # Early career definition.
@@ -502,20 +572,28 @@ early_career:
 pay_mandate_states:
   CA: 2023-01-01   # SB 1162, 15+ employees
   CO: 2021-01-01   # Equal Pay for Equal Work Act, the first
-  CT: 2021-10-01   # posting-level for advertised roles
+  # Connecticut's 2021 law (Public Act 21-30) is disclosure on request or
+  # before an offer, which the rule above excludes. Its POSTING requirement is
+  # H.B. 5003 / Public Act 26-12, effective 2026-10-01 -- after this study's
+  # snapshots, so no posting collected here is covered. It was dated 2021 and
+  # counted as covered until audit round 6; build_dataset now reads the dates.
+  CT: 2026-10-01   # Public Act 26-12: range + benefits in every posting
   DC: 2024-06-30   # Wage Transparency Omnibus Amendment
   HI: 2024-01-01   # 50+ employees
   IL: 2025-01-01   # HB 3129, 15+ employees — the study's original anchor
   MD: 2024-10-01   # Wage Range Transparency Act
   MA: 2025-10-29   # 25+ employees
   MN: 2025-01-01   # 30+ employees
-  NV: 2021-10-01   # disclosure to applicants after interview; posting in practice
   NJ: 2025-06-01   # 10+ employees
   NY: 2023-09-17   # statewide; NYC LL32 from 2022-11-01
-  RI: 2023-01-01
   VT: 2025-07-01
   VA: 2026-07-01   # newest; check coverage before relying on it
   WA: 2023-01-01   # 15+ employees
+  # Removed in audit round 6 under the exclusion rule above, with no row
+  # affected (the dataset holds no NV or RI posting):
+  #   NV 2021-10-01  disclosure to applicants after an interview
+  #   RI 2023-01-01  Pay Equity Act, R.I.G.L. 28-6-22: range on request and
+  #                  before discussing compensation, not in the posting
 
 # Census regions are defined in src/lmstudy/geo.py (CENSUS_REGION), not here,
 # because they are a fixed US Census definition rather than a study choice.

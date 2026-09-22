@@ -204,20 +204,91 @@ SENIORITY_LABELS = {
 # rows in the round-3 audit — and taking the highest match ranked every one at
 # its ceiling, biasing the headline regressor upward exactly where the
 # advertised pay range is widest.
-_RANGE_SEPARATOR = re.compile(r"\bor\b|/", re.IGNORECASE)
+#
+# Audit round 6 (2026-09-22) found the floor rule itself misreading ranges,
+# because it took the minimum over every rung KEYWORD in the title rather than
+# over the ALTERNATIVES the title lists:
+#
+#   "Manager/Sr Manager Grid Implementation"    -> 3, because "Sr" is a
+#       keyword; it is a modifier of the second alternative. $219k-$301k
+#       recorded at the senior rung.
+#   "Senior Associate/Transmission Strategy"   -> 1, because "associate"
+#       sits inside "senior associate".
+#   "Director or Senior Director ..."           -> 3, same reason.
+#   "Engineer I, Engineer II, Engineer III"     -> 3, because _norm strips
+#       the commas, no separator survives, and the CEILING was taken.
+#   "Transmission Contract Analyst (or Senior)" -> 3, because the unlevelled
+#       alternative carries no keyword at all.
+#
+# Each alternative is now ranked on its own (its highest keyword, so "Sr
+# Manager" is a manager), and the title takes the lowest alternative.
+_OR = re.compile(r"\bor\b", re.IGNORECASE)
+# Roman numerals are rungs of one ladder, so two or more in one alternative
+# are a series ("Engineer I Engineer II Engineer III", "Specialist I (II)")
+# and the series contributes its lowest member.
+_NUMERAL_RANKS = {"i": 1, "ii": 2, "iii": 3, "iv": 3, "v": 3, "vi": 3,
+                  "vii": 3, "viii": 3}
+# An "or"-alternative with no rung keyword is still a rung when it names a
+# job ("Data Analyst or Data Analyst Senior"): the unlevelled default. When it
+# names no job ("Manager, Wind or Solar Development") it is not a rung at all,
+# and counting it would drag a manager to the default.
+_ROLE_NOUN = re.compile(
+    r"\b(analyst|engineer|specialist|consultant|scientist|developer|associate|"
+    r"designer|planner|strategist|economist|advisor|representative|"
+    r"coordinator|administrator|technologist|architect)\b")
+
+
+def _alternative_rank(segment: str) -> int | None:
+    """Rank of one alternative: its highest keyword, a numeral series at its floor."""
+    numerals = {_NUMERAL_RANKS[t] for t in segment.split() if t in _NUMERAL_RANKS}
+    other = {rank for rank, needles in SENIORITY_RANKS for needle in needles
+             if _norm(needle) not in _NUMERAL_RANKS and _matches(segment, needle)}
+    if len(numerals) > 1:
+        numerals = {min(numerals)}
+    found = other | numerals
+    return max(found) if found else None
+
+
+def _alternative_ranks(title_n: str) -> list[int]:
+    """The rung each listed alternative names, in title order.
+
+    "or" separates alternatives, and an unmarked one that names a job counts
+    at the default. "/" also separates alternatives, but it joins role nouns
+    as often as rungs ("Sr. Analyst/Engineer"), so an unmarked slash part is
+    read as sharing its neighbour's rung and contributes nothing.
+    """
+    ranks = []
+    for or_part in _OR.split(title_n):
+        marked = [r for r in (_alternative_rank(p) for p in or_part.split("/"))
+                  if r is not None]
+        if marked:
+            ranks.append(min(marked))
+        elif _ROLE_NOUN.search(or_part):
+            ranks.append(SENIORITY_DEFAULT)
+    return ranks
 
 
 def is_level_range(title: str) -> bool:
-    """True when one posting advertises more than one seniority rung."""
+    """True when one posting advertises more than one seniority rung.
+
+    Counts every rung the alternatives name before any floor is taken, so
+    "Senior/Principal" and a numeral series "I, II, III" both count.
+    """
     title_n = _norm(title)
-    if not title_n or not _RANGE_SEPARATOR.search(title_n):
+    if not title_n:
         return False
-    return len(_ranks_present(title_n)) > 1
-
-
-def _ranks_present(title_n: str) -> set[int]:
-    return {rank for rank, needles in SENIORITY_RANKS
-            for needle in needles if _matches(title_n, needle)}
+    rungs: set[int] = set()
+    for or_part in _OR.split(title_n):
+        parts = or_part.split("/")
+        marked = [r for r in (_alternative_rank(p) for p in parts) if r is not None]
+        rungs.update(marked)
+        if not marked and _ROLE_NOUN.search(or_part):
+            rungs.add(SENIORITY_DEFAULT)
+        for part in parts:
+            numerals = {t for t in part.split() if t in _NUMERAL_RANKS}
+            if len(numerals) > 1:
+                rungs.update(_NUMERAL_RANKS[t] for t in numerals)
+    return len(rungs) > 1
 
 
 def seniority_rank(title: str, description: str = "") -> int:
@@ -230,16 +301,14 @@ def seniority_rank(title: str, description: str = "") -> int:
     the employer will actually hire at, and the one the advertised pay floor
     corresponds to. Averaging was rejected: a midpoint rank is not a level
     anyone is hired into, and it would invent a rung the posting never named.
+    A title naming one rung is ranked at its highest keyword, so "Senior
+    Director" is a director.
     """
     title_n = _norm(title)
     if not title_n:
         return SENIORITY_DEFAULT
-    found = _ranks_present(title_n)
-    if not found:
-        return SENIORITY_DEFAULT
-    if len(found) > 1 and _RANGE_SEPARATOR.search(title_n):
-        return min(found)
-    return max(found)
+    ranks = _alternative_ranks(title_n)
+    return min(ranks) if ranks else SENIORITY_DEFAULT
 
 
 def is_early_career(rank: int, years_min: int | None,

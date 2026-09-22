@@ -242,6 +242,14 @@ data_center_operators:
       - shredding
       - data entry
       - mail
+    # And the posting must name the data-center unit. The title list cannot see
+    # corporate IT: audit round 6 found the one usable row filed here, "SQL
+    # Database Administrator", maintains Iron Mountain's own SQL Server estate
+    # for the records business. Of the 8 records ever collected, the one
+    # data-center role ("Senior Manager, Global Market Strategy, Data Centers")
+    # names the unit and the 7 corporate ones do not. A small sample, recorded
+    # as such in the audit log.
+    requires_company_mention: iron mountain data centers
     candidates:
       workday: [{tenant: ironmountain, site: iron-mountain-jobs, wd: 5}]
     verified: true      # ironmountain.wd5.myworkdayjobs.com/iron-mountain-jobs
@@ -412,6 +420,11 @@ grid_vendors:            # grid technology manufacturers
     # The Workday tenant covers ALL of Hitachi, most of which is not energy.
     # Treated as diversified so off-umbrella lines are screened out.
     diversified: true
+    # And the posting must name Hitachi Energy. The title list above cannot
+    # see a data job at a sister company: audit round 6 found all three usable
+    # rows filed here were Hitachi High-Tech America (semiconductor metrology)
+    # and Hitachi Vantara Federal. See build_dataset.other_group_company().
+    requires_company_mention: hitachi energy
     off_umbrella:
       - rail
       - elevator

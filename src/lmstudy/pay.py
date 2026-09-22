@@ -10,6 +10,7 @@ Everything is annualized to USD. Hourly is multiplied by `hours_per_year`
 """
 from __future__ import annotations
 
+import html
 import re
 from dataclasses import dataclass
 
@@ -18,6 +19,13 @@ MIN_PLAUSIBLE_ANNUAL = 25_000
 MAX_PLAUSIBLE_ANNUAL = 400_000
 # An hourly figure above this is almost certainly an annual salary mislabeled.
 MAX_PLAUSIBLE_HOURLY = 300.0
+# No full-time US job can advertise a LOW bound under the federal minimum wage
+# annualized ($7.25 x 2,080). A bound below it is a fragment, not a figure:
+# every halved Invenergy row and every "$200-235k" row had a low bound between
+# $0 and $9,000, and each still produced a midpoint inside the plausible window,
+# because the high bound alone carried it there. The midpoint check cannot see
+# this; the bound check can, whatever shape the fragment takes next time.
+MIN_PLAUSIBLE_BOUND = 7.25 * 2080
 
 # Money token: $85,000 / $85,000.00 / 85,000 / $85k / 42.50
 #
@@ -36,9 +44,16 @@ MAX_PLAUSIBLE_HOURLY = 300.0
 #
 # A leading zero is also disqualifying: no advertised pay figure is written
 # "010", but grade codes and dates are full of them.
+#
+# A figure followed by a magnitude word is not pay either. Avangrid's
+# boilerplate "with $30 billion in assets" was read as $30 an hour and
+# annualized to $62,400, the lowest-paid row in the dataset, on a posting that
+# discloses no pay at all (audit round 6).
 _NOT_GLUED = r"(?<![A-Za-z0-9])"
+_NOT_MAGNITUDE = r"(?![\d,.]*\s*(?:million|billion|trillion|mn|bn)\b)"
 _MONEY = (_NOT_GLUED +
           r"\$?\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|[1-9]\d*(?:\.\d{1,2})?)"
+          + _NOT_MAGNITUDE +
           r"\s?(k\b|K\b)?")
 _DASH = r"\s*(?:-|–|—|to|through|up to)\s*"
 
@@ -48,6 +63,7 @@ RANGE_RE = re.compile(_MONEY + _DASH + _MONEY, re.IGNORECASE)
 # than joining the general dash alternation.
 BETWEEN_RE = re.compile(r"between\s+" + _MONEY + r"\s+and\s+" + _MONEY, re.IGNORECASE)
 SINGLE_RE = re.compile(_MONEY, re.IGNORECASE)
+_TAG = re.compile(r"<[^>]+>")
 
 HOURLY_MARKERS = (
     "per hour", "/hour", "/hr", "an hour", "hourly", "per hr", "each hour",
@@ -101,6 +117,27 @@ def _to_number(digits: str, k_suffix: str | None) -> float | None:
     if k_suffix:
         value *= 1000
     return value
+
+
+def _range_values(match: re.Match) -> tuple[float | None, float | None]:
+    """Both bounds of a matched range, with a shared "k" applied to both.
+
+    "$200-235k" and "$100 - 150k" write the thousands suffix once, on the
+    upper figure. Read literally that is (200, 235000); the midpoint lands
+    near half the true range and still passes the plausibility window, so
+    nothing downstream objects. Cypress Creek's "Senior Director,
+    Development" was recorded at $117,600 against a true $217,500.
+    """
+    lo_digits, lo_k, hi_digits, hi_k = match.group(1, 2, 3, 4)
+    lo = _to_number(lo_digits, lo_k)
+    hi = _to_number(hi_digits, hi_k)
+    if hi_k and not lo_k and lo is not None and hi is not None:
+        if lo < 1000 and lo * 1000 <= hi:
+            lo *= 1000
+    elif lo_k and not hi_k and lo is not None and hi is not None:
+        if hi < 1000 and hi * 1000 >= lo:
+            hi *= 1000
+    return lo, hi
 
 
 def _infer_unit(window: str, values: list[float]) -> str:
@@ -169,24 +206,37 @@ def from_text(text: str, hours_per_year: int = HOURS_PER_YEAR) -> PayResult:
     """Parse a pay range out of unstructured description text."""
     if not text:
         return PayResult()
+    # Parse the text a reader sees, not the markup. Greenhouse's
+    # pay-transparency widget renders a range as
+    #     <span>$68,900</span><span class="divider">-</span><span>$115,200 USD</span>
+    # and with the tags in place the range pattern cannot span the divider,
+    # so the single-figure fallback took the FLOOR as a point value. Every
+    # New York ISO row was recorded at its minimum that way. Audit round 6.
+    text = html.unescape(_TAG.sub(" ", text))
 
     for window in _pay_windows(text):
         for pattern in (BETWEEN_RE, RANGE_RE):
             match = pattern.search(window)
             if not match:
                 continue
-            lo = _to_number(match.group(1), match.group(2))
-            hi = _to_number(match.group(3), match.group(4))
+            lo, hi = _range_values(match)
             result = _build(lo, hi, window, match.group(0), hours_per_year)
             if result.usable:
                 return result
 
-    # Fall back to a single figure only inside an explicit pay context.
+    # Fall back to a single figure only inside an explicit pay context. Every
+    # figure in the window is tried, not just the first: a window widened to a
+    # token boundary can open on markup ("335559740":240}), and Plus Power's
+    # "begins at $105,000" sat behind exactly that.
     for window in _pay_windows(text):
         if any(p in window.lower() for p in NON_DISCLOSURE) and "$" not in window:
             continue
-        match = SINGLE_RE.search(window)
-        if match:
+        for match in SINGLE_RE.finditer(window):
+            # A lone figure is pay only when written as money. Without the
+            # "$", "operations in 25 states" became $25 an hour: Avangrid's
+            # boilerplate, on a posting that states no pay (audit round 6).
+            if "$" not in match.group(0):
+                continue
             value = _to_number(match.group(1), match.group(2))
             result = _build(value, value, window, match.group(0), hours_per_year)
             if result.usable:
@@ -195,6 +245,32 @@ def from_text(text: str, hours_per_year: int = HOURS_PER_YEAR) -> PayResult:
                 return result
 
     return PayResult(note="no pay figure found")
+
+
+def _snap(text: str, start: int, end: int) -> str:
+    """Slice text[start:end], widened so neither edge cuts through a token.
+
+    A window that opens or closes mid-figure hands the money pattern a
+    fragment that is itself a well-formed number. Invenergy writes
+
+        Base Pay  $80,000.00 - $93,000.00 USD Annual
+
+    and a window opened 60 characters before a later "compensation" cue began
+    at "0,000.00 - $93,000.00", which parsed as (0, 93000): a midpoint of
+    exactly half the true high. The money token's left-boundary lookbehind
+    cannot see a character the slice has already thrown away, so the earlier
+    fix (a leading zero is disqualifying) caught only the "00 - $170,000.00"
+    shape of the fragment, and "5,000.00 - 235,000.00" kept getting through.
+    Snapping to whitespace removes the fragment instead of pattern-matching
+    its shapes.
+    """
+    start = max(0, start)
+    end = min(len(text), end)
+    while start > 0 and not text[start - 1].isspace():
+        start -= 1
+    while end < len(text) and not text[end].isspace():
+        end += 1
+    return text[start:end]
 
 
 def _pay_windows(text: str, width: int = 260) -> list[str]:
@@ -207,12 +283,12 @@ def _pay_windows(text: str, width: int = 260) -> list[str]:
             idx = low.find(cue, start)
             if idx == -1:
                 break
-            windows.append(text[max(0, idx - 60) : idx + width])
+            windows.append(_snap(text, idx - 60, idx + width))
             start = idx + len(cue)
     # A bare "$" range with no cue word is still worth a look, last.
     if not windows and "$" in text:
         for m in re.finditer(r"\$", text):
-            windows.append(text[max(0, m.start() - 60) : m.start() + width])
+            windows.append(_snap(text, m.start() - 60, m.start() + width))
             if len(windows) >= 5:
                 break
     return windows
@@ -233,6 +309,8 @@ def _build(
     lo_a = _annualize(lo, unit, hours_per_year) if lo is not None else None
     hi_a = _annualize(hi, unit, hours_per_year) if hi is not None else None
     lo_a, hi_a = _order(lo_a, hi_a)
+    if lo_a is not None and lo_a < MIN_PLAUSIBLE_BOUND:
+        return PayResult(note=f"low bound under the federal minimum wage: {lo_a}-{hi_a}")
     mid = _midpoint(lo_a, hi_a)
     if mid is None or not (MIN_PLAUSIBLE_ANNUAL <= mid <= MAX_PLAUSIBLE_ANNUAL):
         return PayResult(note=f"implausible after annualizing: {lo_a}-{hi_a}")

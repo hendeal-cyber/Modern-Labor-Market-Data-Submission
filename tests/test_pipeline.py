@@ -74,6 +74,31 @@ def check_nested_repost_collapse():
     return fails
 
 
+def check_mandate_dates_in_dataset():
+    """Every row's mandate_state matches the DATED mandate table.
+
+    Checked against the committed postings.csv, not a fixture. Audit round 6
+    found the table's effective dates were never read, so Connecticut, whose
+    posting rule starts 2026-10-01, covered six rows collected in September.
+    """
+    import csv, pathlib, yaml
+    from lmstudy.build_dataset import mandate_effective_dates, mandates_in_force
+    root = pathlib.Path(__file__).resolve().parents[1]
+    scope = yaml.safe_load((root / "config" / "scope.yaml").read_text())
+    dates = mandate_effective_dates(scope)
+    fails = []
+    path = root / "data" / "analysis" / "postings.csv"
+    for row in csv.DictReader(path.open(encoding="utf-8")):
+        in_force = mandates_in_force(dates, row["first_seen_run"])
+        listed = {s for s in (row["states_listed"] or "").split(";") if s}
+        listed.add(row["state"])
+        want = int(bool(listed & in_force))
+        if int(row["mandate_state"]) != want:
+            fails.append(f"mandate_state={row['mandate_state']} want {want}: "
+                         f"{row['employer']} | {row['title'][:40]} [{row['states_listed']}]")
+    return fails[:5]
+
+
 def run():
     fails = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -181,6 +206,14 @@ def run():
             fails.append("guard must not drop an in-umbrella role")
         if off_umbrella({"title": "Warehouse Associate"}):
             fails.append("guard must only apply to employers flagged diversified")
+        # Word-bounded: Hitachi Energy's list holds "rail" and Iron Mountain's
+        # holds "mail", which as substrings catch "trail" and "email".
+        if off_umbrella({"diversified": True, "off_umbrella": ["rail", "mail"],
+                         "title": "Email Platform Engineer, Grid Trail Analytics"}):
+            fails.append("off_umbrella matched inside a word (substring match)")
+        if not off_umbrella({"diversified": True, "off_umbrella": ["rail"],
+                             "title": "Rail Signalling Engineer"}):
+            fails.append("off_umbrella must still match the whole word")
 
         # Dedup collapsed the repeated posting. The fixture holds three
         # "Data Engineer I" rows: two at ComEd/Chicago which are the same job
@@ -197,6 +230,7 @@ def run():
             fails.append("a different employer's posting must not be deduped away")
 
     fails += check_nested_repost_collapse()
+    fails += check_mandate_dates_in_dataset()
 
     print(f"pipeline: {len(fails)} failure(s)")
     for x in fails:

@@ -327,8 +327,13 @@ def resolve(
             continue
         city, state = parsed
         coords = gazetteer.get(f"{city}|{state.lower()}") if state else None
-        if coords is None:
-            # Fall back to a unique city-name match across the gazetteer.
+        if coords is None and not state:
+            # Fall back to a unique city-name match across the gazetteer, but
+            # only when the fragment names no state. A stated state that the
+            # gazetteer does not hold is an answer, not a gap: "Quincy,
+            # Washington" (a Vantage data-center campus) used to fall through
+            # to the only Quincy on file, Quincy MA, and put the posting in
+            # the Boston study metro. Audit round 6.
             matches = [v for k, v in gazetteer.items() if k.split("|")[0] == city]
             coords = matches[0] if len(matches) == 1 else None
         if coords is None:
