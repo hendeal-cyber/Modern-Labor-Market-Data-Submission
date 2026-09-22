@@ -154,8 +154,11 @@ def main() -> int:
             A(f"| {pretty(n)} | {eff} | {p_of(n):.3f} | {ok} |")
         A("")
         if fragile & set(survivors):
-            names = ", ".join(pretty(n) for n in survivors if n in fragile)
-            A(f"**{names} does not survive** re-estimating without the "
+            withdrawn = [pretty(n) for n in survivors if n in fragile]
+            plural = len(withdrawn) > 1
+            names = (" and ".join(withdrawn) if len(withdrawn) <= 2 else
+                     ", ".join(withdrawn[:-1]) + " and " + withdrawn[-1])
+            A(f"**{'Neither ' + names.replace(' and ', ' nor ') + ' survives' if plural else names + ' does not survive'}** re-estimating without the "
               f"{rr.get('n_dropped')} nationwide-remote")
             A("postings, which resolve to no state and therefore sit in the "
               "Midwest reference")
@@ -173,7 +176,7 @@ def main() -> int:
                   "mandate status and")
                 A("is coded as uncovered, so dropping those rows changes the "
                   "contrast directly.")
-            A("Treat it as inconclusive.")
+            A("Treat them as inconclusive." if plural else "Treat it as inconclusive.")
             A("")
         A("Seniority is the one result the study would defend without "
           "qualification: it is")
@@ -219,7 +222,11 @@ def main() -> int:
     if dr and p_of("degree_required") >= 0.05:
         A(f"- **A degree premium.** `degree_required` was predicted positive; "
           f"the point estimate")
-        A(f"  is {dr.get('coef', 0):+.4f} — the wrong sign — and at "
+        # The sign is read, not asserted: this line said "the wrong sign"
+        # unconditionally and was false the moment the estimate turned
+        # positive (audit round 6).
+        sign = "the predicted sign" if dr.get("coef", 0) > 0 else "the wrong sign"
+        A(f"  is {dr.get('coef', 0):+.4f} — {sign} — and at "
           f"p={p_of('degree_required'):.3f} it is not")
         A("  distinguishable from zero. Reported as inconclusive, not as a "
           "reversal.")
@@ -238,8 +245,23 @@ def main() -> int:
     if "industry_data_center" in core and p_of("industry_data_center") >= 0.05:
         A("- **Data center operators paying more than utilities.** Predicted "
           "positive; the")
-        A(f"  estimate is positive but at p={p_of('industry_data_center'):.3f} "
+        dc_sign = ("positive" if core["industry_data_center"].get("coef", 0) > 0
+                   else "negative")
+        A(f"  estimate is {dc_sign} but at p={p_of('industry_data_center'):.3f} "
           f"it is inconclusive.")
+    if "mandate_state" in core and p_of("mandate_state") >= 0.05:
+        A(f"- **A pay-level effect of mandate states.** `mandate_state` is "
+          f"{core['mandate_state'].get('coef', 0):+.4f} at "
+          f"p={p_of('mandate_state'):.3f}.")
+        A("  Earlier versions reported a significant negative coefficient and "
+          "explained it as")
+        A("  disclosure selection. Audit round 6 found it was substantially an "
+          "artifact: the pay")
+        A("  parser was halving seventeen postings of the largest employer, all "
+          "in mandate states")
+        A("  and twelve in Illinois, the Midwest reference region. Corrected, it "
+          "is indistinguishable")
+        A("  from zero.")
     A("")
 
     A("## What limits it")

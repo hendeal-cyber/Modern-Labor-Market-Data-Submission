@@ -354,3 +354,71 @@ minutes.
 conditions it tests — N 165, 33 clusters, 11.0 observations per regressor,
 largest employer 23.6% — so the interpretability block comes down for the
 first time, by the gate's own arithmetic rather than by hand.
+
+### 2026-09-22 — audit round 6: five corrections made after seeing run 26
+
+All five were found by reading run 26's rows. Each changed the data, so each
+is recorded here with its effect on the headline, whichever way it went. The
+net effect of all five: N 231 → 214, clusters 36 → 34, largest employer
+Invenergy 19.1% → 20.6%, observations per regressor 15.4 → 14.3. The
+disclosure gap moves 49.9 → 46.3pp. Full detail and row lists are in
+`docs/audit-log.md`, round 6.
+
+**1. Pay parsing (measurement of the dependent variable).** The text parser
+now reads the text a reader sees rather than the HTML, widens its search
+windows to token boundaries, applies a "k" written once to both bounds,
+ignores figures followed by "million"/"billion", requires a "$" on a lone
+figure, and rejects a low bound below the federal minimum wage annualized.
+34 rows' pay changed or appeared: 21 from the window and "k" fixes, 12 from
+the markup, and 1 boilerplate row that now reads as undisclosed. 17 Invenergy
+rows had been at half pay, and 9 NYISO rows at their floor.
+*Effect.* It strengthened H1: `seniority_rank` +0.091 → +0.102 on this step
+alone. It **destroyed** two findings the unaudited data showed: `mandate_state`
+−0.171 → −0.063 and `region_west` +0.116 → +0.023 in the clustered fit. All 17
+halved rows were in mandate states, twelve of them in Illinois, the Midwest
+reference category. The change was made because the recorded numbers were verifiably
+not the posted numbers. Direction played no part: it cut both ways and was
+applied before the model was refit.
+
+**2. Seniority of multi-rung titles (a regressor's coding).** The §8 floor
+rule of 2026-09-21 is unchanged in intent, and now implemented as intended:
+each listed alternative is ranked on its own and the title takes the lowest,
+instead of the minimum over every rung keyword. 11 rows changed rank, 5
+usable.
+*Effect.* `seniority_rank` +0.102 → +0.112. This flatters H1, and it is
+justified regardless: "Manager/Sr Manager" at $219k–$301k was coded as a
+senior individual contributor, and "Engineer I, II, III" at its ceiling. Both
+misread the title.
+
+**3. Role screen (population).** Nineteen exclusion phrases and one literal
+include ("real-time reliability") were added, each a
+variant of a family §2 already excludes: back office, HR, legal, security,
+facilities, civil drafting, equipment/IT reliability engineering, and
+construction project management. 24 rows removed, 13 usable. §2's population
+is unchanged. Three QTS "Development Project Manager" rows that are
+construction work by description remain, because a title-only screen cannot
+separate them. They are flagged rather than removed by a new mechanism.
+*Effect.* Roughly neutral on the coefficients. It lowers N.
+
+**4. Group-company postings (the umbrella).** A new per-employer guard,
+`requires_company_mention`, makes a posting on a group-wide board name the
+in-scope company. It is applied to Hitachi Energy and Iron Mountain Data
+Centers. 11 rows removed, 4 usable, 2 clusters.
+*Effect.* It costs N and clusters and moves concentration the wrong way
+(Invenergy's share rises). The umbrella constraint required it.
+
+**5. Mandate coding (identification of H2).** The table's effective dates are
+now applied per snapshot. Connecticut is re-dated to its posting law's
+effective date, 2026-10-01 (Public Act 26-12). Nevada and Rhode Island are
+removed as on-request regimes, which the rule written above the table already
+excluded. 6 rows move to `mandate_state = 0`, 4 of them disclosing.
+*Effect.* It works against H2: the gap narrows. Made because the statute
+dates are what they are.
+
+**Verdicts after all five.** Bootstrap at 34 clusters, then the region check:
+`seniority_rank` survives both (p 0.0001 / 0.0005). `region_northeast`
+(0.032 / 0.057) and `skill_cloud` (0.046 / 0.058) pass the bootstrap and are
+withdrawn by the region check. `mandate_state`, `region_south` and
+`region_west` are not significant. The unaudited run 26 had shown five
+survivors. Two of them, `region_west` and `mandate_state`, were artifacts of
+defect 1.

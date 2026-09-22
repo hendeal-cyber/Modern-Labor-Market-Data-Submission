@@ -43,6 +43,8 @@ const PRETTY = {
 };
 const FRAGILE = new Set((analysis && analysis.region_robustness
                          && analysis.region_robustness.verdicts_changed) || []);
+// Mandate jurisdictions in force at the latest snapshot, from the build.
+const N_MANDATES = String(((funnel || {}).mandate_states_in_force || []).length || "—");
 const SURVIVORS = Object.entries(BOOT)
   .filter(([k, v]) => v && v.p_value !== null && v.p_value < 0.05 && !FRAGILE.has(k))
   .sort((a, b) => a[1].p_value - b[1].p_value)
@@ -131,7 +133,7 @@ function bullets(s, items, x, y, w, h) {
     "Outcome: log of the employer-stated pay range midpoint, annualized to USD",
   ], M, 2.4, W - 2 * M - 4.6, 3.4);
   statCard(s, W - M - 4.2, 2.5, 4.2, "28", "regressors coded from posting text", TEAL);
-  statCard(s, W - M - 4.2, 4.6, 4.2, "16", "states mandating pay in the posting", DEEP);
+  statCard(s, W - M - 4.2, 4.6, 4.2, N_MANDATES, "jurisdictions mandating pay in the posting", DEEP);
   s.addNotes("Roles stay narrow — an energy-analytics core. Geography and seniority are what widened.");
 }
 
@@ -163,7 +165,7 @@ function bullets(s, items, x, y, w, h) {
   const bm = (analysis && analysis.disclosure && analysis.disclosure.by_mandate) || {};
   const md = bm.mandate || {}, nm = bm.no_mandate || {};
   const pct = (x) => `${((x || 0) * 100).toFixed(0)}%`;
-  statCard(s, M, 1.5, 3.7, "16", "US jurisdictions requiring a pay scale", DEEP);
+  statCard(s, M, 1.5, 3.7, N_MANDATES, "US jurisdictions requiring a pay scale", DEEP);
   statCard(s, M + 3.95, 1.5, 3.7, pct(md.share_disclosed), `disclose (n=${md.n || 0})`, TEAL);
   statCard(s, M + 7.9, 1.5, 3.7, pct(nm.share_disclosed), `disclose without one (n=${nm.n || 0})`, WARN);
   bullets(s, [
@@ -173,7 +175,7 @@ function bullets(s, items, x, y, w, h) {
     "mandate_state is carried as a regressor, so the contrast is examined rather than assumed away",
     "It is associational: one cross-section, no time variation, no difference-in-differences available",
   ], M, 3.7, W - 2 * M, 3.0);
-  s.addNotes("Illinois HB 3129 was the original motivation; the study is national now and the contrast spans 16 jurisdictions.");
+  s.addNotes(`Illinois HB 3129 was the original motivation; the study is national now and the contrast spans ${N_MANDATES} jurisdictions in force at collection.`);
 }
 
 // ---------------------------------------------------------------- 5. Funnel
@@ -187,7 +189,7 @@ function bullets(s, items, x, y, w, h) {
   const rows = [
     ["Retrieved", fl.raw],
     ["Passed screens", fl.passed_screen],
-    ["In a study metro", fl.passed_geo],
+    ["Located in the US", fl.passed_geo],
     ["Unique postings", fl.unique_in_scope],
     ["Pay disclosed", fl.usable_with_pay],
   ];
@@ -219,7 +221,7 @@ function bullets(s, items, x, y, w, h) {
     statCard(s, M, 1.35, 3.7, gapTxt, "disclosure gap, every cut of the sample", DEEP);
     statCard(s, M + 3.95, 1.35, 3.7, String(core?.n ?? 0), `postings, ${analysis.n_clusters ?? 0} employers`, TEAL);
     statCard(s, M + 7.9, 1.35, 3.7, String(SURVIVORS.length),
-             "predictors surviving the bootstrap", MIDNIGHT);
+             "predictors surviving the bootstrap and the region check", MIDNIGHT);
     bullets(s, [
       `Pay is stated far more often where a mandate applies, and the gap is stable across every cut — this is the result the study stands behind`,
       SURVIVORS.length
@@ -273,7 +275,7 @@ function bullets(s, items, x, y, w, h) {
 {
   darkSlide("Reproducible end to end",
     "Collection, screening, coding, estimation and this deck all regenerate from committed artifacts.\n" +
-    "Weekly GitHub Actions runs extend the panel; every number traces to data/analysis/.",
+    "Scheduled GitHub Actions runs extend the panel; every number traces to data/analysis/.",
     "METHOD").addNotes("pip install -r requirements.txt && python tests/run_all.py");
 }
 

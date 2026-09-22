@@ -211,6 +211,22 @@ def main() -> int:
         else:
             A(f"conventional significance under {basis} are "
               f"{', '.join(named[:-1])} and {named[-1]}.")
+        # The region check is a second pre-specified hurdle. Naming survivors
+        # of the first without it presented two coefficients the study
+        # reports as inconclusive as findings (audit round 6).
+        _fragile = set((analysis.get("region_robustness") or {})
+                       .get("verdicts_changed") or [])
+        _withdrawn = [pretty.get(k, f"`{k}`") for k, _ in sig if k in _fragile]
+        _robust = [pretty.get(k, f"`{k}`") for k, _ in sig if k not in _fragile]
+        if _withdrawn:
+            A(f"{' and '.join(_withdrawn)} "
+              f"{'do' if len(_withdrawn) > 1 else 'does'} not survive "
+              "re-estimation without the nationwide-remote postings (a")
+            A("robustness check added after pre-registration, reported either way) and "
+              f"{'are' if len(_withdrawn) > 1 else 'is'} reported as inconclusive"
+              + (f"; {' and '.join(_robust)} "
+                 f"{'survive' if len(_robust) > 1 else 'survives'} both." if _robust
+                 else "."))
         if _boot:
             dropped = [k for k, v in core_coefs.items()
                        if k != "const" and v.get("p_value", 1) < 0.05
@@ -305,7 +321,7 @@ def main() -> int:
         A("|---|---|")
         for label, key in [("Retrieved from ATS boards", "raw"),
                            ("Passed role, seniority and internship screens", "passed_screen"),
-                           ("Within 35 miles of a study metro", "passed_geo"),
+                           ("In the US, with a resolvable state or nationwide-remote", "passed_geo"),
                            ("Unique after de-duplication", "unique_in_scope"),
                            ("With a disclosed pay range (estimation sample)", "usable_with_pay")]:
             if key in f:
@@ -360,7 +376,7 @@ def main() -> int:
         _rounds = len(_re.findall(r"^### Round \d+", _log.read_text(), _re.M)) \
             if _log.exists() else 0
         _word = {1: "One round", 2: "Two rounds", 3: "Three rounds",
-                 4: "Four rounds", 5: "Five rounds"}.get(_rounds,
+                 4: "Four rounds", 5: "Five rounds", 6: "Six rounds"}.get(_rounds,
                                                          f"{_rounds} rounds")
         A(f"{_word} of hand-auditing are recorded in `docs/audit-log.md`.")
         A("Each read real collected titles rather than a synthetic sample, and")
@@ -375,6 +391,8 @@ def main() -> int:
             A("| 4 | The industry umbrella itself | A multi-sector consultancy supplied 22% of the sample and three rows of it were energy work. 337 postings removed; the AI-premium finding did not survive |")
         if _rounds >= 5:
             A("| 5 | The concept role screen and dedupe | All 40 titles the new matcher admitted were read: 4 false positives caught before the rebuild. One nested-location repost found in 1,940 records and collapsed |")
+        if _rounds >= 6:
+            A("| 6 | Run 26: all 115 added rows, then the whole corpus | The pay parser was still halving 17 Invenergy rows and recording 9 NYISO rows at their floor. Every usable \"Hitachi Energy\" row belonged to a sister company. Connecticut was coded as a mandate state before its law took effect. Fixing them withdrew `mandate_state` and `region_west`, which had passed the bootstrap on the unaudited data |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")
@@ -573,12 +591,13 @@ def main() -> int:
             if changed:
                 A("**" + ", ".join(f"`{c}`" for c in changed)
                   + " change verdict** at the 5% level and are")
-                A("reported as inconclusive. `remote_eligible` is the one that "
-                  "matters: the")
-                A("nationwide-remote postings are precisely the remote-eligible "
-                  "ones, so the")
-                A("coefficient was identified in part off the rows this check "
-                  "removes.")
+                A("reported as inconclusive.")
+                if "remote_eligible" in changed:
+                    A("`remote_eligible` is the one that matters: the "
+                      "nationwide-remote postings are")
+                    A("precisely the remote-eligible ones, so the coefficient "
+                      "was identified in part")
+                    A("off the rows this check removes.")
             else:
                 A("No verdict changes at the 5% level.")
             A("")
@@ -600,9 +619,17 @@ def main() -> int:
                     _num(row.get("coef"), ".4f"),
                     _num(row.get("bootstrap_p"), ".3f")))
             A("")
-            A("This check is reported whichever way it comes out. It confirmed "
-              "the South")
-            A("coefficient and it withdrew remote eligibility.")
+            # Computed. This sentence used to say "it confirmed the South
+            # coefficient and withdrew remote eligibility" whatever the check
+            # found, and was false on the audited round-6 data.
+            _held = [f"`{k}`" for k, row in rr["by_variable"].items()
+                     if (base.get(k, {}).get("p_value", 1) < 0.05
+                         and (row.get("bootstrap_p") or 1) < 0.05)]
+            _lost = [f"`{k}`" for k in changed]
+            A("This check is reported whichever way it comes out. "
+              + (f"It confirmed {', '.join(_held)}" if _held
+                 else "It confirmed no coefficient")
+              + (f" and withdrew {', '.join(_lost)}." if _lost else "."))
             A("")
 
         ec = analysis.get("early_career_subsample") or {}

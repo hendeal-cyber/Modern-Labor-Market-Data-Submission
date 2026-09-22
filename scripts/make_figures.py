@@ -59,7 +59,7 @@ def load(path: pathlib.Path):
 def fig_funnel(funnel: dict) -> str | None:
     """Ordinal stages: a horizontal bar per screen, labelled directly."""
     stages = [("Retrieved", "raw"), ("Passed screens", "passed_screen"),
-              ("In a study metro", "passed_geo"), ("Unique postings", "unique_in_scope"),
+              ("Located in the US", "passed_geo"), ("Unique postings", "unique_in_scope"),
               ("Pay disclosed", "usable_with_pay")]
     # Every stage is shown even at zero: a stage that silently disappears
     # makes the funnel look like it never ran that screen.
@@ -168,8 +168,8 @@ def fig_coefficients(model: dict, boot: dict | None = None,
         # right at this figure width, and qa_slides does not check figure
         # titles, so nothing would have caught it but looking.
         ax.set_title(f"{model['label']} — coefficient estimates\n"
-                     "solid: survives the bootstrap\n"
-                     "faded: inconclusive under it", fontsize=9)
+                     "solid: survives the bootstrap and the region check\n"
+                     "faded: inconclusive under either", fontsize=9)
     else:
         ax.set_title(f"{model['label']} — coefficient estimates")
     _clean(ax)

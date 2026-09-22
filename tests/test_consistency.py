@@ -199,7 +199,7 @@ def run():
     if log_path.exists():
         n_rounds = len(re.findall(r"^### Round \d+", log_path.read_text(), re.M))
         words = {1: "One round", 2: "Two rounds", 3: "Three rounds",
-                 4: "Four rounds", 5: "Five rounds"}
+                 4: "Four rounds", 5: "Five rounds", 6: "Six rounds"}
         expected = words.get(n_rounds, f"{n_rounds} rounds")
         chk(f"paper says '{expected}' of hand-auditing, matching the log",
             f"{expected} of hand-auditing" in paper,

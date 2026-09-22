@@ -405,23 +405,32 @@ is recorded because the failure was silent, and because the same class of
 failure — a valid-looking artifact that is not what it claims to be — is the
 one this project has hit most often.
 
-## 16. The disclosure gap depends on one jurisdiction
+## 16. The disclosure gap once depended on one jurisdiction, and no longer does
 
-The headline contrast is reported as a range, not a point, because its size
-moves with a single state. Virginia's posting-level mandate took effect on
-1 July 2026. Almost every non-disclosing posting in a mandate state in this
-sample is a Virginia posting, and almost all of those come from one employer.
+*Rewritten in audit round 6. This section still asserted the dependence, with
+figures from before audit round 4, after the paper and `analysis.json` had
+started computing the spread instead of assuming it.*
+
+Before audit round 4 the headline contrast moved with Virginia alone, from
+50 to 71 points depending on the cut. That sensitivity came from a federal
+consultancy's non-energy postings in Virginia, removed as outside the sector.
+On the audited round-6 data the contrast is stable:
 
 | Sample | Mandate | No mandate | Gap |
 |---|---|---|---|
-| All postings | 82.4% | 32.3% | 50pp |
-| Excluding Virginia | 100.0% | 32.3% | 68pp |
-| Excluding the largest employer | 97.8% | 27.1% | 71pp |
+| All postings | 93.9% (n=164) | 47.6% (n=126) | 46pp |
+| Excluding Virginia | 96.4% | 47.6% | 49pp |
+| Excluding the largest employer | 91.7% | 47.6% | 44pp |
 
-The gap is large under every cut, so the direction is not in doubt. The
-magnitude is. Partial compliance with a statute three months old is a plausible
-reading; so is one firm's posting practice. **These data cannot distinguish
-them**, and the paper does not pick whichever reading is more flattering.
+The spread is 5 points. `analysis.json` computes it on every run, and the
+paper states whichever reading the numbers support. The contrast remains
+**associational, not causal** (§12): a single cross-section.
+
+Two coding corrections in round 6 both narrowed the gap. Connecticut's posting
+law takes effect 2026-10-01, after collection, so its postings are coded as
+uncovered. Three QTS rows that are construction project management by
+description remain in the no-mandate denominator, undisclosed. Removing them
+would narrow the gap a further 1.2 points.
 
 ## 17. The first successful price-parity fetch returned the wrong table
 
@@ -458,5 +467,28 @@ this instance. Members are additionally tried with `SARPP` before `SAIRPD`, and
 the written file records which member it came from and that it passed
 validation.
 
-No price-adjusted result has ever been published from this study. The table was
-deleted, and pay remains nominal until a fetch passes the guard.
+No price-adjusted result was ever published from the wrong table; it was
+deleted. A later fetch (run 23) read `SARPP_STATE_2008_2024.csv` and passed the
+guard: 51 states, vintage 2024, Arkansas 86.9 to California 110.7. The
+price-adjusted model now runs as a robustness check (206 observations on the
+round-6 data).
+
+## 18. A board can belong to a whole corporate group
+
+Several employers are reached through a parent's ATS tenant. For most of them
+the parent is itself an energy company (Ameren, AES, Duke, AEP, Iberdrola for
+Avangrid, AltaGas for WGL), and every row was checked to be the named
+utility's or the group's energy work. Two are not. Hitachi Energy sits on
+Hitachi's group tenant, and Iron Mountain Data Centers on Iron Mountain's.
+Audit round 6 found that every usable "Hitachi Energy" row came from a sister
+company (semiconductor metrology, federal IT) and that Iron Mountain's was
+corporate IT. A title screen cannot see this, because a data scientist's
+title reads the same at any company.
+
+These boards now require the posting to name the in-scope company. For
+Hitachi that rule was measured on 33 records and separated them perfectly.
+For Iron Mountain it rests on 8, which is thin. **Hitachi's tenant is also
+truncated**: it lists exactly 3,000 postings, the 150-page cap. Some Hitachi
+Energy postings are therefore never seen. None of the ones that were seen
+disclose pay, so this bears on the disclosure model and not on the pay
+models.

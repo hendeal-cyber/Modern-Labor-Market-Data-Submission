@@ -373,9 +373,6 @@ reported rather than silently fixed.
 describes the team rather than the requirement, and whether `soft_teamwork` is
 near-constant. Round 4 went after the umbrella instead; these remain unchecked.
 
-<!--
-Round template:
-
 ### Round 5 — the concept role screen and the nested repost (2026-09-22)
 
 **Scope.** Every posting the new `include_concepts` matcher newly admitted was
@@ -447,6 +444,217 @@ rate and far from the 96.1% mandate rate, which is consistent with their being
 treated as uncovered. They are excluded from the region contrasts by the
 robustness check already in `analyze.py`.
 
+
+### Round 6 — run 26, and the pay parser that was still halving Invenergy (2026-09-22)
+
+**Scope.** Collection run 26 (Actions 35744479596, commit `28244ea`) took the
+dataset from 210 to 325 in-scope rows and from 165 to 231 usable. Every one of
+the 115 added rows was read, matched to the audited commit `7180497` on `url`.
+No row was removed and no existing row changed except `last_seen_run` on two.
+Then the pay extremes, every employer on a shared parent tenant, and every
+row the fixes below touched, across the **whole** corpus, not only run 26.
+
+**Result: five substantive defects and three smaller ones, every one fixed
+and pinned by a test built from the real string. Most were already in the
+N = 165 deliverables, measured against `7180497`: 17 rows with a sub-$30,000
+low bound (the halved Invenergy rows and the "k" rows), 9 NYISO rows at their
+floor, Avangrid's "$30 billion" row, the 4 usable Hitachi and Iron Mountain
+rows from other companies, and 4 usable Connecticut rows coded as covered.**
+
+| | Unaudited run 26 | Audited |
+|---|---|---|
+| Usable observations | 231 | **214** |
+| Unique in scope | 325 | 290 |
+| Employer clusters | 36 | **34** |
+| Largest employer | Invenergy 19.1% | **Invenergy 20.6%** (44 of 214) |
+| Observations per regressor | 15.4 | 14.3 |
+| Disclosure gap (mandate − none) | 49.9pp | **46.3pp** (93.9% of 164 vs 47.6% of 126) |
+
+All four pre-registered conditions still pass. The gap narrows, and N falls.
+
+#### Where the jump came from (measured, not assumed)
+
+The handoff's prime suspect was the Workday page cap (25 → 150 pages). It
+accounts for very little:
+
+| Source | Added rows | Usable |
+|---|---|---|
+| Concept role screen reaching Workday for the first time | 96 | 59 |
+| Three boards resolved for the first time (Alliant, Itron, GridPoint) | 11 | 7 |
+| Page cap, Hitachi Energy only (8 → 24 postings) | 8 | 0 |
+
+`make_detail_filter()` calls the same `screen_role()` as the build. Round 5
+applied the concept screen to snapshots already on disk, but a Workday posting
+the old title-only pre-screen rejected never had its description fetched, so
+it could only arrive on the next collection. Run 26 was that collection.
+Hitachi's tenant now lists **exactly 3,000 = 150 × 20** postings: it is
+truncated again at the new cap. Guidehouse contributed nothing new. Its token
+is `verified: false`, and the wider pre-screen let enough of its non-energy
+titles through that `sector_confidence()` quarantined the board. Its three
+rows come from earlier snapshots, and all three are energy work.
+
+#### Defect 1 — the pay parser was still halving Invenergy (in the N = 165 data)
+
+`d9e6a7b` fixed a window that opened inside the cents ("00 - $170,000.00") by
+refusing a leading zero. A window opening one character earlier yields
+"0,000.00 - $93,000.00" or "5,000.00 - 235,000.00", and those are well-formed
+numbers. **Seventeen Invenergy rows were still recorded at half pay** (14 of
+them already in the N = 165 data; 12 in Illinois, 5 in Colorado). Among
+them was the lowest-paid row in the N = 165 deliverables, "Associate, Land
+Development" at $46,500 = $93,000 / 2. Round 5 read that row and accepted it as
+"a genuine entry-level band". The regression test passed because it handed
+the parser the fragment directly and never exercised `_pay_windows()`.
+
+Fixed at the cause: windows now widen to token boundaries (`_snap()`). A
+second guard rejects any low bound below the federal minimum wage annualized
+($15,080), whatever shape the next fragment takes. The same pass fixed three
+related errors:
+
+| Error | Rows | Example |
+|---|---|---|
+| "k" written once, on the upper figure | 3 | Cypress Creek "$200-235k" read as (200, 235,000) → $117,600; true $217,500 |
+| Greenhouse's pay widget splits the range with markup | 12 | NYISO `<span>$68,900</span><span class="divider">-</span><span>$115,200 USD</span>` recorded as the floor, $68,900, on all nine NYISO rows. Flexential's range newly recovered |
+| Company boilerplate read as pay | 1 | Avangrid "with **$30 billion** in assets" → $30/hour → $62,400, the lowest-paid row after the fix above. With that closed, "operations in **25** states" → $25/hour. The posting states no pay |
+
+AEP's "Transmission System Operations Engineering Modeling Engineer" lists two
+grade bands. The old value came from a window that cut through the first band,
+so it was an artifact too. It now reads the first complete band. Putting
+labelled cues ("compensation range") first was measured and rejected: it
+changed 7 AEP rows and parsed "$42.13 - $128,688.00" as a single range.
+
+#### Defect 2 — ranges of seniority read by keyword, not by alternative
+
+The floor rule took the minimum over every rung **keyword** in a title:
+
+| Title | Was | Now |
+|---|---|---|
+| Manager/Sr Manager Grid Implementation ($219k–$301k) | 3 | 5 |
+| Senior Associate/Transmission Strategy and Planning | 1 | 3 |
+| Associate Principal/Wholesale Power Markets Consultant | 1 | 4 |
+| Director or Senior Director Project Development | 3 | 6 |
+| Engineer I, Engineer II, Engineer III Grid Planning (commas stripped, so read as the ceiling) | 3 | 1 |
+| Data Analyst or Data Analyst Senior (a known limitation since round 3) | 3 | 2 |
+
+Each alternative is now ranked on its own, and the title takes the lowest. 11
+rows changed, 5 of them usable.
+
+#### Defect 3 — off-taxonomy roles through variant wordings (24 rows, 13 usable)
+
+Each was read against its description. Each exclusion is the sibling of one
+already in `config/scope.yaml`: HR ("Talent & Organizational Development"),
+benefits/legal, procurement-policy compliance, accounting and financial
+reporting, workplace services, AI security, and AutoCAD civil drafting.
+**Equipment and IT "reliability engineers"** (AES inverter maintenance, Xcel
+plant O&M, Vantage and STACK data-center critical systems, ERCOT's SRE role)
+entered on the grid concept's "reliability" term. Grid reliability
+("real-time reliability", "reliability compliance", NERC) is listed literally
+and unaffected. QTS "Q-Systems", fire-protection and schedule-management
+project managers are construction delivery.
+
+**Left in, and flagged for the owner:** three QTS rows titled plainly
+"Development Project Manager". Their descriptions are construction project
+management, but the title is shared with genuine development roles and the
+screen is title-only by design. Excluding them needs an employer-specific
+rule, which is a new mechanism. None discloses pay. Dropping them moves the
+disclosure gap 46.3 → 45.1pp.
+
+#### Defect 4 — the "Hitachi Energy" cluster was not Hitachi Energy (in the N = 165 data)
+
+The Workday tenant `hitachi/hitachi` is the whole group. **All three usable
+rows filed as Hitachi Energy belonged to sister companies**: Hitachi High-Tech
+America's semiconductor-metrology "Data Scientist I or II" and "AI Data &
+Security Governance Engineer", and Hitachi Vantara Federal's "Federal Data
+Engineer". Six undisclosed rows were Hitachi Digital Services and Vantara, and
+"AIS and GIS" matched `gis` on gas-insulated switchgear. Across all 33 Hitachi
+records, every genuine posting names Hitachi Energy ("Company Name: HITACHI
+ENERGY USA INC") and none from a sister company does. `requires_company_mention`
+now demands it. Iron Mountain's one usable row, a corporate SQL Server DBA for
+the records business, fails the same test. That separation rests on only 8
+collected records, and is recorded as such. The two changes cost two clusters
+(36 → 34).
+
+#### Defect 5 — Connecticut coded as a posting mandate two weeks early
+
+`pay_mandate_states` dated CT 2021-10-01. That is its on-request law, which
+the config's own comment excludes. The posting requirement is Public Act 26-12
+(H.B. 5003), **effective 2026-10-01**, after every snapshot. The dates were
+never read at all. `build_dataset` now applies them per snapshot. Six rows
+move to `mandate_state = 0`, four of them disclosing, which narrows the gap.
+NV (after-interview disclosure) and RI (on request, R.I.G.L. 28-6-22) were
+removed under the same rule, with no row affected. Virginia (SB215/HB636,
+effective 2026-07-01) was checked and is correct.
+
+#### Smaller defects
+
+- `geo.resolve()` ignored a stated state when the gazetteer lacked it. "Quincy,
+  Washington" became Quincy, MA, which put Vantage's campus in the Boston
+  study metro. 1 row.
+- `off_umbrella()` matched substrings ("rail" in "trail", "mail" in "email").
+  Measured to change no row, and made word-bounded.
+- This log's round 5 sat inside the template's HTML comment and never rendered.
+
+#### Checked and found clean
+
+- **Duplicates.** No description is shared across employers, and no
+  title+pay pair either. Eversource's four "Project Manager II, Transmission"
+  rows are four requisitions (R-029937-1, R-030327, R-031394, R-030218) with
+  different sites and dates. The two "Grid Operations Technology" pairs differ
+  in requisition and are 24–32% similar in text. WGL R6817 and R6996 are 99.98%
+  identical and posted the same day, but they are two requisitions, which the
+  dedupe policy counts as two openings. PJM's REQ-2026-4190 and 4206-1 the same.
+- **Avangrid attribution** (handoff open item since round 4). All 13 rows name
+  Avangrid, UIL, NYSEG or RG&E and sit in the US. Verified.
+- **`skill_cloud`**, which is new near the threshold. 23 of 24 firing rows name
+  AWS, Azure or Kubernetes as a job requirement. The exception is Vantage's
+  "WRI Aqueduct, AWS", where AWS is the Alliance for Water Stewardship.
+  Round 1's boilerplate concern does not hold here.
+- **Pay extremes after the rebuild.** Lowest: Invenergy "Analyst, Development"
+  $68,500 (IL, CO), NYISO "Associate Market Solutions Engineer" $92,050.
+  Highest: ERCOT "Manager/Sr Manager Grid Implementation" $260,000, Invenergy
+  "Senior Director, Renewable Development" $240,000. Two hourly rows remain,
+  both CAISO at a stated $45.10–$63.15. Five single figures remain, each a
+  stated "$" amount. No non-US row.
+
+#### What it did to the findings — the reason this round matters
+
+Refit with the fixes applied one at a time (clustered OLS):
+
+| Step | `mandate_state` | `region_west` | `region_south` | `seniority_rank` |
+|---|---|---|---|---|
+| Run 26 unaudited | −0.171 (p .002) | +0.116 (p .001) | +0.189 (p .000) | +0.091 |
+| + pay window / k fix | **−0.063** (p .047) | **+0.023** (p .548) | +0.089 (p .017) | +0.102 |
+| + seniority ranges | −0.057 | +0.025 | +0.081 | +0.112 |
+| + role and group-company screens | −0.047 | +0.022 | +0.092 | +0.116 |
+| + widget / boilerplate pay, CT dates | −0.038 (p .199) | +0.018 | +0.082 | +0.121 |
+
+**The 17 halved rows were all Invenergy's and all in mandate states, twelve
+of them in Illinois, which is also the Midwest reference category.** Halving
+them depressed the mandate group and the reference region at once. That
+produced a negative `mandate_state` level effect and inflated the region
+dummies. The deliverables explained the negative mandate coefficient as
+disclosure selection ("the employers that volunteer a range are the ones
+paying well"). That story rested substantially on a parser defect, and it is
+withdrawn.
+
+Bootstrap (9,999 reps, 34 clusters) and region-robustness verdicts:
+
+| Variable | Coef | Bootstrap p | Region check p | Verdict |
+|---|---|---|---|---|
+| `seniority_rank` | +0.121 | 0.0001 | 0.0005 | **survives** |
+| `region_northeast` | +0.107 | 0.0324 | 0.0565 | withdrawn by the region check |
+| `skill_cloud` | +0.124 | 0.0455 | 0.058 | withdrawn by the region check |
+| `region_south` | +0.083 | 0.1104 | — | not significant |
+| `mandate_state` | −0.038 | 0.2506 | — | not significant |
+| `region_west` | +0.018 | 0.6376 | — | not significant |
+
+`region_west` and `mandate_state` both passed the bootstrap on the unaudited
+data. **Both were artifacts.** H1 is the only finding standing. The disclosure
+contrast (H2) is unaffected in sign and size. It is associational, not
+causal: one cross-section.
+
+<!--
+Round template. (Until audit round 6 the comment opened above round 5, so
+round 5 was committed inside it and never rendered.)
 
 ### Round N — YYYY-MM-DD
 - Sample: 100 postings, seed 20260920
