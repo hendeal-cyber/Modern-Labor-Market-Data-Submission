@@ -648,10 +648,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Entergy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: jobs.entergy.com, own portal; no supported ATS host surfaced.
+    checked_on: '2026-09-22'
   Enverus:
     status: denied
     reason: no supported ATS identified (from employers.yaml)
@@ -668,10 +670,15 @@ employers:
     resolved_in_last_run: true
     metro: chicago
   Evergy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: 'evergy.com/careers/search-jobs, own portal. Notable: it discloses pay voluntarily (Systems
+      Support Analyst $54,400-$68,000; Corporate Strategy Analyst $61,000-$76,300) despite Kansas and
+      Missouri having no mandate -- the kind of observation the non-mandate side of the contrast would
+      benefit from, and unreachable.'
+    checked_on: '2026-09-22'
   Eversource Energy:
     status: confirmed
     industry: utility
@@ -701,10 +708,12 @@ employers:
     reason: Own portal at exponent.com/careers; no supported ATS host surfaced.
     checked_on: '2026-09-22'
   FirstEnergy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: careers.firstenergycorp.com -- vanity domain, ATS not exposed.
+    checked_on: '2026-09-22'
   Flexential:
     status: confirmed
     evidence: resolved in collection manifest
