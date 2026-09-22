@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-22",
-  "collected_at": "2026-09-22T02:39:45.717747+00:00",
+  "collected_at": "2026-09-22T13:51:28.217085+00:00",
   "employers_attempted": 269,
   "results": [
     {
@@ -33,8 +33,8 @@
       "found": true,
       "platform": "workday",
       "token": "invenergyllc/invenergycareers",
-      "listed": 194,
-      "postings": 44,
+      "listed": 193,
+      "postings": 43,
       "file": "Invenergy__workday.json",
       "site_guessed": false
     },
@@ -72,7 +72,7 @@
       "found": true,
       "platform": "workday",
       "token": "aes/AES_US",
-      "listed": 172,
+      "listed": 170,
       "postings": 19,
       "file": "AES_Indiana__workday.json",
       "site_guessed": false
@@ -89,7 +89,7 @@
       "found": true,
       "platform": "workday",
       "token": "dukeenergy/search",
-      "listed": 117,
+      "listed": 113,
       "postings": 1,
       "file": "Duke_Energy_Indiana__workday.json",
       "site_guessed": false
@@ -106,7 +106,7 @@
       "found": true,
       "platform": "workday",
       "token": "nisource/NiSource",
-      "listed": 67,
+      "listed": 65,
       "postings": 4,
       "file": "NiSource___NIPSCO__workday.json",
       "site_guessed": false
@@ -147,8 +147,8 @@
       "found": true,
       "platform": "workday",
       "token": "equinix/External",
-      "listed": 274,
-      "postings": 9,
+      "listed": 277,
+      "postings": 10,
       "file": "Equinix__workday.json",
       "site_guessed": false
     },
@@ -164,7 +164,7 @@
       "found": true,
       "platform": "workday",
       "token": "qtsdatacenters/QTS",
-      "listed": 303,
+      "listed": 302,
       "postings": 14,
       "file": "QTS_Data_Centers__workday.json",
       "site_guessed": false
@@ -226,7 +226,7 @@
       "found": true,
       "platform": "workday",
       "token": "nttglobaldatacenters/External",
-      "listed": 232,
+      "listed": 237,
       "postings": 4,
       "file": "NTT_Global_Data_Centers__workday.json",
       "site_guessed": false
@@ -237,7 +237,7 @@
       "found": true,
       "platform": "workday",
       "token": "vantagedc/Vantage",
-      "listed": 190,
+      "listed": 192,
       "postings": 8,
       "file": "Vantage_Data_Centers__workday.json",
       "site_guessed": false
@@ -248,7 +248,7 @@
       "found": true,
       "platform": "workday",
       "token": "stackinfra/STACK_AMER",
-      "listed": 64,
+      "listed": 63,
       "postings": 3,
       "file": "STACK_Infrastructure__workday.json",
       "site_guessed": false
@@ -276,8 +276,8 @@
       "found": true,
       "platform": "workday",
       "token": "ironmountain/iron-mountain-jobs",
-      "listed": 365,
-      "postings": 7,
+      "listed": 370,
+      "postings": 6,
       "file": "Iron_Mountain_Data_Centers__workday.json",
       "site_guessed": false
     },
@@ -345,8 +345,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "clearwayjobs",
-      "listed": 52,
-      "postings": 52,
+      "listed": 51,
+      "postings": 51,
       "file": "Clearway_Energy__greenhouse.json",
       "site_guessed": false
     },
@@ -388,13 +388,11 @@
     {
       "employer": "Guidehouse",
       "industry": "consulting",
-      "found": true,
+      "found": false,
       "platform": "workday",
       "token": "guidehouse/External",
-      "listed": 500,
-      "postings": 74,
-      "file": "Guidehouse__workday.json",
-      "site_guessed": false
+      "postings": 0,
+      "status": "slug_candidate_unconfirmed"
     },
     {
       "employer": "Energy and Environmental Economics (E3)",
@@ -413,8 +411,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "thebrattlegroup",
-      "listed": 52,
-      "postings": 52,
+      "listed": 50,
+      "postings": 50,
       "file": "The_Brattle_Group__greenhouse.json",
       "site_guessed": false
     },
@@ -468,8 +466,13 @@
     {
       "employer": "Avangrid",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "iberdrola/Iberdrola",
+      "listed": 222,
+      "postings": 8,
+      "file": "Avangrid__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Avista",
@@ -528,8 +531,13 @@
     {
       "employer": "Eversource Energy",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "eversource/ExternalSite",
+      "listed": 234,
+      "postings": 17,
+      "file": "Eversource_Energy__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "FirstEnergy",
@@ -609,7 +617,7 @@
       "found": true,
       "platform": "workday",
       "token": "xcelenergy/External",
-      "listed": 271,
+      "listed": 264,
       "postings": 33,
       "file": "Xcel_Energy__workday.json",
       "site_guessed": true
@@ -671,8 +679,13 @@
     {
       "employer": "Ameren Illinois",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "ameren/External",
+      "listed": 90,
+      "postings": 4,
+      "file": "Ameren_Illinois__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Madison Gas and Electric",
@@ -975,8 +988,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "cypresscreekrenewables",
-      "listed": 18,
-      "postings": 18,
+      "listed": 17,
+      "postings": 17,
       "file": "Cypress_Creek_Renewables__greenhouse.json",
       "site_guessed": false
     },
@@ -1126,8 +1139,13 @@
     {
       "employer": "Gridmatic",
       "industry": "energy_analytics",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "greenhouse",
+      "token": "gridmaticinc",
+      "listed": 12,
+      "postings": 12,
+      "file": "Gridmatic__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "AutoGrid",
@@ -1199,9 +1217,14 @@
     },
     {
       "employer": "Octopus Energy",
-      "industry": "energy_analytics",
-      "found": false,
-      "postings": 0
+      "industry": "retailer",
+      "found": true,
+      "platform": "lever",
+      "token": "octoenergy",
+      "listed": 175,
+      "postings": 175,
+      "file": "Octopus_Energy__lever.json",
+      "site_guessed": false
     },
     {
       "employer": "Leap",
@@ -1236,8 +1259,13 @@
     {
       "employer": "Sense",
       "industry": "energy_analytics",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workable",
+      "token": "sense",
+      "listed": 2,
+      "postings": 2,
+      "file": "Sense__workable.json",
+      "site_guessed": false
     },
     {
       "employer": "Itron Analytics",
@@ -1479,8 +1507,13 @@
     {
       "employer": "NRECA National Rural Electric Cooperative Association",
       "industry": "cooperative",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "nreca/External",
+      "listed": 15,
+      "postings": 0,
+      "file": "NRECA_National_Rural_Electric_Cooperative_Association__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "National Rural Utilities Cooperative Finance Corporation",
@@ -1665,8 +1698,13 @@
     {
       "employer": "AEP Energy",
       "industry": "retailer",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "workday",
+      "token": "aep/AEPCareerSite",
+      "listed": 223,
+      "postings": 10,
+      "file": "AEP_Energy__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "NRG Energy",
@@ -1742,9 +1780,14 @@
     },
     {
       "employer": "Washington Gas",
-      "industry": "retailer",
-      "found": false,
-      "postings": 0
+      "industry": "gas_utility",
+      "found": true,
+      "platform": "workday",
+      "token": "wgl/AltaGas",
+      "listed": 41,
+      "postings": 0,
+      "file": "Washington_Gas__workday.json",
+      "site_guessed": false
     },
     {
       "employer": "Clearview Energy",
@@ -1831,25 +1874,29 @@
       "postings": 0
     }
   ],
-  "total_postings": 817,
+  "total_postings": 966,
   "scope_diagnostics": {
-    "listed": 3750,
-    "kept": 261,
-    "in_metro_wrong_role": 1992,
+    "listed": 4572,
+    "kept": 297,
+    "in_metro_wrong_role": 2475,
     "titles_in_metro": {
       "Critical Environments Operator IV": 12,
       "Critical Environments Operator III": 12,
       "Critical Operations Technician I": 11,
+      "Business Process Improvement and Internal Control Specialist": 11,
       "Solar Technician": 10,
       "Wind Technician": 10,
       "Security Officer L1": 10,
       "Utility Technician": 9,
       "Critical Environment Engineer": 8,
       "Critical Environments Operator II": 7,
+      "Director, Major Projects | NEW GENERATION (Construction Util": 7,
+      "Construction Manager": 6,
       "Senior Development Project Manager (Data Center Construction": 6,
       "Senior Development Project Engineer (Data Center Constructio": 6,
       "Imaging Specialist": 6,
-      "Construction Manager": 5,
+      "Wind Turbine Technician - Power": 6,
+      "Lineworker (ALTP)": 6,
       "Facility Operator": 5,
       "Construction Project Manager": 5,
       "Development Project Manager (Data Center Construction)": 5,
@@ -1862,23 +1909,20 @@
       "Critical Environments Operator (Level 1-4) - NIGHT SHIFT": 5,
       "Data Center Technician L1": 5,
       "DoW SkillBridge Data Center Technician Apprentice": 5,
-      "Critical Facilities Engineer, NA": 5,
-      "Non CDL Driver": 5,
-      "Patient Access Representative": 5,
-      "Advanced Solar Technician": 4,
-      "Intern Engineering": 4
+      "Critical Facilities Engineer, NA": 5
     },
-    "neither": 724,
-    "unknown_place_wrong_role": 729,
+    "neither": 845,
+    "unknown_place_wrong_role": 911,
     "role_ok_wrong_place": 44,
     "locations_of_in_role": {
       "Bangalore Office BLS2": 10,
-      "Chennai, Tamil Nadu, India": 6,
+      "Chennai, Tamil Nadu, India": 4,
       "Amsterdam": 2,
       "Toronto": 2,
+      "Tokyo, Japan": 2,
       "London, England": 2,
+      "Zurich, Zurich, Switzerland": 2,
       "Sevlievo, Gabrovo, Bulgaria": 2,
-      "Ho Chi Minh City, Ho Chi Minh, Vietnam": 2,
       "Ciudad de Mexico, D. F.": 1,
       "Bangalore": 1,
       "London": 1,
@@ -1890,14 +1934,14 @@
       "COL | Bogot\u00e1 | Av Cra 45, 114, Oficina 5": 1,
       "MEX | Estado de M\u00e9xico | Prol de la Call": 1,
       "IN - Chennai": 1,
+      "Vaesteras, Vastmanland County, Sweden": 1,
       "Krakow, Lesser Poland, Poland": 1,
-      "Les Ulis, Ile-de-France, France": 1,
       "Dammam, Eastern Region, Saudi Arabia": 1,
       "Kyushu, Fukuoka, Japan": 1,
       "Rotterdam, South Holland, Netherlands": 1,
-      "Zurich, Zurich, Switzerland": 1,
-      "Vadodara, Gujarat, India": 1
+      "Vadodara, Gujarat, India": 1,
+      "United Kingdom, Glasgow": 1
     }
   },
-  "slug_candidates_for_review": 1
+  "slug_candidates_for_review": 2
 }

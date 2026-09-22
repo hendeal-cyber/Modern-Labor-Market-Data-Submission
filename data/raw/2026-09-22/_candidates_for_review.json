@@ -1,5 +1,47 @@
 [
   {
+    "employer": "Guidehouse",
+    "platform": "workday",
+    "token": "guidehouse/External",
+    "wd_instance": 1,
+    "listed": 500,
+    "site_guessed": false,
+    "employer_searched": "Guidehouse",
+    "distinctive_tokens": [
+      "guidehouse"
+    ],
+    "n_postings": 72,
+    "sample_titles": [
+      "AI Engineer",
+      "Associate Director, Lead Data Architect - Databricks",
+      "AI Strategy Associate Director - State Health",
+      "Public Health Data Engineer",
+      "Fraud AI / Data Senior Consultant (remote)",
+      "Financial Transformation Business Analyst",
+      "Data Analyst (Visualization)",
+      "Senior Data Analyst"
+    ],
+    "locations_seen": [
+      "LT - Vilnius; LT - Kaunas",
+      "US - AL, Huntsville",
+      "US - CO, Boulder; US - NY, New York; US - VA, Arlington; US - TX, Austin; US - IL, Chicago; US - PA, Philadelphia; US - GA, Atlanta; US - MA, Boston",
+      "US - DC, Washington",
+      "US - DC, Washington; US - VA, McLean",
+      "US - GA, Atlanta; US - IL, Chicago; US - IL, Fairview Heights; US - TX, Houston; US - VA, Arlington",
+      "US - GA, Atlanta; US - TX, Austin; US - VA, Arlington; US - VA, McLean; US - IL, Chicago; US - TX, San Antonio; US - MA, Boston",
+      "US - MD, Annapolis Junction",
+      "US - MD, Bethesda",
+      "US - MD, Bethesda; US - MD, Baltimore",
+      "US - MD, Rockville; US - VA, McLean",
+      "US - Remote (Any location)"
+    ],
+    "sample_url": "https://guidehouse.wd1.myworkdayjobs.com/External/job/US---Remote-Any-location/AI-Engineer_41799",
+    "sector_confidence": 0.025,
+    "distinct_sector_terms": 5,
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
     "employer": "Terra-Gen",
     "platform": "ashby",
     "token": "terra",
