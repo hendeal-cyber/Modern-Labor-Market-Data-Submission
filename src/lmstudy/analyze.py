@@ -402,7 +402,12 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
     out_dir.mkdir(parents=True, exist_ok=True)
 
     report: dict = {
-        "dataset": str(dataset),
+        # Repo-relative, not absolute. An absolute path made analysis.json
+        # machine-dependent: a clean rebuild in a fresh clone differed from the
+        # committed artifact in exactly one leaf, this one, which defeats
+        # byte-comparison as a way of verifying reproducibility.
+        "dataset": str(dataset.relative_to(ROOT)) if dataset.is_absolute()
+                   and str(dataset).startswith(str(ROOT)) else str(dataset),
         "n_total": int(len(df)),
         "n_with_pay": int((df["pay_disclosed"] == 1).sum()),
         # Counted over the in-scope corpus, which is NOT the cluster count.

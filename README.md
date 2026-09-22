@@ -42,8 +42,33 @@ python scripts/make_codebook.py         # variable definitions
 python scripts/make_exec_summary.py     # one-page summary, findings first
 ```
 
-Steps 2–6 are pure functions of `data/raw/`. Deleting everything in
-`data/analysis/` and `paper/` and re-running rebuilds them identically.
+Steps 2–6 are pure functions of `data/raw/`, and "identically" here means
+**byte-identical**, not merely equivalent. Verified 2026-09-22 by cloning the
+repository afresh, deleting every derived artifact and rebuilding:
+
+```bash
+git clone -b claude/wonderful-tesla-53lgo4 <this repo> /tmp/repro && cd /tmp/repro
+rm -f data/analysis/postings.csv data/analysis/analysis.json \
+      data/analysis/results.md data/analysis/selection_funnel.json \
+      paper/paper.md docs/executive-summary.md
+python src/lmstudy/build_dataset.py && python src/lmstudy/analyze.py
+python scripts/make_figures.py && python scripts/make_paper.py
+python scripts/make_exec_summary.py
+diff -r data/analysis paper docs   # against the committed copies
+```
+
+`postings.csv`, `analysis.json`, `results.md`, `paper.md` and
+`executive-summary.md` all came back byte-for-byte identical — including all
+fifteen wild-cluster-bootstrap p-values at 9,999 replications, which is the
+point of fixing the seed.
+
+The **one** field that differs is `built_at` in `selection_funnel.json`, which
+records when the build ran and is supposed to differ. Nothing else does.
+
+That took one fix to achieve: `analysis.json` recorded the dataset's absolute
+path, so a rebuild anywhere but the original directory differed in exactly that
+leaf. It is repo-relative now, which is what makes `diff` a usable check rather
+than a source of false alarms.
 
 ## Collecting new data
 
