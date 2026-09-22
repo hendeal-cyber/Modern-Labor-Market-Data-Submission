@@ -150,6 +150,39 @@ def run():
                 or all(f"`{nm}`" in paper for nm in overturned),
                 str([nm for nm in overturned if f"`{nm}`" not in paper]))
 
+    # 18b. The executive summary is the page a reader who reads nothing else
+    # takes away, and this project has already shipped one that named
+    # predictors which were not significant. It must agree with the model.
+    es_path = ROOT / "docs" / "executive-summary.md"
+    if es_path.exists():
+        es = es_path.read_text()
+        chk("executive summary quotes the estimation N",
+            str(a["n_estimation"]) in es)
+        chk("executive summary quotes the cluster count",
+            str(a["n_clusters"]) in es)
+        chk("executive summary labels the mandate contrast non-causal",
+            "associational, not causal" in es)
+        boot_es = (a.get("wild_cluster_bootstrap") or {}).get("by_variable") or {}
+        if boot_es:
+            core_es = a["models"]["core"]["coefficients"]
+            # It must not name, as a predictor, anything the bootstrap cannot
+            # distinguish from zero. Checked via the pretty labels the
+            # generator uses, since that is what a reader actually sees.
+            labels = {
+                "seniority_rank": "seniority",
+                "skill_ml_ai": "a stated ML or AI skill",
+                "industry_data_center": "being a data center operator",
+                "degree_required": "a required degree",
+            }
+            named_wrongly = [
+                n for n, lab in labels.items()
+                if n in boot_es and boot_es[n].get("p_value") is not None
+                and boot_es[n]["p_value"] >= 0.05
+                and f"| {lab} |" in es
+            ]
+            chk("executive summary names no predictor the bootstrap rejects",
+                not named_wrongly, str(named_wrongly))
+
     # 19. The coverage figure offered as evidence for clustering must be the
     # measured one. 88% was computed on a fixture whose employer shock reached
     # one posting per employer, i.e. on data with no within-employer

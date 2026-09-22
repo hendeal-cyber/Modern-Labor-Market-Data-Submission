@@ -631,6 +631,47 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
         report["wild_cluster_bootstrap"] = wild_cluster_bootstrap(
             estimation, core, reps=bootstrap_reps)
 
+        # Nationwide-remote postings resolve to no state, so all three census
+        # dummies are zero and they fall into the MIDWEST reference without
+        # being Midwest (docs/limitations.md 9a). This re-estimates without
+        # them. It is reported whichever way it comes out: it confirmed
+        # `region_south`, and it withdrew `remote_eligible`, which is
+        # identified partly off exactly these rows -- the nationwide-remote
+        # postings are the remote-eligible ones.
+        regionless = (estimation["state"].isna() | (estimation["state"] == "")
+                      | (estimation["metro"] == "remote_national"))
+        dropped_n = int(regionless.sum())
+        if 0 < dropped_n < len(estimation) - 30:
+            sub = estimation[~regionless].copy()
+            sub_reg = available(sub, core)
+            res_sub = fit(sub, sub_reg)
+            sub_boot = wild_cluster_bootstrap(
+                sub, sub_reg, reps=min(bootstrap_reps, 1999),
+                seed=BOOTSTRAP_SEED + 1)["by_variable"]
+            base = report["wild_cluster_bootstrap"]["by_variable"]
+            changed = [
+                n for n in sub_reg
+                if n in base and base[n].get("p_value") is not None
+                and sub_boot.get(n, {}).get("p_value") is not None
+                and ((base[n]["p_value"] < 0.05)
+                     != (sub_boot[n]["p_value"] < 0.05))
+            ]
+            report["region_robustness"] = {
+                "n": int(len(sub)),
+                "n_dropped": dropped_n,
+                "n_clusters": int(sub["employer"].nunique()),
+                "why": ("nationwide-remote postings have no resolvable state, "
+                        "so they sit in the Midwest reference category of the "
+                        "census-region dummies without being Midwest"),
+                "verdicts_changed": changed,
+                "by_variable": {
+                    n: {"coef": round(float(res_sub.params[n]), 4),
+                        "clustered_p": round(float(res_sub.pvalues[n]), 4),
+                        "bootstrap_p": sub_boot.get(n, {}).get("p_value")}
+                    for n in sub_reg
+                },
+            }
+
     report["models"] = models
     report["power"] = {
         "n": len(estimation),

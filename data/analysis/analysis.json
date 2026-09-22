@@ -280,6 +280,93 @@
       }
     }
   },
+  "region_robustness": {
+    "n": 112,
+    "n_dropped": 8,
+    "n_clusters": 22,
+    "why": "nationwide-remote postings have no resolvable state, so they sit in the Midwest reference category of the census-region dummies without being Midwest",
+    "verdicts_changed": [
+      "remote_eligible",
+      "region_west"
+    ],
+    "by_variable": {
+      "seniority_rank": {
+        "coef": 0.0751,
+        "clustered_p": 0.0,
+        "bootstrap_p": 0.0045
+      },
+      "yrs_exp_min": {
+        "coef": -0.0009,
+        "clustered_p": 0.9342,
+        "bootstrap_p": 0.941
+      },
+      "yrs_exp_stated": {
+        "coef": -0.0169,
+        "clustered_p": 0.8816,
+        "bootstrap_p": 0.895
+      },
+      "degree_required": {
+        "coef": -0.0733,
+        "clustered_p": 0.228,
+        "bootstrap_p": 0.4665
+      },
+      "degree_stem": {
+        "coef": 0.1002,
+        "clustered_p": 0.1481,
+        "bootstrap_p": 0.4235
+      },
+      "skill_cloud": {
+        "coef": 0.0854,
+        "clustered_p": 0.4834,
+        "bootstrap_p": 0.547
+      },
+      "skill_ml_ai": {
+        "coef": 0.1026,
+        "clustered_p": 0.4201,
+        "bootstrap_p": 0.7845
+      },
+      "remote_eligible": {
+        "coef": 0.098,
+        "clustered_p": 0.2753,
+        "bootstrap_p": 0.3325
+      },
+      "hourly_original": {
+        "coef": 0.0023,
+        "clustered_p": 0.9923,
+        "bootstrap_p": 0.986
+      },
+      "mandate_state": {
+        "coef": -0.0924,
+        "clustered_p": 0.4102,
+        "bootstrap_p": 0.555
+      },
+      "region_northeast": {
+        "coef": 0.2203,
+        "clustered_p": 0.0051,
+        "bootstrap_p": 0.1905
+      },
+      "region_south": {
+        "coef": 0.3164,
+        "clustered_p": 0.0,
+        "bootstrap_p": 0.013
+      },
+      "region_west": {
+        "coef": 0.1505,
+        "clustered_p": 0.0071,
+        "bootstrap_p": 0.0445
+      },
+      "industry_data_center": {
+        "coef": 0.1519,
+        "clustered_p": 0.1678,
+        "bootstrap_p": 0.311
+      },
+      "family_ai_ml": {
+        "coef": 0.0286,
+        "clustered_p": 0.8588,
+        "bootstrap_p": 0.8685
+      }
+    }
+  },
   "models": {
     "core": {
       "label": "Core model (pre-specified)",

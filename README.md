@@ -18,7 +18,8 @@ config/           what the study CHOOSES: employer frame, scope, mandate
 data/raw/         what the study FETCHED: immutable JSON snapshots, one
                   directory per collection run, full posting text
 data/analysis/    derived: postings.csv, the selection funnel, model output
-docs/             pre-registration, methods, codebook, audit log, limitations
+docs/             pre-registration, methods, codebook, audit log, limitations,
+                  executive summary, token-verification ledger
 paper/            the write-up, figures and slide deck
 src/lmstudy/      the pipeline
 tests/            every suite, offline
@@ -38,6 +39,7 @@ python src/lmstudy/analyze.py           # the four pre-registered models
 python scripts/make_figures.py          # figures
 python scripts/make_paper.py            # the paper, from analysis output
 python scripts/make_codebook.py         # variable definitions
+python scripts/make_exec_summary.py     # one-page summary, findings first
 ```
 
 Steps 2–6 are pure functions of `data/raw/`. Deleting everything in

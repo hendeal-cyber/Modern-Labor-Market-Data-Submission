@@ -512,6 +512,56 @@ def main() -> int:
             A("is what it is.")
             A("")
 
+        rr = analysis.get("region_robustness") or {}
+        if rr.get("by_variable"):
+            A("### Robustness: the nationwide-remote postings")
+            A("")
+            A(f"{rr.get('n_dropped')} postings are advertised as nationwide "
+              f"remote and resolve to no state,")
+            A("so all three census-region dummies are zero for them and they "
+              "fall into the")
+            A("**Midwest reference category without being Midwest**. The model "
+              "is therefore")
+            A(f"re-estimated on the {rr.get('n')} observations that do resolve "
+              f"to a state, across")
+            A(f"{rr.get('n_clusters')} employers.")
+            A("")
+            changed = rr.get("verdicts_changed") or []
+            if changed:
+                A("**" + ", ".join(f"`{c}`" for c in changed)
+                  + " change verdict** at the 5% level and are")
+                A("reported as inconclusive. `remote_eligible` is the one that "
+                  "matters: the")
+                A("nationwide-remote postings are precisely the remote-eligible "
+                  "ones, so the")
+                A("coefficient was identified in part off the rows this check "
+                  "removes.")
+            else:
+                A("No verdict changes at the 5% level.")
+            A("")
+            A("| Variable | Coef (full) | Bootstrap p (full) | "
+              "Coef (resolved) | Bootstrap p (resolved) |")
+            A("|---|---|---|---|---|")
+            base = ((analysis.get("wild_cluster_bootstrap") or {})
+                    .get("by_variable") or {})
+
+            def _num(v, spec):
+                return "—" if v is None else format(v, spec)
+
+            for name, row in rr["by_variable"].items():
+                b0 = base.get(name, {})
+                A("| `{}` | {} | {} | {} | {} |".format(
+                    name,
+                    _num(b0.get("coef"), ".4f"),
+                    _num(b0.get("p_value"), ".3f"),
+                    _num(row.get("coef"), ".4f"),
+                    _num(row.get("bootstrap_p"), ".3f")))
+            A("")
+            A("This check is reported whichever way it comes out. It confirmed "
+              "the South")
+            A("coefficient and it withdrew remote eligibility.")
+            A("")
+
         ec = analysis.get("early_career_subsample") or {}
         if ec:
             A("### The early-career question")

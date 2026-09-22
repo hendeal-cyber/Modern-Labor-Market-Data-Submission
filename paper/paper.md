@@ -361,6 +361,40 @@ run at 999 replications returned 0.049, 0.063 and 0.082 for
 threshold its verdict is read from, which is why the replication count
 is what it is.
 
+### Robustness: the nationwide-remote postings
+
+8 postings are advertised as nationwide remote and resolve to no state,
+so all three census-region dummies are zero for them and they fall into the
+**Midwest reference category without being Midwest**. The model is therefore
+re-estimated on the 112 observations that do resolve to a state, across
+22 employers.
+
+**`remote_eligible`, `region_west` change verdict** at the 5% level and are
+reported as inconclusive. `remote_eligible` is the one that matters: the
+nationwide-remote postings are precisely the remote-eligible ones, so the
+coefficient was identified in part off the rows this check removes.
+
+| Variable | Coef (full) | Bootstrap p (full) | Coef (resolved) | Bootstrap p (resolved) |
+|---|---|---|---|---|
+| `seniority_rank` | 0.0718 | 0.009 | 0.0751 | 0.004 |
+| `yrs_exp_min` | 0.0021 | 0.864 | -0.0009 | 0.941 |
+| `yrs_exp_stated` | -0.0433 | 0.680 | -0.0169 | 0.895 |
+| `degree_required` | -0.0892 | 0.357 | -0.0733 | 0.467 |
+| `degree_stem` | 0.0964 | 0.337 | 0.1002 | 0.423 |
+| `skill_cloud` | 0.1026 | 0.370 | 0.0854 | 0.547 |
+| `skill_ml_ai` | 0.1220 | 0.270 | 0.1026 | 0.784 |
+| `remote_eligible` | 0.1808 | 0.026 | 0.0980 | 0.333 |
+| `hourly_original` | 0.0033 | 0.974 | 0.0023 | 0.986 |
+| `mandate_state` | -0.1401 | 0.159 | -0.0924 | 0.555 |
+| `region_northeast` | 0.1945 | 0.140 | 0.2203 | 0.191 |
+| `region_south` | 0.2793 | 0.002 | 0.3164 | 0.013 |
+| `region_west` | 0.1363 | 0.056 | 0.1505 | 0.044 |
+| `industry_data_center` | 0.1428 | 0.132 | 0.1519 | 0.311 |
+| `family_ai_ml` | -0.0234 | 0.817 | 0.0286 | 0.869 |
+
+This check is reported whichever way it comes out. It confirmed the South
+coefficient and it withdrew remote eligibility.
+
 ### The early-career question
 
 The study began as a question about early-career pay specifically.
