@@ -45,18 +45,31 @@ MANDATE_METROS = {
 GOOD_ATS_INDUSTRIES = {"energy_analytics", "consulting"}
 
 
+# Explicit, because string surgery produced two labels for one industry.
+# `.rstrip("s")` turned the group name "energy_analytics" into
+# "energy_analytic" while entries carrying an explicit `industry:
+# energy_analytics` kept the plural, so the two coexisted and the measured hit
+# rate was computed twice over halves of the same industry -- 57% on one label
+# and 0% on the other, for what is one group of firms.
+GROUP_INDUSTRY = {
+    "utilities": "utility",
+    "gas_utilities": "gas_utility",
+    "data_center_operators": "data_center",
+    "grid_operators": "grid_operator",
+    "energy_analytics": "energy_analytics",
+    "developers": "developer",
+    "consulting": "consulting",
+    "grid_vendors": "grid_vendor",
+    "cooperatives": "cooperative",
+    "retailers": "retailer",
+}
+
+
 def industry_of(group: str, entry: dict) -> str:
     if entry.get("industry"):
         return entry["industry"]
-    # Batch groups carry the industry in the group name.
-    return (group.replace("_batch2", "").replace("_batch3", "")
-            .rstrip("s").replace("utilitie", "utility")
-            .replace("data_center_operator", "data_center")
-            .replace("grid_operator", "grid_operator")
-            .replace("cooperative", "cooperative")
-            .replace("retailer", "retailer")
-            .replace("developer", "developer")
-            .replace("grid_vendor", "grid_vendor"))
+    base = group.replace("_batch2", "").replace("_batch3", "")
+    return GROUP_INDUSTRY.get(base, base)
 
 
 def priority(entry: dict, industry: str) -> str:

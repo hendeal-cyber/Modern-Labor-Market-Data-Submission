@@ -99,8 +99,8 @@ employers:
     status: confirmed
     evidence: resolved in collection manifest
     checked_on: '2026-09-22'
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: true
   Analysis Group:
     status: denied
@@ -186,7 +186,7 @@ employers:
     resolved_in_last_run: false
   AutoGrid:
     status: denied
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
@@ -230,7 +230,7 @@ employers:
     resolved_in_last_run: false
   Bidgely:
     status: denied
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
@@ -294,8 +294,8 @@ employers:
     resolved_in_last_run: false
   CPower Energy:
     status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   California ISO:
     status: unchecked
@@ -517,7 +517,7 @@ employers:
     status: confirmed
     evidence: resolved in collection manifest
     checked_on: '2026-09-22'
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: true
     metro: new_york
@@ -614,10 +614,12 @@ employers:
     reason: Own portal at jobs.enel.com; no supported ATS host surfaced.
     checked_on: '2026-09-22'
   Enel X:
-    status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    status: denied
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
+    reason: no supported ATS identified (from employers.yaml)
+    checked_on: '2026-09-22'
   Energy Harbor:
     status: unchecked
     industry: retailer
@@ -644,8 +646,8 @@ employers:
     status: denied
     reason: no supported ATS identified (from employers.yaml)
     checked_on: '2026-09-22'
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Equinix:
     status: confirmed
@@ -745,8 +747,8 @@ employers:
     resolved_in_last_run: false
   GridPoint:
     status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Gridmatic:
     status: confirmed
@@ -907,8 +909,8 @@ employers:
     resolved_in_last_run: false
   Itron Analytics:
     status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   JEA:
     status: unchecked
@@ -949,7 +951,7 @@ employers:
     resolved_in_last_run: false
   Leap:
     status: denied
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
@@ -1014,8 +1016,8 @@ employers:
     status: confirmed
     evidence: resolved in collection manifest
     checked_on: '2026-09-22'
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: true
   NERA Economic Consulting:
     status: denied
@@ -1186,7 +1188,7 @@ employers:
     resolved_in_last_run: false
   Opus One Solutions:
     status: confirmed
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: bay_area
@@ -1247,8 +1249,8 @@ employers:
     resolved_in_last_run: false
   PearlX:
     status: denied
-    industry: energy_analytic
-    priority: 3_known_metro
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
     metro: los_angeles
     reason: pearlx.com/careers; no supported ATS host surfaced.
@@ -1273,8 +1275,8 @@ employers:
     resolved_in_last_run: false
   Piclo:
     status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Pine Gate Renewables:
     status: unchecked
@@ -1618,8 +1620,8 @@ employers:
     resolved_in_last_run: false
   Tierra Climate:
     status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Tomorrow Energy:
     status: unchecked
@@ -1683,7 +1685,7 @@ employers:
     metro: denver
   Utilidata:
     status: denied
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: boston
@@ -1730,7 +1732,7 @@ employers:
     status: confirmed
     evidence: resolved in collection manifest
     checked_on: '2026-09-22'
-    industry: energy_analytic
+    industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: true
     metro: bay_area
@@ -1768,7 +1770,7 @@ employers:
     metro: indianapolis
   Washington Gas:
     status: confirmed
-    industry: retailer
+    industry: gas_utility
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: northern_virginia
@@ -1785,8 +1787,8 @@ employers:
     resolved_in_last_run: false
   Wood Mackenzie:
     status: unchecked
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Wright-Hennepin Cooperative Electric:
     status: denied
@@ -1808,8 +1810,8 @@ employers:
     status: confirmed
     evidence: resolved in collection manifest
     checked_on: '2026-09-22'
-    industry: energy_analytic
-    priority: 4_unlocated
+    industry: energy_analytics
+    priority: 2_analyst_roles_good_ats
     resolved_in_last_run: true
   Yondr Group:
     status: unchecked
