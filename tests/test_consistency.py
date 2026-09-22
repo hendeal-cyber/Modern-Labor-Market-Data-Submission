@@ -183,6 +183,23 @@ def run():
             chk("executive summary names no predictor the bootstrap rejects",
                 not named_wrongly, str(named_wrongly))
 
+    # 18c. The paper's audit-round count must match the audit log. It said
+    # "Three rounds" after round 4 had landed -- and round 4 is the one that
+    # removed 337 off-umbrella postings and withdrew the AI-premium finding,
+    # so the stale count concealed the most consequential audit in the project.
+    import re
+    log_path = ROOT / "docs" / "audit-log.md"
+    if log_path.exists():
+        n_rounds = len(re.findall(r"^### Round \d+", log_path.read_text(), re.M))
+        words = {1: "One round", 2: "Two rounds", 3: "Three rounds",
+                 4: "Four rounds", 5: "Five rounds"}
+        expected = words.get(n_rounds, f"{n_rounds} rounds")
+        chk(f"paper says '{expected}' of hand-auditing, matching the log",
+            f"{expected} of hand-auditing" in paper,
+            f"log has {n_rounds} rounds")
+        chk("paper's audit table lists every round",
+            all(f"| {i} |" in paper for i in range(1, n_rounds + 1)))
+
     # 19. The coverage figure offered as evidence for clustering must be the
     # measured one. 88% was computed on a fixture whose employer shock reached
     # one posting per employer, i.e. on data with no within-employer

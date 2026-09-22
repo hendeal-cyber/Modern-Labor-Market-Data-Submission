@@ -100,6 +100,13 @@ def coefficient_table(model: dict, boot: dict | None = None) -> list[str]:
 def main() -> int:
     analysis = load("analysis.json")
     funnel = load("selection_funnel.json")
+    # The dataset itself, for claims that must be counted rather than asserted.
+    _csv_path = ANALYSIS / "postings.csv"
+    _rows: list[dict] = []
+    if _csv_path.exists():
+        import csv as _csvmod
+        with _csv_path.open() as _fh:
+            _rows = list(_csvmod.DictReader(_fh))
     audit = None
     audit_path = ROOT / "data" / "gold" / "audit-scores.json"
     if audit_path.exists():
@@ -344,7 +351,18 @@ def main() -> int:
         # The gold-set scorer in audit.py has not been run, but three rounds of
         # hand-auditing have. Printing "no audit has been scored" understated
         # the work and was the misleading direction to be wrong in.
-        A("Three rounds of hand-auditing are recorded in `docs/audit-log.md`.")
+        # The round count is read from the audit log, not written here. It
+        # said "three rounds" after round 4 had landed -- and round 4 is the
+        # one that removed 337 off-umbrella postings and withdrew the AI
+        # premium, so the stale count hid the most consequential audit.
+        import re as _re
+        _log = (ROOT / "docs" / "audit-log.md")
+        _rounds = len(_re.findall(r"^### Round \d+", _log.read_text(), _re.M)) \
+            if _log.exists() else 0
+        _word = {1: "One round", 2: "Two rounds", 3: "Three rounds",
+                 4: "Four rounds", 5: "Five rounds"}.get(_rounds,
+                                                         f"{_rounds} rounds")
+        A(f"{_word} of hand-auditing are recorded in `docs/audit-log.md`.")
         A("Each read real collected titles rather than a synthetic sample, and")
         A("each found errors the test suite had not:")
         A("")
@@ -353,6 +371,8 @@ def main() -> int:
         A("| 1 | Regressor coding | Three systematic false positives, all firing on company boilerplate rather than on anything asked of the applicant |")
         A("| 2 | `role_family` | 6 of 53 assignments wrong (89%). Four had reached a live measurement and sat in the top eleven rows by pay |")
         A("| 3 | `seniority_rank`, `state` | 21 of 141 wrong (85.1%). One defect changed the headline disclosure contrast |")
+        if _rounds >= 4:
+            A("| 4 | The industry umbrella itself | A multi-sector consultancy supplied 22% of the sample and three rows of it were energy work. 337 postings removed; the AI-premium finding did not survive |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")
@@ -445,12 +465,33 @@ def main() -> int:
                 if disc.get("note"):
                     A(disc["note"])
                     A("")
-                A("Virginia matters here because its mandate took effect on")
-                A("1 July 2026 and is the newest in the table. Almost every")
-                A("non-disclosing posting in a mandate state is a Virginia posting")
-                A("from a single employer. **Outside Virginia, every posting in a")
-                A("mandate state in this sample states pay.**")
-                A("")
+                # Computed. This read "almost every non-disclosing posting in
+                # a mandate state is a Virginia posting from a single employer"
+                # unconditionally. It happens to still hold, but it held by
+                # luck: audit round 4 removed the federal-consulting rows that
+                # were the original basis for it, and nothing would have
+                # flagged the sentence had they been the last of them.
+                nd = [r for r in _rows
+                      if r.get("mandate_state") == "1"
+                      and r.get("pay_disclosed") != "1"] if _rows else []
+                if nd:
+                    import collections as _c
+                    emps = _c.Counter(r["employer"] for r in nd)
+                    va = sum(1 for r in nd
+                             if "VA" in (r.get("states_listed") or r.get("state") or ""))
+                    A(f"Only **{len(nd)}** posting(s) covered by a mandate fail to "
+                      f"state pay.")
+                    if va:
+                        A(f"{va} of them list Virginia, whose mandate took effect on "
+                          f"1 July 2026 and is")
+                        A("the newest in the table, so partial compliance with a very "
+                          "recent statute")
+                        A("is a plausible reading.")
+                    if len(emps) == 1:
+                        A(f"All of them come from one employer "
+                          f"({next(iter(emps))}), so these data cannot separate")
+                        A("that reading from the posting practices of that firm.")
+                    A("")
             A("> **This is a descriptive contrast, not a causal estimate.** A single")
             A("> cross-section carries no time variation, so no")
             A("> difference-in-differences is available. Employers who operate in")

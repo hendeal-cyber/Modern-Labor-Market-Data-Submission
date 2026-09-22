@@ -133,7 +133,7 @@ Regressors are coded from posting text by word-boundary pattern matching
 against a dictionary declared in `config/regressors.yaml`. Every coded value
 retains the pattern that produced it. Definitions are in `docs/codebook.md`.
 
-Three rounds of hand-auditing are recorded in `docs/audit-log.md`.
+Four rounds of hand-auditing are recorded in `docs/audit-log.md`.
 Each read real collected titles rather than a synthetic sample, and
 each found errors the test suite had not:
 
@@ -142,6 +142,7 @@ each found errors the test suite had not:
 | 1 | Regressor coding | Three systematic false positives, all firing on company boilerplate rather than on anything asked of the applicant |
 | 2 | `role_family` | 6 of 53 assignments wrong (89%). Four had reached a live measurement and sat in the top eleven rows by pay |
 | 3 | `seniority_rank`, `state` | 21 of 141 wrong (85.1%). One defect changed the headline disclosure contrast |
+| 4 | The industry umbrella itself | A multi-sector consultancy supplied 22% of the sample and three rows of it were energy work. 337 postings removed; the AI-premium finding did not survive |
 
 Every defect found is pinned by a regression test built from the real
 title or location string that produced it, not from a reconstruction.
@@ -210,11 +211,12 @@ jurisdiction, so it is cut three ways rather than quoted once:
 
 The gap is large under every cut and stable across them, a spread of 3 points. An earlier version of this study reported it swinging from 50 to 71 points and sensitive to Virginia alone; that sensitivity was an artifact of including a federal consultancy's public health, national security and law-enforcement postings, removed in audit round 4 as outside the sector under study.
 
-Virginia matters here because its mandate took effect on
-1 July 2026 and is the newest in the table. Almost every
-non-disclosing posting in a mandate state is a Virginia posting
-from a single employer. **Outside Virginia, every posting in a
-mandate state in this sample states pay.**
+Only **2** posting(s) covered by a mandate fail to state pay.
+2 of them list Virginia, whose mandate took effect on 1 July 2026 and is
+the newest in the table, so partial compliance with a very recent statute
+is a plausible reading.
+All of them come from one employer (QTS Data Centers), so these data cannot separate
+that reading from the posting practices of that firm.
 
 > **This is a descriptive contrast, not a causal estimate.** A single
 > cross-section carries no time variation, so no
