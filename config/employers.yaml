@@ -274,9 +274,19 @@ energy_analytics:        # analytics and grid-software firms
     industry: energy_analytics
     candidates:
       greenhouse: [ascendanalytics]
+    careers_url: https://job-boards.greenhouse.io/ascendanalytics
     verified: true       # job-boards.greenhouse.io/ascendanalytics (Boulder, CO
                          # — inside the Denver Tier 3 radius)
+    # NOTE 2026-09-22: the token is confirmed correct against a live posting,
+    # and this board still returned nothing on run 2026-09-21 while 16 other
+    # Greenhouse boards resolved. So it is not an API problem. Most likely the
+    # board was empty that day, or its only open req is the evergreen "General
+    # Interest" posting the API does not list. Left verified; if it keeps
+    # returning nothing across several runs, that is worth a closer look rather
+    # than a token change.
   - name: Uplight
+    # Searched 2026-09-22: no supported ATS identified.
+    ats_unidentified: true
     metro: denver
     industry: energy_analytics
     candidates:
@@ -286,11 +296,15 @@ energy_analytics:        # analytics and grid-software firms
   - name: Arcadia
     metro: northern_virginia
     industry: energy_analytics
-    # "Arcadia" is a common company name; treat any slug hit as unconfirmed
-    # until the board's own content is checked, per the Constellation lesson.
+    # Hand-verified 2026-09-22 from a live posting:
+    # job-boards.greenhouse.io/arcadiacareers/jobs/8551599002
+    # The token is "arcadiacareers", which no slug derivation would reach —
+    # the same failure mode as NiSource's site name. HQ Washington DC, a
+    # mandate jurisdiction, so postings should carry pay.
+    careers_url: https://job-boards.greenhouse.io/arcadiacareers
     candidates:
-      greenhouse: [arcadiapower, arcadia]
-    verified: false
+      greenhouse: [arcadiacareers]
+    verified: true
   - name: Aurora Energy Research
     industry: energy_analytics
     candidates:
@@ -338,6 +352,8 @@ developers:              # renewable and data center developers
 
 consulting:              # energy consulting and advisory
   - name: ICF
+    # Searched 2026-09-22: Workday behind the careers.icf.com vanity domain; tenant not exposed.
+    ats_unidentified: true
     metro: northern_virginia
     industry: consulting
     candidates:
@@ -357,10 +373,15 @@ consulting:              # energy consulting and advisory
     verified: false
   - name: The Brattle Group
     industry: consulting
+    metro: boston
+    # Hand-verified 2026-09-22: job-boards.greenhouse.io/thebrattlegroup
+    # Economics consultancy whose entry-level role is literally "Research
+    # Analyst" — the closest fit in the frame to this study's role taxonomy.
+    # HQ Boston MA, a mandate state.
+    careers_url: https://job-boards.greenhouse.io/thebrattlegroup
     candidates:
-      greenhouse: [brattle]
-      lever: [brattle]
-    verified: false
+      greenhouse: [thebrattlegroup]
+    verified: true
 
 grid_vendors:            # grid technology manufacturers
   - name: Hitachi Energy
@@ -806,12 +827,15 @@ grid_operators_batch2:
       workday: [{tenant: californiaiso, site: careers}]
     verified: false
   - name: ERCOT
+    # Hand-verified 2026-09-22: ercot.wd1.myworkdayjobs.com/ercot_careers
+    # The tenant was right and the SITE was wrong — "ercot_careers", not
+    # "careers". Texas has no posting-level mandate, so this may add in-scope
+    # postings without adding a cluster; it is still worth having, because the
+    # non-mandate side of the disclosure contrast is the thinner one.
+    careers_url: https://ercot.wd1.myworkdayjobs.com/ercot_careers
     candidates:
-      greenhouse: [ercot]
-      lever: [ercot]
-      ashby: [ercot]
-      workday: [{tenant: ercot, site: careers}]
-    verified: false
+      workday: [{tenant: ercot, site: ercot_careers, wd: 1}]
+    verified: true
   - name: Southwest Power Pool
     candidates:
       greenhouse: [southwestpowerpool, southwest-power-pool, southwestpower]
@@ -820,13 +844,18 @@ grid_operators_batch2:
       workday: [{tenant: southwestpowerpool, site: careers}]
     verified: false
   - name: New York ISO
+    metro: new_york
+    # Hand-verified 2026-09-22 from a live posting:
+    # job-boards.greenhouse.io/nyiso/jobs/4020132007
+    # The token is the acronym, which none of the three name-derived slugs
+    # tried. Grid operator in New York, a mandate state.
+    careers_url: https://job-boards.greenhouse.io/nyiso
     candidates:
-      greenhouse: [newyorkiso, new-york-iso, newyork]
-      lever: [newyorkiso, new-york-iso, newyork]
-      ashby: [newyorkiso, new-york-iso, newyork]
-      workday: [{tenant: newyorkiso, site: careers}]
-    verified: false
+      greenhouse: [nyiso]
+    verified: true
   - name: ISO New England
+    # Searched 2026-09-22: runs its own portal at iso-ne.com.
+    ats_unidentified: true
     candidates:
       greenhouse: [isonewengland, iso-new-england, isonew]
       lever: [isonewengland, iso-new-england, isonew]
@@ -1187,6 +1216,8 @@ developers_batch2:
 # --- frame expansion, batch 2 (22 employers) ---
 energy_analytics_batch2:
   - name: Enverus
+    # Searched 2026-09-22: no supported ATS identified.
+    ats_unidentified: true
     candidates:
       greenhouse: [enverus]
       lever: [enverus]
@@ -1362,6 +1393,8 @@ consulting_batch2:
       workday: [{tenant: charlesriverassociates, site: careers}]
     verified: false
   - name: NERA Economic Consulting
+    # Searched 2026-09-22: applications route to parent company Marsh's board, where employer attribution would be wrong and the sector gate would rightly reject it.
+    ats_unidentified: true
     candidates:
       greenhouse: [neraeconomicconsulting, nera-economic-consulting, neraeconomic]
       lever: [neraeconomicconsulting, nera-economic-consulting, neraeconomic]
@@ -1369,6 +1402,8 @@ consulting_batch2:
       workday: [{tenant: neraeconomicconsulting, site: careers}]
     verified: false
   - name: Analysis Group
+    # Searched 2026-09-22: no supported ATS identified.
+    ats_unidentified: true
     candidates:
       greenhouse: [analysis]
       lever: [analysis]
@@ -1467,6 +1502,8 @@ consulting_batch2:
       workday: [{tenant: exponent, site: careers}]
     verified: false
   - name: Concentric Energy Advisors
+    # Searched 2026-09-22: own portal at ceadvisors.com. Painful miss — its Marlborough MA Energy Analyst posts $93,000 disclosed, an exact role and mandate-state fit.
+    ats_unidentified: true
     candidates:
       greenhouse: [concentricenergyadvisors, concentric-energy-advisors, concentricenergy]
       lever: [concentricenergyadvisors, concentric-energy-advisors, concentricenergy]
