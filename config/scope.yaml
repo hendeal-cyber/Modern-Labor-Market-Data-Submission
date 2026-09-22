@@ -276,6 +276,91 @@ roles:
   # Excluded even when a title partially matches. Two kinds here: roles outside
   # the energy/analytics category, and near-misses the widened taxonomy would
   # otherwise pull in ("talent development" is not development work).
+  # Concept matching, tried only AFTER include_any fails.
+  #
+  # include_any is a list of literal phrases, so word-order, plural and
+  # punctuation variants of concepts already IN the taxonomy fall straight
+  # through. Measured against the committed snapshots, 27 unique postings were
+  # being rejected that the taxonomy plainly covers:
+  #
+  #   "Energy Market Analytics Manager"     include_any has "energy markets"
+  #   "Associate, Project Development"      has "associate, development"
+  #   "Principal Analyst, Power Markets Modeler"
+  #   "Planning Engineer, Interconnection Studies"
+  #   "Director, Interconnection Execution"
+  #
+  # Each entry requires a hit from EVERY group, anywhere in the title, so it is
+  # order-independent without being loose. These are the same families the
+  # taxonomy already declares -- this widens RECOGNITION, not scope.
+  include_concepts:
+    - family: market_commercial
+      all_of:
+        - [market, markets, pricing, commodity, trading, settlements, origination]
+        - [analyst, analytics, analysis, intelligence, advisor, strategist, modeler, manager, lead, director, associate]
+    - family: market_commercial
+      all_of:
+        - [energy, power, gas, electricity, renewable]
+        - [analyst, analytics, trading, trader, settlements, pricing, origination, modeler]
+    - family: siting_dev
+      all_of:
+        - [development, siting, permitting, origination]
+        - [analyst, associate, manager, director, lead, specialist, coordinator]
+    - family: grid_power
+      all_of:
+        - [grid, transmission, interconnection, resource, load, substation, reliability]
+        - [analyst, planner, planning, modeling, modeler, forecast, forecasting, studies, engineer, execution, strategy, manager, director, specialist]
+    - family: regulatory
+      all_of:
+        - [regulatory, compliance, tariff, docket, policy]
+        - [analyst, advisor, manager, specialist, lead, consultant]
+
+  # A concept match must still respect the engineering boundary. The taxonomy
+  # admits engineering only where analytics-adjacent (interconnection, grid
+  # modelling, transmission and resource planning); physical design, field and
+  # construction work stays out. These are judged on the title, like the other
+  # exclusions.
+  concept_engineering_exclude:
+    - electrical
+    - mechanical
+    - thermal
+    - commissioning
+    - scada
+    - relay
+    - protection and control
+    - transmission line
+    - line engineer
+    - field engineer
+    - preconstruction
+    - construction
+    - electrician
+    - technician
+    - installation
+    - maintenance
+    - hvac
+    - bess
+    - solar project
+    - civil
+    # Found by reading everything the concept layer newly admitted, rather
+    # than by assuming it was clean. Each is a real title it wrongly let in:
+    #   "Site Reliability Engineer"            reliability + engineer, but SRE
+    #                                          is IT infrastructure, not NERC
+    #                                          reliability compliance
+    #   "Manager/Senior Manager (Transfer Pricing practice)"
+    #                                          pricing + manager, but transfer
+    #                                          pricing is tax
+    #   "Associate Principal/Pricing & Market Access (Life Sciences practice)"
+    #                                          market + associate, but market
+    #                                          access is pharma
+    #   "Residential Business Development Director"
+    #                                          development + director, but this
+    #                                          is sales. The taxonomy already
+    #                                          excludes "business development
+    #                                          manager"; the concept layer needs
+    #                                          the phrase, not the job title.
+    - site reliability
+    - transfer pricing
+    - market access
+    - business development
   exclude_any:
     # Audit round 3, 2026-09-21. Three out-of-scope roles reached the dataset:
     #   "Corporate Counsel, Corporate & Capital Markets"  (a lawyer)

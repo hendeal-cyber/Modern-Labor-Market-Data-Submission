@@ -313,11 +313,86 @@ def run():
     total = (len(ROLE_KEEP)+len(ROLE_DROP)+len(SENIOR_DROP)+len(YEARS)+len(cases)
              +len(intern_cases)+len(AUDIT_ROUND_2)+len(AUDIT_ROUND_2_KEEP)
              +len(SENIORITY_RANK_CASES)+11
-             +len(RANGE_TITLE_CASES)*2+2+len(AUDIT_ROUND_3_ROLES))
+             +len(RANGE_TITLE_CASES)*2+2+len(AUDIT_ROUND_3_ROLES)
+             +len(CONCEPT_ADMIT)+len(CONCEPT_REJECT)+2)
+    fails += check_role_concepts()
+
     print(f"filters: {total-len(fails)}/{total} passed")
     for f in fails:
         print("  FAIL", f)
     return len(fails)
+
+
+
+
+CONCEPT_ADMIT = [
+    "Energy Market Analytics Manager",            # plural variant
+    "Associate, Project Development",             # word order
+    "Director, Utility Development",
+    "Principal Analyst, Power Markets Modeler",
+    "Planning Engineer, Interconnection Studies",
+    "Director, Interconnection Execution",
+    "Interconnection Manager or Director",
+    "Global Gas Analyst",
+    "Market Operations Analyst",
+    "Associate Principal/Wholesale Power Markets Consultant (Energy practice)",
+    "Senior Associate/Transmission Strategy and Planning (Energy practice)",
+    "Technical Specialist, Grid Transition",
+]
+CONCEPT_REJECT = [
+    # The engineering boundary: analytics-adjacent only.
+    "Principal BESS Engineer", "Senior Electrical Engineer",
+    "Senior Solar Project Engineer", "PreConstruction Engineer",
+    "Transmission Line Engineer", "Relay Protection Engineer",
+    "Data Center Electrician- 2nd shift",
+    # The four the concept layer wrongly admitted at first.
+    "Site Reliability Engineer",
+    "Site Reliability Engineer - Disaster Recovery & Business Continuity",
+    "Manager/Senior Manager (Transfer Pricing practice)",
+    "Associate Principal/Pricing & Market Access (Life Sciences practice)",
+    "Residential Business Development Director",
+    # Still out for the reasons they always were.
+    "Warehouse Associate", "CDL Route Driver",
+    "Analyst/Associate - Litigation (Life Sciences practice)",
+]
+
+
+def check_role_concepts():
+    """Concept matching recognises taxonomy families written in variant form.
+
+    `include_any` is a list of literal phrases, so plural, word-order and
+    punctuation variants of families the taxonomy already declares fell
+    straight through. Measured against the committed snapshots, 32 unique
+    postings were being rejected that the taxonomy plainly covers.
+
+    Every title below is real, taken from data/raw/. The rejects include the
+    four false positives found by reading everything the concept layer newly
+    admitted -- site reliability engineering (IT, not NERC reliability),
+    transfer pricing (tax), pharma market access, and sales business
+    development -- none of which any amount of reasoning about the rule would
+    have predicted.
+    """
+    import sys, pathlib as _p, yaml
+    root = _p.Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(root / "src"))
+    from lmstudy import filters
+    scope = yaml.safe_load((root / "config" / "scope.yaml").read_text())
+    fails = []
+    for t in CONCEPT_ADMIT:
+        if not filters.screen_all(t, "", scope)[0]:
+            fails.append(f"concept screen wrongly REJECTED {t!r}")
+    for t in CONCEPT_REJECT:
+        if filters.screen_all(t, "", scope)[0]:
+            fails.append(f"concept screen wrongly ADMITTED {t!r}")
+
+    # The concept layer must never override an explicit exclusion.
+    roles = scope["roles"]
+    if not roles.get("include_concepts"):
+        fails.append("include_concepts missing from config/scope.yaml")
+    if not roles.get("concept_engineering_exclude"):
+        fails.append("concept_engineering_exclude missing from config/scope.yaml")
+    return fails
+
 
 if __name__ == "__main__":
     raise SystemExit(1 if run() else 0)

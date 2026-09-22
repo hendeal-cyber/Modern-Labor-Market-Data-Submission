@@ -228,11 +228,31 @@ def fetch_smartrecruiters(
     detail_filter=None,
 ) -> tuple[list[RawPosting], Response]:
     base = f"https://api.smartrecruiters.com/v1/companies/{token}/postings"
-    resp = session.get_json(f"{base}?limit=100")
-    if not resp.ok:
-        return [], resp
+    # Paginated. It used to be a single `?limit=100` with no offset, so any
+    # company with more than 100 open postings had the remainder silently
+    # dropped -- and `max_postings: int = 200` above made it look as though
+    # two hundred were being read. No board in the current frame is big enough
+    # to have hit it, which is exactly why it would have gone unnoticed until
+    # a large employer was added.
+    PAGE = 100
+    content: list = []
+    resp = None
+    for offset in range(0, max_postings, PAGE):
+        page = session.get_json(f"{base}?limit={PAGE}&offset={offset}")
+        if resp is None:
+            resp = page          # keep the first response for the caller
+        if not page.ok:
+            if offset == 0:
+                return [], page
+            break
+        items = page.data.get("content") or []
+        content.extend(items)
+        if len(items) < PAGE:
+            break
+    if resp is None or not resp.ok:
+        return [], (resp or page)
     out = []
-    content = (resp.data.get("content") or [])[:max_postings]
+    content = content[:max_postings]
     resp.listed = len(content)
     for job in content:
         job_id = str(job.get("id", ""))
@@ -368,7 +388,15 @@ def fetch_workday(
     employer: str,
     wd_instance: int = 1,
     page_size: int = 20,
-    max_pages: int = 25,
+    # 150, not 25. The old value was a silent 500-posting ceiling
+    # (20 x 25), and Guidehouse and Hitachi Energy both listed EXACTLY 500 --
+    # the signature of a truncation, not a coincidence. The loop already stops
+    # when a short page shows the board is exhausted, so this is a safety
+    # valve rather than a target; it only costs a request per 20 postings on
+    # the handful of boards big enough to reach it, and the expensive detail
+    # fetches are still gated by detail_filter. Hitting it is now reported
+    # instead of passing silently.
+    max_pages: int = 150,
     detail_filter=None,
 ) -> tuple[list[RawPosting], Response]:
     """Workday lists postings without descriptions, so each in-scope posting
@@ -403,6 +431,11 @@ def fetch_workday(
                     payload={"externalPath": path},
                 )
             )
+        if page == max_pages - 1 and len(postings) == page_size:
+            # Still full at the last allowed page: the board is larger than we
+            # are willing to read, and the caller should know.
+            print(f"    WARNING: {employer} hit the {max_pages}-page cap "
+                  f"({max_pages * page_size} postings); the board is truncated")
         if len(postings) < page_size:
             break
     # Fetch descriptions only for postings that already look in scope.

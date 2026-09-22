@@ -29,6 +29,9 @@ OBS_PER_REGRESSOR = 20
 # Pre-registration section 6: the interpretability block fires below this
 # many employer clusters. Changing it needs a dated amendment there.
 CLUSTER_GATE = 30
+# docs/pre-registration.md section 7: one employer above a quarter of the
+# sample is a declared falsification condition, not a stylistic preference.
+CONCENTRATION_GATE = 0.25
 
 # Pre-specified. Declared here rather than chosen after seeing results.
 # Fixed in docs/pre-registration.md BEFORE the national run collected, so the
@@ -617,6 +620,27 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
             "pre-registered. Cluster-robust standard errors are biased downward "
             "with few clusters, so the asymptotic p-values are anti-conservative. "
             "Read the wild cluster bootstrap p-values below, not these.")
+    # docs/pre-registration.md section 7 declares, in advance, that a single
+    # employer supplying more than a quarter of observations leaves the model
+    # "substantially describing one firm, regardless of N". That condition was
+    # written down and then never tested here: the gate checked observations
+    # per regressor, clusters and power, and said nothing about concentration.
+    # It would have reported `interpretable` with one employer at 40%. This is
+    # the same defect as the cluster gate reading 20 against a pre-registered
+    # 30 -- lenient in the direction that flatters the study -- and it is
+    # caught now only because clearing 30 clusters made the gate fall silent.
+    employer_counts = estimation["employer"].value_counts()
+    top_share = float(employer_counts.iloc[0]) / len(estimation)
+    if top_share > CONCENTRATION_GATE:
+        warnings_list.append(
+            f"{employer_counts.index[0]} supplies {top_share:.1%} of observations, "
+            f"above the {CONCENTRATION_GATE:.0%} pre-registered ceiling. Clustered "
+            "errors remain unreliable and the model substantially describes one "
+            "firm, regardless of N.")
+    report["largest_employer"] = str(employer_counts.index[0])
+    report["largest_employer_n"] = int(employer_counts.iloc[0])
+    report["largest_employer_share"] = round(top_share, 4)
+
     detectable = detectable_effect(len(estimation), len(core))
     if detectable and detectable > 0.25:
         warnings_list.append(
@@ -629,10 +653,20 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
     report["obs_per_regressor"] = round(obs_per_regressor, 2)
     report["n_clusters"] = n_clusters
 
-    # Run unconditionally while the cluster gate binds. Deciding to run it only
-    # when a p-value looks marginal would make the reported inference depend on
-    # the result, which is the thing the pre-registration exists to prevent.
-    if n_clusters < CLUSTER_GATE and bootstrap_reps > 0:
+    # Run unconditionally. Deciding to run it only when a p-value looks
+    # marginal would make the reported inference depend on the result, which
+    # is the thing the pre-registration exists to prevent.
+    #
+    # It previously ran only while `n_clusters < CLUSTER_GATE`, which is what
+    # section 6 requires as a minimum. Crossing 30 clusters therefore deleted
+    # `wild_cluster_bootstrap` from the report -- and every deliverable reads
+    # that key defensively (`or {}`), so the paper, summary, figures and deck
+    # would have silently reverted to asymptotic p-values. The bootstrap
+    # withdrew seven of nine findings at 23 clusters; reverting would have
+    # restored all seven without an amendment, on the run that first cleared
+    # the gate. 33 clusters is still few, CGM(2008) still applies, and
+    # computing it always costs minutes. See the amendment in section 8.
+    if bootstrap_reps > 0:
         report["wild_cluster_bootstrap"] = wild_cluster_bootstrap(
             estimation, core, reps=bootstrap_reps)
 

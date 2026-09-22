@@ -269,3 +269,88 @@ were the same off-umbrella federal consulting rows. The direction of that
 improvement played no part in the decision — the guard was specified from the
 umbrella constraint, and its cost to N and concentration was accepted before
 the disclosure numbers were recomputed.
+
+### 2026-09-22 — the role screen recognises taxonomy families written in variant form
+
+**What changed.** `roles.include_any` is a list of literal phrases, so a family
+this document already declares was rejected whenever a posting spelled it
+differently. `include_concepts` adds a conjunctive matcher — a title admits
+when it carries a term from each of two synonym groups, so "Energy Market
+Analytics Manager" matches the market/commercial family that "energy market
+analyst" already declared. Five concepts, all drawn from families §2 fixes;
+no new family was added.
+
+**Why.** The taxonomy is the study's definition of its population, and the
+screen was enforcing its literal spelling rather than its content. Measured
+against the committed snapshots, 32 unique postings the taxonomy plainly
+covers were being dropped — NYISO interconnection studies, Origis project
+development, CRA Energy-practice consulting, Yes Energy power-markets
+modelling.
+
+**The false positives, found by reading rather than reasoning.** Every title
+the concept layer newly admitted was read. Four were wrong and none was
+predictable from the rule: "Site Reliability Engineer" (IT reliability, not
+NERC reliability), "Manager/Senior Manager (Transfer Pricing practice)" (tax),
+"Associate Principal/Pricing & Market Access (Life Sciences practice)"
+(pharma) and "Residential Business Development Director" (sales). All four are
+now excluded and pinned as regression cases.
+
+**Effect, reported in full because it is flattering.** Usable observations
+147 → 165, distinct employers 29 → 33, largest employer 26.5% → 23.6%. This
+is the change that cleared the last two pre-registered conditions, so it
+deserves the most scepticism of anything in this document: the guard against
+it is that the concept list was written from §2's declared families before the
+effect on N was measured, and that all 28 added rows are listed in the audit
+log for a reader to check one by one.
+
+### 2026-09-22 — a nested-location repost is one job, not two
+
+**What changed.** The dedupe key is employer + title + location, so the same
+requisition republished over a narrower location set survived as a second
+observation. A posting whose locations are a strict **subset** of another with
+the same employer, title and byte-identical description is now collapsed.
+
+**Why nesting, and not the description.** Collapsing on description alone was
+measured first and rejected: 38 groups in the corpus share an employer, a
+title and a byte-identical description across several requisitions — Nexamp's
+`Senior Interconnection Engineer` open in Boston, Chicago, New York and
+Washington, Clearway's technicians across four states. Those are real,
+separate openings, and a description-hash rule would have destroyed roughly
+thirty genuine observations to fix one duplicate. Genuine multi-city postings
+list **disjoint** locations; a repost lists a subset.
+
+**Effect.** Exactly one pair nests across all 1,940 raw records — Tract's
+`Director, Utility Development`, requisitions 4343777009 and 4372165009, same
+description, same $175,000–$190,000, Alexandria + Denver + Remote against
+Alexandria + Remote. N falls 166 → 165.
+
+### 2026-09-22 — the interpretability gate now tests concentration, and the bootstrap always runs
+
+**What changed.** Two corrections to the gate, both made on the run that first
+cleared it, and both in the conservative direction.
+
+**1. The concentration condition was declared and never tested.** §7 above
+states that a single employer supplying more than a quarter of observations
+leaves the model "substantially describing one firm, regardless of N". The
+gate in `analyze.py` tested observations per regressor, cluster count and
+power — and said nothing about concentration. It would have reported
+`interpretable: true` with one employer at 40%. This is the same defect as the
+cluster gate reading 20 against a pre-registered 30: lenient in exactly the
+direction that flatters the study, and caught only because clearing 30
+clusters made the rest of the gate fall silent.
+
+**2. The bootstrap no longer switches itself off.** §6 requires the wild
+cluster bootstrap "when clusters number under 30", and the code implemented
+that condition literally. Crossing 30 clusters therefore deleted
+`wild_cluster_bootstrap` from the report — and the paper, executive summary,
+figures and deck all read that key defensively, so every one of them would
+have silently reverted to asymptotic p-values. The bootstrap withdrew seven of
+nine findings at 23 clusters; reverting would have restored them all, without
+an amendment, on the first run that looked good. It now runs unconditionally.
+33 clusters is still few, Cameron–Gelbach–Miller applies, and the cost is
+minutes.
+
+**Effect.** None on any point estimate. The gate now passes on all four
+conditions it tests — N 165, 33 clusters, 11.0 observations per regressor,
+largest employer 23.6% — so the interpretability block comes down for the
+first time, by the gate's own arithmetic rather than by hand.

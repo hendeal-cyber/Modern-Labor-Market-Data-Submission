@@ -73,6 +73,29 @@ def screen_role(title: str, description: str, config: dict) -> ScreenResult:
         if _matches(title_n, good):
             return ScreenResult(True, None, {"matched": good})
 
+    # Concept matching, only after the literal phrases fail. include_any is a
+    # phrase list, so plural, word-order and punctuation variants of concepts
+    # the taxonomy already declares fall through: "energy markets" is listed
+    # and "Energy Market Analytics Manager" misses on the plural;
+    # "associate, development" is listed and "Associate, Project Development"
+    # misses on word order. This widens RECOGNITION of the declared families,
+    # not the scope of the study.
+    concepts = roles.get("include_concepts") or []
+    if concepts:
+        eng_out = roles.get("concept_engineering_exclude") or []
+        for bad in eng_out:
+            if _matches(title_n, bad):
+                return ScreenResult(False, "role_excluded",
+                                    {"matched": bad, "via": "concept_engineering"})
+        for entry in concepts:
+            groups = entry.get("all_of") or []
+            if not groups:
+                continue
+            if all(any(_matches(title_n, w) for w in group) for group in groups):
+                return ScreenResult(True, None,
+                                    {"matched": entry.get("family"),
+                                     "via": "concept"})
+
     return ScreenResult(False, "role_not_software_data", {"title": title})
 
 

@@ -7,48 +7,86 @@ conflict, this section wins.*
 
 | | |
 |---|---|
-| Usable observations (pay disclosed) | **147** |
-| Unique postings in scope | 183 |
-| Distinct employers (= clusters) | **29** |
-| Largest employer | Invenergy, **26.5%** |
-| Observations per regressor | 9.8 |
+| Usable observations (pay disclosed) | **165** |
+| Unique postings in scope | 210 |
+| Distinct employers (= clusters) | **33** |
+| Largest employer | Invenergy, **23.6%** |
+| Observations per regressor | 11.0 |
 | Raw postings collected | 1,940 |
 | Hand-verified board tokens | 41 |
 
-**The N ≥ 100 floor is met. The pre-registered SUBSTANCE conditions are not:**
-employers are 29 against a target of 30, and the largest supplies
-26.5% against a ceiling of 25%. `docs/pre-registration.md` §7
-called this "met in letter and not in substance" before any of it was known.
+**All four pre-registered conditions pass for the first time.** N 165 against a
+floor of 100; 33 employer clusters against a target of 30;
+Invenergy supplies 23.6% against a ceiling of 25%;
+11.0 observations per regressor against a floor of 10. **The
+interpretability block in `analyze.py` and the paper is therefore down — by the
+gate's own arithmetic, not by hand.** `analysis.json` carries
+`"interpretable": true` with an empty warning list.
+
+**Two gate defects were found on the run that cleared it**, both fixed and
+both recorded as amendments in `docs/pre-registration.md` §8:
+
+1. **Concentration was never tested.** §7 declares a single employer above a
+   quarter of the sample a falsification condition. The gate checked
+   observations per regressor, clusters and power, and said nothing about
+   concentration — it would have reported `interpretable: true` at 40%. Same
+   defect as the cluster gate reading 20 against a pre-registered 30.
+2. **The bootstrap switched itself off at 30 clusters**, and so did the five
+   consistency checks that would have noticed. The suite fell from 29 checks
+   to 24 and still printed ALL SUITES PASSED. Every deliverable reads
+   `wild_cluster_bootstrap` defensively, so the paper, summary, figures and
+   deck would have silently reverted to asymptotic p-values — restoring seven
+   findings the bootstrap had withdrawn, without an amendment, on the first
+   run that looked good. It now runs unconditionally.
 
 **Read the numbers above, not the ones in §7–§8 or in any commit message
-before 2026-09-22.** Audit round 4 removed 337 off-umbrella postings and the
-sample changed materially: N fell 154 → 120, and the largest
-employer's share *rose* 25.3% → 32.5%, because those rows
-had been padding the denominator.
+before 2026-09-22.**
 
 ### The headline result
 
-Pay is stated in **98.2%** of postings in mandate states
-(n=110) against **53.4%** where none applies
-(n=73). It is **associational, not causal** — one
+Pay is stated in **96.1%** of postings in mandate states
+(n=129) against **50.6%** where none applies
+(n=81). It is **associational, not causal** — one
 cross-section, no difference-in-differences.
 
 | Sample | Mandate | No mandate | Gap |
 |---|---|---|---|
-| All | 98.2% | 53.4% | 45pp |
-| Excluding Virginia | 100.0% | 53.4% | 47pp |
-| Excluding largest employer | 97.2% | 53.4% | 44pp |
+| All | 96.1% | 50.6% | 46pp |
+| Excluding Virginia | 97.3% | 50.6% | 47pp |
+| Excluding largest employer | 94.4% | 50.6% | 44pp |
 
-Stable across cuts — a spread of 3 points. The no-mandate side rose from
-39% to 53% when AEP Energy and Alliant Energy joined: both post
-disclosed pay in Ohio, Wisconsin and Iowa, none of which mandates it. That
-weakens the contrast and is the honest direction for it to move.
+Stable across cuts — a spread of 3 points.
+
+### What the model actually says — REWRITTEN 2026-09-22 (third time)
+
+**Four coefficients survive the wild cluster bootstrap**, up from one, because
+the concept role screen added 18 observations and 4 employer clusters:
+
+| Variable | Coefficient | Bootstrap p | Survives the region check |
+|---|---|---|---|
+| `seniority_rank` | +0.0874 per rung | 0.0002 | yes |
+| `region_northeast` | +0.1837 | 0.0219 | yes |
+| `region_south` | +0.1585 | 0.0207 | yes |
+| `mandate_state` | -0.1718 | 0.0406 | no |
+
+H1 as pre-registered: seniority is the dominant predictor.
+
+**`mandate_state` is negative and that is not a contradiction of H2.** H2 is
+about *whether* pay is disclosed, and the disclosure gap above is large and
+stable. The negative level effect is what disclosure selection predicts: where
+no law compels it, the employers that volunteer a range are disproportionately
+the ones paying well, so the non-mandate rows are a high-paying self-selected
+subset. It does not survive the region check and is reported as inconclusive.
+
+**Still withdrawn:** the AI premium (`skill_ml_ai`, p=0.425),
+H5-as-contradicted (`degree_required`, p=0.964), and
+`remote_eligible` (p=0.220).
 
 ### Deliverables: complete
 
 Paper (0 TODO markers), **standalone executive summary** (generated, not
-written), slide deck (QA clean), dataset, code, pre-registration with 7 dated
-amendments, codebook, audit log (4 rounds + an integrity check), limitations
+written), slide deck (QA clean), dataset, code, pre-registration with 9 dated
+amendments, codebook, audit log (5 rounds + an integrity check), limitations
 (24 entries), decision log, **employer verification ledger**, reproducibility
 README. All regenerate from `data/raw/`.
 

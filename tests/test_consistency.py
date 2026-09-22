@@ -119,11 +119,18 @@ def run():
 
     # 16. The bootstrap is REQUIRED by pre-registration section 6 below 30
     # clusters. It was cited in eight places and never computed.
-    gate = 30
-    if a.get("n_clusters", gate) < gate:
+    #
+    # These five checks used to sit behind `if n_clusters < 30`, mirroring
+    # analyze.py. Crossing 30 clusters therefore switched off both the
+    # bootstrap AND the checks that would have noticed it was gone -- the
+    # suite fell from 29 checks to 24 and still reported ALL SUITES PASSED.
+    # The bootstrap now runs unconditionally (pre-registration section 8), so
+    # its verification does too: a guard that disappears exactly when the
+    # numbers improve is not a guard.
+    if True:
         boot = a.get("wild_cluster_bootstrap") or {}
-        chk("wild cluster bootstrap ran (pre-registration requires it "
-            f"below {gate} clusters)", bool(boot.get("by_variable")))
+        chk("wild cluster bootstrap ran on every run",
+            bool(boot.get("by_variable")))
         if boot.get("by_variable"):
             core = a["models"]["core"]["coefficients"]
             fitted = [c for c in core if c != "const"]

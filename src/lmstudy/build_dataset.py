@@ -114,6 +114,66 @@ def dedupe_key(record: dict) -> str:
     return hashlib.sha1("|".join(parts).encode()).hexdigest()[:16]
 
 
+def _location_set(location_raw: str) -> frozenset:
+    return frozenset(
+        part.strip().lower()
+        for part in (location_raw or "").split(";")
+        if part.strip()
+    )
+
+
+def collapse_nested_reposts(rows: dict, locations: dict) -> int:
+    """Drop a posting whose locations are a strict subset of another repost.
+
+    An ATS lets the same requisition be published more than once. Tract
+    published `Director, Utility Development` twice with byte-identical
+    descriptions and identical pay: requisition 4343777009 in
+    Alexandria + Denver + Remote US, and 4372165009 three weeks later in
+    Alexandria + Remote US alone. The dedupe key is employer + title +
+    location, so the narrower repost survived as a second observation and
+    the same job was counted twice.
+
+    Collapsing on description alone would be wrong, and was measured before
+    this rule was written. 38 groups in the corpus share employer, title and
+    a byte-identical description across several requisitions -- Nexamp's
+    `Senior Interconnection Engineer` open in Boston, Chicago, New York and
+    Washington, Clearway's technicians across four states. Those are real,
+    separate openings in separate labour markets, and a description-hash
+    rule would have destroyed 30-odd genuine observations to fix one
+    duplicate.
+
+    The discriminating property is nesting: genuine multi-city postings list
+    DISJOINT locations, while a repost of one job lists a SUBSET. Measured
+    over all 1,940 raw records, exactly one pair nests -- the Tract pair.
+    The superset is kept because it is the earlier, fuller advertisement.
+    """
+    by_content = {}
+    for key, row in rows.items():
+        content = (
+            (row.get("employer") or "").lower().strip(),
+            " ".join((row.get("title") or "").lower().split()),
+            row.get("description_hash") or "",
+        )
+        by_content.setdefault(content, []).append(key)
+
+    dropped = 0
+    for keys in by_content.values():
+        if len(keys) < 2:
+            continue
+        locs = {k: _location_set(locations.get(k, "")) for k in keys}
+        for key in list(keys):
+            if key not in rows:
+                continue
+            mine = locs[key]
+            if any(
+                other != key and other in rows and mine < locs[other]
+                for other in keys
+            ):
+                del rows[key]
+                dropped += 1
+    return dropped
+
+
 def text_hash(description: str) -> str:
     return hashlib.sha256((description or "").encode()).hexdigest()[:16]
 
@@ -191,10 +251,11 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
         "raw": 0, "rejected_off_umbrella": 0,
         "rejected_no_sector_evidence": 0, "rejected_screen": 0,
         "passed_screen": 0, "rejected_geo": 0, "passed_geo": 0,
-        "duplicate_sighting": 0, "unique_in_scope": 0, "usable_with_pay": 0,
+        "duplicate_sighting": 0, "duplicate_repost": 0, "unique_in_scope": 0, "usable_with_pay": 0,
     })
     reject_reasons = Counter()
     rows: dict[str, dict] = {}
+    row_locations: dict[str, str] = {}
     first_seen: dict[str, str] = {}
 
     snapshot_dirs = sorted(d for d in raw_root.iterdir() if d.is_dir()) if raw_root.exists() else []
@@ -356,6 +417,9 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                     funnel["duplicate_sighting"] += 1
                 else:
                     rows[key] = row
+                    row_locations[key] = location_raw
+
+    funnel["duplicate_repost"] = collapse_nested_reposts(rows, row_locations)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     unique = list(rows.values())

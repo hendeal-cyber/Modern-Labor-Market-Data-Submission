@@ -10,6 +10,70 @@ from lmstudy.build_dataset import build
 
 KEEP_WITH_PAY = {"ComEd", "Exelon", "Equinix", "AES Indiana", "Invenergy", "DataBank"}
 
+def check_nested_repost_collapse():
+    """A repost of one job collapses; the same job in several cities does not.
+
+    Both cases share an employer, a title and a byte-identical description,
+    so a description-hash rule cannot tell them apart -- it would have
+    collapsed 38 groups in the real corpus, among them Nexamp's
+    `Senior Interconnection Engineer` open in four separate cities, to fix
+    the single Tract repost. Nesting is what distinguishes them, and both
+    cases below are taken verbatim from data/raw/.
+    """
+    import sys, pathlib as _p
+    sys.path.insert(0, str(_p.Path(__file__).resolve().parents[1] / "src"))
+    from lmstudy.build_dataset import collapse_nested_reposts
+
+    fails = []
+
+    # Tract requisitions 4343777009 and 4372165009: identical description,
+    # identical pay, and the second's locations are a strict subset.
+    rows = {
+        "a": {"employer": "Tract", "title": " Director, Utility Development",
+              "description_hash": "f8c94b2f1ab9c663"},
+        "b": {"employer": "Tract", "title": " Director, Utility Development",
+              "description_hash": "f8c94b2f1ab9c663"},
+    }
+    locs = {
+        "a": "Alexandria, Virginia, United States; Denver, Colorado, "
+             "United States; Remote US",
+        "b": "Alexandria, Virginia, United States; Remote US",
+    }
+    dropped = collapse_nested_reposts(rows, locs)
+    if dropped != 1:
+        fails.append(f"nested Tract repost: dropped {dropped}, want 1")
+    if "a" not in rows:
+        fails.append("the superset posting must be the one kept")
+    if "b" in rows:
+        fails.append("the subset repost must be the one dropped")
+
+    # Nexamp's Senior Interconnection Engineer: one description, four cities,
+    # no nesting. Four real openings, and they must all survive.
+    cities = ["Boston, MA", "Chicago, IL", "New York, NY", "Washington, DC"]
+    rows = {c: {"employer": "Nexamp", "title": "Senior Interconnection Engineer",
+                "description_hash": "deadbeefdeadbeef"} for c in cities}
+    locs = {c: c for c in cities}
+    dropped = collapse_nested_reposts(rows, locs)
+    if dropped != 0:
+        fails.append(f"disjoint multi-city posting collapsed {dropped} rows")
+    if len(rows) != 4:
+        fails.append(f"multi-city openings: {len(rows)} rows survive, want 4")
+
+    # A different employer with the same title and description is never a
+    # repost, however its locations nest.
+    rows = {
+        "a": {"employer": "Nexamp", "title": "Analyst",
+              "description_hash": "aaaa"},
+        "b": {"employer": "Voltus", "title": "Analyst",
+              "description_hash": "aaaa"},
+    }
+    locs = {"a": "Boston, MA; Chicago, IL", "b": "Boston, MA"}
+    if collapse_nested_reposts(rows, locs) != 0:
+        fails.append("rows from different employers must never collapse")
+
+    return fails
+
+
 def run():
     fails = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -131,6 +195,8 @@ def run():
               and r["employer"] == "Digital Realty"]
         if len(dr) != 1:
             fails.append("a different employer's posting must not be deduped away")
+
+    fails += check_nested_repost_collapse()
 
     print(f"pipeline: {len(fails)} failure(s)")
     for x in fails:

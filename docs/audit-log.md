@@ -376,6 +376,78 @@ near-constant. Round 4 went after the umbrella instead; these remain unchecked.
 <!--
 Round template:
 
+### Round 5 — the concept role screen and the nested repost (2026-09-22)
+
+**Scope.** Every posting the new `include_concepts` matcher newly admitted was
+read in full, plus the pay extremes and the employer concentration table of
+the rebuilt dataset. This round audits a *screen change* rather than a sample,
+so the unit is "rows that entered or left because of it".
+
+**Result: 28 rows entered, 1 left, 4 false positives caught before the rebuild.**
+
+### The four false positives
+
+Found by reading all 40 titles the first version of the concept layer admitted.
+None was predictable from the rule:
+
+| Title | Why the concept layer matched | Why it is out |
+|---|---|---|
+| Site Reliability Engineer | `reliability` + engineering | IT uptime, not NERC reliability |
+| Site Reliability Engineer — Disaster Recovery & Business Continuity | same | same |
+| Manager/Senior Manager (Transfer Pricing practice) | `pricing` + `market` | tax practice |
+| Associate Principal/Pricing & Market Access (Life Sciences practice) | `pricing` + `market access` | pharma |
+| Residential Business Development Director | `development` | sales |
+
+All five strings are now in `roles.concept_engineering_exclude` and pinned as
+rejects in `tests/test_filters.py`.
+
+### The 28 rows admitted, listed so a reader can check them
+
+Charles River Associates (5, Energy practice — wholesale power markets,
+transmission strategy, power and gas modelling, and a 2027 graduate analyst
+role tagged `(Energy)`); New York ISO (6 — interconnection studies ×2, market
+solutions engineering ×2, grid operations, grid transition); Origis Energy (5
+— project development ×3, energy market analytics, interconnection);
+Cypress Creek Renewables (2 — interconnection execution, development);
+Silicon Ranch (2 — project development, interconnection project management);
+Clearway Energy, Energy and Environmental Economics, Modo Energy, Octopus
+Energy, Tract ×2, Voltus, Yes Energy (1 each).
+
+All 28 are energy-sector analytic, development or market roles. Twelve of the
+28 disclose no pay and so enter only the disclosure model's denominator.
+
+### The nested repost
+
+Tract published `Director, Utility Development` twice — requisitions
+4343777009 (Alexandria + Denver + Remote US, posted 11 Aug) and 4372165009
+(Alexandria + Remote US, posted 4 Sep) — with byte-identical descriptions and
+identical $175,000–$190,000 pay. The dedupe key includes location, so both
+survived.
+
+A description-hash rule was measured before being rejected: 38 groups in the
+corpus share employer, title and description across requisitions, and they are
+genuine multi-city openings (Nexamp's Senior Interconnection Engineer in four
+cities, Clearway's technicians in four states). Exactly **one** pair in 1,940
+records has nested locations. The subset is now dropped; both cases are pinned
+in `tests/test_pipeline.py`.
+
+### Pay extremes, re-read per the standing rule
+
+Low: Invenergy `Associate, Land Development` $46,500 and `Geospatial Scientist`
+$47,500, both Illinois, both genuine entry-level bands. High: Invenergy
+`Senior Director, Renewable Development` $240,000 and ERCOT
+`Director - Data Products & AI Strategy` $236,500. All annual, none hourly-
+annualised, none non-US. No implausible figure entered on this expansion.
+
+### Nine rows carry no state
+
+All nine are `metro=remote_national` — nationwide-remote US postings, which is
+the designed category. They disclose at 55.6%, close to the 50.0% non-mandate
+rate and far from the 96.1% mandate rate, which is consistent with their being
+treated as uncovered. They are excluded from the region contrasts by the
+robustness check already in `analyze.py`.
+
+
 ### Round N — YYYY-MM-DD
 - Sample: 100 postings, seed 20260920
 - Mean accuracy: X.XX
