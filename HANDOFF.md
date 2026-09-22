@@ -178,6 +178,15 @@ an empty board, or its only open req is the evergreen "General Interest"
 posting the API does not list. If it stays empty across several runs, look
 closer rather than changing the token.
 
+### Background, if you want it
+
+`docs/decision-log.md` is the full history of how the study reached this state,
+copied out of the authoring session's plan file so it survives. It is
+historical — the early sections describe a scope that measured zero usable
+observations — but it records what each decision was worth when it was made,
+and every failure with how it was found. Not required reading to do the
+verification pass.
+
 ### Honest expectation
 
 The last pass converted 4 tokens into roughly 3 expected clusters. Reaching 30

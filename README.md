@@ -72,6 +72,11 @@ postings, so there is no historical backfill — the panel grows forward only.
   quoting any coefficient.
 - **`docs/audit-log.md`** — three rounds of hand-checking against real titles.
   Every round found errors that tests had not.
+- **`docs/decision-log.md`** — the full history, oldest first: what each scope
+  decision was worth when it was made, every failure including the ones that
+  produced confident wrong answers rather than crashes, and the reasoning that
+  was later reversed. Historical, not current — where it conflicts with the
+  files above, they win.
 
 ## Compliance
 

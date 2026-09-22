@@ -244,8 +244,9 @@ yielded.
 A reader is entitled to discount results chosen after seeing the data. Two
 things limit how much: `docs/pre-registration.md` fixes the specification
 *before* the national sample was collected, with dated amendments for every
-change made afterwards; and `scope-decision.md` plus the probe measurements
-record what each option was worth at the time it was chosen.
+change made afterwards; and `scope-decision.md`, `decision-log.md` and the
+probe measurements record what each option was worth at the time it was chosen,
+so a reader discounting these results can check what was known when.
 
 The early-career question survives as a pre-specified subsample, reported
 whether or not it agrees with the full sample.
