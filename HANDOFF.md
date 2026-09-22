@@ -7,130 +7,193 @@ conflict, this section wins.*
 
 | | |
 |---|---|
-| Usable observations (pay disclosed) | **137** |
-| Unique postings in scope | 204 |
-| Distinct employers | **23** |
-| Largest employer | Invenergy, **28%** |
-| Observations per regressor | 9.13 |
-| Raw postings collected | 897 |
+| Usable observations (pay disclosed) | **120** |
+| Unique postings in scope | 156 |
+| Distinct employers (= clusters) | **25** |
+| Largest employer | Invenergy, **32.5%** |
+| Observations per regressor | 8.0 |
+| Raw postings collected | 1,716 |
+| Hand-verified board tokens | 34 |
 
 **The N ≥ 100 floor is met. The pre-registered SUBSTANCE conditions are not:**
-employers are 23 against a target of 30, and the largest supplies 28%
-against a ceiling of 25%. `docs/pre-registration.md` §7 called this "met in
-letter and not in substance" before any of it was known. No significance claim
-should rest on a marginal p-value without a wild cluster bootstrap.
+employers are 25 against a target of 30, and the largest supplies
+32.5% against a ceiling of 25%. `docs/pre-registration.md` §7
+called this "met in letter and not in substance" before any of it was known.
+
+**Read the numbers above, not the ones in §7–§8 or in any commit message
+before 2026-09-22.** Audit round 4 removed 337 off-umbrella postings and the
+sample changed materially: N fell 154 → 120, and the largest
+employer's share *rose* 25.3% → 32.5%, because those rows
+had been padding the denominator.
 
 ### The headline result
 
-Pay is stated in **82.4%** of postings in mandate states
-(n=142) against **32.3%** where none applies
-(n=62). It is **associational, not causal** — one
+Pay is stated in **98.0%** of postings in mandate states
+(n=100) against **39.3%** where none applies
+(n=56). It is **associational, not causal** — one
 cross-section, no difference-in-differences.
-
-Its *size* is sensitive to one jurisdiction, so it is always reported cut:
 
 | Sample | Mandate | No mandate | Gap |
 |---|---|---|---|
-| All | 82.4% | 32.3% | 50pp |
-| Excluding Virginia | 100.0% | 32.3% | 68pp |
-| Excluding largest employer | 97.8% | 27.1% | 71pp |
+| All | 98.0% | 39.3% | 59pp |
+| Excluding Virginia | 100.0% | 39.3% | 61pp |
+| Excluding largest employer | 96.7% | 39.3% | 57pp |
 
-Virginia's mandate took effect 2026-07-01. Almost every non-disclosing
-mandate-state posting is a Virginia posting from one employer. **Outside
-Virginia every mandate-state posting in this sample states pay.**
+**It is now STABLE across cuts — a spread of 3 points, not the 21 it
+used to swing.** Earlier handoffs reported 50pp/68pp/71pp and a long hedge
+about Virginia's three-month-old statute. That fragility was an artifact:
+23 of the 25 non-disclosing mandate-state postings were one federal
+consultancy's public health, national security and law-enforcement work, which
+audit round 4 removed as outside the sector. **Removing it removed the
+fragility rather than explaining it away.**
 
 ### Deliverables: complete
 
-Paper (0 TODO markers), slide deck (QA clean), dataset, code, pre-registration,
-codebook, audit log (3 rounds + an integrity check), limitations (17
-entries), decision log, reproducibility
-README. All regenerate from `data/raw/` with the commands in the README.
+Paper (0 TODO markers), **standalone executive summary** (generated, not
+written), slide deck (QA clean), dataset, code, pre-registration with 7 dated
+amendments, codebook, audit log (4 rounds + an integrity check), limitations
+(24 entries), decision log, **employer verification ledger**, reproducibility
+README. All regenerate from `data/raw/`.
+
+### What the model actually says — THIS CHANGED ON 2026-09-22
+
+**Two findings previous handoffs reported as robust have been withdrawn.** If
+you carry anything forward from an older version of this file, carry this
+correction.
+
+**Survives (H1, as pre-registered).** `seniority_rank`
++0.0718 per rung, bootstrap p=0.009. It also survives
+the region robustness cut. This is the one result the study would defend
+without qualification.
+
+**Survives with a caveat.** `region_south` +0.2793
+(≈+32%), bootstrap p=0.002. But 9 of its 24
+observations come from one employer (ERCOT) and 13 from one state (Texas), so
+at 25 clusters a regional coefficient and an employer effect are
+hard to separate.
+
+**WITHDRAWN — the AI premium.** `skill_ml_ai` is now
++0.1220 at bootstrap p=0.270.
+Earlier handoffs reported ≈+27% at p=0.0003 and told you *not* to restate it as
+"AI roles pay more" because the premium attached to the skill rather than the
+role label. **The whole finding is gone.** Much of it was the same
+consultancy's AI work in health and national security — outside the sector
+under study. Do not report an AI premium.
+
+**WITHDRAWN — H5 as "contradicted".** `degree_required` is
+-0.0892 at bootstrap p=0.357.
+Earlier handoffs reported ≈−12% at p=0.035 and called H5 contradicted, with a
+compositional conjecture attached. The sign stands; the significance does not.
+It is **inconclusive**, and the conjecture has been removed rather than offered
+for an effect the study cannot measure.
+
+**WITHDRAWN by the region check — `remote_eligible`.** Significant at
+bootstrap p=0.026 in the full sample, p=0.333
+once the 8 nationwide-remote postings are dropped. Those postings
+are *precisely* the remote-eligible ones, so the coefficient was identified off
+the rows the check removes.
+
+**Seven of nine coefficients that clustered standard errors called significant
+do not survive the bootstrap.** That is not a defect; it is the pre-registered
+inference procedure working. See §0.6.
 
 ### What is NOT done
 
-1. **BEA price parities are still not usable, and the near-miss is worth
-   reading.** The filename was fixed (`SARPP.zip`) and the fetch then
-   *succeeded* — 51 states, valid JSON, all tests green — and returned the
-   **wrong table**: BEA's implicit price deflator, ~1.237x the true RPP, which
-   would have inflated every real-pay figure by about 24%. Caught by checking
-   the values against BEA's published figures: no state was below 100, which is
-   impossible for an index centred on 100. `is_plausible_rpp()` now rejects
-   that class outright. Pay remains nominal; **no deflator is imputed**. See
-   `docs/limitations.md` §17.
-2. **More employers.** This is the only thing that fixes the two failing
-   conditions, and it is worth more than more postings. Hand-verifying a board
-   token takes minutes and adds a cluster; NiSource and Wabash Valley Power
-   both resolved that way.
-3. **Audit round 4.** Rounds 1-3 each found real errors in the top rows by pay.
-   Assume round 4 would too.
+1. **More employers — still the only thing that fixes the two failing
+   conditions.** 175 of 272 employers remain unchecked, but the ledger now
+   records every attempt, so an interrupted pass costs nothing. Priority-1
+   (mandate-state metros) is down from 49 unchecked to 12.
+2. **Two platform leads, deliberately unclaimed.** Oracle Cloud HCM and
+   `careers.electric.coop`. Both could unlock many employers; both stay shut
+   because **their terms cannot be read from this environment**. See
+   `docs/limitations.md` §9b.
+3. **Audit round 5.** Round 1's open items have never been checked:
+   `skill_cloud` on company blurbs, `benefit_equity` on diversity language,
+   `degree_stem` where a field name describes the team, and whether
+   `soft_teamwork` is near-constant. Rounds 1–4 each found real errors.
+4. **Verify Avangrid's employer attribution.** Its board is the *parent*
+   Iberdrola's tenant. Defensible, not verified — check the collected rows are
+   Avangrid US roles before trusting the cluster.
 
+**BEA price parities are DONE** — previous handoffs listed this first under
+"not done". Run 23 fetched SARPP correctly: 51 states, vintage 2024, values
+straddling 100 from AR 86.9 to CA 110.7, past `is_plausible_rpp()`. The
+price-adjusted robustness check runs on 113 observations.
 
-### What the model actually says
+### 0.6 The bootstrap, and why it matters more than it sounds
 
-Three results a reader should know before opening the paper, because two of
-them are easy to get backwards.
+`docs/pre-registration.md` §6 has required a wild cluster bootstrap before any
+significance claim, below 30 clusters, since the day it was committed. It was
+cited in eight places across the code, paper and limitations and **never
+computed**. Implementing it withdrew most of the study's significance claims.
 
-**Seniority dominates, as pre-registered (H1).** `seniority_rank`
-+0.0679 per rung, p=0.0000 — the most precisely
-estimated coefficient in the model.
+Restricted Cameron–Gelbach–Miller, Rademacher weights drawn once per employer,
+**9,999 replications** — not 999, because at 999 `degree_required` returned
+0.049, 0.063 and 0.082 on three seeds, straddling the threshold its verdict is
+read from. It costs ~90s per run. `analyze.py` runs it unconditionally while
+the gate binds, because deciding to run it only when a p-value looks marginal
+would make the reported inference depend on the result.
 
-**The AI premium attaches to the SKILL, not the role label.**
-`skill_ml_ai` is +0.2364 (≈27%) at
-p=0.0001, while `family_ai_ml` — the role-family classification —
-is +0.0169 at p=0.8376, indistinguishable from zero.
-Postings that *mention* ML or AI skills pay more; roles *classified* as AI/ML
-do not differ. H4 was written against the role family and reads inconclusive,
-which understates what is there. **Do not restate this as "AI roles pay
-more".**
+Two related fixes: the interpretability gate tested `n_clusters < 20` where the
+pre-registration says **30**, so at 23 clusters the cluster warning never
+fired. And the simulation offered as evidence *for* clustering had **no
+within-cluster correlation** — the employer shock reached one posting per
+employer instead of all of them — so the 88–90% coverage figure quoted in three
+documents had been measured on data where clustering does not bind. Corrected
+figure: 92% coverage, and a cluster-level placebo rejected at 9.5% against a
+nominal 5%.
 
-**H5 is contradicted.** `degree_required` is -0.1143
-(≈-11%) at p=0.0027 —
-a stated degree requirement is associated with **lower** advertised pay,
-conditional on seniority. The paper reports it as contradicted and offers a
-compositional conjecture (the best-paid technical postings increasingly say
-"degree or equivalent experience"), labelled as a conjecture because testing it
-needs a variable this dataset lacks. It was predicted positive; that is why it
-is reported rather than quietly dropped.
-
-### Operational cautions — two things that cost this session time
+### Operational cautions
 
 **A collection run can hang, and it blocks the queue.** `collect.yml` uses a
 concurrency group, so a stuck run leaves the next one `pending` indefinitely.
-One Monday cron sat `in_progress` for ~115 minutes with no step transition
-against 41 minutes for an identical commit; cancelling it released the queued
-run within minutes. If nothing lands, check whether an older run is wedged
-before assuming your own run failed.
+If nothing lands, check whether an older run is wedged before assuming yours
+failed.
 
-**Do not watch for a data commit by comparing the remote to a fixed baseline.**
-It cannot tell your own pushes from the run's, and it produced two false
-"the run landed" reports here. Test **ancestry** instead: the run has committed
-when the remote tip is *not* an ancestor of local `HEAD`:
+**Do not watch for a data commit against a fixed baseline.** Test ancestry:
 
 ```bash
 git fetch -q origin <branch>
 git merge-base --is-ancestor FETCH_HEAD HEAD || echo "run committed"
 ```
 
-### The one rule to carry forward
+**The commit step has now lost work three times.** Most recently run 23:
+`--autostash` stashed the regenerated paper and deck, failed to reapply them,
+left both unmerged, and `git commit --amend` then failed with "Committing is
+not possible because you have unmerged files" — swallowed by `|| true`. The
+pre-rebuild commit was pushed instead: a `postings.csv` with 221 rows beside an
+`analysis.json` describing 137. **The rebuild itself had worked perfectly.**
+The step now discards regenerated deliverables before pulling, fails loudly on
+any unmerged path, drops `|| true` from the estimate, and runs the consistency
+suite before pushing. If a run's numbers look stale, suspect this first.
+
+### The rules to carry forward
 
 **Read the real output before believing it.** Every serious defect in this
-project was found that way and none by a test passing: a Warsaw role at
-$309,500 that had entered the US sample twice, a funnel whose own totals
-disagreed with its own CSV, four misclassified rows sitting in the top eleven
-by pay, a BEA deflator fetched in place of a price index, and an executive
-summary naming predictors that were not significant. `postings.csv` is small
-enough to read end to end; do that after every rebuild.
+project was found that way and none by a test passing. Audit round 4 — the
+largest data-quality defect found so far — came from reading the twelve
+highest-paid rows after a rebuild. `postings.csv` is small enough to read end
+to end; do that every time.
 
-**And validate a guard against the real artifact, never a reconstruction.**
-This project made that mistake twice. The sector gate was checked against a
-rebuilt version of the board it was meant to reject, scored clean, and shipped
-broken. Then the BEA parser was tested against a CSV written to look like
-BEA's, passed every case, and fetched the wrong table. A test built from
-something you wrote tests your imagination.
+**Validate a guard against the real artifact, never a reconstruction.** This
+project has now made that mistake three times: the sector gate, the BEA parser,
+and a placebo test of the bootstrap's per-cluster weighting that a deliberately
+sabotaged implementation passed. A test built from something you wrote tests
+your imagination.
+
+**Measure the claim before you ship the comment.** Twice in one session I wrote
+a justification that measurement then contradicted — that promoting `External`
+unlocked employers (it unlocks zero of 252), and that a placebo test
+distinguished per-cluster from per-observation weights (it does not, at any
+cluster count this study has). Both comments now say what is true.
+
+**A caveat that cannot stop applying is a claim.** The paper and `analysis.json`
+both asserted the disclosure gap "is sensitive to Virginia" unconditionally.
+True at a 21-point spread, false at 3. Both are computed now.
 
 ---
 
-Written 2026-09-21. Read this first; it is the fastest path to being useful.
+Written 2026-09-21, substantially revised 2026-09-22. Read this first.
 
 **Repo:** `hendeal-cyber/Modern-Labor-Market-Data-Submission`
 **Branch:** `claude/wonderful-tesla-53lgo4` (all work lives here)
@@ -139,127 +202,86 @@ Written 2026-09-21. Read this first; it is the fastest path to being useful.
 
 ---
 
-## 0.5 THE NEXT TASK — finish the token verification pass
+## 0.5 THE NEXT TASK — continue the verification pass from the ledger
 
-**This is the single highest-value thing left, and it is the owner's explicit
-instruction: verify every remaining source until each is either confirmed or
-denied.** It is also the only thing that fixes the two failing pre-registered
-conditions, because those are cluster problems and only employers fix them.
+**The ledger now exists**, which is the main thing that changed. Earlier
+versions of this section told you to build it first; that is done.
+`config/token-verification.yaml` keys all 272 employers to a status, a date,
+and either an evidence URL or a reason. **51 confirmed,
+46 denied, 175 unchecked.** Nothing gets re-chased,
+and a usage-limit stop costs nothing.
 
-### Why this and nothing else
+Two scripts maintain it. `scripts/make_token_ledger.py` initialises missing
+rows and refreshes derived fields but **never overwrites a status, date,
+evidence or reason** — a generator that could silently revert a decision would
+be worse than none. `scripts/ledger_set.py` refuses a confirmation without an
+evidence URL or a denial without a reason. `--report` prints the worklist in
+priority order.
 
-More postings from boards already resolving makes concentration **worse**.
-Reading the manifest shows the ceiling plainly: **39 boards resolve but only
-23 contribute a disclosed-pay observation**, and the gap is not a bug.
+### Work it in this order
 
-- **Collect but nothing in scope** — T5 Data Centers 90 postings → 0, Clearway
-  50 → 0, Silicon Ranch, Origis, Tract. Construction and facilities work. The
-  role screen is correct to drop them.
-- **In scope but no pay** — Vistra 8 → 0, CyrusOne 5 → 0, PJM, Duke Indiana,
-  Wabash Valley. All non-mandate states. They already count in the disclosure
-  model's denominator.
+Priority is by **mandate state, not company size**: a board only becomes a
+*cluster* if its postings disclose pay, and disclosure is near-universal in
+mandate states and about 39% elsewhere.
 
-So: **230 unresolved employers**, by industry —
-utility 59, cooperative 31, retailer 30, data_center 23, developer 23, energy_analytics 22, consulting 19, grid_vendor 15, grid_operator 8.
+**Priority 1 — mandate-state metros (12 left):**
+AEP Energy, Connexus Energy, Dakota Electric Association, Genie Energy, Nicor Gas (Southern Company Gas), Opus One Solutions, PowerHouse Data Centers, Santanna Energy Services, Soltage, WGL Energy, Washington Gas, Wright-Hennepin Cooperative Electric.
 
-### The method, including what does NOT work
+**Priority 2 — energy-analytics and consulting firms (12 left):**
+1898 and Co, Aurora Energy Research, Daymark Energy Advisors, Exponent, HDR, Kimley-Horn, London Economics International, POWER Engineers, Quanta Services, Stantec, Ulteig, WSP. These post the analyst roles the taxonomy admits and
+tend to sit on Greenhouse, Lever or Ashby, which resolve reliably.
 
-- **`WebSearch` works. `WebFetch` does not** — it is blocked for every ATS host
-  *and* for ordinary corporate careers pages (`sandc.com` was refused). So a
-  token is confirmed by finding a **live job URL in search results**, never by
+Then `3_known_metro` (7) and `4_unlocated`
+(144), which is most of what remains and the thinnest.
+
+### What the pass has taught, concretely
+
+Hit rate was roughly **1 confirmation per 4 employers** across ~40 checked. The
+pattern in the confirmations is worth more than the count:
+
+- **Two of three utilities hide behind the PARENT company's Workday tenant.**
+  Ameren Illinois is `ameren`, not `amerenillinois`. Avangrid is `iberdrola`.
+  No slug derivation from the subsidiary name reaches either. When a utility is
+  a subsidiary, **try the parent's name as the tenant.**
+- **Workday site names matter and are case-sensitive.** `External` is used by
+  Xcel, NRECA and Ameren; `ExternalSite` by Eversource. Both are now probed.
+  A tenant using an unprobed site name reads as *having no board at all*, which
+  is how NiSource and Eversource were missed.
+- **Tokens carry suffixes.** `gridmaticinc`, `arcadiacareers`, `thebrattlegroup`,
+  `octoenergy`.
+- **Query shape:** `"<company> careers job openings greenhouse board apply
+  <city>"`. **Read the result LINKS, not the summary prose** — the summary
+  frequently says nothing was found while the links contain the board URL.
+- **`WebSearch` works; `WebFetch` is blocked** for ATS hosts *and* ordinary
+  corporate careers pages. Confirm from a live job URL in the results, never by
   opening the careers page.
-- **Query shape matters a lot.** What worked:
-  `"<company> careers job openings greenhouse board apply <city>"` — the engine
-  surfaces `job-boards.greenhouse.io/<token>/jobs/<id>` in the results list.
-  What failed: `boards.greenhouse.io OR jobs.lever.co OR ...` boolean forms, and
-  quoting the host directly. Roughly **1 in 2** with the good shape.
-- **Confirm from the URL, not the prose.** The summary text often says "no
-  information found" while the results list contains the board URL. Read the
-  links.
 
-### Prioritise by mandate state, not by company size
+### The denials are a finding, not a failure
 
-A new board only becomes a **cluster** if its postings disclose pay. Disclosure
-is near-universal in mandate states and about a quarter elsewhere, so an
-employer headquartered in CA, CO, CT, DC, HI, IL, MD, MA, MN, NV, NJ, NY, RI,
-VT, VA or WA is worth several times one that is not. The full table with
-effective dates is `pay_mandate_states` in `config/scope.yaml`.
-
-Within that, energy-analytics firms and economics consultancies beat developers
-and data-centre builders: they post analyst roles the taxonomy admits, and they
-tend to sit on Greenhouse, Lever or Ashby, which resolve reliably and return
-full description text plus structured compensation.
-
-### Build a ledger first
-
-I was about to do this when the session ended, and it is the right first step.
-Nothing durable currently records verification *attempts* — only outcomes — so
-an interrupted pass gets re-chased. Create `config/token-verification.yaml`
-keyed by employer with `status` (`confirmed` / `denied` / `unchecked`), the date,
-the evidence URL for a confirmation, and the reason for a denial. Then work it
-in priority order and commit as you go, so a usage-limit stop costs nothing.
-
-### Already confirmed — do not re-verify (27 employers)
-
-Hand-verified tokens carry `verified: true` and a `careers_url` in
-`config/employers.yaml`. The four from the last pass, all wrong in ways no slug
-derivation reaches:
-
-| Employer | Token | Was |
-|---|---|---|
-| Arcadia | greenhouse `arcadiacareers` | `arcadiapower`, `arcadia` |
-| The Brattle Group | greenhouse `thebrattlegroup` | `brattle` |
-| New York ISO | greenhouse `nyiso` | `newyorkiso` + 2 variants |
-| ERCOT | workday `ercot` / `ercot_careers` | site was `careers` |
-
-### Already denied — do not re-chase (9 marked `ats_unidentified`)
-
-Analysis Group, Concentric Energy Advisors, Enverus, Hoosier Energy, ICF, ISO New England, NERA Economic Consulting, Sargent and Lundy, Uplight.
-
-Notable: **Concentric Energy Advisors** runs its own portal, and its
-Marlborough MA Energy Analyst posts **$93,000 disclosed** — an exact role and
-mandate-state fit. Genuinely unreachable. **NERA** routes to parent company
-Marsh, where employer attribution would be wrong and the sector gate would
-rightly reject it. **ICF** is Workday behind the `careers.icf.com` vanity
-domain with the tenant not exposed.
-
-Separately blocked with `blocked_reason` (7): Citizens Energy Group, ComEd, Constellation Energy, Exelon, Peoples Gas (WEC Energy Group), TierPoint, Tri-State Generation and Transmission —
-iCIMS and SuccessFactors, verified closed by reading the terms, not assumed.
-See §17 of `docs/limitations.md` before revisiting.
-
-### One open anomaly
-
-**Ascend Analytics is correctly verified and returns nothing.** 16 other
-Greenhouse boards resolved on the same run, so it is not an API problem. Likely
-an empty board, or its only open req is the evergreen "General Interest"
-posting the API does not list. If it stays empty across several runs, look
-closer rather than changing the token.
-
-### Background, if you want it
-
-`docs/decision-log.md` is the full history of how the study reached this state,
-copied out of the authoring session's plan file so it survives. It is
-historical — the early sections describe a scope that measured zero usable
-observations — but it records what each decision was worth when it was made,
-and every failure with how it was found. Not required reading to do the
-verification pass.
+They cluster by **ATS platform**, and the unreachable platforms map onto *kinds
+of employer* — municipal utilities on NEOGOV, cooperatives on
+`careers.electric.coop`, half the large IOUs on iCIMS or SuccessFactors. That
+is written up as `docs/limitations.md` §9b and belongs in the paper's
+discussion of coverage, because it is a **selection** issue, not a logistics
+one. Keep recording what you find instead of just that you failed.
 
 ### Honest expectation
 
-The last pass converted 4 tokens into roughly 3 expected clusters. Reaching 30
-from 23 needs on the order of **10 more confirmed boards in mandate
-states**, which at a 1-in-2 search hit rate and 1-2 searches per employer is a
-few hundred searches. It is worth doing and it will not finish in one sitting —
-which is exactly why the ledger comes first.
+Reaching 30 clusters from 25 needs perhaps 5 more confirmed boards in mandate
+states, and roughly 20 employers checked per confirmation that converts. That
+is achievable from priority 1 and 2 alone. **The 25%-concentration condition is
+harder and may not be reachable** — Invenergy supplies 39 observations, so
+displacing it to under 25% needs the sample past ~156 usable. Report both
+either way: `docs/pre-registration.md` §7 requires the three numbers together.
 
-### A collection run was in flight when this was written
+### Do NOT
 
-Dispatched on the four new tokens and **had not committed yet**. Check it
-before dispatching another: `git fetch` and see whether the remote is ahead. If
-it landed, rebuild (`build_dataset.py`, `analyze.py`, then the `scripts/make_*`
-generators) and **read the pay extremes before believing the numbers** — a
-Warsaw role at $309,500 entered the US sample on exactly this kind of frame
-expansion.
+- Re-verify anything the ledger marks `confirmed` or `denied`.
+- Automate Oracle Cloud HCM or `careers.electric.coop` without reading their
+  terms. Both are tempting and both are shut for the reason iCIMS is.
+- Remove the interpretability block, or lift a bootstrap verdict, to make the
+  deliverable look finished. It comes down when N, clusters **and**
+  largest-employer share all pass.
 
 ---
 
@@ -363,13 +385,34 @@ content.
 | The **executive summary** named predictors that were not significant | Claimed "seniority, required experience and role family" predict pay; required experience is p=0.57 and AI/ML role family p=0.67. True of an earlier specification, drifted when the model changed, in the section most readers read. Now **generated from the fitted coefficients** |
 | `yrs_exp_stated` was in the fitted model but **absent from the codebook** | A reader could not look up the variable doing the imputation work — and it is load-bearing: unstated postings are imputed to zero, so without the indicator that imputation is indistinguishable from a genuine "no experience required" |
 
+Added 2026-09-22. The first is the largest data-quality defect found in the
+project; the rest are the same character as everything above — valid output,
+wrong content.
+
+| Bug | Consequence |
+|---|---|
+| **A multi-sector consultancy was 22% of the sample and three rows of it were energy** | Guidehouse contributed 65 in-scope rows. Of its 74 postings, **three** are energy work; the rest are public health ("Epidemiologist Data Scientist"), national security, federal law enforcement, fraud and generic IT ("ServiceNow Business Analyst", "Palantir Platform Engineer"). Charles River Associates the same at smaller scale. **`sector_confidence()` could not catch it — it judges a BOARD, and these boards do discuss energy, so they pass honestly.** Fixed by inverting the burden: `requires_sector_evidence` makes the POSTING prove it. N 154 → 120 |
+| The **pre-registered wild cluster bootstrap was never computed** | Required in eight places, implemented in none. **Seven of nine coefficients significant under clustered SEs do not survive it.** The AI-premium finding and the H5 contradiction both went with it |
+| The interpretability gate tested `n_clusters < 20`; the pre-registration says **30** | At the 23 clusters realized the cluster warning never fired, and had obs/regressor risen above 10 the whole block would have vanished. Lenient in exactly the direction that flatters the study |
+| **`distinct_employers` counted the wrong sample** | Computed over all in-scope postings, then printed beside the estimation N. `results.md` and the slide deck read "137 postings with disclosed pay from 30 employers" when the cluster count was 23 — and **30 is exactly the pre-registered target**, so a failing condition displayed as met |
+| The simulation justifying clustered SEs had **no within-cluster correlation** | `rng.normal(0, 0.04) if i < len(employers) else 0` gave each employer's shock to **one** of its ~50 postings while the comment claimed it "makes clustered SEs the correct choice". So the 88–90% coverage figure quoted in three documents was measured where clustering does not bind. It is also why a placebo test of the bootstrap's per-cluster weighting **passed under deliberate sabotage** |
+| `feeder` was an ambiguous `STRONG_TERM` | Matched "feeder systems (procurement, travel, payroll, asset, grants)" in a federal finance posting — the same class as `pipeline` and `load` before it. Qualified to `distribution feeder`. Found by sweeping every snapshot for a strong term firing where no plain sector word appears |
+| Screening flags were stamped at **collection** time | `diversified` / `off_umbrella` were written into each record by `run.py`, so a guard added today could not be applied to snapshots already committed. Screening is a decision about the corpus, not a property of the fetch; read from config at build time now |
+| The commit step **discarded a correct rebuild** | `--autostash` left `paper/paper.md` and `presentation.pptx` unmerged, `git commit --amend` failed with "you have unmerged files", and `\|\| true` swallowed it. Run 23 pushed a CSV with 221 rows beside an `analysis.json` describing 137. Third time this step has lost work |
+| Two **caveats that could not stop applying** | The paper and `analysis.json` both asserted the disclosure gap "is sensitive to Virginia" and "partial compliance with a three-month-old statute" unconditionally — true at a 21-point spread, false at 3. Computed from the measured spread now |
+| `remote_eligible` was identified off the rows with **no resolvable region** | Nationwide-remote postings have all three census dummies at zero, so they sit in the Midwest reference *without being Midwest* — and they are precisely the remote-eligible ones. Significant at p=0.026 in full sample, p=0.333 without them. Now a reported robustness check |
+
 ## 5. Architecture
 
 ```
 config/scope.yaml       metros, geography.national, role taxonomy, seniority
                         ranks, pay_mandate_states (16 jurisdictions + dates)
 config/employers.yaml   272 employers, industry, ATS tokens, diversified
-                        guards, rejected_tokens, ats_unidentified markers
+                        guards, requires_sector_evidence (multi-sector
+                        consultancies), rejected_tokens, ats_unidentified
+config/token-verification.yaml
+                        every employer: confirmed / denied / unchecked, with a
+                        date and either an evidence URL or a reason
 config/regressors.yaml  28 coded regressors — patterns live here, not in code
 src/lmstudy/
   netclient.py          PoliteSession: get_json / get_text (feeds) /
@@ -393,9 +436,13 @@ src/lmstudy/
                         asserts its own totals agree before writing
   audit.py              stratified sampling + precision/recall/kappa
   analyze.py            four pre-registered models, employer-clustered SE,
-                        VIF, power, selection, disclosure robustness cuts
+                        VIF, power, selection, disclosure robustness cuts,
+                        wild_cluster_bootstrap() (9,999 reps, run whenever
+                        clusters < CLUSTER_GATE=30), region_robustness
 scripts/                make_codebook / make_figures / make_paper /
-                        make_slides.js / qa_slides / scope_probe / fetch_rpp
+                        make_exec_summary / make_slides.js / qa_slides /
+                        scope_probe / fetch_rpp /
+                        make_token_ledger + ledger_set (verification ledger)
 tests/run_all.py        every suite; no network needed. Suites: pay, geo,
                         filters, regressors, pipeline, audit, analyze, feeds,
                         rpp, consistency
@@ -694,6 +741,37 @@ engineering, and both appear here), so it is documented rather than forced. And
 five Invenergy rows that looked like duplicates are distinct requisitions
 (R11187-1, R11315-2, R10740-1, R11186, R10973-1) — dedupe is working and my
 first reading was wrong.
+
+### Audit round 4 audited the umbrella itself, and it cost the most
+
+Rounds 1–3 audited the coding rules. Nobody had audited whether every admitted
+observation is actually energy, utility or data-center work — the owner's one
+non-negotiable scope constraint. Round 4 did, on the run-23 sample.
+
+**Found by reading the pay extremes after a rebuild**, which is the standing
+rule: two titles in the top twelve were "Cloud and Health AI FinOps and
+Technology Value Optimization" and "AWS Lakehouse Data Engineer".
+
+The fix inverted the burden for multi-sector employers rather than enumerating
+their off-umbrella practices, because enumeration is the "pattern matching
+confidently and wrongly" failure this project keeps finding. **Three versions
+of the test were measured against the committed snapshots and two were thrown
+away** — each failed on real rows, not in principle:
+
+| Test | Why it was rejected |
+|---|---|
+| One `STRONG_TERM` anywhere | `feeder` matching "feeder systems (procurement, travel, payroll)"; "NERC-CIP" listed beside NIST, HIPAA and SOC2 in generic cyber boilerplate |
+| Three distinct core sector words | The firm's own boilerplate recites its practice areas and one is energy — **round 1's failure mode exactly** |
+| Raw counts | "Data Analyst/Power Platform" says "power" eleven times and is a Microsoft product role |
+| **Sector word in the TITLE** (adopted) | A multi-sector consultancy states the practice in the title. 3 of 74 at Guidehouse, 11 at CRA (every one energy-labelled), 3 at Brattle |
+
+Deliberately **not** applied to pure-play energy firms — E3's "Analyst" is
+energy work by virtue of the firm, and the test would wrongly drop it.
+
+N fell 154 → 120 and the largest employer's share **rose** 25.3% → 32.5%. Both
+are right: the off-umbrella rows had been padding the denominator, so 32.5% is
+the honest figure and a failing pre-registered condition moved further from
+passing. A floor met by counting public-health consulting is not worth meeting.
 
 ### Still open from round 1
 
