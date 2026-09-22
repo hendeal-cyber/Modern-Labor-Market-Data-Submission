@@ -157,13 +157,23 @@ def main() -> int:
             names = ", ".join(pretty(n) for n in survivors if n in fragile)
             A(f"**{names} does not survive** re-estimating without the "
               f"{rr.get('n_dropped')} nationwide-remote")
-            A("postings, which have no resolvable state and therefore sit in "
-              "the Midwest")
-            A("reference category of the region dummies. Those same postings "
-              "are the")
-            A("remote-eligible ones, so the coefficient was partly identified "
-              "off them. Treat it")
-            A("as inconclusive.")
+            A("postings, which resolve to no state and therefore sit in the "
+              "Midwest reference")
+            A("category of the region dummies.")
+            # The reason a given coefficient is identified off those rows is
+            # specific to the coefficient. This paragraph used to give the
+            # remote-eligibility explanation whichever variable turned out to
+            # be fragile, which was wrong the moment a different one did.
+            if "remote_eligible" in fragile:
+                A("Those same postings are the remote-eligible ones, so that "
+                  "coefficient was")
+                A("identified in part off exactly the rows the check removes.")
+            if "mandate_state" in fragile:
+                A("A posting with no resolvable state also has no determinable "
+                  "mandate status and")
+                A("is coded as uncovered, so dropping those rows changes the "
+                  "contrast directly.")
+            A("Treat it as inconclusive.")
             A("")
         A("Seniority is the one result the study would defend without "
           "qualification: it is")

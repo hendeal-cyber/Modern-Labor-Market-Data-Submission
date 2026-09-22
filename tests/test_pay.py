@@ -76,10 +76,70 @@ def run():
         failures.append(f"[structured precedence] {both}")
 
     total = len(CASES) + 4
+    glued = check_glued_digits_and_cents()
+    failures += glued
+    total += 9   # the cases inside check_glued_digits_and_cents
     print(f"{total - len(failures)}/{total} pay tests passed")
     for f in failures:
         print("  FAIL", f)
     return len(failures)
+
+
+def check_glued_digits_and_cents():
+    """Numbers glued to letters or digits are not money.
+
+    Two production failures, both found by reading the pay extremes after a
+    rebuild, both from the same missing left boundary in the money token.
+
+    1. AEP Energy writes "Compensation Grade:  SP20-010 Compensation Range:
+       $116,255.00 - $177,503.00". The old pattern read "SP20-010" as the range
+       20 to 010; both are under 1000, which the unit inference calls hourly,
+       so six postings were annualized to $20,800-$41,600 with their true range
+       in the very next clause. A "NERC Compliance Specialist Lead - Principal"
+       was recorded at $31,200 against a true midpoint near $147,000.
+
+    2. Worse, because it was silent: when the pay WINDOW starts mid-figure, the
+       old pattern matched the CENTS of the first amount as the low bound --
+       "00 - $170,000.00" parsed as (0, 170000) -- so the midpoint came out at
+       exactly half the true high. That halved advertised pay on twelve
+       Invenergy postings, and Invenergy is the largest employer in the study
+       at 27% of the sample. $118,000-$170,000 was recorded as $85,000.
+
+    Neither crashed, both produced confident wrong numbers, and the second
+    moved the headline regressor.
+    """
+    from lmstudy.pay import from_text
+    fails = []
+    cases = [
+        ("Compensation Grade:  SP20-010 Compensation Range:  $116,255.00 - $177,503.00",
+         116255.0, 177503.0),
+        ("Compensation Grade:  SP20-009 Compensation Range:  $116,255.00 - $151,132.50",
+         116255.0, 151132.5),
+        ("Base Pay  $118,000.00 - $170,000.00 USD Annual Bonus: 25% - 40%",
+         118000.0, 170000.0),
+        ("Base Pay  $100,000.00 - $120,000.00 USD Annual Bonus: 20% - 30%",
+         100000.0, 120000.0),
+        ("The estimated pay range for this role, if based in Colorado, is:  "
+         "$88,963.50 - 136,067.00", 88963.5, 136067.0),
+    ]
+    for text, lo, hi in cases:
+        r = from_text(text)
+        got = (r.pay_min, r.pay_max) if r else (None, None)
+        if got[0] is None or abs(got[0] - lo) > 0.01 or abs((got[1] or 0) - hi) > 0.01:
+            fails.append(f"pay parse {text[:44]!r}: got {got}, want ({lo}, {hi})")
+
+    r = from_text("00 - $170,000.00 USD")
+    if r and r.pay_min == 0:
+        fails.append("cents matched as a zero low bound: the halving bug is back")
+
+    for junk in ("Job Posting End Date 09-24-2026 Please note",
+                 "Requisition 20-006 apply today",
+                 "Grade SP20-010 applies"):
+        r = from_text(junk)
+        if r and r.pay_min:
+            fails.append(f"{junk[:34]!r} parsed as pay: {r.pay_min}-{r.pay_max}")
+    return fails
+
 
 if __name__ == "__main__":
     raise SystemExit(1 if run() else 0)

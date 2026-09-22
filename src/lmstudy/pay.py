@@ -20,7 +20,26 @@ MAX_PLAUSIBLE_ANNUAL = 400_000
 MAX_PLAUSIBLE_HOURLY = 300.0
 
 # Money token: $85,000 / $85,000.00 / 85,000 / $85k / 42.50
-_MONEY = r"\$?\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)\s?(k\b|K\b)?"
+#
+# The leading lookbehind is load-bearing. Without it the bare-digits branch
+# matched a number glued to preceding letters or digits, and AEP Energy's
+# postings say:
+#
+#     Compensation Grade:  SP20-010   Compensation Range:  $116,255.00 - $177,503.00
+#
+# so "SP20-010" parsed as the range 20 to 010. Both are under 1000, which the
+# unit inference reads as hourly, so six postings were annualized to
+# $20,800-$41,600 while their real range sat in the very next clause. A
+# "NERC Compliance Specialist Lead - Principal" was recorded at $31,200
+# against a true midpoint near $147,000 -- wrong by 4.7x, and low enough to
+# drag every coefficient it touched.
+#
+# A leading zero is also disqualifying: no advertised pay figure is written
+# "010", but grade codes and dates are full of them.
+_NOT_GLUED = r"(?<![A-Za-z0-9])"
+_MONEY = (_NOT_GLUED +
+          r"\$?\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|[1-9]\d*(?:\.\d{1,2})?)"
+          r"\s?(k\b|K\b)?")
 _DASH = r"\s*(?:-|–|—|to|through|up to)\s*"
 
 RANGE_RE = re.compile(_MONEY + _DASH + _MONEY, re.IGNORECASE)
