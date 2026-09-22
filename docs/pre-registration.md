@@ -422,3 +422,37 @@ withdrawn by the region check. `mandate_state`, `region_south` and
 `region_west` are not significant. The unaudited run 26 had shown five
 survivors. Two of them, `region_west` and `mandate_state`, were artifacts of
 defect 1.
+
+### 2026-09-22 — audit round 7: same-day snapshots merge, and one URL is one requisition
+
+**What changed.** Two data-handling rules, both found by reading collection
+run 27's output (`docs/audit-log.md`, round 7).
+
+1. A second collection run on the same date now **merges** with that date's
+   existing snapshot file instead of overwriting it. The later copy of a
+   posting wins. Run 27 had discarded run 26's record of an Alliant posting
+   that closed between the two runs. The 39 records it dropped were restored
+   from run 26's committed files by the same merge.
+2. Rows that share an **employer and job URL** are one requisition. The
+   latest version is kept, with the earliest `first_seen_run`. An edited
+   title or a reformatted location string had given one job two dedupe keys.
+
+**Why.** Both restore what §2 already fixes. A collected posting belongs to
+the stock "open at collection", and a requisition is one observation. Neither
+rule changes which postings are eligible.
+
+**Effect, stated whichever way it goes.** Almost none on the estimates. The
+unaudited run-27 data and the corrected data both have N = 220, 34 clusters,
+Invenergy 20.0%. The two changes offset exactly: one observation restored, one
+duplicate removed. The disclosure gap moves 44.1 → 44.7pp. Bootstrap p for
+`skill_cloud` moves 0.029 → 0.031, and for `region_northeast` 0.014 → 0.010.
+
+**What run 27 did to the verdicts, recorded here because it flatters.** With
+six added observations, `skill_cloud` and `region_northeast` pass both the
+bootstrap and the region check. At N = 214 the region check withdrew both.
+They crossed the 5% line on six rows. The deliverables report them as
+surviving, because that is what the pre-specified procedure returns. The
+audit log reports the sensitivity checks, and this note records that the
+verdict flipped on a handful of observations, so a reader can weigh it
+accordingly. `seniority_rank` is the only coefficient that has survived every
+version of the data.

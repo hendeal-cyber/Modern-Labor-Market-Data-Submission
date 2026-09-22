@@ -652,6 +652,89 @@ data. **Both were artifacts.** H1 is the only finding standing. The disclosure
 contrast (H2) is unaffected in sign and size. It is associational, not
 causal: one cross-section.
 
+
+### Round 7 — run 27, the first live run of the description cache (2026-09-22)
+
+**Scope.** Collection run 27 (Actions 35781235535, data commit `c4b6337`) was
+dispatched with `no_slugs: true` to test the detail cache against live
+boards. The cache statistics were read, disclosure was compared across
+snapshots, and every added, removed and changed row was read against the
+audited round-6 dataset, matched on `url`.
+
+**The cache worked.** `manifest["detail_cache"]`: 733 cached records, **236
+reused, 373 fetched, 0 stale, 0 edited**. Every one of the 373 misses was a
+posting absent from the cache. Every posting the cache held inside its
+window was reused. Reuse was 39% of detail fetches, not "most", for a reason
+predicted before the run: run 27 had the same date as run 26, and the loader
+skips the in-progress date's directory, so everything first seen that day
+was refetched. A next-day run caches the previous day. **Disclosure did not
+drift**: the 166 reused postings kept their disclosure status, and none of
+the 76 postings refetched and also seen on 09-21 changed it. Over the 09-21
+to 09-22 snapshots, 247 Workday postings refetched showed no change either.
+The daily cron stays.
+
+**Seven rows were added, all read.** AEP ×4 (Infrastructure Engineer Lead –
+Cloud AI; Supply Chain Business Analyst; Regulatory Consultant – Principal;
+DSO Real-Time Reliability Coordinator, admitted by round 6's "real-time
+reliability" include), Avangrid Program Manager – Clean Energy Policy (CT, so
+correctly uncovered until 2026-10-01), PJM (Sr./Lead) Compliance Analyst (II),
+and Xcel Transmission Planning Supervisor. All are in the taxonomy, with
+coherent pay. None came from the round-6 screens failing.
+
+**Defect 1 — a second run on the same date overwrote the first run's
+files.** Snapshots are one directory per date and one file per board, so
+run 27 replaced run 26's 09-22 files. 39 records vanished across 17 files.
+Most were titles round 6 now excludes, which run 27's pre-screen correctly
+no longer fetched. One was a genuine loss: Alliant's "Engineer I - Grid
+Planning" ($66,000–$85,000, disclosed). It closed between 15:03 and 20:35
+(the board dropped from 46 to 45 postings), and its only record was
+overwritten. `collect/run.py` now merges with an earlier same-day file
+(`merge_same_day()`; this run's copy of a posting wins). The 39 records were
+restored from run 26's committed files (`348d8a7`) by that same function.
+
+**Defect 2 — an edited requisition was counted twice.** The dedupe key is
+employer + title + location. Cypress Creek retitled "Director, Interconnection
+Execution" ($200,000–$230,000) to "Associate Director / Director, ..."
+($180,000–$230,000) on the same Greenhouse job id, and Origis reformatted a
+location string on an unchanged posting. Each edit made a second key, so run
+27 held two duplicate URLs, one of them usable. `collapse_same_url()` now
+keeps one row per employer + URL: the latest version, with the earliest
+`first_seen_run`. Before run 27 no two of 290 rows shared a URL, and Nexamp's
+four-city openings carry four different URLs, so the rule does not touch
+genuine multi-site postings. The pipeline fixture had given every record the
+same placeholder URL; it now uses one per job id, as real boards do.
+
+**Also found while regenerating.** The paper's conclusion carried three
+sentences that did not depend on the estimates. It said "the prediction that
+a stated degree requirement would raise pay was wrong", but the estimate is
++0.005, the predicted sign, at p 0.90. It said "too few employers contribute
+and one contributes too much" after both conditions had passed. And it said
+the disclosure gap is "too large to be explained by employer composition
+alone", a causal claim. All three are now computed or strictly associational.
+The paper said the scope widened "three times"; limitations 10 documents four.
+
+**Result.**
+
+| | Round 6 (audited, N=214) | Run 27, unaudited | Run 27, audited |
+|---|---|---|---|
+| Usable N | 214 | 220 | **220** (Alliant restored, Cypress duplicate removed) |
+| Clusters | 34 | 34 | **34** |
+| Largest employer | Invenergy 20.6% | 20.0% | **Invenergy 20.0%** |
+| Disclosure gap | 46.3pp | 44.1pp | **44.7pp** (93.9% of 165 vs 49.2% of 132) |
+
+**The verdicts moved, and the move is fragility, not a finding.**
+`skill_cloud` (bootstrap p 0.046 → 0.031; region check 0.058 → 0.038) and
+`region_northeast` (0.032 → 0.010; 0.057 → 0.025) now pass both hurdles. Six
+added observations took two verdicts across 0.05. The two fixes above are not
+why: the unaudited run-27 analysis already showed it (0.029 / 0.034 and
+0.014 / 0.034). `skill_cloud` was checked for being driven by one row.
+Without the new AEP "Cloud AI" row, p is 0.037. With the one known
+miscode (Vantage's "AWS", the Alliance for Water Stewardship) set to 0, p is
+0.025. Both changes together give 0.030. The miscode was **not** corrected in
+the coding rule, because correcting it would strengthen the finding it sits
+in. `seniority_rank` (+0.119, p 0.0001 / 0.0005) is unchanged.
+`mandate_state` stays insignificant (−0.029, p 0.30).
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

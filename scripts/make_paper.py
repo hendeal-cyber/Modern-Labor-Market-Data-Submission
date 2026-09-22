@@ -376,7 +376,8 @@ def main() -> int:
         _rounds = len(_re.findall(r"^### Round \d+", _log.read_text(), _re.M)) \
             if _log.exists() else 0
         _word = {1: "One round", 2: "Two rounds", 3: "Three rounds",
-                 4: "Four rounds", 5: "Five rounds", 6: "Six rounds"}.get(_rounds,
+                 4: "Four rounds", 5: "Five rounds", 6: "Six rounds",
+                 7: "Seven rounds"}.get(_rounds,
                                                          f"{_rounds} rounds")
         A(f"{_word} of hand-auditing are recorded in `docs/audit-log.md`.")
         A("Each read real collected titles rather than a synthetic sample, and")
@@ -393,6 +394,8 @@ def main() -> int:
             A("| 5 | The concept role screen and dedupe | All 40 titles the new matcher admitted were read: 4 false positives caught before the rebuild. One nested-location repost found in 1,940 records and collapsed |")
         if _rounds >= 6:
             A("| 6 | Run 26: all 115 added rows, then the whole corpus | The pay parser was still halving 17 Invenergy rows and recording 9 NYISO rows at their floor. Every usable \"Hitachi Energy\" row belonged to a sister company. Connecticut was coded as a mandate state before its law took effect. Fixing them withdrew `mandate_state` and `region_west`, which had passed the bootstrap on the unaudited data |")
+        if _rounds >= 7:
+            A("| 7 | Run 27, the first live run of the description cache | The cache reused every posting it held within its window, with no disclosure drift. A second run on the same date had overwritten the first run's files, dropping a closed posting, and an edited requisition was counted twice. Both fixed at the cause |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")
@@ -764,7 +767,9 @@ def main() -> int:
     A("   significance claim in section 5 is therefore read off the wild cluster")
     A("   bootstrap, under which seven of the nine coefficients that clustered")
     A("   errors called significant become inconclusive.")
-    A("6. The scope **widened three times in response to the data**. The")
+    # Four, per docs/limitations.md section 10: the pre-registration's
+    # "three times" was written before the national rescope, the fourth.
+    A("6. The scope **widened four times in response to the data**. The")
     A("   specification was pre-registered before the national sample was")
     A("   collected; amendments after that point are dated in")
     A("   `docs/pre-registration.md` section 8.")
@@ -783,13 +788,34 @@ def main() -> int:
             A("the level of pay but about whether pay is named at all. In states")
             A(f"requiring a pay scale in the posting, {m_share:.0%} of postings")
             A(f"state one. Where no such requirement exists, {n_share:.0%} do. The")
-            A("gap is too large to be explained by employer composition alone,")
-            A("though composition cannot be ruled out with a single cross-section.")
+            # Strictly associational. This sentence said the gap was "too
+            # large to be explained by employer composition alone", which is
+            # a causal claim a single cross-section cannot support (round 7).
+            A("contrast is associational: the employers operating in mandate")
+            A("states may differ in ways that produce some or all of it, and a")
+            A("single cross-section cannot separate that from the law.")
             A("")
         A("Within the postings that do disclose, seniority is the dominant")
         A("predictor and the most precisely estimated, which is what the")
-        A("pre-registration expected. The prediction that a stated degree")
-        A("requirement would raise pay was wrong, and is reported as wrong.")
+        A("pre-registration expected.")
+        # Read from the estimates. This said the degree prediction "was
+        # wrong, and is reported as wrong" whatever the data showed; on the
+        # round-6 data the estimate has the predicted sign and is simply
+        # indistinguishable from zero (audit round 7).
+        _deg = ((analysis.get("models") or {}).get("core", {})
+                .get("coefficients", {}).get("degree_required"))
+        _deg_p = (bootstrap_p(analysis) or {}).get("degree_required")
+        if _deg and _deg_p is not None:
+            if _deg_p < 0.05:
+                A("A stated degree requirement "
+                  + ("raises" if _deg["coef"] > 0 else "lowers")
+                  + " advertised pay, " + ("as" if _deg["coef"] > 0 else "against what")
+                  + " the pre-registration predicted.")
+            else:
+                A("The prediction that a stated degree requirement would raise pay")
+                A(f"is not supported: the estimate is {_deg['coef']:+.3f} "
+                  f"({'the predicted sign' if _deg['coef'] > 0 else 'the wrong sign'}),")
+                A(f"indistinguishable from zero at bootstrap p = {_deg_p:.2f}.")
         A("")
         A("The result a reader should treat most cautiously is any coefficient in")
         A("the pay models, because that sample is selected on the dependent")
@@ -797,10 +823,21 @@ def main() -> int:
         A("treat most seriously is the disclosure contrast, because it is measured")
         A("on the full sample and does not depend on pay being observed.")
         A("")
+        # Computed against the pre-registered conditions. This said "too few
+        # employers contribute and one contributes too many" after both
+        # conditions had passed (audit round 7).
+        _share = analysis.get("largest_employer_share") or 0
         A("What would most improve this study is **more employers, not more")
-        A("postings**. The floor on observations is met; the constraint is that")
-        A("too few employers contribute and one contributes too many, which is")
-        A("what makes the standard errors fragile.")
+        if n_emp < 30 or _share > 0.25:
+            A("postings**. The floor on observations is met; the constraint is that")
+            A("too few employers contribute or one contributes too much, which is")
+            A("what makes the standard errors fragile.")
+        else:
+            A(f"postings**. Every pre-registered condition passes ({n_emp} employer")
+            A(f"clusters against 30; the largest employer supplies {_share:.1%}")
+            A("against a ceiling of 25%), but only narrowly, and at this cluster")
+            A("count a handful of observations can move a verdict across the 5%")
+            A("line. More employers is what would make the inference sturdy.")
     else:
         A("*TODO: pending results.*")
     A("")

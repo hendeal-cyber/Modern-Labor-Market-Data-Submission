@@ -178,6 +178,24 @@ def main() -> int:
                   "contrast directly.")
             A("Treat them as inconclusive." if plural else "Treat it as inconclusive.")
             A("")
+        # Computed. A survivor whose weaker p (bootstrap or region check) sits
+        # just under 0.05 can cross the line on a few observations: in audit
+        # round 7 six added rows moved two verdicts from withdrawn to
+        # surviving. Say so whenever it applies, rather than only when it did.
+        _rr_p = {k: (v or {}).get("bootstrap_p") for k, v in
+                 ((rr.get("by_variable") or {}).items())}
+        marginal = [n for n in survivors if n not in fragile
+                    and max(p_of(n), _rr_p.get(n) or 0) >= 0.02]
+        if marginal:
+            names = " and ".join(pretty(n) for n in marginal)
+            A(f"**Read {names} as tentative.** "
+              + ("Each passes" if len(marginal) > 1 else "It passes")
+              + " both checks, but with a p-value above 0.02 on at least one,")
+            A("close enough to 0.05 that a handful of added observations can move "
+              "the verdict. See")
+            A("`docs/audit-log.md` for how these verdicts have moved between "
+              "collection runs.")
+            A("")
         A("Seniority is the one result the study would defend without "
           "qualification: it is")
         A("the most precisely estimated coefficient, it was predicted in "

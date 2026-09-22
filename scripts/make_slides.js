@@ -39,7 +39,8 @@ const PRETTY = {
   degree_required: "a required degree", region_south: "a South location",
   region_northeast: "a Northeast location", region_west: "a West location",
   industry_data_center: "being a data center operator",
-  mandate_state: "a pay-transparency mandate",
+  mandate_state: "a pay-transparency mandate", skill_cloud: "a stated cloud skill",
+  family_ai_ml: "an AI/ML role family", hourly_original: "being advertised hourly",
 };
 const FRAGILE = new Set((analysis && analysis.region_robustness
                          && analysis.region_robustness.verdicts_changed) || []);
@@ -48,6 +49,15 @@ const N_MANDATES = String(((funnel || {}).mandate_states_in_force || []).length 
 const SURVIVORS = Object.entries(BOOT)
   .filter(([k, v]) => v && v.p_value !== null && v.p_value < 0.05 && !FRAGILE.has(k))
   .sort((a, b) => a[1].p_value - b[1].p_value)
+  .map(([k]) => PRETTY[k] || k);
+// Survivors whose weaker p (bootstrap or region check) is 0.02 or above: a
+// few added observations can move them across 0.05, as six rows did in audit
+// round 7. Same rule as the executive summary, so the two cannot disagree.
+const RR = (analysis && analysis.region_robustness
+            && analysis.region_robustness.by_variable) || {};
+const TENTATIVE = Object.entries(BOOT)
+  .filter(([k, v]) => v && v.p_value !== null && v.p_value < 0.05 && !FRAGILE.has(k)
+          && Math.max(v.p_value, (RR[k] && RR[k].bootstrap_p) || 0) >= 0.02)
   .map(([k]) => PRETTY[k] || k);
 const OVERTURNED = Object.entries(BOOT).filter(([k, v]) => {
   const c = ((analysis.models || {}).core || {}).coefficients || {};
@@ -226,6 +236,7 @@ function bullets(s, items, x, y, w, h) {
       `Pay is stated far more often where a mandate applies, and the gap is stable across every cut — this is the result the study stands behind`,
       SURVIVORS.length
         ? `Within disclosed pay, ${SURVIVORS.join(", ")} ${SURVIVORS.length === 1 ? "is the only attribute" : "are the only attributes"} distinguishable from zero`
+          + (TENTATIVE.length ? ` — ${TENTATIVE.join(" and ")} only narrowly, so read ${TENTATIVE.length === 1 ? "it" : "them"} as tentative` : "")
         : "Within disclosed pay, no attribute is distinguishable from zero under the pre-registered inference",
       `${OVERTURNED} coefficients reach significance under clustered standard errors and do NOT survive the wild cluster bootstrap — reported as inconclusive, not as findings`,
       "Seniority was predicted to dominate and does; it also survives every robustness cut applied",

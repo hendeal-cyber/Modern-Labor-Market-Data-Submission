@@ -1,28 +1,42 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-22, after audit round 6
+## RESUME HERE — handoff of 2026-09-22, after audit rounds 6 and 7
 
 *A new conversation starts here. This block wins over everything below it.
 §0 and later sections are history: §0 describes N = 165 (commit `7180497`),
 which round 6 showed carried halved pay, misattributed employers and a
 misdated mandate. Do not quote numbers from below this block.*
 
-### State at handoff — AUDITED
+### State at handoff — AUDITED (run 27 included)
 
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch** (GitHub API `default_branch`), so its `schedule:` crons fire: the daily 09:17 UTC collection is live. A scheduled run has fired before (run 20, 2026-09-21) |
-| Audited commits | `7b386d3` (fixes + rebuilt data), `934fe45` (deliverables + docs) |
-| **Usable N** | **214** (unique in scope 290, raw 2,084) |
+| **Usable N** | **220** (unique in scope 297, raw 2,253 after restoring run 26 records) |
 | **Employer clusters** | **34** |
-| **Largest employer** | **Invenergy 20.6%** (44 of 214) |
-| Obs per regressor | 14.3. `interpretable: true`, no warnings. All four pre-registered conditions pass |
-| Disclosure gap (H2) | 93.9% (n=164) vs 47.6% (n=126), **46pp**, 44–49 across cuts. **Associational, not causal** |
-| Survives bootstrap AND region check | **`seniority_rank` only** (+0.121/rung, p 0.0001 / 0.0005). H1 supported |
-| Passes bootstrap, withdrawn by region check | `region_northeast` (0.032 / 0.057), `skill_cloud` (0.046 / 0.058). Inconclusive |
-| Not significant | `mandate_state` (−0.038, p 0.25), `region_south` (0.11), `region_west` (0.64), everything else |
+| **Largest employer** | **Invenergy 20.0%** (44 of 220) |
+| Obs per regressor | 14.7. `interpretable: true`, no warnings. All four pre-registered conditions pass |
+| Disclosure gap (H2) | 93.9% (n=165) vs 49.2% (n=132), **45pp**, 42–47 across cuts. **Associational, not causal** |
+| Survives bootstrap AND region check | `seniority_rank` (+0.119/rung, p 0.0001 / 0.0005): has survived **every** version of the data. `region_northeast` (0.010 / 0.025) and `skill_cloud` (0.031 / 0.038): **tentative**. Both were withdrawn by the region check at N=214 and crossed 0.05 on run 27's six new rows. The deliverables say so |
+| Not significant | `mandate_state` (−0.029, p 0.30), `region_south` (0.095), `region_west`, everything else |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
-| Run 27 | Actions **35781235535**, dispatched 20:35 UTC with `no_slugs: true` at `934fe45`. **First live test of the detail cache.** Result not yet read |
+| Detail cache | **Proven live on run 27** (35781235535): 236 reused, 373 fetched (all cache misses), 0 stale, 0 edited; no disclosure drift on reused or refetched postings. The daily cron stays |
+| Ledger | 66 confirmed / 107 denied / 99 unchecked. Added this session: Portland General Electric, Idaho Power (IDACORP), APS (Pinnacle West), Atmos Energy, GE Vernova. **They collect from the next run on**; read their rows first |
+
+### What round 7 found (full record: `docs/audit-log.md` round 7)
+
+- **A second run on one date overwrote the first run's snapshot files.**
+  Alliant's "Engineer I - Grid Planning" closed between the runs and
+  vanished. `collect/run.py` now merges same-day files, and the 39 dropped
+  records were restored from run 26's commit.
+- **An edited requisition was counted twice.** Cypress Creek retitled a
+  posting on the same job id, and Origis reformatted a location. One row is
+  now kept per employer + URL.
+- Generated text that did not depend on the data: the paper's conclusion
+  called the degree prediction "wrong" (it has the predicted sign, p 0.90),
+  said "too few employers ... one contributes too much" after both conditions
+  had passed, and used causal phrasing about the disclosure gap. All three
+  are now computed or strictly associational.
 
 ### What round 6 found (full record: `docs/audit-log.md` round 6)
 
@@ -56,29 +70,34 @@ misdated mandate. Do not quote numbers from below this block.*
 
 ### Do these next, in order
 
-1. **Read run 27** (a check-in is scheduled for ~21:31 UTC). Find its data
-   commit with `git fetch origin claude/wonderful-tesla-53lgo4` and look for
-   "Data: collection run". Then:
-   - `manifest["detail_cache"]` in `data/raw/<date>/manifest.json`: `reused`
-     should cover most Workday and SmartRecruiters detail fetches.
-   - Compare `pay_disclosed` on reused rows with the same postings' values in
-     the previous snapshot.
-   - Review new rows as in round 6: every added row, then the pay extremes.
-   - **If the cache misbehaves, set the cron in `collect.yml` back to weekly
-     before 09:17 UTC.** That cron is live, because this is the default branch.
-2. **Every daily run makes the deliverables stale.** The workflow commits only
-   `data/`. After each run, read the new rows, then rebuild and regenerate:
-   `PYTHONPATH=src python3 -m lmstudy.build_dataset`, `... -m lmstudy.analyze`,
-   `PYTHONPATH=src python3 scripts/make_{codebook,exec_summary,figures,paper}.py`,
-   `node scripts/make_slides.js`, `python3 tests/run_all.py`. Then commit.
-   Consistency will show 26/29 until you do. That is the check working.
-3. **Owner decision pending:** three QTS "Development Project Manager" rows are
-   construction PMs by description (TX, GA, W. Texas; none discloses pay). A
-   title-only screen cannot remove them without an employer-specific rule,
+1. **Read each daily run's new rows before believing them.** The 09:17 UTC
+   cron commits only `data/`. Diff `data/analysis/postings.csv` against the
+   previous commit on `url`, read every added row and the pay extremes, and
+   check for duplicate URLs (there should be none). Then rebuild and
+   regenerate: `PYTHONPATH=src python3 -m lmstudy.build_dataset`, `... -m
+   lmstudy.analyze`, `PYTHONPATH=src python3
+   scripts/make_{codebook,exec_summary,figures,paper}.py`, `node
+   scripts/make_slides.js`, `python3 tests/run_all.py`, then commit.
+   Consistency shows 26/29 until you do; that is the check working.
+2. **The five new boards arrive on the next run.** GE Vernova's board is
+   large and global: watch for the 150-page cap, as with Hitachi. APS is on
+   SmartRecruiters, with the token cased `ArizonaPublicServiceAPS`.
+3. **Watch the two tentative verdicts** (`skill_cloud`, `region_northeast`).
+   They have moved across 0.05 between runs. Report whatever the procedure
+   returns, and keep calling them tentative while they sit near the line.
+4. **Connecticut flips to covered on the first snapshot dated 2026-10-01 or
+   later.** Expect the disclosure contrast to move then, and read it as a
+   coding event, not a finding.
+5. **Owner decision pending:** three QTS "Development Project Manager" rows
+   are construction PMs by description (TX, GA, W. Texas; none discloses pay).
+   A title-only screen cannot remove them without an employer-specific rule,
    which would be a new screening mechanism. Keeping them widens the gap by
-   1.2pp.
-4. Lower priority: 118 unchecked employers in
-   `config/token-verification.yaml`. Retailers and utilities first (§0.5).
+   about 1pp.
+6. Lower priority: 99 unchecked employers in
+   `config/token-verification.yaml`. What is left is mostly small retailers,
+   cooperatives (NRECA syndication, deliberately shut) and multi-industry
+   grid vendors. The vendors would each need a `requires_company_mention` or
+   sector guard before being admitted.
 
 ### Standing rules (unchanged, all still binding)
 
