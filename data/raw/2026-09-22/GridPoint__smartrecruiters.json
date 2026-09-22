@@ -1,0 +1,21 @@
+[
+ {
+  "platform": "smartrecruiters",
+  "employer": "GridPoint",
+  "board_token": "Gridpoint",
+  "external_id": "92456704",
+  "title": "Senior Software Engineer",
+  "location_raw": "Reston, VA",
+  "description": "GridPoint is an established leader in smart energy solutions, providing Fortune 1000 enterprises, government agencies and utilities with the tools to implement and maintain sustainable energy management practices that improve operational efficiency and maximize energy savings. Founded in 2003, GridPoint is headquartered in Reston, Virginia, with an office in Roanoke, Virginia.\n\nThe Senior Software Engineer shall perform with a high degree of independence and expertise to implement solutions for a variety of complex software products/features... both wholly new efforts and also enhancements/maintenance to established assets.\nThe Senior Software Engineer&apos;s responsibilities shall be to:\n\u2022 participate in specification development and provide critical review of software specifications prepared by others\n\u2022 develop and document responsive software design solutions based on software requirements specifications which also conform to established system level architecture/design specifications\n\u2022 develop software assets based on software requirements and design specifications, system architecture/design specifications... working either singly or in combination with other software engineers and test engineers\n\u2022 ensure high quality software products through deliberative design, implementation, unit/integration testing, and active support to verification/validation testers\n\u2022 perform Production support work as assigned (issue investigation and findings reporting, rapid issue resolution for critical issues)\nIn order to perform these responsibilities effectively, the Senior Software Engineer shall use tools, standard models, industry best practices, and creative design approaches to represent systems and/or to develop system prototypes, assets, or supporting assets.\nOur current technology and tool mix includes: Java7, Scala, Akka, AngularJS, JPA, Hibernate, PostgreSQL, SQL Server, Cassandra, git, Jira, Bamboo.\n\n\u2022 B.S. Computer Science or related field (or equivalent experience)... M.S. Computer Science highly preferred\n\u2022 Minimum 8 years of professional experience in progressively more senior software engineering roles\n\u2022 Minimum 8 years of experience with Unix internals; Java or .NET; XML/JSON; Oracle, Postgres or SQL Server; application frameworks (e.g. J2EE, JBOSS, Spring, Hibernate, OSGI)\n\u2022 Minimum 5 years of experience with web services applications... RESTful designs preferred\n\u2022 Minimum 8 years of hands-on experience with database programming in Java or .NET with Oracle, Postgres, or other RDBMS\n\u2022 Experience with one or more of the following is desired: scala, service oriented architectures, continuous integration, automated configuration management\n\u2022 Excellent written and verbal communication skills\n\nGridPoint is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, age, or disability.\n\nNote: no unsolicited 3rd party resumes accepted",
+  "url": "https://api.smartrecruiters.com/v1/companies/Gridpoint/postings/92456704",
+  "posted_at": "2016-05-20T17:13:15.000Z",
+  "updated_at": "2016-05-20T17:13:15.000Z",
+  "department": "R&D - SW Engineering",
+  "employment_type": "Full-time",
+  "comp_min": null,
+  "comp_max": null,
+  "comp_interval": null,
+  "payload": null,
+  "industry": "energy_analytics"
+ }
+]
