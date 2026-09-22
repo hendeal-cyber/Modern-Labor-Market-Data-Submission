@@ -265,14 +265,52 @@ is written up as `docs/limitations.md` §9b and belongs in the paper's
 discussion of coverage, because it is a **selection** issue, not a logistics
 one. Keep recording what you find instead of just that you failed.
 
-### Honest expectation
+### Measured yield, and where the remaining value is
 
-Reaching 30 clusters from 25 needs perhaps 5 more confirmed boards in mandate
-states, and roughly 20 employers checked per confirmation that converts. That
-is achievable from priority 1 and 2 alone. **The 25%-concentration condition is
-harder and may not be reachable** — Invenergy supplies 39 observations, so
-displacing it to under 25% needs the sample past ~156 usable. Report both
-either way: `docs/pre-registration.md` §7 requires the three numbers together.
+The pass searched **76 employers and found 9 new distinct boards** — a 12%
+board-yield rate. (12 confirmations were recorded, but Washington Gas and WGL
+Energy share one board, and Ascend Analytics was already verified.)
+
+Hit rate varies enormously by industry, and this is the targeting insight for
+whoever continues:
+
+| Industry | Searched | Confirmed | Rate |
+|---|---|---|---|
+| energy analytics | 14 | 5 | **36%** |
+| retailer | 8 | 4 | **50%** |
+| grid operator | 4 | 2 | 50% |
+| utility | 19 | 3 | 16% |
+| cooperative | 11 | 1 | 9% |
+| consulting | 19 | 1 | 5% |
+| developer / data_center / grid_vendor | 29 | **0** | **0%** |
+
+So among the 144 unlocated employers, the expected yield is roughly **21
+confirmations, and about half of them sit in the 23 retailers and 32
+utilities**. Developers, data-center operators and grid vendors returned
+nothing at all in 29 attempts — skip them unless something else changes.
+Cooperatives are near-hopeless for a structural reason (see below), not for
+want of trying.
+
+**Do not expect the concentration condition to be reachable.** Invenergy
+supplies 39 observations; getting its share under 25% needs the usable sample
+past ~156, which is +36 observations on top of everything above. N and cluster
+count are movable; concentration probably is not. Report all three either way —
+`docs/pre-registration.md` §7 requires them together.
+
+### The cooperative gap is the one structural finding of the pass
+
+**Eight of eight cooperatives checked are unreachable**, and for one reason:
+they syndicate to NRECA's Cooperative Career Center (`careers.electric.coop`)
+or run their own page. Great River Energy, United Power, CFC, Connexus, Dakota
+Electric, Wright-Hennepin, ACES, Indiana Electric Cooperatives. **Four of them
+post analyst roles with disclosed pay in mandate states** — Connexus's Business
+Systems Analyst at $89–117k, Great River's at $105–144k, United Power's "GIS
+and Data Analyst I-IV".
+
+Cooperatives are non-profit and set pay differently from an investor-owned
+utility, so excluding all of them removes a **pay regime**, not a handful of
+rows. `docs/limitations.md` §9b says so, and it belongs in the paper's
+discussion of coverage rather than buried as a logistics note.
 
 ### Do NOT
 

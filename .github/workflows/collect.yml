@@ -173,6 +173,19 @@ jobs:
             # describing an older dataset, which is precisely the
             # inconsistency the integrity assertions exist to prevent.
             python src/lmstudy/analyze.py
+            # Regenerate the deliverables too. They are NOT committed -- only
+            # data/ is added -- but the consistency gate below compares them
+            # against the data, and without this it compares the stale copies
+            # that `git checkout -- paper/ docs/` restored a few lines up.
+            # That is exactly how run 24 failed: it collected 1,915 postings,
+            # rebuilt cleanly to 133 usable across 27 employers, and then
+            # refused to commit because the paper still quoted the previous
+            # run's numbers. The guard was right; it was comparing the wrong
+            # pair.
+            python scripts/make_codebook.py
+            python scripts/make_exec_summary.py
+            python scripts/make_figures.py
+            python scripts/make_paper.py
             # The committed pair must agree. Run 23 pushed a CSV and an
             # analysis.json from different executions and nothing objected.
             python tests/test_consistency.py
