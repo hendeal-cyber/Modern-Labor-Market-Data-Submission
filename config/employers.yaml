@@ -497,14 +497,23 @@ utilities_batch2:
       ashby: [alliantenergy, alliant-energy, alliant]
       workday: [{tenant: alliantenergy, site: careers}]
     verified: false
+  # Verified 2026-09-22: iberdrola.wd3.myworkdayjobs.com/en-US/Iberdrola.
+  # The tenant is the PARENT, Iberdrola; Avangrid is its US business, so no
+  # slug derivation from "Avangrid" could reach it.
+  #
+  # ATTRIBUTION MUST BE CHECKED after the next collection. The board carries
+  # group postings, so some rows may be Iberdrola corporate rather than
+  # Avangrid US, and misattributing an employer is exactly what the owner
+  # asked us to guard against. Unlike NERA -- dropped because it routes to
+  # parent company Marsh -- this IS the US entity's own career centre, so
+  # attribution is defensible; "defensible" is not "verified".
   - name: Avangrid
     metro: new_york
+    industry: utility
+    careers_url: https://iberdrola.wd3.myworkdayjobs.com/en-US/Iberdrola
     candidates:
-      greenhouse: [avangrid]
-      lever: [avangrid]
-      ashby: [avangrid]
-      workday: [{tenant: avangrid, site: careers}]
-    verified: false
+      workday: [{tenant: iberdrola, site: Iberdrola, instance: wd3}]
+    verified: true
   - name: Avista
     candidates:
       greenhouse: [avista]
@@ -737,14 +746,16 @@ utilities_batch2:
       ashby: [coloradospringsutilities, colorado-springs-utilities, coloradosprings]
       workday: [{tenant: coloradospringsutilities, site: careers}]
     verified: false
+  # Verified 2026-09-22: ameren.wd1.myworkdayjobs.com/External. The tenant is
+  # the parent "ameren", not "amerenillinois", and the site is "External".
+  # Illinois is a mandate state, which is what makes this worth a cluster.
   - name: Ameren Illinois
     metro: chicago
+    industry: utility
+    careers_url: https://ameren.wd1.myworkdayjobs.com/External
     candidates:
-      greenhouse: [amerenillinois, ameren-illinois, ameren]
-      lever: [amerenillinois, ameren-illinois, ameren]
-      ashby: [amerenillinois, ameren-illinois, ameren]
-      workday: [{tenant: amerenillinois, site: careers}]
-    verified: false
+      workday: [{tenant: ameren, site: External, instance: wd1}]
+    verified: true
   - name: Madison Gas and Electric
     candidates:
       greenhouse: [madisongasandelectric, madison-gas-and-electric, madisongas]
@@ -1311,14 +1322,18 @@ energy_analytics_batch2:
       ashby: [davidenergy, david-energy, david]
       workday: [{tenant: davidenergy, site: careers}]
     verified: false
+  # Verified 2026-09-22. Lever token is "octoenergy", not any octopus* form.
+  # A global board, so the US-only screen carries the weight; the Houston roles
+  # (Energy Markets Analyst, Senior Power Market Analyst) are exact taxonomy
+  # fits. Texas is not a mandate state, so this mainly enriches the
+  # non-mandate side of the disclosure contrast.
   - name: Octopus Energy
     metro: boston
+    industry: retailer
+    careers_url: https://jobs.lever.co/octoenergy
     candidates:
-      greenhouse: [octopusenergy, octopus-energy, octopus]
-      lever: [octopusenergy, octopus-energy, octopus]
-      ashby: [octopusenergy, octopus-energy, octopus]
-      workday: [{tenant: octopusenergy, site: careers}]
-    verified: false
+      lever: [octoenergy]
+    verified: true
   - name: Leap
     metro: bay_area
     candidates:
