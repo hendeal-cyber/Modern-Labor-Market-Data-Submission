@@ -164,6 +164,7 @@ def run():
     fails = []
     fails += check_workday_site_variants()
     fails += check_posting_sector_evidence()
+    fails += check_no_board_collisions()
     coded = code_posting("Data Engineer I", POSTING, D)
     for name in EXPECT_1:
         if coded.values.get(name) != 1:
@@ -262,6 +263,64 @@ def check_posting_sector_evidence():
         fails.append("'feeder' still matches a generic financial-systems posting")
     if not has_strong_sector_term("upgrade of the distribution feeder and switchyard"):
         fails.append("'distribution feeder' must still match real grid work")
+    return fails
+
+
+
+
+def check_no_board_collisions():
+    """No board may be reachable by two employer entries.
+
+    The frame carries parent/subsidiary pairs -- Ameren and Ameren Illinois,
+    American Tower and CoreSite, Southern Company Gas and Nicor Gas, Enel North
+    America and Enel X, the two American Waters -- and nothing stopped both
+    members of a pair resolving the SAME board under two employer names. That
+    would invent a second cluster out of one firm.
+
+    It matters more than tidiness: `distinct_employers` is a FAILING
+    pre-registered condition (25 against a target of 30), so a phantom cluster
+    moves the number that decides whether the study met its own standard, in
+    the flattering direction, without a single line of wrong arithmetic.
+
+    Ameren was live when this was written: its entry carried tenant "ameren"
+    unverified, and promoting "External" into the probed site names had just
+    made it resolve the exact board hand-verified for Ameren Illinois.
+
+    Resolution is explicit, not automatic -- the subordinate entry gets
+    `duplicate_of` and no candidates -- so this test forces a decision rather
+    than silently picking a winner.
+    """
+    import sys, pathlib as _p, collections, yaml
+    root = _p.Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(root / "src"))
+    from lmstudy.collect.discover import workday_site_variants
+
+    cfg = yaml.safe_load((root / "config" / "employers.yaml").read_text())
+    entries = [e for g, v in cfg.items() if isinstance(v, list)
+               for e in v if isinstance(e, dict) and e.get("name")]
+    pairs = collections.defaultdict(set)
+    for e in entries:
+        c = e.get("candidates") or {}
+        for w in (c.get("workday") or []):
+            if not isinstance(w, dict) or not w.get("tenant"):
+                continue
+            t = w["tenant"]
+            sites = ([w.get("site")] if e.get("verified")
+                     else workday_site_variants(t, e["name"]))
+            for site in sites:
+                pairs[("workday", t, site)].add(e["name"])
+        for plat in ("greenhouse", "lever", "ashby", "workable",
+                     "smartrecruiters", "recruitee"):
+            for tok in (c.get(plat) or []):
+                if isinstance(tok, str):
+                    pairs[(plat, tok, None)].add(e["name"])
+
+    fails = []
+    for key, names in sorted(pairs.items()):
+        if len(names) > 1:
+            fails.append(f"board {key[0]}/{key[1]}/{key[2]} reachable by "
+                         f"{sorted(names)} — give one `duplicate_of` and no "
+                         f"candidates")
     return fails
 
 

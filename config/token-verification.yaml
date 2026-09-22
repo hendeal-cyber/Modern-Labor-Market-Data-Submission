@@ -62,10 +62,14 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Ameren:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: 'Same Workday board as Ameren Illinois (ameren/External/wd1), already confirmed. Deliberately
+      given no token: one board must not become two employer clusters, which would inflate the distinct-employer
+      count -- a failing pre-registered condition -- in the flattering direction.'
+    checked_on: '2026-09-22'
   Ameren Illinois:
     status: confirmed
     industry: utility
@@ -79,10 +83,13 @@ employers:
     note: Illinois mandate state. Site 'External' again -- third employer with that site name after Xcel
       and NRECA.
   American Electric Power:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: 'Same Workday board as AEP Energy (aep/AEPCareerSite/wd1), already confirmed. No token, for
+      the same reason as Ameren: one board, one cluster.'
+    checked_on: '2026-09-22'
   American Tower:
     status: unchecked
     industry: data_center

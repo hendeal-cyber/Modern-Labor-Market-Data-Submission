@@ -53,14 +53,17 @@ utilities:
     candidates:
       icims: [{tenant: constellationenergy, kind: icims}]
     verified: false
+  # Shares a board with Southern Company Gas. Given no candidates deliberately: one
+  # board must not become two employer clusters. distinct_employers is a
+  # FAILING pre-registered condition, so a phantom cluster would inflate
+  # it in the flattering direction. Found by sweeping the frame for
+  # (platform, token) pairs reachable by more than one entry.
   - name: Nicor Gas (Southern Company Gas)
     metro: chicago
-    # Southern Company publishes through southerncompany.jobs (DirectEmployers),
-    # not a supported ATS. Its underlying ATS is not yet identified.
-    candidates:
-      workday: [{tenant: southerncompany, site: SouthernCompany}]
+    duplicate_of: Southern Company Gas
+    ats_unidentified: true
+    candidates: {}
     verified: false
-    note: careers surface is southerncompany-gas.jobs; ATS unidentified
   - name: Peoples Gas (WEC Energy Group)
     metro: chicago
     # careers.wecenergygroup.com — SAP SuccessFactors ("/go/" paths), which
@@ -113,11 +116,16 @@ utilities:
     candidates:
       workday: [{tenant: dukeenergy, site: search, wd: 1}]
     verified: true      # dukeenergy.wd1.myworkdayjobs.com/search
+  # Shares a board with Illinois American Water. Given no candidates deliberately: one
+  # board must not become two employer clusters. distinct_employers is a
+  # FAILING pre-registered condition, so a phantom cluster would inflate
+  # it in the flattering direction. Found by sweeping the frame for
+  # (platform, token) pairs reachable by more than one entry.
   - name: Indiana American Water
     metro: indianapolis
-    parent: American Water
-    candidates:
-      workday: [{tenant: amwater, site: AmericanWater}]
+    duplicate_of: Illinois American Water
+    ats_unidentified: true
+    candidates: {}
     verified: false
 
 data_center_operators:
@@ -153,12 +161,16 @@ data_center_operators:
     candidates:
       workday: [{tenant: cyrusone, site: CyrusOneCareerPortal, wd: 1}]
     verified: true      # cyrusone.wd1.myworkdayjobs.com/CyrusOneCareerPortal
+  # Shares a board with American Tower. Given no candidates deliberately: one
+  # board must not become two employer clusters. distinct_employers is a
+  # FAILING pre-registered condition, so a phantom cluster would inflate
+  # it in the flattering direction. Found by sweeping the frame for
+  # (platform, token) pairs reachable by more than one entry.
   - name: CoreSite
     metro: denver
-    metros: [chicago]
-    candidates:
-      workday: [{tenant: americantower, site: ATCCareers}]
-      greenhouse: [coresite]
+    duplicate_of: American Tower
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Cologix
     metro: denver
@@ -476,12 +488,15 @@ gas_utilities:           # gas LDCs and combined gas+electric utilities
 
 # --- frame expansion, batch 2 (39 employers) ---
 utilities_batch2:
+  # Shares a board with Ameren Illinois. Given no candidates deliberately: one
+  # board must not become two employer clusters. distinct_employers is a
+  # FAILING pre-registered condition, so a phantom cluster would inflate
+  # it in the flattering direction. Found by sweeping the frame for
+  # (platform, token) pairs reachable by more than one entry.
   - name: Ameren
-    candidates:
-      greenhouse: [ameren]
-      lever: [ameren]
-      ashby: [ameren]
-      workday: [{tenant: ameren, site: careers}]
+    duplicate_of: Ameren Illinois
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: American Electric Power
     candidates:
@@ -1309,12 +1324,15 @@ energy_analytics_batch2:
       ashby: [cpowerenergy, cpower-energy, cpower]
       workday: [{tenant: cpowerenergy, site: careers}]
     verified: false
+  # Shares a board with Enel North America. Given no candidates deliberately: one
+  # board must not become two employer clusters. distinct_employers is a
+  # FAILING pre-registered condition, so a phantom cluster would inflate
+  # it in the flattering direction. Found by sweeping the frame for
+  # (platform, token) pairs reachable by more than one entry.
   - name: Enel X
-    candidates:
-      greenhouse: [enelx, enel-x, enel]
-      lever: [enelx, enel-x, enel]
-      ashby: [enelx, enel-x, enel]
-      workday: [{tenant: enelx, site: careers}]
+    duplicate_of: Enel North America
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: David Energy
     metro: new_york
