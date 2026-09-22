@@ -7,17 +7,17 @@ conflict, this section wins.*
 
 | | |
 |---|---|
-| Usable observations (pay disclosed) | **120** |
-| Unique postings in scope | 156 |
-| Distinct employers (= clusters) | **25** |
-| Largest employer | Invenergy, **32.5%** |
-| Observations per regressor | 8.0 |
-| Raw postings collected | 1,716 |
-| Hand-verified board tokens | 34 |
+| Usable observations (pay disclosed) | **147** |
+| Unique postings in scope | 183 |
+| Distinct employers (= clusters) | **29** |
+| Largest employer | Invenergy, **26.5%** |
+| Observations per regressor | 9.8 |
+| Raw postings collected | 1,940 |
+| Hand-verified board tokens | 41 |
 
 **The N ≥ 100 floor is met. The pre-registered SUBSTANCE conditions are not:**
-employers are 25 against a target of 30, and the largest supplies
-32.5% against a ceiling of 25%. `docs/pre-registration.md` §7
+employers are 29 against a target of 30, and the largest supplies
+26.5% against a ceiling of 25%. `docs/pre-registration.md` §7
 called this "met in letter and not in substance" before any of it was known.
 
 **Read the numbers above, not the ones in §7–§8 or in any commit message
@@ -28,24 +28,21 @@ had been padding the denominator.
 
 ### The headline result
 
-Pay is stated in **98.0%** of postings in mandate states
-(n=100) against **39.3%** where none applies
-(n=56). It is **associational, not causal** — one
+Pay is stated in **98.2%** of postings in mandate states
+(n=110) against **53.4%** where none applies
+(n=73). It is **associational, not causal** — one
 cross-section, no difference-in-differences.
 
 | Sample | Mandate | No mandate | Gap |
 |---|---|---|---|
-| All | 98.0% | 39.3% | 59pp |
-| Excluding Virginia | 100.0% | 39.3% | 61pp |
-| Excluding largest employer | 96.7% | 39.3% | 57pp |
+| All | 98.2% | 53.4% | 45pp |
+| Excluding Virginia | 100.0% | 53.4% | 47pp |
+| Excluding largest employer | 97.2% | 53.4% | 44pp |
 
-**It is now STABLE across cuts — a spread of 3 points, not the 21 it
-used to swing.** Earlier handoffs reported 50pp/68pp/71pp and a long hedge
-about Virginia's three-month-old statute. That fragility was an artifact:
-23 of the 25 non-disclosing mandate-state postings were one federal
-consultancy's public health, national security and law-enforcement work, which
-audit round 4 removed as outside the sector. **Removing it removed the
-fragility rather than explaining it away.**
+Stable across cuts — a spread of 3 points. The no-mandate side rose from
+39% to 53% when AEP Energy and Alliant Energy joined: both post
+disclosed pay in Ohio, Wisconsin and Iowa, none of which mandates it. That
+weakens the contrast and is the honest direction for it to move.
 
 ### Deliverables: complete
 
@@ -55,47 +52,34 @@ amendments, codebook, audit log (4 rounds + an integrity check), limitations
 (24 entries), decision log, **employer verification ledger**, reproducibility
 README. All regenerate from `data/raw/`.
 
-### What the model actually says — THIS CHANGED ON 2026-09-22
+### What the model actually says — REWRITTEN 2026-09-22 (second time)
 
-**Two findings previous handoffs reported as robust have been withdrawn.** If
-you carry anything forward from an older version of this file, carry this
-correction.
+**Only one coefficient survives.** `seniority_rank` is
++0.0776 per rung at bootstrap
+p=0.000, and it survives the region-robustness
+cut at p=0.0015. H1 as pre-registered.
+That is the whole list: `seniority_rank`.
 
-**Survives (H1, as pre-registered).** `seniority_rank`
-+0.0718 per rung, bootstrap p=0.009. It also survives
-the region robustness cut. This is the one result the study would defend
-without qualification.
+**It nearly did not survive, and the reason is worth knowing.** On run 25's
+data before the pay parser was fixed, `seniority_rank` read p=0.075 — it would
+have been reported as inconclusive, leaving the study with no interpretable
+pay finding at all. The parser was halving advertised pay on the largest
+employer (see the bug table). Fixing it moved the headline regressor from
+0.075 to 0.000. A data-quality defect was suppressing the only robust result.
 
-**Survives with a caveat.** `region_south` +0.2793
-(≈+32%), bootstrap p=0.002. But 9 of its 24
-observations come from one employer (ERCOT) and 13 from one state (Texas), so
-at 25 clusters a regional coefficient and an employer effect are
-hard to separate.
+**`mandate_state` is significant in the full sample (p=0.048,
+-0.1784) and withdrawn by the region check**
+(p=0.0925). Postings with no resolvable state have no
+determinable mandate status and are coded uncovered, so dropping them changes
+the contrast directly. Reported as inconclusive.
 
-**WITHDRAWN — the AI premium.** `skill_ml_ai` is now
-+0.1220 at bootstrap p=0.270.
-Earlier handoffs reported ≈+27% at p=0.0003 and told you *not* to restate it as
-"AI roles pay more" because the premium attached to the skill rather than the
-role label. **The whole finding is gone.** Much of it was the same
-consultancy's AI work in health and national security — outside the sector
-under study. Do not report an AI premium.
+**Still withdrawn, from earlier today:** the AI premium (`skill_ml_ai`,
+p=0.419), H5-as-contradicted (`degree_required`,
+p=0.492), and `remote_eligible`
+(p=0.151). `region_south`, which survived this
+morning, is now p=0.055 and does not.
 
-**WITHDRAWN — H5 as "contradicted".** `degree_required` is
--0.0892 at bootstrap p=0.357.
-Earlier handoffs reported ≈−12% at p=0.035 and called H5 contradicted, with a
-compositional conjecture attached. The sign stands; the significance does not.
-It is **inconclusive**, and the conjecture has been removed rather than offered
-for an effect the study cannot measure.
-
-**WITHDRAWN by the region check — `remote_eligible`.** Significant at
-bootstrap p=0.026 in the full sample, p=0.333
-once the 8 nationwide-remote postings are dropped. Those postings
-are *precisely* the remote-eligible ones, so the coefficient was identified off
-the rows the check removes.
-
-**Seven of nine coefficients that clustered standard errors called significant
-do not survive the bootstrap.** That is not a defect; it is the pre-registered
-inference procedure working. See §0.6.
+**Do not report any of them as findings.**
 
 ### What is NOT done
 
@@ -440,6 +424,13 @@ wrong content.
 | The commit step **discarded a correct rebuild** | `--autostash` left `paper/paper.md` and `presentation.pptx` unmerged, `git commit --amend` failed with "you have unmerged files", and `\|\| true` swallowed it. Run 23 pushed a CSV with 221 rows beside an `analysis.json` describing 137. Third time this step has lost work |
 | Two **caveats that could not stop applying** | The paper and `analysis.json` both asserted the disclosure gap "is sensitive to Virginia" and "partial compliance with a three-month-old statute" unconditionally — true at a 21-point spread, false at 3. Computed from the measured spread now |
 | `remote_eligible` was identified off the rows with **no resolvable region** | Nationwide-remote postings have all three census dummies at zero, so they sit in the Midwest reference *without being Midwest* — and they are precisely the remote-eligible ones. Significant at p=0.026 in full sample, p=0.333 without them. Now a reported robustness check |
+
+| **The pay parser matched the CENTS of a figure as a zero low bound** | When the 260-char pay window starts mid-figure, `00 - $170,000.00` parsed as (0, 170000), so the midpoint came out at **exactly half the true high**. Halved pay on **twelve Invenergy postings — the largest employer, 27% of the sample, skewed junior**, flattening the very gradient the headline regressor measures. Verified to the dollar: (0+170,000)/2 = the 85,000 recorded. **It suppressed H1**: `seniority_rank` read p=0.075 before the fix and p=0.000 after |
+| The same missing left boundary read a **grade code** as pay | AEP writes `Compensation Grade: SP20-010 Compensation Range: $116,255.00 - $177,503.00`. `SP20-010` parsed as 20-to-010, both under 1000, inferred hourly, annualized to $20,800-$41,600 — with the true range in the next clause. A "Principal" at $31,200. Six rows, wrong by 4.7x |
+| Seven **parent/subsidiary pairs** could each resolve one board under two employer names | Ameren/Ameren Illinois, Itron/Itron Analytics, Vistra/Vistra Retail, CoreSite/American Tower, Enel X, the two American Waters, WGL/Washington Gas. `distinct_employers` is a FAILING pre-registered condition, so a phantom cluster moves the number deciding whether the study met its own standard — in the flattering direction, with no wrong arithmetic anywhere. Ameren was live |
+| The **deck** still presented the six-metro Illinois-vs-Indiana study | And asserted the ML/AI premium that audit round 4 had withdrawn hours earlier. The deck is the artifact most likely to be shown without the paper beside it |
+| The **coefficient figure** drew clustered CIs only | Seven intervals visibly excluded zero for coefficients the bootstrap cannot distinguish from zero. Survivors are solid now, the rest faded |
+| The workflow's consistency gate compared a **stale paper against fresh data** | Run 24 collected 1,915 postings, rebuilt cleanly to 133 usable, and refused to commit. The gate was right and was comparing the wrong pair |
 
 ## 5. Architecture
 
