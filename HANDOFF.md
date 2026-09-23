@@ -88,11 +88,11 @@ misdated mandate. Do not quote numbers from below this block.*
 4. **Connecticut flips to covered on the first snapshot dated 2026-10-01 or
    later.** Expect the disclosure contrast to move then, and read it as a
    coding event, not a finding.
-5. **Owner decision pending:** three QTS "Development Project Manager" rows
-   are construction PMs by description (TX, GA, W. Texas; none discloses pay).
-   A title-only screen cannot remove them without an employer-specific rule,
-   which would be a new screening mechanism. Keeping them widens the gap by
-   about 1pp.
+5. **Decided by the owner (2026-09-23): QTS "Development Project Manager"
+   rows stay in scope** ("somewhat analytical in nature"). Do not add an
+   employer-specific rule to remove them. The Q-Systems, fire-protection and
+   schedule-management construction PMs remain excluded by round 6. That
+   ruling covered only the plainly titled role.
 6. Lower priority: 99 unchecked employers in
    `config/token-verification.yaml`. What is left is mostly small retailers,
    cooperatives (NRECA syndication, deliberately shut) and multi-industry

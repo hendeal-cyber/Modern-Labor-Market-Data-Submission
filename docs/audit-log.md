@@ -551,12 +551,13 @@ entered on the grid concept's "reliability" term. Grid reliability
 and unaffected. QTS "Q-Systems", fire-protection and schedule-management
 project managers are construction delivery.
 
-**Left in, and flagged for the owner:** three QTS rows titled plainly
-"Development Project Manager". Their descriptions are construction project
-management, but the title is shared with genuine development roles and the
-screen is title-only by design. Excluding them needs an employer-specific
-rule, which is a new mechanism. None discloses pay. Dropping them moves the
-disclosure gap 46.3 → 45.1pp.
+**Left in, by the owner's decision (2026-09-23):** three QTS rows titled
+plainly "Development Project Manager". Their descriptions are construction
+project management, and the title is shared with genuine development roles.
+The owner judged the role "somewhat analytical in nature" and in scope, so no
+employer-specific rule was added. None discloses pay. Dropping them would move
+the disclosure gap 46.3 → 45.1pp on this round's data, and 44.7 → 43.6pp on
+round 7's.
 
 #### Defect 4 — the "Hitachi Energy" cluster was not Hitachi Energy (in the N = 165 data)
 

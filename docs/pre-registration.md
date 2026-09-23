@@ -396,8 +396,9 @@ variant of a family §2 already excludes: back office, HR, legal, security,
 facilities, civil drafting, equipment/IT reliability engineering, and
 construction project management. 24 rows removed, 13 usable. §2's population
 is unchanged. Three QTS "Development Project Manager" rows that are
-construction work by description remain, because a title-only screen cannot
-separate them. They are flagged rather than removed by a new mechanism.
+largely construction work by description remain. A title-only screen cannot
+separate them, and on 2026-09-23 the owner ruled the role in scope as
+"somewhat analytical in nature", so no new mechanism was added.
 *Effect.* Roughly neutral on the coefficients. It lowers N.
 
 **4. Group-company postings (the umbrella).** A new per-employer guard,

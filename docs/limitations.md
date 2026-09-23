@@ -428,9 +428,11 @@ paper states whichever reading the numbers support. The contrast remains
 
 Two coding corrections in round 6 both narrowed the gap. Connecticut's posting
 law takes effect 2026-10-01, after collection, so its postings are coded as
-uncovered. Three QTS rows that are construction project management by
-description remain in the no-mandate denominator, undisclosed. Removing them
-would narrow the gap a further 1.2 points.
+uncovered. Three QTS "Development Project Manager" rows whose descriptions
+are mostly construction project management remain in the no-mandate
+denominator, undisclosed. The owner judged the role in scope (2026-09-23).
+Removing them would narrow the gap by a further 1.2 points (44.7 → 43.6pp on
+the round-7 data).
 
 ## 17. The first successful price-parity fetch returned the wrong table
 
