@@ -11,7 +11,8 @@ misdated mandate. Do not quote numbers from below this block.*
 
 | | Value |
 |---|---|
-| Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch** (GitHub API `default_branch`), so its `schedule:` crons fire: the daily 09:17 UTC collection is live. A scheduled run has fired before (run 20, 2026-09-21) |
+| Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch** (GitHub API `default_branch`), so any `schedule:` cron in it fires |
+| **Collection** | **PAUSED 2026-09-23 by the owner** (to save Actions minutes and token budget) until the project resumes, planned for **Saturday 2026-09-26**. The cron in `collect.yml` is commented out; no scheduled run has happened since run 27. Manual `workflow_dispatch` still works |
 | **Usable N** | **220** (unique in scope 297, raw 2,253 after restoring run 26 records) |
 | **Employer clusters** | **34** |
 | **Largest employer** | **Invenergy 20.0%** (44 of 220) |
@@ -70,6 +71,12 @@ misdated mandate. Do not quote numbers from below this block.*
 
 ### Do these next, in order
 
+0. **To resume (Saturday):** uncomment the two `schedule:` lines in
+   `.github/workflows/collect.yml` and push. Or dispatch a single run with
+   `no_slugs: false`, so slug fallback runs too. The first run after the pause
+   will be the first next-day test of the cache (skip-today no longer applies)
+   and the first collection of the six boards verified this session. Budget
+   about 50 minutes per run.
 1. **Read each daily run's new rows before believing them.** The 09:17 UTC
    cron commits only `data/`. Diff `data/analysis/postings.csv` against the
    previous commit on `url`, read every added row and the pay extremes, and
