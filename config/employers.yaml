@@ -364,10 +364,13 @@ developers:              # renewable and data center developers
       greenhouse: [intersectpower]
       ashby: [intersectpower]
     verified: false
+  # Checked 2026-09-23: jobs.nexteraenergy.com (/job/<city-title>/<id>/,
+  # /go/<brand>/, ?locale=en_US) is SAP SuccessFactors Career Site Builder,
+  # which has no free API. The same portal serves Gexa Energy.
   - name: NextEra Energy
     industry: developer
-    candidates:
-      workday: [{tenant: nextera, site: careers}, {tenant: nexteraenergy, site: NextEra}]
+    ats_unidentified: true
+    candidates: {}
     verified: false
 
 consulting:              # energy consulting and advisory
@@ -576,12 +579,14 @@ utilities_batch2:
     ats_unidentified: true
     candidates: {}
     verified: false
+  # 2026-09-23: CMS Energy is the holding company of Consumers Energy, also in
+  # this frame. One employer, so it gets no candidates of its own; a second
+  # entry could only ever become a phantom second cluster. Its generic slug
+  # guesses ("cms") are removed too.
   - name: CMS Energy
-    candidates:
-      greenhouse: [cmsenergy, cms-energy, cms]
-      lever: [cmsenergy, cms-energy, cms]
-      ashby: [cmsenergy, cms-energy, cms]
-      workday: [{tenant: cmsenergy, site: careers}]
+    duplicate_of: Consumers Energy
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Consumers Energy
     candidates:
@@ -815,22 +820,25 @@ utilities_batch2:
       ashby: [madisongasandelectric, madison-gas-and-electric, madisongas]
       workday: [{tenant: madisongasandelectric, site: careers}]
     verified: false
+  # 2026-09-23: WPS Resources became Integrys (2007), then part of WEC Energy
+  # Group (2015). WEC is in this frame as Peoples Gas (WEC Energy Group),
+  # whose careers site is SAP SuccessFactors, which has no free API. Generic
+  # "wps" slug guesses are removed.
   - name: WPS Resources
-    candidates:
-      greenhouse: [wpsresources, wps-resources, wps]
-      lever: [wpsresources, wps-resources, wps]
-      ashby: [wpsresources, wps-resources, wps]
-      workday: [{tenant: wpsresources, site: careers}]
+    duplicate_of: Peoples Gas (WEC Energy Group)
+    ats_unidentified: true
+    candidates: {}
     verified: false
 
 # --- frame expansion, batch 2 (9 employers) ---
 gas_utilities_batch2:
+  # 2026-09-23: acquired by CenterPoint Energy in 2019; its Indiana territory
+  # is CenterPoint Energy Indiana, already in this frame. No candidates of its
+  # own, for the same phantom-cluster reason.
   - name: Vectren
-    candidates:
-      greenhouse: [vectren]
-      lever: [vectren]
-      ashby: [vectren]
-      workday: [{tenant: vectren, site: careers}]
+    duplicate_of: CenterPoint Energy Indiana
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: New Jersey Resources
     metro: new_york
@@ -892,13 +900,16 @@ gas_utilities_batch2:
 
 # --- frame expansion, batch 2 (7 employers) ---
 grid_operators_batch2:
+  # Verified 2026-09-23 from live job URLs in search results, e.g.
+  # jobs.smartrecruiters.com/CaliforniaISO/744000139134149-market-development-analyst-hybrid-
+  # It had resolved only through slug fallback (smartrecruiters:californiaiso,
+  # run of 2026-09-21), so every no_slugs run since had skipped it. Folsom, CA:
+  # a mandate state, posting exact-fit market-analyst roles with stated pay.
   - name: California ISO
+    careers_url: https://careers.smartrecruiters.com/CaliforniaISO
     candidates:
-      greenhouse: [californiaiso, california-iso, california]
-      lever: [californiaiso, california-iso, california]
-      ashby: [californiaiso, california-iso, california]
-      workday: [{tenant: californiaiso, site: careers}]
-    verified: false
+      smartrecruiters: [CaliforniaISO]
+    verified: true
   - name: ERCOT
     # Hand-verified 2026-09-22: ercot.wd1.myworkdayjobs.com/ercot_careers
     # The tenant was right and the SITE was wrong — "ercot_careers", not
@@ -1087,12 +1098,12 @@ data_center_operators_batch2:
       ashby: [involta]
       workday: [{tenant: involta, site: careers}]
     verified: false
+  # 2026-09-23: the same company as the "TierPoint" entry above, which is on
+  # iCIMS (careers-tierpoint.icims.com) and blocked.
   - name: TierPoint Data Centers
-    candidates:
-      greenhouse: [tierpointdatacenters, tierpoint-data-centers, tierpointdata]
-      lever: [tierpointdatacenters, tierpoint-data-centers, tierpointdata]
-      ashby: [tierpointdatacenters, tierpoint-data-centers, tierpointdata]
-      workday: [{tenant: tierpointdatacenters, site: careers}]
+    duplicate_of: TierPoint
+    ats_unidentified: true
+    candidates: {}
     verified: false
 
 # --- frame expansion, batch 2 (26 employers) ---
@@ -1961,19 +1972,20 @@ cooperatives_batch3:
       ashby: [jacksonemc, jackson-emc, jackson]
       workday: [{tenant: jacksonemc, site: careers}]
     verified: false
+  # 2026-09-23: a national brand alliance of member cooperatives, not an
+  # employer with a job board of its own.
   - name: Touchstone Energy Cooperatives
-    candidates:
-      greenhouse: [touchstoneenergycooperatives, touchstone-energy-cooperatives, touchstoneenergy]
-      lever: [touchstoneenergycooperatives, touchstone-energy-cooperatives, touchstoneenergy]
-      ashby: [touchstoneenergycooperatives, touchstone-energy-cooperatives, touchstoneenergy]
-      workday: [{tenant: touchstoneenergycooperatives, site: careers}]
+    ats_unidentified: true
+    off_frame_reason: brand alliance, not an employer
+    candidates: {}
     verified: false
+  # 2026-09-23: a cooperative BANK that lends to rural utilities. Its own jobs
+  # are banking jobs, so none could meet the energy/utility/data-center
+  # umbrella. Kept out of the frame rather than probed.
   - name: CoBank
-    candidates:
-      greenhouse: [cobank]
-      lever: [cobank]
-      ashby: [cobank]
-      workday: [{tenant: cobank, site: careers}]
+    ats_unidentified: true
+    off_frame_reason: financial institution, not an energy employer
+    candidates: {}
     verified: false
 
 # Competitive electric and gas retailers. Regulatory, market and pricing
@@ -2142,15 +2154,17 @@ retailers_batch3:
   # (/job/<city-title>/<id>/, /go/Gexa/2673900/, ?locale=en_US), the SAP
   # SuccessFactors Career Site Builder pattern. No adapter supports it.
   - name: Gexa Energy
+    duplicate_of: NextEra Energy
     ats_unidentified: true
     candidates: {}
     verified: false
+  # 2026-09-23: merged into Vistra (Vistra Vision, 2024), already in this
+  # frame. No candidates of its own, and its generic "energy" slug guess is
+  # gone with them.
   - name: Energy Harbor
-    candidates:
-      greenhouse: [energyharbor, energy-harbor, energy]
-      lever: [energyharbor, energy-harbor, energy]
-      ashby: [energyharbor, energy-harbor, energy]
-      workday: [{tenant: energyharbor, site: careers}]
+    duplicate_of: Vistra
+    ats_unidentified: true
+    candidates: {}
     verified: false
   - name: Liberty Power
     candidates:

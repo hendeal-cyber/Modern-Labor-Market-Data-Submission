@@ -21,7 +21,7 @@ misdated mandate. Do not quote numbers from below this block.*
 | Not significant | `mandate_state` (−0.029, p 0.30), `region_south` (0.095), `region_west`, everything else |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
 | Detail cache | **Proven live on run 27** (35781235535): 236 reused, 373 fetched (all cache misses), 0 stale, 0 edited; no disclosure drift on reused or refetched postings. The daily cron stays |
-| Ledger | 66 confirmed / 107 denied / 99 unchecked. Added this session: Portland General Electric, Idaho Power (IDACORP), APS (Pinnacle West), Atmos Energy, GE Vernova. **They collect from the next run on**; read their rows first |
+| Ledger | 67 confirmed / 115 denied / 90 unchecked. Added this session: Portland General Electric, Idaho Power (IDACORP), APS (Pinnacle West), Atmos Energy, GE Vernova, and California ISO (verified SmartRecruiters `CaliforniaISO`; it had resolved only by slug fallback, so `no_slugs` runs missed it). **They collect from the next run on**; read their rows first. Corporate duplicates marked `duplicate_of` (CMS→Consumers, Vectren→CenterPoint Indiana, WPS→WEC, Energy Harbor→Vistra, TierPoint Data Centers→TierPoint, Gexa→NextEra) so none can become a phantom cluster |
 
 ### What round 7 found (full record: `docs/audit-log.md` round 7)
 
@@ -93,7 +93,7 @@ misdated mandate. Do not quote numbers from below this block.*
    employer-specific rule to remove them. The Q-Systems, fire-protection and
    schedule-management construction PMs remain excluded by round 6. That
    ruling covered only the plainly titled role.
-6. Lower priority: 99 unchecked employers in
+6. Lower priority: 90 unchecked employers in
    `config/token-verification.yaml`. What is left is mostly small retailers,
    cooperatives (NRECA syndication, deliberately shut) and multi-industry
    grid vendors. The vendors would each need a `requires_company_mention` or

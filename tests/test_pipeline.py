@@ -173,6 +173,43 @@ def check_same_day_merge_and_same_url():
     return fails
 
 
+def check_bare_first_word_candidates():
+    """Declared candidates on unverified entries skip bare first words.
+
+    Real config entries: Energy Harbor declared "energy", Via Renewables
+    "via" (a transit-software company on Greenhouse, rejected there but still
+    declared for Lever and Ashby), National Grid "national". Verified parent
+    tenants (AEP's "aep") must still be probed.
+    """
+    from lmstudy.collect import discover
+    fails = []
+    for emp, tok, want in (("Energy Harbor", "energy", True),
+                           ("Via Renewables", "via", True),
+                           ("National Grid", "national", True),
+                           ("Energy Harbor", "energyharbor", False),
+                           ("Switch", "switch", False),
+                           ("AEP Energy", {"tenant": "aep", "site": "AEPCareerSite"}, False)):
+        if discover.is_bare_first_word(emp, tok) != want:
+            fails.append(f"is_bare_first_word({emp!r}, {tok!r}) != {want}")
+    probed = []
+    orig = discover.probe
+    discover.probe = lambda session, employer, platform, token, *a, **k: probed.append(token)
+    try:
+        discover.discover_employer(None, {"name": "Via Renewables", "verified": False,
+                                          "candidates": {"lever": ["via", "viarenewables"]}},
+                                   try_slugs=False)
+        discover.discover_employer(None, {"name": "AEP Energy", "verified": True,
+                                          "candidates": {"lever": ["aep"]}},
+                                   try_slugs=False)
+    finally:
+        discover.probe = orig
+    if "via" in probed or "viarenewables" not in probed:
+        fails.append(f"unverified bare first word probed, or its full slug skipped: {probed}")
+    if "aep" not in probed:
+        fails.append("a hand-verified entry's first-word token must still be probed")
+    return fails
+
+
 def run():
     fails = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -307,6 +344,7 @@ def run():
     fails += check_mandate_dates_in_dataset()
     fails += check_verified_workday_pins()
     fails += check_same_day_merge_and_same_url()
+    fails += check_bare_first_word_candidates()
 
     print(f"pipeline: {len(fails)} failure(s)")
     for x in fails:

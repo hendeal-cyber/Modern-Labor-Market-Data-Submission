@@ -299,10 +299,14 @@ employers:
     reason: Own application portal at apply.burnsmcd.com; no supported ATS host surfaced.
     checked_on: '2026-09-22'
   CMS Energy:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: holding company of Consumers Energy (in frame); one employer, so no separate candidates --
+      duplicate_of Consumers Energy
+    checked_on: '2026-09-23'
+    duplicate_of: Consumers Energy
   CPS Energy:
     status: unchecked
     industry: utility
@@ -321,10 +325,14 @@ employers:
       is in STRONG_TERMS, so the sector fit is direct. Workable is supported.
     metro: northern_virginia
   California ISO:
-    status: unchecked
+    status: confirmed
     industry: grid_operator
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: smartrecruiters
+    token: CaliforniaISO
+    evidence: https://jobs.smartrecruiters.com/CaliforniaISO/744000139134149-market-development-analyst-hybrid-
+    checked_on: '2026-09-23'
   Calpine Energy Solutions:
     status: denied
     industry: retailer
@@ -392,10 +400,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: true
   CoBank:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: a cooperative bank; its jobs are banking jobs, outside the energy umbrella
+    checked_on: '2026-09-23'
   Cologix:
     status: confirmed
     evidence: resolved in collection manifest
@@ -651,10 +661,13 @@ employers:
     checked_on: '2026-09-22'
     duplicate_of: Enel North America
   Energy Harbor:
-    status: unchecked
+    status: denied
     industry: retailer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: merged into Vistra (2024); duplicate_of Vistra, already in frame
+    checked_on: '2026-09-23'
+    duplicate_of: Vistra
   Energy and Environmental Economics (E3):
     status: confirmed
     evidence: resolved in collection manifest
@@ -772,6 +785,7 @@ employers:
     reason: NextEra brand; jobs.nexteraenergy.com is SAP SuccessFactors Career Site Builder (/go/Gexa/2673900/);
       unsupported
     checked_on: '2026-09-22'
+    duplicate_of: NextEra Energy
   Golden Spread Electric Cooperative:
     status: unchecked
     industry: cooperative
@@ -1182,10 +1196,13 @@ employers:
     resolved_in_last_run: true
     metro: chicago
   NextEra Energy:
-    status: unchecked
+    status: denied
     industry: developer
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: jobs.nexteraenergy.com is SAP SuccessFactors Career Site Builder; unsupported (also serves
+      Gexa)
+    checked_on: '2026-09-23'
   NiSource / NIPSCO:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1728,10 +1745,13 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   TierPoint Data Centers:
-    status: unchecked
+    status: denied
     industry: data_center
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: same company as TierPoint (iCIMS, blocked); duplicate_of TierPoint
+    checked_on: '2026-09-23'
+    duplicate_of: TierPoint
   Tierra Climate:
     status: confirmed
     industry: energy_analytics
@@ -1749,10 +1769,12 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Touchstone Energy Cooperatives:
-    status: unchecked
+    status: denied
     industry: cooperative
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: brand alliance of member co-ops, not an employer
+    checked_on: '2026-09-23'
   Tract:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1823,10 +1845,14 @@ employers:
     resolved_in_last_run: true
     metro: denver
   Vectren:
-    status: unchecked
+    status: denied
     industry: gas_utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: acquired by CenterPoint Energy (2019); duplicate_of CenterPoint Energy Indiana, already in
+      frame
+    checked_on: '2026-09-23'
+    duplicate_of: CenterPoint Energy Indiana
   Vertiv:
     status: unchecked
     industry: grid_vendor
@@ -1878,10 +1904,14 @@ employers:
       or the employer will be double-counted as two clusters off one board.
     duplicate_of: Washington Gas
   WPS Resources:
-    status: unchecked
+    status: denied
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    reason: now part of WEC Energy Group (via Integrys, 2015); duplicate_of Peoples Gas (WEC), whose careers
+      site is SAP SuccessFactors
+    checked_on: '2026-09-23'
+    duplicate_of: Peoples Gas (WEC Energy Group)
   WSP:
     status: denied
     industry: consulting

@@ -214,6 +214,25 @@ def slug_variants_safe(name: str) -> list[str]:
     return variants
 
 
+def is_bare_first_word(employer: str, token) -> bool:
+    """True when a string token is just the first word of a multi-word name.
+
+    slug_variants_safe() drops these at runtime, but the DECLARED candidate
+    lists in config/employers.yaml were generated with them included -- "energy"
+    for Energy Harbor, "national" for National Grid, "united" for United Power,
+    "american" for American Tower -- and declared candidates never passed
+    through slug_variants_safe(). rejected_tokens catches only the specific
+    pairs already burned (greenhouse:via, but not lever:via or ashby:via).
+    Applied to unverified entries only, and to string tokens only: every
+    first-word board that has ever resolved is a hand-verified parent Workday
+    tenant (aep, ameren, pjm, ...), which is correct (audit round 7).
+    """
+    if not isinstance(token, str):
+        return False
+    words = employer.split()
+    return len(words) > 1 and token.lower() == words[0].lower().strip(".,")
+
+
 def board_profile(employer: str, postings: list[RawPosting]) -> dict:
     """Advisory summary of a slug-discovered board, for human review.
 
@@ -439,6 +458,8 @@ def discover_employer(
 
     for platform, tokens in (entry.get("candidates") or {}).items():
         for token in tokens or []:
+            if not hand_verified and is_bare_first_word(employer, token):
+                continue
             hit = probe(session, employer, platform, token, detail_filter,
                         unverified_guess=not hand_verified,
                         expand_sites=metro_resident,
