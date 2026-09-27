@@ -76,6 +76,12 @@ class PoliteSession:
     def get_json(self, url: str, **kwargs) -> Response:
         return self._request("GET", url, **kwargs)
 
+    def get_json_with_headers(self, url: str, headers: dict[str, str], **kwargs) -> Response:
+        """GET JSON with extra request headers, for the one keyed API this
+        study uses (USAJOBS, whose documentation requires the registered
+        email as User-Agent and the key as Authorization-Key)."""
+        return self._request("GET", url, extra_headers=headers, **kwargs)
+
     def post_json(self, url: str, payload: dict, **kwargs) -> Response:
         return self._request("POST", url, json_body=payload, **kwargs)
 
@@ -102,6 +108,7 @@ class PoliteSession:
         use_etag: bool = True,
         want_text: bool = False,
         want_bytes: bool = False,
+        extra_headers: dict[str, str] | None = None,
     ) -> Response:
         if want_bytes:
             accept = "application/zip, application/octet-stream, */*"
@@ -110,7 +117,7 @@ class PoliteSession:
                       "application/xml, text/xml")
         else:
             accept = "application/json"
-        headers = {"User-Agent": USER_AGENT, "Accept": accept}
+        headers = {"User-Agent": USER_AGENT, "Accept": accept, **(extra_headers or {})}
         if use_etag and url in self._etags:
             headers["If-None-Match"] = self._etags[url]
         if json_body is not None:

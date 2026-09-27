@@ -792,7 +792,12 @@ utilities_batch2:
       workday: [{tenant: santeecooper, site: careers}]
     verified: false
   - name: Tennessee Valley Authority
+    # usajobs TV00 added 2026-09-27 (batch 10): "Tennessee Valley Authority"
+    # is an active subelement in USAJOBS's code list. The entry stays
+    # unverified, so its postings still face the sector-confidence check.
+    federal: true
     candidates:
+      usajobs: [TV00]
       greenhouse: [tennesseevalleyauthority, tennessee-valley-authority, tennesseevalley]
       lever: [tennesseevalleyauthority, tennessee-valley-authority, tennesseevalley]
       ashby: [tennesseevalleyauthority, tennessee-valley-authority, tennesseevalley]
@@ -2664,6 +2669,104 @@ national_batch4:
     candidates:
       workday: [{tenant: canadiansolar, site: CanadianSolar, wd: 5}]
     verified: true
+  # --- Batch 9, 2026-09-27, before the 28 September run (source route 4:
+  # board tokens from Common Crawl's URL index, data/registry/ats_tokens.csv,
+  # each then confirmed by a domain-restricted search showing a live job URL;
+  # a token seen only in the crawl enters unverified) ---
+  - name: Helion Energy   # job-boards.greenhouse.io/helionenergy/jobs/4623877005 (fusion power developer, Everett WA)
+    industry: developer
+    candidates:
+      greenhouse: [helionenergy]
+    verified: true
+  - name: Giga Energy   # job-boards.greenhouse.io/gigaenergy/jobs/4746578008 (transformers, switchgear, power for data centers; Houston)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [gigaenergy]
+    verified: true
+  - name: VEIR   # job-boards.greenhouse.io/veir/jobs/5419354008 (superconducting transmission; Woburn MA)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [veir]
+    verified: true
+  - name: Heron Power   # jobs.ashbyhq.com/heron-power/725a7ec8-9f2c-4099-b509-18624d4ed4fb (solid-state transformers)
+    industry: grid_vendor
+    candidates:
+      ashby: [heron-power]
+    verified: true
+  - name: WeaveGrid   # jobs.ashbyhq.com/weave-grid/8a8dd4df-9d01-4eb4-9152-763d1558ddbb (EV and DER grid software). Its older greenhouse board is not listed, so no posting is read twice.
+    industry: energy_analytics
+    candidates:
+      ashby: [weave-grid]
+    verified: true
+  - name: GridCARE   # jobs.ashbyhq.com/gridcare/28285770-273f-463b-85e3-ecb110f7f95f (grid capacity for data centers)
+    industry: energy_analytics
+    candidates:
+      ashby: [gridcare]
+    verified: true
+  - name: Stem   # stem.wd12.myworkdayjobs.com/en-US/StemInc/job/Data-Scientist--Forecasting-and-Energy-Storage-System-Optimization_R1008
+    industry: energy_analytics
+    candidates:
+      workday: [{tenant: stem, site: StemInc, wd: 12}]
+    verified: true
+  - name: Antora Energy   # crawl only: boards.greenhouse.io/antora/jobs/5989129004 (thermal batteries; San Jose)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [antora]
+    verified: false
+  - name: Rondo Energy   # crawl only: boards.greenhouse.io/rondoenergy/jobs/4326216006 (heat batteries)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [rondoenergy]
+    verified: false
+  - name: Fourth Power   # crawl only: jobs.ashbyhq.com/fourth-power/36b988b6-1af7-47ec-822f-3f2ca7b6c950 (thermal storage; Cambridge MA)
+    industry: grid_vendor
+    candidates:
+      ashby: [fourth-power]
+    verified: false
+  - name: Euclid Power   # crawl only: jobs.ashbyhq.com/euclid-power/630bd238-606d-4063-b341-1d3397fbdd1a (renewable development software)
+    industry: energy_analytics
+    candidates:
+      ashby: [euclid-power]
+    verified: false
+  - name: Sparkfund   # crawl only: boards.greenhouse.io/sparkfund/jobs/4688191006 (utility distributed-energy programs)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [sparkfund]
+    verified: false
+  - name: Lunar Energy   # crawl only: boards.greenhouse.io/lunarenergy/jobs/4684587004 (home batteries and grid software)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [lunarenergy]
+    verified: false
+  # --- Batch 10, 2026-09-27, before the 28 September run (source route 3):
+  # the federal power marketing administrations, through the official USAJOBS
+  # Search API (platform `usajobs`, token = the agency subelement code in
+  # USAJOBS's own code list, data/registry/raw/usajobs_agencies.txt). They
+  # are utilities. They collect only once the owner adds the free key as the
+  # secrets USAJOBS_API_KEY and USAJOBS_USER_AGENT; until then each reads as
+  # "no board found" and nothing changes. Federal pay is a separate regime:
+  # analyze.py reports the disclosure contrast and the pay model without them
+  # (pre-registration section 8). Southeastern PA has no active subelement
+  # code of its own, and regulators (FERC, DOE headquarters) are out of scope
+  # as state regulators are. ---
+  - name: Bonneville Power Administration   # USAJOBS subelement DN03 (code list: "Bonneville Power Administration", active)
+    industry: utility
+    federal: true
+    candidates:
+      usajobs: [DN03]
+    verified: true
+  - name: Western Area Power Administration   # USAJOBS subelement DNWP (code list: "Western Area Power Administration", WAPA, active)
+    industry: utility
+    federal: true
+    candidates:
+      usajobs: [DNWP]
+    verified: true
+  - name: Southwestern Power Administration   # USAJOBS subelement DNSW (code list: "Southwestern Power Administration", SWPA, active)
+    industry: utility
+    federal: true
+    candidates:
+      usajobs: [DNSW]
+    verified: true
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already
   # a rejected token; hanwhaenergyusa and 174powerglobal are Hanwha boards
@@ -2673,7 +2776,11 @@ national_batch4:
   # parent's board. Also not added: lever:fevo is FEVO (ticketing), not Fervo
   # Energy; Castleton Commodities (osv-cci) is a commodity trader; Williams is
   # a gas pipeline (oil and gas); Brookfield's are investment roles at a
-  # multi-sector asset manager; agl (Workday) is AGL Energy of Australia.
+  # multi-sector asset manager; agl (Workday) is AGL Energy of Australia. Batch 9, from the crawl:
+  # cobblestoneenergy (a trading house), upwingenergy (gas-well compression),
+  # oneok and vermilionenergy (oil and gas), dragos (industrial cybersecurity
+  # vendor), and non-US boards (venaenergy, momentenergy, rollsroycesmr) are
+  # left out; Terra-Gen is already in the frame under its own Ashby token.
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.

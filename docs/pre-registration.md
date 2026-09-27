@@ -610,3 +610,78 @@ otherwise for `skill_cloud`.
 Crusoe stays in the frame as registered. The leave-the-largest-employer-out
 check keeps reporting which verdicts depend on it.
 
+
+### 2026-09-27 (late evening) — two corrections found between runs, and frame batches 9 and 10 with the federal regime, all before the 28 September run
+
+**1. Two corrections to screening and deduplication, made after seeing the
+data** (`docs/audit-log.md`, interim check of 2026-09-27). Neither was
+looked for because of a result. Both surfaced while testing the USAJOBS
+adapter.
+
+- *Location (population).* A location fragment that ends in a US state is no
+  longer excluded as foreign because it names a town that shares a name
+  with a foreign city (Berlin, CT; Vancouver, WA; Paris, TX; "New Mexico").
+  Every other non-US marker still applies anywhere. 14 Eversource rows enter.
+- *Deduplication.* The nested-repost rule (2026-09-22) now compares
+  descriptions by their letters and digits, not byte for byte. Across all
+  2,435 raw records this adds exactly one pair to the one it already
+  caught. One of the 14 rows leaves as a repost.
+
+*Effect on the headline, stated whichever way it goes.* N 365 → 377,
+clusters 52 → 52, largest employer Crusoe 13.4% → 13.0%, disclosure gap
+45.3 → 45.0 points. **The corrections flatter two tentative findings**: the
+Northeast premium's bootstrap p falls from 0.0058 to 0.0006, because the rows
+are New England utility pay, and it stays insignificant in real terms. The
+cloud-skill premium without the largest employer falls from 0.055 to 0.043.
+They are corrections of postings the pipeline read wrongly, and are kept for
+that reason. Being favourable is not a reason to keep them, and the audit
+log reports both moves.
+
+**2. Frame batch 9 (source route 4), before any of its data exist.** Board
+tokens from Common Crawl's URL index (`data/registry/ats_tokens.csv`: 9,026
+tokens, 356 with URLs naming an in-scope term), each confirmed by a
+domain-restricted search showing a live job URL: Helion Energy, Giga
+Energy, VEIR, Heron Power, WeaveGrid, GridCARE and Stem (verified); Antora
+Energy, Rondo Energy, Fourth Power, Euclid Power, Sparkfund and Lunar Energy
+seen only in the crawl (unverified, behind the sector-confidence check).
+Traders, oil and gas, a cybersecurity vendor and non-US boards in the crawl
+are left out by the rules already applied. *Expected effect:* more clusters,
+mostly grid-technology and analytics firms in California, Massachusetts and
+Washington, all mandate states.
+
+**3. Frame batch 10 (source route 3): the federal power marketing
+administrations, and the rule for them, both fixed before any federal
+posting exists.** Bonneville, Western Area and Southwestern Power
+Administration enter through the official USAJOBS Search API, keyed by their
+subelement codes in USAJOBS's own code list, and the Tennessee Valley
+Authority's entry gains its code. They are utilities, inside the umbrella.
+Regulators (FERC, DOE headquarters) stay out, as state regulators do. They
+collect only once the owner adds the free API key. Without it nothing
+changes.
+
+*The rule, stated now:* federal pay is set by statute and agency pay plans
+and is always stated, so it is a different regime from a state posting
+mandate. Whenever federal (USAJOBS) rows are present, `analyze.py` reports
+(a) the disclosure contrast without them, as a fourth robustness cut, and
+(b) the core pay model and its bootstrap without them
+(`federal_robustness`), with every verdict that changes. Both are in the
+code as of this entry, and were smoke-tested on a relabelled copy of the
+data. *Expected effect:* federal rows all disclose, so they raise
+disclosure on whichever side of the mandate line their states fall
+(Bonneville in Oregon and Washington, a mandate state; Western Area across
+the West). The without-federal cut is the one to read.
+
+**USAJOBS terms, as read (2026-09-27).** The API's Authentication guide
+requires a key requested through its API Request page, sent with the
+registered email as User-Agent. Its Rate Limiting guide allows at most 500
+rows per page and 10,000 per query, and says the Search API "defaults to only
+'Public' jobs". Its Terms of Use page is the federal system-use notice:
+"authorized users only", and it prohibits attempts to "accrue resources for
+unauthorized use". A holder of an issued key using the documented API is an
+authorized user of it. The API Terms of Service summary (as indexed by
+search) limits data "to the explicit use of the requesting company identified
+on the USAJOBS Program Office API Registration Form". Here that is the owner's
+own research use, so the owner should register as the requester. Quoted
+beside the other sources in `docs/limitations.md`.
+
+Frame: 350 → 366 (the collector's loader).

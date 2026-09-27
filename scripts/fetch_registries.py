@@ -89,8 +89,17 @@ def frame_index(path: pathlib.Path = ROOT / "config" / "employers.yaml"):
 
 
 def in_frame(name: str, names: set[str]) -> bool:
+    """True when the name is in the frame, or extends a frame name word by
+    word: registries list trading and project affiliates ("Invenergy Energy
+    Management LLC", "NRG Business Marketing LLC") whose employer, the
+    parent, is the frame entry ("Invenergy", "NRG")."""
     n = norm_name(name)
-    return bool(n) and n in names
+    if not n:
+        return False
+    if n in names:
+        return True
+    words = n.split()
+    return any(" ".join(words[:k]) in names for k in range(1, len(words)))
 
 
 # ------------------------------------------------------------------ pages

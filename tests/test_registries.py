@@ -56,6 +56,8 @@ def run():
     check(reg.norm_name("AT&T") == reg.norm_name("AT and T"), "ampersand not normalised")
     names, tokens = reg.frame_index()
     check(reg.in_frame("Cleco Corporation", names), "Cleco (in batch 4) reported missing")
+    check(reg.in_frame("Invenergy Energy Management LLC", names),
+          "a PJM trading affiliate of Invenergy (real member-list name) reported missing")
     check(not reg.in_frame("Nonexistent Power Cooperative of Nowhere", names),
           "an unknown name matched the frame")
     check("madisonenergyinfrastructure" in tokens, "a greenhouse token in the frame was not indexed")

@@ -314,6 +314,40 @@ modern enough to run a Greenhouse/Lever/Ashby-class ATS or a Workday tenant,
 which correlates with size, sector and how recently the firm was founded. It is
 not a random sample of energy-sector employers and is not claimed to be.
 
+## 9c. USAJOBS: an eighth source, keyed, for federal power employers only
+
+Source route 3, approved by the owner on 2026-09-27, adds the official USAJOBS
+Search API for the federal power marketing administrations (Bonneville,
+Western Area, Southwestern) and the Tennessee Valley Authority. Unlike the
+seven ATS endpoints it needs a key. Its terms were read before any code was
+written, from the pages saved in `data/registry/raw/` by the registry job:
+
+- **Authentication guide:** "Accessing the various USAJOBS APIs will require
+  an API Key. To request an API Key, please go the the API Request page and
+  fill out an application." Requests carry `Host: data.usajobs.gov`, the
+  registered email as `User-Agent`, and the key as `Authorization-Key`.
+- **Rate limiting guide:** "Maximum of 10,000 rows per query. Maximum of 500
+  rows per page." The Search API "Defaults to only 'Public' jobs". The
+  adapter asks for all hiring paths and at most ten pages per agency.
+- **Terms of Use page:** the federal system notice. "This U. S. Federal
+  Government system is to be used by authorized users only", and it
+  prohibits attempts to "accrue resources for unauthorized use or ...
+  otherwise misuse this system". A holder of an issued key calling the
+  documented API is an authorized user of it.
+- **API Terms of Service** (read through a search summary, since the page
+  did not render in the saved text): data "is for the explicit use of the
+  requesting company identified on the USAJOBS Program Office API
+  Registration Form. No other use of the data provided is permitted without
+  prior approval, in writing, from OPM USAJOBS." The owner should therefore
+  register as the requester, for this study.
+
+Two consequences for a reader. The federal rows sit under a **different
+pay-setting regime** (the GS and agency pay plans, always stated), so the
+disclosure contrast and the pay model are reported without them too
+(pre-registration section 8). And the keyed source runs only if the owner
+adds the key: until then these employers contribute nothing, and the frame
+records them as present but unread.
+
 ## 10. The population is national and all-seniority, and that was not the original design
 
 The study began as a question about early-career software and data roles within

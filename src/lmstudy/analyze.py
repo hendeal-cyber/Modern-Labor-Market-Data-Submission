@@ -507,6 +507,16 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
                  .fillna("").astype(str).str.contains("VA")),
             ("excluding_largest_employer",
              disc["employer"] != disc["employer"].value_counts().idxmax()),
+        ) + (
+            # Pre-registered 2026-09-27, before any federal posting existed
+            # (section 8, source route 3): federal pay is set by statute and
+            # agency pay plans and is always stated, a different regime from
+            # a state posting mandate. The contrast is reported without the
+            # federal employers whenever any are present.
+            (("excluding_federal", disc.get("ats_platform", pd.Series("", index=disc.index))
+              .fillna("").astype(str) != "usajobs"),)
+            if (disc.get("ats_platform", pd.Series("", index=disc.index)) == "usajobs").any()
+            else ()
         ):
             sub = disc[mask]
             m1 = sub[sub["mandate_state"] == 1]
@@ -739,6 +749,43 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
                     "employer": top,
                     "n": int(len(sub)),
                     "n_dropped": int(len(estimation) - len(sub)),
+                    "n_clusters": int(sub["employer"].nunique()),
+                    "verdicts_changed": changed,
+                    "by_variable": {
+                        n: {"coef": round(float(res_sub.params[n]), 4),
+                            "clustered_p": round(float(res_sub.pvalues[n]), 4),
+                            "bootstrap_p": sub_boot.get(n, {}).get("p_value")}
+                        for n in sub_reg
+                    },
+                }
+
+        # Leave the federal employers out (pre-registered 2026-09-27, section
+        # 8, source route 3, before any federal data existed): federal pay is
+        # set by the GS and agency pay plans, not by a labour market the other
+        # employers share. Runs only when USAJOBS rows are present, and
+        # reports every verdict that changes, whichever way.
+        fed = (estimation.get("ats_platform", pd.Series("", index=estimation.index))
+               .fillna("").astype(str) == "usajobs")
+        if fed.any() and "wild_cluster_bootstrap" in report:
+            sub = estimation[~fed].copy()
+            if len(sub) > 30 and sub["employer"].nunique() >= 2:
+                sub_reg = available(sub, core)
+                res_sub = fit(sub, sub_reg)
+                sub_boot = wild_cluster_bootstrap(
+                    sub, sub_reg, reps=min(bootstrap_reps, 1999),
+                    seed=BOOTSTRAP_SEED + 3)["by_variable"]
+                base = report["wild_cluster_bootstrap"]["by_variable"]
+                changed = [
+                    n for n in sub_reg
+                    if n in base and base[n].get("p_value") is not None
+                    and sub_boot.get(n, {}).get("p_value") is not None
+                    and ((base[n]["p_value"] < 0.05)
+                         != (sub_boot[n]["p_value"] < 0.05))
+                ]
+                report["federal_robustness"] = {
+                    "employers": sorted(estimation.loc[fed, "employer"].unique().tolist()),
+                    "n": int(len(sub)),
+                    "n_dropped": int(fed.sum()),
                     "n_clusters": int(sub["employer"].nunique()),
                     "verdicts_changed": changed,
                     "by_variable": {

@@ -1,0 +1,867 @@
+name,registries,entities,sectors,in_frame,source_urls
+"West Deptford Energy, LLC",PJM member list,26,Generation Owner 23; Other Supplier 2; Transmission Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Appalachian Power Company,PJM member list,22,Transmission Owner 21; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BP Energy Company,PJM member list; PUCT retail electric providers,22,Generation Owner 16; Other Supplier 5; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+EDP Renewables North America LLC,PJM member list,22,Generation Owner 20; Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Brookfield Renewable Trading and Marketing LP,PJM member list,15,Generation Owner 11; Other Supplier 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Dynegy Marketing and Trade, LLC",PJM member list,15,Other Supplier 8; Generation Owner 7,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"PALMco Power NJ, LLC dba Indra Energy",PJM member list,14,Other Supplier 14,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Eagle Point Power Generation LLC,PJM member list,12,Generation Owner 11; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Tenaska Power Services Co.,PJM member list; PUCT retail electric providers,12,Generation Owner 8; Other Supplier 3; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Dayton Power & Light Company (The),PJM member list,11,Generation Owner 7; Other Supplier 2; Transmission Owner 1; End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Monongahela Power Company,PJM member list,11,Transmission Owner 7; Electric Distributor 3; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Castleton Commodities Merchant Trading L.P.,PJM member list,10,Other Supplier 8; Generation Owner 1; Transmission Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"CPV Power Holdings, LP",PJM member list,10,Generation Owner 8; Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Leeward Asset Management, LLC",PJM member list,10,Generation Owner 6; Other Supplier 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Parkway Generation Operating LLC,PJM member list,10,Generation Owner 8; Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Virginia Electric & Power Company,PJM member list,10,Generation Owner 9; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"RWE Americas, LLC",PJM member list,8,Generation Owner 6; Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Waverly Solar, LLC",PJM member list,7,Generation Owner 4; Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Acciona Energy North America Corporation,PJM member list,6,Other Supplier 4; Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Duke Energy Business Services LLC,PJM member list,6,Transmission Owner 3; Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"GenOn Energy Management, LLC",PJM member list,6,Generation Owner 6,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"AP Gas and Electric (PA), LLC",PJM member list,5,Other Supplier 5,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Cube Hydro Partners, LLC",PJM member list,5,Generation Owner 5,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Essential Power Rock Springs, LLC",PJM member list,5,Generation Owner 5,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Olympus Power, LLC",PJM member list,5,Generation Owner 5,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Southern Power Company,PJM member list,5,Other Supplier 4; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Wheelabrator Falls Inc.,PJM member list,5,Generation Owner 3; Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Big Sandy Peaker Plant, LLC",PJM member list,4,Generation Owner 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CP Energy Marketing (US) Inc.,PJM member list,4,Generation Owner 3; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"DC Energy, LLC",PJM member list,4,Other Supplier 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Harts Mill Solar, LLC",PJM member list,4,Other Supplier 3; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"IDT Energy, Inc.",PJM member list,4,Other Supplier 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Light Energy, LLC",PJM member list; PUCT retail electric providers,4,REP 3; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Mount Storm Wind LLC,PJM member list,4,Generation Owner 3; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NJR Clean Energy Ventures Corporation,PJM member list,4,Generation Owner 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Open Road Renewables, LLC",PJM member list,4,Other Supplier 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Saracen Energy East LP,PJM member list,4,Other Supplier 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Twin Ridges LLC,PJM member list,4,Generation Owner 4,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Tyr Energy, LLC",PJM member list,4,Generation Owner 2; Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Altro Power LLC,PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Altrock LLC,PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Altus Power, LLC",PJM member list,3,Generation Owner 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Bazinga, LLC",PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"BJ Energy, LLC",PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BKV Electric,PUCT retail electric providers,3,REP 3,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Duquesne Light Company,PJM member list,3,Other Supplier 2; Transmission Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"ENGIE Energy Marketing NA, Inc.",PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Innergex Renewable USA LLC,PJM member list,3,Generation Owner 2; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Interstate Gas Supply, LLC",PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Jack Rich, Inc. d/b/a Anthracite Power & Light Company",PJM member list,3,Generation Owner 2; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Median Energy Corp.,PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Morgan Stanley Capital Group Inc.,PJM member list; PUCT retail electric providers,3,Other Supplier 2; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Sanitas Power, LLC",PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Trafigura Trading LLC,PJM member list,3,Other Supplier 3,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Wellsboro Electric Company,PJM member list,3,Electric Distributor 2; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+4CHANGE,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Abundance Energy,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Altop Energy Trading LLC,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AMBIT,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Armenia Mountain Wind, LLC",PJM member list,2,Other Supplier 1; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Bancroft Energy LLC,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Blooming Grove Wind Energy Center LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Carroll County Energy LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Chief Conemaugh Power, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Citadel FNGE Ltd.,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Cleveland-Cliffs Steel LLC,PJM member list,2,End-Use Customer 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ConocoPhillips Company,PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Convergent Energy and Power LP,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Cornerstone Gas, L.L.C.",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+COST PLUS ENERGY,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"DCO Energy, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Diamond State Generation Partners, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Digital Power USA, Inc.",PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Discount Power, Inc.",PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Distributed Power,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Dynasty Power Inc,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Elevate Energy,PJM member list; PUCT retail electric providers,2,None 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Elwood Energy, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Energy Texas,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Engelhart CTP (US) LLC,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ETC Endure Energy L.L.C.,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Evolve,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Fern Solar LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Five Elements Energy LLC,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Forked River Power LLC,PJM member list,2,Generation Owner 1; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Freepoint Commodities LLC,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Gerdau Ameristeel Energy, Inc.",PJM member list; PUCT retail electric providers,2,End-Use Customer 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Green River Holdings, LLC",PJM member list,2,Other Supplier 1; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"H-P Energy Resources, LLC",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Hazleton Generation LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Hemsworth Capital, L.P.",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Hyperscale Energy 1, LLC",PJM member list,2,Other Supplier 1; Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Icetec.com, LLC",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+J.P. Morgan Ventures Energy Corporation,PJM member list,2,Other Supplier 1; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+KeyCon Power Holdings LLC,PJM member list,2,Generation Owner 1; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Lincoln Generating Facility, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Lyons Solar, LLC",PJM member list,2,Generation Owner 1; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Manatee Transmission LLC,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Mercuria Energy America, LLC",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Messer LLC,PJM member list,2,End-Use Customer 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Mianus River Energy, L.P.",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Mitsui Bussan Commodities Ltd.,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Neptune Regional Transmission System, LLC",PJM member list,2,Transmission Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Nestlewood Solar I LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+New Creek Wind LLC,PJM member list,2,Generation Owner 1; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+OCI Energy LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Ontario Power Generation Inc.,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Pacific Summit Energy, LLC",PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Panther Grove Wind, LLC",PJM member list,2,Other Supplier 1; Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Pay Less Energy, LLC",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Peak Energy Capital LP,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PENNYWISE,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+PENSTAR POWER,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Phillips 66 Energy Trading LLC,PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Pogo Energy,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+PowerTransitions Marketing LLC,PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pumpjack Power,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Pure Energy USA, LLC",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Rainbow Energy Marketing Corporation,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Rausch Creek Electric Power Holdings, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+RELIANT,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+REVOLUTION ENERGY,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Reworld REC, LLC",PJM member list,2,Generation Owner 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Rockland Electric Company,PJM member list,2,Other Supplier 1; Transmission Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Shipley Choice, LLC",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Six One Energy Corporation,PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"SmartEnergy Holdings, LLC",PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+SmartestEnergy US LLC,PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+South Bay Energy Corp.,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Spring Energy RRH, LLC dba Spring Power & Gas",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Tesla, Inc.",PJM member list; PUCT retail electric providers,2,None 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Texas Retail Energy, LLC",PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TEXPO ENERGY,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TITAN GAS AND POWER,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TLG Commodities LLC,PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TransAlta Energy Marketing (U.S.) Inc.,PJM member list,2,Generation Owner 1; Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TRIEAGLE ENERGY LP,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Value Energy,PUCT retail electric providers,2,REP 2,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Volta Energy Designated Activity Company,PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Wabash Valley Power Association, Inc.",PJM member list,2,Generation Owner 1; Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Wolverine Holdings, L.P.",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"XO Energy MA, L.P.",PJM member list,2,Other Supplier 2,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+174 POWER GLOBAL RETAIL TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+3000 Energy Corp,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"AC Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ACACIA ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ACCEL ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ACCENT ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ACCENT ENERGY TEXAS LP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ACT Commodities Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Advanced Energy United, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AE TEXAS,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+AE Texas Residential,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"AESI-US, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Aesir Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Affirmed Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Aggressive Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Agway Energy Services, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"AiGent, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Air Products & Chemicals, Inc.",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AISPEX INC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Albertsons Companies, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ALCHEMY MUSE INC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"All American Power and Gas, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+All Choice Energy MidAmerica LLC dba Raava Energy,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Allegheny Electric Cooperative, Inc.",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ALLIANCE POWER COMPANY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ALMIKA POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Alpha Gas and Electric, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Alpha Generation Brandywine, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Alphataraxia Palladium LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Alternative Transmission Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Alton Post Office Solar, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"AM Trading Solutions, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Amazand, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Amazon Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AMBER CLASS I LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AMBER ENERGY SERVICES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+AMBIT TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Ameripro Energy Corp.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Ames Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Amigo Commercial,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+AMIGO ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+AMMPER POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+AMOS ENERGY INC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Amplify Renewables II LP,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Ampra Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Amrize Cement Inc,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Antimo LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AP COMMERCIAL,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+AP GAS & ELECTRIC (TX) LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+APG&E,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+APG&E ENERGY SOLUTIONS,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+APN STARFIRST LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Apogee Energy Trading LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Apollo Power Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Appian Way Energy Partners MidAtlantic, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Approved Energy II LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Archer Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ARM ENERGY POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Armada Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Aspen Road Solar 1, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Aspire Power Ventures, LP",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ASSURANCE ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Astral Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Atlantex Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Atlantic Energy MD, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ATLANTIC ENERGY TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Atmospheric G2, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"ATNV Energy, LP",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Aurora Trading Company, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Automated Algorithms, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AXPO U.S. LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+AXPO US LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Baltimore Power Company LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Balyasny Asset Management L.P.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Barclays Services Corporation,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Baringa Partners LP,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BATT POWER TX LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"BCLI Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Beyond Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Big Bend Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Big Sky Wind, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Bilton Wong Power, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Birchwood Power Partners, L.P.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"BITH Solar I, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BKV Retail Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BKV-BPP RETAIL LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BKV-BPP RETAIL TEXAS,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Black Oak Capital, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Blackout Power Trading Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Blossom Solar, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Bluebird Solar LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BlueCrest Capital Management (New York) LP,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Butler, Butler Electric Division",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Borough of Chambersburg,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Columbia, PA",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Lavallette, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Madison, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Milltown, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Mont Alto, Pennsylvania",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Park Ridge, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Pemberton, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Pitcairn, Pennsylvania",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of Seaside Heights, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Borough of South River, New Jersey",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Boston Energy Group, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Boston Energy Trading and Marketing LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BP Energy Retail Company LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Branch Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BRANCH ENERGY (TEXAS) LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BRIGHTSTAR POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BROOKLET ENERGY DISTRIBUTION LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"BTU Analytics, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Budget Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BUSHEIDO ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Caerus Commodities Trading LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Calpine Bethlehem, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CALPINE POWER AMERICA LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Cambridge Energy Solutions LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Camp Grove Wind Farm, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Capacity Markets Partners, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Cape May County Municipal Utilities Authority,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Caravela Energy Partners LP,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Carolina Power Partners, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Catalyst Power & Gas LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Central Virginia Electric Cooperative,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Centrica Energy Trading LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CET North America Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Choice Energy, LLC dba 4 Choice Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Cinnamon Bay LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CIRRO ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Citigroup Energy, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+City of Auburn,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"City of Batavia, Illinois",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"City of Cleveland, DPU, Division of Cleveland Public Power",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"City of Dover, Delaware",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"City of Hamilton, Ohio",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"City of Rochelle, Illinois",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"City Power & Gas, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Clarion Boards LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Clarity Grid Solutions, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Clean Energy Future-Trumbull, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CleanCapital Operations LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"CleanChoice Energy, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CleanSky Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"ClearAlpha Technologies, LP",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Clone Capital LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CLYDE ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"COI Energy Services, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Comity Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Command Power Corp.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Commonwealth Fusion Systems, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Community Energy, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Companion Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+COMPASSION ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Consumer Protection and Advocate Division of the Tennessee Attorney General,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Corona Power, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"County of Frederick, Virginia",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CPL BUSINESS,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Crossno & Kaye Inc,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Crystal Hill Solar, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Current Energy and Renewables Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CWP Energy Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"CZ Solar Warren, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Dan's Mountain Wind Force, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Danske Commodities US LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Dare US LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Dart Container Corporation of Pennsylvania,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Decision Tree Capital Management Corp.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DECLARATION ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Delaware Division of the Public Advocate,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DEMAND CONTROL 2 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Devonshire Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Domtar Paper Company, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Dow Pipeline LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+DRW ENERGY TRADING LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"DTN, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"DV Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DXT Commodities North America Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Dynamix Energy Services Company, LLC",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DYNOWATT,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+DYNOWATT POWERED BY ACCENT ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+EAGLE ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Easton Utilities Commission,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Ebensburg Power Company,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"EcoPlus Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Eden Energy Technologies Corporation,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"EDF Trading North America, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+EE REP 2 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+EF Kenilworth LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Egypt Road Solar, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+EIF CHANNELVIEW RETAIL ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ELECTRANET POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Electranet REP I, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Electron Exchange DCM, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Eligo Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Elliott Advisors (UK) Limited,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Elliott Bay Energy Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Elmagin Power Fund LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Emera Energy Services, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Emerald AI, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Emporia Hydropower Limited Partnership,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Energy Center Retailco LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Energy Cooperative Association of Pennsylvania (The),PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Energy Cooperative of America, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Energy Developments Honey Brook, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Energy Rewards,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Energy Technology Savings, Inc. dba Logical Buildings",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ENERGY TRANSFER RETAIL POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"EnergyMark, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"energyRe Giga-Projects USA, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Energywell,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Enersponse LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"EnerVision Associates, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ENGIE RESOURCES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Entergrid Fund I LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ENZEE Commodities Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+EPIQ ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+EROCK ON-SITE LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+EXPERT ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Express Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Ezpada U.S. LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Fanfare Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Fantods LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Filsinger Energy Partners, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"First Point Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+FiTran Fund LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Five Rings LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Flagship Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+FLOWX LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Forest Investment Group, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Fowler Ridge IV Wind Farm, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Foxglove Solar Project, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+FP East Capital Partners LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+FREEPOINT ENERGY SOLUTIONS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+FRONTIER UTILITIES,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+FULCRUM RETAIL ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+G&S Wantage Solar LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Gallus Capital LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Galt Power, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Gavin Power, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GBET LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Geenex Solar LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GEN-I Trading North America LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GenOptimizer Inc.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Genscape, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Geodesic 2 LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GOOD CHARLIE & CO LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+GOOD CHARLIE OPS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+GRAVITI POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Grays Ferry Cogeneration Partnership,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Great American Gas & Electric, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Great American Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Great Barrington Energy Fund LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Greene Energy NE Investments LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Greenlight Energy Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GRG ENERGY LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GRID POWER DIRECT LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Grid Status Inc.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"GridBeyond, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Gridflexibility LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GridIntegral Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Group628, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"GT Power Group, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Gulf Inc,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Gunvor USA LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"H.Q. Energy Services (U.S.), Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Hagerstown Light Department,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Halia Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Hanwha Energy USA Holdings Corporation,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+HANWHA Q CELLS USA CORP.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Harborside Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Harrison REA, Inc. - Clarksburg, West Virginia",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"HD Project One, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Hello Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+HERITAGE POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Heritage Power Marketing, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Hexis Energy Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"HGP INTELLIGENT ENERGY, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Hill Top Energy Center, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+HIVOLT ENERGY TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+HODL,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Homer City Generation, L.P.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Horizon Power and Light, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Horus Renewables Corp.,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"IHG Core Holdings, Ltd.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Illinois Citizens Utility Board,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+IMG Midstream LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+In Commodities US LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Indeck Niles, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Independent Energy Consultants, Inc.*",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Indiana Municipal Power Agency,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Indiana Office of Utility Consumer Counselor (IN OUCC),PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+INFUSE ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Innoventive Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Intelligent Generation LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+International Paper Company,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+IRONHORSE POWER SERVICES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"ISO 1, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ITC Mid-Atlantic Development LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+J. Aron & Company LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Jain Global Power Markets LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Jane Street Energy Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Janus Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Jersey Green Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"JMI Consultants, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Jones Farm Lane Solar, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+JP ENERGY RESOURCES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+JUICE,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Juliet Energy Project, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Karbone Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+KDC Solar Green Power LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Keni Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Kentucky Municipal Energy Agency,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Kevala, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"KeyTex Energy Solutions, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"KFW Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Kimberly-Clark Corporation,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"KOREnergy, Ltd.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Kuehne Chemical Company, Inc.",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"kWantix Trading Fund I, LP",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"L & P Electric Inc., d/b/a Leggett & Platt Electric Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Lancaster County Solid Waste Management Authority,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+LANCIUM QSE I LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"LANCIUM REP 1, LLC",PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Land O'Lakes, Inc.",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Lantar Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Leapfrog Power, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Lehigh Portland Cement Company,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Letterkenny Industrial Development Authority - PA,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+LFG Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Linde Inc.,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"LM Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Long Island Power Authority,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Long Ridge Energy Generation LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Longview Power, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+LOW COUNTRY POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"LTSTE Investments, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+LUMINANT ET SERVICES COMPANY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+LUXOR TECHNOLOGY CORPORATION,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"MAG Energy Solutions, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MAISON ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MARKET PLACE ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Maryland Office of People's Counsel,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"MCG Energy Solutions, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MEMS INDUSTRIAL SUPPLY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MEMSIS 1,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MEMSIS 2,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MEMSIS 3,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MEMSIS 4,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Merrill Lynch Commodities, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MFT Energy US 1 LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MFT Energy US Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MI TEXAS REP 1 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MI TEXAS REP 4 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Michigan Department of Attorney General, Environment, Natural Resources, & Agriculture Division",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"MidAtlantic Power Partners, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Middlesex County Utilities Authority,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MINOTAUR LEGACY GROUP LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Mio Electric,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Monterey MA LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Morgnec Road Solar, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Morris Cogeneration, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Mosaic Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Mothership,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MOTHERSHIP TEXAS REP 11 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MOTHERSHIP TEXAS REP 12 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MP2 ENERGY TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+MPower Energy NJ LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Mt. Carmel Cogen, Inc.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Nabla Technologies US, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NDC Partners Corp.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NEUMIN PRODUCTION COMPANY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+New Jersey Division of Rate Counsel,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+New York Power Authority,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NEWENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+NextPower III US Holdco Inc.,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NextVolt Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+NEXTVOLT TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Nexus Energy Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NGV US TRANSMISSION INC.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Nitor Energy Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Nodal Exchange, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Nordic Energy House US LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Nordic Energy Services, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Norlys Energy Trading Americas LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+North Carolina Electric Membership Corporation,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+North Carolina Municipal Power Agency Number 1,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+North Star BlueScope Steel LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northeast Maryland Waste Disposal Authority,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northeastern REMC,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northern Illinois Municipal Power Agency,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northern Indiana Public Service Company,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northern States Power Company,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northern Virginia Electric Cooperative (NOVEC),PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Northstar Trading Ltd.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NOVA ELECTRIC CO,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+NOW POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"NTherm, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"NuEnergen, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+OCCIDENTAL POWER MARKETING LP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Office of the Attorney General, Kentucky",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Old Mission Energy Trading LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+OLIN CORPORATION,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Omega Strategies Pennsylvania I LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Omnis Pleasants, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ONPOINT ENERGY TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+ONXY ELECTRIC ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"OPEN ACCESS TECHNOLOGY INTERNATIONAL, INC.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Osaka Gas USA Corporation,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Owensboro Municipal Utilities,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Palladium Energy, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Palm Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Panther Creek Power Operating, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Parisi Labs, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Park Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PARTNERS NEW ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+PAYLESS POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+PBF Power Marketing LLC,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Peakstone Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pegasus Energy Futures LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pelican Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Penncat Corporation,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pennsylvania Grain Processing LLC,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pennsylvania Office of Consumer Advocate,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PENSTAR POWER LLC 1,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Perast Fund LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PERIDOT POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Peso Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Pharos Enterprise Intelligence LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Philly Funding Capital, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Phoenix Energy Group, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Piedmont Energy Fund, L.P.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Pine Gate Mid-Atlantic, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pinesburg Solar LLC,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Pixelle Specialty Solutions LLC,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Plant-E Corp.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Polaris Power Services LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Potomac Energy Center, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Power Analytics Software, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+POWER HOUSE ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Power Supply Services, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Power Up Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PowerTransitions LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Powervine Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Prairieland Energy, Inc.",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Precept Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Prepay Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+PRIORITY ENERGY TRANSITION 4 LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Procter & Gamble Paper Products Company (The),PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PRONTO POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Provision Power and Gas, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+QNTI.FYI INC.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+QuantOhm Australia Pty Ltd,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Rainbow Energy Ventures LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Ranchero Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Realgy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Recurrent Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Red Wolf TX2, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Refinitiv US LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+RELIANT ENERGY BUSINESS SERVICES,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+RELIANT ENERGY RETAIL SERVICES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Renaissance Power & Gas, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+REP ACE POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"ResCom Energy, LLC dba NextVolt Energy",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Research Power Corporation,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ResidentShield Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"ResidentShield Power TX, LLC dba ResidentShield Power",PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Resistance Energy Fund, LP",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"RESOURCEPROFIT, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"REsurety, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Retail Energy Solutions LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+REXTAG CORP,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Rhei Energy Partners LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Rio Power & Light,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"River Bay Commodities, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"RiverCrest Power-South, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Rodan Energy Solutions (USA) Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Roth Rock Wind Farm, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Royal Bank of Canada,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"RPA Energy, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+RUAHODL INC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+RUNE RETAIL ELECTRIC I LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Rushmore Energy, LLC (new)",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"RVA Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+RWE Trading Americas Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+S&P Global Inc.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"S.J. Energy Partners, Inc.",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Sandalwood Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Saugatuck River Power Trading LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Scout Storage LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Scylla Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Second Foundation US Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SELFSERVE ENERGY CORP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"SESCO Enterprises, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Seven Islands Environmental Solutions, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Seward Generation, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SFE ENERGY TEXAS INC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"SFE Energy, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SG&E,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Sheetz Energy, Inc.",PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Shell Energy Solutions,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Sidecar Infrastructure Company,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Singularity Energy, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SMART PREPAID ELECTRIC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+SmarTricity,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+SNAP ENERGY LATINO,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+SociVolta Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SOLAR STAR PLANO I LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Solios Power Mid-Atlantic Trading LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Southeastern Chester County Refuse Authority,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Southeastern Power Administration,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SOUTHERN FEDERAL POWER LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Southern Indiana Gas and Electric Company d/b/a Vectren Power Supply Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Southern Maryland Electric Cooperative, Inc.",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SOUTHWEST POWER & LIGHT,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Sparta Energy Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Spartacus Energy Services LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Spotlight Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Spring Grove Solar II, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Spruance Operating Services, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Spruce Power Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Standard Gas & Electric, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Star Jasmine Houston LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+STARTEX POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Statkraft US LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Sterling Partners Energy Investors LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+STREAM ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+STREAM SPE LTD,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Strom Power, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Strong Tower Energy Analytics, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SUMMER ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Summer Energy Midwest, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Summit Energy Services, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"SunCoke Energy, Inc.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Sunnova Energy Corporation,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Sunrise Power,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"SunSea Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Sunshaw Power Trading, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Syncarpha Solar, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Synota Inc.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SYSO Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Tangent Energy Solutions, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"TarHawk Energy, LP",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Taurus Power LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TC Energy Marketing Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TEC Energy Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TENASKA TOPS REP LP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TERRAFORM RENEWABLE ENERGY SERVICES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"TerraForm ST Development, LLC",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TESLA ENERGY VENTURES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TESM LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Texans Choice Power LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+The City of Geneva,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"The Highlands Energy Group, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"THG Energy Solutions, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Thordin ApS,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TimberRock Consulting LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Tios Capital, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Titan Gas, LLC dba CleanSky Energy",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TOPS I,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TotalEnergies Gas & Power North America Inc,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Town of Berlin, Maryland",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Town of Thurmont,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Town of Williamsport (The),PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TOWN SQUARE ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TPS 4,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TPS I,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TPS II,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TPS III,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Tri Global Energy, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TRINITA POWER INC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Triolith Energy Fund, LP",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Tristar Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TRUE COMMODITIES LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TRUE POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+True Prepaid,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Trustees of the University of Pennsylvania,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Twig Redwood Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Twin Eagle Resource Management, LLC",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+TXU ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TXU ENERGY RETAIL COMPANY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Tymeware Inc.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Union Electric Company d/b/a Ameren Missouri,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+UNO ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+US ENERGY SAVINGS CORP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+US RETAILERS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+V20 Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Vaisala Inc.,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+VALUE BASED BRANDS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+VARSITY ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Velocity American Energy Master I, L.P.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Vermillion Power, L.L.C.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Vesper Energy Development LLC,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Veteran Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Vineland Municipal Electric Utility,PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Virginia Division of Consumer Counsel,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Viribus Fund LP,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Viridian Energy,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Viridity Energy Solutions Inc.,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Vista Energy Marketing, L.P.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+VITAL POWER,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Vitol Inc.,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Walden Renewables Development LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Watt Bro,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+WattTime Corporation,PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+West Virginia Consumer Advocate Division,PJM member list,1,End-Use Customer 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+White Peak Energy LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+WinPower LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"WM Renewable Energy, L.L.C.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Wolverine Power Supply Cooperative, Inc.",PJM member list,1,Electric Distributor 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+WPPI Energy,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Wrigley Capital LLC,PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+WTU BUSINESS,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Xel Dynamics, LLC",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+XOOM ENERGY TEXAS LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Xpansiv Data Systems, Inc.",PJM member list,1,Other Supplier 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+YENTA ENERGY LP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+YEP,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+York County Solid Waste and Refuse Authority,PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+YOUNG ENERGY LLC,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Z&F Consulting, Inc.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Zema MarketPlace, Inc.",PJM member list,1,None 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ZIP ENERGY,PUCT retail electric providers,1,REP 1,False,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Zongyi Solar America Co., Ltd.",PJM member list,1,Generation Owner 1,False,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NRG Business Marketing LLC,PJM member list,29,Other Supplier 21; Generation Owner 8,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Invenergy Energy Management LLC,PJM member list,19,Generation Owner 15; Other Supplier 4,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Talen Energy Marketing, LLC",PJM member list,14,Generation Owner 13; Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Constellation Energy Generation, LLC",PJM member list,11,Other Supplier 6; Generation Owner 5,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Spark Energy, LLC",PJM member list; PUCT retail electric providers,10,Other Supplier 9; REP 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"NextEra Energy Marketing, LLC",PJM member list,9,Other Supplier 7; Generation Owner 1; Transmission Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Exelon Business Services Company, LLC",PJM member list,7,Transmission Owner 4; Electric Distributor 3,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Shell Energy North America (US), L.P.",PJM member list,7,Generation Owner 4; Other Supplier 3,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+American Power & Gas of Pennsylvania LLC,PJM member list,6,Other Supplier 6,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+MidAmerican Energy Company,PJM member list; PUCT retail electric providers,6,Other Supplier 3; Generation Owner 2; REP 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Avangrid Power, LLC",PJM member list,5,Other Supplier 3; Generation Owner 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Doral Renewables LLC,PJM member list,5,Other Supplier 3; Generation Owner 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Alliant Energy Corporate Services, Inc.",PJM member list,4,Other Supplier 4,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Enel X North America, Inc.",PJM member list,4,Generation Owner 2; Other Supplier 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Jupiter Power LLC,PJM member list,4,Other Supplier 4,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Octopus Energy LLC,PJM member list; PUCT retail electric providers,4,REP 3; Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Public Service Electric and Gas Company,PJM member list,4,Other Supplier 2; Generation Owner 1; Transmission Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"American Municipal Power, Inc.",PJM member list,3,Transmission Owner 1; Electric Distributor 1; Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"American PowerNet Management, LLC",PJM member list; PUCT retail electric providers,3,End-Use Customer 2; REP 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Clearview Electric Inc.,PJM member list; PUCT retail electric providers,3,REP 2; Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Green Mountain,PUCT retail electric providers,3,REP 3,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Rhythm Ops, LLC",PJM member list; PUCT retail electric providers,3,Other Supplier 2; REP 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TARA ENERGY,PUCT retail electric providers,3,REP 3,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Think Energy, LLC",PJM member list; PUCT retail electric providers,3,Other Supplier 2; REP 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+BASE,PUCT retail electric providers,2,REP 2,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CMS Energy Resource Management Company,PJM member list,2,Other Supplier 1; Generation Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DIRECT ENERGY,PUCT retail electric providers,2,REP 2,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+DIRECT ENERGY BUSINESS LLC,PUCT retail electric providers,2,REP 2,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"DTE Energy Trading, Inc.",PJM member list,2,Other Supplier 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Evergy Metro, Inc.",PJM member list,2,Other Supplier 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GEXA ENERGY,PUCT retail electric providers,2,REP 2,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Gridmatic Inc.,PJM member list,2,Other Supplier 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Gridmatic Retail,PUCT retail electric providers,2,REP 2,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Hecate Energy Highland LLC,PJM member list,2,Other Supplier 1; Generation Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Hudson Energy Services LLC,PJM member list; PUCT retail electric providers,2,Other Supplier 1; REP 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Old Dominion Electric Cooperative,PJM member list,2,Electric Distributor 1; Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+PPL Electric Utilities Corporation d/b/a PPL Utilities,PJM member list,2,Transmission Owner 2,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+RHYTHM,PUCT retail electric providers,2,REP 2,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"UGI Energy Services, LLC",PJM member list,2,Other Supplier 1; Transmission Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Amperon Holdings, Inc.",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Apex Clean Energy, Inc.",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Arcadia Power, Inc.",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Associated Electric Cooperative, Inc.",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Aurora Energy Research LLC,PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Base Retail, LLC",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+BASE TEXAS REP LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Big Rivers Electric Corporation,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Blue Bedrock II LLC,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Blue Ridge Power Agency, Inc.",PJM member list,1,Electric Distributor 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Buckeye Power, Inc.",PJM member list,1,Electric Distributor 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CALPINE ENERGY SOLUTIONS LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CAPITAL ENERGY PA LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CHAMPION ENERGY INDUSTRIAL SERVICES I,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CHAMPION ENERGY INDUSTRIAL SERVICES II,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CHAMPION ENERGY INDUSTRIAL SERVICES III,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CHAMPION ENERGY SERVICES LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CHARIOT ENERGY,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"CHARIOT ENERGY NORTHEAST, LLC",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+CLEAResult Consulting Inc.,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Clearview Solar I, LLC",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+ConnectGen East LLC,PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Constellation,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+CONSTELLATION NEWENERGY INC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Customized Energy Solutions, Ltd.",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Dairyland Power Cooperative,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DAVID ENERGY SUPPLY (TEXAS) LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"David Energy Supply, LLC",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+DIRECT ENERGY MULTI-FAMILY,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"East Kentucky Power Cooperative, Inc.",PJM member list,1,Transmission Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Electric Power Engineers, LLC",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Enverus, Inc.",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+GRIDMATIC ROSA LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+"Hanwha Renewables, LLC",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Hitachi Energy USA Inc.,PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Hoosier Energy REC, Inc.",PJM member list,1,End-Use Customer 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+IGS ENERGY,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+JUST ENERGY,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Just Energy Commercial,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Just Energy Limited,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+JUST ENERGY RGV,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+JUST ENERGY TEXAS LP,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+LIBERTY WHOLESALE COMMODITIES LLC,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Modo Energy Inc.,PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+NEW LEAF ENERGY,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+NRG,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+NRG Business,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Orennia US LLC,PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Orsted Onshore North America, LLC",PJM member list,1,Generation Owner 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Public Staff - North Carolina Utilities Commission,PJM member list,1,End-Use Customer 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+S.C. Energy Partners LLC,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Santanna Energy Services,PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Siemens Industry, Inc.",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+SWITCH LTD,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Tara Commercial,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+TARA ENERGY RESOURCES,PUCT retail electric providers,1,REP 1,True,https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx
+Tennessee Valley Authority (The),PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"The Brattle Group, Inc.",PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"Voltus, Inc.",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+"WGL Energy Services, Inc.",PJM member list,1,Other Supplier 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx
+Yes Energy LLC,PJM member list,1,None 1,True,https://www.pjm.com/about-pjm/member-services/member-list.aspx

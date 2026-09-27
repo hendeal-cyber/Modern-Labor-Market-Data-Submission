@@ -4,10 +4,13 @@ Each adapter returns a list of RawPosting. Normalization into the canonical
 schema happens in lmstudy.normalize so that raw payloads stay verbatim on disk
 and every downstream stage can be re-run without re-collecting.
 
-None of these endpoints require a key, and none are behind a login.
+None of these endpoints require a key, and none are behind a login, except
+USAJOBS: the federal government's own Search API, which issues a free key on
+request and is built for programmatic use (fetch_usajobs below).
 """
 from __future__ import annotations
 
+import os
 import re
 from dataclasses import dataclass, asdict
 from typing import Any, Iterable
@@ -519,6 +522,111 @@ def _epoch_ms(value: Any) -> str | None:
 
 
 # --------------------------------------------------------------------------
+# USAJOBS  (source route 3; approved by the owner 2026-09-27)
+#
+# The official Search API of the Office of Personnel Management
+# (developer.usajobs.gov). It needs a free key, sent with the registered email
+# as User-Agent, both as the API's Authentication guide requires; they come
+# from the repository secrets USAJOBS_API_KEY and USAJOBS_USER_AGENT. Without
+# them the adapter returns nothing and the employer reads as "no board found",
+# so a run without the secrets is unchanged.
+#
+# The "token" is the agency subelement code from USAJOBS's own code list
+# (data/registry/raw/usajobs_agencies.txt): DN03 Bonneville, DNWP Western Area
+# and DNSW Southwestern Power Administration, TV00 the Tennessee Valley
+# Authority. Federal pay is set by statute and agency pay plans and always
+# stated, so pre-registration section 8 treats it as a separate regime.
+# --------------------------------------------------------------------------
+USAJOBS_SEARCH = "https://data.usajobs.gov/api/Search"
+# RateIntervalCode, as the API documents it. Anything else (fee basis,
+# without compensation, school year) is left unparsed.
+USAJOBS_INTERVAL = {"PA": "year", "PH": "hour", "PM": "month"}
+
+
+def usajobs_headers() -> dict[str, str] | None:
+    key = os.environ.get("USAJOBS_API_KEY", "").strip()
+    email = os.environ.get("USAJOBS_USER_AGENT", "").strip()
+    if not key or not email:
+        return None
+    return {"Host": "data.usajobs.gov", "User-Agent": email, "Authorization-Key": key}
+
+
+def parse_usajobs_item(item: dict, token: str, employer: str) -> RawPosting:
+    d = item.get("MatchedObjectDescriptor") or {}
+    # LocationName can lead with a facility ("Point Loma Complex, San Diego,
+    # California" in USAJOBS's own documented example), which the state
+    # resolver cannot read; city and state are the last two parts.
+    locations = []
+    for loc in d.get("PositionLocation") or []:
+        parts = [x.strip() for x in str(loc.get("LocationName") or "").split(",") if x.strip()]
+        if parts:
+            locations.append(", ".join(parts[-2:]))
+    details = ((d.get("UserArea") or {}).get("Details") or {})
+    duties = details.get("MajorDuties")
+    if isinstance(duties, list):
+        duties = " ".join(str(x) for x in duties)
+    description = " ".join(str(part) for part in (
+        details.get("JobSummary"), duties, d.get("QualificationSummary"),
+        details.get("Education"), details.get("Requirements"),
+    ) if part)
+    pay = (d.get("PositionRemuneration") or [{}])[0]
+    interval = USAJOBS_INTERVAL.get(str(pay.get("RateIntervalCode") or "").upper())
+    schedule = (d.get("PositionSchedule") or [{}])[0]
+    return RawPosting(
+        platform="usajobs",
+        employer=employer,
+        board_token=token,
+        external_id=str(item.get("MatchedObjectId") or d.get("PositionID") or ""),
+        title=d.get("PositionTitle", "") or "",
+        location_raw="; ".join(locations) or d.get("PositionLocationDisplay", "") or "",
+        description=strip_html(description),
+        url=d.get("PositionURI", "") or "",
+        posted_at=d.get("PublicationStartDate"),
+        updated_at=d.get("PublicationStartDate"),
+        department=d.get("OrganizationName") or d.get("DepartmentName"),
+        employment_type=schedule.get("Name"),
+        comp_min=_as_float(pay.get("MinimumRange")) if interval else None,
+        comp_max=_as_float(pay.get("MaximumRange")) if interval else None,
+        comp_interval=interval,
+    )
+
+
+def fetch_usajobs(
+    session: PoliteSession, token: str, employer: str, max_pages: int = 10
+) -> tuple[list[RawPosting], Response]:
+    headers = usajobs_headers()
+    if headers is None:
+        return [], Response(USAJOBS_SEARCH, 0, error="USAJOBS_API_KEY / USAJOBS_USER_AGENT not set")
+    out: list[RawPosting] = []
+    seen: set[str] = set()
+    resp = Response(USAJOBS_SEARCH, 0)
+    # 500 rows per page is the documented maximum. fields=full returns the
+    # UserArea details (summary, duties) that the role screen reads.
+    for page in range(1, max_pages + 1):
+        url = (f"{USAJOBS_SEARCH}?Organization={token}&ResultsPerPage=500"
+               f"&Page={page}&Fields=Full&WhoMayApply=All")
+        resp = session.get_json_with_headers(url, headers, use_etag=False)
+        if not resp.ok:
+            break
+        result = (resp.data or {}).get("SearchResult") or {}
+        items = result.get("SearchResultItems") or []
+        for item in items:
+            posting = parse_usajobs_item(item, token, employer)
+            if posting.external_id not in seen:
+                seen.add(posting.external_id)
+                out.append(posting)
+        # A page shorter than the page size is the last one. The documented
+        # sample reports SearchResultCountAll 100 beside a single item, so
+        # the total alone would re-request (and re-read) the same page.
+        total = int(result.get("SearchResultCountAll") or 0)
+        if len(items) < 500 or len(out) >= total:
+            break
+    if out:
+        resp = Response(resp.url, 200, data=True, listed=len(out))
+    return out, resp
+
+
+# --------------------------------------------------------------------------
 # Syndication feeds (RSS/Atom) — an EXPERIMENT, not a trusted source yet.
 #
 # Exelon, ComEd, Constellation and Citizens Energy run iCIMS, and Peoples Gas
@@ -690,6 +798,7 @@ FETCHERS = {
     "workable": fetch_workable,
     "recruitee": fetch_recruitee,
     "workday": fetch_workday,
+    "usajobs": fetch_usajobs,
     # Experimental; only reached for employers that opt in with probe_feeds.
     "icims": fetch_syndication,
     "dotjobs": fetch_syndication,

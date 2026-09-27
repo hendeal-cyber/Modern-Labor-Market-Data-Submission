@@ -88,6 +88,10 @@ jobs:
           LMSTUDY_USER_AGENT: >-
             lmstudy-research/0.1 (academic labor-market study;
             +https://github.com/${{ github.repository }})
+          # Source route 3 (owner-approved 2026-09-27). Empty when the secrets
+          # are not set, and fetch_usajobs then skips the federal employers.
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
         run: |
           ARGS=""
           if [ "${{ github.event.inputs.limit || '0' }}" != "0" ]; then
