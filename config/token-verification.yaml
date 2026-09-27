@@ -1651,13 +1651,17 @@ employers:
     reason: No ATS -- soltage.com/about/careers takes resumes by email to HR@soltage.com.
     checked_on: '2026-09-22'
   South Jersey Industries:
-    status: denied
+    status: confirmed
     industry: gas_utility
     priority: 4_unlocated
     resolved_in_last_run: false
     reason: jobs.sjindustries.com, own portal; no supported ATS host surfaced. New Jersey is a mandate
       state.
-    checked_on: '2026-09-22'
+    checked_on: '2026-09-27'
+    platform: workday
+    token: sjindustries/SJI
+    evidence: https://sjindustries.wd1.myworkdayjobs.com/en-US/SJI/job/Customer-Service-Representative_R3483
+    note: reverses the 2026-09-23 denial
   South Mississippi Electric:
     status: unchecked
     industry: cooperative

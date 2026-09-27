@@ -858,13 +858,13 @@ gas_utilities_batch2:
       ashby: [newjerseyresources, new-jersey-resources, newjersey]
       workday: [{tenant: newjerseyresources, site: careers}]
     verified: false
+  # Verified 2026-09-27 from a live job URL (the ledger had denied it on
+  # 2026-09-23 for want of a supported ATS host):
+  # sjindustries.wd1.myworkdayjobs.com/SJI/job/Customer-Service-Representative_R3483
   - name: South Jersey Industries
     candidates:
-      greenhouse: [southjerseyindustries, south-jersey-industries, southjersey]
-      lever: [southjerseyindustries, south-jersey-industries, southjersey]
-      ashby: [southjerseyindustries, south-jersey-industries, southjersey]
-      workday: [{tenant: southjerseyindustries, site: careers}]
-    verified: false
+      workday: [{tenant: sjindustries, site: SJI, wd: 1}]
+    verified: true
   - name: Southwest Gas
     candidates:
       greenhouse: [southwestgas, southwest-gas, southwest]
@@ -2558,6 +2558,38 @@ national_batch4:
     requires_sector_evidence: true
     candidates:
       greenhouse: [orenda]
+    verified: true
+  # --- Batch 7, 2026-09-27, before the 28 September run (same method) ---
+  - name: VELCO   # velco.wd12.myworkdayjobs.com/VELCO/job/NERC-Compliance-Manager_JR26-44 (Vermont transmission)
+    industry: utility
+    candidates:
+      workday: [{tenant: velco, site: VELCO, wd: 12}]
+    verified: true
+  - name: IPX Power   # job-boards.greenhouse.io/ipxpower/jobs/4360587009
+    industry: developer
+    candidates:
+      greenhouse: [ipxpower]
+    verified: true
+  - name: Catalyze   # jobs.lever.co/catalyze/4265ead1-3370-4a88-83e0-1c4597516e98 (solar IPP)
+    industry: developer
+    candidates:
+      lever: [catalyze]
+    verified: true
+  - name: Scale Microgrids   # jobs.lever.co/ScaleMicrogridSolutions/3ce645b9-dd33-456c-a404-c02f622da11f
+    industry: developer
+    candidates:
+      lever: [ScaleMicrogridSolutions]
+    verified: true
+  - name: TAR   # jobs.ashbyhq.com/tar/52547dee-f143-47b5-ad61-7fedb83c9d29 (microgrids for data centers)
+    industry: developer
+    candidates:
+      ashby: [tar]
+    verified: true
+  - name: RMI   # rockymountain.wd1.myworkdayjobs.com/RMI/job/Principal--Power-Systems---Data-Centers---Impact-Consulting_R-101618
+    industry: consulting
+    requires_sector_evidence: true
+    candidates:
+      workday: [{tenant: rockymountain, site: RMI, wd: 1}]
     verified: true
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already
