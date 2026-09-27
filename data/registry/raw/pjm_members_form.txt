@@ -1,0 +1,18 @@
+# source: https://www.pjm.com/forms/memberList.aspx
+# fetched: 2026-09-27T22:17:38+00:00
+
+PJM Membership as of
+Filter by:    Sector:
+All
+Electric Distributor
+End User Customer
+Generation Owner
+Other Supplier
+Transmission Owner
+or by    Type:
+All
+Affiliates
+Associate Members
+Emergency Load Program Members
+Ex-officio Voting Members
+Voting Members

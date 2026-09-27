@@ -1,0 +1,92 @@
+# source: https://developer.usajobs.gov/guides/authentication
+# fetched: 2026-09-27T22:17:38+00:00
+
+USAJOBS - Authentication
+Skip to main content
+An official website of the United States government
+Here's how you know
+Here's how you know
+Official websites use .gov
+A .gov website belongs to an official government organization in the United States.
+Secure .gov websites use HTTPS
+A lock
+( ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.
+Developer Site
+Menu
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+Authentication
+Accessing the various USAJOBS APIs will require an API Key. To request an API Key, please go the the
+API Request
+page and fill out an application. Authentication is not required when
+using the codelist APIs.
+To instantiate the REST API, an HTTP GET will be used. All interactions with USAJOBS are via HTTP. When making
+requests you will need to provide three parameters in the request header. Below is a list of the required header
+parameters with description.
+Parameter
+Description
+Host
+The host specifies the resource being requested. This value will always be "data.usajobs.gov"
+User-Agent
+The user-agent parameter tells USAJOBS who is originating the request. This value should be the email
+address used when requesting the API Key.
+Authorization-Key
+The authorization-key parameter will be used to determine what type of access you have. This value
+should be the API Key you were provided when requesting access.
+In addition to the header parameters you will need to provide the API endpoint along with any query parameters
+appended to the URL which will drive the results outcome desired.
+Below is an example of a job search request which uses the query parameter for occupational series to select all jobs
+for Information Technology Management.
+$ curl -H 'Host: data.usajobs.gov' \
+'User-Agent: $YOUR_EMAIL' \
+'Authorization-Key: $AUTH_KEY' \
+https://data.usajobs.gov/api/search?JobCategoryCode=2210
+USAJOBS is a
+United States Office of Personnel Management
+website.
+LinkedIn
+YouTube
+About USAJOBS
+Accessibility
+FOIA
+Inspector general
+No Fear Act Data
+Privacy policy
+Reports and publications
+Terms and conditions
+USA.gov
+Vote.gov

@@ -1,0 +1,808 @@
+# source: https://www.eia.gov/naturalgas/ngqs/ngqs_user_guide.pdf
+# fetched: 2026-09-27T22:17:38+00:00
+
+Natural Gas Information 
+Annual Respondent 
+Query System 
+User’s Guide 
+September 2024 
+Prepared by: 
+5418 Seminary Road 
+Alexandria, VA 22311 
+Prepared for: 
+Office of Energy Production, Conversion, and Delivery 
+U.S. Energy Information Administration 
+Department of Energy 
+1000 Independence Avenue, S.W. 
+Washington, DC 20585 
+
+ 
+2 
+ 
+Natural Gas Information Annual Respondent Query System                          User’s Guide 
+Natural Gas Information Annual Respondent Query System 
+User’s Guide 
+Table of Contents  
+Introduction ................................................................................................................................................... 1 
+Hardware/Software Requirements ................................................................................................................ 1 
+Running the Query System ........................................................................................................................... 2 
+Report Field ...................................................................................................................................... 2 
+Years Field ....................................................................................................................................... 3 
+Sort By Field ..................................................................................................................................... 4 
+Company Field ................................................................................................................................. 5 
+Pie Chart .......................................................................................................................................... 6 
+Download Functionality: Three Icons ............................................................................................... 7 
+Hyperlinks ........................................................................................................................................ 8 
+Form EIA-176 Link ........................................................................................................................... 8 
+User Guide Link ............................................................................................................................. 10 
+Definitions, Sources, & Notes Link ................................................................................................. 10 
+Full Screen Mode ........................................................................................................................... 11 
+Display’s Buttons, Counters, and Arrows ....................................................................................... 12 
+Reset Report .................................................................................................................................. 12 
+Swap .............................................................................................................................................. 12 
+Counters & Arrows ......................................................................................................................... 12 
+Filter: Area ...................................................................................................................................... 13 
+Filter: Company .............................................................................................................................. 14 
+Filter: Item ...................................................................................................................................... 14 
+Item’s Unique Display Feature: Referencing the Location of an Item on the EIA Form ................ 16 
+Data Table Revealing Output from Sample Query ........................................................................ 16 
+Bi-directional Arrows: Ascending & Descending ............................................................................ 17 
+Examples of the Report Layouts ................................................................................................................. 18 
+EIA-176 Reports ............................................................................................................................. 18 
+176 Natural Gas Deliveries, Supply Items, and Other Disposition Reports ............................ 18 
+176 Types of Operations and Sector Items ............................................................................. 19 
+176 Continuation Text Lines .................................................................................................... 20 
+176 Company List .................................................................................................................... 20 
+176 Custom Report (User Defined) ......................................................................................... 21 
+EIA-191 Reports ............................................................................................................................. 25 
+191 Field Level Storage Data (Annual) ................................................................................... 23 
+191 Field Level Storage Data (Monthly) .................................................................................. 23 
+EIA-757 Reports ........................................................................................................................... 204 
+757 Processing Capacity ......................................................................................................... 24 
+Years Fields: (EIA-757) ................................................................................................. 26 
+Download Functionality: Three Icons on the EIA-757 Interface .................................... 27 
+Invoking Downloads: (EIA-757) ..................................................................................... 27 
+Hyperlinks: (EIA-757) ..................................................................................................... 28 
+User Guide Link ............................................................................................................. 29 
+Definitions, Sources, & Notes Link: (EIA-757) ............................................................... 29 
+Display’s Buttons, Counters, and Arrows: (EIA-757) ..................................................... 29 
+Reset Report: (EIA-757) ................................................................................................ 30 
+Swap: (EIA-757) ............................................................................................................ 30 
+Counters & Arrows: (EIA-757) ....................................................................................... 30 
+Filters in Columns: (EIA-757) ......................................................................................... 30 
+ 
+Appendix A - Data Download Columns ....................................................................................................... 32 
+i 
+1 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Introduction 
+The U.S. Energy Information Administration (EIA), U.S. Department of Energy (DOE) is responsible for 
+collecting and reporting energy data. Therefore, it is mandatory for Respondents to furnish requested 
+energy information on all EIA survey forms that are applicable to them for each reporting period. 
+Each year, the EIA sends a copy of their Forms (including form completion instructions) to all 
+Respondents. The instructions fully explain who is required to file the given form, and definitions are 
+provided to clarify the types of data being requested.  The Natural Gas Information Annual Respondent 
+Query System (henceforth referred to as the Query System) shows Annual Natural Gas Supply and 
+Disposition and Underground Gas Storage data collected from several of these forms, down to the 
+company level. Data are displayed in various formats from three different surveys: 
+1. Form 
+EIA-176, Annual Report of Natural and Supplemental Gas Supply and Disposition: Collects
+data on the supply and disposition of natural gas in the United States.
+2. Form 
+EIA-191, Monthly Underground Gas Storage Report:  Previously, two Forms were used for
+repo
+rting underground natural gas storage data. One was a “Monthly” report, and one was an
+“Annual” report. These monthly and annual reports for “Underground Gas Storage” were known
+as Fo
+rms EIA-191M and EIA-191A, respectively. The EIA-191A was discontinued in 2013;
+pre
+sently, only the Monthly version of the form is used. It is known simply as the EIA-191,
+Monthly 
+Underground Gas Storage Report.
+3. Form 
+EIA-757, Natural Gas Processing Plant Survey: Collects detailed plant-level information on
+the cap
+acity, status, and operations of natural gas processing plants to monitor supply constraints
+durin
+g periods of disruption due to a natural disaster, such as a hurricane.
+The Query System runs within the user’s Internet browser. It requires no download or installation to use. 
+All functionality is available from a single, easy-to-use main page. 
+Hardware/Software Requirements 
+Because the Query System is a web-based system, no download or installation is necessary. All that is 
+needed to run the Query System is a PC with up-to-date web-browsing software (such as Microsoft Edge, 
+Mozilla Firefox, or Google Chrome) and an Internet connection. 
+2 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Running the Query System 
+The Query System is available via a link on the EIA Natural Gas (NG) web page. The direct web address 
+is noted below:  https://www.eia.gov/naturalgas/ngqs/  
+Report Field 
+  Click this field’s down arrow to expand a drop-down list of predefined reports. 
+There are ten different reports: 
+1. 176 
+Natural Gas Deliveries (see example on pg. 18)
+2. 176 Natural 
+Gas Supply Items (similar to Natural Gas Deliveries; see example on pg. 18)
+Title of Report 
+currently in view 
+
+3 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+3. 176 Natural Gas Other Disposition Items (similar to Natural Gas Deliveries; see example on pg.
+18)
+4. 176 Type of 
+Operations and Sector Items (see example on pg. 19)
+5. 176 Continu
+ation Text Lines (see example on pg. 20)
+6. 176 Compa
+ny List (see example on pg. 20)
+7. 191 Field L
+evel Storage Data (Annual) (see example on pg. 23)
+8. 191 Field L
+evel Storage Data (Monthly) (see example on pg. 23)
+9. 757 Pro
+cessing Capacity (see example on pg. 24)
+10. 176 Custom 
+Report (see example on pg. 21)
+Years Field
+ 
+Click this arrow to expand a drop-down list of years for which data are available. Data displayed in the 
+grid will be according to the range of years selected in these fields. 
+NOTE: The 176 Company List report is the only predefined report that is not equipped with the Years 
+fields (i.e., start and end years). This is because it is designed to report on company names only.  
+Click the Years dro
+p-down arrow(s) to display a list of years from which to select, 
+as shown below.  
+Data Years   
+Start & End 
+4 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Sort By Field 
+Click this arrow to expand a list of formats for displaying categories in the grid. The format option chosen 
+indicates the order in which the first three columns are sorted. 
+Sort capability is not an option for all reports in the predefined list. If sorting is not an option on a particular 
+report, you will not see the Sort By field. Sorting is only available for the following reports: 176 Natural 
+Gas Deliveries, 176 Natural Gas Supply Items, and 176 Natural Gas Other Disposition Items. 
+Click the Sort By dro
+p-down arrow to display the sorting options, as shown 
+below. 
+Sort By 
+category 
+columns 
+displayed in 
+Data Table grid 
+
+5 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Company Field 
+Click this a
+rrow to expand a drop-down list of three company-based filtering options (i.e., three different 
+ways to display company information, which can be useful to work with if the data is exported). The Data 
+Table grid can be formatted to show only the company ID, only the company name, or both ID and name. 
+The Company filter is only available for the following reports: 176 Natural Gas Deliveries, 176 Natural 
+Gas Supply Items, and 176 Natural Gas Other Disposition Items.  
+ Click the Company drop-down arrow to display a list of company display options, 
+as shown below.  
+Company 
+filtering options 
+
+6 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Pie Chart 
+NOTE
+: The only report that displays the pie chart is the 176 Natural Gas Deliveries report.  
+NOTE: As the yearly columns change, so too does the pie chart. It will always 
+show the most recent year. For example, if the selected years were 2019 to 2022, 
+the chart would auto-update to show 2022 data (assuming 2022 is the most   
+recent year for the time frame).  
+Moving the cursor over the pie reveals volumes of the type of deliveries. For example, moving the cursor 
+over the Industrial piece of the pie reveals the Industrial Volume for the year displayed.  
+Click on the pie chart to view the NG Deliveries trend graph. Image files and data files can be downloaded 
+using the “DOWNLOAD” button in the upper right corner of the graph (and above the pie chart). Click on the 
+Close button (X), located in the upper-right corner of the graph, to close the graph window.  
+Click “DOWNLOAD” 
+to download an 
+image, PDF, or data 
+file version of the 
+graph 
+Pie Chart only 
+appears on the 
+Natural Gas 
+Deliveries 
+report 
+7 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Download Functionality: Three Icons 
+The Download icons are locate
+d at the top, right-side of the Data Table grid. These icons allow users to 
+download data in a comma separated value (csv) format.  
+1. The leftmost icon i
+s used to download the data currently displayed in the Data Table grid to a Microsoft
+(MS) Excel fil
+e. The file is named 176 Natural Gas Deliveries.xlsx, and will be loaded to your
+“Downloads” folder when you click the icon. NOTE: ONLY the data rows appearing on the grid will
+trans
+fer to the Excel spreadsheet.
+2. The middl
+e icon is used to download the grid data contents on the grid to a delimited text file (.csv).
+The file is na
+med export.xlsx, and will be loaded to your “Downloads” folder when you click the icon.
+3. The right
+most icon is used to download the ENTIRE dataset (not restricted to only what is visible on
+the grid) to a zipped (.zip) text file. The file is named all_ng_data.zip, and will be loaded to your
+“Do
+wnloads” folder when you click the icon.
+The form
+at for these downloaded spreadsheets, identifying the contents of each data column, is 
+described in Appendix A, “Data Download Columns.” A sample of the 176 Natural Gas Deliveries 
+spreadsheet is shown below: 
+
+ 
+ 8 
+Natural Gas Information Annual Respondent Query System                          User’s Guide 
+Hyperlinks 
+ 
+Located along the top, right side of the Data Table grid (just below the Download icons), there are several 
+links including Form EIA-176; User Guide; Definitions, Sources, & Notes.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Form EIA-176 Link 
+ 
+Click on this link to navigate to the web page (shown below) containing the collection of EIA NG Survey 
+Forms.  
+ 
+ 
+From this screen, users can click on a particular form (for instance, EIA-176, circled above) and click the 
+adjacent PDF (or XLS) link to launch the official Survey Form.  
+ 
+  
+
+ 
+ 9 
+Natural Gas Information Annual Respondent Query System                          User’s Guide 
+The image below is a partial illustration of the EIA-176 Survey Form used by the Respondent community 
+to record their energy information for submission to EIA.  
+ 
+  
+  
+ 
+  
+
+ 
+ 10 
+Natural Gas Information Annual Respondent Query System                          User’s Guide 
+User Guide Link 
+ 
+Click on the User Guide link to instantly open this publication: Natural Gas Information Annual 
+Respondent Query System User’s Guide. 
+ 
+Definitions, Sources, & Notes Link 
+ 
+Click on this link to display an abundance of supplemental, reference material—a sample is shown below. 
+ 
+  
+ 
+
+11 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Full Screen Mode 
+Note that the doubl
+e arrow icon on the right (      ) switches your view to “full-screen” mode. In full-screen 
+mode, only the data table is displayed in your browser – the report title, clickable drop-downs, and the pie 
+chart disappear – allowing you to see many more records at one time.  Full-screen mode looks like this: 
+Click the Exit Full screen mode button in the upper left corner of the screen to return to the regular 
+Query screen. 
+
+12 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Display’s Buttons, Counters, and Arrows 
+There are two important buttons on nearly every report display: Reset Report                       and Swap 
+       . Furthermore, there are page and row counters, accompanied by directional arrows, along the bottom. 
+Reset Report 
+Whe
+n activated, the Reset Report button clears away all modifications that might have been 
+administered to the report and returns the display to its default settings. 
+Swap 
+Typi
+cally, date/time data are displayed chronologically, i.e., data grouped in columns according to given 
+years are displayed (from left to right) in ascending order--the START Year being the least recent (or 
+oldest) year, while the END Year reflects the most recent.  
+Click on the Swap button to reverse the order of the dated (year) columns. Data can be displayed in 
+either ascending order or descending order. Whatever current order is displayed, click the Swap button to 
+reverse it. 
+Counters & Arrows 
+In the illustrat
+ion above, the page counter reveals: 1/199. This means that there are 199 pages to this 
+particular report, and the first page (1) is the page that is currently in view. In addition to the page counter, 
+a row counter is revealing that there are 4,774 rows of data contained in this report. 
+The page directional arrows provide users with the option of either incrementally stepping through 
+pages one at a time OR (with a single click) scrollin g all the way back to the first page of the report 
+OR conversely, scrolling all the way forward to the last page (using just one click) . 
+
+13 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Filter: Area 
+Area 
+refers to a United States geographical area. To filter for specific “areas,” so that only those chosen 
+areas are displayed, expand the Area drop-down, and click the check box adjacent to a given area(s).    
+The drop-down menu displays the U.S. Total option at the top. Selecting the checkbox for U.S. Total 
+collects the metrics from all of the geographical areas, sums them, then displays the output in terms of 
+total values for the combined areas.  
+Following the U.S. Total option, each individual Area is listed in alphabetical order. Users can individually 
+click as many Areas as desired. When finished, the OK button commits the entries, and the Query 
+System populates the grid with the appropriate data for all chosen Areas. 
+When the user wants to include many Areas in the displayed report, the Select All button at the bottom of 
+the drop-down list proves very handy. Sometimes it is easier and faster to “deselect” items than it is to 
+scroll-and-click through a lengthy list of choices. In other words, with the Select All button, users prompt 
+the interface to check all of the Area checkboxes. Then, users can uncheck any boxes that they do not 
+want included in the report.  
+NOTE: Along with the Select All button, there is also a Clear All button next to it, as shown below. 
+This allows users to “unselect” any checked items. When all desired Areas are selected, click Submit to 
+activate the Filter. 
+The filter feature also gives users the ability to type text to filter on. Any row containing the text will be 
+displayed. In addition, each piece of text can be separated with a semi-colon and that will act as an 
+‘OR’ condition. 
+14 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Filter: Company 
+Co
+mpany refers to the actual company names within the energy industry (i.e., Respondent entities within 
+the frame for the EIA-176 and/or EIA-191 surveys). As described in the previous section, this Company 
+filter works the same way.  
+The top menu option, if selected, totals the output for all of the companies; the rest of the options are 
+displayed in alphabetical order and used for individual company selection. This drop-down list is also 
+equipped with Select All, Clear All, and Submit buttons that work in the same manner as previously 
+described (refer to the instructions for Filter: Area).  
+
+15 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Filter: Item 
+Item offers 
+six reporting options (see the illustration below). These represent the different energy types 
+measured by volume. This Item filter works the same way as documented for the other filters. A report 
+can be generated to show all available data for the various Items or only certain, selected ones. 
+Like the other filter categories, this drop-down is equipped with Select All, Clear All, and Submit 
+buttons. For details on how these buttons operate, refer to the instructions for Filter: Area.     
+
+16 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Item’s Unique Display Feature: Referencing the Location of an Item on the EIA Form 
+Table cells u
+nder the Item column offer a handy feature. Moving the cursor over a cell renders a 
+reference (pop-up hint) describing where the given item can be found on the Form EIA-176. For example, 
+a pop-up that reads as, [10.1 + 11.1] is conveying that the subject (in this case, “Residential Volume”) is 
+located on lines 10.1 and 11.1 of the Form EIA-176. 
+NOTE: This same reference feature is also available for Company Name ID. For example, moving the 
+cursor over a Company Name displays that company’s unique EIA-176 ID number (176XXXXXSS). 
+Data Table Revealing Output from Sample Query 
+Ha
+ving set all of the query parameters, the output is displayed in a tabular (column-row) format referred to 
+as the Data Table (or grid).   
+Data Table 
+
+17 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Bi-directional Arrows: Ascending & Descending 
+Refer to the Data Table pictured below. There are unseen bi-directional arrows in the header cell of 
+each column, which appear when you click on the name of the column. When you do so, you activate the 
+sorting function, and the arrow appears to indicate how the data are sorted (either ascending 
+(represented with an arrow pointing up) or descending (shown with a down arrow) order). Among the 
+columns that can be sorted in this manner are the Year columns, i.e., those labeled as 2019, 2020, 2021, 
+and 2022 below. On the sample screen below, 2019 has been selected by the user and therefore the 
+displayed data are shown in order from greatest to least based on 2018 volumes. The arrow is circled in 
+red. To change it so that the rows are shown from least to greatest, click the arrow circled below and the 
+data are shown in ascending order. If you then click it again, the sort for that column is turned off and the 
+arrow once again disappears.   
+ 
+Clicking on a bi-directional arrow overrides the sort selected 
+using the “Sort By” field. The field selected with the bi-
+directional arrow automatically becomes the item by which the 
+data are sorted.  
+For example, on the “176 Natural Gas Deliveries” screen, if 
+you selected “Area, Company, Name” in the Sort By field, the 
+displayed data is sorted in that order.   
+However, if you next click the bi-directional arrow above any of 
+the “Year” columns, then the displayed data gets sorted by its 
+data value for the selected year, highest-to-lowest (or lowest-
+to-highest).  
+The “Area, Company, Name” sort is now ignored until you 
+select a new Sort By option, at which time the Sort By field 
+then overrides the previously selected bi-directional arrow field. 
+Data Table 
+18 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Examples of the Report Layouts
+EIA-176 Reports 
+176 Natur
+al Gas Deliveries, Supply Items, and Other Disposition Reports 
+The first thre
+e reports listed on the Reports drop-down are: 
+176 Natural Gas Deliveries.  The information pertaining to natural gas deliveries can be found on lines 
+10.0 and 11.0 of Form EIA-176.  
+176 Natural Gas Supply Items.  The information pertaining to natural gas supply can be found in Part 4 of 
+Form EIA-176.  
+176 Natural Gas Other Disposition Items.  The information pertaining to other natural gas disposition 
+items can be found on lines 12.0 through 20.0 of Form EIA-176. 
+These three reports’ appearance and functionality are similar, with data displayed in columns by year. 
+The remaining four EIA-176 reports are formatted differently and described in the sections that follow. 
+
+19 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+176 Types of Operations and Sector Items
+This info
+rmation can be found on the Form EIA-176 within Part 3. 
+This report layout consists of many columns. Those column headings that are not displayed on the main 
+illustration above are shown on the following below in the order of their appearance on the screen above 
+(from left to right). 
+SNG Operator 
+Producer 
+Gatherer 
+LNG Operator 
+LNG Marine Terminal 
+Other 
+Other (Descr) 
+Losses from leaks, etc. within state (Mcf) 
+Residential Total Volume (Mcf) 
+Residential Sales Volume (Mcf) 
+Residential Transported Volume (Mcf) 
+Residential Sales Price (Dollars) 
+Residential Transported Price (Dollars) 
+Residential Sales Revenue (Dollars) 
+Residential Transported Revenue (Dollars) 
+Residential Total Customers 
+Residential Sales Customers 
+Residential Transported Customers 
+Commercial Total Volume (Mcf) 
+Commercial Sales Volume (Mcf) 
+Commercial Transported Volume (Mcf) 
+Commercial Sales Price (Dollars) 
+Commercial Transported Price (Dollars) 
+Commercial Sales Revenue (Dollars) 
+Commercial Transported Revenue (Dollars) 
+Commercial Total Customers 
+Commercial Sales Customers 
+Commercial Transported Customers 
+Industrial Total Volume (Mcf) 
+Industrial Sales Volume (Mcf) 
+Industrial Transported Volume (Mcf) 
+Industrial Sales Price (Dollars) 
+Industrial Transported Price (Dollars) 
+Industrial Sales Revenue (Dollars) 
+Industrial Transported Revenue (Dollars) 
+Industrial Total Customers 
+Industrial Sales Customers 
+Industrial Transported Customers 
+Electric Total Volume (Mcf) 
+Electric Sales Volume (Mcf) 
+Electric Transported Volume (Mcf) 
+Electric Sales Price (Dollars) 
+Electric Transported Price (Dollars) 
+Electric Sales Revenue (Dollars) 
+Electric Transported Revenue (Dollars) 
+Electric Total Customers 
+Electric Sales Customers 
+Electric Transported Customers 
+Vehicle Fuel Total Volume (Mcf) 
+Vehicle Fuel Sales Volume (Mcf) 
+Vehicle Fuel Transported Volume (Mcf) 
+Vehicle Fuel Sales Price (Dollars) 
+Vehicle Fuel Transported Price (Dollars) 
+Vehicle Fuel Sales Revenue (Dollars) 
+
+20 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Vehicle Fuel Transported Revenue (Dollars) 
+Vehicle Fuel Total Customers 
+Vehicle Fuel Sales Customers 
+Vehicle Fuel Transported Customers 
+176 Continuation Text Lines 
+This info
+rmation can be found on the Form EIA-176 as follows: lines 3.0 and 6.0 of Part 4; and lines 12.4, 
+14.0, and 18.4 of Part 6.  
+176 Company List 
+This r
+eport shows all company names, IDs, and each company’s current status (e.g., Active/Inactive). 
+
+21 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+176 Custom Report (User Defined) 
+The Cu
+stom Report is the tenth and final menu option on the Report drop-down. As its name implies, 
+this option allows users to customize their report by being able to pick (by line number and item name) 
+which EIA-176 elements to display.  
+To create a custom report, first select the Custom Report (User Defined) option from the Report drop-
+down. The display will look similar to the illustration below. Notice the Choose Items button circled in red. 
+The Data Table initially displays the message “No Rows to Show” as the user has not yet selected any 
+items to include in the report. 
+Click on the Choose Items button to display the menu of EIA-176 data items shown below (this is a pick 
+list). Highlight line item(s) from this pick list by simply clicking on the applicable title. 
+
+22 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+NOTE: To select multiple, non-consecutive line items, hold down the <Ctrl> key while clicking on the 
+desired titles. To select a group of consecutive line items, hold down the <Shift> key while highlighting 
+(blocking) a range of titles. Note that you can only select up to 20 line items at once. Selecting more than 
+20 items will yield no query results. 
+Next, click on the button labeled, Display selected items in a table. At this point the Query System 
+generates a custom report—displaying a report layout specific to only the line items selected. You may 
+then filter the items as you can in other reports; note that the drop-down list shown below only displays 
+the Items that were chosen from the “Display selected items…” list.  
+
+23 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+EIA-191 Reports 
+191 Field Level Storage Data (Annual) 
+The Fo
+rm EIA-191 collects the survey data that are used to populate these reports. The screen below 
+shows the “Annual” version, which displays data by year.   
+Click on the U.S. map in the upper right corner of the screen to view a detailed map showing the location 
+of all underground natural gas storage facilities in the United States. 
+191 Field Level Storage Data (Monthly) 
+The “M
+onthly” version shows the same data fields as the “Annual” report, but also includes a “Month” 
+column.  
+
+24 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+EIA-757 Report 
+The U.S. Ene
+rgy Information Administration’s (EIA) Form EIA-757, Survey of Natural Gas Processing 
+Plants, is used to collect information on the capacity, status, and operations of natural gas processing 
+plants and to monitor constraints of natural gas processing plants during periods of supply disruption in 
+areas affected by emergency situations, such as a hurricane. 
+EIA is responsible for collecting and reporting on this energy data. Therefore, it is mandatory for Plant 
+Respondents to furnish the processing capacity information applicable to them on the survey for each 
+reporting period (occurring approximately once every three years). 
+757 Processing Capacity 
+This EIA-75
+7 report shows plant capacity and flow; BTU content; dry gas storage capacity; and natural 
+gas liquid storage capacity down to the plant/company level. Such data are collected via the EIA-757 
+survey and displayed in tabular format, as shown below.  
+
+25 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+When the 757 processing plant capacity data are displayed, you may click on the map in the upper right 
+corner of the screen to display the locations and approximate capacities of processing plants in the lower 
+48 states: 
+
+26 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Years Fields: (EIA-757) 
+The function of this pair of fields (starting and ending years) is to expand a drop-down list of calendar 
+years for which data are available for viewing. By simply clicking on the down-arrows appended to the 
+fields, users can choose start and end times from a pick list. Data shown in the grid will be displayed 
+according to the date range selected in these fields.  
+  
+Click the Years dro
+p-down arrow(s) to display a list of years from which to select. 
+Data Years   
+Start & End 
+Years 
+
+27 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Download Functionality: Three Icons on the EIA-757 Interface 
+Notice the Download icons, located at the top, right-side of the Data Table grid. These icons allow users 
+to download data in an Excel format, a comma separated value (csv) format, or as a bulk zip file. The bulk 
+zip file only contains EIA-176 historical data and no EIA-757 data.  
+1. The leftmost icon i
+s used to download the data currently displayed in the Data Table grid to a Microsoft
+(MS) Excel fil
+e. During this transaction, Excel is launched. NOTE:  ONLY the data rows appearing on
+the grid will transfer 
+to the Excel spreadsheet.
+2. The middl
+e icon is used to download the data contents on the grid to a delimited text file (.csv).
+3. The right
+most icon is used to download the ENTIRE EIA-176 dataset (not restricted to just what can
+be se
+en on the grid) to three delimited (.csv) text files.
+Invoking Downloads: (EIA-757) 
+Click on any one of the icons to immediately start report generation and facilitate data download. Clicking 
+on the Download button will copy the file to your “Downloads” folder. 
+
+28 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+The figure below illustrates the format of the Excel spreadsheet version of the EIA-757 processing 
+capacity report, that is downloaded from the Query. 
+Hyperlinks: (EIA-757)
+Located alo
+ng the top, right-side of the tabular data grid (just below the Download icons), there are two 
+links: User Guide; Definitions, Sources, & Notes.  
+
+29 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+User Guide Link 
+Click on the User G
+uide link to instantly open this publication: Natural Gas Information Annual 
+Respondent Query System. 
+Definitions, Sources, & Notes Link: (EIA-757) 
+Click this lin
+k to display an abundance of supplemental, reference material—such as that illustrated 
+below. 
+Display’s Buttons, Counters, and Arrows: (EIA-757) 
+There are two important buttons on the main display: Reset Report                     and Swap       .  
+Furthermore, there are page and row counters, accompanied by directional arrows, along the bottom.  
+
+ 
+ 30 
+Natural Gas Information Annual Respondent Query System                          User’s Guide 
+Reset Report: (EIA-757) 
+ 
+When activated, the Reset Report button clears away all modifications that might have been 
+administered to the report and returns the display to its default settings. 
+ 
+Swap: (EIA-757) 
+ 
+Typically, date/time data are displayed chronologically, i.e., data grouped in columns according to given 
+years are displayed (from left to right) in ascending order--the START Year being the least recent (or 
+oldest) year, while the END Year reflects the most recent.  
+ 
+Click on the Swap button to reverse the order of the dated (year) columns. Data can be displayed in 
+either ascending order or descending order. Whatever current order is displayed, click the Swap button to 
+reverse it. NOTE:  Currently, only current year data are available. Consequently, as of this writing, 
+the Swap feature cannot be demonstrated.  
+ 
+Counters & Arrows: (EIA-757) 
+ 
+In the previous illustration, the page counter reveals: 6/26. This means that there are 26 pages to this 
+particular report, and the first page (1) is the page that is currently in view. In addition to the page counter, 
+a row counter is revealing that there are 551 record rows of data contained in this report. 
+ 
+The page directional arrows provide users with the option of either incrementally stepping through 
+pages one at a time             OR (with a single click) scrolling all the way back to the first page of the report 
+          OR conversely, scrolling all the way forward to the last page (using just one click)          . 
+ 
+Filters in Columns: (EIA-757) 
+ 
+Looking at the Query System interface, the first seven columns within the grid are equipped with a filter 
+function. Observe the diagram below, which illustrates the full complement of data columns for the EIA-
+757 Processing Capacity. Notice the three-line symbol within the headings of the first seven columns. 
+ 
+ 
+ 
+ 
+ 
+ 31 
+Natural Gas Information Annual Respondent Query System                          User’s Guide 
+The first column in the grid is the Year column (self-explanatory), followed by the Report State column. 
+The filter       renders a drop-down menu from which users can select certain states for custom 
+reporting/viewing, thus, eliminating the display of data for all others.  
+ 
+ 
+ 
+The states are listed in alphabetical order. Users can individually click as many states as desired. The 
+Select All button auto-selects every state for display.  
+ 
+When many choices are sought for a report, the Select All button proves very handy. Sometimes it is 
+easier and faster to “deselect” items than it is to scroll-and-click through a lengthy list of choices. In other 
+words, with the Select All button, users prompt the interface to check all of the checkboxes. Then, users 
+can uncheck any boxes that they do not want included in the report. Click the Clear All button to deselect 
+all selected items. 
+ 
+Once all desired state(s) are selected, click the Submit button to commit the entries, and the Query 
+System will populate the grid with the appropriate data for those selected states ONLY. 
+  
+
+32 
+Natural Gas Information Annual Respondent Query System  User’s Guide 
+Appendix A 
+Data Download Columns 
+This appendix describes the data shown in each column of the All Data download file: 
+YEAR ID ATYPE RKEY AREA1 LINE VALUE REF_CODE REF_NAME 
+Reporting 
+year 
+Company 
+ID 
+Units* Unique sequence 
+number for the 
+continuation lines 
+for a specific item 
+State or 
+Country 
+abbreviation 
+Corresponding 
+Line Number 
+on Form EIA-
+176** 
+Numeric 
+value 
+Code associated 
+with continuation 
+cells (lines 3.0, 
+6.0, 12.6, 14.0 & 
+18.4) 
+Company name, 
+type of gas, etc., 
+associated with 
+continuation 
+cells (lines 3.0, 
+6.0, 12.6, 14.0 & 
+18.4) 
+*Units:
+VL   = Volume 
+PR    = Price  
+PC    = Percentage 
+CS    = Cost 
+CT     = Count 
+YA     = Capacity (Lines 8.1 & 8.2) 
+**Line number: 0110 = Line 1.1; 1240 = Line 12.4.  Most of the line numbers are straightforward but a few do not use 
+this easy-to-decipher format (data found in Part 3 of the form, for example). The complete list of LINE items is shown 
+below: 
+LINE Description 
+0003 Natural Gas Pump Price 
+0005 Customer Choice: Residential (Eligible) 
+0006 Customer Choice: Residential (Participating) 
+0007 Customer Choice: Commercial (Eligible) 
+0008 Customer Choice: Commercial 
+(Participating) 
+0009 Sales/Acquisitions?(1=Yes,0=No) 
+0010 Distribution Territory Counties 
+0110 Production 
+0120 Synthetic Production 
+0210 Underground Storage Withdrawals 
+0220 LNG Storage Withdrawals  
+0230 Above Ground Storage Withdrawals 
+0300 Receipts from State or US border  
+0400 Receipts at Citygate 
+0410 Receipts at Citygate Delivered to Sales 
+Customers  
+0420 Receipts at Citygate Delivered to 
+Transportation Customers  
+0500 Other Receipts  
+0600 Supplemental Gaseous Fuels  
+0700 Total Supply  
+0800 LNG Inventory at end of Year 
+0810 LNG Facility Year End Capacity 
+0820 Marine Terminal Facility Year End  
+0900 Heat Content of Delivered Gas (BTU/cf) 
+1010 Residential Sales  
+1020 Commercial Sales 
+1030 Industrial Sales  
+1040 Electric Power Sales 
+1050 Vehicle Fuel Sales 
+1060 Other Sales 
+1110 Residential Transport 
+1120 Commercial Transport  
+1130 Industrial Transport  
+1140 Electric Power Transport 
+1150 Vehicle Fuel Transport  
+1160 Other Transport 
+1210 Facility Space Heat 
+1216 Other 
+1220 New Pipeline Fill 
+1230 Pipeline dist/storage compressor use 
+1240 Vaporization/liquefaction/LNG fuel 
+1250 Vehicle fuel used in company fleet 
+1260 Other 
+1310 Underground Storage Injections  
+1320 LNG Storage Injections 
+1330 Above Ground Storage Injections 
+1400 Deliveries out of State  
+1500 Lease Use 
+1600 Returns for Repress./Reinjection 
+1700 Losses from Leaks 
+1810 Disposition to Distribution Companies 
+1820 Disposition to Other Pipelines  
+1830 Disposition to Storage Operators  
+1840 Disposition to Other  
+1900 Total Disposition 
+2000 Unaccounted For 
+3014 Alternative Fuel Fleet?(1=Yes,0=No) 

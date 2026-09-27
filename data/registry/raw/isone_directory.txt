@@ -1,0 +1,317 @@
+# source: https://www.iso-ne.com/participate/participant-asset-listings/directory
+# fetched: 2026-09-27T22:17:38+00:00
+
+Participant Directory
+-->
+Skip to page content.
+CALENDAR
+LIBRARY
+Careers
+CONTACT US
+Sign Up
+Sign In
+Invalid username or password. Please try again.
+An unexpected error occurred while logging in.
+Email
+Password
+Keep me signed in
+Forgot password?
+My Dashboard
+Account Information
+About Us
+What We Do
+Operate the Power System
+Administer the Markets
+Plan the Power System
+News and Media
+Press Releases
+ISO Newswire
+ISO to Go
+Logos and Photos
+Social Media
+Contact the ISO
+Participant Support
+Media Contacts
+Government and Industry Affairs Contacts
+Business Hours
+Market Monitoring and Mitigation Hotline
+Notice of Recorded or Monitored Conversations
+Who We Are
+Our Mission, Vision, and Values
+Our Highly Skilled Workforce
+Environmental Stewardship
+Our History
+Careers at ISO New England
+Current Openings
+Student Internships
+What We Offer
+Living in Western New England
+Corporate Governance
+Board of Directors
+Officers
+Key Corporate Documents
+Financial and Performance Reports
+Annual Work Plan
+Budget
+Where We’re Going
+Regional Electricity Outlook
+Wind Power Integration
+Batteries as Energy Storage
+Solar Power Impact
+Key Grid and Market Stats
+Electricity Use
+Resource Mix
+Transmission
+Markets
+Air Emissions
+Maps and Diagrams
+Public Affairs
+Presentations and Conference Materials
+Memos, Reports, and Other Public Communications
+New England State Profiles
+New England Regional Profile
+Communications During Power System Emergencies
+Consumer Resources
+Follow
+ISO Newswire
+for the latest news and information about ISO New England and the region's wholesale electricity industry
+Participate
+Applications and Status Changes
+Participant Registration
+Requests to Access Software and Systems
+Financial Assurance and Credit
+Qualified Transmission Project Sponsor Application and Annual Certification
+Enrollment in the New England Transmission Planning Region
+Interconnection Process Guide
+Transmission Service Applications
+Name Changes, Affiliate Updates, Termination, and Other Participant Changes
+Asset Registration
+Participant and Asset Listings
+Participant Directory
+Training
+Upcoming Courses
+E-Learning Opportunities
+Training Materials
+About ISO-TEN
+Support
+Participant Readiness Project Outlook
+Request Data and Information
+Request CEII Access
+Request Software
+Mailing Lists
+Web Feeds
+Web Conferencing Support
+User Guides
+Glossary and Acronyms
+Web Browser Support
+Web Services Data
+Library of Participant Support Forms
+Upload and Download File Format Protocols
+FAQs
+Website Help
+Governing Agreements
+Participants Agreement and NESCOE MOU
+Transmission Operating Agreements
+Inter-Area Operating Agreements and Asset Owner Agreements
+NEPOOL Agreement
+Historical Legal Documents
+Rules and Procedures
+Transmission, Markets, and Services Tariff
+Market Rule 1
+Open Access Transmission Tariff (OATT)
+Manuals
+ISO Operating Procedures
+System Operating Procedures
+Master and Local Control Center Procedures
+Generator and Non-Generator VAR Capability
+Planning Procedures
+NERC and NPCC Compliance
+Regulatory Filings and Orders
+ISO Filings to FERC
+ISO Orders from FERC
+ISO Filings and Orders with Other Federal Agencies
+ISO Filings with States
+PTO Filings and Orders with FERC
+PTO AC Filings and Orders with FERC
+Registration information and support for business entities doing business with ISO New England
+Committees and Groups
+Participants Committee and Working Groups
+Participants Committee
+Budget and Finance Subcommittee
+Markets Committee and Working Groups
+Markets Committee
+Emerging Technologies Working Group
+GIS Operating Rules Working Group
+Meter Reader Working Group
+Transmission Committee and Working Groups
+Transmission Committee
+Reliability Committee and Working Groups
+Reliability Committee
+Load Forecast Committee
+Power Supply Planning Committee
+Planning Committees
+Planning Advisory Committee
+Distributed Generation Forecast Working Group
+Eastern Interconnection Planning Collaborative
+Energy-Efficiency Forecast Working Group
+Environmental Advisory Group
+Interregional Planning Stakeholder Advisory Committee
+Transmission Owner Planning Advisory Committee
+Industry Collaborations
+Consumer Liaison Group
+Electric/Gas Operations Committee
+Inactive Committees
+Key Projects
+Asset Condition Reviewer Key Project
+Capacity Auction Reforms Key Project
+Large Loads Integration Key Project
+Operational Impacts of Extreme Weather Events Key Project
+Order No. 1920 Key Project
+Order No. 2222 Key Project
+Order No. 2023 Key Project
+Implemented Key Projects
+Stakeholder committees and working groups collaborating with the ISO in fulfilling its mission
+System Planning
+Plans and Studies
+Regional System Plan and Related Analyses
+CELT Reports
+Economic Studies
+Environmental and Emissions Reports
+Installed Capacity Requirement
+System Forecasting
+Load Forecast
+Energy-Efficiency Forecast
+Distributed Generation Forecast
+Interconnection Service
+Interconnection Request Queue
+Interconnection Request Studies
+CETU Supported Projects
+Interconnection Agreements
+Transmission Planning
+Reliability Transmission
+System Efficiency Transmission Upgrades
+Competitive Transmission
+Public Policy Transmission
+Longer-Term Transmission Studies
+Proposed Plan Applications
+Transmission Cost Allocation
+Transmission Planning Guides
+Transmission Owner Asset Management
+Key Study Areas
+Boston Key Study Area
+Connecticut Key Study Area
+Maine Key Study Area
+New England-Wide Daytime Minimum Load
+New England-Wide Geomagnetic Disturbance Key Study Area
+New Hampshire Key Study Area
+Southeastern Massachusetts and Rhode Island Key Study Area
+Vermont Key Study Area
+Western and Central Massachusetts Key Study Area
+Planning Models and Data
+Transmission Planning Models
+FERC Form No. 715 Reports
+Variable Energy Resource (VER) Data
+Interconnection Service Study Planning Models
+Generator Event and Data Reporting
+PTF Catalog
+Ensuring that New England’s transmission system can reliably deliver power under a wide range of future system conditions
+Markets and Operations
+ISO Express
+Real-Time Maps and Charts
+Pricing Reports
+Grid Reports
+Energy, Load, and Demand Reports
+Operations Reports
+Billing, Settlements, and Tariff Reports
+Auction Reports and Supporting Data
+Retired Reports
+Markets Data and Information
+Day-Ahead and Real-Time Energy Markets
+Forward Capacity Market
+Financial Transmission Rights
+Day-Ahead Ancillary Services Market and Real-Time Reserve Pricing
+Net Commitment-Period Compensation
+Regulation Market
+Voltage Support
+Blackstart Service
+Demand Resources
+Inventoried Energy Program
+Power System Forecast and Status
+Morning Report
+Next Day Operational Capacity Report
+Current Power System Status
+Seven-Day Capacity Forecast
+Three-Day System Demand Forecast
+21-Day Energy Assessment Forecast and Report
+Seasonal System Outlook
+Market Performance
+Market Performance Reports
+Load Costs
+Market Monitoring and Mitigation
+Internal Market Monitor
+External Market Monitor
+Market Development
+Wholesale Markets Project Plan
+Settlements and Billing
+Understanding the Bill
+Billing Materials and Forms
+Billing Disputes
+Settlement and Metering Holidays
+Quarterly Settlements Forum
+Metering and Resettlement Deadlines
+Tariff Rates
+Rate Development of Regional Transmission Charges
+IROL-CIP Cost Recovery Under Schedule 17
+Transmission Formula Rate Protocols Information Exchange
+Generation Information System
+Emergency Power Sales and Purchases
+FERC Electric Quarterly Reporting
+Pricing-Node Table
+Transmission Operations and Services
+Transmission Service Types
+Transmission Outage Scheduling
+OASIS Materials
+Operational Transmission Limits
+Facilitating competitive markets and reliable wholesale electricity delivery in New England
+/isoexpress/webservices/-/webservice/getSignInInfo
+/isoexpress/webservices/-/webservice/authenticate
+Participate
+Participant and Asset Listings
+Participant Directory
+Search the directory for details on and contact information for the entities registered with ISO New England, as well as on the committees and subgroups advising the ISO. For example, you can find:
+Each participant's name, address, stock symbol(s), industry sector, industry type/classification, committee membership, and NEPOOL voting status (if the participant is a member of the New England Power Pool)
+Committee and subcommittee or working group names, member lists, and the company association of members
+Download a CSV file of the Participant Directory
+As you type you will be offered suggested results. Use your keyboard arrows or mouse to navigate the results.
+Updating the Directory
+Help keep the directory current — its accuracy is dependent on data in the ISO's Customer and Asset Management System (CAMS). To update data for your organization or committee, see:
+User guides for CAMS
+CAMS FAQs
+Problems?
+Contact Participant Support and Solutions
+if you are having trouble with the directory.
+Applications
+GADS Reporting
+IRTT
+ISO Express
+Ask ISO
+Markets and Operations Forecasting
+Morning Report
+Next Day Operational Capacity Report
+Seven-Day Forecast
+Three-Day Forecast
+Power System Status
+Copyright ©2026 ISO New England Inc.
+LinkedIn
+X/Twitter
+YouTube
+Facebook
+About Us
+News and Media
+Careers
+Legal and Privacy
+Environmental Commitment
+PARTICIPANT SUPPORT
+Contact Us
+Training
+Skip to main navigation.

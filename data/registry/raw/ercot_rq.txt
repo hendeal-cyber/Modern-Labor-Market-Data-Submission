@@ -1,0 +1,355 @@
+# source: https://www.ercot.com/services/rq/re
+# fetched: 2026-09-27T22:17:38+00:00
+
+Resource Entities
+MIS LOG IN
+About ERCOT
+About ERCOT
+Company Profile
+Vision and Mission
+Community Involvement
+Governance
+Board of Directors
+Executive Team
+Membership
+Ethics
+Financial Information
+HB 4492 Securitization
+Subchapter M Default Balance Securitization
+Subchapter N Uplift Balance Securitization
+Legal Policies and Notices
+Proposed Brazos and ERCOT Bankruptcy Settlement
+Board Ethics Agreements
+Legal Notices
+February 2021 Extreme Weather Event
+January 24 and 25, 2026, DOE 202(c) Orders
+Data Center Impact RFI
+Grid Research Innovation and Transformation
+Grid Transformation
+Research and Innovation
+ERCOT Innovation Summit
+News and Publications
+Media Kit
+Helpful Resources
+News Releases
+Trending Topics
+ERCOT PowerCast Podcast
+Grid Insights
+Summer 2026
+ERCOT Reliability Monitor Program
+Careers
+Life at ERCOT
+Development Programs
+Internship Program
+Procurement
+Request for Proposal
+Locations
+Contact Us
+Information Request
+Services
+Services
+Client Services
+Account Management
+Market Support
+MarkeTrak Information
+Market Participant Communications
+Market Notice Archives
+Operations Messages
+Power Operations Bulletins
+Public Notices
+Programs
+Demand Response
+Firm Fuel Supply Service
+QSE Services Available on Short Notice
+Renewable Energy Credit
+Texas Cybersecurity Monitor Program
+Projects
+Registration and Qualification
+Congestion Revenue Rights Account Holder
+Credit
+Independent Market Information System Registered Entity
+Load Serving Entities
+Qualified Scheduling Entities
+Large Load Integration
+Resource Entities
+Resource Integration
+Transmission/Distribution Service Providers
+Service Level Agreements
+Training
+Course Catalog
+Course Recommendations
+ERCOT System Operator Certification Exam
+Market Data Transparency
+DDLs
+User Guides
+Digital Certificate Security Information
+XSDs
+ERCOT Public API Applications
+Committees and Groups
+Committees and Groups
+Meeting Calendar
+PUCT
+Board of Directors
+Finance and Audit Committee
+HR and Governance Committee
+Technology and Security Committee
+Technical Advisory Committee
+Large Load Working Group
+Credit Finance Sub Group
+Protocol Revision Subcommittee
+Protocol Revision Subcommittee
+Retail Market Subcommittee
+Retail Market Training Task Force
+Texas Data Transport and MarkeTrak Systems Working Group
+Texas Standard Electronic Transaction/Load Profiling Working Group
+Reliability and Operations Subcommittee
+Black Start Working Group
+Dynamics Working Group
+Inverter-Based Resource Working Group
+Meter Working Group
+Network Data Support Working Group
+Operations Training Working Group
+Operations Working Group
+Performance, Disturbance, Compliance Working Group
+Planning Working Group
+System Protection Working Group
+Steady State Working Group
+Voltage Profile Working Group
+Wholesale Market Subcommittee
+Congestion Management Working Group
+Demand Side Working Group
+Supply Analysis Working Group
+Wholesale Market Working Group
+Inactive Groups
+Other Groups
+Workshops
+Market Participants
+Market Rules
+Market Rules
+Protocols - Nodal
+Current Protocols - Nodal
+Protocol Library - Nodal
+Nodal Protocol Revision Requests
+NPRR Submission Process
+Protocol Interpretation Request Submission Process
+Archives - Zonal
+PUCT Directives
+Phase 2 Bridging Options
+Southern Cross Transmission
+Emergency Operations Plans
+Market Guides
+Commercial Operations Market Guide
+Data Transport Guides
+Load Profiling Guide
+Nodal Operating Guide
+Operating Procedures
+Planning Guide
+Resource Registration Glossary
+Retail Market Guide
+Settlement Metering Operating Guide
+Texas Standard Electronic Transaction Guides
+Verifiable Cost Manual
+Inactive Market Guides
+Pilot Projects
+Aggregate Distributed Energy Resource (ADER) Pilot Project
+30-Minute Emergency Response Service - Completed
+Fast Responding Regulation Service - Completed
+Weather-Sensitive Emergency Response Service - Completed
+System Changes
+System Change Requests
+Compliance in ERCOT
+Business Practice Manual
+Other Binding Documents
+Other Binding Documents List
+Other Binding Documents Revision Requests
+Key Priorities
+Battery Energy Storage
+Market Information
+Market Information
+Congestion Revenue Rights
+Day-Ahead Market
+Real-Time Market
+Marginal Losses
+Market Prices
+Retail
+Labeling of Electricity
+Load Profiling
+Backcasted (Actual) Load Profiles - Historical
+Metering
+Competitive Metering
+ERCOT-Polled Settlement Metering
+TDSP Distribution Loss Factors - Methodology
+Data Aggregation
+IDR Protocol Compliance Verification - Historical
+ERCOT Four Coincident Peak Calculations
+Shadow Settlement Instruction Guides
+UFE Analysis Reports
+Settlements
+Market Reports
+Grid Information
+Grid Information
+Current System Conditions
+Generation
+Inverter Based Resources Integration Reports
+Load
+Hourly Load Data Archives
+Supplemental Data for COVID-19 Scenario
+Load Forecast
+Transmission
+Production Load Schedule
+Resource Adequacy
+Market Reports
+Planning
+Resiliency
+Winter Weather Readiness
+Summer Weather Readiness
+Gas-Electric Coordination
+Modeling
+Market Participants
+Market Participants
+EMIL
+MIS Log In
+RIOO Log In
+Renewable Energy Credit
+News Releases
+Grid and Market Conditions
+Home
+Services
+Registration and Qualification
+Resource Entities
+Resource Entities
+An Entity that owns and/or controls a Generation Resource, Load Resource, and/or a Non-Modeled Generator is registered with ERCOT as a Resource Entity.
+Registration
+The Resource Entity (RE) Application for Registration can be found in Section 23 of the
+Protocols
+. Each RE must complete the application and identify a Qualified Scheduling Entity (QSE) to complete the ERCOT registration requirements.
+REs should review the following important information based on their planned ERCOT participation:
+Register New Distributed Generation
+Establish New QSE Relationship
+for established Generation Resources
+Register as Controllable Load Resources (CLRs)
+in the Load Participation Program
+Asset Registration
+An RE’s assets must also be registered. Most RE Asset registration activities include the following:
+Complete all required Generation Interconnection Change Request processes as described in the Planning Guide, Section 5 located under Guides below.
+Submit the Resource Asset Registration Forms , located under Asset Registration Documents below.
+Complete the design and installation of an ERCOT-polled settlement meter, as described in the Settlement Metering Operating Guide located under Guides below.
+Establish a data link with the QSE. Refer to the ERCOT Nodal ICCP Handbook located under Guides below.
+Work closely with designated QSE and ERCOT to coordinate planning for the first operating day and unit commissioning.
+Submit the ERCOT New Generator Commissioning Checklist for approval to energize, synchronize, and complete required commission testing. See QSE Documents below.
+Additional Requirements
+Most REs must also be registered with the Public Utility Commission of Texas (PUCT). Please refer to the
+Power Generation Companies and Self-Generator Registration
+area on the PUCT website. The Resource Entity shall register Distributed Generation (DG) in accordance with ERCOT
+Protocols
+Section 16, if the DG’s installed capacity is greater than one (1) MW or if the energy is to be accounted for in wholesale market settlements. Please refer to the
+Distributed Generation
+section for more information.
+Each Resource Entity is required by Section 3.21 of the Protocols to submit an emergency operations plan and a weatherization plan to ERCOT for each Generation Resource under its control and to keep those plans updated. Section 3.21 also requires each Resource Entity to submit a completed declaration regarding the completion of weatherization preparations for each summer and winter season (See Protocols Attachments K and O). These plans and declarations are to be emailed to
+EOP@ercot.com
+. For new Generation Resources, ERCOT will verify compliance with these submission requirements during the commissioning process.
+Guides
+ERCOT Nodal ICCP Communications Handbook v4.07
+This handbook sets practices, conventions, and fundamental parameters required for Market Participants to exchange data with ERCOT.
+Nov 21, 2025 - docx - 1.4 MB
+Model Quality Guide
+Assists REs/IEs submit stability models per Planning Guide Section 6.2, including the new Model Quality Testing requirements. Also includes the UDM Model Guideline and PSCAD Model Guideline.
+Apr 29, 2026 - zip - 4.2 MB
+Planning Guide
+Section 5, Generation Resource Interconnection or Change Request (GINR), defines the requirements and processes used to facilitate new or modified generation interconnections.
+Settlement Metering Operating Guide
+Reference to complete the design and installation of an ERCOT-polled settlement meter.
+RIOO Documentation
+Signing Up for a RIOO Services User Account
+Guides the user through the steps to create a user account and register their mobile phone to access RIOO Interconnection and Resource Services
+IE Sign Up Guide
+RE Sign Up Guide
+TSP/DSP Sign Up Guide
+Managing Your RIOO Services User Account
+Describes how to change a phone, phone number, and a multifactor authentication app as well as how to update personal information and change a password
+Creating an INR in RIOO Interconnection Services
+Guides the IEs and REs through the process for creating a request to interconnect a resource to the ERCOT electrical grid
+Creating an INR for a Generation Resource Under 10MW
+Creating an INR for a Generation Resource Over 10MW
+Managing INRs in RIOO Interconnection Services
+Managing Your INR as an IE or RE
+Describes the tasks associated with updating and adding information to their submitted INR
+Managing INRs as a TSP/DSP
+Describes the tasks associated with studying and analyzing submitted INRs, making study results available, and monitoring project milestone dates
+Resource Entity Registration
+RE Application for Registration
+The Resource Entity (RE) Application for Registration is located in Section 23 of the Protocols.
+Asset Registration Documents
+Resource Asset Registration Forms (RARF)
+Provides input to the Network Model used by Operations in dispatch of Resources.
+Nov 4, 2019 - zip - 4.1 MB
+Collector System Template
+Facilitates entry of collector data by providing useful feedback and error checking. Use this form in lieu of filling out the RARF Cable_Data and Segments tabs. Submit by including with your RARF upload.
+Jun 30, 2020 - zip - 505.5 KB
+Commissioning Plan Template
+Used to obtain approval to energize, synchronize, and complete required commission testing.
+Sep 1, 2026 - xlsx - 128.9 KB
+Dynamic Model Templates
+Used to facilitate the collection of resource Dynamic Data; submit as a zipped attachment to RIOO along with the Model Quality Test report per Planning Guide 6.2(5)
+Dec 19, 2025 - zip - 752.1 KB
+Generation Resource Splitting Agreement
+Specifies how the control of a Generation Resource that is divided into two or more Split Generation Resources is to be allocated among each of the affected Resource Entities (REs).
+May 12, 2021 - docx - 46.8 KB
+Network Model Interim Update Request
+Used by Resource Entities (REs) to request interim updates to the Network Model.
+Dec 10, 2018 - doc - 189 KB
+MOU and EC Opt-In Checklist
+Assists Municipally Owned Utilities (MOU) and Electric Cooperatives (EC) in working through ERCOT requirements that must be satisfied prior to participating in the Texas competitive market.
+Dec 10, 2018 - doc - 66.5 KB
+QSE Documents
+ERCOT New Generator Commissioning Checklist
+Checklist used by QSEs to complete required testing for new generating unit start-ups in the QSE's market and control systems, as well as ERCOT's operation and marketing systems. It is also required to receive expressed approval to connect to the ERCOT grid.
+Sep 1, 2026 - docx - 101.5 KB
+QSE Acknowledgement
+The QSE Acknowledgement is located in Section 23 of Protocols. It is used by the QSE to acknowledge that it represents a Market Participant applicant for scheduling and settlement transactions with ERCOT.
+Distribution Generation Resources
+DGR Conditions
+Sep 30, 2019 - docx - 43.5 KB
+Provisional ERCOT DGR Integration Practices Market Notice
+Related Content
+RIOO Services
+IE Sign Up Guide
+RE Sign Up Guide
+TSP/DSP Sign Up Guide
+On this site
+Load Participation Program
+On the web
+PUCT Power Generation Companies and Self-Generator Registration
+About ERCOT
+Services
+Committees & Groups
+Market Rules
+Market Information
+Grid Information
+Market Participants
+Contact Us
+Glossary
+Careers
+Locations
+Calendar
+Quick Links
+Ethics Point
+Operations Messages
+Project Status
+Service Level Agreements
+MIS Applications
+Grid and Market Conditions
+ERCOT Market Information List
+Resource Integration & Ongoing Operations – Resource Services
+Texas Advisory and Notification System
+STAY CONNECTED
+SOCIAL
+News & Press
+Mailing Lists
+News & Publications
+Use of this site constitutes agreement to our
+Terms of Use
+.
+© 1996-2026 Electric Reliability Council of Texas, Inc. All rights reserved.
+Sitemap
+Privacy

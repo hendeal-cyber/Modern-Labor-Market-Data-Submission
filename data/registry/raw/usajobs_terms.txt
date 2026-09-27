@@ -1,0 +1,77 @@
+# source: https://developer.usajobs.gov/guides/terms-of-use
+# fetched: 2026-09-27T22:17:38+00:00
+
+USAJOBS - Terms of Use
+Skip to main content
+An official website of the United States government
+Here's how you know
+Here's how you know
+Official websites use .gov
+A .gov website belongs to an official government organization in the United States.
+Secure .gov websites use HTTPS
+A lock
+( ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.
+Developer Site
+Menu
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+Terms of use
+This U. S. Federal Government system is to be used by authorized users only. Information from this system resides on
+computer systems funded by the government. The data and documents on this system include Federal records that may
+contain sensitive information protected by various Federal statutes, including the Privacy Act, 5 U.S.C. § 552a.
+All access or use of this system constitutes user understanding and acceptance of these terms and constitutes
+unconditional consent to review, monitoring and action by all authorized government and law enforcement personnel.
+While using this system your use may be monitored, recorded and subject to audit.
+Unauthorized user attempts or acts to (1) access, upload, change, or delete or deface information on this system, (2)
+modify this system, (3) deny access to this system, (4) accrue resources for unauthorized use or (5) otherwise
+misuse this system are strictly prohibited. Such attempts or acts are subject to action that may result in criminal,
+civil, or administrative penalties.
+USAJOBS is a
+United States Office of Personnel Management
+website.
+LinkedIn
+YouTube
+About USAJOBS
+Accessibility
+FOIA
+Inspector general
+No Fear Act Data
+Privacy policy
+Reports and publications
+Terms and conditions
+USA.gov
+Vote.gov

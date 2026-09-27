@@ -1,0 +1,76 @@
+# source: https://developer.usajobs.gov/guides/rate-limiting
+# fetched: 2026-09-27T22:17:38+00:00
+
+USAJOBS - Rate Limiting
+Skip to main content
+An official website of the United States government
+Here's how you know
+Here's how you know
+Official websites use .gov
+A .gov website belongs to an official government organization in the United States.
+Secure .gov websites use HTTPS
+A lock
+( ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.
+Developer Site
+Menu
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+Rate limiting
+Search Jobs API
+Defaults to only "Public" jobs
+User must make additional request to search for "Status" jobs
+Maximum of 10,000 rows per query
+Maximum of 500 rows per page
+Code List API
+No limits
+Dynamic Search
+No limits
+USAJOBS is a
+United States Office of Personnel Management
+website.
+LinkedIn
+YouTube
+About USAJOBS
+Accessibility
+FOIA
+Inspector general
+No Fear Act Data
+Privacy policy
+Reports and publications
+Terms and conditions
+USA.gov
+Vote.gov

@@ -1,0 +1,687 @@
+# source: https://developer.usajobs.gov/api-reference/get-api-search
+# fetched: 2026-09-27T22:17:38+00:00
+
+USAJOBS - GET /api/Search
+Skip to main content
+An official website of the United States government
+Here's how you know
+Here's how you know
+Official websites use .gov
+A .gov website belongs to an official government organization in the United States.
+Secure .gov websites use HTTPS
+A lock
+( ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.
+Developer Site
+Menu
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+Search jobs
+The Job Search API is designed to support lightweight JOA content consumption by consumers and delivers currently open job opportunity announcements. It is anticipated that this endpoint will be leveraged by Commercial Job Boards, Mobile Applications and Social Media sites who desire to provide employment opportunities on their site. Typically, in these commercial venues, the breadth of data presented to a user (job seeker) is much smaller than the detailed content provided on USAJOBS, as required by law.
+Resource
+GET /api/Search
+Authorization
+API Key
+Authentication
+Query Parameters
+The query parameters are appended to the URL to drive the specific results desired. Each consumer can leverage any
+combination of these parameters. The query parameters are:
+Parameter Name
+Description
+Keyword
+Issues search to find hits based on a keyword. Optional. Keyword will search for all of the words
+specified (or synonyms of the word) throughout the job announcement.
+https://data.usajobs.gov/api/search?Keyword=Software
+PositionTitle
+Issues search to find hits in the title of the job.
+This is the job title - e.g. IT Specialist, Psychologist, etc. The title search will be treated as
+"contains" and will select all job announcements where the job title contains the value provided.
+The following query will return all job announcements with "psychologist" or a synonym of
+psychologist in the title:
+https://data.usajobs.gov/api/Search?PositionTitle=Psychologist
+The following query will return all job announcements with "Electrical Engineer" in the title:
+https://data.usajobs.gov/api/Search?PositionTitle=Electrical%20Engineer
+RemunerationMinimumAmount
+Issues search to find hits with the minimum salary specified.
+Jobs are placed in salary buckets: $0-$24,999, $25,000-$49,999, $50,000-$74,999, $75,000-$99,999,
+$100,000-$124,999, $125,000-$149,999, $150,000-$174,999, $175,000-$199,999 and $200,000 or greater.
+So a search with a minimum salary of $15,500 will return jobs with a minimum salary in the
+$0-$24,999 range.
+https://data.usajobs.gov/api/Search?RemunerationMinimumAmount=15000
+RemunerationMaximumAmount
+Issues search to find hits with the maximum salary specified.
+Jobs are placed in salary buckets: $0-$24,999, $25,000-$49,999, $50,000-$74,999, $75,000-$99,999,
+$100,000-$124,999, $125,000-$149,999, $150,000-$174,999, $175,000-$199,999 and $200,000 or greater.
+So a search with a maximum salary of $72,000 will return jobs with a maximum salary in the
+$50,000-$74,999 range.
+For example, combining MinSalary and MaxSalary, the following query:
+https://data.usajobs.gov/api/Search?RemunerationMinimumAmount=26000&RemunerationMaximumAmount=85000
+- will return all job announcements where the starting and/or ending salary are between $25,000 and $99,999.
+PayGradeHigh
+Issues search to find hits with the maximum pay grade specified. Must be 01 through 15. This is the
+ending grade for the job. (Caution: Fed speak ahead but it cannot be helped.) The grade along with
+series is used by the Federal government to categorize and define jobs.
+For more
+information on what series and grade are, please visit:
+https://help.usajobs.gov/index.php/What_is_a_series_and_or_grade%3F
+.
+However, grade is also used to define salary. USAJOBS search uses grades for the General
+Schedule (GS) pay plan (
+http://www.opm.gov/policy-data-oversight/pay-leave/salaries-wages
+).
+For jobs that use a different pay plan than the GS schedule, USAJOBS will derive the
+corresponding grade by using the minimum and maximum salary and the wages for the GS schedule for
+the Rest of the United States (for 2014, see:
+http//www.opm.gov/policy-data-oversight/pay-leave/salaries-wages/salary-tables/14Tables/html/RUS.aspx
+).
+For federal employees, especially those who have a GS pay plan, searching by grade is
+extremely useful since they would already know which grades they are or qualify for. However, for
+non-GS employees, searching by salary is much simpler.
+https://data.usajobs.gov/api/Search?PayGradeHigh=07
+PayGradeLow
+Issues search to find hits with the minimum pay grade specified. Must be 01 through 15. This is the
+beginning grade for the job. See PayGradeHigh for more information.
+https://data.usajobs.gov/api/Search?PayGradeLow=04
+https://data.usajobs.gov/api/Search?PayGradeLow=07&PayGradeHigh=09
+JobCategoryCode
+Issues a search to find hits with the job category series specified.
+See
+Code List
+for a listing of the Job
+Category codes.
+https://data.usajobs.gov/api/Search?JobCategoryCode=0830
+Note: Multiple values are semicolon delimited.
+LocationName
+Issues a search to find hits within the specified location. This is the city or military installation
+name. LocationName simplifies location based search as the user does not need to know or account for
+each and every Location Code. LocationName will search for all location codes and ZIP codes that
+have that specific description.
+For example, to find all job announcements in Washington, DC, use:
+https://data.usajobs.gov/api/Search?LocationName=Washington%20DC,%20District%20of%20Columbia
+.
+To find all job announcements in Atlanta, GA use:
+https://data.usajobs.gov/api/Search?LocationName=Atlanta,%20Georgia
+.
+NOTE: Multiple values are semicolon delimited.
+Organization
+Issues a search to find jobs for the specified agency using the Agency Subelement Code.
+See
+Code List
+for a listing of the
+Organization codes.
+The following will get a listing of job announcements from the Department Of The Treasury:
+https://data.usajobs.gov/api/Search?Organization=TR
+Note: Multiple values are semicolon delimited.
+PositionOfferingTypeCode
+Issues a search to find jobs within the specified type. This field is also known as Work Type.
+Note: Multiple values are semicolon delimited.
+TravelPercentage
+Issues a search to find hits for jobs matching the specified travel level.
+Acceptable values
+for travel percentage parameter are:
+Value
+Definition
+0
+Not Required
+1
+Occasional Travel
+2
+25% or Less
+5
+50% or Less
+7
+75% or Less
+8
+76% or Greater
+https://data.usajobs.gov/api/Search?TravelPercentage=0
+https://data.usajobs.gov/api/Search?TravelPercentage=7
+PositionScheduleTypeCode
+Issues a search to find hits for jobs matching the specified job schedule. This field is also known
+as work schedule.
+Acceptable values for Position Schedule Type Code are:
+Value
+Definition
+1
+Full-Time
+2
+Part-Time
+3
+Shift Work
+4
+Intermittent
+5
+Job Sharing
+6
+Multiple Schedules
+https://data.usajobs.gov/api/Search?PositionSchedule=4
+Note: Multiple values are semicolon delimited.
+RelocationIndicator
+Issues a search to find hits for jobs matching the relocation filter. Acceptable values for this
+field are: True or False
+SecurityClearanceRequired
+Issues a search to find hits for jobs matching the specified security clearance.
+Acceptable values for Security Clearance Required parameter are:
+Value
+Definition
+0
+Not Required
+1
+Confidential
+2
+Secret
+3
+Top Secret
+4
+Sensitive Compartmented Information
+5
+Q Access Authorization
+7
+L Access Authorization
+8
+Other
+https://data.usajobs.gov/api/Search?SecurityClearanceRequired=1
+Note: Multiple values are semicolon delimited.
+SupervisoryStatus
+Issues a search to find hits for jobs matching the specified supervisory status.
+DatePosted
+Issues a search to find hits for jobs that were posted within the number of days specified.
+Acceptable values for DatePosted are integers in the range of 0 - 60.
+JobGradeCode
+Issues a search to find hits for jobs matching the grade code specified. This field is also known as
+Pay Plan.
+NOTE: Multiple values are semicolon delimited.
+SortField
+Issues a search that will be sorted by the specified field.
+Acceptable values for Sort Field
+parameter are:
+Value
+Definition
+opendate
+Position start date.
+closedate
+Position end date.
+organizationname
+Position organization name.
+jobtitle
+Position title.
+positiontitle
+Position title.
+openingdate
+Position start date.
+closingdate
+Position end date.
+honame
+Position organization name.
+salarymin
+Position minimum salary.
+location
+Position city or military installation name.
+department
+Position organization name.
+title
+Position title.
+agency
+Position organization name.
+salary
+Position minimum salary.
+https://data.usajobs.gov/api/Search?PositionTitle=Electrical&SortField=PositionTitle
+SortDirection
+Issues a search that will be sorted by the SortField specified, in the direction specified. Asc for
+ascending, or desc for descending.
+https://data.usajobs.gov/api/Search?PositionTitle=Electrical&SortField=PositionTitle&SortDirection=Asc
+Page
+Issues a search to pull the paged results specified.
+ResultsPerPage
+Issues a search and returns the page size specified. In this example, 25 jobs will be return for the
+first page.
+Acceptable values for this field are numbers, up to 500.
+https://data.usajobs.gov/api/Search?ResultsPerPage=50
+WhoMayApply
+Issues a search to find hits based on the desired candidate designation. In this case, public will
+find jobs that U.S. citizens can apply for. Acceptable values for this parameter are:
+"All","Public", or "Status".
+https://data.usajobs.gov/api/Search?WhoMayApply=public
+NOTE: All and Status require specific authorization.
+Radius
+Issues a search when used along with LocationName, will expand the locations, based on the radius
+specified.
+https://data.usajobs.gov/api/Search?LocationName=Norfolk%20Virginia&Radius=75
+Fields
+Issues a search that will return the minimum fields or maximum number of fields in the job. Min
+returns only the job summary. Acceptable values for this field are: "Min" and "Full"
+https://data.usajobs.gov/api/Search?TravelPercentage=7&Fields=full
+https://data.usajobs.gov/api/Search?PositionScheduleTypeCode=1&Fields=full
+SalaryBucket
+Issues a search that will find hits for salaries matching the grouping specified. Buckets are
+assigned based on salary ranges. For example 25 = $25,000-$49,000.
+NOTE: Multiple values are semicolon delimited.
+GradeBucket
+Issues a search that will find hits for grades that match the grouping specified.
+HiringPath
+Issues a search that will find hits for hiring paths that match the hiring paths specified.
+Value
+Definition
+public
+Open to the public
+vet
+Veterans
+nguard
+National Guard & Reserves
+disability
+Individuals with disabilities
+native
+Native Americans
+mspouse
+Military spouses
+student
+Students
+ses
+Senior executives
+peace
+Peace Corps & AmeriCorps Vista
+overseas
+Family of overseas employees
+fed-internal-search
+Internal to an agency
+graduates
+Recent graduates
+fed-excepted
+Excepted service
+fed-competitive
+Competitive service
+fed-transition
+Career transition (CTAP, ICTAP, RPL)
+land
+Land & base management
+special-authorities
+Special authorities
+https://data.usajobs.gov/api/Search?HiringPath=public
+NOTE: Multiple values are semicolon delimited.
+MissionCriticalTags
+Issues a search that will find hits for mission critical tags that match the grouping specified.
+https://data.usajobs.gov/api/Search?MissionCriticalTags=STEM&Fields=full
+NOTE: Multiple values are semicolon delimited.
+RemoteIndicator
+Issues a search to find hits for jobs matching the remote filter. Acceptable values for this field
+are: True (only Remote jobs will be returned) or False (excludes Remote jobs).
+NOTE: If the RemoteIndicator is not passed then Remote jobs will be included in results, by default.
+An example using multiple parameters:
+https://data.usajobs.gov/api/Search?Keyword=nurse&JobCategoryCode=2210&WhoMayApply=public&fields=all
+Post Channel ID (PCI)
+PostChannelID (PCI) is used within USAJOBS to identify the source from which a job seeker originates.
+The default PostChannelID of RESTAPI will be generated in the ApplyOnlineURL node, within the data returned for
+each JOA.
+If you have previously requested and been provided a PCI, you would simply replace RESTAPI with your PCI. Why is
+this important? As USAJOBS runs sourcing analysis reports, it identifies that the job seeker originated at a
+specific JOA consumers site. Over time, this provides not only USAJOBS, but also the agencies, clear
+transparency to venues that attract the Federal Job Seekers.
+If you would like to have a PostChannelID established for Sourcing Analysis, please submit your request to:
+recruiter-help@usajobs.gov
+. We will need your Company Name, Site Name, and technical contact information.
+Response
+JSON:
+{
+"LanguageCode": "EN",
+"SearchParameters": {},
+"SearchResult": {
+"SearchResultCount": 25,
+"SearchResultCountAll": 100,
+"SearchResultItems": [
+{
+"MatchedObjectId": "21947200",
+"MatchedObjectDescriptor": {
+"PositionID": "SW62210-05-1716110PB411413H",
+"PositionTitle": "IT SPECIALIST (INFOSEC/NETWORK)",
+"PositionURI": "https://www.usajobs.gov/GetJob/ViewDetails/21947200",
+"ApplyURI": [
+"https://www.usajobs.gov/GetJob/ViewDetails/21947200?PostingChannelID=RESTAPI"
+],
+"PositionLocationDisplay": "Point Loma Complex, San Diego, California",
+"PositionLocation": [
+{
+"LocationName": "Point Loma Complex, San Diego, California",
+"CountryCode": "United States",
+"CountrySubDivisionCode": "California",
+"CityName": "Point Loma Complex, San Diego, California",
+"Longitude": -117.194382,
+"Latitude": 32.7042961
+}
+],
+"OrganizationName": "Space and Naval Warfare Systems Command",
+"DepartmentName": "Department of the Navy",
+"JobCategory": [
+{
+"Name": "Information Technology",
+"Code": "2200"
+},
+{
+"Name": "Information Technology Management",
+"Code": "2210"
+}
+],
+"JobGrade": [
+{
+"Code": "NO"
+}
+],
+"PositionSchedule": [
+{
+"Name": "Full Time",
+"Code": "1"
+}
+],
+"PositionOfferingType": [
+{
+"Name": "Permanent",
+"Code": "15317"
+}
+],
+"QualificationSummary": "...",
+"PositionRemuneration": [
+{
+"MinimumRange": "92108",
+"MaximumRange": "119746",
+"RateIntervalCode": "PA",
+"Description": "Per Year"
+}
+],
+"PositionStartDate": "2016-06-05T00:00:00Z",
+"PositionEndDate": "2016-12-01T00:00:00Z",
+"PublicationStartDate": "2016-06-05T00:00:00Z",
+"ApplicationCloseDate": "2016-12-01T00:00:00Z",
+"PositionFormattedDescription": [
+{
+"Content": "This announcement is being used to recruit qualified individuals, under the Office of Personnel Management (OPM) Direct Hire Authority, authorized by 5 United States Code (U.S.C.), Section 3304 and 5 Code of Federal Regulations (CFR) Part 337, Subpart B. The Rule of Three, Veteran's Preference and t",
+"Label": "Dynamic Teaser",
+"LabelDescription": "Hit highlighting for keyword searches."
+}
+],
+"UserArea": {
+"Details": {
+"MajorDuties": "Major Duties and Responsibilities: ...",
+"Education": "EDUCATION: ...",
+"Requirements": "",
+"Evaluations": "...",
+"HowToApply": "...",
+"WhatToExpectNext": "...",
+"RequiredDocuments": "...",
+"Benefits": "...",
+"BenefitsUrl": "",
+"OtherInformation": "...",
+"KeyRequirements": [],
+"JobSummary": "...",
+"WhoMayApply": {
+"Name": "United States Citizens",
+"Code": "15514"
+},
+"LowGrade": "05",
+"HighGrade": "05",
+"SubAgencyName": "Space and Naval Warfare System Command Pacific",
+"OrganizationCodes": "DD/NV/NV39"
+},
+"IsRadialSearch": false
+}
+},
+"RelevanceRank": 0.0
+}
+],
+"UserArea": {
+"Refiners": {
+"Organization": [
+{
+"RefinementName": "AG/AG02",
+"RefinementCount": "1",
+"RefinementToken": "^AG/AG02$",
+"RefinementValue": "AG/AG02"
+}
+],
+"GradeBucket": [
+{
+"RefinementName": "12",
+"RefinementCount": "46",
+"RefinementToken": "^12$",
+"RefinementValue": "12"
+}
+],
+"SalaryBucket": [
+{
+"RefinementName": "75",
+"RefinementCount": "80",
+"RefinementToken": "^75$",
+"RefinementValue": "75"
+}
+],
+"PositionOfferingTypeCode": [
+{
+"RefinementName": "15317",
+"RefinementCount": "86",
+"RefinementToken": "15317",
+"RefinementValue": "15317"
+}
+],
+"PositionScheduleTypeCode": [
+{
+"RefinementName": "1",
+"RefinementCount": "100",
+"RefinementToken": "1",
+"RefinementValue": "1"
+}
+],
+"JobCategoryCode": [
+{
+"RefinementName": "2200/2210",
+"RefinementCount": "100",
+"RefinementToken": "^2200/2210$",
+"RefinementValue": "2200/2210"
+}
+]
+},
+"NumberOfPages": "4",
+"IsRadialSearch": false
+}
+}
+}
+Name
+Description
+Type
+LanguageCode
+Response Langauge
+String
+SearchParameters
+Query parameters used in search request.
+Object
+SearchResult
+Object
+SearchResultCount
+Number of records returned in response object.
+Integer
+SearchResultCountAll
+Total Number of records that matched search criteria.
+Integer
+SearchResultItems
+Array of job opportunity announcement objects that matched search criteria.
+Array
+MatchedObjectId
+Control Number
+Number
+MatchedObjectDescriptor
+Object
+PositionID
+Job Announcement Number
+String
+PositionTitle
+Title of the job offering.
+String
+PositionURI
+URI to view the job offering.
+String
+ApplyURI
+URI to apply for the job offering.
+String
+PositionLocation
+Contains values for location name, country, country subdivision, city, latitude and longitude.
+Object
+OrganizationName
+Name of the organization or agency offering the position.
+String
+DepartmentName
+Name of the department within the organization or agency offering the position.
+String
+JobCategory
+List of job category objects that contain values for name and code. See
+Code List
+for a list of Job Category
+codes.
+Array
+JobGrade
+List of job grade objects that contains an code value. This field is also known as Pay Plan. See
+Code List
+for a list of Pay Plan codes.
+Array
+PositionSchedule
+List of position schedule objects that contains values for name and code. See PositionSchedule in
+paramters above for list of code values.
+Array
+PositionOfferingType
+List of position offering type objects that contains values for name and code. See PositionOfferingType
+in paramters above for list of code values.
+Array
+QualificationSummary
+Summary of qualifications for the job offering.
+Text
+PositionRemuneration
+List of position remuneration objects that contains MinimumRange, MaximumRange and RateIntervalCode.
+Gives the pay range and frequency.
+Array
+PositionStartDate
+The date the job opportunity will be open to applications.
+Datetime
+PositionEndDate
+Last date the job opportunity will be posted
+Datetime
+PublicationStartDate
+Date the job opportunity is posted
+Datetime
+ApplicationCloseDate
+Last date applications will be accepted for the job opportunity
+Datetime
+PositionFormattedDescription
+List of objects that contains values for Content, Label and LabelDescription. Provides quick summary of
+job opportunity.
+Array
+UserArea
+Object
+Details
+Object
+MajorDuties
+Description of the duties of the job.
+Text
+Education
+Education required or preferred by applicants.
+Text
+Requirements
+Key Requirements of the job opportunity.
+Text
+Evaluations
+Qualification requirements of the job opportunity.
+Text
+HowToApply
+Description of the steps to take to apply for the job opportunity.
+Text
+WhatToExpectNext
+Description of what can be expected during the application process.
+Text
+RequiredDocuments
+Required documents when applying for the job opportunity.
+Text
+Benefits
+Benefits being offered as part of the job opportunity.
+Text
+BenefitsUrl
+URL to view benefit details being offered.
+String
+OtherInformation
+Additional information about the job opportunity.
+Text
+KeyRequirements
+List of requirements for the job opportunity.
+Array
+JobSummary
+Summary of the job opportunity.
+Text
+WhoMayApply
+Object that contains values for name and code of who may apply to the job opportunity.
+Object
+LowGrade
+Lowest potential grade level for the job opportunity.
+String
+HighGrade
+Highest potential grade level for the job opportunity.
+String
+SubAgencyName
+Name of the sub agency.
+String
+OrganizationCodes
+Organization codes separated by a slash (/).
+String
+IsRadialSearch
+Was a radial search preformed.
+Boolean
+RelevanceRank
+Decimal
+UserArea
+Object
+NumberOfPages
+Number of pages based on SearchResultCount divided by SearchResultCountAll.
+Integer
+IsRadialSearch
+If a radial search was used or not.
+Boolean
+USAJOBS is a
+United States Office of Personnel Management
+website.
+LinkedIn
+YouTube
+About USAJOBS
+Accessibility
+FOIA
+Inspector general
+No Fear Act Data
+Privacy policy
+Reports and publications
+Terms and conditions
+USA.gov
+Vote.gov

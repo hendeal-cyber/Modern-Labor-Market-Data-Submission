@@ -1,0 +1,75 @@
+# source: https://developer.usajobs.gov/
+# fetched: 2026-09-27T22:17:38+00:00
+
+USAJOBS - Developer Portal
+Skip to main content
+An official website of the United States government
+Here's how you know
+Here's how you know
+Official websites use .gov
+A .gov website belongs to an official government organization in the United States.
+Secure .gov websites use HTTPS
+A lock
+( ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.
+Developer Site
+Menu
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+General
+Overview
+Quick Start
+Hiring Paths
+Tutorials
+Overview
+Search Jobs
+Code List
+Past job announcements
+Guides
+Overview
+Authentication
+Rate Limiting
+Terms of Use
+Job APIs
+Code list APIs
+Text messaging APIs
+Schemas
+USAJOBS Developer Site
+Thank you for visiting the new USAJOBS Developer web site. Here you will find documentation on all facets of
+integrating or using services provided by USAJOBS. You can learn about all the various functionality that you can
+take advantage of on your own website or app which includes dynamic search, RSS feeds, job exports and rich REST
+services.
+Learn more by checking out our tutorials...
+Search Jobs
+Code Lists
+Past job announcements
+USAJOBS is a
+United States Office of Personnel Management
+website.
+LinkedIn
+YouTube
+About USAJOBS
+Accessibility
+FOIA
+Inspector general
+No Fear Act Data
+Privacy policy
+Reports and publications
+Terms and conditions
+USA.gov
+Vote.gov
