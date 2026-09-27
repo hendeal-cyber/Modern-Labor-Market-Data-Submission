@@ -192,10 +192,15 @@ employers:
       in Oakland CA is an exact taxonomy fit in a mandate state.'
     checked_on: '2026-09-22'
   Austin Energy:
-    status: unchecked
+    status: confirmed
     industry: utility
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: austintexas/COA_Careers
+    evidence: https://austintexas.wd5.myworkdayjobs.com/en-US/COA_Careers/job/Utility-Regulatory-Policy-Analyst_JR103985
+    checked_on: '2026-09-27'
+    note: City of Austin tenant; requires_company_mention austin energy
   AutoGrid:
     status: denied
     industry: energy_analytics
@@ -883,13 +888,17 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   ICF:
-    status: denied
+    status: confirmed
     reason: no supported ATS identified (from employers.yaml)
-    checked_on: '2026-09-22'
+    checked_on: '2026-09-27'
     industry: consulting
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: northern_virginia
+    platform: workday
+    token: icf/ICFEXTERNAL_CAREER_SITE
+    evidence: https://icf.wd5.myworkdayjobs.com/en-US/ICFEXTERNAL_CAREER_SITE/job/Dallas-TX/Transmission-Planning-Engineer_R2501108
+    note: requires_sector_evidence
   IDACORP:
     status: confirmed
     industry: utility
@@ -949,10 +958,14 @@ employers:
     reason: inspire-ce.com/careers; no supported ATS host surfaced.
     checked_on: '2026-09-22'
   Intersect Power:
-    status: unchecked
+    status: confirmed
     industry: developer
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: lever
+    token: intersect
+    evidence: https://jobs.lever.co/intersect/98a13a3c-f2a2-4f53-8ed2-5c3316b94b42
+    checked_on: '2026-09-27'
   Invenergy:
     status: confirmed
     evidence: resolved in collection manifest
@@ -1045,10 +1058,14 @@ employers:
     reason: Careers on leap.energy/careers; no supported ATS host surfaced. Fully distributed company.
     checked_on: '2026-09-22'
   Leeward Renewable Energy:
-    status: unchecked
+    status: confirmed
     industry: developer
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: leewardenergy/LeewardCareers
+    evidence: https://leewardenergy.wd1.myworkdayjobs.com/en-US/LeewardCareers/job/Houston-TX/Power-Trading-Analyst_JR316
+    checked_on: '2026-09-27'
   Liberty Power:
     status: unchecked
     industry: retailer
@@ -1945,13 +1962,17 @@ employers:
     priority: 4_unlocated
     resolved_in_last_run: false
   Wood Mackenzie:
-    status: denied
+    status: confirmed
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
     reason: woodmac.com/careers; no supported ATS host surfaced. Its Research Analyst role is a taxonomy
       fit, so a loss.
-    checked_on: '2026-09-22'
+    checked_on: '2026-09-27'
+    platform: workday
+    token: woodmac/woodmaccareers
+    evidence: https://woodmac.wd3.myworkdayjobs.com/en-US/woodmaccareers/job/Market-Analyst---Power-Trading-Analytics_JR3085
+    note: requires_sector_evidence (metals and mining too)
   Wright-Hennepin Cooperative Electric:
     status: denied
     industry: cooperative

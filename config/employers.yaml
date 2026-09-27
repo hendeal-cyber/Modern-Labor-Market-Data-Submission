@@ -358,12 +358,13 @@ developers:              # renewable and data center developers
       greenhouse: [apexcleanenergy]
       lever: [apexcleanenergy]
     verified: false
+  # Verified 2026-09-27 from live job URLs (HV power engineering for solar,
+  # wind and storage): jobs.lever.co/intersect/98a13a3c-f2a2-4f53-8ed2-5c3316b94b42
   - name: Intersect Power
     industry: developer
     candidates:
-      greenhouse: [intersectpower]
-      ashby: [intersectpower]
-    verified: false
+      lever: [intersect]
+    verified: true
   # Checked 2026-09-23: jobs.nexteraenergy.com (/job/<city-title>/<id>/,
   # /go/<brand>/, ?locale=en_US) is SAP SuccessFactors Career Site Builder,
   # which has no free API. The same portal serves Gexa Energy.
@@ -374,14 +375,18 @@ developers:              # renewable and data center developers
     verified: false
 
 consulting:              # energy consulting and advisory
+  # Searched 2026-09-22: tenant not exposed behind careers.icf.com. Found and
+  # verified 2026-09-27 from a live job URL; the SITE was the unknown:
+  # icf.wd5.myworkdayjobs.com/ICFEXTERNAL_CAREER_SITE/job/Dallas-TX/Transmission-Planning-Engineer_R2501108
+  # Multi-sector (health, federal, energy), so sector evidence is required
+  # per posting, as for Guidehouse.
   - name: ICF
-    # Searched 2026-09-22: Workday behind the careers.icf.com vanity domain; tenant not exposed.
-    ats_unidentified: true
     metro: northern_virginia
     industry: consulting
+    requires_sector_evidence: true
     candidates:
-      workday: [{tenant: icf, site: ICF_Careers}, {tenant: icfi, site: careers}]
-    verified: false
+      workday: [{tenant: icf, site: ICFEXTERNAL_CAREER_SITE, wd: 5}]
+    verified: true
   - name: Guidehouse
     metro: northern_virginia
     industry: consulting
@@ -754,13 +759,15 @@ utilities_batch2:
     ats_unidentified: true
     candidates: {}
     verified: false
+  # Verified 2026-09-27 from live job URLs on the City of Austin's tenant:
+  # austintexas.wd5.myworkdayjobs.com/COA_Careers/job/Utility-Regulatory-Policy-Analyst_JR103985
+  # The tenant is the whole city, so a posting must name Austin Energy.
   - name: Austin Energy
+    diversified: true
+    requires_company_mention: austin energy
     candidates:
-      greenhouse: [austinenergy, austin-energy, austin]
-      lever: [austinenergy, austin-energy, austin]
-      ashby: [austinenergy, austin-energy, austin]
-      workday: [{tenant: austinenergy, site: careers}]
-    verified: false
+      workday: [{tenant: austintexas, site: COA_Careers, wd: 5}]
+    verified: true
   - name: CPS Energy
     candidates:
       greenhouse: [cpsenergy, cps-energy, cps]
@@ -1203,13 +1210,12 @@ developers_batch2:
       ashby: [hecateenergy, hecate-energy, hecate]
       workday: [{tenant: hecateenergy, site: careers}]
     verified: false
+  # Verified 2026-09-27 from a live job URL:
+  # leewardenergy.wd1.myworkdayjobs.com/LeewardCareers/job/Houston-TX/Power-Trading-Analyst_JR316
   - name: Leeward Renewable Energy
     candidates:
-      greenhouse: [leewardrenewableenergy, leeward-renewable-energy, leewardrenewable]
-      lever: [leewardrenewableenergy, leeward-renewable-energy, leewardrenewable]
-      ashby: [leewardrenewableenergy, leeward-renewable-energy, leewardrenewable]
-      workday: [{tenant: leewardrenewableenergy, site: careers}]
-    verified: false
+      workday: [{tenant: leewardenergy, site: LeewardCareers, wd: 1}]
+    verified: true
   - name: Longroad Energy
     metro: boston
     candidates:
@@ -1308,13 +1314,15 @@ energy_analytics_batch2:
       ashby: [enverus]
       workday: [{tenant: enverus, site: careers}]
     verified: false
+  # Verified 2026-09-27 (audit round 8 expansion) from a live job URL:
+  # woodmac.wd3.myworkdayjobs.com/woodmaccareers/job/Market-Analyst---Power-Trading-Analytics_JR3085
+  # Energy AND metals/mining research, so each posting must show sector
+  # evidence, as for the multi-sector consultancies.
   - name: Wood Mackenzie
+    requires_sector_evidence: true
     candidates:
-      greenhouse: [woodmackenzie, wood-mackenzie, wood]
-      lever: [woodmackenzie, wood-mackenzie, wood]
-      ashby: [woodmackenzie, wood-mackenzie, wood]
-      workday: [{tenant: woodmackenzie, site: careers}]
-    verified: false
+      workday: [{tenant: woodmac, site: woodmaccareers, wd: 3}]
+    verified: true
   # Verified 2026-09-22 from a live board. The Greenhouse token carries an
   # "inc" suffix no slug derivation would try.
   - name: Gridmatic
@@ -1861,12 +1869,11 @@ cooperatives_batch3:
       ashby: [buckeyepower, buckeye-power, buckeye]
       workday: [{tenant: buckeyepower, site: careers}]
     verified: false
+  # Board found 2026-09-27 (dairynet.wd1.myworkdayjobs.com/DPCcareers), no
+  # job URL seen, so left unverified: the sector-confidence check applies.
   - name: Dairyland Power Cooperative
     candidates:
-      greenhouse: [dairylandpowercooperative, dairyland-power-cooperative, dairylandpower]
-      lever: [dairylandpowercooperative, dairyland-power-cooperative, dairylandpower]
-      ashby: [dairylandpowercooperative, dairyland-power-cooperative, dairylandpower]
-      workday: [{tenant: dairylandpowercooperative, site: careers}]
+      workday: [{tenant: dairynet, site: DPCcareers, wd: 1}]
     verified: false
   - name: Associated Electric Cooperative
     candidates:
@@ -2223,6 +2230,164 @@ retailers_batch3:
       ashby: [taraenergy, tara-energy, tara]
       workday: [{tenant: taraenergy, site: careers}]
     verified: false
+
+# Batch 4: national expansion, 2026-09-27 (audit round 8, owner's request to
+# "expand nationally ... with the services we are currently using"). Found by
+# searching each ATS's own domain for in-scope role titles, so every
+# `verified: true` entry below was confirmed from a live job URL on that
+# platform, quoted beside it. Entries seen only as a board root stay
+# `verified: false` and pass through the sector-confidence check. Skipped on
+# purpose: oil and gas majors and traders (Shell, Williams, Enbridge, Gunvor,
+# Trafigura, CCI), state regulators, and 174 Power Global, which may be the
+# same company as Hanwha Renewables (a duplicate cluster risk).
+national_batch4:
+  # --- utilities ---
+  - name: Energy Northwest   # energynorthwest.wd1.myworkdayjobs.com/External/job/Richland-WA/Regulatory-Analyst---III--II--I_REQ25_177
+    industry: utility
+    candidates:
+      workday: [{tenant: energynorthwest, site: External, wd: 1}]
+    verified: true
+  - name: Cleco   # cleco.wd5.myworkdayjobs.com/ClecoJobs/job/GIS-Analyst_12831-1
+    industry: utility
+    candidates:
+      workday: [{tenant: cleco, site: ClecoJobs, wd: 5}]
+    verified: true
+  - name: Central Hudson Gas & Electric   # board root only: cenhud.wd5.myworkdayjobs.com/cenhud
+    industry: utility
+    candidates:
+      workday: [{tenant: cenhud, site: cenhud, wd: 5}]
+    verified: false
+  - name: Tucson Electric Power   # board root only: tep.wd1.myworkdayjobs.com/TEP
+    industry: utility
+    candidates:
+      workday: [{tenant: tep, site: TEP, wd: 1}]
+    verified: false
+  # --- developers and independent power producers ---
+  - name: Capital Power   # capitalpower.wd10.myworkdayjobs.com/External/job/Analyst--Natural-Gas_JR807009
+    industry: developer
+    candidates:
+      workday: [{tenant: capitalpower, site: External, wd: 10}]
+    verified: true
+  - name: Deriva Energy   # derivaenergy.wd501.myworkdayjobs.com/Careers/job/Senior-Electrical-Engineer_R-200426
+    industry: developer
+    candidates:
+      workday: [{tenant: derivaenergy, site: Careers, wd: 501}]
+    verified: true
+  - name: Talen Energy   # board root only: talenenergy.wd1.myworkdayjobs.com/TalenCareers
+    industry: developer
+    candidates:
+      workday: [{tenant: talenenergy, site: TalenCareers, wd: 1}]
+    verified: false
+  - name: Madison Energy Infrastructure   # job-boards.greenhouse.io/madisonenergyinfrastructure/jobs/4285289009
+    industry: developer
+    candidates:
+      greenhouse: [madisonenergyinfrastructure]
+    verified: true
+  - name: Wunder Capital   # job-boards.greenhouse.io/wundercapital/jobs/6339260002
+    industry: developer
+    candidates:
+      greenhouse: [wundercapital]
+    verified: true
+  - name: ON.energy   # job-boards.greenhouse.io/onenergy/jobs/4136477009
+    industry: developer
+    candidates:
+      greenhouse: [onenergy]
+    verified: true
+  - name: Hanwha Renewables   # job-boards.greenhouse.io/hanwharenewables/jobs/4353616009
+    industry: developer
+    candidates:
+      greenhouse: [hanwharenewables]
+    verified: true
+  - name: Reactivate   # job-boards.greenhouse.io/reactivate/jobs/4585846006
+    industry: developer
+    candidates:
+      greenhouse: [reactivate]
+    verified: true
+  - name: Solar Landscape   # jobs.lever.co/solarlandscape/b9be0a12-a56d-42da-ba80-c06b92219b6d
+    industry: developer
+    candidates:
+      lever: [solarlandscape]
+    verified: true
+  - name: Oklo   # board root only: job-boards.greenhouse.io/oklo
+    industry: developer
+    candidates:
+      greenhouse: [oklo]
+    verified: false
+  # --- data centers ---
+  - name: Rowan Digital Infrastructure   # jobs.ashbyhq.com/rowan/b7f6a7df-5de7-4ded-b171-9bb0bd4454e7
+    industry: data_center
+    candidates:
+      ashby: [rowan]
+    verified: true
+  - name: Crusoe   # jobs.ashbyhq.com/Crusoe/f173e5d9-3f51-4d10-8779-df43c6f67a9c
+    industry: data_center
+    candidates:
+      ashby: [Crusoe]
+    verified: true
+  # --- energy analytics, software and research ---
+  - name: EnergyHub   # job-boards.greenhouse.io/energyhub/jobs/8569146002
+    industry: energy_analytics
+    candidates:
+      greenhouse: [energyhub]
+    verified: true
+  - name: Daylight   # job-boards.greenhouse.io/daylight/jobs/4574423008 (VPP and storage optimization)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [daylight]
+    verified: true
+  - name: Orennia   # job-boards.greenhouse.io/orennia/jobs/5129166008
+    industry: energy_analytics
+    candidates:
+      greenhouse: [orennia]
+    verified: true
+  - name: Tyba   # jobs.ashbyhq.com/tyba/096f7e53-1d6f-49ff-8a5a-5b78ec53ff5b
+    industry: energy_analytics
+    candidates:
+      ashby: [tyba]
+    verified: true
+  - name: Customized Energy Solutions   # jobs.smartrecruiters.com/CustomizedEnergySolutions/744000139109289-retail-energy-market-services-analyst
+    industry: energy_analytics
+    candidates:
+      smartrecruiters: [CustomizedEnergySolutions]
+    verified: true
+  - name: kWantera   # jobs.smartrecruiters.com/oneclick-ui/company/kWantera/publication/7449ba9e-f3ca-4db7-bc7b-af7a995fc387
+    industry: energy_analytics
+    candidates:
+      smartrecruiters: [kWantera]
+    verified: true
+  - name: EPRI   # board root only: vhr-epri.wd1.myworkdayjobs.com/epricareers
+    industry: energy_analytics
+    candidates:
+      workday: [{tenant: vhr-epri, site: epricareers, wd: 1}]
+    verified: false
+  # --- consulting and advisory ---
+  - name: CLEAResult   # clearesult.wd1.myworkdayjobs.com/CLEAResult_External_Careers/job/EV-Charging-Station-Data-Analyst_R0017833
+    industry: consulting
+    candidates:
+      workday: [{tenant: clearesult, site: CLEAResult_External_Careers, wd: 1}]
+    verified: true
+  - name: TRIO   # jobs.lever.co/trio/5029ec24-0c7e-4e6f-9e13-112cb6118532 (energy supply advisory)
+    industry: consulting
+    candidates:
+      lever: [trio]
+    verified: true
+  # --- retailers ---
+  - name: Base Power   # jobs.ashbyhq.com/base-power/d8f62c73-d754-411e-b30f-99f856659906
+    industry: retailer
+    candidates:
+      ashby: [base-power]
+    verified: true
+  # --- grid technology vendors (whole business is energy) ---
+  - name: Bloom Energy   # bloomenergy.wd1.myworkdayjobs.com/BloomEnergyCareers/job/San-Jose-California/Procurement-Analyst_JR-22340
+    industry: grid_vendor
+    candidates:
+      workday: [{tenant: bloomenergy, site: BloomEnergyCareers, wd: 1}]
+    verified: true
+  - name: SMA America   # job-boards.greenhouse.io/smaamerica/jobs/5167723007
+    industry: grid_vendor
+    candidates:
+      greenhouse: [smaamerica]
+    verified: true
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.

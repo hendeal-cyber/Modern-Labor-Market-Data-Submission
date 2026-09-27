@@ -489,3 +489,46 @@ directional prediction here.
 crashes (no verified employer is on Ashby), and the collection workflow skips
 slug discovery unless asked, because its candidates never enter the data.
 
+### 2026-09-27 — frame expansion (batch 4) and a fixed end to collection, both before the data they govern
+
+**Written before collection run 29 was dispatched.** Nothing in this entry was
+prompted by run 29's results, because none existed yet.
+
+**1. The sampling frame grows by 28 employers, and 6 existing entries are
+corrected.** At the owner's request ("expand nationally ... with the services
+we are currently using"), each ATS's own domain was searched for role titles
+§2 already covers. A hit is a live job URL on that platform, so it names the
+board token directly and satisfies the frame's verification rule. 22 new
+employers are verified that way, and 6 seen only as a board root enter
+unverified, behind the sector-confidence check: utilities (Energy Northwest,
+Cleco, Central Hudson, Tucson Electric Power); developers and IPPs (Capital
+Power, Deriva, Talen, Madison Energy Infrastructure, Wunder Capital,
+ON.energy, Hanwha Renewables, Reactivate, Solar Landscape, Oklo); data
+centers (Rowan, Crusoe); energy analytics and research (EnergyHub, Daylight,
+Orennia, Tyba, Customized Energy Solutions, kWantera, EPRI); consulting
+(CLEAResult, TRIO); a retailer (Base Power); and grid vendors (Bloom Energy,
+SMA America). Corrected from live URLs: Wood Mackenzie, Austin Energy (the
+City of Austin's tenant, so every posting must name Austin Energy), Leeward,
+Intersect Power, ICF (its site name was the unknown since 2026-09-22), and
+Dairyland. Wood Mackenzie and ICF are multi-sector, so they require sector
+evidence per posting, like Guidehouse. **§2's population does not change:**
+same umbrella, same role taxonomy, same geography. Oil and gas companies and
+traders that appeared in the searches were left out as outside the umbrella.
+
+*Expected effect, stated in advance.* More clusters and a lower share for the
+largest employer, which is what the conclusion has said the study most needs.
+Developers and data centers have historically yielded few disclosed-pay rows,
+so most of the gain should come from utilities and analytics firms in mandate
+states.
+
+**2. Collection ends with snapshots dated 2026-09-30.** `study.collection_end`
+in `config/scope.yaml`, enforced by `build_dataset.snapshots_in_window()`, so
+a later snapshot on disk is ignored rather than trusted to be left out. §6
+says collection "stops on a fixed schedule, not when the numbers look good".
+Until today the schedule was not written down, and more runs were planned
+after the results had been seen. Fixing the date now, before the runs it
+covers, is what keeps those runs from being optional stopping. The date also
+falls the day before Connecticut's posting law takes effect, so no posting
+changes mandate status partway through the panel. **Runs between now and the
+end date are reported whatever they show, and none is added after it.**
+

@@ -99,6 +99,31 @@ def check_mandate_dates_in_dataset():
     return fails[:5]
 
 
+def check_collection_end():
+    """The stopping rule is enforced by the build, not by memory.
+
+    Pre-registration section 8 (2026-09-27) closes collection with snapshots
+    dated study.collection_end. A later directory must be ignored, an earlier
+    one kept, and the committed funnel must hold no snapshot past the end.
+    """
+    import json, pathlib, yaml
+    from lmstudy.build_dataset import snapshots_in_window
+    root = pathlib.Path(__file__).resolve().parents[1]
+    end = yaml.safe_load((root / "config" / "scope.yaml").read_text())["study"].get("collection_end")
+    fails = []
+    if not end:
+        return ["study.collection_end is not set in config/scope.yaml"]
+    dirs = [pathlib.Path("2026-09-27"), pathlib.Path(str(end)), pathlib.Path("2026-10-01")]
+    keep, late = snapshots_in_window(dirs, end)
+    if [d.name for d in late] != ["2026-10-01"] or len(keep) != 2:
+        fails.append(f"window split wrong: keep={keep} late={late}")
+    funnel = json.loads((root / "data" / "analysis" / "selection_funnel.json").read_text())
+    past = [s for s in funnel.get("snapshots", []) if s > str(end)]
+    if past:
+        fails.append(f"committed dataset uses snapshots after {end}: {past}")
+    return fails
+
+
 def check_verified_workday_pins():
     """Every hand-verified Workday entry pins an instance the prober reads.
 
@@ -343,6 +368,7 @@ def run():
     fails += check_nested_repost_collapse()
     fails += check_mandate_dates_in_dataset()
     fails += check_verified_workday_pins()
+    fails += check_collection_end()
     fails += check_same_day_merge_and_same_url()
     fails += check_bare_first_word_candidates()
 

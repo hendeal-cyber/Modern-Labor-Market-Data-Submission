@@ -6,6 +6,12 @@ study:
   name: "Early-Career Pay Determinants in Utility & Data Center Software/Data Roles"
   dependent_variable: "log(pay range midpoint), annualized USD"
   min_usable_n: 100          # hard floor; pipeline reports against this every run
+  # Stopping rule, fixed 2026-09-27 BEFORE the data it governs were collected
+  # (pre-registration section 8). Snapshots dated after this are ignored by
+  # build_dataset, whatever is on disk. It also keeps Connecticut's posting law
+  # (effective 2026-10-01) out of the panel, so no row changes mandate status
+  # partway through collection.
+  collection_end: 2026-09-30
 
 # ---------------------------------------------------------------------------
 # Geography. Tiers escalate ONLY when the floor is unmet (see escalation).

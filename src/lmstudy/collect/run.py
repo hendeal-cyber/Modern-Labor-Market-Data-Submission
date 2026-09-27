@@ -136,6 +136,9 @@ SECTIONS = {
     # metros.
     "cooperatives_batch3": "cooperative",
     "retailers_batch3": "retailer",
+    # Batch 4: national expansion from live job URLs (2026-09-27). Every
+    # entry names its own industry; the default is never used.
+    "national_batch4": "utility",
 }
 
 

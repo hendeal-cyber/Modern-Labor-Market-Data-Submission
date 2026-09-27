@@ -306,6 +306,24 @@ def employer_screen_flags(config_dir: pathlib.Path) -> dict[str, dict]:
     return flags
 
 
+def snapshots_in_window(snapshot_dirs: list, collection_end) -> tuple[list, list]:
+    """Split snapshot directories into those inside the collection window and
+    those after it.
+
+    The stopping rule is fixed in advance (pre-registration section 8,
+    2026-09-27): collection ends with snapshots dated `study.collection_end`.
+    Enforced here rather than by remembering not to run the collector, so a
+    later snapshot on disk cannot quietly enter the analysis. Directory names
+    are ISO dates, so string comparison is date comparison.
+    """
+    if not collection_end:
+        return list(snapshot_dirs), []
+    end = str(collection_end)
+    keep = [d for d in snapshot_dirs if pathlib.Path(d).name <= end]
+    late = [d for d in snapshot_dirs if pathlib.Path(d).name > end]
+    return keep, late
+
+
 def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Path) -> dict:
     scope = yaml.safe_load((config_dir / "scope.yaml").read_text())
     screen_flags = employer_screen_flags(config_dir)
@@ -347,6 +365,11 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     first_seen: dict[str, str] = {}
 
     snapshot_dirs = sorted(d for d in raw_root.iterdir() if d.is_dir()) if raw_root.exists() else []
+    snapshot_dirs, after_end = snapshots_in_window(
+        snapshot_dirs, (scope.get("study") or {}).get("collection_end"))
+    if after_end:
+        print(f"collection closed {scope['study']['collection_end']}: ignoring "
+              f"{len(after_end)} later snapshot(s): {[d.name for d in after_end]}")
 
     for snapshot in snapshot_dirs:
         run_date = snapshot.name
