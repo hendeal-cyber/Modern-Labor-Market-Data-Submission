@@ -11,7 +11,7 @@ Do not quote numbers from below this block.*
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
 | **Collection** | **Three owner-approved scheduled runs remain: 09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`, which cannot fire after that). Slug discovery is off. **Collection closes with snapshots dated 2026-09-30** (`study.collection_end`, enforced in `build_dataset.snapshots_in_window`). Check-ins are scheduled for 10:45 UTC each day to audit each run the same morning |
-| Frame | **330 employers** (269 at the start of 2026-09-27). Batches 4–6 were found from live job URLs, each quoted in `config/employers.yaml` under `national_batch4`, and each recorded in pre-registration §8 before its data existed. Batches 5 and 6 first collect on 09-28 |
+| Frame | **336 employers** (269 at the start of 2026-09-27). Batches 4–7 were found from live job URLs, each quoted in `config/employers.yaml` under `national_batch4`, and each recorded in pre-registration §8 before its data existed. Batches 5–7 first collect on 09-28 |
 | **Usable N** | **365** (in scope 484, raw 4,589) |
 | **Employer clusters** | **52** |
 | **Largest employer** | **Crusoe 13.4%** (49 of 365), then Invenergy 47 |
