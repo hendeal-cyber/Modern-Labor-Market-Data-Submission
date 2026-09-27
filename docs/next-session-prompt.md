@@ -47,8 +47,8 @@ disclosure gap is 94.3% vs 49.0% (45pp); it is associational, not causal.
 `seniority_rank` and `yrs_exp_min` (H3) survive everything, including
 dropping the largest employer. `region_northeast` and `skill_cloud` are
 TENTATIVE; `skill_cloud` does not survive dropping Crusoe. Three scheduled runs (28–30 September, 09:17 UTC) remain;
-collection closes with snapshots dated 2026-09-30. Open owner question: is
-Crusoe in scope? tests/run_all.py is green, with consistency 29/29.
+collection closes with snapshots dated 2026-09-30. Owner decision (2026-09-27):
+Crusoe stays in scope. tests/run_all.py is green, with consistency 29/29.
 
 ## 4. Rules that always apply
 

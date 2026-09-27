@@ -20,7 +20,7 @@ Do not quote numbers from below this block.*
 | Survive bootstrap AND region check | `seniority_rank` (0.0001 / 0.0005; every version of the data). **`yrs_exp_min` (0.0023 / 0.0030): H3 now supported**, robust without Crusoe and in real terms. `region_northeast` and `skill_cloud`: **tentative**; the Northeast premium is not significant in real terms, and `skill_cloud` does not survive dropping Crusoe |
 | Overturned by the bootstrap | `degree_stem`, `skill_ml_ai`, `industry_data_center` |
 | Without the largest employer (Crusoe) | Seniority, required experience and Northeast hold. **`skill_cloud` is lost (0.055)** and `remote_eligible` becomes significant (0.040). Computed on every build (`largest_employer_robustness`) |
-| **Open owner question** | **Is Crusoe in scope?** It is an AI data-center builder and operator whose rows are mostly California cloud-software jobs. It was kept as pre-registered, and the paper reports the no-Crusoe check. The owner decides |
+| Owner decision (2026-09-27) | **"Keep Crusoe in, and continue as planned."** Crusoe stays in scope. The no-largest-employer check is still reported on every build |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
 
 ### What round 9 found (full record: `docs/audit-log.md` round 9)

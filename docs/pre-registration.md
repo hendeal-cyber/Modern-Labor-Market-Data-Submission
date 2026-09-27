@@ -606,3 +606,7 @@ because an earlier draft of this paragraph, written from the 9,999-rep run,
 said no reported finding depended on Crusoe, and the check itself says
 otherwise for `skill_cloud`.
 
+**Owner decision, 2026-09-27:** "Keep Crusoe in, and continue as planned."
+Crusoe stays in the frame as registered. The leave-the-largest-employer-out
+check keeps reporting which verdicts depend on it.
+
