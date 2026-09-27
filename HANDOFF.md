@@ -1,6 +1,6 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-22, after audit rounds 6 and 7
+## RESUME HERE — handoff of 2026-09-27 (state as of audit round 7; collection paused since 2026-09-23)
 
 *A new conversation starts here. This block wins over everything below it.
 §0 and later sections are history: §0 describes N = 165 (commit `7180497`),
@@ -12,7 +12,9 @@ misdated mandate. Do not quote numbers from below this block.*
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch** (GitHub API `default_branch`), so any `schedule:` cron in it fires |
-| **Collection** | **PAUSED 2026-09-23 by the owner** (to save Actions minutes and token budget) until the project resumes, planned for **Saturday 2026-09-26**. The cron in `collect.yml` is commented out; no scheduled run has happened since run 27. Manual `workflow_dispatch` still works |
+| **Collection** | **PAUSED since 2026-09-23 by the owner** (to save Actions minutes and token budget). The cron in `collect.yml` is commented out, and no run has happened since run 27 (2026-09-22). Manual `workflow_dispatch` still works. **Resuming is the owner's call**: do not re-enable the cron unless asked |
+| Owner decisions on record | QTS plainly titled "Development Project Manager" rows stay in scope (2026-09-23). Collection paused (2026-09-23) |
+| Extra deliverable | `data/analysis/observations.xlsx`: every posting (220 pay observations, 297 in scope) with a clickable application link. It is **not** auto-regenerated; rebuild it after any data change with `PYTHONPATH=src python3 scripts/make_observations_xlsx.py` |
 | **Usable N** | **220** (unique in scope 297, raw 2,253 after restoring run 26 records) |
 | **Employer clusters** | **34** |
 | **Largest employer** | **Invenergy 20.0%** (44 of 220) |
@@ -21,7 +23,7 @@ misdated mandate. Do not quote numbers from below this block.*
 | Survives bootstrap AND region check | `seniority_rank` (+0.119/rung, p 0.0001 / 0.0005): has survived **every** version of the data. `region_northeast` (0.010 / 0.025) and `skill_cloud` (0.031 / 0.038): **tentative**. Both were withdrawn by the region check at N=214 and crossed 0.05 on run 27's six new rows. The deliverables say so |
 | Not significant | `mandate_state` (−0.029, p 0.30), `region_south` (0.095), `region_west`, everything else |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
-| Detail cache | **Proven live on run 27** (35781235535): 236 reused, 373 fetched (all cache misses), 0 stale, 0 edited; no disclosure drift on reused or refetched postings. The daily cron stays |
+| Detail cache | **Proven live on run 27** (35781235535): 236 reused, 373 fetched (all cache misses), 0 stale, 0 edited; no disclosure drift on reused or refetched postings. A true next-day test is still pending: run 27 shared run 26's date |
 | Ledger | 67 confirmed / 115 denied / 90 unchecked. Added this session: Portland General Electric, Idaho Power (IDACORP), APS (Pinnacle West), Atmos Energy, GE Vernova, and California ISO (verified SmartRecruiters `CaliforniaISO`; it had resolved only by slug fallback, so `no_slugs` runs missed it). **They collect from the next run on**; read their rows first. Corporate duplicates marked `duplicate_of` (CMS→Consumers, Vectren→CenterPoint Indiana, WPS→WEC, Energy Harbor→Vistra, TierPoint Data Centers→TierPoint, Gexa→NextEra) so none can become a phantom cluster |
 
 ### What round 7 found (full record: `docs/audit-log.md` round 7)
@@ -71,7 +73,7 @@ misdated mandate. Do not quote numbers from below this block.*
 
 ### Do these next, in order
 
-0. **To resume (Saturday):** uncomment the two `schedule:` lines in
+0. **To resume (only when the owner says so):** uncomment the two `schedule:` lines in
    `.github/workflows/collect.yml` and push. Or dispatch a single run with
    `no_slugs: false`, so slug fallback runs too. The first run after the pause
    will be the first next-day test of the cache (skip-today no longer applies)
@@ -84,7 +86,8 @@ misdated mandate. Do not quote numbers from below this block.*
    regenerate: `PYTHONPATH=src python3 -m lmstudy.build_dataset`, `... -m
    lmstudy.analyze`, `PYTHONPATH=src python3
    scripts/make_{codebook,exec_summary,figures,paper}.py`, `node
-   scripts/make_slides.js`, `python3 tests/run_all.py`, then commit.
+   scripts/make_slides.js`, `PYTHONPATH=src python3 scripts/make_observations_xlsx.py`,
+   `python3 tests/run_all.py`, then commit.
    Consistency shows 26/29 until you do; that is the check working.
 2. **The five new boards arrive on the next run.** GE Vernova's board is
    large and global: watch for the 150-page cap, as with Hitachi. APS is on
