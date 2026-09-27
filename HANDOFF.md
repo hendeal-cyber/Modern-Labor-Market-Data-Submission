@@ -1,30 +1,61 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-27 (state as of audit round 7; collection paused since 2026-09-23)
+## RESUME HERE — handoff of 2026-09-27 (state as of audit round 8; collection paused)
 
 *A new conversation starts here. This block wins over everything below it.
-§0 and later sections are history: §0 describes N = 165 (commit `7180497`),
-which round 6 showed carried halved pay, misattributed employers and a
-misdated mandate. Do not quote numbers from below this block.*
+§0 and later sections are history. Do not quote numbers from below this block.*
 
-### State at handoff — AUDITED (run 27 included)
+### State at handoff — AUDITED (run 28 included, partial)
 
 | | Value |
 |---|---|
-| Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch** (GitHub API `default_branch`), so any `schedule:` cron in it fires |
-| **Collection** | **PAUSED since 2026-09-23 by the owner** (to save Actions minutes and token budget). The cron in `collect.yml` is commented out, and no run has happened since run 27 (2026-09-22). Manual `workflow_dispatch` still works. **Resuming is the owner's call**: do not re-enable the cron unless asked |
-| Owner decisions on record | QTS plainly titled "Development Project Manager" rows stay in scope (2026-09-23). Collection paused (2026-09-23) |
-| Extra deliverable | `data/analysis/observations.xlsx`: every posting (220 pay observations, 297 in scope) with a clickable application link. It is **not** auto-regenerated; rebuild it after any data change with `PYTHONPATH=src python3 scripts/make_observations_xlsx.py` |
-| **Usable N** | **220** (unique in scope 297, raw 2,253 after restoring run 26 records) |
-| **Employer clusters** | **34** |
-| **Largest employer** | **Invenergy 20.0%** (44 of 220) |
-| Obs per regressor | 14.7. `interpretable: true`, no warnings. All four pre-registered conditions pass |
-| Disclosure gap (H2) | 93.9% (n=165) vs 49.2% (n=132), **45pp**, 42–47 across cuts. **Associational, not causal** |
-| Survives bootstrap AND region check | `seniority_rank` (+0.119/rung, p 0.0001 / 0.0005): has survived **every** version of the data. `region_northeast` (0.010 / 0.025) and `skill_cloud` (0.031 / 0.038): **tentative**. Both were withdrawn by the region check at N=214 and crossed 0.05 on run 27's six new rows. The deliverables say so |
-| Not significant | `mandate_state` (−0.029, p 0.30), `region_south` (0.095), `region_west`, everything else |
+| Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch**, so any `schedule:` cron in it fires |
+| **Collection** | **PAUSED.** The cron in `collect.yml` stays commented out. On 2026-09-27 the owner authorised ONE run (run 28, Actions 36334468453); it was **cancelled at 106 min, at employer 209 of 269, on the owner's decision**, because it ran over twice as long as runs 22–27. Employers 210–269 were not collected that day (verified among them: NRECA, AEP Energy, Washington Gas). **Do not dispatch another run without the owner's go-ahead** |
+| Why run 28 was slow | Slug discovery: 24 unverified employers × ~3 min of probing = 57 of 98 logged minutes, for zero postings (slug hits are only candidates). **`no_slugs` now defaults to true** and the cron skips slugs too. A run without slugs takes ~45 min |
+| Owner decisions on record | QTS "Development Project Manager" rows stay in scope (2026-09-23). Collection paused (2026-09-23). One run then finalise (2026-09-27). Cancel run 28 and diagnose (2026-09-27) |
+| **Usable N** | **264** (in scope 353, raw 3,973) |
+| **Employer clusters** | **36** (GE Vernova and Origis new; a phantom Duke cluster removed) |
+| **Largest employer** | **Invenergy 17.8%** (47 of 264) |
+| Obs per regressor | 17.6. `interpretable: true`, no warnings. All four pre-registered conditions pass |
+| Disclosure gap (H2) | 93.5% (n=201) vs 50.0% (n=152), **43.5pp**, 41.6–47.0 across cuts. **Associational, not causal** |
+| Survives bootstrap AND region check | `seniority_rank` (+0.112/rung, p 0.0001 / 0.0005; every version of the data; also in real terms). `skill_cloud` (+0.148, 0.0015 / 0.0020): **exploratory** (no pre-registered prediction; withdrawn at N=214; robust to dropping GE Vernova, 0.0053). `region_northeast` (0.010 / 0.041): **tentative**, and not significant in real terms (clustered p 0.44) |
+| Overturned by the bootstrap | `hourly_original`, `region_south` |
+| Not significant | `mandate_state` (−0.032, p 0.28; −0.087 at clustered p 0.012 in real terms, not bootstrapped, not a finding), everything else. H6: ranges narrower in mandate states (−0.193, clustered p 0.086), inconclusive |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
-| Detail cache | **Proven live on run 27** (35781235535): 236 reused, 373 fetched (all cache misses), 0 stale, 0 edited; no disclosure drift on reused or refetched postings. A true next-day test is still pending: run 27 shared run 26's date |
-| Ledger | 67 confirmed / 115 denied / 90 unchecked. Added this session: Portland General Electric, Idaho Power (IDACORP), APS (Pinnacle West), Atmos Energy, GE Vernova, and California ISO (verified SmartRecruiters `CaliforniaISO`; it had resolved only by slug fallback, so `no_slugs` runs missed it). **They collect from the next run on**; read their rows first. Corporate duplicates marked `duplicate_of` (CMS→Consumers, Vectren→CenterPoint Indiana, WPS→WEC, Energy Harbor→Vistra, TierPoint Data Centers→TierPoint, Gexa→NextEra) so none can become a phantom cluster |
+| Detail cache | First cross-date read (09-22 → 09-27): 352 reused, 213 fetched (210 new postings), no disclosure drift |
+| Ledger | 67 confirmed / 115 denied / 90 unchecked (unchanged; four searches this session found no live job URL) |
+
+### What round 8 found (full record: `docs/audit-log.md` round 8)
+
+- **"$1M to $30M" read as $30 an hour** (Duke), the only usable row of a
+  phantom Duke Energy Indiana cluster. Magnitude guard now covers M/MM/B.
+- **Two off-taxonomy GE Vernova roles** (packaging compliance, enterprise
+  sales). `packaging` and `account manager` excluded.
+- **Every Ashby board had crashed since `fe87597`** (NameError in
+  `fetch_ashby`). No verified employer is on Ashby, so no row was lost.
+- The finalisation pass (commit `432f019`) found H6 silently missing from the
+  paper, the Northeast premium vanishing in real terms without comment, and
+  eight literals gone stale. All now computed.
+
+### Do these next, in order
+
+0. **Nothing is required.** The study is finalised on N = 264. Anything
+   below needs the owner.
+1. If the owner wants employers 210–269 and a fresh AEP snapshot: dispatch
+   one run with the defaults (`no_slugs` is now true), ~45 min. Then audit as
+   round 9: diff `postings.csv` on `url`, read every added row, the pay
+   extremes and duplicate URLs, rebuild, regenerate (list below), and write
+   round 9 (add "Nine rounds" to `make_paper.py` and `test_consistency.py`).
+2. **Connecticut flips to covered on snapshots dated 2026-10-01 or later.**
+   Read that as a coding event, not a finding.
+3. Lower priority: 90 unchecked employers in the ledger. Confirm only from a
+   live job URL in WebSearch result LINKS.
+
+Regenerate after any data change: `PYTHONPATH=src python3 -m
+lmstudy.build_dataset`, `... -m lmstudy.analyze`, `PYTHONPATH=src python3
+scripts/make_{codebook,exec_summary,figures,paper}.py`, `node
+scripts/make_slides.js`, `python3 scripts/qa_slides.py`, `PYTHONPATH=src
+python3 scripts/make_observations_xlsx.py`, `python3 tests/run_all.py`.
 
 ### What round 7 found (full record: `docs/audit-log.md` round 7)
 

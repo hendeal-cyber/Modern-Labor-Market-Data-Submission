@@ -736,6 +736,115 @@ the coding rule, because correcting it would strengthen the finding it sits
 in. `seniority_rank` (+0.119, p 0.0001 / 0.0005) is unchanged.
 `mandate_state` stays insignificant (−0.029, p 0.30).
 
+### Round 8 — run 28, cancelled at 209 of 269 employers (2026-09-27)
+
+**Scope.** Collection run 28 (Actions 36334468453) was dispatched with slug
+discovery on, the first run after the owner's pause and the first on a new
+date since run 27. It was **cancelled by the owner's decision at 106 minutes**,
+when runs 22–27 had taken 40–50: the log is not readable while a step runs,
+and the cost of waiting to the 300-minute limit was Actions minutes. 54 board
+files for employers 1–209 were committed by the always-run step (`86da497`).
+Every added row was read against the audited round-7 dataset, matched on
+`url`, then the pay extremes, duplicate URLs and the cache.
+
+**Where the time went (from the log, once cancelling made it readable).** The
+retrievable part of the log covers employers 21–209, 16:52 to 18:30 (98
+minutes). **24 unverified employers took 57 minutes on slug discovery**:
+about 3 minutes each of silent probing, then "no board found" or an
+unconfirmed candidate. A slug hit contributes no postings, so those minutes
+bought nothing for the data. Real boards took 16 minutes among the four
+slowest (QTS, Guidehouse's 172 description fetches, Hitachi's 150-page cap,
+hit again at 3,000, and GE Vernova's 2,254-posting board). **Slug discovery is now opt-in** (`no_slugs` defaults to true, and
+the cron skips it too).
+
+**Not collected on 2026-09-27:** employers 210–269. Three of those have
+verified boards (NRECA, AEP Energy, Washington Gas). Their earlier snapshots
+stay in the corpus, so what is missed is only postings they opened between
+09-22 and 09-27. AEP Energy is the one that matters (19 usable rows).
+
+**The cache, on its first read across dates (09-22 to 09-27).** Records carry
+the flag, so this is counted from them (the manifest is written only at the
+end of a run): 352 Workday descriptions reused, 213 fetched. Of the fetched,
+only 3 had also been seen on 09-22; the rest were new postings, 101 of them
+GE Vernova's first read. None of the 352 reused and none of the 3 refetched
+changed disclosure status.
+
+**58 rows were added, all read.** GE Vernova 18 (its first collection, a new
+cluster), Guidehouse 6, Eversource 4, and 1–3 each from AES, Ameren,
+Avangrid, CAISO, Invenergy, Xcel, Duke, ERCOT, PGE, Vistra, Alliant, Apex,
+NTT and Origis (a new cluster). IDACORP and APS resolved but posted nothing in
+scope; Portland General Electric added two rows, neither disclosing pay.
+
+**Defect 1 — "$30M" read as $30 an hour.** Duke Energy's "These projects
+range from $1M to $30M" became $62,400 on a posting that states no pay. The
+round-6 magnitude guard knew "million" and "bn", not the abbreviations. It was
+**the only usable row of the Duke Energy Indiana cluster**, so the defect
+manufactured a cluster as well as an observation. `_NOT_MAGNITUDE` now covers
+M, MM and B; across the whole corpus it changes this one row. Pinned in
+`tests/test_pay.py` with the real sentence, and a real range beside it that
+must survive.
+
+**Defect 2 — two off-taxonomy GE Vernova roles.** "Packaging Engineer -
+Regulatory & Compliance Manager" (EU packaging-waste regulation for
+manufactured products, usable) entered on "regulatory & compliance";
+"Strategic Account Manager – Electrification (T&D)" (enterprise sales, no pay)
+entered on "transmission". Each was read against its description, and each is
+a sibling of an exclusion already in `config/scope.yaml` ("sales", "account
+executive"; the equipment-engineering exclusions). `packaging` and `account
+manager` were added; no other in-scope title contains either. GE Vernova's
+energy-market, grid, AI and FP&A roles stay: the taxonomy lists them.
+
+**Defect 3 — every Ashby board had crashed since the cache commit.**
+`fe87597` pasted cache bookkeeping into `fetch_ashby`, naming two variables
+that function never defines. Run 28's log shows `NameError: name 'fetched_at'
+is not defined` for David Energy and Terra-Gen. No verified employer is on
+Ashby and David Energy has never contributed a row, so no observation was
+lost, but any Ashby board added to the frame would have failed silently as
+"no board". Found by the log, confirmed by pyflakes (the only undefined names
+in the codebase), fixed, and pinned in `tests/test_cache.py` with David
+Energy's real record.
+
+**Checked and found clean.** No duplicate URLs. The pay extremes are all
+stated ranges: lowest Guidehouse "Consulting Analyst - Energy Providers -
+Campus 2027" $51,000–$85,000 and Invenergy's development analysts at
+$60,000–$77,000; highest ERCOT "Manager/Sr Manager Grid Implementation"
+$219,000–$301,000 and NYISO "Director, Grid Operations" $175,600–$315,600. No
+low bound below $30,000. The two hourly rows are CAISO's stated
+$45.10–$63.15. GE Vernova's two "Senior Staff Engineer – AI Engineering" rows
+are separate requisitions (R5048474-2, R5050808) with different descriptions.
+Its Cambridge postings resolve to Cambridge, MA, its headquarters. Its
+Niskayuna, NY co-location is also a mandate state in the Northeast, so no
+regressor depends on which is recorded. Eversource's two Connecticut rows
+coded as covered list MA and NH as well, which is the any-location rule.
+Connecticut's own rows stay uncovered until snapshots dated 2026-10-01.
+
+**Result.**
+
+| | Round 7 (audited) | Run 28, unaudited | Run 28, audited |
+|---|---|---|---|
+| Usable N | 220 | 266 | **264** |
+| In scope | 297 | 355 | **353** |
+| Clusters | 34 | 37 | **36** (GE Vernova, Origis added; the phantom Duke cluster gone) |
+| Largest employer | Invenergy 20.0% | 17.7% | **Invenergy 17.8%** (47 of 264) |
+| Obs per regressor | 14.7 | — | **17.6** |
+| Disclosure gap | 44.7pp | — | **43.5pp** (93.5% of 201 vs 50.0% of 152; 41.6–47.0 across cuts) |
+
+**Verdicts.** `seniority_rank` +0.112, bootstrap p 0.0001, region check
+0.0005: unchanged, and significant in real terms. **`skill_cloud` moved from
+tentative to p 0.0015 / 0.0020** (+0.148). That is a large move for 44 added
+observations, so it was checked. On the round-7 URLs alone the same code
+returns 0.0308, reproducing round 7, so the move is the new rows. Without GE
+Vernova (6 of the 32 cloud rows) it is 0.0053 at 35 clusters. With Vantage's
+"AWS" (Alliance for Water Stewardship) miscode set to 0 it is 0.0013. It
+survives price adjustment (clustered p 0.000). It carried **no directional
+prediction** in the pre-registration and was withdrawn by the region check at
+N = 214, and the executive summary now says the first of those computably.
+`region_northeast` (0.010 / 0.041) stays tentative, and is not significant in
+real terms (clustered p 0.44). `hourly_original` and `region_south` pass
+clustered errors and are overturned by the bootstrap. `mandate_state` is
+−0.032 (p 0.28). H6: mandate-state ranges are narrower (−0.193, clustered p
+0.086), inconclusive.
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

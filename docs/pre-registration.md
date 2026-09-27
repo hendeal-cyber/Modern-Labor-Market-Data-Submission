@@ -457,3 +457,35 @@ audit log reports the sensitivity checks, and this note records that the
 verdict flipped on a handful of observations, so a reader can weigh it
 accordingly. `seniority_rank` is the only coefficient that has survived every
 version of the data.
+
+### 2026-09-27 — audit round 8: a pay-magnitude guard and two role exclusions
+
+**What changed.** Both found by reading collection run 28's rows
+(`docs/audit-log.md`, round 8).
+
+1. **Pay parsing (measurement of the dependent variable).** A figure followed
+   by "M", "MM" or "B" is no longer read as pay, as "million" and "billion"
+   already were not. Duke Energy's "projects range from $1M to $30M" had been
+   recorded as $30 an hour on a posting that states no pay. One row changes
+   across the whole corpus.
+2. **Role screen (population).** `packaging` and `account manager` join
+   `exclude_any`, each the sibling of an exclusion already listed ("sales",
+   "account executive", equipment engineering). Two GE Vernova rows leave
+   scope: EU packaging-waste compliance (usable) and enterprise sales (no
+   pay). §2's population is unchanged.
+
+**Effect, stated whichever way it goes.** N 266 → 264; clusters 37 → 36,
+because the Duke row was the **only** usable row of the Duke Energy Indiana
+cluster, which therefore should never have existed. The largest employer's
+share moves 17.7% → 17.8% (Invenergy). The two changes cost N and a cluster,
+which works against the gate. No coefficient verdict changes because of them.
+The move that matters in this round is not from either rule: it is
+`skill_cloud` going from bootstrap p 0.031 to 0.0015 on 44 added
+observations, which the audit log reports with its sensitivity checks.
+That result **flatters** the study, and the round records that it carried no
+directional prediction here.
+
+**Also changed, with no effect on any row:** the Ashby adapter no longer
+crashes (no verified employer is on Ashby), and the collection workflow skips
+slug discovery unless asked, because its candidates never enter the data.
+

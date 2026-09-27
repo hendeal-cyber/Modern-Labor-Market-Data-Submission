@@ -499,6 +499,15 @@ roles:
     # role for substation equipment, which §2 excludes with field service.
     - ais and gis
     - switchgear
+    # Audit round 8, 2026-09-27. GE Vernova's first collection. Both read
+    # against their descriptions; each is a sibling of an exclusion above:
+    #   "Packaging Engineer - Regulatory & Compliance Manager"  EU Packaging
+    #       and Packaging Waste Regulation for manufactured products; entered
+    #       on "regulatory & compliance", which here is not energy regulation
+    #   "Strategic Account Manager – Electrification (T&D)"      enterprise
+    #       sales of grid equipment, beside "sales" and "account executive"
+    - packaging
+    - account manager
 
 # ---------------------------------------------------------------------------
 # Early career definition.

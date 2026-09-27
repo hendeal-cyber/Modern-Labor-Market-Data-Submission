@@ -39,22 +39,25 @@ the pre-registration, the audit log, the limitations, and the employer ledger
 (config/token-verification.yaml). All of them are generated; none is edited
 by hand.
 
-## 3. Audited state (round 7, data through 2026-09-22)
+## 3. Audited state (round 8, data through 2026-09-27)
 
-N = 220, 34 employer clusters, largest employer Invenergy 20.0%, 14.7
+N = 264, 36 employer clusters, largest employer Invenergy 17.8%, 17.6
 observations per regressor. All four pre-registered conditions pass, and
-`interpretable` is true. The disclosure gap is 93.9% vs 49.2% (45pp, 42–47
-across cuts); it is associational, not causal. `seniority_rank` survives the
-bootstrap and the region check in every version of the data.
-`region_northeast` and `skill_cloud` pass both but are TENTATIVE: they crossed
-0.05 on six added rows. The deliverables say so. tests/run_all.py is green,
+`interpretable` is true. The disclosure gap is 93.5% vs 50.0% (43.5pp,
+41.6–47.0 across cuts); it is associational, not causal. `seniority_rank`
+survives the bootstrap and the region check in every version of the data.
+`skill_cloud` passes both strongly but is EXPLORATORY (no pre-registered
+prediction; withdrawn at N=214). `region_northeast` is TENTATIVE and not
+significant in real terms. Run 28 was cancelled at employer 209 of 269 (slug
+discovery was burning minutes; it is now opt-in). tests/run_all.py is green,
 with consistency 29/29.
 
 ## 4. Rules that always apply
 
 - Spend on this project must not exceed $0. Watch GitHub Actions minutes:
   the owner paused collection to save them. Do not start a collection run
-  unless the owner asks, and budget about 50 minutes per run.
+  unless the owner asks, and budget about 45 minutes per run (slug discovery is off by default; turning it
+  on roughly doubles that).
 - Collect without bypassing anyone's terms of service. No scraping or
   automation of LinkedIn, Indeed, Handshake, iCIMS, Oracle Cloud HCM, or
   NRECA's careers.electric.coop.
@@ -82,16 +85,14 @@ with consistency 29/29.
 
 ## 5. What to do (ask the owner which, if it isn't clear)
 
-A. If the owner resumes collection: uncomment the cron (or dispatch once with
-   no_slugs false), then review the run as in HANDOFF "Do these next". This
-   is the first true next-day test of the cache, and the first collection of
-   six new boards: Portland General Electric, IDACORP, APS, Atmos, GE Vernova
-   and California ISO. Watch GE Vernova for the 150-page cap. Connecticut's
+A. If the owner resumes collection: dispatch once with the defaults (or
+   uncomment the cron), then review the run as in HANDOFF "Do these next".
+   Run 28 did not reach employers 210-269 (AEP Energy among them). Connecticut's
    postings count as mandate-covered from snapshots dated 2026-10-01; read
    that as a coding event.
-B. If the owner wants the paper finalised on the current data: re-read the
-   paper and summary for any claim the bootstrap does not support, confirm
-   29/29, and stop.
+B. The finalisation pass was DONE on 2026-09-27 at N = 264 (audit round 8).
+   Repeat it only after new data: re-read the paper and summary for any claim
+   the bootstrap does not support, confirm 29/29, and stop.
 C. Lower priority: 90 unchecked employers in the ledger. Confirm a token only
    from a live job URL in WebSearch result LINKS. Watch for same-name traps:
    Northwest Bank vs NW Natural, ONEOK vs ONE Gas.

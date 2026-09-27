@@ -223,6 +223,23 @@ def check_window_edges():
     if r.usable:
         fails.append(f"[Avangrid boilerplate] parsed as pay: {r.raw_excerpt!r} -> {r.midpoint}")
 
+    # Duke Energy, verbatim, on a posting that states no pay (audit round 8).
+    # "$30M" was read as $30 an hour and annualized to $62,400: the magnitude
+    # guard knew "million" and "bn" but not the abbreviation.
+    duke = ("This position typically is assigned to multiple \u201cWhite\u201d or "
+            "\u201cGreen\u201d projects per the Project Management Center of "
+            "Excellence Project Profile Matrix. These projects range from $1M to "
+            "$30M with a Low to Moderate level of complexity impacting only the "
+            "facility or department level within the Company.")
+    r = from_text(duke)
+    if r.usable:
+        fails.append(f"[Duke $1M-$30M] parsed as pay: {r.raw_excerpt!r} -> {r.midpoint}")
+    # The guard must not swallow a real range that merely ends a sentence
+    # before a word starting with m or b.
+    r = from_text("The pay range is $95,000 - $120,000 based on experience.")
+    if (r.pay_min, r.pay_max) != (95000.0, 120000.0):
+        fails.append(f"[magnitude guard] real range lost: ({r.pay_min}, {r.pay_max})")
+
     # The window edges on their own: no window may open or close mid-token,
     # whatever the bound check downstream would have caught.
     from lmstudy.pay import _pay_windows

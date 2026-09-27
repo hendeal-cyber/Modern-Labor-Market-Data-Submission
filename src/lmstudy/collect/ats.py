@@ -202,8 +202,11 @@ def fetch_ashby(
                 comp_min=lo,
                 comp_max=hi,
                 comp_interval=interval,
-                payload={"detail_fetched_at": fetched_at,
-                         "detail_from_cache": cached is not None},
+                # No cache payload: Ashby returns the description in the
+                # listing, so there is no detail fetch to reuse. The cache
+                # commit pasted one here that named two undefined variables,
+                # and every Ashby board failed with a NameError from
+                # 2026-09-22 until audit round 8.
             )
         )
     return out, resp

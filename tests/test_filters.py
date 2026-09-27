@@ -254,6 +254,14 @@ AUDIT_ROUND_6_ROLES = [
     ("Utility Development Project Manager", True),
     ("Senior Analyst, Complex Settlements", True),
     ("CAD-GIS Designer", True),
+    # Audit round 8 (GE Vernova's first collection). Dropped: EU packaging-waste
+    # compliance and enterprise sales. Kept: its energy-market, grid and FP&A
+    # roles, which the taxonomy covers.
+    ("Packaging Engineer - Regulatory & Compliance Manager", False),
+    ("Strategic Account Manager \u2013 Electrification (Transmission & Distribution)", False),
+    ("Lead Analyst, Regional Market Insights", True),
+    ("Lead Power Systems Engineer - Grid Integration and Stability, Transmission", True),
+    ("Services FP&A Process Transformation Leader", True),
 ]
 
 

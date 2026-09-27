@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-27T18:33:28.860020+00:00",
+  "built_at": "2026-09-27T18:42:26.103109+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21",
@@ -7,31 +7,31 @@
     "2026-09-27"
   ],
   "funnel": {
-    "raw": 3971,
+    "raw": 3973,
     "rejected_off_umbrella": 264,
     "rejected_no_sector_evidence": 683,
-    "rejected_screen": 1702,
-    "passed_screen": 1322,
+    "rejected_screen": 1706,
+    "passed_screen": 1320,
     "rejected_geo": 295,
-    "passed_geo": 1027,
+    "passed_geo": 1025,
     "duplicate_sighting": 669,
     "duplicate_repost": 3,
-    "unique_in_scope": 355,
-    "usable_with_pay": 266
+    "unique_in_scope": 353,
+    "usable_with_pay": 264
   },
   "rejection_reasons": {
-    "role_excluded": 792,
-    "role_not_software_data": 789,
+    "role_excluded": 798,
+    "role_not_software_data": 786,
     "no_sector_evidence_in_posting": 683,
     "other_group_company": 264,
-    "internship": 156,
+    "internship": 157,
     "non_us": 152,
     "no_us_state": 143
   },
   "usable_by_metro": {
-    "": 110,
+    "": 109,
     "northern_virginia": 15,
-    "remote_national": 13,
+    "remote_national": 12,
     "denver": 37,
     "chicago": 38,
     "indianapolis": 4,
@@ -48,9 +48,9 @@
     "Xcel Energy": 19,
     "AEP Energy": 19,
     "AES Indiana": 17,
-    "GE Vernova": 17,
     "Avangrid": 16,
     "ERCOT": 16,
+    "GE Vernova": 16,
     "Nexamp": 10,
     "New York ISO": 10,
     "Vantage Data Centers": 7,
@@ -78,10 +78,9 @@
     "Energy and Environmental Economics (E3)": 1,
     "QTS Data Centers": 1,
     "Tract": 1,
-    "Duke Energy Indiana": 1,
     "Origis Energy": 1
   },
-  "distinct_employers_with_pay": 37,
+  "distinct_employers_with_pay": 36,
   "mandate_states_in_force": [
     "CA",
     "CO",

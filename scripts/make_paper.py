@@ -263,6 +263,7 @@ def main() -> int:
             "industry_data_center": "being a data center operator",
             "region_northeast": "Northeast location", "region_south": "South location",
             "region_west": "West location", "family_ai_ml": "an AI/ML role family",
+            "skill_cloud": "a stated cloud skill",
         }
         named = [pretty.get(k, f"`{k}`") for k, _ in sig[:4]]
         basis = "the wild cluster bootstrap" if _boot else "clustered standard errors"
@@ -304,6 +305,18 @@ def main() -> int:
               + " both checks with a p-value above 0.02 on")
             A("at least one, and verdicts this close to 0.05 have moved between "
               "collection runs.")
+        # Same rule as the executive summary: a survivor with no directional
+        # prediction in pre-registration section 5 is exploratory.
+        _pred = {"seniority_rank", "yrs_exp_min", "family_ai_ml",
+                 "degree_required", "industry_data_center"}
+        _expl = [k for k, _ in sig if k not in _fragile and k not in _pred
+                 and k not in _tent]
+        if _expl:
+            _en = " and ".join(pretty.get(k, f"`{k}`") for k in _expl)
+            A(f"{_en[0].upper() + _en[1:]} carried no "
+              "directional prediction in the pre-registration, so "
+              + ("it is" if len(_expl) == 1 else "they are")
+              + " reported as exploratory.")
         _plost, _ = price_sensitive(analysis)
         if _plost:
             A(f"{' and '.join(pretty.get(k, f'`{k}`') for k in _plost)} "
@@ -480,7 +493,7 @@ def main() -> int:
             if _log.exists() else 0
         _word = {1: "One round", 2: "Two rounds", 3: "Three rounds",
                  4: "Four rounds", 5: "Five rounds", 6: "Six rounds",
-                 7: "Seven rounds"}.get(_rounds,
+                 7: "Seven rounds", 8: "Eight rounds"}.get(_rounds,
                                                          f"{_rounds} rounds")
         A(f"{_word} of hand-auditing are recorded in `docs/audit-log.md`.")
         A("Each read real collected titles rather than a synthetic sample, and")
@@ -499,6 +512,8 @@ def main() -> int:
             A("| 6 | Run 26: all 115 added rows, then the whole corpus | The pay parser was still halving 17 Invenergy rows and recording 9 NYISO rows at their floor. Every usable \"Hitachi Energy\" row belonged to a sister company. Connecticut was coded as a mandate state before its law took effect. Fixing them withdrew `mandate_state` and `region_west`, which had passed the bootstrap on the unaudited data |")
         if _rounds >= 7:
             A("| 7 | Run 27, the first live run of the description cache | The cache reused every posting it held within its window, with no disclosure drift. A second run on the same date had overwritten the first run's files, dropping a closed posting, and an edited requisition was counted twice. Both fixed at the cause |")
+        if _rounds >= 8:
+            A("| 8 | Run 28 (cancelled at employer 209 of 269): all 58 added rows | GE Vernova's first collection added 18 rows and a cluster; two were off-taxonomy (packaging compliance, sales). \"$1M to $30M\" project sizes were read as $30 an hour, the only usable row of a phantom Duke cluster. The Ashby adapter had crashed on every board since the cache commit. The first next-day cache read reused 352 descriptions with no disclosure drift |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")

@@ -48,9 +48,11 @@ MIN_PLAUSIBLE_BOUND = 7.25 * 2080
 # A figure followed by a magnitude word is not pay either. Avangrid's
 # boilerplate "with $30 billion in assets" was read as $30 an hour and
 # annualized to $62,400, the lowest-paid row in the dataset, on a posting that
-# discloses no pay at all (audit round 6).
+# discloses no pay at all (audit round 6). The abbreviations count too: Duke
+# Energy's "These projects range from $1M to $30M" was read as $30 an hour
+# on a posting that states no pay (audit round 8).
 _NOT_GLUED = r"(?<![A-Za-z0-9])"
-_NOT_MAGNITUDE = r"(?![\d,.]*\s*(?:million|billion|trillion|mn|bn)\b)"
+_NOT_MAGNITUDE = r"(?![\d,.]*\s*(?:million|billion|trillion|mn|bn|mm|m|b)\b)"
 _MONEY = (_NOT_GLUED +
           r"\$?\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|[1-9]\d*(?:\.\d{1,2})?)"
           + _NOT_MAGNITUDE +

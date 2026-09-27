@@ -213,6 +213,21 @@ def main() -> int:
               + ("it" if len(p_lost) == 1 else "them")
               + " as nominal only.")
             A("")
+        # Computed from the pre-registration's hypothesis table (section 5):
+        # a survivor that carried no directional prediction is exploratory,
+        # however small its p-value. skill_cloud went from withdrawn (N=214)
+        # to p 0.002 (N=264) across two collection runs.
+        predicted = {"seniority_rank", "yrs_exp_min", "family_ai_ml",
+                     "degree_required", "industry_data_center"}
+        explor = [n for n in survivors if n not in fragile and n not in predicted
+                  and n not in marginal]
+        if explor:
+            names = " and ".join(pretty(n) for n in explor)
+            A(f"**{names[0].upper() + names[1:]} carried no directional prediction in "
+              "the pre-registration**, so read "
+              + ("it" if len(explor) == 1 else "them")
+              + " as exploratory rather than as a confirmed hypothesis.")
+            A("")
         # Conditional on the cuts it claims. This was a literal that would
         # have gone on asserting seniority's robustness had any cut withdrawn it.
         _sen_robust = ("seniority_rank" in survivors

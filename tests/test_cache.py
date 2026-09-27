@@ -123,6 +123,33 @@ def run():
         check("todays partial run" not in json.dumps(c.stats()),
               "the in-progress run must be skipped")
 
+    # 9. The inline-description adapters must not touch cache state. The
+    # cache commit left `fetched_at` and `cached` in fetch_ashby, where
+    # neither exists, and run 28's log shows every Ashby board failing with
+    # a NameError. Built from David Energy's real 2026-09-22 record.
+    from lmstudy.collect.ats import fetch_ashby
+    from lmstudy.netclient import Response
+
+    class _Stub:
+        def get_json(self, url, **_):
+            return Response(url, 200, data={"jobs": [{
+                "id": "c455e2d7-6263-49af-820b-ab1146c644e7",
+                "title": "Head of Operations", "location": "Hybrid",
+                "descriptionPlain": "About David Energy\nDavid Energy is creating "
+                                    "a new kind of power company.",
+                "jobUrl": "https://jobs.ashbyhq.com/davidenergy/"
+                          "c455e2d7-6263-49af-820b-ab1146c644e7",
+                "publishedAt": "2026-01-13T02:32:19.006+00:00",
+                "department": "Operations", "employmentType": "FullTime"}]})
+
+    try:
+        got, _ = fetch_ashby(_Stub(), "davidenergy", "David Energy")
+        check(len(got) == 1 and got[0].title == "Head of Operations"
+              and got[0].description.startswith("About David Energy"),
+              f"fetch_ashby returned {got!r}")
+    except Exception as exc:  # the defect raised NameError here
+        check(False, f"fetch_ashby raised {type(exc).__name__}: {exc}")
+
     print(f"cache: {checks - len(fails)}/{checks} checks passed")
     for f in fails:
         print("  FAIL", f)
