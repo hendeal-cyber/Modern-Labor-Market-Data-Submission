@@ -1,6 +1,6 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-27, evening (state as of audit round 9; three scheduled runs pending)
+## RESUME HERE — handoff of 2026-09-27, late evening (state as of audit round 9; three scheduled runs pending; migrating to a new conversation)
 
 *A new conversation starts here. This block wins over everything below it.
 Do not quote numbers from below this block.*
@@ -10,7 +10,7 @@ Do not quote numbers from below this block.*
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
-| **Collection** | **Three owner-approved scheduled runs remain: 09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`, which cannot fire after that). Slug discovery is off. **Collection closes with snapshots dated 2026-09-30** (`study.collection_end`, enforced in `build_dataset.snapshots_in_window`). Check-ins are scheduled for 10:45 UTC each day to audit each run the same morning |
+| **Collection** | **Three owner-approved scheduled runs remain: 09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`, which cannot fire after that). Slug discovery is off. **Collection closes with snapshots dated 2026-09-30** (`study.collection_end`, enforced in `build_dataset.snapshots_in_window`). **Session migrated 2026-09-27:** the old conversation's 10:45 UTC check-ins were deleted. The new session sets its own (`docs/next-session-prompt.md` §1, step 4) |
 | Frame | **336 employers** (269 at the start of 2026-09-27). Batches 4–7 were found from live job URLs, each quoted in `config/employers.yaml` under `national_batch4`, and each recorded in pre-registration §8 before its data existed. Batches 5–7 first collect on 09-28 |
 | **Usable N** | **365** (in scope 484, raw 4,589) |
 | **Employer clusters** | **52** |
@@ -45,7 +45,10 @@ Do not quote numbers from below this block.*
    `test_consistency.py`); commit; push.
 2. **Between runs:** more employer searches, domain-restricted to each
    ATS, confirming only from live job URLs. Record each batch in §8 BEFORE
-   the run that collects it.
+   the run that collects it. Three systematic options (EIA-861/860
+   registries, the Common Crawl URL index, and state PUC and RTO participant
+   lists) are set out in `docs/next-session-prompt.md` §8, for the owner to
+   choose. Employers added after the 09-30 run starts cannot enter the study.
 3. **After the 09-30 run:** the final audit, a finalisation pass over the
    paper, summary and deck against the bootstrap, and a HANDOFF marked
    "collection closed". Report N, clusters and the largest share.
