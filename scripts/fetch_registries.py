@@ -407,7 +407,19 @@ def main(argv=None) -> int:
             fetch_commoncrawl(cc, cfg["commoncrawl"], manifest, tokens)
         except Exception as exc:
             manifest["commoncrawl"]["error"] = f"{type(exc).__name__}: {exc}"
-    (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2, default=str) + "\n")
+    # A partial dispatch (--only cc) must not erase the record of the sources
+    # it did not re-fetch: keep their previous entries.
+    prev_path = OUT / "manifest.json"
+    if prev_path.exists():
+        prev = json.loads(prev_path.read_text())
+        for key, stage in (("pages", "pages"), ("eia", "eia"), ("commoncrawl", "cc")):
+            if stage not in only and key in prev:
+                manifest[key] = prev[key]
+        manifest.setdefault("fetched_at_by_stage", prev.get("fetched_at_by_stage", {}))
+    manifest.setdefault("fetched_at_by_stage", {})
+    for stage in only:
+        manifest["fetched_at_by_stage"][stage] = manifest["fetched_at"]
+    prev_path.write_text(json.dumps(manifest, indent=2, default=str) + "\n")
     print(json.dumps({k: v for k, v in manifest.items() if k != "pages"}, indent=1, default=str)[:3000])
     return 0
 

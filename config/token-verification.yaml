@@ -644,10 +644,15 @@ employers:
     resolved_in_last_run: true
     metro: northern_virginia
   Edged Energy:
-    status: unchecked
+    status: confirmed
     industry: data_center
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: greenhouse
+    token: edged_global
+    evidence: https://job-boards.greenhouse.io/edged_global/jobs/4075787009
+    checked_on: '2026-09-27'
+    note: 'batch 8: found by domain-restricted search; guessed slugs never resolved'
   Element Critical:
     status: confirmed
     evidence: resolved in collection manifest

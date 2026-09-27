@@ -1074,12 +1074,13 @@ data_center_operators_batch2:
       workday: [{tenant: ardentdatacenters, site: careers}]
     verified: false
   - name: Edged Energy
+    # Corrected 2026-09-27 (batch 8) from a live job URL:
+    # job-boards.greenhouse.io/edged_global/jobs/4075787009. The guessed
+    # slugs never resolved. edged_infrastructure is its TurboCell hardware
+    # board (test engineering), not added.
     candidates:
-      greenhouse: [edgedenergy, edged-energy, edged]
-      lever: [edgedenergy, edged-energy, edged]
-      ashby: [edgedenergy, edged-energy, edged]
-      workday: [{tenant: edgedenergy, site: careers}]
-    verified: false
+      greenhouse: [edged_global]
+    verified: true
   - name: Nautilus Data Technologies
     candidates:
       greenhouse: [nautilusdatatechnologies, nautilus-data-technologies, nautilusdata]
@@ -2591,10 +2592,88 @@ national_batch4:
     candidates:
       workday: [{tenant: rockymountain, site: RMI, wd: 1}]
     verified: true
+  # --- Batch 8, 2026-09-27, before the 28 September run (source route 1 and
+  # role-title searches, same live-job-URL method; pre-registration section 8) ---
+  - name: San Diego Community Power   # job-boards.greenhouse.io/sandiegocommunitypower/jobs/4647774007 (Procurement Analyst; a California CCA, a public load-serving entity)
+    industry: utility
+    candidates:
+      greenhouse: [sandiegocommunitypower]
+    verified: true
+  - name: Perch Energy   # job-boards.greenhouse.io/perchenergycareers/jobs/8373943002 (community solar subscription manager)
+    industry: retailer
+    candidates:
+      greenhouse: [perchenergycareers]
+    verified: true
+  - name: LevelTen Energy   # job-boards.greenhouse.io/leveltenenergy/jobs/5834520004 (clean-energy PPA marketplace and analytics)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [leveltenenergy]
+    verified: true
+  - name: Tapestry   # job-boards.greenhouse.io/tapestryenergy/jobs/8604985002 (Alphabet's grid-optimization team; its own board)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [tapestryenergy]
+    verified: true
+  - name: Sunrun   # sunrun.wd5.myworkdayjobs.com/Sunrun_Careers/job/UT-Lehi/Sr-Data-Analyst--Financial-Analytics_R58815
+    industry: developer
+    candidates:
+      workday: [{tenant: sunrun, site: Sunrun_Careers, wd: 5}]
+    verified: true
+  - name: Avantus   # job-boards.greenhouse.io/avantus/jobs/8037175002
+    industry: developer
+    candidates:
+      greenhouse: [avantus]
+    verified: true
+  - name: 1st Avenue Power   # job-boards.greenhouse.io/1stavenuepower/jobs/4700568008 (Sr. Analyst/Associate, Project Finance)
+    industry: developer
+    candidates:
+      greenhouse: [1stavenuepower]
+    verified: true
+  - name: ConnectGen   # jobs.lever.co/connectgen/a2c6f037-9b39-4654-91a1-ba4441b70d03 (Analyst/Associate, Development)
+    industry: developer
+    candidates:
+      lever: [connectgen]
+    verified: true
+  - name: X-energy   # xenergy.wd5.myworkdayjobs.com/en-US/X-energyUS/job/Rockville-MD/Analyst-III--Adaptive-Planning-Systems_R101085 (nuclear developer)
+    industry: developer
+    candidates:
+      workday: [{tenant: xenergy, site: X-energyUS, wd: 5}]
+    verified: true
+  - name: Blue Energy   # jobs.ashbyhq.com/blue-energy/de468e06-c695-4b77-800d-20c89935fb56 (nuclear developer; Director of Origination)
+    industry: developer
+    candidates:
+      ashby: [blue-energy]
+    verified: true
+  - name: Palmetto Clean Technology   # board root only: job-boards.greenhouse.io/palmettocleantech
+    industry: developer
+    candidates:
+      greenhouse: [palmettocleantech]
+    verified: false
+  - name: Form Energy   # jobs.ashbyhq.com/formenergy/968020f1-4986-43fb-9d6b-28a6fe4208b4 (long-duration storage manufacturer)
+    industry: grid_vendor
+    candidates:
+      ashby: [formenergy]
+    verified: true
+  - name: Energy Vault   # jobs.lever.co/EnergyVault/77771c9d-6a8a-4b66-aba7-fbadcebbc17e (storage and power infrastructure)
+    industry: grid_vendor
+    candidates:
+      lever: [EnergyVault]
+    verified: true
+  - name: Canadian Solar   # canadiansolar.wd5.myworkdayjobs.com/en-US/CanadianSolar/job/Production-Data-Analyst_10001208
+    industry: grid_vendor
+    candidates:
+      workday: [{tenant: canadiansolar, site: CanadianSolar, wd: 5}]
+    verified: true
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already
   # a rejected token; hanwhaenergyusa and 174powerglobal are Hanwha boards
-  # beside Hanwha Renewables, a duplicate-cluster risk.
+  # beside Hanwha Renewables, a duplicate-cluster risk. Batch 8, by the same
+  # rule: lever:qcells (Hanwha Q CELLS) is a third Hanwha board, and
+  # recurrentenergy (Workday) is Canadian Solar's own developer beside its
+  # parent's board. Also not added: lever:fevo is FEVO (ticketing), not Fervo
+  # Energy; Castleton Commodities (osv-cci) is a commodity trader; Williams is
+  # a gas pipeline (oil and gas); Brookfield's are investment roles at a
+  # multi-sector asset manager; agl (Workday) is AGL Energy of Australia.
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.
