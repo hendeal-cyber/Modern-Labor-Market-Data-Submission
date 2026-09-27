@@ -1,1519 +1,1519 @@
 utility_id,name,states,ownership,customers,in_frame
-55,City of Aberdeen - (MS),MS,Municipal,0,False
-84,A & N Electric Coop,MD VA,Cooperative,0,False
-108,Adams-Columbia Electric Coop,WI,Cooperative,0,False
-113,"Agway Energy Services, LLC",MD NY PA,Retail Power Marketer,0,False
-155,Agralite Electric Coop,MN,Cooperative,0,False
-162,Aiken Electric Coop Inc,SC,Cooperative,0,False
-176,Ajo Improvement Co,AZ,Investor Owned,0,False
-195,Alabama Power Co,AL,Investor Owned,0,False
-207,Alameda Municipal Power,CA,Municipal,0,False
-213,Alaska Electric Light & Power Co.,AK,Investor Owned,0,False
-219,Alaska Power and Telephone Co,AK,Investor Owned,0,False
-221,"Alaska Village Elec Coop, Inc",AK,Cooperative,0,False
-230,Albany Utility Board,GA,Municipal,0,False
-232,City of Albemarle - (NC),NC,Municipal,0,False
-240,Albemarle Electric Member Corp,NC,Cooperative,0,False
-241,Albertville Municipal Utilities Board,AL,Municipal,0,False
-261,AGC Division of APGI Inc,IN,Investor Owned,0,False
-276,Alcorn County Elec Power Assn,MS,Cooperative,0,False
-295,City of Alexandria - (MN),MN,Municipal,0,False
-296,"Alfalfa Electric Coop, Inc",KS OK,Cooperative,0,False
-298,City of Alexandria - (LA),LA,Municipal,0,False
-305,Alger-Delta Coop Electric Assn,MI,Cooperative,0,False
-307,Algoma Utility Comm,WI,Municipal,0,False
-392,Alpena Power Co,MI,Investor Owned,0,False
-407,Altamaha Electric Member Corp,GA,Cooperative,0,False
-416,City of Altus - (OK),OK,Municipal,0,False
-471,Amana Society Service Co,IA,Investor Owned,0,False
-540,BP Energy Company,TX WA,Retail Power Marketer,0,False
-554,City of Ames - (IA),IA,Municipal,0,False
-562,Amicalola Electric Member Corp,GA,Cooperative,0,False
-571,City of Amory,MS,Municipal,0,False
-577,City of Alcoa Utilities,TN,Municipal,0,False
-590,City of Anaheim - (CA),CA,Municipal,0,False
-604,City of Andalusia,AL,Municipal,0,False
-636,City of Anderson - (IN),IN,Municipal,0,False
-689,Connexus Energy,MN,Cooperative,0,True
-691,City of Anoka,MN,Municipal,0,False
-719,Town of Apex- (NC),NC,Municipal,0,False
-727,Appalachian Electric Coop,TN,Cooperative,0,False
-733,Appalachian Power Co,VA WV,Investor Owned,0,False
-750,Arab Electric Coop Inc,AL,Cooperative,0,False
-796,Arizona Electric Pwr Coop Inc,CA,Cooperative,0,False
-803,Arizona Public Service Co,AZ,Investor Owned,0,False
-814,Entergy Arkansas LLC,AR TN,Investor Owned,0,False
-817,Arkansas Valley Elec Coop Corp,AR OK,Cooperative,0,False
-944,City of Athens - (AL),AL,Municipal,0,False
-947,Athens Utility Board,TN,Municipal,0,False
-963,Atlantic City Electric Co,NJ,Investor Owned,0,False
-970,Homefield Energy,IL,Retail Power Marketer,0,False
-994,City of Auburn - (IN),IN,Municipal,0,False
-1009,City of Austin - (MN),MN,Municipal,0,False
-1015,Austin Energy,TX,Municipal,0,True
-1050,City of Azusa,CA,Municipal,0,False
-1149,Baldwin County El Member Corp,AL,Cooperative,0,False
-1167,Baltimore Gas & Electric Co,MD,Investor Owned,0,False
-1169,Bailey County Elec Coop Assn,TX,Cooperative,0,False
-1175,"Bandera Electric Coop, Inc",TX,Cooperative,0,False
-1179,Versant Power,ME,Investor Owned,0,False
-1196,Village of Baraga - (MI),MI,Municipal,0,False
-1251,Barron Electric Coop,WI,Cooperative,0,False
-1273,"Bartlett Electric Coop, Inc",TX,Cooperative,0,False
-1283,Bartholomew County Rural E M C,IN,Cooperative,0,False
-1300,City of Bartow - (FL),FL,Municipal,0,False
-1307,Basin Electric Power Coop,ND,Cooperative,0,False
-1325,City of Batavia - (IL),IL,Municipal,0,False
-1366,City of Bay City - (MI),MI,Municipal,0,False
-1458,"Beauregard Electric Coop, Inc",LA,Cooperative,0,False
-1529,"Beltrami Electric Coop, Inc",MN,Cooperative,0,False
-1578,Benton County,TN,Municipal,0,False
-1579,PUD No 1 of Benton County,WA,Political Subdivision,0,False
-1581,City of Benton - (AR),AR,Municipal,0,False
-1582,City of Benton - (KY),KY,Municipal,0,False
-1586,City of Bentonville - (AR),AR,Municipal,0,False
-1591,"Big Country Electric Coop, Inc",TX,Cooperative,0,False
-1611,"Messer Energy Services, Inc.",DE IL ME NY OH PA,Retail Power Marketer,0,False
-1613,Berkeley Electric Coop Inc,SC,Cooperative,0,False
-1625,Benton Rural Electric Assn,WA,Cooperative,0,False
-1640,City of Bessemer Utilities,AL,Municipal,0,False
-1708,Big Sandy Rural Elec Coop Corp,KY,Cooperative,0,False
-1723,"Big Bend Electric Coop, Inc",WA,Cooperative,0,False
-1738,Bonneville Power Administration,OR WA,Federal,0,True
-1763,"Black River Electric Coop, Inc - (SC)",SC,Cooperative,0,False
-1764,Black Diamond Power Co,WV,Investor Owned,0,False
-1769,"Black Hills Electric Coop, Inc",SD,Cooperative,0,False
-1775,Black River Electric Coop - (MO),MO,Cooperative,0,False
-1776,City of Black River Falls,WI,Municipal,0,False
-1780,Black Warrior Elec Member Corp,AL,Cooperative,0,False
-1857,Block Island Utility District,RI,Political Subdivision,0,False
-1884,BENCO Electric Cooperative,MN,Cooperative,0,False
-1886,Blue Grass Energy Coop Corp,KY,Cooperative,0,False
-1889,Blue Ridge Elec Member Corp - (NC),NC,Cooperative,0,False
-1890,Blue Ridge Electric Coop Inc - (SC),SC,Cooperative,0,False
-1891,Blue Ridge Mountain EMC - (GA),GA NC,Cooperative,0,False
-1892,"Bluebonnet Electric Coop, Inc",TX,Cooperative,0,False
-1896,City of Bluffton - (IN),IN,Municipal,0,False
-1936,Bolivar Energy Authority,TN,Municipal,0,False
-1997,City of Boscobel - (WI),WI,Municipal,0,False
-2001,Boone Electric Coop,MO,Cooperative,0,False
-2008,City of Boulder City - (NV),NV,Municipal,0,False
-2010,City of Bountiful,UT,Municipal,0,False
-2049,"Bowie-Cass Electric Coop, Inc",TX,Cooperative,0,False
-2054,City of Bowling Green - (OH),OH,Municipal,0,False
-2056,City of Bowling Green - (KY),KY,Municipal,0,False
-2089,Bozrah Light & Power Company,CT,Municipal,0,False
-2138,Brainerd Public Utilities,MN,Municipal,0,False
-2144,Town of Braintree - (MA),MA,Municipal,0,False
-2194,City of Brenham - (TX),TX,Municipal,0,False
-2212,"Broad River Electric Coop, Inc",NC SC,Cooperative,0,False
-2247,City of Bristol - (TN),TN,Municipal,0,False
-2248,Bristol Virginia Utilities,VA,Municipal,0,False
-2273,Brodhead Water & Lighting Comm,WI,Municipal,0,False
-2285,City of Brookings - (SD),SD,Municipal,0,False
-2394,Burke-Divide Electric Coop Inc,ND,Cooperative,0,False
-2409,Brownsville Public Utilities Board,TX,Municipal,0,False
-2411,City of Brownsville,TN,Municipal,0,False
-2442,City of Bryan - (TX),TX,Municipal,0,False
-2487,City of Buford,GA,Municipal,0,False
-2502,"Buckeye Rural Elec Coop, Inc",OH,Cooperative,0,False
-2507,City of Burbank Water and Power,CA,Municipal,0,False
-2548,City of Burlington Electric - (VT),VT,Municipal,0,False
-2643,Butler Public Power District - (NE),NE,Political Subdivision,0,False
-2651,Butler Rural Electric Coop Inc - (OH),OH,Cooperative,0,False
-2652,Butler County Rural Elec Coop - (IA),IA,Cooperative,0,False
-2678,C & L Electric Coop Corp,AR,Cooperative,0,False
-2774,CMS Electric Coop Inc,KS,Cooperative,0,False
-2812,City of Calhoun - (GA),GA,Municipal,0,False
-2830,Calpine Power America LLC,CA ME TX,Retail Power Marketer,0,False
-2849,Central Electric Power Assn - (MS),MS,Cooperative,0,False
-2903,Canoochee Electric Member Corp,GA,Cooperative,0,False
-2911,"Canadian Valley Elec Coop, Inc",OK,Cooperative,0,False
-2960,"Caney Fork Electric Coop, Inc",TN,Cooperative,0,False
-2985,"Capital Electric Coop, Inc",ND,Cooperative,0,False
-3046,Duke Energy Progress - (NC),NC SC,Investor Owned,0,False
-3075,Carroll County - (TN),TN,Municipal,0,False
-3081,Carroll Electric Member Corp - (GA),GA,Cooperative,0,False
-3093,Carroll Electric Coop Corp - (AR),AR MO,Cooperative,0,False
-3107,Carteret-Craven El Member Corp,NC,Cooperative,0,False
-3108,City of Cartersville - (GA),GA,Municipal,0,False
-3113,City of Carthage - (MO),MO,Municipal,0,False
-3203,Cedar Falls Utilities,IA,Municipal,0,False
-3205,Cedar-Knox Public Power Dist,NE,Political Subdivision,0,False
-3208,Cedarburg Light & Water Comm,WI,Municipal,0,False
-3216,City of Celina - (OH),OH,Municipal,0,False
-3222,Central Alabama Electric Coop,AL,Cooperative,0,False
-3226,"Central Rural Electric Cooperative, Inc",OK,Cooperative,0,False
-3236,"Central Electric Coop, Inc - (SD)",SD,Cooperative,0,False
-3240,Central Electric Coop Inc - (OR),OR,Cooperative,0,False
-3245,"Central Florida Elec Coop, Inc",FL,Cooperative,0,False
-3248,Central Georgia El Member Corp,GA,Cooperative,0,False
-3249,Central Hudson Gas & Elec Corp,NY,Investor Owned,0,False
-3250,Central Electric Membership Corp. - (NC),NC,Cooperative,0,False
-3264,Central Lincoln People's Ut Dt,OR,Political Subdivision,0,False
-3265,Cleco Power LLC,LA,Investor Owned,0,True
-3266,Central Maine Power Co,ME,Investor Owned,0,False
-3268,Central Missouri Elec Coop Inc,MO,Cooperative,0,False
-3273,"Central New Mexico El Coop, Inc",NM,Cooperative,0,False
-3282,"Central Texas Elec Coop, Inc",TX,Cooperative,0,False
-3287,"Central Valley Elec Coop, Inc",NM,Cooperative,0,False
-3291,Central Virginia Electric Coop,VA,Cooperative,0,False
-3295,City of Centralia - (WA),WA,Municipal,0,False
-3329,Borough of Chambersburg,PA,Municipal,0,False
-3355,City of Chanute,KS,Municipal,0,False
-3400,City of Chaska - (MN),MN,Municipal,0,False
-3408,City of Chattanooga - (TN),GA TN,Municipal,0,False
-3413,PUD No 1 of Chelan County,WA,Political Subdivision,0,False
-3426,Cherokee Electric Coop - (AL),AL,Cooperative,0,False
-3436,Cherryland Electric Coop Inc,MI,Cooperative,0,False
-3461,Cheyenne Light Fuel & Power,WY,Investor Owned,0,False
-3470,Cherokee County Elec Coop Assn - (TX),TX,Cooperative,0,False
-3475,City of Chickamauga,GA,Municipal,0,False
-3477,City of Chicopee - (MA),MA,Municipal,0,False
-3478,Cimarron Electric Coop,OK,Cooperative,0,False
-3502,"Choctawhatche Elec Coop, Inc",FL,Cooperative,0,False
-3503,"Choptank Electric Cooperative, Inc",MD,Cooperative,0,False
-3522,Chugach Electric Assn Inc,AK,Cooperative,0,False
-3527,Choctaw Electric Coop Inc,OK,Cooperative,0,False
-3542,Duke Energy Ohio Inc,OH,Investor Owned,0,False
-3597,Citizens Electric Co - (PA),PA,Investor Owned,0,False
-3600,Citizens Electric Corporation - (MO),MO,Cooperative,0,False
-3641,"Claiborne Electric Coop, Inc",LA,Cooperative,0,False
-3644,PUD No 1 of Clallam County,WA,Political Subdivision,0,False
-3647,City of Claremore,OK,Municipal,0,False
-3660,PUD No 1 of Clark County - (WA),WA,Political Subdivision,0,False
-3687,Clark Energy Coop Inc - (KY),KY,Cooperative,0,False
-3704,City of Clarksville - (TN),TN,Municipal,0,False
-3705,Clarksville Connected Utilities,AR,Municipal,0,False
-3712,Clay County Electric Coop Corp - (AR),AR MO,Cooperative,0,False
-3755,Cleveland Electric Illum Co,OH,Investor Owned,0,False
-3757,"Clay Electric Cooperative, Inc - (FL)",FL,Cooperative,0,False
-3758,City of Cleveland - (TN),TN,Municipal,0,False
-3762,City of Cleveland - (OH),OH,Municipal,0,False
-3812,City of Clinton - (TN),TN,Municipal,0,False
-3824,Clyde Light & Power,OH,Municipal,0,False
-3828,Cloverland Electric Co-op,MI,Cooperative,0,False
-3841,Coast Electric Power Assn - (MS),MS,Cooperative,0,False
-3843,Coastal Electric Member Corp - (GA),GA,Cooperative,0,False
-3855,Columbia Power System - (TN),TN,Municipal,0,False
-3892,City of Coffeyville - (KS),KS,Municipal,0,False
-3915,Coldwater Board of Public Util,MI,Municipal,0,False
-3916,Cobb Electric Membership Corp,GA,Cooperative,0,False
-3931,Coles-Moultrie Electric Coop,IL,Cooperative,0,False
-3939,City of College Park - (GA),GA,Municipal,0,False
-3940,City of College Station - (TX),TX,Municipal,0,False
-3989,City of Colorado Springs - (CO),CO,Municipal,0,False
-3991,CMS Energy Resource Management,MI,Retail Power Marketer,0,False
-4003,City of Colton - (CA),CA,Municipal,0,False
-4041,"Columbia Rural Elec Assn, Inc",OR WA,Cooperative,0,False
-4045,City of Columbia - (MO),MO,Municipal,0,False
-4063,Co-Mo Electric Coop Inc,MO,Cooperative,0,False
-4065,City of Columbus - (OH),OH,Municipal,0,False
-4068,City of Columbus - (MS),MS,Municipal,0,False
-4073,City of Columbus - (WI),WI,Municipal,0,False
-4100,Just Energy Solutions Inc.,DE IL MD NJ OH PA,Retail Power Marketer,0,False
-4110,Commonwealth Edison Co,IL,Investor Owned,0,False
-4146,Concho Valley Elec Coop Inc,TX,Cooperative,0,False
-4150,City of Concord - (NC),NC,Municipal,0,False
-4153,"Concordia Electric Coop, Inc",LA,Cooperative,0,False
-4160,Callaway Electric Cooperative,MO,Cooperative,0,False
-4176,Connecticut Light & Power Co,CT,Investor Owned,0,False
-4226,Consolidated Edison Co-NY Inc,NY,Investor Owned,0,False
-4237,Consolidated Electric Coop,MO,Cooperative,0,False
-4247,Consolidated Water Power Co,WI,Investor Owned,0,False
-4254,Consumers Energy Co - (MI),MI,Investor Owned,0,False
-4262,Cooke County Elec Coop Assn,TX,Cooperative,0,False
-4265,Continental Divide El Coop Inc,NM,Cooperative,0,False
-4280,Conway Corporation,AR,Municipal,0,False
-4294,City of Cookeville - (TN),TN,Municipal,0,False
-4295,Comanche County Elec Coop Assn,TX,Cooperative,0,False
-4296,"Cookson Hills Elec Coop, Inc",OK,Cooperative,0,False
-4317,"Coos-Curry Electric Coop, Inc",OR,Cooperative,0,False
-4327,Coosa Valley Electric Coop Inc,AL,Cooperative,0,False
-4356,Colorado River Comm of Nevada,NV,State,0,False
-4362,Corn Belt Energy Corporation,IL,Cooperative,0,False
-4373,Cornhusker Public Power Dist,NE,Political Subdivision,0,False
-4390,City of Corona - (CA),CA,Municipal,0,False
-4401,"Cotton Electric Coop, Inc",OK,Cooperative,0,False
-4410,"Shell Energy North America (US), L.P.",CA NV OR WA,Retail Power Marketer,0,True
-4430,"Covington Electric Coop, Inc",AL,Cooperative,0,False
-4432,Coweta-Fayette El Member Corp,GA,Cooperative,0,False
-4433,City of Covington - (GA),GA,Municipal,0,False
-4437,City of Covington - (TN),TN,Municipal,0,False
-4442,PUD No 1 of Cowlitz County,WA,Political Subdivision,0,False
-4508,"Crawfordsville Elec, Lgt & Pwr",IN,Municipal,0,False
-4509,Craighead Electric Coop Corp,AR,Cooperative,0,False
-4524,"Crawford Electric Coop, Inc",MO,Cooperative,0,False
-4538,Crisp County Power Comm,GA,Political Subdivision,0,False
-4577,Crow Wing Cooperative Power & Light Comp,MN,Cooperative,0,False
-4604,City of Crystal Falls,MI,Municipal,0,False
-4607,City of Cuba City,WI,Municipal,0,False
-4617,Cullman Power Board,AL,Municipal,0,False
-4618,"Cullman Electric Coop, Inc",AL,Cooperative,0,False
-4622,"Cumberland Valley Electric, Inc.",KY TN,Cooperative,0,False
-4624,Cumberland Elec Member Corp,TN,Cooperative,0,False
-4671,Custer Public Power District,NE,Political Subdivision,0,False
-4675,Cuivre River Electric Coop Inc,MO,Cooperative,0,False
-4683,City of Cuyahoga Falls - (OH),OH,Municipal,0,False
-4715,Dahlberg Light & Power Co,WI,Investor Owned,0,False
-4717,Dakota Valley Elec Coop Inc,ND,Cooperative,0,False
-4720,Dakota Energy Coop Inc,SD,Cooperative,0,False
-4743,"Consumers Power, Inc",OR,Cooperative,0,True
-4744,Dalton Utilities,GA,Municipal,0,False
-4794,City of Danville - (VA),VA,Municipal,0,False
-4848,Daviess Martin County R E M C,IN,Cooperative,0,False
-4911,Dawson Power District,NE,Political Subdivision,0,False
-4920,City of Dayton - (TN),TN,Municipal,0,False
-4922,Dayton Power & Light Co,OH,Investor Owned,0,False
-4939,"Deaf Smith Electric Coop, Inc",TX,Cooperative,0,False
-4958,Decatur Utilities,AL,Municipal,0,False
-4960,Decatur County Rural E M C,IN,Cooperative,0,False
-4975,Deep East Texas Elec Coop Inc,TX,Cooperative,0,False
-5027,Delmarva Power,DE MD,Investor Owned,0,False
-5063,City of Denton - (TX),TX,Municipal,0,False
-5070,Delaware Electric Cooperative,DE,Cooperative,0,False
-5078,"Denton County Elec Coop, Inc",TX,Cooperative,0,False
-5086,Delta Montrose Electric Assn,CO,Cooperative,0,False
-5109,DTE Electric Company,MI,Investor Owned,0,True
-5148,City of Dickson,TN,Municipal,0,False
-5175,Dixie Electric Power Assn - (MS),MS,Cooperative,0,False
-5202,Dixie Electric Membership Corp - (LA),LA,Cooperative,0,False
-5204,Dixie Electric Coop - (AL),AL,Cooperative,0,False
-5309,City of Dothan - (AL),AL,Municipal,0,False
-5325,City of Douglas,GA,Municipal,0,False
-5326,PUD No 1 of Douglas County,WA,Political Subdivision,0,False
-5335,City of Dover - (DE),DE,Municipal,0,False
-5336,City of Dover - (OH),OH,Municipal,0,False
-5394,Dubois Rural Electric Coop Inc,IN,Cooperative,0,False
-5399,Duck River Elec Member Corp,TN,Cooperative,0,False
-5416,"Duke Energy Carolinas, LLC",NC SC,Investor Owned,0,False
-5417,Dunn County Electric Coop,WI,Cooperative,0,False
-5470,ConocoPhillips Company,TX,Retail Power Marketer,0,False
-5480,Town of Danvers,MA,Municipal,0,False
-5487,Duquesne Light Co,PA,Investor Owned,0,False
-5509,City of Dyersburg,TN,Municipal,0,False
-5535,Egyptian Electric Coop Assn,IL,Cooperative,0,False
-5551,City of Eagle River - (WI),WI,Municipal,0,False
-5574,East Central Energy,MN WI,Cooperative,0,False
-5578,East Mississippi Elec Pwr Assn,MS,Cooperative,0,False
-5582,City of East Point - (GA),GA,Municipal,0,False
-5585,Eastern Illinois Elec Coop,IL,Cooperative,0,False
-5588,East-Central Iowa Rural Elec Coop,IA,Cooperative,0,False
-5598,East Central Oklahoma Elec Coop Inc,OK,Cooperative,0,False
-5605,Eastern Iowa Light & Power Coop,IA,Cooperative,0,False
-5609,Eastern Maine Electric Coop,ME,Cooperative,0,False
-5625,Easton Utilities Comm,MD,Municipal,0,False
-5644,"Edisto Electric Coop, Inc",SC,Cooperative,0,False
-5656,Edgecombe-Martin County E M C,NC,Cooperative,0,False
-5661,City of Edmond - (OK),OK,Municipal,0,False
-5701,El Paso Electric Co,NM TX,Investor Owned,0,False
-5703,Empire Natural Gas Corporation,NY,Retail Power Marketer,0,False
-5729,Electrical Dist No8 Maricopa,AZ,Political Subdivision,0,False
-5760,City of Elizabeth City - (NC),NC,Municipal,0,False
-5763,City of Elizabethton - (TN),TN,Municipal,0,False
-5773,City of Elk River,MN,Municipal,0,False
-5780,Elkhorn Rural Public Pwr Dist,NE,Political Subdivision,0,False
-5832,Elmhurst Mutual Power & Light Co,WA,Cooperative,0,False
-5860,Empire District Electric Co,AR KS MO OK,Investor Owned,0,False
-5862,"Empire Electric Assn, Inc",CO UT,Cooperative,0,False
-5880,"Energy Coop of New York, Inc",NY PA,Retail Power Marketer,0,False
-5905,Excelsior Electric Member Corp,GA,Cooperative,0,False
-5929,"Fairfield Electric Coop, Inc",SC,Cooperative,0,False
-5930,Village of Fairport - (NY),NY,Municipal,0,False
-5961,Town of Erwin - (TN),TN,Municipal,0,False
-5964,"Escambia River Elec Coop, Inc",FL,Cooperative,0,False
-5969,City of Escondido - (CA),CA,Municipal,0,False
-6008,City of Etowah,TN,Municipal,0,False
-6022,City of Eugene - (OR),OR,Municipal,0,False
-6043,City of Evansville,WI,Municipal,0,False
-6149,City of Ellensburg - (WA),WA,Municipal,0,False
-6169,Fall River Rural Elec Coop Inc,ID MT WY,Cooperative,0,False
-6173,Fannin County Electric Coop,TX,Cooperative,0,False
-6181,"Farmers Electric Coop, Inc - (MO)",MO,Cooperative,0,False
-6182,"Farmers Electric Coop, Inc - (TX)",TX,Cooperative,0,False
-6183,"Fayette Electric Coop, Inc",TX,Cooperative,0,False
-6194,Farmers Rural Electric Coop Corp - (KY),KY,Cooperative,0,False
-6198,"Farmers Electric Coop, Inc - (NM)",NM,Cooperative,0,False
-6204,City of Farmington - (NM),NM,Municipal,0,False
-6205,City of Farmington - (MO),MO,Municipal,0,False
-6207,Farmington River Power Company,CT,Investor Owned,0,False
-6234,City of Fayetteville,TN,Municipal,0,False
-6235,Fayetteville Public Works Commission,NC,Municipal,0,False
-6258,Federated Rural Electric Assn,IA MN,Cooperative,0,False
-6342,First Electric Coop Corp,AR,Cooperative,0,False
-6369,Fishers Island Utility Co Inc,NY,Investor Owned,0,False
-6374,Fitchburg Gas & Elec Light Co,MA,Investor Owned,0,False
-6395,Flathead Electric Coop Inc,MT,Cooperative,0,False
-6411,Flint Electric Membership Corp,GA,Cooperative,0,False
-6422,City of Florence - (AL),AL,Municipal,0,False
-6424,Florence Utility Comm,WI,Municipal,0,False
-6427,City of Floresville,TX,Municipal,0,False
-6442,Fleming-Mason Energy Coop Inc,KY,Cooperative,0,False
-6443,"Florida Keys El Coop Assn, Inc",FL,Cooperative,0,False
-6452,Florida Power & Light Co,FL,Investor Owned,0,False
-6455,"Duke Energy Florida, LLC",FL,Investor Owned,0,False
-6457,Florida Public Utilities Co,FL,Investor Owned,0,False
-6458,Energy Harbor Corp.,IL MD MI NJ OH PA,Retail Power Marketer,0,True
-6491,Foley Board of Utilities,AL,Municipal,0,False
-6582,City of Forest Grove,OR,Municipal,0,False
-6604,City of Fort Collins - (CO),CO,Municipal,0,False
-6608,Fort Loudoun Electric Coop,TN,Cooperative,0,False
-6610,City of Fort Morgan,CO,Municipal,0,False
-6612,Fort Payne Improvement Authority,AL,Municipal,0,False
-6616,Fort Pierce Utilities Authority,FL,Municipal,0,False
-6638,City of Fountain,CO,Municipal,0,False
-6640,Four County Elec Member Corp,NC,Cooperative,0,False
-6641,4-County Electric Power Assn,MS,Cooperative,0,False
-6707,City of Frankfort - (IN),IN,Municipal,0,False
-6708,City of Frankfort - (KY),KY,Municipal,0,False
-6709,Easley Combined Utility System,SC,Municipal,0,False
-6716,PUD No 1 of Franklin County,WA,Political Subdivision,0,False
-6717,Franklin Electric Coop - (AL),AL,Cooperative,0,False
-6718,City of Franklin - (KY),KY,Municipal,0,False
-6775,Village of Freeport - (NY),NY,Municipal,0,False
-6779,City of Fremont - (NE),NE,Municipal,0,False
-6782,Freeborn Mower Electric Cooperative,IA MN,Cooperative,0,False
-6784,French Broad Elec Member Corp,NC TN,Cooperative,0,False
-6840,City of Fulton - (KY),KY,Municipal,0,False
-6894,City of Gaffney - (SC),SC,Municipal,0,False
-6909,Gainesville Regional Utilities,FL,Municipal,0,False
-6923,City of Gallatin - (TN),TN,Municipal,0,False
-6941,City of Garden City,KS,Municipal,0,False
-6957,"Garkane Energy Coop, Inc",AZ UT,Cooperative,0,False
-6958,City of Garland - (TX),TX,Municipal,0,False
-7024,Gascosage Electric Coop,MO,Cooperative,0,False
-7027,City of Gastonia - (NC),NC,Municipal,0,False
-7090,GreyStone Power Corporation,GA,Cooperative,0,False
-7096,City of Geneva- (IL),IL,Municipal,0,False
-7129,City of Georgetown - (TX),TX,Municipal,0,False
-7140,Georgia Power Co,GA,Investor Owned,0,False
-7174,Gibson Electric Members Corp,KY TN,Cooperative,0,False
-7222,City of Gillette - (WY),WY,Municipal,0,False
-7264,"Glades Electric Coop, Inc",FL,Cooperative,0,False
-7265,City of Gladstone,MI,Municipal,0,False
-7270,City of Glasgow - (KY),KY,Municipal,0,False
-7279,"NextEra Energy Services, LLC",CT DC DE IL MA MD ME NH NJ NY OH PA RI,Retail Power Marketer,0,True
-7292,Glencoe Light & Power Comm,MN,Municipal,0,False
-7294,City of Glendale - (CA),CA,Municipal,0,False
-7353,Golden Valley Elec Assn Inc,AK,Cooperative,0,False
-7450,Grady Electric Membership Corp,GA,Cooperative,0,False
-7483,City of Grand Haven - (MI),MI,Municipal,0,False
-7490,Grand River Dam Authority,OK,State,0,False
-7548,PUD No 1 of Grays Harbor County,WA,Political Subdivision,0,False
-7554,Green Mountain Energy Company,IL MA MD NJ NY PA TX,Retail Power Marketer,0,True
-7558,Grayson Rural Electric Coop Corp,KY,Cooperative,0,False
-7559,"Grayson-Collin Elec Coop, Inc",TX,Cooperative,0,False
-7561,"Greenbelt Electric Coop, Inc",TX,Cooperative,0,False
-7563,Grand Valley Power,CO,Cooperative,0,False
-7601,Green Mountain Power Corp,VT,Investor Owned,0,True
-7625,City of Greeneville - (TN),TN,Municipal,0,False
-7627,City of Greenfield - (IN),IN,Municipal,0,False
-7634,City of Greenville - (TX),TX,Municipal,0,False
-7639,Greenville Utilities Comm,NC,Municipal,0,False
-7646,Greenwood CPW,SC,Municipal,0,False
-7651,Greenwood Utilities Comm,MS,Municipal,0,False
-7654,Greer Commission of Public Wks,SC,Municipal,0,False
-7679,City of Griffin - (GA),GA,Municipal,0,False
-7716,Groton Dept of Utilities - (CT),CT,Municipal,0,False
-7752,Guadalupe Valley Elec Coop Inc,TX,Cooperative,0,False
-7785,"Gulf Coast Electric Coop, Inc",FL,Cooperative,0,False
-7827,Guntersville Electric Board,AL,Municipal,0,False
-7887,Habersham Electric Membership Corp,GA,Cooperative,0,False
-7891,Guernsey-Muskingum El Coop Inc,OH,Cooperative,0,False
-7908,Hagerstown Light Department,MD,Municipal,0,False
-7977,City of Hamilton - (OH),OH,Municipal,0,False
-7979,Hamilton County Elec Coop Assn,TX,Cooperative,0,False
-8000,NineStar Connect,IN,Cooperative,0,False
-8034,Hancock-Wood Electric Coop Inc,OH,Cooperative,0,False
-8055,City of Hannibal - (MO),MO,Municipal,0,False
-8147,City of Harriman - (TN),TN,Municipal,0,False
-8179,Harrison County Rural E M C,IN,Cooperative,0,False
-8198,City of Harrisonburg - (VA),VA,Municipal,0,False
-8210,Hart Electric Member Corp,GA,Cooperative,0,False
-8212,Hartford Electric,WI,Municipal,0,False
-8226,City of Hartselle,AL,Municipal,0,False
-8245,City of Hastings - (NE),NE,Municipal,0,False
-8287,Hawaii Electric Light Co Inc,HI,Investor Owned,0,False
-8319,Heartland Power Coop,IA MN,Cooperative,0,False
-8333,Haywood Electric Member Corp,GA NC SC,Cooperative,0,False
-8447,Hendricks County Rural E M C,IN,Cooperative,0,False
-8449,Henderson City Utility Comm,KY,Municipal,0,False
-8548,City of Hickman,KY,Municipal,0,False
-8566,High Plains Power Inc,WY,Cooperative,0,False
-8570,Highline Electric Assn,CO NE,Cooperative,0,False
-8571,Town of High Point,NC,Municipal,0,False
-8620,"HILCO Electric Cooperative, Inc.",TX,Cooperative,0,False
-8699,Inland Power & Light Company,ID WA,Cooperative,0,False
-8723,City of Holland,MI,Municipal,0,False
-8748,City of Holly Springs,MS,Municipal,0,False
-8761,Holmes-Wayne Electric Coop Inc,OH,Cooperative,0,False
-8764,"Holston Electric Coop, Inc",TN,Cooperative,0,False
-8773,"Holy Cross Electric Assn, Inc",CO,Cooperative,0,False
-8774,City of Holyoke - (MA),MA,Municipal,0,False
-8786,Horry Electric Coop Inc,SC,Cooperative,0,False
-8795,City of Homestead - (FL),FL,Municipal,0,False
-8840,City of Hope - (AR),AR,Municipal,0,False
-8846,City of Hopkinsville,KY,Municipal,0,False
-8883,Houlton Water Company,ME,Municipal,0,False
-8884,Terrebonne Parish Consol Gov't,LA,Municipal,0,False
-8898,Houston County Elec Coop Inc,TX,Cooperative,0,False
-8934,"Howell-Oregon Elec Coop, Inc",MO,Cooperative,0,False
-8973,Town of Hudson - (MA),MA,Municipal,0,False
-9023,City of Humboldt,TN,Municipal,0,False
-9087,Town of Huntersville - (NC),NC,Municipal,0,False
-9094,City of Huntsville - (AL),AL,Municipal,0,False
-9096,City of Lafayette - (LA),LA,Municipal,0,False
-9124,Hustisford Utilities,WI,Municipal,0,False
-9130,Hutchinson Utilities Comm,MN,Municipal,0,False
-9187,City of Idaho Falls - (ID),ID,Municipal,0,False
-9191,Idaho Power Co,ID OR,Investor Owned,0,False
-9216,Imperial Irrigation District,CA,Political Subdivision,0,False
-9230,City of Independence - (IA),IA,Municipal,0,False
-9231,City of Independence - (MO),MO,Municipal,0,False
-9246,"Indian Electric Coop, Inc",OK,Cooperative,0,False
-9273,AES Indiana,IN,Investor Owned,0,True
-9292,Inter County Energy Coop Corp - (KY),KY,Cooperative,0,False
-9324,Indiana Michigan Power Co,IN MI,Investor Owned,0,False
-9331,Intercounty Electric Coop Assn - (MO),MO,Cooperative,0,False
-9336,CORE Electric Cooperative,CO,Cooperative,0,False
-9417,Interstate Power and Light Co,IA,Investor Owned,0,False
-9425,Iowa Lakes Electric Coop,IA,Cooperative,0,False
-9475,Itasca-Mantrap Co-op Electrical Assn,MN,Cooperative,0,False
-9575,Jackson Energy Coop Corp - (KY),KY,Cooperative,0,False
-9576,Jackson County Rural E M C - (IN),IN,Cooperative,0,False
-9590,"Jackson Electric Coop, Inc - (TX)",TX,Cooperative,0,False
-9601,Jackson Electric Member Corp - (GA),GA,Cooperative,0,False
-9605,Jackson Purchase Energy Corporation,KY,Cooperative,0,False
-9612,City of Jackson - (TN),TN,Municipal,0,False
-9613,City of Lebanon - (IN),IN,Municipal,0,False
-9616,Beaches Energy Services,FL,Municipal,0,False
-9617,JEA,FL,Municipal,0,True
-9645,Jamestown Board of Public Util,NY,Municipal,0,False
-9665,Jasper County Rural E M C,IN,Cooperative,0,False
-9667,City of Jasper - (IN),IN,Municipal,0,False
-9668,"Jasper-Newton Elec Coop, Inc",TX,Cooperative,0,False
-9682,"Jefferson Davis Elec Coop, Inc",LA,Cooperative,0,False
-9689,Jefferson Electric Member Corp,GA,Cooperative,0,False
-9690,Jefferson Utilities,WI,Municipal,0,False
-9697,City of Jellico,KY TN,Municipal,0,False
-9699,"Jemez Mountains Elec Coop, Inc",NM,Cooperative,0,False
-9726,Jersey Central Power & Lt Co,NJ,Investor Owned,0,False
-9739,Joe Wheeler Elec Member Corp,AL,Cooperative,0,False
-9750,"Jo-Carroll Energy, Inc",IL,Cooperative,0,False
-9777,Johnson City - (TN),TN,Municipal,0,False
-9778,Johnson County Rural E M C,IN,Cooperative,0,False
-9837,Jones-Onslow Elec Member Corp,NC,Cooperative,0,False
-9879,City Water and Light Plant,AR,Municipal,0,False
-9936,Juneau Utility Comm,WI,Municipal,0,False
-9949,Just Energy,MA PA TX,Retail Power Marketer,0,True
-9964,Kenergy Corp,KY,Cooperative,0,False
-9996,City of Kansas City - (KS),KS,Municipal,0,False
-9999,Kankakee Valley Rural E M C,IN,Cooperative,0,False
-10000,Evergy Metro,KS MO,Investor Owned,0,False
-10005,"Evergy Kansas South, Inc",KS,Investor Owned,0,False
-10009,Karnes Electric Coop Inc,TX,Cooperative,0,False
-10012,Kay Electric Coop,OK,Cooperative,0,False
-10019,FreeState Electric Coop,KS,Cooperative,0,False
-10056,City of Kaukauna,WI,Municipal,0,False
-10066,K C Electric Association,CO,Cooperative,0,False
-10071,Kauai Island Utility Cooperative,HI,Cooperative,0,False
-10170,"Kiamichi Electric Coop, Inc",OK,Cooperative,0,False
-10171,Kentucky Utilities Co,KY VA,Investor Owned,0,False
-10210,Ketchikan Public Utilities,AK,Municipal,0,False
-10226,"Utility Board of the City of Key West, F",FL,Municipal,0,False
-10325,Kings River Conservation Dist,CA,Political Subdivision,0,False
-10331,Kingsport Power Co,TN,Investor Owned,0,False
-10345,City of Kinston - (NC),NC,Municipal,0,False
-10370,City of Kirkwood - (MO),MO,Municipal,0,False
-10376,Kissimmee Utility Authority,FL,Municipal,0,False
-10378,"Kit Carson Electric Coop, Inc",NM,Cooperative,0,False
-10393,PUD No 1 of Klickitat County,WA,Political Subdivision,0,False
-10421,Knoxville Utilities Board,TN,Municipal,0,False
-10433,Kodiak Electric Assn Inc,AK,Cooperative,0,False
-10448,Kosciusko County Rural E M C,IN,Cooperative,0,False
-10451,Kotzebue Electric Assn Inc,AK,Cooperative,0,False
-10454,Kootenai Electric Cooperative,ID WA,Cooperative,0,False
-10508,Village of L'Anse - (MI),MI,Municipal,0,False
-10539,"La Plata Electric Assn, Inc",CO,Cooperative,0,False
-10579,City of LaFollette,TN,Municipal,0,False
-10585,City of La Grange - (GA),GA,Municipal,0,False
-10596,City of Lake Crystal - (MN),MN,Municipal,0,False
-10599,"Lake Region Electric Coop, Inc - (OK)",OK,Cooperative,0,False
-10603,"Laclede Electric Coop, Inc",MO,Cooperative,0,False
-10605,Lake Mills Light & Water,WI,Municipal,0,False
-10618,Lake Region Electric Cooperative - (MN),MN,Cooperative,0,False
-10620,City of Lake Worth Beach - (FL),FL,Municipal,0,False
-10623,City of Lakeland - (FL),FL,Municipal,0,False
-10624,Southern Rivers Energy,GA,Cooperative,0,False
-10625,"Lamb County Electric Coop, Inc",TX,Cooperative,0,False
-10627,Lakeview Light & Power,WA,Cooperative,0,False
-10649,Lamar County Elec Coop Assn,TX,Cooperative,0,False
-10668,Licking Rural Electric Inc,OH,Cooperative,0,False
-10681,Lane Electric Coop Inc,OR,Cooperative,0,False
-10697,Lake Country Power,MN,Cooperative,0,False
-10704,City of Lansing - (MI),MI,Municipal,0,False
-10768,"Laurens Electric Coop, Inc",SC,Cooperative,0,False
-10799,City of Lawrenceburg,TN,Municipal,0,False
-10800,City of Lawrenceville - (GA),GA,Municipal,0,False
-10817,"Lea County Electric Coop, Inc - (NM)",NM TX,Cooperative,0,False
-10830,City of Lebanon - (OH),OH,Municipal,0,False
-10832,City of Lebanon - (MO),MO,Municipal,0,False
-10857,"Lee County Electric Coop, Inc - (FL)",FL,Cooperative,0,False
-10868,City of Leesburg - (FL),FL,Municipal,0,False
-10879,Lehi City Corporation,UT,Municipal,0,False
-10906,City of Lenoir - (TN),TN,Municipal,0,False
-10944,PUD No 1 of Lewis County,WA,Political Subdivision,0,False
-10960,City of Lewisburg - (TN),TN,Municipal,0,False
-10966,City of Lexington - (NC),NC,Municipal,0,False
-10967,City of Lexington - (NE),NE,Municipal,0,False
-10968,City of Lexington - (TN),TN,Municipal,0,False
-11011,Licking Valley Rural E C C,KY,Cooperative,0,False
-11014,"Lighthouse Electric Coop, Inc",TX,Cooperative,0,False
-11018,Lincoln Electric System,NE,Municipal,0,False
-11053,Linn County REC,IA,Cooperative,0,False
-11085,Town of Littleton - (MA),MA,Municipal,0,False
-11118,Lockhart Power Co,SC,Investor Owned,0,False
-11124,City of Lodi - (CA),CA,Municipal,0,False
-11125,City of Lodi - (WI),WI,Municipal,0,False
-11135,City of Logan - (UT),UT,Municipal,0,False
-11142,City of Logansport - (IN),IN,Municipal,0,False
-11171,Long Island Power Authority,NY,State,0,False
-11187,City of Longmont,CO,Municipal,0,False
-11200,"Lorain-Medina R E C, Inc",OH,Cooperative,0,False
-11204,Los Alamos County,NM,Municipal,0,False
-11208,Los Angeles Department of Water & Power,CA,Municipal,0,False
-11222,Loudon Utilities Board,TN,Municipal,0,False
-11241,Entergy Louisiana LLC,LA,Investor Owned,0,False
-11247,Louisville Electric System,MS,Municipal,0,False
-11249,Louisville Gas & Electric Co,KY,Investor Owned,0,False
-11251,Loup River Public Power Dist,NE,Political Subdivision,0,False
-11256,City of Loveland - (CO),CO,Municipal,0,False
-11272,"Lower Yellowstone R E A, Inc",MT ND,Cooperative,0,False
-11273,Lower Valley Energy Inc,ID WY,Cooperative,0,False
-11291,Lumbee River Elec Member Corp,NC,Cooperative,0,False
-11292,City of Lubbock - (TX),TX,Municipal,0,False
-11318,City of Lumberton - (NC),NC,Municipal,0,False
-11355,"Lynches River Elec Coop, Inc",SC,Cooperative,0,False
-11364,"Lyntegar Electric Coop, Inc",TX,Cooperative,0,False
-11458,City of Macon - (MS),MS,Municipal,0,False
-11463,Macon Electric Coop,MO,Cooperative,0,False
-11475,City of Madison - (SD),SD,Municipal,0,False
-11477,Town of Madison - (ME),ME,Municipal,0,False
-11479,Madison Gas & Electric Co,WI,Investor Owned,0,True
-11488,Madisonville Municipal Utils,KY,Municipal,0,False
-11501,Magic Valley Electric Coop Inc,TX,Cooperative,0,False
-11519,Magnolia Electric Power Assn,MS,Cooperative,0,False
-11560,City of Manassas - (VA),VA,Municipal,0,False
-11571,Manitowoc Public Utilities,WI,Municipal,0,False
-11586,Town of Mansfield - (MA),MA,Municipal,0,False
-11611,City of Maquoketa - (IA),IA,Municipal,0,False
-11646,City of Marietta - (GA),GA,Municipal,0,False
-11701,City of Marquette - (MI),MI,Municipal,0,False
-11714,Marshall-De Kalb Electric Coop,AL,Cooperative,0,False
-11731,City of Marshall - (MN),MN,Municipal,0,False
-11740,City of Marshfield - (WI),WI,Municipal,0,False
-11788,Consumers Energy Coop - (IA),IA,Cooperative,0,False
-11789,Maryville Utilities,TN,Municipal,0,False
-11804,Massachusetts Electric Co,MA,Investor Owned,0,False
-11811,Town of Massena - (NY),NY,Municipal,0,False
-11824,Matanuska Electric Assn Inc,AK,Cooperative,0,False
-11843,Maui Electric Co Ltd,HI,Investor Owned,0,False
-11871,City of Mayfield Plant Board,KY,Municipal,0,False
-12087,McKenzie Electric Coop Inc,MT ND,Cooperative,0,False
-12090,"McLean Electric Coop, Inc",ND,Cooperative,0,False
-12186,McMinnville Electric System,TN,Municipal,0,False
-12187,City of McMinnville - (OR),OR,Municipal,0,False
-12199,Montana-Dakota Utilities Co,MT ND SD WY,Investor Owned,0,False
-12208,City of McPherson - (KS),KS,Municipal,0,False
-12227,Meeker Coop Light & Power Assn,MN,Cooperative,0,False
-12243,Meade County Rural E C C,KY,Cooperative,0,False
-12260,Mecklenburg Electric Cooperative,NC VA,Cooperative,0,False
-12268,"Medina Electric Coop, Inc",TX,Cooperative,0,False
-12293,City of Memphis - (TN),TN,Municipal,0,False
-12298,City of Menasha - (WI),WI,Municipal,0,False
-12301,Nodak Electric Coop Inc,ND,Cooperative,0,False
-12312,Merced Irrigation District,CA,Political Subdivision,0,False
-12330,Meriwether Lewis Electric Coop,TN,Cooperative,0,False
-12341,MidAmerican Energy Co,IA IL SD,Investor Owned,0,True
-12351,City of Mesa - (AZ),AZ,Municipal,0,False
-12377,Midwest Energy Cooperative - (MI),IN MI OH,Cooperative,0,False
-12395,Menard Electric Coop,IL,Cooperative,0,False
-12439,"Midstate Electric Coop, Inc",OR,Cooperative,0,False
-12450,Midland Power Coop,IA,Cooperative,0,False
-12452,Mid-South Electric Coop Assn,TX,Cooperative,0,False
-12462,Mid-Carolina Electric Coop Inc,SC,Cooperative,0,False
-12470,Middle Tennessee E M C,TN,Cooperative,0,False
-12473,Town of Middleborough - (MA),MA,Municipal,0,False
-12478,Town of Middletown - (DE),DE,Municipal,0,False
-12515,"Midwest Electric, Inc - (OH)",OH,Cooperative,0,False
-12524,Midwest Energy Inc - (KS),KS,Cooperative,0,False
-12532,City of Milan - (TN),TN,Municipal,0,False
-12539,Midwest Electric Member Corp - (NE),NE,Cooperative,0,False
-12540,City of Milford - (DE),DE,Municipal,0,False
-12546,Mille Lacs Energy Cooperative,MN,Cooperative,0,False
-12642,Maquoketa Valley Rrl Elec Coop,IA,Cooperative,0,False
-12647,"ALLETE, Inc.",MN,Investor Owned,0,False
-12651,Minnesota Valley Electric Coop,MN,Cooperative,0,False
-12674,City of Mishawaka,IN,Municipal,0,False
-12681,Mississippi County Electric Co,AR,Cooperative,0,False
-12685,Entergy Mississippi LLC,MS,Investor Owned,0,False
-12686,Mississippi Power Co,MS,Investor Owned,0,False
-12692,"Missoula Electric Coop, Inc",ID MT,Cooperative,0,False
-12698,Evergy Missouri West,MO,Investor Owned,0,False
-12700,Missouri Rural Electric Coop,MO,Cooperative,0,False
-12706,Mitchell Electric Member Corp,GA,Cooperative,0,False
-12744,Modern Electric Water Company,WA,Cooperative,0,False
-12745,Modesto Irrigation District,CA,Political Subdivision,0,False
-12782,City of Monett - (MO),MO,Municipal,0,False
-12796,Monongahela Power Co,WV,Investor Owned,0,False
-12801,City of Monroe - (NC),NC,Municipal,0,False
-12825,NorthWestern Energy LLC - (MT),MT WY,Investor Owned,0,False
-12860,Morgan County Rural Elec Assn,CO,Cooperative,0,False
-12866,Moon Lake Electric Assn Inc,CO UT,Cooperative,0,False
-12894,City of Moorhead - (MN),MN,Municipal,0,False
-12917,Morgan Stanley Capital Grp Inc,MT TX,Retail Power Marketer,0,False
-12919,Morenci Water and Electric,AZ,Investor Owned,0,False
-12929,South Central Indiana REMC,IN,Cooperative,0,False
-12944,City of Morganton - (NC),NC,Municipal,0,False
-12988,City of Morristown - (TN),TN,Municipal,0,False
-12990,Consolidated Cooperative,OH,Cooperative,0,False
-13027,"Mountain Electric Coop, Inc",NC TN,Cooperative,0,False
-13032,Mt Carmel Public Utility Co,IL,Investor Owned,0,False
-13036,Village of Mt. Horeb - (WI),WI,Municipal,0,False
-13039,City of Mt Pleasant - (TN),TN,Municipal,0,False
-13050,"Mountain Parks Electric, Inc",CO,Cooperative,0,False
-13058,"Mountain View Elec Assn, Inc",CO,Cooperative,0,False
-13073,"Mt Wheeler Power, Inc",NV UT,Cooperative,0,False
-13137,City of Murray - (UT),UT,Municipal,0,False
-13138,City of Murray - (KY),KY,Municipal,0,False
-13143,Board of Water Electric & Communications,IA,Municipal,0,False
-13144,City of Muscle Shoals,AL,Municipal,0,False
-13145,Village of Muscoda - (WI),WI,Municipal,0,False
-13196,Northern Plains Electric Coop,ND,Cooperative,0,False
-13206,Nantucket Electric Co,MA,Investor Owned,0,False
-13208,City of Naperville - (IL),IL,Municipal,0,False
-13214,The Narragansett Electric Co,RI,Investor Owned,0,False
-13216,Nashville Electric Service,TN,Municipal,0,False
-13227,Natchez Trace Elec Power Assn,MS,Cooperative,0,False
-13228,City of Natchitoches,LA,Municipal,0,False
-13292,Norris Electric Coop,IL,Cooperative,0,False
-13314,Navajo Tribal Utility Authority,AZ NM UT,State,0,False
-13318,"Navopache Electric Coop, Inc",AZ NM,Cooperative,0,False
-13332,"Navarro County Elec Coop, Inc",TX,Cooperative,0,False
-13337,Nebraska Public Power District,NE SD,Political Subdivision,0,False
-13352,City of Negaunee,MI,Municipal,0,False
-13374,"Constellation NewEnergy, Inc",CA CT DC DE IL MA MD ME MI NH NJ NY OH OR PA RI TX VA,Retail Power Marketer,0,True
-13407,Nevada Power Co,NV,Investor Owned,0,False
-13412,City of New Albany - (MS),MS,Municipal,0,False
-13416,City of New Bern - (NC),NC,Municipal,0,False
-13418,City of New Braunfels - (TX),TX,Municipal,0,False
-13437,City of Newbern,TN,Municipal,0,False
-13438,Village of New Glarus - (WI),WI,Municipal,0,False
-13441,New Hampshire Elec Coop Inc,NH,Cooperative,0,False
-13448,City of New Holstein - (WI),WI,Municipal,0,False
-13467,New London Electric&Water Util,WI,Municipal,0,False
-13478,"Entergy New Orleans, LLC",LA,Investor Owned,0,False
-13481,City of New Richmond,WI,Municipal,0,False
-13482,New River Light & Power Co,NC,State,0,False
-13485,New Smyrna Beach City of,FL,Municipal,0,False
-13511,New York State Elec & Gas Corp,NY,Investor Owned,0,False
-13519,City of Newark - (DE),DE,Municipal,0,False
-13520,"New-Mac Electric Coop, Inc",MO,Cooperative,0,False
-13524,"Newberry Electric Coop, Inc",SC,Cooperative,0,False
-13547,"Newnan Wtr, Sewer & Light Comm",GA,Municipal,0,False
-13550,City of Newport - (TN),TN,Municipal,0,False
-13573,Niagara Mohawk Power Corp.,NY,Investor Owned,0,False
-13602,City of Niles - (OH),OH,Municipal,0,False
-13640,Northern Virginia Elec Coop,VA,Cooperative,0,False
-13647,Noble County R E M C,IN,Cooperative,0,False
-13651,Nolin Rural Electric Coop Corp,KY,Cooperative,0,False
-13664,Norris Public Power District,NE,Political Subdivision,0,False
-13669,North Alabama Electric Coop,AL,Cooperative,0,False
-13676,"North Arkansas Elec Coop, Inc",AR,Cooperative,0,False
-13679,Town of North Attleborough - (MA),MA,Municipal,0,False
-13693,"North Central Elec Coop, Inc - (OH)",OH,Cooperative,0,False
-13694,"North Central Elec Coop, Inc - (ND)",ND,Cooperative,0,False
-13697,North Central Power Co Inc,WI,Investor Owned,0,False
-13716,North Georgia Elec Member Corp,GA,Cooperative,0,False
-13718,City of North Little Rock - (AR),AR,Municipal,0,False
-13725,City of North Platte,NE,Municipal,0,False
-13734,Northeast Oklahoma Electric Co,OK,Cooperative,0,False
-13735,Northcentral Mississippi E P A,MS,Cooperative,0,False
-13739,Northeast Power,NE,Political Subdivision,0,False
-13750,"Northern Electric Coop, Inc",SD,Cooperative,0,False
-13756,Northern Indiana Pub Serv Co,IN,Investor Owned,0,False
-13757,North Plains Electric Coop Inc,TX,Cooperative,0,False
-13758,"Northern Lights, Inc",ID MT WA,Cooperative,0,False
-13762,"Northern Neck Elec Coop, Inc",VA,Cooperative,0,False
-13780,Northern States Power Co,MI WI,Investor Owned,0,False
-13781,Northern States Power Co - Minnesota,MN ND SD,Investor Owned,0,False
-13783,Northeast Louisiana Power Coop Inc.,LA,Cooperative,0,False
-13788,Northern Wasco County PUD,OR,Political Subdivision,0,False
-13799,Prairie Land Electric Coop Inc,KS,Cooperative,0,False
-13807,Northwestern Electric Coop Inc - (OK),OK,Cooperative,0,False
-13809,NorthWestern Energy - (SD),SD,Investor Owned,0,False
-13815,Northwestern Wisconsin Elec Co,MN WI,Investor Owned,0,False
-13826,City of Norway,MI,Municipal,0,False
-13830,Nueces Electric Cooperative,TX,Cooperative,0,False
-13831,City of Norwich - (CT),CT,Municipal,0,False
-13839,City of Norwood - (MA),MA,Municipal,0,False
-13933,City of Oak Ridge,TN,Municipal,0,False
-13936,Oakdale Electric Coop,WI,Cooperative,0,False
-13955,City of Ocala,FL,Municipal,0,False
-13962,Oconee Electric Member Corp,GA,Cooperative,0,False
-13963,Oconomowoc Utilities,WI,Municipal,0,False
-13965,Oconto Falls Water & Light Comm,WI,Municipal,0,False
-13998,Ohio Edison Co,OH,Investor Owned,0,False
-14006,Ohio Power Co,OH,Investor Owned,0,False
-14015,Ohio Valley Electric Corp,OH,Investor Owned,0,False
-14055,PUD No 1 of Okanogan County,WA,Political Subdivision,0,False
-14062,Oklahoma Electric Coop Inc,OK,Cooperative,0,False
-14063,Oklahoma Gas & Electric Co,AR OK,Investor Owned,0,False
-14078,City of Okolona,MS,Municipal,0,False
-14109,"Oregon Trail El Cons Coop, Inc",OR,Cooperative,0,False
-14127,Omaha Public Power District,NE,Political Subdivision,0,False
-14146,City of Opelika - (AL),AL,Municipal,0,False
-14154,Orange & Rockland Utils Inc,NY,Investor Owned,0,False
-14164,City of Orangeburg - (SC),SC,Municipal,0,False
-14170,Orcas Power & Light Coop,WA,Cooperative,0,False
-14175,"Tri-County Electric Coop, Inc (SC)",SC,Cooperative,0,False
-14192,Osage Valley Elec Coop Assn,MO,Cooperative,0,False
-14194,City of Orrville - (OH),OH,Municipal,0,False
-14224,Otero County Electric Coop Inc,NM,Cooperative,0,False
-14232,Otter Tail Power Co,MN ND SD,Investor Owned,0,False
-14238,Ouachita Electric Coop Corp,AR,Cooperative,0,False
-14245,Overton Power District No 5,NV,Political Subdivision,0,False
-14246,City of Owatonna - (MN),MN,Municipal,0,False
-14251,Owen Electric Coop Inc,KY,Cooperative,0,False
-14268,City of Owensboro - (KY),KY,Municipal,0,False
-14275,City of Oxford - (MS),MS,Municipal,0,False
-14285,Ozark Border Electric Coop,MO,Cooperative,0,False
-14288,Ozark Electric Coop Inc - (MO),MO,Cooperative,0,False
-14289,Ozarks Electric Coop Corp - (AR),AR OK,Cooperative,0,False
-14324,PUD No 2 of Pacific County,WA,Political Subdivision,0,False
-14328,Pacific Gas & Electric Co.,CA,Investor Owned,0,False
-14349,"Avangrid Power, LLC",OR WA,Retail Power Marketer,0,True
-14354,PacifiCorp,CA ID OR UT WA WY,Investor Owned,0,False
-14371,City of Paducah - (KY),KY,Municipal,0,False
-14381,City of Painesville,OH,Municipal,0,False
-14398,Palmetto Electric Coop Inc,SC,Cooperative,0,False
-14401,City of Palo Alto - (CA),CA,Municipal,0,False
-14424,"Panola-Harrison Elec Coop, Inc",LA TX,Cooperative,0,False
-14446,Paragould Municipal Utilities,AR,Municipal,0,False
-14455,City of Paris - (TN),TN,Municipal,0,False
-14468,People's Cooperative Services,MN,Cooperative,0,False
-14534,City of Pasadena - (CA),CA,Municipal,0,False
-14537,Pascoag Utility District,RI,Municipal,0,False
-14563,Pearl River Valley El Pwr Assn,MS,Cooperative,0,False
-14599,"Paulding-Putman Elec Coop, Inc",IN OH,Cooperative,0,False
-14602,Pea River Electric Coop,AL,Cooperative,0,False
-14605,City of Peabody - (MA),MA,Municipal,0,False
-14606,"Peace River Electric Coop, Inc",FL,Cooperative,0,False
-14610,Orlando Utilities Comm,FL,Municipal,0,False
-14624,PUD No 2 of Grant County,WA,Political Subdivision,0,False
-14626,"Pedernales Electric Coop, Inc",TX,Cooperative,0,False
-14649,Planters Electric Member Corp,GA,Cooperative,0,False
-14653,PUD No 1 of Pend Oreille County,WA,Political Subdivision,0,False
-14668,Peninsula Light Company,WA,Cooperative,0,False
-14715,PPL Electric Utilities Corp,PA,Investor Owned,0,False
-14717,Pee Dee Electric Member Corp,NC,Cooperative,0,False
-14724,Pennyrile Rural Electric Coop,KY,Cooperative,0,False
-14775,People's Electric Cooperative,OK,Cooperative,0,False
-14839,City of Peru - (IN),IN,Municipal,0,False
-14840,City of Peru - (IL),IL,Municipal,0,False
-14864,Petit Jean Electric Coop Corp,AR,Cooperative,0,False
-14940,PECO Energy Co,PA,Investor Owned,0,False
-14947,City of Philadelphia - (MS),MS,Municipal,0,False
-14999,"Pilot Power Group, LLC",CA,Retail Power Marketer,0,False
-15016,Pickwick Electric Coop,TN,Cooperative,0,False
-15023,Piedmont Electric Member Corp,NC,Cooperative,0,False
-15040,City of Pierre - (SD),SD,Municipal,0,False
-15045,Pike County Light & Power Co,PA,Investor Owned,0,False
-15048,Electrical Dist No2 Pinal County,AZ,Political Subdivision,0,False
-15054,"Pioneer Rural Elec Coop, Inc - (OH)",OH,Cooperative,0,False
-15073,"Pioneer Electric Coop, Inc - (KS)",KS,Cooperative,0,False
-15086,Pioneer Power and Light Co,WI,Investor Owned,0,False
-15095,City of Piqua - (OH),OH,Municipal,0,False
-15138,"Platte-Clay Electric Coop, Inc",MO,Cooperative,0,False
-15141,Plateau Electric Cooperative,TN,Cooperative,0,False
-15145,City of Plattsburgh - (NY),NY,Municipal,0,False
-15159,City of Plymouth - (WI),WI,Municipal,0,False
-15175,Pointe Coupee Elec Member Corp,LA,Cooperative,0,False
-15202,City of Ponca City - (OK),OK,Municipal,0,False
-15211,Pontotoc Electric Power Assn,MS,Cooperative,0,False
-15229,City of Poplar Bluff - (MO),MO,Municipal,0,False
-15231,City of Port Angeles - (WA),WA,Municipal,0,False
-15248,Portland General Electric Co,OR,Investor Owned,0,True
-15257,"Poudre Valley REA, Inc",CO,Cooperative,0,False
-15263,The Potomac Edison Company,MD WV,Investor Owned,0,False
-15270,Potomac Electric Power Co,DC MD,Investor Owned,0,False
-15291,Prairie Energy Coop,IA,Cooperative,0,False
-15293,Powell Valley Electric Coop,TN VA,Cooperative,0,False
-15296,New York Power Authority,NY,State,0,False
-15312,Village of Prairie Du Sac - (WI),WI,Municipal,0,False
-15334,Prentiss County Elec Pwr Assn,MS,Cooperative,0,False
-15340,Presque Isle Elec & Gas Coop,MI,Cooperative,0,False
-15344,Polk-Burnett Electric Coop,WI,Cooperative,0,False
-15349,City of Preston,IA,Municipal,0,False
-15410,Prince George Electric Coop,VA,Cooperative,0,False
-15419,PUD No 3 of Mason County,WA,Political Subdivision,0,False
-15444,Provo City Corp,UT,Municipal,0,False
-15466,Public Service Co of Colorado,CO,Investor Owned,0,False
-15470,"Duke Energy Indiana, LLC",IN,Investor Owned,0,True
-15472,Public Service Co of NH,NH,Investor Owned,0,False
-15473,Public Service Co of NM,NM,Investor Owned,0,False
-15474,Public Service Co of Oklahoma,OK,Investor Owned,0,False
-15477,Public Service Elec & Gas Co,NJ,Investor Owned,0,False
-15500,Puget Sound Energy Inc,WA,Investor Owned,0,True
-15507,City of Pulaski - (TN),TN,Municipal,0,False
-15671,Randolph Electric Member Corp,NC,Cooperative,0,False
-15700,Rayle Electric Membership Corp,GA,Cooperative,0,False
-15746,Red River Valley Rrl Elec Assn,OK,Cooperative,0,False
-15748,Town of Reading - (MA),MA,Municipal,0,False
-15776,Central Florida Tourism Oversight District,FL,Municipal,0,False
-15783,City of Redding - (CA),CA,Municipal,0,False
-15804,Reedsburg Utility Comm,WI,Municipal,0,False
-15847,Reliant Energy Retail Services,TX,Retail Power Marketer,0,False
-15978,City of Richland Center - (WI),WI,Municipal,0,False
-15979,City of Richland - (WA),WA,Municipal,0,False
-15989,City of Richmond - (IN),IN,Municipal,0,False
-16057,"Rio Grande Electric Coop, Inc",NM TX,Cooperative,0,False
-16060,Riverland Energy Cooperative,WI,Cooperative,0,False
-16063,"Rita Blanca Electric Coop, Inc",TX,Cooperative,0,False
-16082,City of River Falls,WI,Municipal,0,False
-16088,City of Riverside - (CA),CA,Municipal,0,False
-16101,Roanoke Electric Member Corp,NC,Cooperative,0,False
-16146,"Navasota Valley Elec Coop, Inc",TX,Cooperative,0,False
-16177,"Robison Energy, LLC",NY,Retail Power Marketer,0,False
-16179,Rochelle Municipal Utilities,IL,Municipal,0,False
-16181,Rochester Public Utilities,MN,Municipal,0,False
-16183,Rochester Gas & Electric Corp,NY,Investor Owned,0,False
-16195,City of Rock Hill - (SC),SC,Municipal,0,False
-16196,Rock Energy Cooperative,IL WI,Cooperative,0,False
-16213,Rockland Electric Co,NJ,Investor Owned,0,False
-16223,City of Rockwood - (TN),TN,Municipal,0,False
-16226,City of Rocky Mount - (NC),NC,Municipal,0,False
-16259,City of Rolla - (MO),MO,Municipal,0,False
-16286,Rosebud Electric Coop Inc,SD,Cooperative,0,False
-16295,City of Roseville - (CA),CA,Municipal,0,False
-16368,Runestone Electric Assn,MN,Cooperative,0,False
-16382,"Rural Electric Coop, Inc - (OK)",OK,Cooperative,0,False
-16458,City of Russellville - (AL),AL,Municipal,0,False
-16459,City of Russellville - (KY),KY,Municipal,0,False
-16461,"Rusk County Electric Coop, Inc",TX,Cooperative,0,False
-16463,City of Ruston - (LA),LA,Municipal,0,False
-16496,Rutherford Elec Member Corp,NC,Cooperative,0,False
-16534,Sacramento Municipal Util Dist,CA,Political Subdivision,0,False
-16555,Salem Electric - (OR),OR,Cooperative,0,False
-16558,City of Salem - (VA),VA,Municipal,0,False
-16565,Salmon River Electric Coop Inc,ID,Cooperative,0,False
-16572,Salt River Project,AZ,Political Subdivision,0,True
-16587,Salt River Electric Coop Corp,KY,Cooperative,0,False
-16603,"San Luis Valley R E C, Inc",CO,Cooperative,0,False
-16604,City of San Antonio - (TX),TX,Municipal,0,False
-16606,"Santee Electric Coop, Inc",SC,Cooperative,0,False
-16609,San Diego Gas & Electric Co,CA,Investor Owned,0,False
-16611,Access Energy Coop,IA,Cooperative,0,False
-16612,City & County of San Francisco,CA,Municipal,0,False
-16613,Sam Houston Electric Coop Inc,TX,Cooperative,0,False
-16616,"San Isabel Electric Assn, Inc",CO,Cooperative,0,False
-16622,"San Miguel Power Assn, Inc",CO,Cooperative,0,False
-16627,San Patricio Electric Coop Inc,TX,Cooperative,0,False
-16629,Sand Mountain Electric Coop,AL,Cooperative,0,False
-16637,City of Sandersville - (GA),GA,Municipal,0,False
-16638,"San Bernard Electric Coop, Inc",TX,Cooperative,0,False
-16655,City of Santa Clara - (CA),CA,Municipal,0,False
-16674,Satilla Rural Elec Member Corporation,GA,Cooperative,0,False
-16740,Scenic Rivers Energy Coop,IL WI,Cooperative,0,False
-16751,Three Rivers Electric Coop,MO,Cooperative,0,False
-16805,SEMO Electric Cooperative,MO,Cooperative,0,False
-16829,City of Scottsboro - (AL),AL,Municipal,0,False
-16840,"Calpine Energy Solutions, LLC",CA CT DC DE IL MA MD ME MI NH NJ NY OH OR PA RI TX VA,Retail Power Marketer,0,True
-16865,Sawnee Electric Membership Corporation,GA,Cooperative,0,False
-16868,City of Seattle - (WA),WA,Municipal,0,False
-16900,City of Seguin - (TX),TX,Municipal,0,False
-16930,Sequachee Valley Electric Coop,TN,Cooperative,0,False
-16949,Sevier County Electric System,TN,Municipal,0,False
-16971,Shakopee Public Utilities Comm,MN,Municipal,0,False
-17011,Shawano Municipal Utilities,WI,Municipal,0,False
-17033,Sheffield Utilities,AL,Municipal,0,False
-17038,RushShelby Energy,IN,Cooperative,0,False
-17040,"Shelby Electric Coop, Inc - (IL)",IL,Cooperative,0,False
-17044,"Shelby Energy Coop, Inc - (KY)",KY,Cooperative,0,False
-17047,City of Shelbyville - (TN),TN,Municipal,0,False
-17066,Shenandoah Valley Elec Coop,VA,Cooperative,0,False
-17127,Town of Shrewsbury - (MA),MA,Municipal,0,False
-17166,Sierra Pacific Power Co,NV,Investor Owned,0,False
-17177,City of Sikeston - (MO),MO,Municipal,0,False
-17184,City of Siloam Springs - (AR),AR,Municipal,0,False
-17252,Singing River Elec Cooperative,AL MS,Cooperative,0,False
-17260,North West Rural Electric Coop,IA,Cooperative,0,False
-17261,Slope Electric Coop Inc,ND,Cooperative,0,False
-17267,Sioux Valley SW Elec Coop,MN SD,Cooperative,0,False
-17324,Slinger Utilities,WI,Municipal,0,False
-17452,City of Smithville - (TN),TN,Municipal,0,False
-17470,PUD No 1 of Snohomish County,WA,Political Subdivision,0,False
-17512,Village of Solvay - (NY),NY,Municipal,0,False
-17534,"South Alabama Elec Coop, Inc",AL,Cooperative,0,False
-17539,"Dominion Energy South Carolina, Inc",SC,Investor Owned,0,False
-17540,"South Central Ark El Coop, Inc",AR,Cooperative,0,False
-17543,South Carolina Public Service Authority,SC,State,0,False
-17548,South Central Public Pwr Dist,NE,Political Subdivision,0,False
-17550,South Central Electric Assn,MN,Cooperative,0,False
-17561,South Plains Electric Coop Inc,TX,Cooperative,0,False
-17564,South Kentucky Rural E C C,KY TN,Cooperative,0,False
-17565,South Louisiana Elec Coop Assn,LA,Cooperative,0,False
-17572,South River Elec Member Corp,NC,Cooperative,0,False
-17577,City of South Sioux City,NE,Municipal,0,False
-17585,"Southeastern IL Elec Coop, Inc",IL,Cooperative,0,False
-17592,Southeast Colorado Power Assn,CO,Cooperative,0,False
-17599,Southeastern Indiana R E M C,IN,Cooperative,0,False
-17603,Southeastern Electric Coop Inc - (OK),OK,Cooperative,0,False
-17609,Southern California Edison Co,CA,Investor Owned,0,False
-17612,Bear Valley Electric Service,CA,Investor Owned,0,False
-17633,Southern Indiana Gas & Elec Co,IN,Investor Owned,0,False
-17637,Southern Maryland Elec Coop Inc,MD,Cooperative,0,False
-17642,Southern Public Power District,NE,Political Subdivision,0,False
-17646,"Southern Pine Elec Coop, Inc",AL,Cooperative,0,False
-17647,Southern Pine Electric Cooperative,MS,Cooperative,0,False
-17671,Southwest Arkansas E C C,AR OK TX,Cooperative,0,False
-17683,Southwest Mississippi E P A,MS,Cooperative,0,False
-17684,Southwest Louisiana E M C,LA,Cooperative,0,False
-17692,Southwest Public Power Dist,NE,Political Subdivision,0,False
-17693,"Southwest Texas Elec Coop, Inc",TX,Cooperative,0,False
-17694,Southwest Tennessee E M C,TN,Cooperative,0,False
-17697,Southwestern Electric Coop Inc - (IL),IL,Cooperative,0,False
-17698,Southwestern Electric Power Co,AR LA TX,Investor Owned,0,False
-17710,"Spark Energy, LP",DE IL MD TX,Retail Power Marketer,0,True
-17715,Southwestern Electric Coop Inc - (NM),CO NM OK TX,Cooperative,0,False
-17718,Southwestern Public Service Co,NM TX,Investor Owned,0,False
-17732,Spanish Fork City Corporation,UT,Municipal,0,False
-17740,City of Sparta,TN,Municipal,0,False
-17826,"Springer Electric Coop, Inc",NM,Cooperative,0,False
-17828,City of Springfield - (IL),IL,Municipal,0,False
-17829,City of Springfield - (TN),TN,Municipal,0,False
-17832,Snapping Shoals El Member Corp,GA,Cooperative,0,False
-17833,City Utilities of Springfield - (MO),MO,Municipal,0,False
-17839,City of Springfield - (OR),OR,Municipal,0,False
-17845,City of Springville - (UT),UT,Municipal,0,False
-17860,City of St Charles - (IL),IL,Municipal,0,False
-17874,City of St George,UT,Municipal,0,False
-17896,City of Shasta Lake - (CA),CA,Municipal,0,False
-18006,City of Starkville,MS,Municipal,0,False
-18019,Stearns Cooperative Elec Assn,MN,Cooperative,0,False
-18022,City of Statesville - (NC),NC,Municipal,0,False
-18047,Steele-Waseca Cooperative Electric,MN,Cooperative,0,False
-18085,South Central Power Company,OH,Cooperative,0,False
-18125,Stillwater Utilities Authority,OK,Municipal,0,False
-18181,City of Stoughton - (WI),WI,Municipal,0,False
-18193,Direct Energy Business,CA CT DC DE IL MA MD ME MI NH NJ NY OH PA RI TX VA,Retail Power Marketer,0,False
-18203,Tallapoosa River Elec Coop Inc,AL,Cooperative,0,False
-18206,Strawberry Electric Serv Dist,UT,Political Subdivision,0,False
-18249,City of Sturgeon Bay - (WI),WI,Municipal,0,False
-18252,City of Sturgis - (MI),MI,Municipal,0,False
-18260,Surprise Valley Electrification,CA NV OR,Cooperative,0,False
-18280,Sulphur Springs Valley E C Inc,AZ,Cooperative,0,False
-18304,"Sumter Electric Coop, Inc",FL,Cooperative,0,False
-18305,Sumter Electric Member Corp,GA,Cooperative,0,False
-18312,Sun Prairie Utilities,WI,Municipal,0,False
-18336,Superior Water and Light Co,WI,Investor Owned,0,False
-18339,Surry-Yadkin Elec Member Corp,NC,Cooperative,0,False
-18360,Suwannee Valley Elec Coop Inc,FL,Cooperative,0,False
-18384,City of Sweetwater,TN,Municipal,0,False
-18397,City of Sylvania - (GA),GA,Municipal,0,False
-18429,City of Tacoma - (WA),WA,Municipal,0,False
-18445,City of Tallahassee - (FL),FL,Municipal,0,False
-18447,Tallahatchie Valley E P A,MS,Cooperative,0,False
-18449,"Talquin Electric Coop, Inc",FL,Cooperative,0,False
-18454,Tampa Electric Co,FL,Investor Owned,0,False
-18466,Town of Tarboro - (NC),NC,Municipal,0,False
-18472,City of Tarrant,AL,Municipal,0,False
-18476,"Tara Energy, LLC",TX,Retail Power Marketer,0,True
-18488,City of Taunton,MA,Municipal,0,False
-18498,Taylor County Rural E C C,KY,Cooperative,0,False
-18499,Three Notch Elec Member Corp,GA,Cooperative,0,False
-18642,Tennessee Valley Authority,AL KY MS NC TN,Federal,0,True
-18643,Tennessee Valley Electric Coop,TN,Cooperative,0,False
-18848,City of Thomasville - (GA),GA,Municipal,0,False
-18917,Tillamook Peoples Utility Dist,OR,Political Subdivision,0,False
-18940,Tipmont Rural Elec Member Corp,IN,Cooperative,0,False
-18943,Tippah Electric Power Assn,MS,Cooperative,0,False
-18951,Tishomingo County E P A,MS,Cooperative,0,False
-18955,"Tri-County Electric Coop, Inc (IL)",IL,Cooperative,0,False
-18956,Tri-County Elec Member Corp (GA),GA,Cooperative,0,False
-18957,Tri-County Elec Member Corp (NC),NC,Cooperative,0,False
-18976,Trinity Valley Elec Coop Inc,TX,Cooperative,0,False
-18995,Tenaska Power Services,NV TX,Retail Power Marketer,0,False
-18997,The Toledo Edison Co,OH,Investor Owned,0,False
-19007,Tombigbee Electric Power Assn,MS,Cooperative,0,False
-19107,ENGIE Resources LLC,CT DC DE IL MA MD ME NH NJ NY OH PA RI TX,Retail Power Marketer,0,False
-19108,Tideland Electric Member Corp,NC,Cooperative,0,False
-19125,City of Traverse City - (MI),MI,Municipal,0,False
-19126,"TriEagle Energy, L.P.",NJ PA TX,Retail Power Marketer,0,False
-19149,City of Trenton - (TN),TN,Municipal,0,False
-19154,Tri-State Electric Member Corp,GA NC TN,Cooperative,0,False
-19156,Powder River Energy Corp,MT WY,Cooperative,0,False
-19157,MiEnergy Cooperative,IA MN,Cooperative,0,False
-19159,"Tri-County Electric Coop, Inc (TX)",TX,Cooperative,0,False
-19160,"Tri-County Electric Coop, Inc (OK)",CO KS NM OK TX,Cooperative,0,False
-19161,"Tri-County Electric Coop, Inc (FL)",FL,Cooperative,0,False
-19162,Tri-County Elec Member Corp (TN),KY TN,Cooperative,0,False
-19189,Trico Electric Cooperative Inc,AZ,Cooperative,0,False
-19219,Diverse Power Incorporated,AL GA,Cooperative,0,False
-19225,City of Troy - (AL),AL,Municipal,0,False
-19266,Tullahoma Board-Public Utils,TN,Municipal,0,False
-19273,City of Tupelo - (MS),MS,Municipal,0,False
-19277,TDX North Slope Generating Co,AK,Investor Owned,0,False
-19281,Turlock Irrigation District,CA,Political Subdivision,0,False
-19293,Southeastern Electric Coop Inc - (SD),SD,Cooperative,0,False
-19307,City of Tuscumbia,AL,Municipal,0,False
-19324,Two Rivers Water & Light,WI,Municipal,0,False
-19325,Umatilla Electric Coop Assn,OR,Cooperative,0,False
-19327,"TXU Energy Retail Co, LLC",TX,Retail Power Marketer,0,False
-19390,"UGI Utilities, Inc",PA,Investor Owned,0,False
-19396,Tri-County Electric Coop (MI),MI,Cooperative,0,False
-19430,City of Union City,TN,Municipal,0,False
-19435,Union Electric Membership Corp - (NC),NC,Cooperative,0,False
-19436,Union Electric Co - (MO),MO,Investor Owned,0,False
-19445,"Southern Indiana R E C, Inc",IN,Cooperative,0,False
-19446,Duke Energy Kentucky,KY,Investor Owned,0,False
-19490,United Electric Coop Service Inc - (TX),TX,Cooperative,0,False
-19497,United Illuminating Co,CT,Investor Owned,0,False
-19499,"United Power, Inc",CO,Cooperative,0,True
-19501,"Union Rural Electric Coop, Inc",OH,Cooperative,0,False
-19502,"United Electric Co-op, Inc - (ID)",ID,Cooperative,0,False
-19545,"Black Hills Power, Inc.",MT SD WY,Investor Owned,0,True
-19547,Hawaiian Electric Co Inc,HI,Investor Owned,0,False
-19558,Homer Electric Assn Inc,AK,Cooperative,0,False
-19574,Upper Cumberland E M C,TN,Cooperative,0,False
-19578,Upper Peninsula Power Company,MI,Investor Owned,0,False
-19579,Upshur Rural Elec Coop Corp,TX,Cooperative,0,False
-19603,USBIA-Mission Valley Power,MT,Federal,0,False
-19604,USBIA-San Carlos Project,AZ,Federal,0,False
-19667,Utilities Dist-Western IN REMC,IN,Cooperative,0,False
-19728,"UNS Electric, Inc",AZ,Investor Owned,0,False
-19784,Vera Irrigation District #15,WA,Political Subdivision,0,False
-19785,Verdigris Valley Elec Coop Inc,OK,Cooperative,0,False
-19790,Verendrye Electric Coop Inc,ND,Cooperative,0,False
-19791,"Vermont Electric Cooperative, Inc",VT,Cooperative,0,False
-19798,City of Vernon,CA,Municipal,0,False
-19806,"Victoria Electric Coop, Inc",TX,Cooperative,0,False
-19820,Victory Electric Coop Assn Inc,KS,Cooperative,0,False
-19840,"Valley Electric Assn, Inc",CA NV,Cooperative,0,False
-19856,City of Vineland - (NJ),NJ,Municipal,0,False
-19869,Vinton Public Power Authority,LA,Political Subdivision,0,False
-19876,Virginia Electric & Power Co,NC VA,Investor Owned,0,False
-19882,Virginia Tech Electric Service,VA,State,0,False
-19896,City of Volga - (SD),SD,Municipal,0,False
-19898,Volunteer Electric Coop,TN,Cooperative,0,False
-19951,City of Wadsworth - (OH),OH,Municipal,0,False
-19981,Wake Electric Membership Corp,NC,Cooperative,0,False
-20038,Town of Wallingford - (CT),CT,Municipal,0,False
-20065,Walton Electric Member Corp,GA,Cooperative,0,False
-20130,Warren Rural Elec Coop Corp,KY,Cooperative,0,False
-20140,City of Washington - (GA),GA,Municipal,0,False
-20142,City of Washington - (NC),NC,Municipal,0,False
-20146,Washington Elec Member Corp,GA,Cooperative,0,False
-20169,Avista Corp,ID MT WA,Investor Owned,0,True
-20176,City of Water Valley - (MS),MS,Municipal,0,False
-20182,Waterloo Light & Water Comm,WI,Municipal,0,False
-20187,Watertown Municipal Utilities,SD,Municipal,0,False
-20211,Village of Waunakee - (WI),WI,Municipal,0,False
-20213,Waupun Utilities,WI,Municipal,0,False
-20216,Whitewater Valley Rural EMC,IN,Cooperative,0,False
-20222,Wayne-White Counties Elec Coop,IL,Cooperative,0,False
-20228,Weakley County Mun Elec Sys,TN,Municipal,0,False
-20230,Weatherford Mun Utility System,TX,Municipal,0,False
-20310,Town of Wellesley - (MA),MA,Municipal,0,False
-20318,Webster Electric Coop,MO,Cooperative,0,False
-20332,Wells Rural Electric Co,NV UT,Cooperative,0,False
-20334,Wellsborough Electric Co,PA,Investor Owned,0,False
-20363,West Central Electric Coop Inc - (MO),MO,Cooperative,0,False
-20371,"West Florida El Coop Assn, Inc",FL,Cooperative,0,False
-20377,West Kentucky Rural E C C,KY,Cooperative,0,False
-20382,City of West Memphis - (AR),AR,Municipal,0,False
-20394,City of West Point - (MS),MS,Municipal,0,False
-20401,West River Electric Assn Inc,SD,Cooperative,0,False
-20413,Mountrail-Williams Elec Coop,ND,Cooperative,0,False
-20434,City of Westby,WI,Municipal,0,False
-20472,"Wharton County Elec Coop, Inc",TX,Cooperative,0,False
-20476,Western Coop Electric Assn Inc,KS,Cooperative,0,False
-20477,City of Westerville - (OH),OH,Municipal,0,False
-20481,City of Westfield - (MA),MA,Municipal,0,False
-20510,"Wheatland Electric Coop, Inc",CO KS,Cooperative,0,False
-20521,Wheeling Power Co,WV,Investor Owned,0,False
-20574,White River Valley El Coop Inc,MO,Cooperative,0,False
-20576,"White River Electric Assn, Inc",CO,Cooperative,0,False
-20583,Whitehall Electric Utility,WI,Municipal,0,False
-20603,Northeastern Rural E M C,IN,Cooperative,0,False
-20639,"Wild Rice Electric Coop, Inc",MN,Cooperative,0,False
-20659,"WGL Energy Services, Inc.",DC DE MD OH PA,Retail Power Marketer,0,True
-20737,Willmar Municipal Utilities,MN,Municipal,0,False
-20785,City of Wilson - (NC),NC,Municipal,0,False
-20793,City of Winchester - (TN),TN,Municipal,0,False
-20813,City of Winfield - (KS),KS,Municipal,0,False
-20841,"Wiregrass Electric Coop, Inc",AL,Cooperative,0,False
-20845,Wolverine Power Marketing Coop,MI,Cooperative,0,False
-20847,Wisconsin Electric Power Co,WI,Investor Owned,0,False
-20856,Wisconsin Power & Light Co,WI,Investor Owned,0,False
-20860,Wisconsin Public Service Corp,WI,Investor Owned,0,False
-20862,Wisconsin Rapids W W & L Comm,WI,Municipal,0,False
-20885,Withlacoochee River Elec Coop,FL,Cooperative,0,False
-20927,"Wood County Electric Coop, Inc",TX,Cooperative,0,False
-20948,Wise Electric Coop Inc,TX,Cooperative,0,False
-20963,Woodruff Electric Coop Corp,AR,Cooperative,0,False
-20996,Wright-Hennepin Coop Elec Assn,MN,Cooperative,0,False
-20997,Yellowstone Valley Elec Co-op,MT,Cooperative,0,False
-21002,York Electric Coop Inc,NC SC,Cooperative,0,False
-21013,City of Worthington - (MN),MN,Municipal,0,False
-21048,Wyandotte Municipal Serv Comm,MI,Municipal,0,False
-21075,Y-W Electric Assn Inc,CO NE,Cooperative,0,False
-21081,Yampa Valley Electric Assn Inc,CO WY,Cooperative,0,False
-21093,3 Phases Renewables Inc,CA,Retail Power Marketer,0,False
-21111,Perennial Public Power Dist,NE,Political Subdivision,0,False
-21114,Yazoo Valley Elec Power Assn,MS,Cooperative,0,False
-21158,City of Zeeland - (MI),MI,Municipal,0,False
-21244,"Southside Electric Coop, Inc",VA,Cooperative,0,False
-21513,"Fergus Electric Coop, Inc",MT,Cooperative,0,False
-21538,"Mohave Electric Cooperative, Inc.",AZ,Cooperative,0,False
-21567,"Washington-St Tammany E C, Inc",LA,Cooperative,0,False
-21632,EnergyUnited Elec Member Corp,NC,Cooperative,0,False
-22053,Kentucky Power Co,KY,Investor Owned,0,False
-22500,"Evergy Kansas Central, Inc",KS,Investor Owned,0,False
-22690,Roosevelt County Elec Coop Inc,NM,Cooperative,0,False
-22814,Raft Rural Elec Coop Inc,ID NV UT,Cooperative,0,False
-22815,Delta Electric Power Assn,MS,Cooperative,0,False
-22822,Clark County Rural E M C - (IN),IN,Cooperative,0,False
-24211,Tucson Electric Power Co,AZ,Investor Owned,0,True
-24590,Unitil Energy Systems,NH,Investor Owned,0,False
-24753,Boone County Rural EMC,IN,Cooperative,0,False
-24889,Brunswick Electric Member Corp,NC,Cooperative,0,False
-24949,Cass County Elec Coop Inc,ND,Cooperative,0,False
-25177,Dakota Electric Association,MN,Cooperative,0,True
-25295,Western Indiana Energy REMC,IN,Cooperative,0,False
-25866,Ak-Chin Electric Utility Authority,AZ,State,0,False
-26510,Liberty Utilities (Granite State Electri,NH,Investor Owned,0,False
-27000,WAPA-- Western Area Power Administration,AZ CA CO KS MN MT ND NE NM NV SD UT WY,Federal,0,False
-27058,"High West Energy, Inc",CO NE WY,Cooperative,0,False
-27222,City of Ripley - (TN),TN,Municipal,0,False
-27238,"Southwest Electric Coop, Inc",MO,Cooperative,0,False
-27369,Taylor Electric Coop Inc - (TX),TX,Cooperative,0,False
-27599,Carroll-White REMC,IN,Cooperative,0,False
-28541,Clatskanie Peoples Util Dist,OR,Political Subdivision,0,False
-28604,Kerrville Public Utility Board,TX,Municipal,0,False
-28802,"Talen Energy Marketing, LLC",MD MT NJ PA TX,Retail Power Marketer,0,False
-28978,City of San Marcos - (TX),TX,Municipal,0,False
-30518,Electrical Dist No3 Pinal County,AZ,Political Subdivision,0,False
-31833,Okefenoke Rural El Member Corp,FL GA,Cooperative,0,False
-38084,Great Lakes Energy Coop,MI,Cooperative,0,False
-40036,Westfield Electric Company,WI,Investor Owned,0,False
-40127,Clarke-Washington E M C,AL,Cooperative,0,False
-40165,"Dixie Escalante R E A, Inc",AZ UT,Cooperative,0,False
-40166,"Chickasaw Electric Coop, Inc",TN,Cooperative,0,False
-40167,"Somerset Rural Elec Coop, Inc",PA,Cooperative,0,False
-40212,Colquitt Electric Membership Corp,GA,Cooperative,0,False
-40220,Adams Electric Cooperative Inc,PA,Cooperative,0,False
-40221,"Bedford Rural Elec Coop, Inc",PA,Cooperative,0,False
-40222,Valley Rural Electric Coop Inc,PA,Cooperative,0,False
-40224,"Central Electric Coop, Inc - (PA)",PA,Cooperative,0,False
-40228,Rappahannock Electric Coop,VA,Cooperative,0,False
-40236,"Forked Deer Electric Coop, Inc",TN,Cooperative,0,False
-40289,Claverack Rural Elec Coop Inc,PA,Cooperative,0,False
-40290,Tri-County Rural Elec Coop Inc (PA),PA,Cooperative,0,False
-40292,REA Energy Coop Inc,PA,Cooperative,0,False
-40293,"Northwestern Rural E C A, Inc - (PA)",PA,Cooperative,0,False
-40302,North East Mississippi EPA,MS,Cooperative,0,False
-40303,Monroe County Elec Power Assn,MS,Cooperative,0,False
-40304,Minnesota Valley Coop L&P Assn,MN,Cooperative,0,False
-40364,City of Courtland,AL,Municipal,0,False
-40437,Emerald People's Utility Dist,OR,Political Subdivision,0,False
-40438,Columbia River Peoples Ut Dist,OR,Political Subdivision,0,False
-40441,Town of Murphy - (NC),NC,Municipal,0,False
-40456,PUD No 1 of Whatcom County,WA,Political Subdivision,0,False
-40606,City of Grand Island - (NE),NE,Municipal,0,False
-40613,Northern California Power Agny,CA,Political Subdivision,0,False
-49730,American PowerNet,IL MD ME OH PA TX,Retail Power Marketer,0,False
-49746,The Energy Coop,PA,Cooperative,0,False
-49818,"Alliance Power Company, LLC.",TX,Retail Power Marketer,0,False
-49848,Massachusetts Bay Trans Authority,MA,Political Subdivision,0,False
-49853,Amigo Energy,TX,Retail Power Marketer,0,False
-49922,U.S. Energy Partners LLC,NY,Retail Power Marketer,0,False
-49952,3000 Energy Corp,TX,Retail Power Marketer,0,False
-49987,Harvard Dedicated Energy Limit,MA,Retail Power Marketer,0,False
-49998,City of Berea Municipal Utility,KY,Municipal,0,False
-50041,"Stream SPE, LTD",TX,Retail Power Marketer,0,False
-50046,"Texas Retail Energy, LLC",CT IL MA MD ME NH NJ NY OH PA TX VA,Retail Power Marketer,0,False
-50153,"APN Starfirst, L.P.",OH PA,Retail Power Marketer,0,False
-54728,Texas General Land Office,TX,Retail Power Marketer,0,False
-54820,Direct Energy Services,CT DC DE IL MA MD NH NJ NY OH PA RI TX,Retail Power Marketer,0,True
-54862,Champion Energy Services,CT DC DE IL MA MD ME NH NJ NY OH PA RI TX,Retail Power Marketer,0,True
-54872,"Accent Energy Holdings, LLC",TX,Retail Power Marketer,0,False
-54873,Freedom Energy,ME NH,Retail Power Marketer,0,False
-54893,NOCO Electric,NY,Retail Power Marketer,0,False
-54913,NSTAR Electric Company,MA,Investor Owned,0,False
-55722,AEP Energy,DC DE IL MD NJ OH PA,Retail Power Marketer,0,True
-55787,City of Moreno Valley - (CA),CA,Municipal,0,False
-55815,"IDT Energy, Inc.",DC IL MD NJ NY OH PA,Retail Power Marketer,0,False
-55874,"Energy Services Providers, Inc",IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-55878,Hudson Energy Services,IL MA MD NJ NY OH PA TX,Retail Power Marketer,0,True
-55937,Entergy Texas Inc.,TX,Investor Owned,0,False
-55959,Roughrider Electric Cooperativ,ND,Cooperative,0,False
-55982,Heart of Texas Electric Coop,TX,Cooperative,0,False
-56146,"Black Hills Colorado Electric, LLC",CO,Investor Owned,0,False
-56196,Just Energy New York Corp.,NY,Retail Power Marketer,0,False
-56212,"Ambit Energy Holdings, LLC",DC DE IL MA MD ME NH NJ OH PA RI TX,Retail Power Marketer,0,False
-56220,Anthracite Power & Light,PA,Retail Power Marketer,0,False
-56223,Macquarie Energy LLC,NV,Retail Power Marketer,0,False
-56248,"Young Energy, LLC",TX,Retail Power Marketer,0,False
-56265,Energy Plus Holdings LLC,CT IL MA MD NJ NY OH PA,Retail Power Marketer,0,True
-56279,"Spartan Renewable Energy, Inc",MI,Retail Power Marketer,0,False
-56286,"Frontier Utilities, LLC",IL NJ OH PA TX,Retail Power Marketer,0,False
-56379,"MC Squared Energy Services, LLC",IL,Retail Power Marketer,0,False
-56408,"UGI Energy Services, LLC",DC DE MD NJ NY PA,Retail Power Marketer,0,True
-56496,"UP Power Marketing, LLC",MI,Retail Power Marketer,0,False
-56501,"Palmco Power NJ, LLC",NJ,Retail Power Marketer,0,False
-56504,Major Energy Electric Services,CT DC IL MA MD ME NY OH,Retail Power Marketer,0,False
-56521,"Devonshire Energy, LLC",DC MA NH RI,Retail Power Marketer,0,False
-56571,AP Holdings LLC,IL MD NJ NY OH PA TX,Retail Power Marketer,0,False
-56573,"Palmco Power PA, LLC",PA,Retail Power Marketer,0,False
-56692,Marin Clean Energy,CA,Community Choice Aggregator,0,False
-56697,Ameren Illinois Company,IL,Investor Owned,0,True
-56734,Smart Prepaid Electric,TX,Retail Power Marketer,0,False
-56737,"Stream Energy Pennsylvania, LLC",PA,Retail Power Marketer,0,False
-56876,"Stream Energy Maryland, LLC",MD,Retail Power Marketer,0,False
-57037,Reliant Energy Northeast LLC,CT DC DE IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-57074,"Stream Energy New Jersey, LLC",NJ,Retail Power Marketer,0,False
-57132,"US Retailers, LLC",TX,Retail Power Marketer,0,False
-57185,"Palmco Power MD, LLC",MD,Retail Power Marketer,0,False
-57307,ENGIE Power & Gas LLC,IL MD NJ NY OH PA,Retail Power Marketer,0,False
-57313,Tesla Inc.,AZ CA CO CT DC DE FL HI IL MA MD ME NH NJ NM NV NY OH OR PA RI TX UT VA VT WA,Behind the Meter,0,False
-57350,Summer Energy LLC,TX,Retail Power Marketer,0,False
-57394,Value Based Brands LLC,TX,Retail Power Marketer,0,False
-57453,Independence Energy Group LLC,PA,Retail Power Marketer,0,False
-57459,"Wolverine Alternative Investments, LLC",TX,Retail Power Marketer,0,False
-57483,Liberty Utilities,CA,Investor Owned,0,False
-57486,"XOOM Energy Texas, LLC",TX,Retail Power Marketer,0,False
-57487,"XOOM Energy Connecticut, LLC",CT,Retail Power Marketer,0,False
-57488,"XOOM Energy Illinois, LLC",IL,Retail Power Marketer,0,False
-57489,"XOOM Energy Massachusetts, LLC",MA,Retail Power Marketer,0,False
-57490,"XOOM Energy Maryland, LLC",MD,Retail Power Marketer,0,False
-57491,"XOOM Energy New Jersey, LLC",NJ,Retail Power Marketer,0,False
-58085,"Electricity Maine, LLC",ME,Retail Power Marketer,0,False
-58086,"Electricity NH, LLC",NH,Retail Power Marketer,0,False
-58113,"Texas A&M, Utilities & Energy Services",TX,State,0,False
-58116,"Public Power & Utility of Maryland, LLC",MD,Retail Power Marketer,0,False
-58118,Public Power LLC (PA),PA,Retail Power Marketer,0,False
-58119,Public Power LLC (CT),IL MA NY OH,Retail Power Marketer,0,False
-58124,City of Winter Park - (FL),FL,Municipal,0,False
-58158,FairPoint Energy LLC,ME NH,Retail Power Marketer,0,False
-58160,Viridian Energy NY LLC,NY,Retail Power Marketer,0,False
-58161,Viridian Energy LLC,MA,Retail Power Marketer,0,False
-58162,Viridian Energy PA LLC,IL MD NJ OH PA,Retail Power Marketer,0,False
-58181,"Stream Energy New York, LLC",NY,Retail Power Marketer,0,False
-58196,"C. N. Brown Electricity, LLC",ME,Retail Power Marketer,0,False
-58248,"EnergyMark, LLC",NY,Retail Power Marketer,0,False
-58314,"Palmco Power IL, LLC",IL,Retail Power Marketer,0,False
-58339,"XOOM Energy Pennsylvania, LLC",PA,Retail Power Marketer,0,False
-58364,New Brunswick Power Generation Corp.,ME,Retail Power Marketer,0,False
-58367,"XOOM Energy New York, LLC",NY,Retail Power Marketer,0,False
-58458,Silver State Energy Association,NV,Retail Power Marketer,0,False
-58476,"Stream Energy Columbia, LLC",DC,Retail Power Marketer,0,False
-58630,"XOOM Energy Maine, LLC",ME,Retail Power Marketer,0,False
-58631,"XOOM Energy Rhode Island, LLC",RI,Retail Power Marketer,0,False
-58632,"XOOM Energy Delaware, LLC",DE,Retail Power Marketer,0,False
-58633,"XOOM Energy New Hampshire, LLC",NH,Retail Power Marketer,0,False
-58663,Respond Power LLC,NJ PA,Retail Power Marketer,0,False
-58667,"North American Power and Gas, LLC",CT IL MD ME NH NJ OH PA RI,Retail Power Marketer,0,False
-58747,"Provider Power MASS, LLC",MA,Retail Power Marketer,0,False
-58851,City of Cerritos - (CA),CA,Municipal,0,False
-58853,Kiwi Energy NY LLC,NY OH,Retail Power Marketer,0,False
-58951,"CleanChoice Energy, Inc.",DC DE IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-58952,Tomorrow Energy Corp.,IL MD NJ OH PA TX,Retail Power Marketer,0,True
-58956,"SmartEnergy Holdings, LLC",DC DE IL MA MD ME NH NJ NY OH PA RI TX,Retail Power Marketer,0,False
-58957,"Interstate Gas Supply, Inc.",IL MD OH PA,Retail Power Marketer,0,False
-58963,Brooklet Energy Distribution,TX,Retail Power Marketer,0,False
-58964,"Alpha Gas and Electric, LLC",DC IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-58966,Marathon Power LLC,MD NJ NY PA,Retail Power Marketer,0,False
-58972,"Realgy, LLC",IL OH,Retail Power Marketer,0,False
-58973,"Town Square Energy East, LLC",MD NJ OH PA,Retail Power Marketer,0,False
-58974,Clearview Electric Inc.,DC DE IL MA MD ME NH NJ NY OH PA RI,Retail Power Marketer,0,True
-58978,"Harborside Energy, LLC",NJ,Retail Power Marketer,0,False
-59013,PUD No 1 of Jefferson County,WA,Political Subdivision,0,False
-59053,"Abest Power & Gas, LLC",NY,Retail Power Marketer,0,False
-59054,"Eligo Energy, LLC",CT DC IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-59055,"Choice Energy, LLC",NJ OH PA,Retail Power Marketer,0,False
-59059,Town Square Energy,CT MA ME NH RI,Retail Power Marketer,0,False
-59062,"Horizon Power and Light, LLC",DC MD,Retail Power Marketer,0,False
-59064,"Great American Power, LLC",IL MD OH PA,Retail Power Marketer,0,False
-59065,Titan Gas LLC,DC DE IL MA MD NH NJ OH PA,Retail Power Marketer,0,False
-59082,"Family Energy, Inc. New York",NY,Retail Power Marketer,0,False
-59083,"SFE Energy Pennsylvania, Inc.",PA,Retail Power Marketer,0,False
-59084,"SFE Energy Maryland, Inc.",MD,Retail Power Marketer,0,False
-59085,"SFE Energy NJ, Inc.",NJ,Retail Power Marketer,0,False
-59086,"Constellation Solar Holding, LLC",AZ CA CT DC DE MA MD,Behind the Meter,0,False
-59088,"Nordic Energy Services, LLC",DC DE IL MA MD NJ NY OH PA RI,Retail Power Marketer,0,False
-59126,Sonoma Clean Power Authority,CA,Community Choice Aggregator,0,False
-59128,MPower Energy LLC,NY,Retail Power Marketer,0,False
-59310,"Inspire Energy Holdings, LLC",DC DE IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-59311,"XOOM Energy Ohio, LLC",OH,Retail Power Marketer,0,False
-59312,"XOOM Energy Washington DC, LLC",DC,Retail Power Marketer,0,False
-59313,"Palmco Power MA, LLC",MA,Retail Power Marketer,0,False
-59385,"Dynegy Energy Services, LLC",IL MA OH PA,Retail Power Marketer,0,False
-59410,"Shipley Choice, LLC",MD OH PA,Retail Power Marketer,0,False
-59505,Heartland REMC,IN,Cooperative,0,False
-59579,Sunnova,AR AZ CA CO CT DC DE FL GA HI ID IL IN KS KY LA MA MD ME MI MN MO NC NH NJ NM NV NY OH OK OR PA RI SC TX UT VA WA WI WV,Behind the Meter,0,False
-59580,"SunPower Capital, LLC",AZ CA CO CT HI MA NJ NV NY PA VT,Behind the Meter,0,False
-59620,Verde Energy USA,DC MA NJ NY OH PA,Retail Power Marketer,0,False
-59622,"Ahana Renewables, LLC",AZ CA CO DC HI IL IN MA MD ME MI NH NJ NM NY OR PA RI VT,Behind the Meter,0,False
-59625,Lancaster Choice Energy,CA,Community Choice Aggregator,0,False
-59647,Sunrun Inc.,AZ CA CO CT DC DE FL HI IL MA MD NH NJ NM NV NY OR PA RI SC TX UT VT,Behind the Meter,0,False
-59676,"Collegiate Clean Energy, LLC",VA,Retail Power Marketer,0,False
-59679,Aggregated Transit Energy,MA,Retail Power Marketer,0,False
-59734,"SFE Energy Massachusetts, Inc.",MA,Retail Power Marketer,0,False
-59763,"Consolidated Power Co., LLC",NY,Retail Power Marketer,0,False
-59793,"First Point Power, LLC",CT DE MA ME NH NJ PA RI,Retail Power Marketer,0,False
-59797,Park Power LLC,DC DE IL MD OH PA,Retail Power Marketer,0,False
-59799,American Power & Gas,IL MA MD NJ NY OH PA,Retail Power Marketer,0,False
-59807,"Rushmore Energy, LLC",DE IL MD NJ OH PA,Retail Power Marketer,0,False
-59808,MP2 Energy LLC,CT DC DE IL MA MD ME NH NJ NY OH PA RI TX VA,Retail Power Marketer,0,False
-59809,"Residents Energy, LLC",DE IL MA NJ NY OH PA,Retail Power Marketer,0,False
-59810,Greenlight Energy Inc.,DE IL MD NJ NY OH PA,Retail Power Marketer,0,False
-59811,Santanna Energy Services,IL OH PA,Retail Power Marketer,0,True
-59812,New Wave Energy Corporation,MD NJ NY OH PA,Retail Power Marketer,0,False
-59818,Algonquin Energy Services,ME,Retail Power Marketer,0,False
-59848,"ResCom Energy, LLC",DE IL OH,Retail Power Marketer,0,False
-59931,"MidAmerican Energy Services, LLC",DC DE IL MA MD NJ NY OH PA TX,Retail Power Marketer,0,True
-59943,Spruce Finance,AZ CA CO CT HI LA MA MD NJ NV NY,Behind the Meter,0,False
-59972,The Regents of the Univ. of California,CA,Retail Power Marketer,0,False
-59993,Discount Power Inc - (CT),DE MA MD NJ OH PA RI,Retail Power Marketer,0,False
-60025,Greenbacker Renewable Energy Corporation,AR AZ CA CO CT FL HI IN MA MD NC NJ NV NY RI TN VT,Behind the Meter,0,False
-60124,Spring Energy RRH LLC,MD NJ PA,Retail Power Marketer,0,False
-60181,CleanPowerSF,CA,Community Choice Aggregator,0,False
-60202,Electranet Power LLC,TX,Retail Power Marketer,0,False
-60218,MPower Energy NJ LLC,DC IL MD NJ OH PA,Retail Power Marketer,0,False
-60402,Peninsula Clean Energy Authority,CA,Community Choice Aggregator,0,False
-60482,CKenergy Electric Cooperative,OK,Cooperative,0,False
-60579,"SFE Energy Ohio, Inc.",OH,Retail Power Marketer,0,False
-60583,Atlantic Energy LLC,DC DE IL MA MD NJ NY OH PA TX,Retail Power Marketer,0,False
-60631,Upper Michigan Energy Resources Corp.,MI,Investor Owned,0,False
-60696,"Vista Energy Marketing, L.P.",IL NJ OH PA,Retail Power Marketer,0,False
-60758,Apple Valley Choice Energy,CA,Community Choice Aggregator,0,False
-60759,Silicon Valley Clean Energy Authority,CA,Community Choice Aggregator,0,False
-60839,Southern Pioneer Electric Company,KS,Cooperative,0,False
-60868,Redwood Coast Energy Authority,CA,Community Choice Aggregator,0,False
-60914,Current Power & Gas Inc.,OH,Retail Power Marketer,0,False
-60977,StateWise Energy Ohio LLC,OH,Retail Power Marketer,0,False
-60981,"TerraForm US Energy Services, LLC",AZ CA CO CT FL GA HI MA MD NH NJ NY OR PA TX VT,Behind the Meter,0,False
-61059,"Renaissance Power & Gas, Inc.",DC MA NY OH PA,Retail Power Marketer,0,False
-61083,Pico Rivera Innovative Municipal Energy,CA,Community Choice Aggregator,0,False
-61092,"Stream Energy Illinois, LLC",IL,Retail Power Marketer,0,False
-61131,Freepoint Energy Solutions LLC,DC DE IL MD NJ NY OH PA TX,Retail Power Marketer,0,False
-61200,"Summer Energy Northeast, LLC",MA NH,Retail Power Marketer,0,False
-61201,"Stream Energy Delaware, LLC",DE,Retail Power Marketer,0,False
-61206,Total Gas & Power North America Inc,TX,Retail Power Marketer,0,False
-61264,Heritage Power LLC,TX,Retail Power Marketer,0,False
-61265,Pogo Energy LLC,TX,Retail Power Marketer,0,False
-61283,"Palmco Power DC, LLC",DC,Retail Power Marketer,0,False
-61349,"Palmco Power DE, LLC",DE,Retail Power Marketer,0,False
-61353,Philadelphia Authority for Industrial Development,PA,Municipal,0,False
-61367,South Bay Energy Corp.,IL NJ NY OH PA,Retail Power Marketer,0,False
-61431,Pioneer Community Energy,CA,Community Choice Aggregator,0,False
-61432,Central Coast Community Energy,CA,Community Choice Aggregator,0,False
-61433,San Jacinto Power,CA,Community Choice Aggregator,0,False
-61462,Valley Clean Energy Alliance,CA,Community Choice Aggregator,0,False
-61471,Rancho Mirage Energy Authority,CA,Community Choice Aggregator,0,False
-61475,Ava Community Energy,CA,Community Choice Aggregator,0,False
-61479,"Stream Ohio Gas & Electric, LLC",OH,Retail Power Marketer,0,False
-61526,Clean Power Alliance of Southern Califor,CA,Community Choice Aggregator,0,False
-61570,King City Community Power,CA,Community Choice Aggregator,0,False
-61823,"Greenskies Renewable Energy, LLC",CA CO CT FL MA NJ PA,Behind the Meter,0,False
-61855,"Pulse Power, LLC",TX,Retail Power Marketer,0,False
-61858,San Jose Clean Energy,CA,Community Choice Aggregator,0,False
-61920,"All American Power and Gas, LLC",NJ NY OH PA,Retail Power Marketer,0,False
-61922,"Pure Energy USA, LLC",IL NJ NY OH PA,Retail Power Marketer,0,False
-61972,"SunSea Energy, LLC",DC NJ NY OH,Retail Power Marketer,0,False
-62094,"SFE Energy Illinois, Inc.",IL,Retail Power Marketer,0,False
-62117,"SFE Energy Texas, Inc.",TX,Retail Power Marketer,0,False
-62148,Powervine Energy,MD OH PA,Retail Power Marketer,0,False
-62154,StateWise Energy Maryland LLC,MD,Retail Power Marketer,0,False
-62156,"Power UP Energy, LLC",NJ NY PA,Retail Power Marketer,0,False
-62790,"Summer Energy Midwest, LLC",IL OH PA,Retail Power Marketer,0,False
-62862,Chariot Energy,TX,Retail Power Marketer,0,True
-62914,StateWise Energy Pennsylvania LLC,PA,Retail Power Marketer,0,False
-62952,"Southern Federal Power, LLC",TX,Retail Power Marketer,0,False
-62987,Octopus Energy LLC,TX,Retail Power Marketer,0,True
-63007,First Choice Energy LLC,NY,Retail Power Marketer,0,False
-63008,Agressive Energy LLC,IL MD NJ NY OH PA,Retail Power Marketer,0,False
-63122,"Approved Energy II, LLC",NJ NY OH PA,Retail Power Marketer,0,False
-63168,Median Energy Corp.,DC MD NJ NY OH,Retail Power Marketer,0,False
-63169,Median Energy PA LLC,PA,Retail Power Marketer,0,False
-63232,"National Gas & Electric, LLC",MA MD NJ OH PA,Retail Power Marketer,0,False
-63356,SmartestEnergy US LLC,CT DC DE IL MA MD NJ NY OH PA RI,Retail Power Marketer,0,False
-63364,"Mirabito Power & Gas, LLC",NY,Retail Power Marketer,0,False
-63367,Commercial Energy of California,CA,Retail Power Marketer,0,False
-63422,Varsity Energy,TX,Retail Power Marketer,0,False
-63546,"Provision Power & Gas, LLC",OH,Retail Power Marketer,0,False
-63570,"Chief Energy Power, LLC",NY,Retail Power Marketer,0,False
-63695,"RPA Energy, Inc.",DC DE IL MD NJ OH PA,Retail Power Marketer,0,False
-63725,Pomona Choice Energy (PCE),CA,Community Choice Aggregator,0,False
-63870,Click Energy LLC,PA,Retail Power Marketer,0,False
-64011,Rhythm Ops LLC,TX,Retail Power Marketer,0,False
-64195,Desert Community Energy,CA,Community Choice Aggregator,0,False
-64222,"Grid Power Direct, LLC",CT DC IL MA NJ NY OH PA,Retail Power Marketer,0,False
-64289,San Diego Community Power,CA,Community Choice Aggregator,0,False
-64312,"JP Energy Resources, LLC",TX,Retail Power Marketer,0,False
-64314,BP Energy Retail LLC,CA CT DC DE IL MA MD ME NH NJ NY OH PA RI TX VA,Retail Power Marketer,0,False
-64425,Clean Energy Alliance,CA,Community Choice Aggregator,0,False
-64521,Ironhorse Power Services LLC,TX,Retail Power Marketer,0,False
-64543,StateWise Energy Illinois LLC,IL,Retail Power Marketer,0,False
-64554,OhmConnect Texas LLC,TX,Retail Power Marketer,0,False
-64555,Santa Barbara Clean Energy,CA,Community Choice Aggregator,0,False
-64601,LE Energy,OH,Retail Power Marketer,0,False
-64653,Declaration Energy LLC,TX,Retail Power Marketer,0,False
-64682,"Gexa Energy, LP",TX,Retail Power Marketer,0,True
-64705,"NTHERM, LLC",OH PA,Retail Power Marketer,0,False
-64727,Branch Energy Texas LLC,TX,Retail Power Marketer,0,False
-64906,Mothership,TX,Retail Power Marketer,0,False
-64923,Capital Energy PA LLC,TX,Retail Power Marketer,0,False
-64928,Orange County Power Authority,CA,Community Choice Aggregator,0,False
-64929,"Good Charlie & Co., LLC",TX,Retail Power Marketer,0,False
-64974,PBF Power Marketing,DE NJ OH,Retail Power Marketer,0,False
-64977,Revolution Energy LLC,TX,Retail Power Marketer,0,False
-65242,"Scale Sustainable I, LLC",CA CO DE NJ OR PA,Behind the Meter,0,False
-65259,Energy for Palmdale's Independent Choice,CA,Community Choice Aggregator,0,False
-65261,Gila River Indian Utility Authority (GRICUA),AZ,Cooperative,0,False
-65262,"Archer Energy, LLC",OH RI,Retail Power Marketer,0,False
-65310,Energywell LLC,CT DC DE IL MA MD ME NH NJ NY OH PA RI,Retail Power Marketer,0,False
-65314,"BKV-BPP Retail, LLC",TX,Retail Power Marketer,0,False
-65335,Pay Less Energy LLC,NJ NY,Retail Power Marketer,0,False
-65353,Arrow Energy TX LLC,TX,Retail Power Marketer,0,False
-65413,Tesla Energy Ventures,TX,Retail Power Marketer,0,False
-65439,CPV Retail Energy LP,DC DE IL MD NJ OH PA,Retail Power Marketer,0,False
-65610,Ammper Power LLC,TX,Retail Power Marketer,0,False
-65613,"ABN Energy, LLC",NY,Retail Power Marketer,0,False
-65649,Community Power Coalition of NH,NH,Community Choice Aggregator,0,False
-66017,"All Choice Energy, LLC",NY PA,Retail Power Marketer,0,False
-66026,"Palmetto Solar, LLC",AZ CA CO CT FL GA IL KS MA MD ME MI NC NH NJ NM NV NY OH OK PA RI TX,Behind the Meter,0,False
-66036,"EverBright, LLC",AR AZ CA CO CT IL MA MD ME NH NJ OH RI TX,Behind the Meter,0,False
-66073,MPD Electric Cooperative,SC,Cooperative,0,False
-66082,Eastside Power Authority,CA,Political Subdivision,0,False
-66101,FirstEnergy Pennsylvania Electric Co,NY PA,Investor Owned,0,False
-66113,"EcoPlus Power, LLC",IL NJ OH PA,Retail Power Marketer,0,False
-66116,"Robindale Retail Power Services, LLC",PA,Retail Power Marketer,0,False
-66118,Spartacus Energy Services LLC,NJ PA,Retail Power Marketer,0,False
-66164,"TerraForm Renewable Energy Services, LLC",TX,Retail Power Marketer,0,False
-66173,Northeastern Power and Gas LLC,NY,Retail Power Marketer,0,False
-66332,"Base Texas REP, LLC",TX,Retail Power Marketer,0,False
-66333,"Light Energy, LLC",TX,Retail Power Marketer,0,False
-66398,Brookfield Renewable Trading and Marketing LP,NH NY,Retail Power Marketer,0,False
-66399,Brookfield Renewable Energy Marketing US LLC,MD NV NY OR WA,Retail Power Marketer,0,False
-66435,"MEMS Industrial Supply, LLC",TX,Retail Power Marketer,0,False
-66436,Maison Energy LLC,TX,Retail Power Marketer,0,False
-66582,Pumpjack Power LLC,TX,Retail Power Marketer,0,False
-66678,Polaris Power Services LLC,NJ NY PA,Retail Power Marketer,0,False
-66851,Gridmatic Retail LLC,TX,Retail Power Marketer,0,False
-66867,David Energy Supply LLC,MA NJ NY TX,Retail Power Marketer,0,False
-67076,"FlowX, LLC",TX,Retail Power Marketer,0,False
-67122,Selfserve Energy Corp.,TX,Retail Power Marketer,0,False
-88888,Withheld,TX,Retail Power Marketer,0,False
-99999,Adjustment 2024,AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY,,0,False
+6452,Florida Power & Light Co,FL,Investor Owned,5905174,False
+14328,Pacific Gas & Electric Co.,CA,Investor Owned,5725404,False
+17609,Southern California Edison Co,CA,Investor Owned,5297361,False
+4110,Commonwealth Edison Co,IL,Investor Owned,4130749,False
+99999,Adjustment 2024,AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY,,4018973,False
+4226,Consolidated Edison Co-NY Inc,NY,Investor Owned,3646787,False
+5416,"Duke Energy Carolinas, LLC",NC SC,Investor Owned,2907065,False
+7140,Georgia Power Co,GA,Investor Owned,2804103,False
+19876,Virginia Electric & Power Co,NC VA,Investor Owned,2783257,False
+15477,Public Service Elec & Gas Co,NJ,Investor Owned,2389765,True
+5109,DTE Electric Company,MI,Investor Owned,2283306,True
+14354,PacifiCorp,CA ID OR UT WA WY,Investor Owned,2104092,False
+66101,FirstEnergy Pennsylvania Electric Co,NY PA,Investor Owned,2090445,True
+6455,"Duke Energy Florida, LLC",FL,Investor Owned,2009464,False
+4254,Consumers Energy Co - (MI),MI,Investor Owned,1894492,True
+19327,"TXU Energy Retail Co, LLC",TX,Retail Power Marketer,1839776,False
+3046,Duke Energy Progress - (NC),NC SC,Investor Owned,1753575,False
+13573,Niagara Mohawk Power Corp.,NY,Investor Owned,1718921,False
+13374,"Constellation NewEnergy, Inc",CA CT DC DE IL MA MD ME MI NH NJ NY OH OR PA RI TX VA,Retail Power Marketer,1711303,True
+14940,PECO Energy Co,PA,Investor Owned,1706299,False
+15847,Reliant Energy Retail Services,TX,Retail Power Marketer,1657903,False
+15466,Public Service Co of Colorado,CO,Investor Owned,1589710,True
+13781,Northern States Power Co - Minnesota,MN ND SD,Investor Owned,1577476,False
+195,Alabama Power Co,AL,Investor Owned,1546483,False
+14006,Ohio Power Co,OH,Investor Owned,1533265,False
+54913,NSTAR Electric Company,MA,Investor Owned,1526558,False
+16609,San Diego Gas & Electric Co,CA,Investor Owned,1525968,False
+11208,Los Angeles Department of Water & Power,CA,Municipal,1510995,False
+14715,PPL Electric Utilities Corp,PA,Investor Owned,1487347,True
+803,Arizona Public Service Co,AZ,Investor Owned,1400037,False
+11804,Massachusetts Electric Co,MA,Investor Owned,1373756,False
+1167,Baltimore Gas & Electric Co,MD,Investor Owned,1342757,False
+54820,Direct Energy Services,CT DC DE IL MA MD NH NJ NY OH PA RI TX,Retail Power Marketer,1291316,True
+4176,Connecticut Light & Power Co,CT,Investor Owned,1290878,False
+19436,Union Electric Co - (MO),MO,Investor Owned,1264469,False
+6458,Energy Harbor Corp.,IL MD MI NJ OH PA,Retail Power Marketer,1264310,True
+15500,Puget Sound Energy Inc,WA,Investor Owned,1238151,True
+56697,Ameren Illinois Company,IL,Investor Owned,1224108,True
+9726,Jersey Central Power & Lt Co,NJ,Investor Owned,1171837,False
+20847,Wisconsin Electric Power Co,WI,Investor Owned,1170318,False
+16572,Salt River Project,AZ,Political Subdivision,1166094,True
+11171,Long Island Power Authority,NY,State,1161788,False
+11241,Entergy Louisiana LLC,LA,Investor Owned,1109156,True
+13998,Ohio Edison Co,OH,Investor Owned,1074066,False
+13407,Nevada Power Co,NV,Investor Owned,1035139,False
+733,Appalachian Power Co,VA WV,Investor Owned,967408,False
+16604,City of San Antonio - (TX),TX,Municipal,962272,False
+15270,Potomac Electric Power Co,DC MD,Investor Owned,949732,False
+15248,Portland General Electric Co,OR,Investor Owned,942880,True
+64289,San Diego Community Power,CA,Community Choice Aggregator,942024,True
+13511,New York State Elec & Gas Corp,NY,Investor Owned,921369,False
+15470,"Duke Energy Indiana, LLC",IN,Investor Owned,909011,True
+14063,Oklahoma Gas & Electric Co,AR OK,Investor Owned,902714,False
+18454,Tampa Electric Co,FL,Investor Owned,849876,False
+12341,MidAmerican Energy Co,IA IL SD,Investor Owned,829296,True
+61526,Clean Power Alliance of Southern Califor,CA,Community Choice Aggregator,821164,False
+17539,"Dominion Energy South Carolina, Inc",SC,Investor Owned,806434,True
+3542,Duke Energy Ohio Inc,OH,Investor Owned,759800,False
+3755,Cleveland Electric Illum Co,OH,Investor Owned,758455,False
+59385,"Dynegy Energy Services, LLC",IL MA OH PA,Retail Power Marketer,735337,False
+814,Entergy Arkansas LLC,AR TN,Investor Owned,732671,True
+7279,"NextEra Energy Services, LLC",CT DC DE IL MA MD ME NH NJ NY OH PA RI,Retail Power Marketer,728359,True
+59647,Sunrun Inc.,AZ CA CO CT DC DE FL HI IL MA MD NH NJ NM NV NY OR PA RI SC TX UT VT,Behind the Meter,676938,True
+16534,Sacramento Municipal Util Dist,CA,Political Subdivision,666235,False
+3266,Central Maine Power Co,ME,Investor Owned,657328,False
+61475,Ava Community Energy,CA,Community Choice Aggregator,642188,False
+9191,Idaho Power Co,ID OR,Investor Owned,641567,False
+55722,AEP Energy,DC DE IL MD NJ OH PA,Retail Power Marketer,634809,True
+9324,Indiana Michigan Power Co,IN MI,Investor Owned,614556,False
+5487,Duquesne Light Co,PA,Investor Owned,613788,False
+56692,Marin Clean Energy,CA,Community Choice Aggregator,585162,False
+10000,Evergy Metro,KS MO,Investor Owned,584890,True
+15474,Public Service Co of Oklahoma,OK,Investor Owned,574759,True
+10171,Kentucky Utilities Co,KY VA,Investor Owned,574094,False
+963,Atlantic City Electric Co,NJ,Investor Owned,572775,False
+1015,Austin Energy,TX,Municipal,562004,True
+5027,Delmarva Power,DE MD,Investor Owned,554699,False
+17698,Southwestern Electric Power Co,AR LA TX,Investor Owned,554134,False
+15473,Public Service Co of NM,NM,Investor Owned,552638,True
+15472,Public Service Co of NH,NH,Investor Owned,542058,True
+4922,Dayton Power & Light Co,OH,Investor Owned,540836,False
+9617,JEA,FL,Municipal,531883,True
+9273,AES Indiana,IN,Investor Owned,530802,True
+55937,Entergy Texas Inc.,TX,Investor Owned,519216,True
+13214,The Narragansett Electric Co,RI,Investor Owned,514663,False
+16868,City of Seattle - (WA),WA,Municipal,512498,False
+9417,Interstate Power and Light Co,IA,Investor Owned,504146,False
+20856,Wisconsin Power & Light Co,WI,Investor Owned,501644,False
+13756,Northern Indiana Pub Serv Co,IN,Investor Owned,492700,False
+57037,Reliant Energy Northeast LLC,CT DC DE IL MA MD NJ NY OH PA,Retail Power Marketer,488488,False
+20860,Wisconsin Public Service Corp,WI,Investor Owned,467910,False
+57132,"US Retailers, LLC",TX,Retail Power Marketer,466377,False
+13216,Nashville Electric Service,TN,Municipal,463455,False
+56212,"Ambit Energy Holdings, LLC",DC DE IL MA MD ME NH NJ OH PA RI TX,Retail Power Marketer,462410,False
+12685,Entergy Mississippi LLC,MS,Investor Owned,460181,True
+5701,El Paso Electric Co,NM TX,Investor Owned,459472,False
+14626,"Pedernales Electric Coop, Inc",TX,Cooperative,457598,False
+24211,Tucson Electric Power Co,AZ,Investor Owned,455209,True
+9949,Just Energy,MA PA TX,Retail Power Marketer,449016,True
+15263,The Potomac Edison Company,MD WV,Investor Owned,448509,False
+61432,Central Coast Community Energy,CA,Community Choice Aggregator,448049,False
+11249,Louisville Gas & Electric Co,KY,Investor Owned,437737,False
+7554,Green Mountain Energy Company,IL MA MD NJ NY PA TX,Retail Power Marketer,429823,True
+12293,City of Memphis - (TN),TN,Municipal,423338,False
+20169,Avista Corp,ID MT WA,Investor Owned,422167,True
+12825,NorthWestern Energy LLC - (MT),MT WY,Investor Owned,416006,True
+14127,Omaha Public Power District,NE,Political Subdivision,413414,False
+17718,Southwestern Public Service Co,NM TX,Investor Owned,408769,False
+22500,"Evergy Kansas Central, Inc",KS,Investor Owned,397226,True
+12796,Monongahela Power Co,WV,Investor Owned,397195,False
+16183,Rochester Gas & Electric Corp,NY,Investor Owned,392342,False
+60181,CleanPowerSF,CA,Community Choice Aggregator,384194,False
+17470,PUD No 1 of Snohomish County,WA,Political Subdivision,382062,False
+17166,Sierra Pacific Power Co,NV,Investor Owned,381873,False
+61858,San Jose Clean Energy,CA,Community Choice Aggregator,354402,False
+12698,Evergy Missouri West,MO,Investor Owned,346784,True
+10005,"Evergy Kansas South, Inc",KS,Investor Owned,346494,True
+19497,United Illuminating Co,CT,Investor Owned,345877,True
+12470,Middle Tennessee E M C,TN,Cooperative,344295,False
+57313,Tesla Inc.,AZ CA CO CT DC DE FL HI IL MA MD ME NH NJ NM NV NY OH OR PA RI TX UT VA VT WA,Behind the Meter,337342,False
+64682,"Gexa Energy, LP",TX,Retail Power Marketer,327731,True
+5078,"Denton County Elec Coop, Inc",TX,Cooperative,323783,False
+3249,Central Hudson Gas & Elec Corp,NY,Investor Owned,321192,True
+18997,The Toledo Edison Co,OH,Investor Owned,316087,False
+60402,Peninsula Clean Energy Authority,CA,Community Choice Aggregator,311640,False
+19547,Hawaiian Electric Co Inc,HI,Investor Owned,309839,False
+3265,Cleco Power LLC,LA,Investor Owned,295385,True
+58957,"Interstate Gas Supply, Inc.",IL MD OH PA,Retail Power Marketer,292738,False
+59310,"Inspire Energy Holdings, LLC",DC DE IL MA MD NJ NY OH PA,Retail Power Marketer,283681,False
+14610,Orlando Utilities Comm,FL,Municipal,282182,False
+60759,Silicon Valley Clean Energy Authority,CA,Community Choice Aggregator,276695,False
+7601,Green Mountain Power Corp,VT,Investor Owned,275494,True
+13780,Northern States Power Co,MI WI,Investor Owned,271298,False
+56379,"MC Squared Energy Services, LLC",IL,Retail Power Marketer,262779,False
+9601,Jackson Electric Member Corp - (GA),GA,Cooperative,262629,False
+3989,City of Colorado Springs - (CO),CO,Municipal,260682,False
+20885,Withlacoochee River Elec Coop,FL,Cooperative,259639,False
+10857,"Lee County Electric Coop, Inc - (FL)",FL,Cooperative,257631,False
+18304,"Sumter Electric Coop, Inc",FL,Cooperative,252367,False
+14154,Orange & Rockland Utils Inc,NY,Investor Owned,244791,False
+3660,PUD No 1 of Clark County - (WA),WA,Political Subdivision,239896,False
+54862,Champion Energy Services,CT DC DE IL MA MD ME NH NJ NY OH PA RI TX,Retail Power Marketer,239870,True
+58951,"CleanChoice Energy, Inc.",DC DE IL MA MD NJ NY OH PA,Retail Power Marketer,236756,False
+59126,Sonoma Clean Power Authority,CA,Community Choice Aggregator,230656,False
+3916,Cobb Electric Membership Corp,GA,Cooperative,224124,False
+57394,Value Based Brands LLC,TX,Retail Power Marketer,221191,False
+9094,City of Huntsville - (AL),AL,Municipal,220576,False
+10421,Knoxville Utilities Board,TN,Municipal,219297,False
+59793,"First Point Power, LLC",CT DE MA ME NH NJ PA RI,Retail Power Marketer,218396,False
+17543,South Carolina Public Service Authority,SC,State,216494,False
+64928,Orange County Power Authority,CA,Community Choice Aggregator,216096,False
+13478,"Entergy New Orleans, LLC",LA,Investor Owned,208845,True
+64425,Clean Energy Alliance,CA,Community Choice Aggregator,208611,False
+18429,City of Tacoma - (WA),WA,Municipal,203185,False
+16865,Sawnee Electric Membership Corporation,GA,Cooperative,202144,False
+58956,"SmartEnergy Holdings, LLC",DC DE IL MA MD ME NH NJ NY OH PA RI TX,Retail Power Marketer,201843,False
+3408,City of Chattanooga - (TN),GA TN,Municipal,200605,False
+3757,"Clay Electric Cooperative, Inc - (FL)",FL,Cooperative,193986,False
+12686,Mississippi Power Co,MS,Investor Owned,192416,False
+59579,Sunnova,AR AZ CA CO CT DC DE FL GA HI ID IL IN KS KY LA MA MD ME MI MN MO NC NH NJ NM NV NY OH OK OR PA RI SC TX UT VA WA WI WV,Behind the Meter,189581,False
+5860,Empire District Electric Co,AR KS MO OK,Investor Owned,188414,False
+13640,Northern Virginia Elec Coop,VA,Cooperative,182074,False
+40228,Rappahannock Electric Coop,VA,Cooperative,180962,False
+9336,CORE Electric Cooperative,CO,Cooperative,180823,False
+17637,Southern Maryland Elec Coop Inc,MD,Cooperative,177155,False
+50041,"Stream SPE, LTD",TX,Retail Power Marketer,173162,False
+11479,Madison Gas & Electric Co,WI,Investor Owned,168932,True
+970,Homefield Energy,IL,Retail Power Marketer,166014,False
+61431,Pioneer Community Energy,CA,Community Choice Aggregator,165656,False
+1179,Versant Power,ME,Investor Owned,165560,False
+9216,Imperial Irrigation District,CA,Political Subdivision,164802,False
+22053,Kentucky Power Co,KY,Investor Owned,162507,False
+19446,Duke Energy Kentucky,KY,Investor Owned,154073,False
+17633,Southern Indiana Gas & Elec Co,IN,Investor Owned,153371,False
+11018,Lincoln Electric System,NE,Municipal,153069,False
+12647,"ALLETE, Inc.",MN,Investor Owned,152342,False
+49853,Amigo Energy,TX,Retail Power Marketer,152249,False
+7090,GreyStone Power Corporation,GA,Cooperative,152146,False
+689,Connexus Energy,MN,Cooperative,146640,True
+56286,"Frontier Utilities, LLC",IL NJ OH PA TX,Retail Power Marketer,145903,False
+11501,Magic Valley Electric Coop Inc,TX,Cooperative,145755,False
+12199,Montana-Dakota Utilities Co,MT ND SD WY,Investor Owned,145686,False
+20065,Walton Electric Member Corp,GA,Cooperative,142923,False
+21632,EnergyUnited Elec Member Corp,NC,Cooperative,142201,False
+19159,"Tri-County Electric Coop, Inc (TX)",TX,Cooperative,139316,False
+10623,City of Lakeland - (FL),FL,Municipal,136543,False
+14232,Otter Tail Power Co,MN ND SD,Investor Owned,134397,False
+12745,Modesto Irrigation District,CA,Political Subdivision,133517,False
+1613,Berkeley Electric Coop Inc,SC,Cooperative,133248,False
+1892,"Bluebonnet Electric Coop, Inc",TX,Cooperative,133219,False
+38084,Great Lakes Energy Coop,MI,Cooperative,132252,False
+19898,Volunteer Electric Coop,TN,Cooperative,128502,False
+18085,South Central Power Company,OH,Cooperative,127851,False
+65649,Community Power Coalition of NH,NH,Community Choice Aggregator,126328,False
+590,City of Anaheim - (CA),CA,Municipal,123665,False
+17833,City Utilities of Springfield - (MO),MO,Municipal,121603,False
+3093,Carroll Electric Coop Corp - (AR),AR MO,Cooperative,121243,False
+18445,City of Tallahassee - (FL),FL,Municipal,120220,False
+5202,Dixie Electric Membership Corp - (LA),LA,Cooperative,119120,False
+5070,Delaware Electric Cooperative,DE,Cooperative,118644,False
+56571,AP Holdings LLC,IL MD NJ NY OH PA TX,Retail Power Marketer,118385,False
+17684,Southwest Louisiana E M C,LA,Cooperative,117346,False
+24889,Brunswick Electric Member Corp,NC,Cooperative,117339,False
+25177,Dakota Electric Association,MN,Cooperative,116814,True
+19499,"United Power, Inc",CO,Cooperative,114378,True
+3522,Chugach Electric Assn Inc,AK,Cooperative,113378,False
+16088,City of Riverside - (CA),CA,Municipal,113373,False
+4624,Cumberland Elec Member Corp,TN,Cooperative,112512,False
+19126,"TriEagle Energy, L.P.",NJ PA TX,Retail Power Marketer,112190,False
+17832,Snapping Shoals El Member Corp,GA,Cooperative,109742,False
+61855,"Pulse Power, LLC",TX,Retail Power Marketer,107964,False
+19728,"UNS Electric, Inc",AZ,Investor Owned,107484,False
+59580,"SunPower Capital, LLC",AZ CA CO CT HI MA NJ NV NY PA VT,Behind the Meter,107002,False
+13716,North Georgia Elec Member Corp,GA,Cooperative,106316,False
+19490,United Electric Coop Service Inc - (TX),TX,Cooperative,105631,True
+6909,Gainesville Regional Utilities,FL,Municipal,104509,False
+6342,First Electric Coop Corp,AR,Cooperative,103960,False
+7752,Guadalupe Valley Elec Coop Inc,TX,Cooperative,103781,False
+56146,"Black Hills Colorado Electric, LLC",CO,Investor Owned,101718,True
+17066,Shenandoah Valley Elec Coop,VA,Cooperative,100827,False
+4100,Just Energy Solutions Inc.,DE IL MD NJ OH PA,Retail Power Marketer,100519,True
+6182,"Farmers Electric Coop, Inc - (TX)",TX,Cooperative,100359,False
+59059,Town Square Energy,CT MA ME NH RI,Retail Power Marketer,100314,False
+64011,Rhythm Ops LLC,TX,Retail Power Marketer,100169,True
+6022,City of Eugene - (OR),OR,Municipal,99939,False
+10704,City of Lansing - (MI),MI,Municipal,99649,False
+8786,Horry Electric Coop Inc,SC,Cooperative,99014,False
+6411,Flint Electric Membership Corp,GA,Cooperative,96707,False
+19281,Turlock Irrigation District,CA,Political Subdivision,95746,False
+7559,"Grayson-Collin Elec Coop, Inc",TX,Cooperative,95519,False
+13337,Nebraska Public Power District,NE SD,Political Subdivision,94662,False
+59808,MP2 Energy LLC,CT DC DE IL MA MD ME NH NJ NY OH PA RI TX VA,Retail Power Marketer,93987,False
+16613,Sam Houston Electric Coop Inc,TX,Cooperative,93486,False
+10376,Kissimmee Utility Authority,FL,Municipal,91561,False
+1149,Baldwin County El Member Corp,AL,Cooperative,91368,False
+55874,"Energy Services Providers, Inc",IL MA MD NJ NY OH PA,Retail Power Marketer,91139,False
+7294,City of Glendale - (CA),CA,Municipal,90990,False
+20659,"WGL Energy Services, Inc.",DC DE MD OH PA,Retail Power Marketer,90314,True
+3841,Coast Electric Power Assn - (MS),MS,Cooperative,90247,False
+14289,Ozarks Electric Coop Corp - (AR),AR OK,Cooperative,90236,False
+8287,Hawaii Electric Light Co Inc,HI,Investor Owned,89923,False
+4432,Coweta-Fayette El Member Corp,GA,Cooperative,89694,False
+18976,Trinity Valley Elec Coop Inc,TX,Cooperative,88305,False
+19435,Union Electric Membership Corp - (NC),NC,Cooperative,87751,False
+59799,American Power & Gas,IL MA MD NJ NY OH PA,Retail Power Marketer,85801,True
+6235,Fayetteville Public Works Commission,NC,Municipal,85435,False
+3704,City of Clarksville - (TN),TN,Municipal,85314,False
+5399,Duck River Elec Member Corp,TN,Cooperative,85185,False
+13441,New Hampshire Elec Coop Inc,NH,Cooperative,84906,False
+9837,Jones-Onslow Elec Member Corp,NC,Cooperative,84326,False
+9777,Johnson City - (TN),TN,Municipal,84109,False
+24590,Unitil Energy Systems,NH,Investor Owned,81452,False
+1889,Blue Ridge Elec Member Corp - (NC),NC,Cooperative,80762,True
+17252,Singing River Elec Cooperative,AL MS,Cooperative,80613,False
+14398,Palmetto Electric Coop Inc,SC,Cooperative,80015,False
+6604,City of Fort Collins - (CO),CO,Municipal,79990,False
+59809,"Residents Energy, LLC",DE IL MA NJ NY OH PA,Retail Power Marketer,79125,False
+55878,Hudson Energy Services,IL MA MD NJ NY OH PA TX,Retail Power Marketer,78002,True
+19545,"Black Hills Power, Inc.",MT SD WY,Investor Owned,77522,True
+10906,City of Lenoir - (TN),TN,Municipal,77358,False
+16496,Rutherford Elec Member Corp,NC,Cooperative,76514,False
+20130,Warren Rural Elec Coop Corp,KY,Cooperative,76434,False
+6958,City of Garland - (TX),TX,Municipal,76337,False
+16213,Rockland Electric Co,NJ,Investor Owned,76034,False
+6395,Flathead Electric Coop Inc,MT,Cooperative,75982,False
+17561,South Plains Electric Coop Inc,TX,Cooperative,75401,False
+4675,Cuivre River Electric Coop Inc,MO,Cooperative,74553,False
+7639,Greenville Utilities Comm,NC,Municipal,74118,False
+3762,City of Cleveland - (OH),OH,Municipal,73666,False
+40212,Colquitt Electric Membership Corp,GA,Cooperative,72978,False
+1890,Blue Ridge Electric Coop Inc - (SC),SC,Cooperative,72913,True
+9096,City of Lafayette - (LA),LA,Municipal,72343,False
+11843,Maui Electric Co Ltd,HI,Investor Owned,71906,False
+17564,South Kentucky Rural E C C,KY TN,Cooperative,71568,False
+17828,City of Springfield - (IL),IL,Municipal,71179,False
+11824,Matanuska Electric Assn Inc,AK,Cooperative,71054,False
+17647,Southern Pine Electric Cooperative,MS,Cooperative,70771,False
+16295,City of Roseville - (CA),CA,Municipal,70475,False
+21002,York Electric Coop Inc,NC SC,Cooperative,70330,False
+2442,City of Bryan - (TX),TX,Municipal,68685,False
+9996,City of Kansas City - (KS),KS,Municipal,68637,False
+55815,"IDT Energy, Inc.",DC IL MD NJ NY OH PA,Retail Power Marketer,68055,False
+18193,Direct Energy Business,CA CT DC DE IL MA MD ME MI NH NJ NY OH PA RI TX VA,Retail Power Marketer,68019,True
+5574,East Central Energy,MN WI,Cooperative,67593,False
+11291,Lumbee River Elec Member Corp,NC,Cooperative,67214,False
+3248,Central Georgia El Member Corp,GA,Cooperative,67135,False
+14534,City of Pasadena - (CA),CA,Municipal,67059,False
+14251,Owen Electric Coop Inc,KY,Cooperative,66763,False
+5063,City of Denton - (TX),TX,Municipal,66609,False
+3502,"Choctawhatche Elec Coop, Inc",FL,Cooperative,66479,False
+14606,"Peace River Electric Coop, Inc",FL,Cooperative,66233,False
+13809,NorthWestern Energy - (SD),SD,Investor Owned,64971,True
+10768,"Laurens Electric Coop, Inc",SC,Cooperative,64665,False
+13058,"Mountain View Elec Assn, Inc",CO,Cooperative,64275,False
+14062,Oklahoma Electric Coop Inc,OK,Cooperative,64208,False
+1886,Blue Grass Energy Coop Corp,KY,Cooperative,63856,True
+16949,Sevier County Electric System,TN,Municipal,63506,False
+817,Arkansas Valley Elec Coop Corp,AR OK,Cooperative,63333,False
+13208,City of Naperville - (IL),IL,Municipal,62990,False
+19390,"UGI Utilities, Inc",PA,Investor Owned,62920,True
+61462,Valley Clean Energy Alliance,CA,Community Choice Aggregator,62299,False
+58974,Clearview Electric Inc.,DC DE IL MA MD ME NH NJ NY OH PA RI,Retail Power Marketer,61724,True
+60868,Redwood Coast Energy Authority,CA,Community Choice Aggregator,61718,False
+8773,"Holy Cross Electric Assn, Inc",CO,Cooperative,61197,False
+12462,Mid-Carolina Electric Coop Inc,SC,Cooperative,60566,False
+13418,City of New Braunfels - (TX),TX,Municipal,60463,False
+16181,Rochester Public Utilities,MN,Municipal,60133,False
+9964,Kenergy Corp,KY,Cooperative,59702,False
+24949,Cass County Elec Coop Inc,ND,Cooperative,59687,False
+16674,Satilla Rural Elec Member Corporation,GA,Cooperative,59549,False
+16655,City of Santa Clara - (CA),CA,Municipal,59389,False
+21244,"Southside Electric Coop, Inc",VA,Cooperative,59338,False
+57486,"XOOM Energy Texas, LLC",TX,Retail Power Marketer,59240,False
+944,City of Athens - (AL),AL,Municipal,59121,False
+1891,Blue Ridge Mountain EMC - (GA),GA NC,Cooperative,59064,True
+9231,City of Independence - (MO),MO,Municipal,58789,False
+6491,Foley Board of Utilities,AL,Municipal,58270,False
+65310,Energywell LLC,CT DC DE IL MA MD ME NH NJ NY OH PA RI,Retail Power Marketer,57885,False
+1579,PUD No 1 of Benton County,WA,Political Subdivision,57827,False
+18449,"Talquin Electric Coop, Inc",FL,Cooperative,57261,False
+16587,Salt River Electric Coop Corp,KY,Cooperative,57242,False
+3503,"Choptank Electric Cooperative, Inc",MD,Cooperative,57045,False
+13955,City of Ocala,FL,Municipal,57035,False
+19162,Tri-County Elec Member Corp (TN),KY TN,Cooperative,56924,False
+562,Amicalola Electric Member Corp,GA,Cooperative,56407,False
+20996,Wright-Hennepin Coop Elec Assn,MN,Cooperative,56279,False
+3081,Carroll Electric Member Corp - (GA),GA,Cooperative,56190,False
+19981,Wake Electric Membership Corp,NC,Cooperative,56062,False
+14624,PUD No 2 of Grant County,WA,Political Subdivision,55943,False
+21567,"Washington-St Tammany E C, Inc",LA,Cooperative,55599,False
+15257,"Poudre Valley REA, Inc",CO,Cooperative,55344,False
+19189,Trico Electric Cooperative Inc,AZ,Cooperative,54860,False
+2409,Brownsville Public Utilities Board,TX,Municipal,54712,False
+64906,Mothership,TX,Retail Power Marketer,54701,False
+18280,Sulphur Springs Valley E C Inc,AZ,Cooperative,54402,False
+19574,Upper Cumberland E M C,TN,Cooperative,54190,False
+14563,Pearl River Valley El Pwr Assn,MS,Cooperative,53958,False
+19578,Upper Peninsula Power Company,MI,Investor Owned,53911,False
+64521,Ironhorse Power Services LLC,TX,Retail Power Marketer,53804,False
+4442,PUD No 1 of Cowlitz County,WA,Political Subdivision,53716,False
+9575,Jackson Energy Coop Corp - (KY),KY,Cooperative,53295,False
+4045,City of Columbia - (MO),MO,Municipal,53276,False
+2507,City of Burbank Water and Power,CA,Municipal,53155,False
+65314,"BKV-BPP Retail, LLC",TX,Retail Power Marketer,53088,False
+56248,"Young Energy, LLC",TX,Retail Power Marketer,53002,False
+162,Aiken Electric Coop Inc,SC,Cooperative,52839,False
+13830,Nueces Electric Cooperative,TX,Cooperative,52603,False
+59625,Lancaster Choice Energy,CA,Community Choice Aggregator,52580,False
+17694,Southwest Tennessee E M C,TN,Cooperative,52353,False
+6422,City of Florence - (AL),AL,Municipal,52289,False
+57350,Summer Energy LLC,TX,Retail Power Marketer,52052,False
+10697,Lake Country Power,MN,Cooperative,51383,False
+727,Appalachian Electric Coop,TN,Cooperative,51366,False
+6641,4-County Electric Power Assn,MS,Cooperative,51268,False
+59943,Spruce Finance,AZ CA CO CT HI LA MA MD NJ NV NY,Behind the Meter,50856,False
+19579,Upshur Rural Elec Coop Corp,TX,Cooperative,50836,False
+59620,Verde Energy USA,DC MA NJ NY OH PA,Retail Power Marketer,50684,False
+12524,Midwest Energy Inc - (KS),KS,Cooperative,50304,False
+3413,PUD No 1 of Chelan County,WA,Political Subdivision,50137,False
+57483,Liberty Utilities,CA,Investor Owned,50030,True
+59065,Titan Gas LLC,DC DE IL MA MD NH NJ OH PA,Retail Power Marketer,49708,False
+10331,Kingsport Power Co,TN,Investor Owned,49489,False
+4618,"Cullman Electric Coop, Inc",AL,Cooperative,48412,False
+17572,South River Elec Member Corp,NC,Cooperative,48357,False
+7353,Golden Valley Elec Assn Inc,AK,Cooperative,48163,False
+20574,White River Valley El Coop Inc,MO,Cooperative,48089,False
+4577,Crow Wing Cooperative Power & Light Comp,MN,Cooperative,47859,False
+8699,Inland Power & Light Company,ID WA,Cooperative,47805,False
+12651,Minnesota Valley Electric Coop,MN,Cooperative,47632,False
+3282,"Central Texas Elec Coop, Inc",TX,Cooperative,47593,False
+14724,Pennyrile Rural Electric Coop,KY,Cooperative,47560,False
+3222,Central Alabama Electric Coop,AL,Cooperative,47420,False
+65262,"Archer Energy, LLC",OH RI,Retail Power Marketer,47164,False
+3940,City of College Station - (TX),TX,Municipal,47049,False
+10539,"La Plata Electric Assn, Inc",CO,Cooperative,47002,False
+26510,Liberty Utilities (Granite State Electri,NH,Investor Owned,46797,True
+9739,Joe Wheeler Elec Member Corp,AL,Cooperative,46135,False
+19007,Tombigbee Electric Power Assn,MS,Cooperative,45859,False
+13318,"Navopache Electric Coop, Inc",AZ NM,Cooperative,45835,False
+7548,PUD No 1 of Grays Harbor County,WA,Political Subdivision,45587,False
+21538,"Mohave Electric Cooperative, Inc.",AZ,Cooperative,45535,False
+65259,Energy for Palmdale's Independent Choice,CA,Community Choice Aggregator,45452,False
+3461,Cheyenne Light Fuel & Power,WY,Investor Owned,45390,False
+4975,Deep East Texas Elec Coop Inc,TX,Cooperative,45353,False
+18476,"Tara Energy, LLC",TX,Retail Power Marketer,45328,True
+6204,City of Farmington - (NM),NM,Municipal,45107,False
+59054,"Eligo Energy, LLC",CT DC IL MA MD NJ NY OH PA,Retail Power Marketer,44876,False
+16606,"Santee Electric Coop, Inc",SC,Cooperative,44855,False
+27238,"Southwest Electric Coop, Inc",MO,Cooperative,44694,False
+1458,"Beauregard Electric Coop, Inc",LA,Cooperative,44510,False
+15783,City of Redding - (CA),CA,Municipal,44465,False
+5661,City of Edmond - (OK),OK,Municipal,44461,False
+8571,Town of High Point,NC,Municipal,44195,False
+3828,Cloverland Electric Co-op,MI,Cooperative,43779,False
+11187,City of Longmont,CO,Municipal,43741,False
+13314,Navajo Tribal Utility Authority,AZ NM UT,State,43308,False
+3107,Carteret-Craven El Member Corp,NC,Cooperative,43136,False
+4794,City of Danville - (VA),VA,Municipal,42984,False
+11646,City of Marietta - (GA),GA,Municipal,42506,False
+11256,City of Loveland - (CO),CO,Municipal,42375,False
+1175,"Bandera Electric Coop, Inc",TX,Cooperative,42023,False
+13734,Northeast Oklahoma Electric Co,OK,Cooperative,41995,False
+17710,"Spark Energy, LP",DE IL MD TX,Retail Power Marketer,41928,True
+63725,Pomona Choice Energy (PCE),CA,Community Choice Aggregator,41765,False
+31833,Okefenoke Rural El Member Corp,FL GA,Cooperative,41654,False
+20927,"Wood County Electric Coop, Inc",TX,Cooperative,41529,False
+3264,Central Lincoln People's Ut Dt,OR,Political Subdivision,41527,False
+5175,Dixie Electric Power Assn - (MS),MS,Cooperative,41483,False
+12452,Mid-South Electric Coop Assn,TX,Cooperative,41331,False
+20521,Wheeling Power Co,WV,Investor Owned,41240,False
+6784,French Broad Elec Member Corp,NC TN,Cooperative,41139,False
+19791,"Vermont Electric Cooperative, Inc",VT,Cooperative,41122,False
+14285,Ozark Border Electric Coop,MO,Cooperative,40988,False
+18488,City of Taunton,MA,Municipal,40690,False
+9879,City Water and Light Plant,AR,Municipal,40667,False
+7625,City of Greeneville - (TN),TN,Municipal,40569,False
+16195,City of Rock Hill - (SC),SC,Municipal,40379,False
+13718,City of North Little Rock - (AR),AR,Municipal,40137,False
+56265,Energy Plus Holdings LLC,CT IL MA MD NJ NY OH PA,Retail Power Marketer,40103,True
+15444,Provo City Corp,UT,Municipal,40057,False
+8210,Hart Electric Member Corp,GA,Cooperative,39869,False
+2049,"Bowie-Cass Electric Coop, Inc",TX,Cooperative,39832,False
+3291,Central Virginia Electric Coop,VA,Cooperative,39573,False
+108,Adams-Columbia Electric Coop,WI,Cooperative,39455,False
+16930,Sequachee Valley Electric Coop,TN,Cooperative,39284,False
+7174,Gibson Electric Members Corp,KY TN,Cooperative,39260,False
+20377,West Kentucky Rural E C C,KY,Cooperative,39101,False
+19785,Verdigris Valley Elec Coop Inc,OK,Cooperative,39067,False
+5148,City of Dickson,TN,Municipal,38982,False
+13676,"North Arkansas Elec Coop, Inc",AR,Cooperative,38978,False
+2849,Central Electric Power Assn - (MS),MS,Cooperative,38975,False
+10603,"Laclede Electric Coop, Inc",MO,Cooperative,38967,False
+3240,Central Electric Coop Inc - (OR),OR,Cooperative,38864,False
+58667,"North American Power and Gas, LLC",CT IL MD ME NH NJ OH PA RI,Retail Power Marketer,38833,False
+13651,Nolin Rural Electric Coop Corp,KY,Cooperative,38741,False
+9612,City of Jackson - (TN),TN,Municipal,38719,False
+8447,Hendricks County Rural E M C,IN,Cooperative,38690,False
+66073,MPD Electric Cooperative,SC,Cooperative,38612,False
+64555,Santa Barbara Clean Energy,CA,Community Choice Aggregator,38582,False
+3436,Cherryland Electric Coop Inc,MI,Cooperative,38558,False
+19219,Diverse Power Incorporated,AL GA,Cooperative,38007,False
+7887,Habersham Electric Membership Corp,GA,Cooperative,37655,False
+12268,"Medina Electric Coop, Inc",TX,Cooperative,37645,False
+84,A & N Electric Coop,MD VA,Cooperative,37636,False
+5598,East Central Oklahoma Elec Coop Inc,OK,Cooperative,37439,False
+60631,Upper Michigan Energy Resources Corp.,MI,Investor Owned,37359,False
+207,Alameda Municipal Power,CA,Municipal,37226,False
+4362,Corn Belt Energy Corporation,IL,Cooperative,37183,False
+12377,Midwest Energy Cooperative - (MI),IN MI OH,Cooperative,37028,False
+3245,"Central Florida Elec Coop, Inc",FL,Cooperative,36994,False
+9689,Jefferson Electric Member Corp,GA,Cooperative,36931,False
+5086,Delta Montrose Electric Assn,CO,Cooperative,36893,False
+12330,Meriwether Lewis Electric Coop,TN,Cooperative,36758,False
+20785,City of Wilson - (NC),NC,Municipal,36751,False
+3855,Columbia Power System - (TN),TN,Municipal,36577,False
+15419,PUD No 3 of Mason County,WA,Political Subdivision,36407,False
+13027,"Mountain Electric Coop, Inc",NC TN,Cooperative,36326,False
+6608,Fort Loudoun Electric Coop,TN,Cooperative,36287,False
+9616,Beaches Energy Services,FL,Municipal,35976,False
+2960,"Caney Fork Electric Coop, Inc",TN,Cooperative,35888,False
+13735,Northcentral Mississippi E P A,MS,Cooperative,35643,False
+14668,Peninsula Light Company,WA,Cooperative,35616,False
+12929,South Central Indiana REMC,IN,Cooperative,35504,False
+6640,Four County Elec Member Corp,NC,Cooperative,35424,False
+8620,"HILCO Electric Cooperative, Inc.",TX,Cooperative,35322,False
+10071,Kauai Island Utility Cooperative,HI,Cooperative,35316,False
+7654,Greer Commission of Public Wks,SC,Municipal,35307,False
+14288,Ozark Electric Coop Inc - (MO),MO,Cooperative,35291,False
+15340,Presque Isle Elec & Gas Coop,MI,Cooperative,35239,False
+2001,Boone Electric Coop,MO,Cooperative,35157,False
+19107,ENGIE Resources LLC,CT DC DE IL MA MD ME NH NJ NY OH PA RI TX,Retail Power Marketer,34994,False
+15293,Powell Valley Electric Coop,TN VA,Cooperative,34943,False
+1763,"Black River Electric Coop, Inc - (SC)",SC,Cooperative,34833,False
+10944,PUD No 1 of Lewis County,WA,Political Subdivision,34766,False
+11053,Linn County REC,IA,Cooperative,34734,False
+40220,Adams Electric Cooperative Inc,PA,Cooperative,34534,False
+30518,Electrical Dist No3 Pinal County,AZ,Political Subdivision,34526,False
+6443,"Florida Keys El Coop Assn, Inc",FL,Cooperative,34522,False
+15023,Piedmont Electric Member Corp,NC,Cooperative,34448,False
+2247,City of Bristol - (TN),TN,Municipal,34442,False
+3758,City of Cleveland - (TN),TN,Municipal,34348,False
+59088,"Nordic Energy Services, LLC",DC DE IL MA MD NJ NY OH PA RI,Retail Power Marketer,34320,False
+4150,City of Concord - (NC),NC,Municipal,34243,False
+4280,Conway Corporation,AR,Municipal,34240,False
+5929,"Fairfield Electric Coop, Inc",SC,Cooperative,34232,False
+19558,Homer Electric Assn Inc,AK,Cooperative,34157,False
+3644,PUD No 1 of Clallam County,WA,Political Subdivision,34080,False
+230,Albany Utility Board,GA,Municipal,33921,False
+15671,Randolph Electric Member Corp,NC,Cooperative,33815,False
+16629,Sand Mountain Electric Coop,AL,Cooperative,33601,False
+17874,City of St George,UT,Municipal,33533,False
+636,City of Anderson - (IN),IN,Municipal,33466,False
+4063,Co-Mo Electric Coop Inc,MO,Cooperative,33399,False
+11519,Magnolia Electric Power Assn,MS,Cooperative,33355,False
+10454,Kootenai Electric Cooperative,ID WA,Cooperative,33226,False
+17839,City of Springfield - (OR),OR,Municipal,33147,False
+40165,"Dixie Escalante R E A, Inc",AZ UT,Cooperative,33084,False
+7129,City of Georgetown - (TX),TX,Municipal,33066,False
+16638,"San Bernard Electric Coop, Inc",TX,Cooperative,32863,False
+4509,Craighead Electric Coop Corp,AR,Cooperative,32805,False
+9187,City of Idaho Falls - (ID),ID,Municipal,32782,False
+62862,Chariot Energy,TX,Retail Power Marketer,32752,True
+577,City of Alcoa Utilities,TN,Municipal,32727,False
+20603,Northeastern Rural E M C,IN,Cooperative,32713,False
+2056,City of Bowling Green - (KY),KY,Municipal,32517,False
+8764,"Holston Electric Coop, Inc",TN,Cooperative,32487,False
+59128,MPower Energy LLC,NY,Retail Power Marketer,32436,False
+64195,Desert Community Energy,CA,Community Choice Aggregator,32398,False
+20510,"Wheatland Electric Coop, Inc",CO KS,Cooperative,32368,False
+5309,City of Dothan - (AL),AL,Municipal,32175,False
+12260,Mecklenburg Electric Cooperative,NC VA,Cooperative,32072,False
+9331,Intercounty Electric Coop Assn - (MO),MO,Cooperative,32031,False
+10226,"Utility Board of the City of Key West, F",FL,Municipal,31873,False
+14109,"Oregon Trail El Cons Coop, Inc",OR,Cooperative,31823,False
+9699,"Jemez Mountains Elec Coop, Inc",NM,Cooperative,31676,False
+9778,Johnson County Rural E M C,IN,Cooperative,31501,False
+13485,New Smyrna Beach City of,FL,Municipal,31490,False
+12243,Meade County Rural E C C,KY,Cooperative,31485,False
+8723,City of Holland,MI,Municipal,31457,False
+3812,City of Clinton - (TN),TN,Municipal,31346,False
+7027,City of Gastonia - (NC),NC,Municipal,31336,False
+719,Town of Apex- (NC),NC,Municipal,31261,False
+11273,Lower Valley Energy Inc,ID WY,Cooperative,31141,False
+58119,Public Power LLC (CT),IL MA NY OH,Retail Power Marketer,30981,True
+58952,Tomorrow Energy Corp.,IL MD NJ OH PA TX,Retail Power Marketer,30915,True
+6374,Fitchburg Gas & Elec Light Co,MA,Investor Owned,30884,False
+18940,Tipmont Rural Elec Member Corp,IN,Cooperative,30852,False
+10378,"Kit Carson Electric Coop, Inc",NM,Cooperative,30807,False
+9605,Jackson Purchase Energy Corporation,KY,Cooperative,30708,False
+15748,Town of Reading - (MA),MA,Municipal,30700,False
+18203,Tallapoosa River Elec Coop Inc,AL,Cooperative,30542,False
+64653,Declaration Energy LLC,TX,Retail Power Marketer,30538,False
+8333,Haywood Electric Member Corp,GA NC SC,Cooperative,30486,False
+10879,Lehi City Corporation,UT,Municipal,30172,False
+19160,"Tri-County Electric Coop, Inc (OK)",CO KS NM OK TX,Cooperative,30076,False
+10618,Lake Region Electric Cooperative - (MN),MN,Cooperative,30069,False
+6457,Florida Public Utilities Co,FL,Investor Owned,30021,False
+7977,City of Hamilton - (OH),OH,Municipal,29891,False
+20371,"West Florida El Coop Assn, Inc",FL,Cooperative,29884,False
+14401,City of Palo Alto - (CA),CA,Municipal,29833,False
+6716,PUD No 1 of Franklin County,WA,Political Subdivision,29752,False
+22815,Delta Electric Power Assn,MS,Cooperative,29744,False
+6616,Fort Pierce Utilities Authority,FL,Municipal,29677,False
+40302,North East Mississippi EPA,MS,Cooperative,29664,False
+56504,Major Energy Electric Services,CT DC IL MA MD ME NY OH,Retail Power Marketer,29606,False
+18360,Suwannee Valley Elec Coop Inc,FL,Cooperative,29392,False
+17671,Southwest Arkansas E C C,AR OK TX,Cooperative,29298,False
+16226,City of Rocky Mount - (NC),NC,Municipal,29188,False
+17267,Sioux Valley SW Elec Coop,MN SD,Cooperative,29186,False
+1586,City of Bentonville - (AR),AR,Municipal,29024,False
+58663,Respond Power LLC,NJ PA,Retail Power Marketer,28920,False
+10868,City of Leesburg - (FL),FL,Municipal,28899,False
+12674,City of Mishawaka,IN,Municipal,28872,False
+8795,City of Homestead - (FL),FL,Municipal,28795,False
+21081,Yampa Valley Electric Assn Inc,CO WY,Cooperative,28641,False
+22822,Clark County Rural E M C - (IN),IN,Cooperative,28585,False
+18019,Stearns Cooperative Elec Assn,MN,Cooperative,28558,False
+18447,Tallahatchie Valley E P A,MS,Cooperative,28552,False
+17599,Southeastern Indiana R E M C,IN,Cooperative,28525,False
+18339,Surry-Yadkin Elec Member Corp,NC,Cooperative,28379,False
+3687,Clark Energy Coop Inc - (KY),KY,Cooperative,28347,False
+18498,Taylor County Rural E C C,KY,Cooperative,28281,False
+554,City of Ames - (IA),IA,Municipal,28108,False
+17642,Southern Public Power District,NE,Political Subdivision,28035,False
+9292,Inter County Energy Coop Corp - (KY),KY,Cooperative,28017,False
+10620,City of Lake Worth Beach - (FL),FL,Municipal,27842,False
+3600,Citizens Electric Corporation - (MO),MO,Cooperative,27770,True
+13664,Norris Public Power District,NE,Political Subdivision,27765,False
+10668,Licking Rural Electric Inc,OH,Cooperative,27568,False
+15979,City of Richland - (WA),WA,Municipal,27563,False
+40606,City of Grand Island - (NE),NE,Municipal,27425,False
+60482,CKenergy Electric Cooperative,OK,Cooperative,27398,False
+2911,"Canadian Valley Elec Coop, Inc",OK,Cooperative,27361,False
+19396,Tri-County Electric Coop (MI),MI,Cooperative,27142,False
+20841,"Wiregrass Electric Coop, Inc",AL,Cooperative,27098,False
+14605,City of Peabody - (MA),MA,Municipal,27086,False
+5763,City of Elizabethton - (TN),TN,Municipal,27053,False
+15138,"Platte-Clay Electric Coop, Inc",MO,Cooperative,27000,False
+18957,Tri-County Elec Member Corp (NC),NC,Cooperative,26981,False
+6923,City of Gallatin - (TN),TN,Municipal,26963,False
+4958,Decatur Utilities,AL,Municipal,26935,False
+6194,Farmers Rural Electric Coop Corp - (KY),KY,Cooperative,26901,False
+19156,Powder River Energy Corp,MT WY,Cooperative,26893,False
+5204,Dixie Electric Coop - (AL),AL,Cooperative,26785,False
+4683,City of Cuyahoga Falls - (OH),OH,Municipal,26783,False
+20948,Wise Electric Coop Inc,TX,Cooperative,26734,False
+1780,Black Warrior Elec Member Corp,AL,Cooperative,26648,False
+3426,Cherokee Electric Coop - (AL),AL,Cooperative,26566,False
+14268,City of Owensboro - (KY),KY,Municipal,26556,False
+10599,"Lake Region Electric Coop, Inc - (OK)",OK,Cooperative,26481,False
+3477,City of Chicopee - (MA),MA,Municipal,26052,False
+16616,"San Isabel Electric Assn, Inc",CO,Cooperative,26046,False
+28978,City of San Marcos - (TX),TX,Municipal,26024,False
+6442,Fleming-Mason Energy Coop Inc,KY,Cooperative,25975,False
+11124,City of Lodi - (CA),CA,Municipal,25939,False
+59082,"Family Energy, Inc. New York",NY,Retail Power Marketer,25931,False
+59083,"SFE Energy Pennsylvania, Inc.",PA,Retail Power Marketer,25929,False
+19856,City of Vineland - (NJ),NJ,Municipal,25905,False
+8934,"Howell-Oregon Elec Coop, Inc",MO,Cooperative,25764,False
+12706,Mitchell Electric Member Corp,GA,Cooperative,25680,False
+40224,"Central Electric Coop, Inc - (PA)",PA,Cooperative,25604,False
+1775,Black River Electric Coop - (MO),MO,Cooperative,25556,False
+2903,Canoochee Electric Member Corp,GA,Cooperative,25476,False
+5905,Excelsior Electric Member Corp,GA,Cooperative,25471,False
+17683,Southwest Mississippi E P A,MS,Cooperative,25416,False
+9576,Jackson County Rural E M C - (IN),IN,Cooperative,25399,False
+60758,Apple Valley Choice Energy,CA,Community Choice Aggregator,25326,False
+17697,Southwestern Electric Coop Inc - (IL),IL,Cooperative,25284,False
+17585,"Southeastern IL Elec Coop, Inc",IL,Cooperative,25188,False
+5335,City of Dover - (DE),DE,Municipal,25126,False
+20038,Town of Wallingford - (CT),CT,Municipal,25100,False
+19840,"Valley Electric Assn, Inc",CA NV,Cooperative,25066,False
+13416,City of New Bern - (NC),NC,Municipal,24952,False
+2212,"Broad River Electric Coop, Inc",NC SC,Cooperative,24938,False
+19806,"Victoria Electric Coop, Inc",TX,Cooperative,24936,False
+17612,Bear Valley Electric Service,CA,Investor Owned,24819,False
+55982,Heart of Texas Electric Coop,TX,Cooperative,24740,False
+8179,Harrison County Rural E M C,IN,Cooperative,24691,False
+4430,"Covington Electric Coop, Inc",AL,Cooperative,24683,False
+3250,Central Electric Membership Corp. - (NC),NC,Cooperative,24626,False
+3226,"Central Rural Electric Cooperative, Inc",OK,Cooperative,24602,False
+13799,Prairie Land Electric Coop Inc,KS,Cooperative,24541,False
+16751,Three Rivers Electric Coop,MO,Cooperative,24521,False
+14164,City of Orangeburg - (SC),SC,Municipal,24461,False
+28604,Kerrville Public Utility Board,TX,Municipal,24387,False
+19108,Tideland Electric Member Corp,NC,Cooperative,24337,False
+4622,"Cumberland Valley Electric, Inc.",KY TN,Cooperative,24260,False
+3641,"Claiborne Electric Coop, Inc",LA,Cooperative,24175,False
+5605,Eastern Iowa Light & Power Coop,IA,Cooperative,24070,False
+3843,Coastal Electric Member Corp - (GA),GA,Cooperative,23978,False
+9668,"Jasper-Newton Elec Coop, Inc",TX,Cooperative,23920,False
+14468,People's Cooperative Services,MN,Cooperative,23916,False
+13758,"Northern Lights, Inc",ID MT WA,Cooperative,23910,False
+11364,"Lyntegar Electric Coop, Inc",TX,Cooperative,23882,False
+4743,"Consumers Power, Inc",OR,Cooperative,23769,True
+3470,Cherokee County Elec Coop Assn - (TX),TX,Cooperative,23768,False
+4401,"Cotton Electric Coop, Inc",OK,Cooperative,23744,False
+16461,"Rusk County Electric Coop, Inc",TX,Cooperative,23620,False
+10968,City of Lexington - (TN),TN,Municipal,23584,False
+19157,MiEnergy Cooperative,IA MN,Cooperative,23568,False
+13550,City of Newport - (TN),TN,Municipal,23484,False
+4911,Dawson Power District,NE,Political Subdivision,23461,False
+298,City of Alexandria - (LA),LA,Municipal,23460,False
+19293,Southeastern Electric Coop Inc - (SD),SD,Cooperative,23436,False
+4265,Continental Divide El Coop Inc,NM,Cooperative,23382,False
+18956,Tri-County Elec Member Corp (GA),GA,Cooperative,23373,False
+60218,MPower Energy NJ LLC,DC IL MD NJ OH PA,Retail Power Marketer,23359,False
+10579,City of LaFollette,TN,Municipal,23354,False
+20997,Yellowstone Valley Elec Co-op,MT,Cooperative,23296,False
+64929,"Good Charlie & Co., LLC",TX,Retail Power Marketer,23272,False
+14775,People's Electric Cooperative,OK,Cooperative,23176,False
+10009,Karnes Electric Coop Inc,TX,Cooperative,23149,False
+19603,USBIA-Mission Valley Power,MT,Federal,23124,False
+40166,"Chickasaw Electric Coop, Inc",TN,Cooperative,23106,False
+40437,Emerald People's Utility Dist,OR,Political Subdivision,23079,False
+11789,Maryville Utilities,TN,Municipal,23073,False
+64705,"NTHERM, LLC",OH PA,Retail Power Marketer,22910,False
+8898,Houston County Elec Coop Inc,TX,Cooperative,22901,False
+40292,REA Energy Coop Inc,PA,Cooperative,22836,False
+14455,City of Paris - (TN),TN,Municipal,22824,False
+13050,"Mountain Parks Electric, Inc",CO,Cooperative,22779,False
+7785,"Gulf Coast Electric Coop, Inc",FL,Cooperative,22768,False
+14371,City of Paducah - (KY),KY,Municipal,22762,False
+17646,"Southern Pine Elec Coop, Inc",AL,Cooperative,22667,False
+40222,Valley Rural Electric Coop Inc,PA,Cooperative,22585,False
+2985,"Capital Electric Coop, Inc",ND,Cooperative,22526,True
+18917,Tillamook Peoples Utility Dist,OR,Political Subdivision,22449,False
+59410,"Shipley Choice, LLC",MD OH PA,Retail Power Marketer,22391,False
+1529,"Beltrami Electric Coop, Inc",MN,Cooperative,22364,False
+11355,"Lynches River Elec Coop, Inc",SC,Cooperative,22362,False
+14717,Pee Dee Electric Member Corp,NC,Cooperative,22272,False
+2678,C & L Electric Coop Corp,AR,Cooperative,22261,False
+18125,Stillwater Utilities Authority,OK,Municipal,22191,False
+15344,Polk-Burnett Electric Coop,WI,Cooperative,22157,False
+14055,PUD No 1 of Okanogan County,WA,Political Subdivision,22155,False
+6708,City of Frankfort - (KY),KY,Municipal,21968,False
+407,Altamaha Electric Member Corp,GA,Cooperative,21870,False
+2548,City of Burlington Electric - (VT),VT,Municipal,21842,False
+10799,City of Lawrenceburg,TN,Municipal,21838,False
+59811,Santanna Energy Services,IL OH PA,Retail Power Marketer,21805,True
+3527,Choctaw Electric Coop Inc,OK,Cooperative,21800,False
+11135,City of Logan - (UT),UT,Municipal,21774,False
+8198,City of Harrisonburg - (VA),VA,Municipal,21705,False
+56737,"Stream Energy Pennsylvania, LLC",PA,Retail Power Marketer,21658,False
+19154,Tri-State Electric Member Corp,GA NC TN,Cooperative,21657,False
+9999,Kankakee Valley Rural E M C,IN,Cooperative,21653,False
+66036,"EverBright, LLC",AR AZ CA CO CT IL MA MD ME NH NJ OH RI TX,Behind the Meter,21642,False
+16146,"Navasota Valley Elec Coop, Inc",TX,Cooperative,21615,False
+10624,Southern Rivers Energy,GA,Cooperative,21595,False
+4524,"Crawford Electric Coop, Inc",MO,Cooperative,21530,False
+12439,"Midstate Electric Coop, Inc",OR,Cooperative,21517,False
+15016,Pickwick Electric Coop,TN,Cooperative,21500,False
+27369,Taylor Electric Coop Inc - (TX),TX,Cooperative,21478,False
+11714,Marshall-De Kalb Electric Coop,AL,Cooperative,21377,False
+12301,Nodak Electric Coop Inc,ND,Cooperative,21340,False
+58314,"Palmco Power IL, LLC",IL,Retail Power Marketer,21332,False
+15989,City of Richmond - (IN),IN,Municipal,21328,False
+5644,"Edisto Electric Coop, Inc",SC,Cooperative,21317,False
+18305,Sumter Electric Member Corp,GA,Cooperative,21314,False
+17565,South Louisiana Elec Coop Assn,LA,Cooperative,21313,False
+6782,Freeborn Mower Electric Cooperative,IA MN,Cooperative,21264,False
+3273,"Central New Mexico El Coop, Inc",NM,Cooperative,21022,False
+63232,"National Gas & Electric, LLC",MA MD NJ OH PA,Retail Power Marketer,20969,False
+59013,PUD No 1 of Jefferson County,WA,Political Subdivision,20956,False
+60696,"Vista Energy Marketing, L.P.",IL NJ OH PA,Retail Power Marketer,20948,False
+18643,Tennessee Valley Electric Coop,TN,Cooperative,20924,False
+14864,Petit Jean Electric Coop Corp,AR,Cooperative,20917,False
+13831,City of Norwich - (CT),CT,Municipal,20898,False
+20228,Weakley County Mun Elec Sys,TN,Municipal,20893,False
+16555,Salem Electric - (OR),OR,Cooperative,20845,False
+11251,Loup River Public Power Dist,NE,Political Subdivision,20762,False
+6169,Fall River Rural Elec Coop Inc,ID MT WY,Cooperative,20713,False
+14424,"Panola-Harrison Elec Coop, Inc",LA TX,Cooperative,20711,False
+15211,Pontotoc Electric Power Assn,MS,Cooperative,20694,False
+20401,West River Electric Assn Inc,SD,Cooperative,20674,False
+13762,"Northern Neck Elec Coop, Inc",VA,Cooperative,20658,False
+14224,Otero County Electric Coop Inc,NM,Cooperative,20582,False
+59931,"MidAmerican Energy Services, LLC",DC DE IL MA MD NJ NY OH PA TX,Retail Power Marketer,20571,True
+40127,Clarke-Washington E M C,AL,Cooperative,20562,False
+10170,"Kiamichi Electric Coop, Inc",OK,Cooperative,20532,False
+7450,Grady Electric Membership Corp,GA,Cooperative,20531,False
+16971,Shakopee Public Utilities Comm,MN,Municipal,20529,False
+9246,"Indian Electric Coop, Inc",OK,Cooperative,20505,False
+19820,Victory Electric Coop Assn Inc,KS,Cooperative,20432,False
+12894,City of Moorhead - (MN),MN,Municipal,20404,False
+7979,Hamilton County Elec Coop Assn,TX,Cooperative,20392,False
+12866,Moon Lake Electric Assn Inc,CO UT,Cooperative,20377,False
+1366,City of Bay City - (MI),MI,Municipal,20366,False
+10966,City of Lexington - (NC),NC,Municipal,20323,False
+13292,Norris Electric Coop,IL,Cooperative,20300,False
+13332,"Navarro County Elec Coop, Inc",TX,Cooperative,20262,False
+3203,Cedar Falls Utilities,IA,Municipal,20246,False
+13137,City of Murray - (UT),UT,Municipal,20240,False
+12187,City of McMinnville - (OR),OR,Municipal,20232,False
+9750,"Jo-Carroll Energy, Inc",IL,Cooperative,20189,False
+4003,City of Colton - (CA),CA,Municipal,20064,False
+16060,Riverland Energy Cooperative,WI,Cooperative,20060,False
+20963,Woodruff Electric Coop Corp,AR,Cooperative,20024,False
+19667,Utilities Dist-Western IN REMC,IN,Cooperative,19975,False
+19161,"Tri-County Electric Coop, Inc (FL)",FL,Cooperative,19951,False
+1884,BENCO Electric Cooperative,MN,Cooperative,19934,False
+15700,Rayle Electric Membership Corp,GA,Cooperative,19919,False
+4294,City of Cookeville - (TN),TN,Municipal,19787,False
+14602,Pea River Electric Coop,AL,Cooperative,19759,False
+7563,Grand Valley Power,CO,Cooperative,19689,False
+20318,Webster Electric Coop,MO,Cooperative,19685,False
+1251,Barron Electric Coop,WI,Cooperative,19656,False
+40293,"Northwestern Rural E C A, Inc - (PA)",PA,Cooperative,19621,True
+13520,"New-Mac Electric Coop, Inc",MO,Cooperative,19620,False
+3478,Cimarron Electric Coop,OK,Cooperative,19592,False
+17033,Sheffield Utilities,AL,Municipal,19566,False
+40290,Tri-County Rural Elec Coop Inc (PA),PA,Cooperative,19562,False
+4065,City of Columbus - (OH),OH,Municipal,19521,False
+13669,North Alabama Electric Coop,AL,Cooperative,19512,False
+6234,City of Fayetteville,TN,Municipal,19465,False
+62952,"Southern Federal Power, LLC",TX,Retail Power Marketer,19461,False
+59807,"Rushmore Energy, LLC",DE IL MD NJ OH PA,Retail Power Marketer,19359,False
+12990,Consolidated Cooperative,OH,Cooperative,19272,False
+276,Alcorn County Elec Power Assn,MS,Cooperative,19181,False
+40289,Claverack Rural Elec Coop Inc,PA,Cooperative,19111,False
+4296,"Cookson Hills Elec Coop, Inc",OK,Cooperative,19053,False
+20413,Mountrail-Williams Elec Coop,ND,Cooperative,19043,False
+24753,Boone County Rural EMC,IN,Cooperative,19043,False
+10448,Kosciusko County Rural E M C,IN,Cooperative,19003,False
+10019,FreeState Electric Coop,KS,Cooperative,18992,False
+8000,NineStar Connect,IN,Cooperative,18936,False
+13936,Oakdale Electric Coop,WI,Cooperative,18843,False
+2502,"Buckeye Rural Elec Coop, Inc",OH,Cooperative,18702,True
+58085,"Electricity Maine, LLC",ME,Retail Power Marketer,18628,False
+14324,PUD No 2 of Pacific County,WA,Political Subdivision,18577,False
+14245,Overton Power District No 5,NV,Political Subdivision,18539,False
+4317,"Coos-Curry Electric Coop, Inc",OR,Cooperative,18533,False
+7264,"Glades Electric Coop, Inc",FL,Cooperative,18532,False
+18312,Sun Prairie Utilities,WI,Municipal,18498,False
+59505,Heartland REMC,IN,Cooperative,18487,False
+14175,"Tri-County Electric Coop, Inc (SC)",SC,Cooperative,18466,False
+4327,Coosa Valley Electric Coop Inc,AL,Cooperative,18429,False
+9645,Jamestown Board of Public Util,NY,Municipal,18347,False
+20481,City of Westfield - (MA),MA,Municipal,18344,False
+6638,City of Fountain,CO,Municipal,18290,False
+15141,Plateau Electric Cooperative,TN,Cooperative,18254,False
+11571,Manitowoc Public Utilities,WI,Municipal,18228,False
+14649,Planters Electric Member Corp,GA,Cooperative,18198,False
+16196,Rock Energy Cooperative,IL WI,Cooperative,18168,False
+4295,Comanche County Elec Coop Assn,TX,Cooperative,18152,False
+12473,Town of Middleborough - (MA),MA,Municipal,18132,False
+12351,City of Mesa - (AZ),AZ,Municipal,18101,False
+5930,Village of Fairport - (NY),NY,Municipal,18076,False
+17044,"Shelby Energy Coop, Inc - (KY)",KY,Cooperative,18076,False
+14192,Osage Valley Elec Coop Assn,MO,Cooperative,18029,False
+4744,Dalton Utilities,GA,Municipal,18022,False
+213,Alaska Electric Light & Power Co.,AK,Investor Owned,18005,False
+4262,Cooke County Elec Coop Assn,TX,Cooperative,17997,False
+8774,City of Holyoke - (MA),MA,Municipal,17966,False
+20477,City of Westerville - (OH),OH,Municipal,17966,False
+8761,Holmes-Wayne Electric Coop Inc,OH,Cooperative,17947,False
+6427,City of Floresville,TX,Municipal,17915,False
+11011,Licking Valley Rural E C C,KY,Cooperative,17892,False
+5582,City of East Point - (GA),GA,Municipal,17872,False
+13933,City of Oak Ridge,TN,Municipal,17831,False
+15746,Red River Valley Rrl Elec Assn,OK,Cooperative,17766,False
+13783,Northeast Louisiana Power Coop Inc.,LA,Cooperative,17755,False
+7908,Hagerstown Light Department,MD,Municipal,17743,False
+17534,"South Alabama Elec Coop, Inc",AL,Cooperative,17707,False
+1050,City of Azusa,CA,Municipal,17583,False
+58367,"XOOM Energy New York, LLC",NY,Retail Power Marketer,17568,False
+5326,PUD No 1 of Douglas County,WA,Political Subdivision,17553,False
+40438,Columbia River Peoples Ut Dist,OR,Political Subdivision,17496,False
+7634,City of Greenville - (TX),TX,Municipal,17439,False
+25295,Western Indiana Energy REMC,IN,Cooperative,17439,False
+6709,Easley Combined Utility System,SC,Municipal,17414,False
+15054,"Pioneer Rural Elec Coop, Inc - (OH)",OH,Cooperative,17407,False
+9590,"Jackson Electric Coop, Inc - (TX)",TX,Cooperative,17402,False
+2010,City of Bountiful,UT,Municipal,17368,False
+17603,Southeastern Electric Coop Inc - (OK),OK,Cooperative,17218,False
+7891,Guernsey-Muskingum El Coop Inc,OH,Cooperative,17178,False
+12642,Maquoketa Valley Rrl Elec Coop,IA,Cooperative,17170,False
+11701,City of Marquette - (MI),MI,Municipal,17166,False
+5862,"Empire Electric Assn, Inc",CO UT,Cooperative,17164,False
+60839,Southern Pioneer Electric Company,KS,Cooperative,17105,False
+17127,Town of Shrewsbury - (MA),MA,Municipal,16986,False
+20230,Weatherford Mun Utility System,TX,Municipal,16967,False
+750,Arab Electric Coop Inc,AL,Cooperative,16925,False
+58964,"Alpha Gas and Electric, LLC",DC IL MA MD NJ NY OH PA,Retail Power Marketer,16835,False
+11200,"Lorain-Medina R E C, Inc",OH,Cooperative,16831,False
+392,Alpena Power Co,MI,Investor Owned,16807,False
+61083,Pico Rivera Innovative Municipal Energy,CA,Community Choice Aggregator,16776,False
+2144,Town of Braintree - (MA),MA,Municipal,16769,False
+19790,Verendrye Electric Coop Inc,ND,Cooperative,16739,False
+7222,City of Gillette - (WY),WY,Municipal,16729,False
+113,"Agway Energy Services, LLC",MD NY PA,Retail Power Marketer,16647,False
+19325,Umatilla Electric Coop Assn,OR,Cooperative,16646,False
+11560,City of Manassas - (VA),VA,Municipal,16624,False
+6779,City of Fremont - (NE),NE,Municipal,16622,False
+10056,City of Kaukauna,WI,Municipal,16612,False
+18955,"Tri-County Electric Coop, Inc (IL)",IL,Cooperative,16604,False
+18848,City of Thomasville - (GA),GA,Municipal,16582,False
+12692,"Missoula Electric Coop, Inc",ID MT,Cooperative,16575,False
+12988,City of Morristown - (TN),TN,Municipal,16509,False
+2248,Bristol Virginia Utilities,VA,Municipal,16485,False
+10817,"Lea County Electric Coop, Inc - (NM)",NM TX,Cooperative,16480,False
+17860,City of St Charles - (IL),IL,Municipal,16461,False
+1625,Benton Rural Electric Assn,WA,Cooperative,16453,False
+60583,Atlantic Energy LLC,DC DE IL MA MD NJ NY OH PA TX,Retail Power Marketer,16419,False
+59812,New Wave Energy Corporation,MD NJ NY OH PA,Retail Power Marketer,16418,False
+15073,"Pioneer Electric Coop, Inc - (KS)",KS,Cooperative,16350,False
+20146,Washington Elec Member Corp,GA,Cooperative,16337,False
+16805,SEMO Electric Cooperative,MO,Cooperative,16266,False
+6183,"Fayette Electric Coop, Inc",TX,Cooperative,16230,False
+13227,Natchez Trace Elec Power Assn,MS,Cooperative,16229,False
+5832,Elmhurst Mutual Power & Light Co,WA,Cooperative,16195,False
+17732,Spanish Fork City Corporation,UT,Municipal,16142,False
+4146,Concho Valley Elec Coop Inc,TX,Cooperative,16114,False
+58086,"Electricity NH, LLC",NH,Retail Power Marketer,16074,False
+62987,Octopus Energy LLC,TX,Retail Power Marketer,16024,True
+7679,City of Griffin - (GA),GA,Municipal,16007,False
+12546,Mille Lacs Energy Cooperative,MN,Cooperative,15978,False
+6957,"Garkane Energy Coop, Inc",AZ UT,Cooperative,15945,False
+14170,Orcas Power & Light Coop,WA,Cooperative,15943,False
+14146,City of Opelika - (AL),AL,Municipal,15933,False
+15202,City of Ponca City - (OK),OK,Municipal,15876,False
+13839,City of Norwood - (MA),MA,Municipal,15794,False
+18336,Superior Water and Light Co,WI,Investor Owned,15691,False
+19273,City of Tupelo - (MS),MS,Municipal,15645,False
+7558,Grayson Rural Electric Coop Corp,KY,Cooperative,15597,False
+3075,Carroll County - (TN),TN,Municipal,15571,False
+64554,OhmConnect Texas LLC,TX,Retail Power Marketer,15567,False
+5535,Egyptian Electric Coop Assn,IL,Cooperative,15465,False
+20363,West Central Electric Coop Inc - (MO),MO,Cooperative,15446,False
+16223,City of Rockwood - (TN),TN,Municipal,15435,False
+64601,LE Energy,OH,Retail Power Marketer,15418,False
+57487,"XOOM Energy Connecticut, LLC",CT,Retail Power Marketer,15414,False
+16368,Runestone Electric Assn,MN,Cooperative,15391,False
+15507,City of Pulaski - (TN),TN,Municipal,15323,False
+6775,Village of Freeport - (NY),NY,Municipal,15319,False
+4939,"Deaf Smith Electric Coop, Inc",TX,Cooperative,15312,False
+18499,Three Notch Elec Member Corp,GA,Cooperative,15281,False
+1273,"Bartlett Electric Coop, Inc",TX,Cooperative,15253,False
+3287,"Central Valley Elec Coop, Inc",NM,Cooperative,15225,False
+55959,Roughrider Electric Cooperativ,ND,Cooperative,15187,False
+13815,Northwestern Wisconsin Elec Co,MN WI,Investor Owned,15150,True
+27599,Carroll-White REMC,IN,Cooperative,15149,False
+61471,Rancho Mirage Energy Authority,CA,Community Choice Aggregator,15133,False
+7483,City of Grand Haven - (MI),MI,Municipal,15117,False
+61433,San Jacinto Power,CA,Community Choice Aggregator,15108,False
+17038,RushShelby Energy,IN,Cooperative,15041,False
+16622,"San Miguel Power Assn, Inc",CO,Cooperative,14851,False
+2054,City of Bowling Green - (OH),OH,Municipal,14850,False
+18022,City of Statesville - (NC),NC,Municipal,14805,False
+20639,"Wild Rice Electric Coop, Inc",MN,Cooperative,14801,False
+58339,"XOOM Energy Pennsylvania, LLC",PA,Retail Power Marketer,14793,False
+1581,City of Benton - (AR),AR,Municipal,14756,False
+58124,City of Winter Park - (FL),FL,Municipal,14743,False
+7646,Greenwood CPW,SC,Municipal,14742,False
+11222,Loudon Utilities Board,TN,Municipal,14637,False
+16740,Scenic Rivers Energy Coop,IL WI,Cooperative,14621,False
+20862,Wisconsin Rapids W W & L Comm,WI,Municipal,14568,False
+16057,"Rio Grande Electric Coop, Inc",NM TX,Cooperative,14566,False
+13206,Nantucket Electric Co,MA,Investor Owned,14544,False
+5394,Dubois Rural Electric Coop Inc,IN,Cooperative,14494,False
+4433,City of Covington - (GA),GA,Municipal,14475,False
+14446,Paragould Municipal Utilities,AR,Municipal,14443,False
+18006,City of Starkville,MS,Municipal,14395,False
+59311,"XOOM Energy Ohio, LLC",OH,Retail Power Marketer,14388,False
+58162,Viridian Energy PA LLC,IL MD NJ OH PA,Retail Power Marketer,14370,False
+10585,City of La Grange - (GA),GA,Municipal,14312,False
+20187,Watertown Municipal Utilities,SD,Municipal,14308,False
+18943,Tippah Electric Power Assn,MS,Cooperative,14297,False
+10393,PUD No 1 of Klickitat County,WA,Political Subdivision,14286,False
+20142,City of Washington - (NC),NC,Municipal,14282,False
+15334,Prentiss County Elec Pwr Assn,MS,Cooperative,14173,False
+947,Athens Utility Board,TN,Municipal,14126,False
+16101,Roanoke Electric Member Corp,NC,Cooperative,14115,False
+13725,City of North Platte,NE,Municipal,14114,False
+58963,Brooklet Energy Distribution,TX,Retail Power Marketer,14091,False
+8245,City of Hastings - (NE),NE,Municipal,14083,False
+10649,Lamar County Elec Coop Assn,TX,Cooperative,14013,False
+11740,City of Marshfield - (WI),WI,Municipal,13966,False
+8566,High Plains Power Inc,WY,Cooperative,13928,False
+18951,Tishomingo County E P A,MS,Cooperative,13911,False
+40167,"Somerset Rural Elec Coop, Inc",PA,Cooperative,13903,False
+13679,Town of North Attleborough - (MA),MA,Municipal,13896,False
+7716,Groton Dept of Utilities - (CT),CT,Municipal,13889,False
+240,Albemarle Electric Member Corp,NC,Cooperative,13870,False
+19951,City of Wadsworth - (OH),OH,Municipal,13813,False
+8884,Terrebonne Parish Consol Gov't,LA,Municipal,13804,False
+61059,"Renaissance Power & Gas, Inc.",DC MA NY OH PA,Retail Power Marketer,13791,False
+4153,"Concordia Electric Coop, Inc",LA,Cooperative,13788,False
+12087,McKenzie Electric Coop Inc,MT ND,Cooperative,13781,False
+14599,"Paulding-Putman Elec Coop, Inc",IN OH,Cooperative,13739,False
+13524,"Newberry Electric Coop, Inc",SC,Cooperative,13737,False
+6198,"Farmers Electric Coop, Inc - (NM)",NM,Cooperative,13672,False
+20222,Wayne-White Counties Elec Coop,IL,Cooperative,13654,False
+6181,"Farmers Electric Coop, Inc - (MO)",MO,Cooperative,13641,False
+8034,Hancock-Wood Electric Coop Inc,OH,Cooperative,13640,False
+1591,"Big Country Electric Coop, Inc",TX,Cooperative,13596,False
+232,City of Albemarle - (NC),NC,Municipal,13585,False
+19784,Vera Irrigation District #15,WA,Political Subdivision,13550,False
+4160,Callaway Electric Cooperative,MO,Cooperative,13530,False
+16558,City of Salem - (VA),VA,Municipal,13519,False
+8973,Town of Hudson - (MA),MA,Municipal,13515,False
+10681,Lane Electric Coop Inc,OR,Cooperative,13507,False
+5585,Eastern Illinois Elec Coop,IL,Cooperative,13499,False
+5760,City of Elizabeth City - (NC),NC,Municipal,13496,False
+5480,Town of Danvers,MA,Municipal,13492,False
+5773,City of Elk River,MN,Municipal,13466,False
+13519,City of Newark - (DE),DE,Municipal,13439,False
+1300,City of Bartow - (FL),FL,Municipal,13430,False
+13962,Oconee Electric Member Corp,GA,Cooperative,13418,False
+3712,Clay County Electric Coop Corp - (AR),AR MO,Cooperative,13369,False
+19604,USBIA-San Carlos Project,AZ,Federal,13341,False
+3647,City of Claremore,OK,Municipal,13327,False
+16603,"San Luis Valley R E C, Inc",CO,Cooperative,13285,False
+5609,Eastern Maine Electric Coop,ME,Cooperative,13257,False
+61922,"Pure Energy USA, LLC",IL NJ NY OH PA,Retail Power Marketer,13250,False
+5578,East Mississippi Elec Pwr Assn,MS,Cooperative,13236,False
+5964,"Escambia River Elec Coop, Inc",FL,Cooperative,13224,False
+9425,Iowa Lakes Electric Coop,IA,Cooperative,13206,False
+19125,City of Traverse City - (MI),MI,Municipal,13146,False
+12312,Merced Irrigation District,CA,Political Subdivision,13140,False
+7627,City of Greenfield - (IN),IN,Municipal,13055,False
+691,City of Anoka,MN,Municipal,13004,False
+54893,NOCO Electric,NY,Retail Power Marketer,12963,False
+12801,City of Monroe - (NC),NC,Municipal,12905,False
+11142,City of Logansport - (IN),IN,Municipal,12885,False
+8846,City of Hopkinsville,KY,Municipal,12865,False
+21048,Wyandotte Municipal Serv Comm,MI,Municipal,12856,False
+57488,"XOOM Energy Illinois, LLC",IL,Retail Power Marketer,12843,False
+13602,City of Niles - (OH),OH,Municipal,12815,False
+61131,Freepoint Energy Solutions LLC,DC DE IL MD NJ NY OH PA TX,Retail Power Marketer,12785,False
+9475,Itasca-Mantrap Co-op Electrical Assn,MN,Cooperative,12681,False
+14381,City of Painesville,OH,Municipal,12614,False
+10800,City of Lawrenceville - (GA),GA,Municipal,12613,False
+1708,Big Sandy Rural Elec Coop Corp,KY,Cooperative,12611,False
+16382,"Rural Electric Coop, Inc - (OK)",OK,Cooperative,12605,False
+4068,City of Columbus - (MS),MS,Municipal,12568,False
+12450,Midland Power Coop,IA,Cooperative,12562,False
+16627,San Patricio Electric Coop Inc,TX,Cooperative,12522,False
+14246,City of Owatonna - (MN),MN,Municipal,12489,False
+15410,Prince George Electric Coop,VA,Cooperative,12489,False
+17845,City of Springville - (UT),UT,Municipal,12366,False
+2285,City of Brookings - (SD),SD,Municipal,12309,False
+19501,"Union Rural Electric Coop, Inc",OH,Cooperative,12275,False
+4715,Dahlberg Light & Power Co,WI,Investor Owned,12258,False
+20216,Whitewater Valley Rural EMC,IN,Cooperative,12199,False
+6173,Fannin County Electric Coop,TX,Cooperative,12172,False
+1283,Bartholomew County Rural E M C,IN,Cooperative,12170,False
+3400,City of Chaska - (MN),MN,Municipal,12108,False
+4538,Crisp County Power Comm,GA,Political Subdivision,12095,False
+20476,Western Coop Electric Assn Inc,KS,Cooperative,12076,False
+5509,City of Dyersburg,TN,Municipal,12075,False
+18047,Steele-Waseca Cooperative Electric,MN,Cooperative,12046,False
+13196,Northern Plains Electric Coop,ND,Cooperative,12039,False
+8748,City of Holly Springs,MS,Municipal,12012,False
+1009,City of Austin - (MN),MN,Municipal,12010,False
+10345,City of Kinston - (NC),NC,Municipal,12002,False
+6941,City of Garden City,KS,Municipal,11974,False
+8449,Henderson City Utility Comm,KY,Municipal,11969,False
+13807,Northwestern Electric Coop Inc - (OK),OK,Cooperative,11966,True
+20382,City of West Memphis - (AR),AR,Municipal,11900,False
+16463,City of Ruston - (LA),LA,Municipal,11857,False
+11318,City of Lumberton - (NC),NC,Municipal,11848,False
+2651,Butler Rural Electric Coop Inc - (OH),OH,Cooperative,11845,False
+40303,Monroe County Elec Power Assn,MS,Cooperative,11820,False
+5656,Edgecombe-Martin County E M C,NC,Cooperative,11818,False
+17047,City of Shelbyville - (TN),TN,Municipal,11746,False
+13143,Board of Water Electric & Communications,IA,Municipal,11724,False
+3329,Borough of Chambersburg,PA,Municipal,11718,False
+13647,Noble County R E M C,IN,Cooperative,11667,False
+11463,Macon Electric Coop,MO,Cooperative,11651,False
+10625,"Lamb County Electric Coop, Inc",TX,Cooperative,11634,False
+59993,Discount Power Inc - (CT),DE MA MD NJ OH PA RI,Retail Power Marketer,11567,False
+3268,Central Missouri Elec Coop Inc,MO,Cooperative,11534,False
+221,"Alaska Village Elec Coop, Inc",AK,Cooperative,11518,False
+61265,Pogo Energy LLC,TX,Retail Power Marketer,11517,False
+1936,Bolivar Energy Authority,TN,Municipal,11449,False
+4920,City of Dayton - (TN),TN,Municipal,11414,False
+1325,City of Batavia - (IL),IL,Municipal,11398,False
+13963,Oconomowoc Utilities,WI,Municipal,11376,False
+8147,City of Harriman - (TN),TN,Municipal,11322,False
+13412,City of New Albany - (MS),MS,Municipal,11321,False
+6582,City of Forest Grove,OR,Municipal,11316,False
+19266,Tullahoma Board-Public Utils,TN,Municipal,11295,False
+1769,"Black Hills Electric Coop, Inc",SD,Cooperative,11278,True
+12515,"Midwest Electric, Inc - (OH)",OH,Cooperative,11193,False
+4410,"Shell Energy North America (US), L.P.",CA NV OR WA,Retail Power Marketer,11183,True
+1640,City of Bessemer Utilities,AL,Municipal,11143,False
+13547,"Newnan Wtr, Sewer & Light Comm",GA,Municipal,11050,False
+4671,Custer Public Power District,NE,Political Subdivision,11046,False
+15231,City of Port Angeles - (WA),WA,Municipal,11028,False
+5625,Easton Utilities Comm,MD,Municipal,10990,False
+27058,"High West Energy, Inc",CO NE WY,Cooperative,10981,False
+12395,Menard Electric Coop,IL,Cooperative,10972,False
+15095,City of Piqua - (OH),OH,Municipal,10943,False
+12744,Modern Electric Water Company,WA,Cooperative,10929,False
+17592,Southeast Colorado Power Assn,CO,Cooperative,10925,False
+58853,Kiwi Energy NY LLC,NY OH,Retail Power Marketer,10797,False
+3295,City of Centralia - (WA),WA,Municipal,10759,False
+241,Albertville Municipal Utilities Board,AL,Municipal,10726,False
+9682,"Jefferson Davis Elec Coop, Inc",LA,Cooperative,10725,False
+295,City of Alexandria - (MN),MN,Municipal,10692,False
+17540,"South Central Ark El Coop, Inc",AR,Cooperative,10675,False
+15175,Pointe Coupee Elec Member Corp,LA,Cooperative,10673,False
+1578,Benton County,TN,Municipal,10664,False
+20310,Town of Wellesley - (MA),MA,Municipal,10662,False
+66113,"EcoPlus Power, LLC",IL NJ OH PA,Retail Power Marketer,10653,False
+5417,Dunn County Electric Coop,WI,Cooperative,10596,False
+14839,City of Peru - (IN),IN,Municipal,10591,False
+11586,Town of Mansfield - (MA),MA,Municipal,10564,False
+8570,Highline Electric Assn,CO NE,Cooperative,10539,False
+21114,Yazoo Valley Elec Power Assn,MS,Cooperative,10493,False
+13788,Northern Wasco County PUD,OR,Political Subdivision,10492,False
+14275,City of Oxford - (MS),MS,Municipal,10466,False
+10627,Lakeview Light & Power,WA,Cooperative,10438,False
+1723,"Big Bend Electric Coop, Inc",WA,Cooperative,10411,False
+4373,Cornhusker Public Power Dist,NE,Political Subdivision,10405,False
+17260,North West Rural Electric Coop,IA,Cooperative,10388,False
+305,Alger-Delta Coop Electric Assn,MI,Cooperative,10313,False
+10370,City of Kirkwood - (MO),MO,Municipal,10313,False
+60124,Spring Energy RRH LLC,MD NJ PA,Retail Power Marketer,10297,False
+7096,City of Geneva- (IL),IL,Municipal,10287,False
+5780,Elkhorn Rural Public Pwr Dist,NE,Political Subdivision,10231,False
+4508,"Crawfordsville Elec, Lgt & Pwr",IN,Municipal,10193,False
+7024,Gascosage Electric Coop,MO,Cooperative,10185,False
+6149,City of Ellensburg - (WA),WA,Municipal,10178,False
+15145,City of Plattsburgh - (NY),NY,Municipal,10173,False
+20737,Willmar Municipal Utilities,MN,Municipal,10171,False
+12478,Town of Middletown - (DE),DE,Municipal,10168,False
+40236,"Forked Deer Electric Coop, Inc",TN,Cooperative,10142,False
+14653,PUD No 1 of Pend Oreille County,WA,Political Subdivision,10101,False
+17040,"Shelby Electric Coop, Inc - (IL)",IL,Cooperative,10054,False
+16900,City of Seguin - (TX),TX,Municipal,9970,False
+59734,"SFE Energy Massachusetts, Inc.",MA,Retail Power Marketer,9916,False
+17693,"Southwest Texas Elec Coop, Inc",TX,Cooperative,9904,False
+18384,City of Sweetwater,TN,Municipal,9870,False
+10830,City of Lebanon - (OH),OH,Municipal,9824,False
+17184,City of Siloam Springs - (AR),AR,Municipal,9787,False
+13693,"North Central Elec Coop, Inc - (OH)",OH,Cooperative,9745,False
+59055,"Choice Energy, LLC",NJ OH PA,Retail Power Marketer,9670,False
+16259,City of Rolla - (MO),MO,Municipal,9633,False
+18249,City of Sturgeon Bay - (WI),WI,Municipal,9629,False
+15229,City of Poplar Bluff - (MO),MO,Municipal,9611,False
+19445,"Southern Indiana R E C, Inc",IN,Cooperative,9590,False
+40221,"Bedford Rural Elec Coop, Inc",PA,Cooperative,9582,False
+3931,Coles-Moultrie Electric Coop,IL,Cooperative,9576,False
+12860,Morgan County Rural Elec Assn,CO,Cooperative,9564,False
+9613,City of Lebanon - (IN),IN,Municipal,9562,False
+63695,"RPA Energy, Inc.",DC DE IL MD NJ OH PA,Retail Power Marketer,9504,False
+19225,City of Troy - (AL),AL,Municipal,9501,False
+11014,"Lighthouse Electric Coop, Inc",TX,Cooperative,9500,False
+6707,City of Frankfort - (IN),IN,Municipal,9472,False
+12298,City of Menasha - (WI),WI,Municipal,9469,False
+416,City of Altus - (OK),OK,Municipal,9443,False
+18181,City of Stoughton - (WI),WI,Municipal,9443,False
+12227,Meeker Coop Light & Power Assn,MN,Cooperative,9361,False
+11811,Town of Massena - (NY),NY,Municipal,9328,False
+14238,Ouachita Electric Coop Corp,AR,Cooperative,9281,False
+5588,East-Central Iowa Rural Elec Coop,IA,Cooperative,9224,False
+17829,City of Springfield - (TN),TN,Municipal,9144,False
+1169,Bailey County Elec Coop Assn,TX,Cooperative,9131,False
+13482,New River Light & Power Co,NC,State,9097,False
+4617,Cullman Power Board,AL,Municipal,9078,False
+16611,Access Energy Coop,IA,Cooperative,9067,False
+5961,Town of Erwin - (TN),TN,Municipal,9008,False
+13144,City of Muscle Shoals,AL,Municipal,9000,False
+12208,City of McPherson - (KS),KS,Municipal,8988,False
+6612,Fort Payne Improvement Authority,AL,Municipal,8985,False
+55787,City of Moreno Valley - (CA),CA,Municipal,8944,False
+63168,Median Energy Corp.,DC MD NJ NY OH,Retail Power Marketer,8943,False
+3939,City of College Park - (GA),GA,Municipal,8932,False
+21075,Y-W Electric Assn Inc,CO NE,Cooperative,8903,False
+7651,Greenwood Utilities Comm,MS,Municipal,8887,False
+12944,City of Morganton - (NC),NC,Municipal,8868,False
+8055,City of Hannibal - (MO),MO,Municipal,8798,False
+9087,Town of Huntersville - (NC),NC,Municipal,8792,False
+15159,City of Plymouth - (WI),WI,Municipal,8768,False
+17177,City of Sikeston - (MO),MO,Municipal,8749,False
+12540,City of Milford - (DE),DE,Municipal,8740,False
+16829,City of Scottsboro - (AL),AL,Municipal,8737,False
+9665,Jasper County Rural E M C,IN,Cooperative,8712,False
+13739,Northeast Power,NE,Political Subdivision,8654,False
+58161,Viridian Energy LLC,MA,Retail Power Marketer,8646,False
+11204,Los Alamos County,NM,Municipal,8581,False
+17548,South Central Public Pwr Dist,NE,Political Subdivision,8568,False
+12532,City of Milan - (TN),TN,Municipal,8534,False
+4848,Daviess Martin County R E M C,IN,Cooperative,8529,False
+13228,City of Natchitoches,LA,Municipal,8481,False
+3216,City of Celina - (OH),OH,Municipal,8468,False
+296,"Alfalfa Electric Coop, Inc",KS OK,Cooperative,8466,False
+219,Alaska Power and Telephone Co,AK,Investor Owned,8456,False
+11488,Madisonville Municipal Utils,KY,Municipal,8444,False
+6205,City of Farmington - (MO),MO,Municipal,8400,False
+4237,Consolidated Electric Coop,MO,Cooperative,8315,False
+4960,Decatur County Rural E M C,IN,Cooperative,8307,False
+12186,McMinnville Electric System,TN,Municipal,8307,False
+2138,Brainerd Public Utilities,MN,Municipal,8305,False
+63546,"Provision Power & Gas, LLC",OH,Retail Power Marketer,8276,False
+49818,"Alliance Power Company, LLC.",TX,Retail Power Marketer,8258,False
+3113,City of Carthage - (MO),MO,Municipal,8251,False
+60579,"SFE Energy Ohio, Inc.",OH,Retail Power Marketer,8223,False
+3108,City of Cartersville - (GA),GA,Municipal,8184,False
+57490,"XOOM Energy Maryland, LLC",MD,Retail Power Marketer,8167,False
+2008,City of Boulder City - (NV),NV,Municipal,8074,False
+58118,Public Power LLC (PA),PA,Retail Power Marketer,8026,True
+6717,Franklin Electric Coop - (AL),AL,Cooperative,7994,False
+8212,Hartford Electric,WI,Municipal,7971,False
+10210,Ketchikan Public Utilities,AK,Municipal,7964,False
+994,City of Auburn - (IN),IN,Municipal,7940,False
+13138,City of Murray - (KY),KY,Municipal,7938,False
+9667,City of Jasper - (IN),IN,Municipal,7899,False
+58747,"Provider Power MASS, LLC",MA,Retail Power Marketer,7850,False
+3915,Coldwater Board of Public Util,MI,Municipal,7829,False
+13073,"Mt Wheeler Power, Inc",NV UT,Cooperative,7749,False
+21111,Perennial Public Power Dist,NE,Political Subdivision,7747,False
+58972,"Realgy, LLC",IL OH,Retail Power Marketer,7705,False
+3205,Cedar-Knox Public Power Dist,NE,Political Subdivision,7703,False
+59084,"SFE Energy Maryland, Inc.",MD,Retail Power Marketer,7688,False
+6894,City of Gaffney - (SC),SC,Municipal,7665,False
+9130,Hutchinson Utilities Comm,MN,Municipal,7665,False
+7270,City of Glasgow - (KY),KY,Municipal,7618,False
+11085,Town of Littleton - (MA),MA,Municipal,7596,False
+13694,"North Central Elec Coop, Inc - (ND)",ND,Cooperative,7592,False
+59797,Park Power LLC,DC DE IL MD OH PA,Retail Power Marketer,7592,False
+19502,"United Electric Co-op, Inc - (ID)",ID,Cooperative,7590,True
+11788,Consumers Energy Coop - (IA),IA,Cooperative,7560,True
+20813,City of Winfield - (KS),KS,Municipal,7551,False
+20211,Village of Waunakee - (WI),WI,Municipal,7536,False
+16082,City of River Falls,WI,Municipal,7504,False
+10832,City of Lebanon - (MO),MO,Municipal,7490,False
+2194,City of Brenham - (TX),TX,Municipal,7442,False
+63122,"Approved Energy II, LLC",NJ NY OH PA,Retail Power Marketer,7375,False
+3236,"Central Electric Coop, Inc - (SD)",SD,Cooperative,7351,False
+15040,City of Pierre - (SD),SD,Municipal,7327,False
+63008,Agressive Energy LLC,IL MD NJ NY OH PA,Retail Power Marketer,7269,False
+56573,"Palmco Power PA, LLC",PA,Retail Power Marketer,7247,False
+63422,Varsity Energy,TX,Retail Power Marketer,7214,False
+56501,"Palmco Power NJ, LLC",NJ,Retail Power Marketer,7211,False
+13757,North Plains Electric Coop Inc,TX,Cooperative,7203,False
+3597,Citizens Electric Co - (PA),PA,Investor Owned,7174,True
+18252,City of Sturgis - (MI),MI,Municipal,7173,False
+61367,South Bay Energy Corp.,IL NJ NY OH PA,Retail Power Marketer,7161,False
+59313,"Palmco Power MA, LLC",MA,Retail Power Marketer,7150,False
+6610,City of Fort Morgan,CO,Municipal,7134,False
+14194,City of Orrville - (OH),OH,Municipal,7114,False
+6258,Federated Rural Electric Assn,IA MN,Cooperative,7043,False
+21158,City of Zeeland - (MI),MI,Municipal,7041,False
+3208,Cedarburg Light & Water Comm,WI,Municipal,7012,False
+16179,Rochelle Municipal Utilities,IL,Municipal,7009,False
+21513,"Fergus Electric Coop, Inc",MT,Cooperative,6999,False
+61972,"SunSea Energy, LLC",DC NJ NY OH,Retail Power Marketer,6947,False
+4717,Dakota Valley Elec Coop Inc,ND,Cooperative,6932,False
+11731,City of Marshall - (MN),MN,Municipal,6925,False
+7827,Guntersville Electric Board,AL,Municipal,6922,False
+5336,City of Dover - (OH),OH,Municipal,6893,False
+13750,"Northern Electric Coop, Inc",SD,Cooperative,6888,False
+8840,City of Hope - (AR),AR,Municipal,6882,False
+19882,Virginia Tech Electric Service,VA,State,6849,False
+58248,"EnergyMark, LLC",NY,Retail Power Marketer,6840,False
+20793,City of Winchester - (TN),TN,Municipal,6835,False
+12539,Midwest Electric Member Corp - (NE),NE,Cooperative,6789,False
+18260,Surprise Valley Electrification,CA NV OR,Cooperative,6712,False
+20472,"Wharton County Elec Coop, Inc",TX,Cooperative,6673,False
+27222,City of Ripley - (TN),TN,Municipal,6663,False
+10960,City of Lewisburg - (TN),TN,Municipal,6662,False
+4041,"Columbia Rural Elec Assn, Inc",OR WA,Cooperative,6656,False
+56196,Just Energy New York Corp.,NY,Retail Power Marketer,6647,True
+58158,FairPoint Energy LLC,ME NH,Retail Power Marketer,6641,False
+10066,K C Electric Association,CO,Cooperative,6625,False
+2643,Butler Public Power District - (NE),NE,Political Subdivision,6568,False
+18466,Town of Tarboro - (NC),NC,Municipal,6503,False
+65413,Tesla Energy Ventures,TX,Retail Power Marketer,6503,False
+19430,City of Union City,TN,Municipal,6483,False
+20334,Wellsborough Electric Co,PA,Investor Owned,6469,False
+20332,Wells Rural Electric Co,NV UT,Cooperative,6467,False
+11272,"Lower Yellowstone R E A, Inc",MT ND,Cooperative,6386,False
+11118,Lockhart Power Co,SC,Investor Owned,6343,False
+64923,Capital Energy PA LLC,TX,Retail Power Marketer,6291,True
+17692,Southwest Public Power Dist,NE,Political Subdivision,6284,False
+10433,Kodiak Electric Assn Inc,AK,Cooperative,6255,False
+2812,City of Calhoun - (GA),GA,Municipal,6254,False
+15048,Electrical Dist No2 Pinal County,AZ,Political Subdivision,6247,False
+19324,Two Rivers Water & Light,WI,Municipal,6238,False
+17577,City of South Sioux City,NE,Municipal,6223,False
+14840,City of Peru - (IL),IL,Municipal,6161,False
+17011,Shawano Municipal Utilities,WI,Municipal,6104,False
+5880,"Energy Coop of New York, Inc",NY PA,Retail Power Marketer,6099,False
+22690,Roosevelt County Elec Coop Inc,NM,Cooperative,6079,False
+1896,City of Bluffton - (IN),IN,Municipal,6054,False
+17550,South Central Electric Assn,MN,Cooperative,5944,False
+5325,City of Douglas,GA,Municipal,5932,False
+57074,"Stream Energy New Jersey, LLC",NJ,Retail Power Marketer,5924,False
+10012,Kay Electric Coop,OK,Cooperative,5899,False
+2774,CMS Electric Coop Inc,KS,Cooperative,5885,True
+6718,City of Franklin - (KY),KY,Municipal,5864,False
+58630,"XOOM Energy Maine, LLC",ME,Retail Power Marketer,5855,False
+8226,City of Hartselle,AL,Municipal,5755,False
+3892,City of Coffeyville - (KS),KS,Municipal,5740,False
+58196,"C. N. Brown Electricity, LLC",ME,Retail Power Marketer,5714,False
+13481,City of New Richmond,WI,Municipal,5705,False
+7561,"Greenbelt Electric Coop, Inc",TX,Cooperative,5663,False
+16286,Rosebud Electric Coop Inc,SD,Cooperative,5637,False
+12700,Missouri Rural Electric Coop,MO,Cooperative,5632,False
+11292,City of Lubbock - (TX),TX,Municipal,5614,False
+57489,"XOOM Energy Massachusetts, LLC",MA,Retail Power Marketer,5606,False
+3355,City of Chanute,KS,Municipal,5567,False
+15804,Reedsburg Utility Comm,WI,Municipal,5564,False
+14999,"Pilot Power Group, LLC",CA,Retail Power Marketer,5559,False
+21013,City of Worthington - (MN),MN,Municipal,5541,False
+13697,North Central Power Co Inc,WI,Investor Owned,5516,False
+8883,Houlton Water Company,ME,Municipal,5496,False
+59064,"Great American Power, LLC",IL MD OH PA,Retail Power Marketer,5492,False
+2411,City of Brownsville,TN,Municipal,5421,False
+40441,Town of Murphy - (NC),NC,Municipal,5413,False
+155,Agralite Electric Coop,MN,Cooperative,5397,False
+22814,Raft Rural Elec Coop Inc,ID NV UT,Cooperative,5391,False
+14078,City of Okolona,MS,Municipal,5390,False
+15045,Pike County Light & Power Co,PA,Investor Owned,5362,False
+6008,City of Etowah,TN,Municipal,5360,False
+49998,City of Berea Municipal Utility,KY,Municipal,5359,False
+8319,Heartland Power Coop,IA MN,Cooperative,5349,False
+59810,Greenlight Energy Inc.,DE IL MD NJ NY OH PA,Retail Power Marketer,5346,False
+40304,Minnesota Valley Coop L&P Assn,MN,Cooperative,5310,False
+13032,Mt Carmel Public Utility Co,IL,Investor Owned,5233,False
+11871,City of Mayfield Plant Board,KY,Municipal,5216,False
+17512,Village of Solvay - (NY),NY,Municipal,5182,False
+2652,Butler County Rural Elec Coop - (IA),IA,Cooperative,5110,False
+16458,City of Russellville - (AL),AL,Municipal,5096,False
+14537,Pascoag Utility District,RI,Municipal,4984,False
+19307,City of Tuscumbia,AL,Municipal,4984,False
+12681,Mississippi County Electric Co,AR,Cooperative,4919,False
+12782,City of Monett - (MO),MO,Municipal,4887,False
+4437,City of Covington - (TN),TN,Municipal,4713,False
+604,City of Andalusia,AL,Municipal,4675,False
+10967,City of Lexington - (NE),NE,Municipal,4614,False
+17896,City of Shasta Lake - (CA),CA,Municipal,4597,False
+9023,City of Humboldt,TN,Municipal,4585,False
+10605,Lake Mills Light & Water,WI,Municipal,4580,False
+3705,Clarksville Connected Utilities,AR,Municipal,4578,False
+49922,U.S. Energy Partners LLC,NY,Retail Power Marketer,4558,False
+20213,Waupun Utilities,WI,Municipal,4543,False
+59085,"SFE Energy NJ, Inc.",NJ,Retail Power Marketer,4537,False
+6043,City of Evansville,WI,Municipal,4467,False
+9697,City of Jellico,KY TN,Municipal,4411,False
+64312,"JP Energy Resources, LLC",TX,Retail Power Marketer,4411,False
+9690,Jefferson Utilities,WI,Municipal,4333,False
+15291,Prairie Energy Coop,IA,Cooperative,4317,False
+28541,Clatskanie Peoples Util Dist,OR,Political Subdivision,4312,False
+13039,City of Mt Pleasant - (TN),TN,Municipal,4294,False
+13036,Village of Mt. Horeb - (WI),WI,Municipal,4286,False
+12090,"McLean Electric Coop, Inc",ND,Cooperative,4278,False
+59053,"Abest Power & Gas, LLC",NY,Retail Power Marketer,4237,False
+16459,City of Russellville - (KY),KY,Municipal,4174,False
+13467,New London Electric&Water Util,WI,Municipal,4142,False
+17261,Slope Electric Coop Inc,ND,Cooperative,4098,False
+56408,"UGI Energy Services, LLC",DC DE MD NJ NY PA,Retail Power Marketer,4081,True
+18206,Strawberry Electric Serv Dist,UT,Political Subdivision,4072,False
+2487,City of Buford,GA,Municipal,4060,False
+64977,Revolution Energy LLC,TX,Retail Power Marketer,4024,False
+61264,Heritage Power LLC,TX,Retail Power Marketer,3977,False
+62148,Powervine Energy,MD OH PA,Retail Power Marketer,3963,False
+571,City of Amory,MS,Municipal,3959,False
+1764,Black Diamond Power Co,WV,Investor Owned,3933,False
+20394,City of West Point - (MS),MS,Municipal,3840,False
+14947,City of Philadelphia - (MS),MS,Municipal,3839,False
+57185,"Palmco Power MD, LLC",MD,Retail Power Marketer,3836,False
+61920,"All American Power and Gas, LLC",NJ NY OH PA,Retail Power Marketer,3763,False
+4720,Dakota Energy Coop Inc,SD,Cooperative,3638,False
+54872,"Accent Energy Holdings, LLC",TX,Retail Power Marketer,3636,False
+60914,Current Power & Gas Inc.,OH,Retail Power Marketer,3531,False
+63356,SmartestEnergy US LLC,CT DC DE IL MA MD NJ NY OH PA RI,Retail Power Marketer,3519,False
+58966,Marathon Power LLC,MD NJ NY PA,Retail Power Marketer,3499,False
+2394,Burke-Divide Electric Coop Inc,ND,Cooperative,3495,False
+20576,"White River Electric Assn, Inc",CO,Cooperative,3485,False
+11247,Louisville Electric System,MS,Municipal,3462,False
+61570,King City Community Power,CA,Community Choice Aggregator,3444,False
+65261,Gila River Indian Utility Authority (GRICUA),AZ,Cooperative,3433,False
+11611,City of Maquoketa - (IA),IA,Municipal,3416,False
+55,City of Aberdeen - (MS),MS,Municipal,3330,False
+11475,City of Madison - (SD),SD,Municipal,3322,False
+9230,City of Independence - (IA),IA,Municipal,3193,False
+58116,"Public Power & Utility of Maryland, LLC",MD,Retail Power Marketer,3174,True
+57307,ENGIE Power & Gas LLC,IL MD NJ NY OH PA,Retail Power Marketer,3161,False
+61092,"Stream Energy Illinois, LLC",IL,Retail Power Marketer,3152,False
+3824,Clyde Light & Power,OH,Municipal,3132,False
+57491,"XOOM Energy New Jersey, LLC",NJ,Retail Power Marketer,3113,False
+17740,City of Sparta,TN,Municipal,3092,False
+17826,"Springer Electric Coop, Inc",NM,Cooperative,3084,False
+17452,City of Smithville - (TN),TN,Municipal,3051,False
+17324,Slinger Utilities,WI,Municipal,3037,False
+59848,"ResCom Energy, LLC",DE IL OH,Retail Power Marketer,3024,False
+56876,"Stream Energy Maryland, LLC",MD,Retail Power Marketer,3012,False
+16565,Salmon River Electric Coop Inc,ID,Cooperative,2982,False
+7292,Glencoe Light & Power Comm,MN,Municipal,2974,False
+16612,City & County of San Francisco,CA,Municipal,2941,False
+15978,City of Richland Center - (WI),WI,Municipal,2939,False
+4073,City of Columbus - (WI),WI,Municipal,2906,False
+1776,City of Black River Falls,WI,Municipal,2886,False
+60977,StateWise Energy Ohio LLC,OH,Retail Power Marketer,2879,False
+16637,City of Sandersville - (GA),GA,Municipal,2835,False
+2089,Bozrah Light & Power Company,CT,Municipal,2830,False
+4390,City of Corona - (CA),CA,Municipal,2773,False
+13448,City of New Holstein - (WI),WI,Municipal,2716,False
+18472,City of Tarrant,AL,Municipal,2692,False
+7265,City of Gladstone,MI,Municipal,2687,False
+49746,The Energy Coop,PA,Cooperative,2659,False
+11477,Town of Madison - (ME),ME,Municipal,2656,False
+12919,Morenci Water and Electric,AZ,Investor Owned,2630,False
+1582,City of Benton - (KY),KY,Municipal,2570,False
+19149,City of Trenton - (TN),TN,Municipal,2463,False
+58181,"Stream Energy New York, LLC",NY,Retail Power Marketer,2425,False
+58160,Viridian Energy NY LLC,NY,Retail Power Marketer,2377,False
+18397,City of Sylvania - (GA),GA,Municipal,2376,False
+15086,Pioneer Power and Light Co,WI,Investor Owned,2278,False
+13352,City of Negaunee,MI,Municipal,2263,False
+13826,City of Norway,MI,Municipal,2257,False
+20140,City of Washington - (GA),GA,Municipal,2230,False
+15312,Village of Prairie Du Sac - (WI),WI,Municipal,2227,False
+58973,"Town Square Energy East, LLC",MD NJ OH PA,Retail Power Marketer,2202,False
+17715,Southwestern Electric Coop Inc - (NM),CO NM OK TX,Cooperative,2172,False
+66867,David Energy Supply LLC,MA NJ NY TX,Retail Power Marketer,2141,True
+64314,BP Energy Retail LLC,CA CT DC DE IL MA MD ME NH NJ NY OH PA RI TX VA,Retail Power Marketer,2117,False
+62790,"Summer Energy Midwest, LLC",IL OH PA,Retail Power Marketer,2096,False
+66678,Polaris Power Services LLC,NJ NY PA,Retail Power Marketer,2092,False
+20176,City of Water Valley - (MS),MS,Municipal,2079,False
+307,Algoma Utility Comm,WI,Municipal,2050,False
+1857,Block Island Utility District,RI,Political Subdivision,2013,False
+20182,Waterloo Light & Water Comm,WI,Municipal,1926,False
+2273,Brodhead Water & Lighting Comm,WI,Municipal,1857,False
+57453,Independence Energy Group LLC,PA,Retail Power Marketer,1857,False
+13437,City of Newbern,TN,Municipal,1836,False
+11125,City of Lodi - (WI),WI,Municipal,1801,False
+50046,"Texas Retail Energy, LLC",CT IL MA MD ME NH NJ NY OH PA TX VA,Retail Power Marketer,1801,False
+16063,"Rita Blanca Electric Coop, Inc",TX,Cooperative,1787,False
+63364,"Mirabito Power & Gas, LLC",NY,Retail Power Marketer,1784,False
+1997,City of Boscobel - (WI),WI,Municipal,1782,False
+63570,"Chief Energy Power, LLC",NY,Retail Power Marketer,1779,False
+62154,StateWise Energy Maryland LLC,MD,Retail Power Marketer,1761,False
+19798,City of Vernon,CA,Municipal,1744,False
+66173,Northeastern Power and Gas LLC,NY,Retail Power Marketer,1712,False
+13965,Oconto Falls Water & Light Comm,WI,Municipal,1674,False
+6424,Florence Utility Comm,WI,Municipal,1621,False
+62094,"SFE Energy Illinois, Inc.",IL,Retail Power Marketer,1617,False
+6840,City of Fulton - (KY),KY,Municipal,1613,False
+4604,City of Crystal Falls,MI,Municipal,1603,False
+9124,Hustisford Utilities,WI,Municipal,1597,False
+5551,City of Eagle River - (WI),WI,Municipal,1587,False
+15776,Central Florida Tourism Oversight District,FL,Municipal,1563,False
+65335,Pay Less Energy LLC,NJ NY,Retail Power Marketer,1560,False
+49952,3000 Energy Corp,TX,Retail Power Marketer,1535,False
+66026,"Palmetto Solar, LLC",AZ CA CO CT FL GA IL KS MA MD ME MI NC NH NJ NM NV NY OH OK PA RI TX,Behind the Meter,1468,False
+65439,CPV Retail Energy LP,DC DE IL MD NJ OH PA,Retail Power Marketer,1463,False
+16177,"Robison Energy, LLC",NY,Retail Power Marketer,1372,False
+10451,Kotzebue Electric Assn Inc,AK,Cooperative,1354,False
+13438,Village of New Glarus - (WI),WI,Municipal,1296,False
+63169,Median Energy PA LLC,PA,Retail Power Marketer,1285,False
+20434,City of Westby,WI,Municipal,1275,False
+57459,"Wolverine Alternative Investments, LLC",TX,Retail Power Marketer,1272,False
+19896,City of Volga - (SD),SD,Municipal,1266,False
+10596,City of Lake Crystal - (MN),MN,Municipal,1249,False
+64727,Branch Energy Texas LLC,TX,Retail Power Marketer,1243,False
+58633,"XOOM Energy New Hampshire, LLC",NH,Retail Power Marketer,1212,False
+11458,City of Macon - (MS),MS,Municipal,1181,False
+62914,StateWise Energy Pennsylvania LLC,PA,Retail Power Marketer,1170,False
+9936,Juneau Utility Comm,WI,Municipal,1166,False
+10508,Village of L'Anse - (MI),MI,Municipal,1154,False
+13145,Village of Muscoda - (WI),WI,Municipal,1138,False
+4607,City of Cuba City,WI,Municipal,1132,False
+16840,"Calpine Energy Solutions, LLC",CA CT DC DE IL MA MD ME MI NH NJ NY OH OR PA RI TX VA,Retail Power Marketer,1122,True
+8548,City of Hickman,KY,Municipal,1053,False
+63367,Commercial Energy of California,CA,Retail Power Marketer,1046,False
+176,Ajo Improvement Co,AZ,Investor Owned,1031,False
+66582,Pumpjack Power LLC,TX,Retail Power Marketer,1010,False
+66118,Spartacus Energy Services LLC,NJ PA,Retail Power Marketer,992,False
+59062,"Horizon Power and Light, LLC",DC MD,Retail Power Marketer,990,False
+59312,"XOOM Energy Washington DC, LLC",DC,Retail Power Marketer,976,False
+3475,City of Chickamauga,GA,Municipal,973,False
+20583,Whitehall Electric Utility,WI,Municipal,963,False
+66017,"All Choice Energy, LLC",NY PA,Retail Power Marketer,957,False
+56220,Anthracite Power & Light,PA,Retail Power Marketer,942,False
+61479,"Stream Ohio Gas & Electric, LLC",OH,Retail Power Marketer,908,False
+15296,New York Power Authority,NY,State,907,False
+61283,"Palmco Power DC, LLC",DC,Retail Power Marketer,903,False
+471,Amana Society Service Co,IA,Investor Owned,889,False
+62156,"Power UP Energy, LLC",NJ NY PA,Retail Power Marketer,887,False
+65353,Arrow Energy TX LLC,TX,Retail Power Marketer,825,False
+1196,Village of Baraga - (MI),MI,Municipal,809,False
+40036,Westfield Electric Company,WI,Investor Owned,795,False
+6369,Fishers Island Utility Co Inc,NY,Investor Owned,770,False
+59972,The Regents of the Univ. of California,CA,Retail Power Marketer,768,False
+40364,City of Courtland,AL,Municipal,763,False
+5729,Electrical Dist No8 Maricopa,AZ,Political Subdivision,695,False
+65613,"ABN Energy, LLC",NY,Retail Power Marketer,693,False
+62117,"SFE Energy Texas, Inc.",TX,Retail Power Marketer,661,False
+15349,City of Preston,IA,Municipal,622,False
+21093,3 Phases Renewables Inc,CA,Retail Power Marketer,622,False
+58632,"XOOM Energy Delaware, LLC",DE,Retail Power Marketer,529,False
+25866,Ak-Chin Electric Utility Authority,AZ,State,466,False
+5703,Empire Natural Gas Corporation,NY,Retail Power Marketer,393,False
+60981,"TerraForm US Energy Services, LLC",AZ CA CO CT FL GA HI MA MD NH NJ NY OR PA TX VT,Behind the Meter,336,False
+58631,"XOOM Energy Rhode Island, LLC",RI,Retail Power Marketer,304,False
+66332,"Base Texas REP, LLC",TX,Retail Power Marketer,300,True
+64222,"Grid Power Direct, LLC",CT DC IL MA NJ NY OH PA,Retail Power Marketer,273,False
+54728,Texas General Land Office,TX,Retail Power Marketer,261,False
+58851,City of Cerritos - (CA),CA,Municipal,261,False
+61200,"Summer Energy Northeast, LLC",MA NH,Retail Power Marketer,257,False
+58978,"Harborside Energy, LLC",NJ,Retail Power Marketer,250,False
+63870,Click Energy LLC,PA,Retail Power Marketer,249,False
+61349,"Palmco Power DE, LLC",DE,Retail Power Marketer,248,False
+58476,"Stream Energy Columbia, LLC",DC,Retail Power Marketer,240,False
+27000,WAPA-- Western Area Power Administration,AZ CA CO KS MN MT ND NE NM NV SD UT WY,Federal,223,False
+63007,First Choice Energy LLC,NY,Retail Power Marketer,209,False
+18995,Tenaska Power Services,NV TX,Retail Power Marketer,204,False
+61353,Philadelphia Authority for Industrial Development,PA,Municipal,202,False
+61201,"Stream Energy Delaware, LLC",DE,Retail Power Marketer,182,False
+19277,TDX North Slope Generating Co,AK,Investor Owned,162,False
+60025,Greenbacker Renewable Energy Corporation,AR AZ CA CO CT FL HI IN MA MD NC NJ NV NY RI TN VT,Behind the Meter,155,False
+59818,Algonquin Energy Services,ME,Retail Power Marketer,127,False
+66333,"Light Energy, LLC",TX,Retail Power Marketer,119,False
+66436,Maison Energy LLC,TX,Retail Power Marketer,97,False
+56734,Smart Prepaid Electric,TX,Retail Power Marketer,96,False
+4247,Consolidated Water Power Co,WI,Investor Owned,91,False
+59676,"Collegiate Clean Energy, LLC",VA,Retail Power Marketer,89,False
+59622,"Ahana Renewables, LLC",AZ CA CO DC HI IL IN MA MD ME MI NH NJ NM NY OR PA RI VT,Behind the Meter,84,False
+7490,Grand River Dam Authority,OK,State,79,False
+66851,Gridmatic Retail LLC,TX,Retail Power Marketer,73,True
+49848,Massachusetts Bay Trans Authority,MA,Political Subdivision,68,False
+65610,Ammper Power LLC,TX,Retail Power Marketer,66,False
+18642,Tennessee Valley Authority,AL KY MS NC TN,Federal,64,True
+59086,"Constellation Solar Holding, LLC",AZ CA CT DC DE MA MD,Behind the Meter,64,True
+61823,"Greenskies Renewable Energy, LLC",CA CO CT FL MA NJ PA,Behind the Meter,60,False
+66116,"Robindale Retail Power Services, LLC",PA,Retail Power Marketer,57,False
+64543,StateWise Energy Illinois LLC,IL,Retail Power Marketer,45,False
+58113,"Texas A&M, Utilities & Energy Services",TX,State,43,False
+49730,American PowerNet,IL MD ME OH PA TX,Retail Power Marketer,34,True
+60202,Electranet Power LLC,TX,Retail Power Marketer,29,False
+88888,Withheld,TX,Retail Power Marketer,27,False
+20845,Wolverine Power Marketing Coop,MI,Cooperative,21,False
+4356,Colorado River Comm of Nevada,NV,State,16,False
+1611,"Messer Energy Services, Inc.",DE IL ME NY OH PA,Retail Power Marketer,14,False
+28802,"Talen Energy Marketing, LLC",MD MT NJ PA TX,Retail Power Marketer,14,True
+66435,"MEMS Industrial Supply, LLC",TX,Retail Power Marketer,13,False
+65242,"Scale Sustainable I, LLC",CA CO DE NJ OR PA,Behind the Meter,12,False
+1738,Bonneville Power Administration,OR WA,Federal,11,True
+3991,CMS Energy Resource Management,MI,Retail Power Marketer,11,True
+61206,Total Gas & Power North America Inc,TX,Retail Power Marketer,11,False
+50153,"APN Starfirst, L.P.",OH PA,Retail Power Marketer,10,False
+54873,Freedom Energy,ME NH,Retail Power Marketer,10,False
+58364,New Brunswick Power Generation Corp.,ME,Retail Power Marketer,10,False
+59763,"Consolidated Power Co., LLC",NY,Retail Power Marketer,10,False
+66399,Brookfield Renewable Energy Marketing US LLC,MD NV NY OR WA,Retail Power Marketer,10,False
+58458,Silver State Energy Association,NV,Retail Power Marketer,7,False
+2830,Calpine Power America LLC,CA ME TX,Retail Power Marketer,6,False
+56521,"Devonshire Energy, LLC",DC MA NH RI,Retail Power Marketer,4,False
+66082,Eastside Power Authority,CA,Political Subdivision,4,False
+540,BP Energy Company,TX WA,Retail Power Marketer,3,False
+12917,Morgan Stanley Capital Grp Inc,MT TX,Retail Power Marketer,3,False
+14349,"Avangrid Power, LLC",OR WA,Retail Power Marketer,3,True
+19869,Vinton Public Power Authority,LA,Political Subdivision,3,False
+56279,"Spartan Renewable Energy, Inc",MI,Retail Power Marketer,3,False
+64974,PBF Power Marketing,DE NJ OH,Retail Power Marketer,3,False
+261,AGC Division of APGI Inc,IN,Investor Owned,2,False
+5470,ConocoPhillips Company,TX,Retail Power Marketer,2,False
+66398,Brookfield Renewable Trading and Marketing LP,NH NY,Retail Power Marketer,2,False
+67076,"FlowX, LLC",TX,Retail Power Marketer,2,False
+796,Arizona Electric Pwr Coop Inc,CA,Cooperative,1,False
+1307,Basin Electric Power Coop,ND,Cooperative,1,False
+5969,City of Escondido - (CA),CA,Municipal,1,False
+6207,Farmington River Power Company,CT,Investor Owned,1,False
+10325,Kings River Conservation Dist,CA,Political Subdivision,1,False
+14015,Ohio Valley Electric Corp,OH,Investor Owned,1,False
+40456,PUD No 1 of Whatcom County,WA,Political Subdivision,1,False
+40613,Northern California Power Agny,CA,Political Subdivision,1,False
+49987,Harvard Dedicated Energy Limit,MA,Retail Power Marketer,1,False
+56223,Macquarie Energy LLC,NV,Retail Power Marketer,1,False
+56496,"UP Power Marketing, LLC",MI,Retail Power Marketer,1,False
+59679,Aggregated Transit Energy,MA,Retail Power Marketer,1,False
+66164,"TerraForm Renewable Energy Services, LLC",TX,Retail Power Marketer,1,False
+67122,Selfserve Energy Corp.,TX,Retail Power Marketer,1,False

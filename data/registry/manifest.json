@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-27T22:26:32+00:00",
+  "fetched_at": "2026-09-27T22:42:42+00:00",
   "pages": {
     "il_icc_ares": {
       "url": "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx",
@@ -206,11 +206,77 @@
           "status": 200
         }
       ],
+      "layout": [
+        [
+          "Utility Characteristics",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "RESIDENTIAL",
+          "nan",
+          "nan",
+          "COMMERCIAL",
+          "nan"
+        ],
+        [
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "Revenues",
+          "Sales",
+          "Customers",
+          "Revenues",
+          "Sales"
+        ],
+        [
+          "Data Year",
+          "Utility Number",
+          "Utility Name",
+          "Part",
+          "Service Type",
+          "Data Type\nO = Observed\nI = Imputed",
+          "State",
+          "Ownership",
+          "BA Code",
+          "Thousand Dollars",
+          "Megawatthours",
+          "Count",
+          "Thousand Dollars",
+          "Megawatthours"
+        ],
+        [
+          "2024",
+          "55",
+          "City of Aberdeen - (MS)",
+          "A",
+          "Bundled",
+          "O",
+          "MS",
+          "Municipal",
+          "TVA",
+          "4211",
+          "34239",
+          "2592",
+          "3550",
+          "29391"
+        ]
+      ],
       "year": 2024,
       "url": "https://www.eia.gov/electricity/data/eia861/zip/f8612024.zip",
       "member": "Sales_Ult_Cust_2024.xlsx",
       "rows": 1518,
-      "not_in_frame": 1472
+      "not_in_frame": 1412
     },
     "eia860": {
       "tried": [
@@ -219,11 +285,77 @@
           "status": 200
         }
       ],
+      "layout": [
+        [
+          "2025 Form EIA-860 Data - Schedule 3, 'Generator Data' (Operable Units Only)",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan",
+          "nan"
+        ],
+        [
+          "Utility ID",
+          "Utility Name",
+          "Plant Code",
+          "Plant Name",
+          "State",
+          "County",
+          "Generator ID",
+          "Technology",
+          "Prime Mover",
+          "Unit Code",
+          "Ownership",
+          "Duct Burners",
+          "Can Bypass Heat Recovery Steam Generator?",
+          "RTO/ISO LMP Node Designation"
+        ],
+        [
+          "63560",
+          "Sand Point Generating, LLC",
+          "1",
+          "Sand Point",
+          "AK",
+          "Aleutians East",
+          "1",
+          "Petroleum Liquids",
+          "IC",
+          "nan",
+          "S",
+          "X",
+          "X",
+          "nan"
+        ],
+        [
+          "63560",
+          "Sand Point Generating, LLC",
+          "1",
+          "Sand Point",
+          "AK",
+          "Aleutians East",
+          "2",
+          "Petroleum Liquids",
+          "IC",
+          "nan",
+          "S",
+          "X",
+          "X",
+          "nan"
+        ]
+      ],
       "year": 2025,
       "url": "https://www.eia.gov/electricity/data/eia860/xls/eia8602025.zip",
       "member": "3_1_Generator_Y2025.xlsx",
       "rows": 5852,
-      "not_in_frame": 5794
+      "not_in_frame": 5581
     }
   },
   "commoncrawl": {
@@ -299,7 +431,7 @@
   },
   "fetched_at_by_stage": {
     "pages": "2026-09-27T22:17:38+00:00",
-    "eia": "2026-09-27T22:17:38+00:00",
+    "eia": "2026-09-27T22:42:42+00:00",
     "cc": "2026-09-27T22:26:32+00:00"
   }
 }
