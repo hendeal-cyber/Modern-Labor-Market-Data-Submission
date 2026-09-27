@@ -514,6 +514,23 @@ roles:
     #       sales of grid equipment, beside "sales" and "account executive"
     - packaging
     - account manager
+    # Audit round 9, 2026-09-27 (run 29, the first collection of batch 4).
+    # Each read against its description and each the sibling of an exclusion
+    # above; each phrase matches exactly one in-scope title in the corpus:
+    #   "Energy Efficiency Installer" ($19-21/hr)           field service
+    #   "QA/QC Inspection Specialist, Energy Efficiency (Field)"  field service
+    #   "Senior Electronics Commodity Manager" (Bloom)      procurement
+    #   "Contracts Specialist - Legal & Compliance" (Rowan) legal
+    #   "Manager, Supplier Development Engineering" (Base)  procurement
+    #   "Learning & Development Specialist" (Crusoe)        HR, beside
+    #       "talent development"
+    - installer
+    - inspection specialist
+    - commodity manager
+    - contracts specialist
+    - supplier development
+    - learning & development
+    - learning and development
 
 # ---------------------------------------------------------------------------
 # Early career definition.

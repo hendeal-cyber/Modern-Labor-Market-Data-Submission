@@ -39,18 +39,16 @@ the pre-registration, the audit log, the limitations, and the employer ledger
 (config/token-verification.yaml). All of them are generated; none is edited
 by hand.
 
-## 3. Audited state (round 8, data through 2026-09-27)
+## 3. Audited state (round 9, data through 2026-09-27)
 
-N = 264, 36 employer clusters, largest employer Invenergy 17.8%, 17.6
-observations per regressor. All four pre-registered conditions pass, and
-`interpretable` is true. The disclosure gap is 93.5% vs 50.0% (43.5pp,
-41.6–47.0 across cuts); it is associational, not causal. `seniority_rank`
-survives the bootstrap and the region check in every version of the data.
-`skill_cloud` passes both strongly but is EXPLORATORY (no pre-registered
-prediction; withdrawn at N=214). `region_northeast` is TENTATIVE and not
-significant in real terms. Run 28 was cancelled at employer 209 of 269 (slug
-discovery was burning minutes; it is now opt-in). tests/run_all.py is green,
-with consistency 29/29.
+N = 365, 52 employer clusters, largest employer Crusoe 13.4%, 24.3
+observations per regressor. All four pre-registered conditions pass. The
+disclosure gap is 94.3% vs 49.0% (45pp); it is associational, not causal.
+`seniority_rank` and `yrs_exp_min` (H3) survive everything, including
+dropping the largest employer. `region_northeast` and `skill_cloud` are
+TENTATIVE; `skill_cloud` does not survive dropping Crusoe. Three scheduled runs (28–30 September, 09:17 UTC) remain;
+collection closes with snapshots dated 2026-09-30. Open owner question: is
+Crusoe in scope? tests/run_all.py is green, with consistency 29/29.
 
 ## 4. Rules that always apply
 

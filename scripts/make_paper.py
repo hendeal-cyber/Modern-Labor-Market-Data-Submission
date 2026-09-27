@@ -493,7 +493,7 @@ def main() -> int:
             if _log.exists() else 0
         _word = {1: "One round", 2: "Two rounds", 3: "Three rounds",
                  4: "Four rounds", 5: "Five rounds", 6: "Six rounds",
-                 7: "Seven rounds", 8: "Eight rounds"}.get(_rounds,
+                 7: "Seven rounds", 8: "Eight rounds", 9: "Nine rounds"}.get(_rounds,
                                                          f"{_rounds} rounds")
         A(f"{_word} of hand-auditing are recorded in `docs/audit-log.md`.")
         A("Each read real collected titles rather than a synthetic sample, and")
@@ -514,6 +514,8 @@ def main() -> int:
             A("| 7 | Run 27, the first live run of the description cache | The cache reused every posting it held within its window, with no disclosure drift. A second run on the same date had overwritten the first run's files, dropping a closed posting, and an edited requisition was counted twice. Both fixed at the cause |")
         if _rounds >= 8:
             A("| 8 | Run 28 (cancelled at employer 209 of 269): all 58 added rows | GE Vernova's first collection added 18 rows and a cluster; two were off-taxonomy (packaging compliance, sales). \"$1M to $30M\" project sizes were read as $30 an hour, the only usable row of a phantom Duke cluster. The Ashby adapter had crashed on every board since the cache commit. The first next-day cache read reused 352 descriptions with no disclosure drift |")
+        if _rounds >= 9:
+            A("| 9 | Run 29, the national frame expansion (133 added rows) | Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 45 usable rows, reported with a sensitivity check |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")
@@ -766,6 +768,34 @@ def main() -> int:
               + (f"It confirmed {', '.join(_held)}" if _held
                  else "It confirmed no coefficient")
               + (f" and withdrew {', '.join(_lost)}." if _lost else "."))
+            A("")
+
+        lr = analysis.get("largest_employer_robustness") or {}
+        if lr.get("by_variable"):
+            base = (analysis.get("wild_cluster_bootstrap") or {}).get("by_variable") or {}
+            A("### Robustness: without the largest employer")
+            A("")
+            A(f"The largest employer, {lr['employer']}, supplies {lr['n_dropped']} "
+              "observations. The core model is re-estimated without it, on "
+              f"{lr['n']} observations across {lr['n_clusters']} employers, with the "
+              "same bootstrap at 1,999 replications (as for the region check), so a "
+              "p-value within about 0.01 of 0.05 is on the line. Pre-registration "
+              "section 7 treats one employer "
+              "carrying a result as a threat regardless of N.")
+            A("")
+            A("| Variable | Bootstrap p (full) | Coef (without) | Bootstrap p (without) |")
+            A("|---|---|---|---|")
+            for k, row in lr["by_variable"].items():
+                bp = (base.get(k) or {}).get("p_value")
+                wp = row.get("bootstrap_p")
+                bp_s = "—" if bp is None else f"{bp:.3f}"
+                wp_s = "—" if wp is None else f"{wp:.3f}"
+                A(f"| `{k}` | {bp_s} | {row['coef']:.4f} | {wp_s} |")
+            A("")
+            ch = lr.get("verdicts_changed") or []
+            A("No verdict changes at the 5% level." if not ch else
+              "Verdicts that change at the 5% level: "
+              + ", ".join(f"`{k}`" for k in ch) + ".")
             A("")
 
         ec = analysis.get("early_career_subsample") or {}

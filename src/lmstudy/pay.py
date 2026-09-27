@@ -53,8 +53,12 @@ MIN_PLAUSIBLE_BOUND = 7.25 * 2080
 # on a posting that states no pay (audit round 8).
 _NOT_GLUED = r"(?<![A-Za-z0-9])"
 _NOT_MAGNITUDE = r"(?![\d,.]*\s*(?:million|billion|trillion|mn|bn|mm|m|b)\b)"
+# A period as the thousands separator is read as one ("260.000" is 260,000):
+# Crusoe's "up to $215,000 - 260.000" had been cut to "260.00", swapped
+# below $215,000, and recorded as a single figure (audit round 9). Three
+# digits after the period are required, so "$45.10" stays a decimal.
 _MONEY = (_NOT_GLUED +
-          r"\$?\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|[1-9]\d*(?:\.\d{1,2})?)"
+          r"\$?\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d{1,3}(?:\.\d{3})+(?!\d)|[1-9]\d*(?:\.\d{1,2})?)"
           + _NOT_MAGNITUDE +
           r"\s?(k\b|K\b)?")
 _DASH = r"\s*(?:-|–|—|to|through|up to)\s*"
@@ -112,6 +116,8 @@ class PayResult:
 
 
 def _to_number(digits: str, k_suffix: str | None) -> float | None:
+    if re.fullmatch(r"\d{1,3}(?:\.\d{3})+", digits):
+        digits = digits.replace(".", "")
     try:
         value = float(digits.replace(",", ""))
     except ValueError:
@@ -302,7 +308,15 @@ def _build(
     values = [v for v in (lo, hi) if v is not None]
     if not values:
         return PayResult()
-    unit = _infer_unit(window, values)
+    # The unit is read from the text beside the figures, not the whole
+    # window. Crusoe lists "Company paid commuter benefit; $300 per month"
+    # just above "the range of $170,000 - $205,000", so the salary was taken
+    # as monthly, annualized to $2.0M, rejected, and replaced by the lone
+    # upper figure: four rows recorded at their ceiling (audit round 9).
+    at = window.find(excerpt.strip()) if excerpt else -1
+    near = (window[max(0, at - 40): at + len(excerpt.strip()) + 60]
+            if at >= 0 else window)
+    unit = _infer_unit(near, values)
 
     # Guard against an "hourly" reading of what is plainly an annual figure.
     if unit == "hour" and max(values) > MAX_PLAUSIBLE_HOURLY:

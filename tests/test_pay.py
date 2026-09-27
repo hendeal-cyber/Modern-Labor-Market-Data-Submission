@@ -240,6 +240,28 @@ def check_window_edges():
     if (r.pay_min, r.pay_max) != (95000.0, 120000.0):
         fails.append(f"[magnitude guard] real range lost: ({r.pay_min}, {r.pay_max})")
 
+    # Crusoe, verbatim (audit round 9). A "$300 per month" commuter benefit
+    # sits just above the salary; the unit was read from the whole window, so
+    # the salary was annualized as monthly, rejected, and the lone upper
+    # figure kept: $205,000-$205,000 instead of $170,000-$205,000.
+    crusoe = ("- MetLife Legal\n\n- Company paid commuter benefit; $300 per month\n\n"
+              "Compensation:\nCompensation will be paid in the range of $170,000 - "
+              "$205,000. Restricted Stock Units are included in all offers.")
+    r = from_text(crusoe)
+    if (r.pay_min, r.pay_max, r.single_figure) != (170000.0, 205000.0, False):
+        fails.append(f"[Crusoe commuter benefit] got ({r.pay_min}, {r.pay_max}, "
+                     f"single={r.single_figure}), want (170000, 205000, range)")
+    # Crusoe, verbatim: a period as the thousands separator.
+    crusoe2 = ("Compensation Range\nCompensation will be paid in the range of up to "
+               "$215,000 - 260.000 + Bonus. Restricted Stock Units are included in all offers.")
+    r = from_text(crusoe2)
+    if (r.pay_min, r.pay_max) != (215000.0, 260000.0):
+        fails.append(f"[Crusoe 260.000] got ({r.pay_min}, {r.pay_max}), want (215000, 260000)")
+    # A real monthly figure beside its own marker must still annualize.
+    r = from_text("The salary for this role is $8,000 - $9,000 per month.")
+    if (r.pay_min, r.pay_max) != (96000.0, 108000.0):
+        fails.append(f"[monthly marker] got ({r.pay_min}, {r.pay_max}), want (96000, 108000)")
+
     # The window edges on their own: no window may open or close mid-token,
     # whatever the bound check downstream would have caught.
     from lmstudy.pay import _pay_windows

@@ -543,8 +543,66 @@ Energy, Copia Power, SOLV Energy, and the nuclear developers TerraPower,
 Kairos Power, Last Energy and The Nuclear Company), data centers (Keel
 Infrastructure, ECL), a retailer (Chariot Energy) and a grid vendor (Fluence).
 Confirmed in existing entries from live URLs: Amperon, SEL, and Associated
-Electric Cooperative. Five more by the same method before the 28 September run: OneEnergy Renewables, Brightcore Energy, Nira Energy, Energy Exemplar (verified) and American Transmission Co (board root, unverified). Frame: 297 -> 324 employers. The nuclear developers'
+Electric Cooperative. Five more by the same method before the 28 September run: OneEnergy Renewables, Brightcore Energy, Nira Energy, Energy Exemplar (verified) and American Transmission Co (board root, unverified). Frame: 297 -> 324 employers. Batch 6, added the same evening before the 28 September run and before any of its data exist: New Leaf Energy, Akaysha Energy, Equilibrium Energy, Gridware, Orenda (sector evidence required per posting) verified, and Pivot Energy (board root, unverified). Frame: 330. The nuclear developers'
 engineering roles will mostly fail the role screen by design, because §2
 admits engineering only where it is analytics-adjacent. They are in the frame
 for their analytics, market and siting roles.
+
+### 2026-09-27 — audit round 9: the pay unit read beside the figure, a declared location, six role exclusions
+
+**What changed.** Found by reading run 29's 133 added rows
+(`docs/audit-log.md`, round 9). Each change was measured across the whole
+corpus before being kept.
+
+1. **Pay parsing (the dependent variable).** The pay unit (hour, month or
+   year) is now read from the text beside the matched figures, 40 characters
+   before and 60 after, not from the whole 260-character window. Crusoe
+   lists "Company paid commuter benefit; $300 per month" just above "the
+   range of $170,000 - $205,000". The salary was taken as monthly,
+   annualized to $2.0M, rejected, and replaced by the lone upper figure. A
+   figure with a period as its thousands separator ("260.000") is read as
+   thousands. **Nine rows change, all Crusoe.** Five had been recorded at a
+   single figure and four as undisclosed. No other row in the corpus moves.
+2. **Location (identification).** An employer may declare
+   `location_fallback`, used only when a posting's own location names no US
+   state. It is declared once: "Austin, TX" for Austin Energy, whose City of
+   Austin tenant labels postings with facility names ("Austin Energy
+   Headquarters"). Four rows enter, one with pay.
+3. **Role screen (population).** `installer`, `inspection specialist`,
+   `commodity manager`, `contracts specialist`, `supplier development` and
+   `learning & development` join `exclude_any`. Each is the sibling of an
+   existing exclusion (field service, procurement, legal, HR), and each
+   matches exactly one in-scope title in the corpus. Six rows leave, five
+   usable.
+
+**Effect on the headline, stated before the results were read.** Change 1
+raises N by four and moves nine rows of the largest new employer. Change 2
+adds a cluster on the non-mandate side. Change 3 lowers N by five. None was
+chosen for its effect: each is a posting read wrong by the pipeline,
+measured and corrected.
+
+**Not changed, and put to the owner instead:** whether Crusoe belongs in the
+frame. It was admitted before any of its data existed (batch 4), as a data
+center developer and operator, and its postings pass every existing screen.
+But 49 of its 49 in-scope rows disclose pay, 41 of them California
+software and AI-platform roles (ranges from $117,000 to $385,000). That makes it the
+largest employer (13.4%). Excluding it now, after seeing its data, would be
+the kind of change this document exists to prevent, so it stays, and the
+results are reported with and without it.
+
+**4. A leave-the-largest-employer-out check (inference), added to
+`analyze.py`.** The core model and its bootstrap are re-estimated without
+whichever employer is largest, on every run, and every verdict that changes
+is reported. It is general, not written for Crusoe, and it is reported
+whichever way it comes out. It exists because §7's concentration threat
+does not stop at the 25% gate: a firm under the cap can still carry a
+verdict. With Crusoe (the current largest) dropped, `seniority_rank`,
+`yrs_exp_min` and `region_northeast` still pass (0.0005, 0.004 and 0.009 in
+the wired-in check). **`skill_cloud` does not: 0.055** (0.048 in an earlier
+9,999-replication run, so it sits on the line). `remote_eligible` becomes
+significant (0.040, against 0.46 with Crusoe). The build therefore reports
+two verdicts as depending on the largest employer. This is recorded here
+because an earlier draft of this paragraph, written from the 9,999-rep run,
+said no reported finding depended on Crusoe, and the check itself says
+otherwise for `skill_cloud`.
 

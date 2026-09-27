@@ -262,6 +262,17 @@ AUDIT_ROUND_6_ROLES = [
     ("Lead Analyst, Regional Market Insights", True),
     ("Lead Power Systems Engineer - Grid Integration and Stability, Transmission", True),
     ("Services FP&A Process Transformation Leader", True),
+    # Audit round 9 (run 29): field service, procurement, legal and HR roles
+    # at newly added employers. Kept beside them: energy-market and
+    # interconnection roles at the same firms.
+    ("Energy Efficiency Installer", False),
+    ("QA/QC Inspection Specialist, Energy Efficiency (Field)", False),
+    ("Senior Electronics Commodity Manager", False),
+    ("Contracts Specialist - Legal & Compliance", False),
+    ("Manager, Supplier Development Engineering", False),
+    ("Learning & Development Specialist", False),
+    ("Sr. Analyst, Energy Markets - Eastern US", True),
+    ("Director of Transmission & Interconnection", True),
 ]
 
 

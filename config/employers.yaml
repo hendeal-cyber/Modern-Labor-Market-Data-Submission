@@ -765,6 +765,9 @@ utilities_batch2:
   - name: Austin Energy
     diversified: true
     requires_company_mention: austin energy
+    # Every Austin Energy job is in Austin; the tenant lists facility names
+    # ("Austin Energy Headquarters") instead of a city (audit round 9).
+    location_fallback: "Austin, TX"
     candidates:
       workday: [{tenant: austintexas, site: COA_Careers, wd: 5}]
     verified: true
@@ -2523,6 +2526,38 @@ national_batch4:
     industry: energy_analytics
     candidates:
       greenhouse: [energyexemplarllc]
+    verified: true
+  # --- Batch 6, 2026-09-27, before the 28 September run (same method) ---
+  - name: New Leaf Energy   # job-boards.greenhouse.io/newleafenergy/jobs/5059973007 (MA developer)
+    industry: developer
+    candidates:
+      greenhouse: [newleafenergy]
+    verified: true
+  - name: Pivot Energy   # board root only: jobs.lever.co/pivotenergy (Denver solar developer)
+    industry: developer
+    candidates:
+      lever: [pivotenergy]
+    verified: false
+  - name: Akaysha Energy   # job-boards.greenhouse.io/akayshaenergy/jobs/4386058007 (storage developer, US team)
+    industry: developer
+    candidates:
+      greenhouse: [akayshaenergy]
+    verified: true
+  - name: Equilibrium Energy   # job-boards.greenhouse.io/equilibriumenergy/jobs/4400062005
+    industry: energy_analytics
+    candidates:
+      greenhouse: [equilibriumenergy]
+    verified: true
+  - name: Gridware   # jobs.lever.co/gridware/cd9bdc88-9b13-48ed-a59e-9829dc657acd (grid monitoring)
+    industry: energy_analytics
+    candidates:
+      lever: [gridware]
+    verified: true
+  - name: Orenda   # job-boards.greenhouse.io/orenda/jobs/7728937003 (breadth unknown: sector evidence required)
+    industry: energy_analytics
+    requires_sector_evidence: true
+    candidates:
+      greenhouse: [orenda]
     verified: true
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already

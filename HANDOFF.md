@@ -1,29 +1,60 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-27 (state as of audit round 8; collection paused)
+## RESUME HERE — handoff of 2026-09-27, evening (state as of audit round 9; three scheduled runs pending)
 
 *A new conversation starts here. This block wins over everything below it.
-§0 and later sections are history. Do not quote numbers from below this block.*
+Do not quote numbers from below this block.*
 
-### State at handoff — AUDITED (run 28 included, partial)
+### State at handoff — AUDITED through run 29
 
 | | Value |
 |---|---|
-| Branch | `claude/wonderful-tesla-53lgo4`. **It is the repository's DEFAULT branch**, so any `schedule:` cron in it fires |
-| **Collection** | **PAUSED.** The cron in `collect.yml` stays commented out. On 2026-09-27 the owner authorised ONE run (run 28, Actions 36334468453); it was **cancelled at 106 min, at employer 209 of 269, on the owner's decision**, because it ran over twice as long as runs 22–27. Employers 210–269 were not collected that day (verified among them: NRECA, AEP Energy, Washington Gas). **Do not dispatch another run without the owner's go-ahead** |
-| Why run 28 was slow | Slug discovery: 24 unverified employers × ~3 min of probing = 57 of 98 logged minutes, for zero postings (slug hits are only candidates). **`no_slugs` now defaults to true** and the cron skips slugs too. A run without slugs takes ~45 min |
-| Owner decisions on record | QTS "Development Project Manager" rows stay in scope (2026-09-23). Collection paused (2026-09-23). One run then finalise (2026-09-27). Cancel run 28 and diagnose (2026-09-27) |
-| **Usable N** | **264** (in scope 353, raw 3,973) |
-| **Employer clusters** | **36** (GE Vernova and Origis new; a phantom Duke cluster removed) |
-| **Largest employer** | **Invenergy 17.8%** (47 of 264) |
-| Obs per regressor | 17.6. `interpretable: true`, no warnings. All four pre-registered conditions pass |
-| Disclosure gap (H2) | 93.5% (n=201) vs 50.0% (n=152), **43.5pp**, 41.6–47.0 across cuts. **Associational, not causal** |
-| Survives bootstrap AND region check | `seniority_rank` (+0.112/rung, p 0.0001 / 0.0005; every version of the data; also in real terms). `skill_cloud` (+0.148, 0.0015 / 0.0020): **exploratory** (no pre-registered prediction; withdrawn at N=214; robust to dropping GE Vernova, 0.0053). `region_northeast` (0.010 / 0.041): **tentative**, and not significant in real terms (clustered p 0.44) |
-| Overturned by the bootstrap | `hourly_original`, `region_south` |
-| Not significant | `mandate_state` (−0.032, p 0.28; −0.087 at clustered p 0.012 in real terms, not bootstrapped, not a finding), everything else. H6: ranges narrower in mandate states (−0.193, clustered p 0.086), inconclusive |
+| Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
+| **Collection** | **Three owner-approved scheduled runs remain: 09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`, which cannot fire after that). Slug discovery is off. **Collection closes with snapshots dated 2026-09-30** (`study.collection_end`, enforced in `build_dataset.snapshots_in_window`). Check-ins are scheduled for 10:45 UTC each day to audit each run the same morning |
+| Frame | **330 employers** (269 at the start of 2026-09-27). Batches 4–6 were found from live job URLs, each quoted in `config/employers.yaml` under `national_batch4`, and each recorded in pre-registration §8 before its data existed. Batches 5 and 6 first collect on 09-28 |
+| **Usable N** | **365** (in scope 484, raw 4,589) |
+| **Employer clusters** | **52** |
+| **Largest employer** | **Crusoe 13.4%** (49 of 365), then Invenergy 47 |
+| Obs per regressor | 24.3. `interpretable: true`. All four pre-registered conditions pass |
+| Disclosure gap (H2) | 94.3% (n=282) vs 49.0% (n=202), **45pp**, 44.7–48.1 across cuts. **Associational, not causal** |
+| Survive bootstrap AND region check | `seniority_rank` (0.0001 / 0.0005; every version of the data). **`yrs_exp_min` (0.0023 / 0.0030): H3 now supported**, robust without Crusoe and in real terms. `region_northeast` and `skill_cloud`: **tentative**; the Northeast premium is not significant in real terms, and `skill_cloud` does not survive dropping Crusoe |
+| Overturned by the bootstrap | `degree_stem`, `skill_ml_ai`, `industry_data_center` |
+| Without the largest employer (Crusoe) | Seniority, required experience and Northeast hold. **`skill_cloud` is lost (0.055)** and `remote_eligible` becomes significant (0.040). Computed on every build (`largest_employer_robustness`) |
+| **Open owner question** | **Is Crusoe in scope?** It is an AI data-center builder and operator whose rows are mostly California cloud-software jobs. It was kept as pre-registered, and the paper reports the no-Crusoe check. The owner decides |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
-| Detail cache | First cross-date read (09-22 → 09-27): 352 reused, 213 fetched (210 new postings), no disclosure drift |
-| Ledger | 67 confirmed / 115 denied / 90 unchecked (unchanged; four searches this session found no live job URL) |
+
+### What round 9 found (full record: `docs/audit-log.md` round 9)
+
+- Crusoe's salaries were read as MONTHLY because a "$300 per month"
+  commuter benefit sat above them. The pay unit is now read beside the
+  figures, which changed nine rows, all Crusoe.
+- Austin Energy's postings name facilities, not cities. `location_fallback:
+  "Austin, TX"` was declared, and one new cluster entered.
+- Six off-taxonomy roles at new employers were excluded.
+- Intersect Power's "United States"-only locations are left rejected, as a
+  known limitation.
+
+### Do these next
+
+1. **Each morning, 28–30 September:** the check-in fires at 10:45 UTC. If
+   the run collected for over 75 minutes, investigate before it burns
+   minutes. Pull; diff `postings.csv` on `url`; read every added row, the pay
+   extremes, the single figures and duplicate URLs; check boards that
+   collected but added nothing; rebuild; regenerate (list below); write the
+   next audit round (add its word to `make_paper.py` and
+   `test_consistency.py`); commit; push.
+2. **Between runs:** more employer searches, domain-restricted to each
+   ATS, confirming only from live job URLs. Record each batch in §8 BEFORE
+   the run that collects it.
+3. **After the 09-30 run:** the final audit, a finalisation pass over the
+   paper, summary and deck against the bootstrap, and a HANDOFF marked
+   "collection closed". Report N, clusters and the largest share.
+
+Regenerate after any data change: `PYTHONPATH=src python3 -m
+lmstudy.build_dataset`, `... -m lmstudy.analyze`, `PYTHONPATH=src python3
+scripts/make_{codebook,exec_summary,figures,paper}.py`, `node
+scripts/make_slides.js`, `python3 scripts/qa_slides.py`, `PYTHONPATH=src
+python3 scripts/make_observations_xlsx.py`, `python3 tests/run_all.py`.
 
 ### What round 8 found (full record: `docs/audit-log.md` round 8)
 

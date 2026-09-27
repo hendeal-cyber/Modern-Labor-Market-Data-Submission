@@ -124,6 +124,26 @@ def check_collection_end():
     return fails
 
 
+def check_location_fallback():
+    """A declared single location fills in only where the posting names none.
+
+    Real strings from the City of Austin's tenant (audit round 9).
+    """
+    from lmstudy.build_dataset import with_location_fallback
+    from lmstudy import geo
+    fails = []
+    got = with_location_fallback("Austin Energy Headquarters", "Austin, TX")
+    if geo.resolve_us_state(got) != "TX":
+        fails.append(f"facility name not resolved via fallback: {got!r}")
+    if with_location_fallback("Denver, CO", "Austin, TX") != "Denver, CO":
+        fails.append("fallback overrode a posting that states its own place")
+    if with_location_fallback("London, GB", "Austin, TX") != "London, GB":
+        fails.append("fallback applied to a non-US posting")
+    if with_location_fallback("Austin Energy", None) != "Austin Energy":
+        fails.append("fallback applied with none declared")
+    return fails
+
+
 def check_verified_workday_pins():
     """Every hand-verified Workday entry pins an instance the prober reads.
 
@@ -369,6 +389,7 @@ def run():
     fails += check_mandate_dates_in_dataset()
     fails += check_verified_workday_pins()
     fails += check_collection_end()
+    fails += check_location_fallback()
     fails += check_same_day_merge_and_same_url()
     fails += check_bare_first_word_candidates()
 

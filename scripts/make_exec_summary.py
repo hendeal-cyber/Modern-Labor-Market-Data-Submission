@@ -130,7 +130,11 @@ def main() -> int:
           "more.")
         A("")
 
-    A("## Finding 2 — within disclosed pay, very little survives proper inference")
+    # Computed: "very little survives" was a literal, true at one survivor
+    # and not at four (audit round 9).
+    A("## Finding 2 — within disclosed pay, "
+      + ("very little survives proper inference" if len(survivors) <= 2
+         else f"{len(survivors)} attributes survive proper inference"))
     A("")
     if survivors:
         A("Of the regressors in the pre-specified model, these are "
@@ -230,18 +234,35 @@ def main() -> int:
             A("")
         # Conditional on the cuts it claims. This was a literal that would
         # have gone on asserting seniority's robustness had any cut withdrawn it.
-        _sen_robust = ("seniority_rank" in survivors
-                       and "seniority_rank" not in fragile
-                       and (not real or (real.get("seniority_rank") or {})
-                            .get("p_value", 1) < 0.05)
-                       and survivors[0] == "seniority_rank")
-        if _sen_robust:
-            A("Seniority is the one result the study would defend without "
-              "qualification: it is")
-            A("the most precisely estimated coefficient, it was predicted in "
-              "advance, and it")
-            A("survives every robustness cut applied here, including price "
-              "adjustment.")
+        # Which results the study defends without qualification is computed:
+        # predicted in advance, not tentative, significant in real terms, and
+        # holding without the largest employer. It named seniority alone as a
+        # literal; on the round-9 data required experience qualifies too.
+        lr = a.get("largest_employer_robustness") or {}
+        lr_p = {k: (v or {}).get("bootstrap_p") for k, v in
+                (lr.get("by_variable") or {}).items()}
+        defended = [n for n in survivors if n in predicted and n not in fragile
+                    and n not in marginal
+                    and (not real or (real.get(n) or {}).get("p_value", 1) < 0.05)
+                    and (not lr_p or (lr_p.get(n) or 1) < 0.05)]
+        if defended:
+            names = " and ".join(pretty(n) for n in defended)
+            A(f"{names[0].upper() + names[1:]} "
+              + ("is the one result" if len(defended) == 1 else "are the results")
+              + " the study would defend without qualification: "
+              + ("it was" if len(defended) == 1 else "each was")
+              + " predicted in advance,")
+            A("and survives the bootstrap, the region check, price adjustment"
+              + (" and dropping the largest employer." if lr_p else "."))
+            A("")
+        if lr:
+            flipped = [pretty(n) for n in lr.get("verdicts_changed") or []]
+            A(f"Dropping the largest employer ({lr['employer']}, "
+              f"{lr['n_dropped']} observations) "
+              + ("changes no verdict at the 5% level." if not flipped else
+                 "changes the verdict on " + " and ".join(flipped)
+                 + "; read " + ("it" if len(flipped) == 1 else "them")
+                 + " with that in mind."))
             A("")
         # Computed, not asserted. An earlier draft of this paragraph carried
         # the concentration figures as literals, in a generator whose entire

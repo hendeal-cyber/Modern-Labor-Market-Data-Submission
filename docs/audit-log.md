@@ -845,6 +845,108 @@ clustered errors and are overturned by the bootstrap. `mandate_state` is
 −0.032 (p 0.28). H6: mandate-state ranges are narrower (−0.193, clustered p
 0.086), inconclusive.
 
+### Round 9 — run 29, the national frame expansion (2026-09-27)
+
+**Scope.** Collection run 29 (Actions 36348570631) was dispatched without slug
+discovery (45 minutes in all, 39 collecting). It was the first collection of
+batch 4 (28 employers found from live job URLs), the catch-up on employers
+210–269 that run 28 never reached (AEP among them), and a second run on
+2026-09-27, which the same-day merge absorbed. All 133 added rows were read,
+matched to the audited round-8 dataset on `url`. Then the pay extremes, every
+single-figure row, and every new board that collected postings but added no
+row.
+
+**Cache.** `manifest["detail_cache"]`: 1,215 cached, 371 reused, 374 fetched,
+0 stale, 0 edited. The date matched run 28's, so the loader skipped that
+day's files and reused 09-22 descriptions only. Most fetches were batch-4
+boards seen for the first time.
+
+**Defect 1 — a salary read as monthly because of a commuter benefit.**
+Crusoe's postings read "Company paid commuter benefit; $300 per month" a few
+lines above "Compensation will be paid in the range of $170,000 - $205,000".
+The pay unit was inferred from the whole 260-character window, so the salary
+was taken as monthly, annualized to $2.0M, rejected as implausible, and
+replaced by the lone upper figure. Five rows were recorded at a single
+figure, and four whose only figure was the range were recorded as
+undisclosed. A sixth wrote "up to $215,000 - 260.000", with a period as the
+thousands separator. The unit is now read beside the matched figures, and a
+three-digit group after a period is read as thousands. **Across all 480
+in-scope rows exactly nine change, all Crusoe.** Pinned in
+`tests/test_pay.py` with the real text, plus a genuine monthly salary that
+must still annualize.
+
+**Defect 2 — Austin Energy rejected for having no state.** The City of
+Austin's tenant labels postings "Austin Energy" and "Austin Energy
+Headquarters", not a city, so every in-scope posting failed the US-state
+test. An employer may now declare `location_fallback`, used only when a
+posting's own location names no state and is not non-US. It is declared
+once: "Austin, TX". Four rows enter, one with pay (a new cluster). Pinned in
+`tests/test_pipeline.py`.
+
+**Defect 3 — six off-taxonomy roles at new employers.** An "Energy
+Efficiency Installer" at $19–21 an hour and a field "QA/QC Inspection
+Specialist" (both field service), an "Electronics Commodity Manager" and a
+"Supplier Development Engineering" manager (both procurement), a "Contracts
+Specialist - Legal & Compliance" (legal), and a "Learning & Development
+Specialist" (HR). Each is a sibling of an existing exclusion, and each phrase
+matches exactly one in-scope title in the corpus.
+
+**Not a defect, and left as found.** Intersect Power's 23 postings give only
+"United States" as the location. The frame admits nationwide postings only
+when they say "remote", so none entered. Changing that would be a new
+screening rule. Wood Mackenzie's US postings failed the per-posting sector
+test on titles such as "Market Analyst - Power Trading Analytics". EPRI and
+Dairyland resolved no board.
+
+**The scope question, put to the owner.** Crusoe (batch 4, admitted before
+any of its data existed) supplied 49 in-scope rows, all disclosing, 41 of
+them California software and AI-platform roles. That makes it the largest
+employer at 13.4%. It passes every screen as written: it builds and operates
+data centers, and data center operators' software roles have always been in
+scope (Equinix's, for one). So it stays, and a general
+leave-the-largest-employer-out check now runs on every build (below).
+
+**Checked and found clean.** No duplicate URLs. No low bound below $30,000.
+Lowest pay: TRIO "Energy Analyst" $60,000–$70,000, then Guidehouse's campus
+analyst and Invenergy's development analysts. Highest: Crusoe's "Vice
+President, Product Management, Managed AI" $345,000–$385,000, then its
+principal product managers. All are stated ranges. The hourly rows remain
+CAISO's stated $45.10–$63.15. ICF's energy rows pass the per-posting sector
+test as intended, and its other practices do not. AEP's four catch-up rows
+are ordinary AEP requisitions.
+
+**Result.**
+
+| | Round 8 (audited) | Run 29, unaudited | Run 29, audited |
+|---|---|---|---|
+| Usable N | 264 | 365 | **365** |
+| In scope | 353 | 486 | **484** |
+| Clusters | 36 | 52 | **52** (16 new, Austin Energy among them) |
+| Largest employer | Invenergy 17.8% | Invenergy 12.9% | **Crusoe 13.4%** (49 of 365) |
+| Obs per regressor | 17.6 | — | **24.3** |
+| Disclosure gap | 43.5pp | — | **45.3pp** (94.3% of 282 vs 49.0% of 202; 44.7–48.1 across cuts) |
+
+The unaudited and audited N coincide by offset: five usable rows left through
+the exclusions (six in scope), and four entered through the pay fix and one through the
+location fallback.
+
+**Verdicts.** `seniority_rank` +0.113 (bootstrap p 0.0001, region check
+0.0005), as on every version of the data. **`yrs_exp_min` now survives**
+(+0.023 per required year, 0.0023 / 0.0030). H3 predicted it, it is
+significant in real terms, and it holds without Crusoe (0.005): H3 moves from
+inconclusive to supported. `region_northeast` (0.006 / 0.032) and
+`skill_cloud` (0.037 / 0.019) pass both, and both are tentative.
+`region_northeast` is again not significant in real terms (clustered p
+0.67). `degree_stem`, `skill_ml_ai` and `industry_data_center` pass clustered
+errors and are overturned by the bootstrap. `mandate_state` is −0.002 (p
+0.96). H6: ranges are narrower in mandate states (−0.087, p 0.38),
+inconclusive. **Without Crusoe** (N = 316, 51 clusters, the check now built
+into `analyze.py`): `seniority_rank` (0.0005), `yrs_exp_min` (0.004) and
+`region_northeast` (0.009) hold. **`skill_cloud` does not (0.055)**, and
+`remote_eligible` becomes significant (0.040). A 9,999-replication run gave
+`skill_cloud` 0.048, so it sits on the line either way: it was tentative
+already, and its verdict now also depends on one employer.
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

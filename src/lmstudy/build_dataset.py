@@ -131,6 +131,22 @@ def lacks_sector_evidence(record: dict) -> bool:
                                     record.get("description") or "")
 
 
+def with_location_fallback(location_raw: str, fallback: str | None) -> str:
+    """Append an employer's declared single location when a posting's own
+    location names no US state.
+
+    For employers whose every job is in one place and whose ATS lists
+    facility names instead of cities. The City of Austin's tenant labels
+    Austin Energy postings "Austin Energy" and "Austin Energy Headquarters",
+    so four in-scope postings were rejected as having no US state (audit
+    round 9). Used only when the posting's own string resolves to no state
+    and is not explicitly non-US, so a posting that states a place keeps it.
+    """
+    if not fallback or geo.is_non_us(location_raw) or geo.resolve_us_state(location_raw):
+        return location_raw
+    return f"{location_raw}; {fallback}" if location_raw else fallback
+
+
 def dedupe_key(record: dict) -> str:
     """Same employer + same normalized title + same location = one job."""
     parts = [
@@ -302,6 +318,7 @@ def employer_screen_flags(config_dir: pathlib.Path) -> dict[str, dict]:
                 "off_umbrella": e.get("off_umbrella") or [],
                 "requires_sector_evidence": bool(e.get("requires_sector_evidence")),
                 "requires_company_mention": e.get("requires_company_mention") or "",
+                "location_fallback": e.get("location_fallback") or "",
             }
     return flags
 
@@ -420,6 +437,7 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 funnel["passed_screen"] += 1
 
                 location_raw = rec.get("location_raw") or ""
+                location_raw = with_location_fallback(location_raw, rec.get("location_fallback"))
                 place = geo.resolve(location_raw, metros, gazetteer, description)
                 # National scope: a posting qualifies on being in the US, and
                 # study-metro membership becomes a regressor rather than a gate.

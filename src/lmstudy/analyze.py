@@ -711,6 +711,44 @@ def run_analysis(dataset: pathlib.Path, out_dir: pathlib.Path,
                 },
             }
 
+        # Leave the largest employer out. Pre-registration section 7 treats
+        # one employer dominating the sample as a threat "regardless of N";
+        # the gate caps its share at 25%, but a firm under the cap can still
+        # carry a verdict. Added in audit round 9, when a newly admitted
+        # employer (Crusoe, 49 rows of Bay Area cloud-software pay) became
+        # the largest. General, not firm-specific: it re-runs on whichever
+        # employer is largest, and is reported whichever way it comes out.
+        top = report.get("largest_employer")
+        if top and "wild_cluster_bootstrap" in report:
+            sub = estimation[estimation["employer"] != top].copy()
+            if len(sub) > 30 and sub["employer"].nunique() >= 2:
+                sub_reg = available(sub, core)
+                res_sub = fit(sub, sub_reg)
+                sub_boot = wild_cluster_bootstrap(
+                    sub, sub_reg, reps=min(bootstrap_reps, 1999),
+                    seed=BOOTSTRAP_SEED + 2)["by_variable"]
+                base = report["wild_cluster_bootstrap"]["by_variable"]
+                changed = [
+                    n for n in sub_reg
+                    if n in base and base[n].get("p_value") is not None
+                    and sub_boot.get(n, {}).get("p_value") is not None
+                    and ((base[n]["p_value"] < 0.05)
+                         != (sub_boot[n]["p_value"] < 0.05))
+                ]
+                report["largest_employer_robustness"] = {
+                    "employer": top,
+                    "n": int(len(sub)),
+                    "n_dropped": int(len(estimation) - len(sub)),
+                    "n_clusters": int(sub["employer"].nunique()),
+                    "verdicts_changed": changed,
+                    "by_variable": {
+                        n: {"coef": round(float(res_sub.params[n]), 4),
+                            "clustered_p": round(float(res_sub.pvalues[n]), 4),
+                            "bootstrap_p": sub_boot.get(n, {}).get("p_value")}
+                        for n in sub_reg
+                    },
+                }
+
     report["models"] = models
     report["power"] = {
         "n": len(estimation),
