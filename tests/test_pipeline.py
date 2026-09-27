@@ -59,6 +59,31 @@ def check_nested_repost_collapse():
     if len(rows) != 4:
         fails.append(f"multi-city openings: {len(rows)} rows survive, want 4")
 
+    # Eversource R-030864 (six sites) republished as R-031513 over two of
+    # them. The real descriptions differ by one full stop and the titles by a
+    # doubled space, so the byte hash kept both (round 10 preparation).
+    import glob as _glob, json as _json
+    from lmstudy.build_dataset import description_key, text_hash
+    root = _p.Path(__file__).resolve().parents[1]
+    real = {}
+    for f in sorted(_glob.glob(str(root / "data/raw/*/Eversource_Energy__workday.json"))):
+        for rec in _json.loads(_p.Path(f).read_text()):
+            for req in ("R-030864", "R-031513"):
+                if req in (rec.get("url") or ""):
+                    real[req] = rec
+    if set(real) != {"R-030864", "R-031513"}:
+        fails.append("the Eversource repost pair is missing from data/raw")
+    else:
+        rows = {req: {"employer": r["employer"], "title": r["title"],
+                      "description_hash": text_hash(r["description"])}
+                for req, r in real.items()}
+        locs = {req: r["location_raw"] for req, r in real.items()}
+        keys = {req: description_key(r["description"]) for req, r in real.items()}
+        dropped = collapse_nested_reposts(rows, locs, keys)
+        if dropped != 1 or "R-030864" not in rows or "R-031513" in rows:
+            fails.append(f"Eversource repost differing by punctuation: dropped {dropped}, "
+                         f"kept {sorted(rows)}; want R-030864 kept")
+
     # A different employer with the same title and description is never a
     # repost, however its locations nest.
     rows = {

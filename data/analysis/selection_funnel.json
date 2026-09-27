@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-27T21:28:47.459638+00:00",
+  "built_at": "2026-09-27T22:33:59.812301+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21",
@@ -12,12 +12,12 @@
     "rejected_no_sector_evidence": 627,
     "rejected_screen": 2470,
     "passed_screen": 1225,
-    "rejected_geo": 319,
-    "passed_geo": 906,
-    "duplicate_sighting": 419,
-    "duplicate_repost": 3,
-    "unique_in_scope": 484,
-    "usable_with_pay": 365
+    "rejected_geo": 292,
+    "passed_geo": 933,
+    "duplicate_sighting": 432,
+    "duplicate_repost": 4,
+    "unique_in_scope": 497,
+    "usable_with_pay": 377
   },
   "rejection_reasons": {
     "role_not_software_data": 1276,
@@ -26,10 +26,10 @@
     "other_group_company": 267,
     "internship": 192,
     "no_us_state": 161,
-    "non_us": 158
+    "non_us": 131
   },
   "usable_by_metro": {
-    "": 122,
+    "": 134,
     "northern_virginia": 17,
     "remote_national": 25,
     "denver": 43,
@@ -45,8 +45,8 @@
   "usable_by_employer": {
     "Crusoe": 49,
     "Invenergy": 47,
+    "Eversource Energy": 34,
     "AEP Energy": 23,
-    "Eversource Energy": 22,
     "Xcel Energy": 19,
     "AES Indiana": 17,
     "Avangrid": 16,

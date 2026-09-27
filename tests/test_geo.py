@@ -303,6 +303,28 @@ def run():
         if code in dates:
             fails.append(f"{code} is disclosure-on-request, not a posting mandate")
 
+    # US towns named after foreign places. Eversource's own postings list its
+    # Berlin, Connecticut headquarters -- the first string below is verbatim
+    # from its 2026-09-27 snapshot -- and "Berlin" alone made the whole
+    # posting non-US. "New Mexico" contains the marker "mexico".
+    for loc, want in (("Westwood, MA; Hooksett, NH; Berlin, CT", "MA"),
+                      ("Hartford, CT; Berlin, CT", "CT"),
+                      ("Albuquerque, New Mexico", "NM"),
+                      ("Vancouver, Washington", "WA"),
+                      ("Paris, TX", "TX"), ("London, KY", "KY"), ("Delhi, NY", "NY"),
+                      ("Amsterdam, NY", "NY"), ("Warsaw, IN", "IN"), ("Peru, IL", "IL")):
+        if is_non_us(loc):
+            fails.append(f"is_non_us({loc!r}) wrongly True (a US town)")
+        if resolve_us_state(loc) != want:
+            fails.append(f"resolve_us_state({loc!r}) = {resolve_us_state(loc)!r}, want {want}")
+    # ...while the foreign cities themselves, and a country code that looks
+    # like a state (Chennai's "IN" is India), stay non-US.
+    for loc in ("Vancouver, BC, Canada", "Toronto, ON", "London, United Kingdom",
+                "Paris, France", "Chennai, TN, IN", "Berlin", "Mexico City, Mexico",
+                "Argentina; Houston, Texas, United States; Mexico"):
+        if not is_non_us(loc):
+            fails.append(f"is_non_us({loc!r}) wrongly False (a foreign place)")
+
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:
         print("  FAIL", f)

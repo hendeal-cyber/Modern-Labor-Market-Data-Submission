@@ -202,7 +202,17 @@ def collapse_same_url(rows: dict) -> int:
     return dropped
 
 
-def collapse_nested_reposts(rows: dict, locations: dict) -> int:
+def description_key(description: str) -> str:
+    """A description's identity for repost detection: its letters and digits
+    only. Eversource republished `Senior Engineer, Distribution System
+    Planning` (R-030864, six sites) as R-031513 over two of those sites; the
+    two descriptions differ by one full stop and the titles by one space, so
+    the byte hash kept both (audit round 10 preparation, 2026-09-27)."""
+    return hashlib.sha256(re.sub(r"[^a-z0-9]", "", (description or "").lower())
+                          .encode()).hexdigest()[:16]
+
+
+def collapse_nested_reposts(rows: dict, locations: dict, desc_keys: dict | None = None) -> int:
     """Drop a posting whose locations are a strict subset of another repost.
 
     An ATS lets the same requisition be published more than once. Tract
@@ -232,7 +242,7 @@ def collapse_nested_reposts(rows: dict, locations: dict) -> int:
         content = (
             (row.get("employer") or "").lower().strip(),
             " ".join((row.get("title") or "").lower().split()),
-            row.get("description_hash") or "",
+            (desc_keys or {}).get(key) or row.get("description_hash") or "",
         )
         by_content.setdefault(content, []).append(key)
 
@@ -379,6 +389,7 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
     reject_reasons = Counter()
     rows: dict[str, dict] = {}
     row_locations: dict[str, str] = {}
+    row_desc_keys: dict[str, str] = {}
     first_seen: dict[str, str] = {}
 
     snapshot_dirs = sorted(d for d in raw_root.iterdir() if d.is_dir()) if raw_root.exists() else []
@@ -556,8 +567,9 @@ def build(raw_root: pathlib.Path, out_dir: pathlib.Path, config_dir: pathlib.Pat
                 else:
                     rows[key] = row
                     row_locations[key] = location_raw
+                    row_desc_keys[key] = description_key(description)
 
-    funnel["duplicate_repost"] = (collapse_nested_reposts(rows, row_locations)
+    funnel["duplicate_repost"] = (collapse_nested_reposts(rows, row_locations, row_desc_keys)
                                   + collapse_same_url(rows))
 
     out_dir.mkdir(parents=True, exist_ok=True)

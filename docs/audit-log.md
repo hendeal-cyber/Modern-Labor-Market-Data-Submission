@@ -947,6 +947,58 @@ into `analyze.py`): `seniority_rank` (0.0005), `yrs_exp_min` (0.004) and
 `skill_cloud` 0.048, so it sits on the line either way: it was tentative
 already, and its verdict now also depends on one employer.
 
+### Interim check — 2026-09-27, late evening: two defects found while building the USAJOBS adapter (no new collection)
+
+**Scope.** No collection ran. Testing the USAJOBS adapter on a Vancouver,
+Washington location (Bonneville Power Administration's main offices) showed
+the state resolver calling it foreign, and a corpus scan for the same trap
+found it in the audited data. Both defects were measured across the whole
+corpus before being fixed, and each fix is pinned by a test built from the
+real string that fails with the old code restored from a backup copy.
+
+**Defect 1 — US towns named after foreign places were read as non-US.**
+`is_non_us` matched city names as markers anywhere in a location, so
+"Westwood, MA; Hooksett, NH; Berlin, CT" (Eversource, whose headquarters is
+in Berlin, Connecticut) was excluded as foreign, and so would "Albuquerque,
+New Mexico", "Vancouver, WA", "Paris, TX", "London, KY", "Delhi, NY",
+"Amsterdam, NY", "Warsaw, IN" and "Peru, IL". The town-name markers now
+count only in a location fragment that does not end in a US state; every
+other marker still counts anywhere, so "Chennai, TN, IN" (India) stays
+foreign. **14 in-scope rows enter, all Eversource**: transmission and
+distribution system planning engineers and analysts, 13 with stated ranges
+($71,610–$79,570 to $150,890–$167,660). No existing row changed.
+
+**Defect 2 — a republished requisition differing by one full stop.** Two of
+the fourteen are one job: Eversource's "Senior Engineer, Distribution
+System Planning" as R-030864 (six sites) and R-031513 (two of those six),
+same pay, descriptions identical but for one full stop, titles but for a
+doubled space. Round 5's nested-repost rule keyed on a byte-identical
+description, so it missed them. The nesting check now compares letters and
+digits only. Measured over all 2,435 raw records first: it adds exactly this
+one pair to the Tract pair round 5 found. The superset (R-030864) is kept.
+
+**Checked and found clean.** No duplicate URLs. The added rows' pay are all
+stated ranges, lowest $71,610, highest $167,660, no single figures. The one
+Connecticut-only row ("Engineer, Systems Planning (Transmission)") is coded
+uncovered, as Connecticut's law takes effect 2026-10-01; the rest list
+Massachusetts too and are covered by the any-location rule.
+
+**Result.** Usable N 365 → **377**, in scope 484 → 497, clusters **52**
+(unchanged: Eversource was already one), largest employer **Crusoe 13.0%**
+(49 of 377). Disclosure gap 45.3 → **45.0pp** (94.2% of 294 vs 49.3% of
+203; 44.4–47.6 across cuts). All four conditions pass; `interpretable` true;
+25.1 observations per regressor. Seniority and required experience are
+unchanged. **Both changes flatter two tentative findings**, and that is
+recorded as such: `region_northeast` bootstrap p 0.0058 → 0.0006 (the
+fourteen rows are New England utility pay; still not significant in real
+terms, clustered p 0.54), and `skill_cloud` without Crusoe 0.0545 → 0.0425,
+so it no longer depends on the largest employer (at 1,999 replications,
+within the ~0.01 of 0.05 that the paper calls "on the line"). Only
+`remote_eligible` now changes verdict without Crusoe. `degree_stem` no
+longer passes clustered errors, so two coefficients, not three, are
+overturned by the bootstrap. Deliverables regenerated; ALL SUITES PASSED,
+consistency 29/29.
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

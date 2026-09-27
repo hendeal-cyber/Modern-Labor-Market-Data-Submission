@@ -515,7 +515,7 @@ def main() -> int:
         if _rounds >= 8:
             A("| 8 | Run 28 (cancelled at employer 209 of 269): all 58 added rows | GE Vernova's first collection added 18 rows and a cluster; two were off-taxonomy (packaging compliance, sales). \"$1M to $30M\" project sizes were read as $30 an hour, the only usable row of a phantom Duke cluster. The Ashby adapter had crashed on every board since the cache commit. The first next-day cache read reused 352 descriptions with no disclosure drift |")
         if _rounds >= 9:
-            A("| 9 | Run 29, the national frame expansion (133 added rows) | Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 45 usable rows, reported with a sensitivity check |")
+            A("| 9 | Run 29, the national frame expansion (133 added rows) | Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 49 usable rows, reported with a sensitivity check |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")

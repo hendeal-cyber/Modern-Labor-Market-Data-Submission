@@ -213,19 +213,53 @@ def census_region(state: str | None) -> str | None:
     return _STATE_TO_REGION.get((state or "").upper()) or None
 
 
+# Markers that are ALSO the names of US towns: Berlin, CT (Eversource's
+# headquarters), Paris, TX, London, KY, Delhi and Amsterdam, NY, Warsaw, IN,
+# Peru, IL, Vancouver, WA, and so on. Each is foreign only when the fragment
+# naming it does not end in a US state.
+_US_TOWN_MARKERS = frozenset({
+    "vancouver", "london", "paris", "berlin", "madrid", "delhi", "amsterdam",
+    "warsaw", "peru", "toronto", "mexico",
+})
+_US_WORDS_RE = re.compile(r"\b(united states( of america)?|usa|us)\b")
+
+
+def _ends_in_us_state(fragment: str) -> bool:
+    """True when the fragment's last comma-separated part is a US state, by
+    code or name ("Berlin, CT", "Vancouver, Washington", "Houston, Texas,
+    United States")."""
+    parts = [p.strip() for p in fragment.split(",")]
+    parts = [p for p in parts if p and not _US_WORDS_RE.fullmatch(_fold(p))]
+    if len(parts) < 2:
+        return False
+    last = parts[-1].strip(" .")
+    return last.upper() in _STATE_CODES or _fold(last) in STATE_ABBR
+
+
 def is_non_us(location_raw: str | None) -> bool:
     """True when the location names a country other than the United States.
 
     Matched on word boundaries so "Ireland" cannot fire inside a US place name
     and "India" cannot fire inside "Indiana" — the exact substring trap that
-    has produced four separate bugs in this codebase already.
+    has produced four separate bugs in this codebase already. A fifth, found
+    in audit round 10 preparation: "Berlin, CT", "Albuquerque, New Mexico" and
+    "Vancouver, WA" read as foreign, because the markers include city names
+    that are also US towns. Those markers now count only in a fragment that
+    does not end in a US state; every other marker still counts anywhere.
     """
-    text = _fold(location_raw)
-    text = re.sub(r"\s+", " ", text).strip()
+    text = re.sub(r"\s+", " ", _fold(location_raw)).strip()
     if not text:
         return False
-    return any(re.search(rf"(?<!\w){re.escape(marker)}(?!\w)", text)
-               for marker in NON_US_MARKERS)
+    for fragment in _split_locations(location_raw or ""):
+        folded = _fold(fragment).replace("new mexico", "nm")
+        hits = {m for m in NON_US_MARKERS
+                if re.search(rf"(?<!\w){re.escape(m)}(?!\w)", folded)}
+        if not hits:
+            continue
+        if hits <= _US_TOWN_MARKERS and _ends_in_us_state(fragment):
+            continue
+        return True
+    return False
 
 
 
