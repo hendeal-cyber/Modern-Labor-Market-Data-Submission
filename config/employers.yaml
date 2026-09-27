@@ -2499,6 +2499,35 @@ national_batch4:
     candidates:
       workday: [{tenant: fluenceenergy, site: fluenceenergy-jobs, wd: 12}]
     verified: true
+  - name: OneEnergy Renewables   # job-boards.greenhouse.io/oneenergyrenewables/jobs/6680925003
+    industry: developer
+    candidates:
+      greenhouse: [oneenergyrenewables]
+    verified: true
+  - name: Brightcore Energy   # job-boards.greenhouse.io/brightcoreenergy/jobs/5126573007
+    industry: developer
+    candidates:
+      greenhouse: [brightcoreenergy]
+    verified: true
+  - name: American Transmission Co   # board root only: atcllc.wd5.myworkdayjobs.com/atcllc/
+    industry: utility
+    candidates:
+      workday: [{tenant: atcllc, site: atcllc, wd: 5}]
+    verified: false
+  - name: Nira Energy   # job-boards.greenhouse.io/niraenergy/jobs/4520370008 (interconnection software)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [niraenergy]
+    verified: true
+  - name: Energy Exemplar   # job-boards.greenhouse.io/energyexemplarllc/jobs/5012676008 (PLEXOS)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [energyexemplarllc]
+    verified: true
+  # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
+  # Environmental Defense Fund, not EDF Renewables; lever:pattern is already
+  # a rejected token; hanwhaenergyusa and 174powerglobal are Hanwha boards
+  # beside Hanwha Renewables, a duplicate-cluster risk.
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.

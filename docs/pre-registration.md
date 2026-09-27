@@ -543,7 +543,7 @@ Energy, Copia Power, SOLV Energy, and the nuclear developers TerraPower,
 Kairos Power, Last Energy and The Nuclear Company), data centers (Keel
 Infrastructure, ECL), a retailer (Chariot Energy) and a grid vendor (Fluence).
 Confirmed in existing entries from live URLs: Amperon, SEL, and Associated
-Electric Cooperative. Frame: 297 -> 319 employers. The nuclear developers'
+Electric Cooperative. Five more by the same method before the 28 September run: OneEnergy Renewables, Brightcore Energy, Nira Energy, Energy Exemplar (verified) and American Transmission Co (board root, unverified). Frame: 297 -> 324 employers. The nuclear developers'
 engineering roles will mostly fail the role screen by design, because §2
 admits engineering only where it is analytics-adjacent. They are in the frame
 for their analytics, market and siting roles.
