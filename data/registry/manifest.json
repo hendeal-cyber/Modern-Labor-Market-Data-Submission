@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-27T22:23:29+00:00",
+  "fetched_at": "2026-09-27T22:26:32+00:00",
   "pages": {
     "il_icc_ares": {
       "url": "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx",
@@ -232,67 +232,74 @@
       "job-boards.greenhouse.io": {
         "pages": 5,
         "read": 5,
-        "urls": 0,
+        "urls": 31910,
         "page_statuses": [
-          404,
-          404,
-          404,
-          404,
-          404
-        ]
+          200,
+          200,
+          200,
+          0,
+          200
+        ],
+        "diagnostic": "502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.31.6</center>\r\n</body>\r\n</html>\r\n"
       },
       "boards.greenhouse.io": {
         "pages": 1,
         "read": 1,
-        "urls": 0,
+        "urls": 13137,
         "page_statuses": [
-          404
-        ]
+          200
+        ],
+        "diagnostic": null
       },
       "jobs.lever.co": {
         "pages": 1,
         "read": 1,
-        "urls": 0,
+        "urls": 105,
         "page_statuses": [
-          404
-        ]
+          200
+        ],
+        "diagnostic": null
       },
       "jobs.ashbyhq.com": {
         "pages": 2,
         "read": 2,
-        "urls": 0,
+        "urls": 21819,
         "page_statuses": [
-          404,
-          404
-        ]
+          200,
+          200
+        ],
+        "diagnostic": null
       },
       "jobs.smartrecruiters.com": {
         "pages": 1,
         "read": 1,
-        "urls": 0,
+        "urls": 408,
         "page_statuses": [
-          404
-        ]
+          200
+        ],
+        "diagnostic": null
       },
       "myworkdayjobs.com": {
         "pages": 5,
         "read": 5,
-        "urls": 0,
+        "urls": 33242,
         "page_statuses": [
-          404,
-          404,
-          404,
-          404,
-          404
-        ]
+          200,
+          200,
+          200,
+          0,
+          200
+        ],
+        "diagnostic": "502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.31.6</center>\r\n</body>\r\n</html>\r\n"
       }
     },
-    "tokens": 0,
-    "not_in_frame": 0
+    "tokens": 9026,
+    "energy_tokens": 356,
+    "not_in_frame": 8925
   },
   "fetched_at_by_stage": {
     "pages": "2026-09-27T22:17:38+00:00",
     "eia": "2026-09-27T22:17:38+00:00",
-    "cc": "2026-09-27T22:23:29+00:00"
+    "cc": "2026-09-27T22:26:32+00:00"
   }
 }
