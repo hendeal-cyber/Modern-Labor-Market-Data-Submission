@@ -76,6 +76,20 @@ def run():
     ])
     rows = reg.parse_eia861(df861)
     by = {r["name"]: r for r in rows}
+    # The layout of the 2024 file: "Customers" one row ABOVE the header, and
+    # the header row carrying units ("Count"). Every count read 0 on the
+    # first fetch because only the header row was searched.
+    df861b = _df([
+        ["Sales to Ultimate Customers", None, None, None, None, None, None, None, None],
+        [None, None, None, None, None, "RESIDENTIAL", None, "TOTAL", None],
+        [None, None, None, None, None, "Revenues", "Customers", "Revenues", "Customers"],
+        ["Data Year", "Utility Number", "Utility Name", "State", "Ownership",
+         "Thousand Dollars", "Count", "Thousand Dollars", "Count"],
+        [2024, 5553, "Duke Energy Carolinas, LLC", "NC", "Investor Owned", "1", "90", "5", "2,000,000"],
+    ])
+    rows_b = reg.parse_eia861(df861b)
+    check(rows_b and rows_b[0]["customers"] == 2_000_000,
+          f"EIA-861 'Count' header layout: customers {rows_b and rows_b[0]['customers']}, want 2,000,000")
     check(set(by) == {"Duke Energy Carolinas, LLC", "Tucson Electric Power Co", "Tiny Muni"},
           f"EIA-861 utilities wrong: {sorted(by)}")
     check(by.get("Duke Energy Carolinas, LLC", {}).get("customers") == 2_600_000,

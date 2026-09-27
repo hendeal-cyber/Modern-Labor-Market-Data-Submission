@@ -183,7 +183,13 @@ def parse_eia861(df) -> list[dict]:
     i_num, i_name = _col(cols, "utility number"), _col(cols, "utility name")
     i_state = _col(cols, "state")
     i_own = _col(cols, "ownership")
+    # The customer count's label depends on the vintage: some workbooks
+    # print "Customers" in the header row, others print it one row above,
+    # over a header row that says only "Count" (units). The first real fetch
+    # (EIA-861 2024) was the second kind, and every count came back 0.
     i_cust = _col(cols, "customers", last=True)
+    if i_cust is None:
+        i_cust = _col(cols, "count", last=True)
     out: dict[str, dict] = {}
     for row in df.iloc[h + 1:].itertuples(index=False):
         num, name = str(row[i_num]).strip(), str(row[i_name]).strip()
@@ -272,6 +278,10 @@ def fetch_eia(session, cfg: dict, manifest: dict, names: set[str]) -> None:
                     rec["error"] = f"no {member} workbook; members: {which}"
                     continue
                 rows = parse(df)
+                # Keep the workbook's opening rows, so the layout the parser
+                # met is on record and a test can be built from it.
+                rec["layout"] = [[str(v) for v in df.iloc[i].tolist()[:14]]
+                                 for i in range(min(4, len(df)))]
                 if not rows:
                     rec["error"] = f"{which}: header not found"
                     continue
