@@ -1,0 +1,67 @@
+name: Fetch registries
+
+# Source routes 1, 2 and 4 (pre-registration section 8; approved by the owner
+# 2026-09-27). Fetches public registries that list energy employers -- state
+# supplier lists, RTO member lists, EIA-861 and EIA-860, and the board tokens
+# in Common Crawl's URL index -- plus the USAJOBS API terms, so they can be
+# quoted. It collects NO postings. It commits only data/registry/.
+#
+# Manual dispatch only: it has no schedule, and one run takes a few minutes.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated subset: pages,eia,cc"
+        required: false
+        default: "pages,eia,cc"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sources
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt openpyxl pypdf
+
+      - name: Test the registry parsers
+        run: python tests/test_registries.py
+
+      - name: Fetch registries
+        env:
+          LMSTUDY_USER_AGENT: >-
+            lmstudy-research/0.1 (academic labor-market study;
+            +https://github.com/${{ github.repository }})
+        run: python scripts/fetch_registries.py --only "${{ github.event.inputs.only || 'pages,eia,cc' }}"
+
+      - name: Commit registries
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/registry/
+          if git diff --staged --quiet; then
+            echo "no registry changes"
+            exit 0
+          fi
+          git commit -m "Registries: fetched $(date -u +%Y-%m-%dT%H:%MZ)"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            # Only data/registry/ is touched here, which nothing else writes.
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            sleep $((attempt * 5))
+          done
+          exit 1

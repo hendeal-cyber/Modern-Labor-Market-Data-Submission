@@ -1,0 +1,71 @@
+# Public registries used to FIND employers (pre-registration section 8, source
+# routes 1, 2 and 4, approved by the owner 2026-09-27). Nothing here is a
+# source of postings. A name found here enters the frame only once a live job
+# URL on a supported ATS is found for it, exactly as for every earlier batch.
+#
+# Fetched by scripts/fetch_registries.py in .github/workflows/sources.yml,
+# because the authoring sandbox cannot reach any of these hosts. Each page is
+# saved as text under data/registry/raw/ so it can be read and quoted; a page
+# that fails is recorded in data/registry/manifest.json with its status, and
+# nothing is invented in its place.
+
+# Route 1: state commission supplier lists (the mandate states) and RTO/ISO
+# member or participant lists. Many of these pages render client-side; if a
+# page comes back empty, add the underlying list's URL and dispatch again.
+pages:
+  # --- state retail supplier lists ---
+  - {id: il_icc_ares,        url: "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx"}
+  - {id: il_icc_ares2,       url: "https://icc.illinois.gov/authority/alternative-retail-electric-suppliers"}
+  - {id: il_plugin_offers,   url: "https://www.pluginillinois.org/offers.aspx"}
+  - {id: ny_dps_esco,        url: "https://dps.ny.gov/energy-services-company-esco-competitive-market-information"}
+  - {id: ny_oru_esco,        url: "https://www.oru.com/en/save-money/shop-for-energy-suppliers/energy-service-companies"}
+  - {id: md_fe_suppliers,    url: "https://www.firstenergycorp.com/customer_choice/maryland/supplier_list.html"}
+  - {id: pa_fe_suppliers,    url: "https://www.firstenergycorp.com/customer_choice/pennsylvania/supplier_list.html"}
+  - {id: nj_fe_suppliers,    url: "https://www.firstenergycorp.com/customer_choice/new_jersey/supplier_list.html"}
+  - {id: oh_fe_suppliers,    url: "https://www.firstenergycorp.com/customer_choice/ohio/supplier_list.html"}
+  - {id: nj_bpu_shopping,    url: "https://www.nj.gov/bpu/commercial/shopping.html"}
+  - {id: pa_powerswitch,     url: "https://www.papowerswitch.com/shop-for-electricity/shop-for-your-home/by-distributor/"}
+  - {id: ma_energyswitch,    url: "https://www.energyswitchma.gov/"}
+  - {id: ct_energizect,      url: "https://energizect.com/rate-board/compare-energy-supplier-rates"}
+  - {id: tx_puct_reps,       url: "https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx"}
+  # --- RTO / ISO member and participant lists ---
+  - {id: pjm_members,        url: "https://www.pjm.com/about-pjm/member-services/member-list.aspx"}
+  - {id: pjm_members_form,   url: "https://www.pjm.com/forms/memberList.aspx"}
+  - {id: isone_directory,    url: "https://www.iso-ne.com/participate/participant-asset-listings/directory"}
+  - {id: ercot_rq,           url: "https://www.ercot.com/services/rq/re"}
+  - {id: nyiso_participants, url: "https://www.nyiso.com/market-participants"}
+  - {id: miso_members,       url: "https://www.misoenergy.org/about/miso-members/"}
+  # --- Route 3: USAJOBS terms and documentation, saved so they can be quoted ---
+  - {id: usajobs_terms,      url: "https://developer.usajobs.gov/guides/terms-of-use"}
+  - {id: usajobs_home,       url: "https://developer.usajobs.gov/"}
+  - {id: usajobs_search_api, url: "https://developer.usajobs.gov/api-reference/get-api-search"}
+  - {id: usajobs_rate_limit, url: "https://developer.usajobs.gov/guides/rate-limiting"}
+  - {id: usajobs_auth,       url: "https://developer.usajobs.gov/guides/authentication"}
+  - {id: usajobs_agencies,   url: "https://data.usajobs.gov/api/codelist/agencysubelements"}
+  # --- Route 2: EIA-176 has no bulk file; its query system's guide names the endpoints ---
+  - {id: eia_ngqs_guide,     url: "https://www.eia.gov/naturalgas/ngqs/ngqs_user_guide.pdf"}
+  - {id: commoncrawl_terms,  url: "https://commoncrawl.org/terms-of-use"}
+
+# Route 2: EIA annual registries (public domain). Years are tried newest first.
+eia:
+  eia861: "https://www.eia.gov/electricity/data/eia861/zip/f861{year}.zip"
+  eia861_archive: "https://www.eia.gov/electricity/data/eia861/archive/zip/f861{year}.zip"
+  eia860: "https://www.eia.gov/electricity/data/eia860/xls/eia860{year}.zip"
+  eia860_archive: "https://www.eia.gov/electricity/data/eia860/archive/xls/eia860{year}.zip"
+  years: [2025, 2024, 2023]
+
+# Route 4: Common Crawl's CDX index, used only to list the board tokens in use.
+# Paged and throttled as Common Crawl asks; capped so one dispatch stays short.
+commoncrawl:
+  index_list: "https://index.commoncrawl.org/collinfo.json"
+  domains:
+    - job-boards.greenhouse.io
+    - boards.greenhouse.io
+    - jobs.lever.co
+    - jobs.ashbyhq.com
+    - jobs.smartrecruiters.com
+    - myworkdayjobs.com
+  # Only URLs whose path names an in-scope concept, so the scan stays small.
+  url_filter: "(?i)(energy|power|solar|wind|utility|utilities|grid|electric|transmission|renewable|storage|battery|nuclear|data.?center|ercot|pjm|miso|caiso|nyiso)"
+  max_pages_per_domain: 15
+  min_interval_seconds: 2.0
