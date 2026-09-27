@@ -303,6 +303,21 @@ def token_of(url: str) -> tuple[str, str] | None:
     return platform, parts[0]
 
 
+def cdx_filter(pattern: str) -> str:
+    """The CDX `filter` value matching `pattern` anywhere in the URL.
+
+    The server compiles "url:<regex>" as one Python regex, so an inline flag
+    such as (?i) must open it. The first dispatch (2026-09-27) sent
+    "url:.*(?i)(energy|...)", a regex error on Python 3.11, and every page of
+    every domain came back empty.
+    """
+    flags = ""
+    m = re.match(r"^\(\?[a-zA-Z]+\)", pattern)
+    if m:
+        flags, pattern = m.group(0), pattern[m.end():]
+    return f"url:{flags}.*{pattern}"
+
+
 def fetch_commoncrawl(session, cfg: dict, manifest: dict, tokens_in_frame: set[str]) -> None:
     r = session.get_json(cfg["index_list"], use_etag=False)
     rec = manifest["commoncrawl"]
@@ -311,7 +326,7 @@ def fetch_commoncrawl(session, cfg: dict, manifest: dict, tokens_in_frame: set[s
         return
     api = r.data[0]["cdx-api"]          # newest crawl first
     rec["index"] = r.data[0]["id"]
-    flt = quote("url:.*" + cfg["url_filter"] + ".*", safe="")
+    flt = quote(cdx_filter(cfg["url_filter"]), safe="")
     found: dict[tuple[str, str], dict] = {}
     for domain in cfg["domains"]:
         target = f"*.{domain}" if domain == "myworkdayjobs.com" else f"{domain}/*"
@@ -322,9 +337,10 @@ def fetch_commoncrawl(session, cfg: dict, manifest: dict, tokens_in_frame: set[s
         # Spread the capped pages evenly over the index, which is sorted by
         # URL, so a cap samples the whole alphabet of tokens, not its start.
         picks = sorted({int(i * pages / cap) for i in range(cap)}) if cap else []
-        seen = 0
+        seen, statuses = 0, []
         for pg in picks:
             resp = session.get_bytes(f"{base}&page={pg}", use_etag=False)
+            statuses.append(resp.status)
             if not resp.ok:
                 continue
             for line in resp.data.decode("utf-8", errors="replace").splitlines():
@@ -339,7 +355,8 @@ def fetch_commoncrawl(session, cfg: dict, manifest: dict, tokens_in_frame: set[s
                 row = found.setdefault(t, {"platform": t[0], "token": t[1], "urls": 0,
                                            "example_url": url})
                 row["urls"] += 1
-        rec.setdefault("domains", {})[domain] = {"pages": pages, "read": len(picks), "urls": seen}
+        rec.setdefault("domains", {})[domain] = {"pages": pages, "read": len(picks), "urls": seen,
+                                                 "page_statuses": statuses}
         print(f"cc {domain}: {pages} pages, read {len(picks)}, {seen} matching urls")
     rows = sorted(found.values(), key=lambda r: -r["urls"])
     for row in rows:
