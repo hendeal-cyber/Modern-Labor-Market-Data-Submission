@@ -532,3 +532,19 @@ falls the day before Connecticut's posting law takes effect, so no posting
 changes mandate status partway through the panel. **Runs between now and the
 end date are reported whatever they show, and none is added after it.**
 
+**Addendum, same evening, before any batch-5 data exist: batch 5 and the
+daily runs.** The owner approved three scheduled runs on 28, 29 and 30
+September, plus further employer searches between them. The cron names those
+three days only. Batch 5 adds 22 employers by the same live-job-URL method (20
+verified, 2 board-root-only and unverified): consulting (Edison Energy,
+Energy Solutions, Cadeo Group), analytics (E Source, Aurora Solar, Verse,
+Buzz Solutions, Neara, Redaptive, NREL), developers (Ameresco, Resonant
+Energy, Copia Power, SOLV Energy, and the nuclear developers TerraPower,
+Kairos Power, Last Energy and The Nuclear Company), data centers (Keel
+Infrastructure, ECL), a retailer (Chariot Energy) and a grid vendor (Fluence).
+Confirmed in existing entries from live URLs: Amperon, SEL, and Associated
+Electric Cooperative. Frame: 297 -> 319 employers. The nuclear developers'
+engineering roles will mostly fail the role screen by design, because §2
+admits engineering only where it is analytics-adjacent. They are in the frame
+for their analytics, market and siting roles.
+

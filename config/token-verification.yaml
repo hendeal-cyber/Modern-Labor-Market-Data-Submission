@@ -105,11 +105,13 @@ employers:
     resolved_in_last_run: false
   Amperon:
     status: confirmed
-    evidence: resolved in collection manifest
-    checked_on: '2026-09-22'
+    evidence: https://job-boards.greenhouse.io/amperon/jobs/4648887007
+    checked_on: '2026-09-27'
     industry: energy_analytics
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: true
+    platform: greenhouse
+    token: amperon
   Analysis Group:
     status: denied
     reason: no supported ATS identified (from employers.yaml)
@@ -170,10 +172,14 @@ employers:
       token problem; likely the board's API endpoint is disabled or embed-only. Diagnose from a run, not
       by changing the token.
   Associated Electric Cooperative:
-    status: unchecked
+    status: confirmed
     industry: cooperative
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: aeci/AECI
+    evidence: https://aeci.wd1.myworkdayjobs.com/AECI/job/Springfield-Missouri/System-Operator_REQ-1425
+    checked_on: '2026-09-27'
   Atmos Energy:
     status: confirmed
     industry: utility
@@ -1508,10 +1514,14 @@ employers:
       so it cannot be read from here.
     checked_on: '2026-09-22'
   SEL Schweitzer Engineering Laboratories:
-    status: unchecked
+    status: confirmed
     industry: grid_vendor
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: workday
+    token: selinc/SEL
+    evidence: https://selinc.wd1.myworkdayjobs.com/en-US/SEL/job/Power-Engineer_2025-18131
+    checked_on: '2026-09-27'
   STACK Infrastructure:
     status: confirmed
     evidence: resolved in collection manifest

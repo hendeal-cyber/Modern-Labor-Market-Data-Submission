@@ -1349,13 +1349,12 @@ energy_analytics_batch2:
       ashby: [bidgely]
       workday: [{tenant: bidgely, site: careers}]
     verified: false
+  # Verified 2026-09-27 from a live job URL:
+  # job-boards.greenhouse.io/amperon/jobs/4648887007
   - name: Amperon
     candidates:
       greenhouse: [amperon]
-      lever: [amperon]
-      ashby: [amperon]
-      workday: [{tenant: amperon, site: careers}]
-    verified: false
+    verified: true
   - name: Yes Energy
     candidates:
       greenhouse: [yesenergy, yes-energy, yes]
@@ -1700,13 +1699,12 @@ grid_vendors_batch2:
       ashby: [generac]
       workday: [{tenant: generac, site: careers}]
     verified: false
+  # Verified 2026-09-27 from a live job URL:
+  # selinc.wd1.myworkdayjobs.com/SEL/job/Power-Engineer_2025-18131
   - name: SEL Schweitzer Engineering Laboratories
     candidates:
-      greenhouse: [selschweitzerengineeringlaboratories, sel-schweitzer-engineering-laboratories, selschweitzer]
-      lever: [selschweitzerengineeringlaboratories, sel-schweitzer-engineering-laboratories, selschweitzer]
-      ashby: [selschweitzerengineeringlaboratories, sel-schweitzer-engineering-laboratories, selschweitzer]
-      workday: [{tenant: selschweitzerengineeringlaboratories, site: careers}]
-    verified: false
+      workday: [{tenant: selinc, site: SEL, wd: 1}]
+    verified: true
   - name: Trilliant
     candidates:
       greenhouse: [trilliant]
@@ -1875,13 +1873,12 @@ cooperatives_batch3:
     candidates:
       workday: [{tenant: dairynet, site: DPCcareers, wd: 1}]
     verified: false
+  # Verified 2026-09-27 from a live job URL:
+  # aeci.wd1.myworkdayjobs.com/AECI/job/Springfield-Missouri/System-Operator_REQ-1425
   - name: Associated Electric Cooperative
     candidates:
-      greenhouse: [associatedelectriccooperative, associated-electric-cooperative, associatedelectric]
-      lever: [associatedelectriccooperative, associated-electric-cooperative, associatedelectric]
-      ashby: [associatedelectriccooperative, associated-electric-cooperative, associatedelectric]
-      workday: [{tenant: associatedelectriccooperative, site: careers}]
-    verified: false
+      workday: [{tenant: aeci, site: AECI, wd: 1}]
+    verified: true
   - name: Seminole Electric Cooperative
     candidates:
       greenhouse: [seminoleelectriccooperative, seminole-electric-cooperative, seminoleelectric]
@@ -2387,6 +2384,120 @@ national_batch4:
     industry: grid_vendor
     candidates:
       greenhouse: [smaamerica]
+    verified: true
+
+  # --- Batch 5, 2026-09-27 (same method; owner-approved "heavy and extensive
+  # searches" between the 28-30 September runs). Recorded in pre-registration
+  # section 8 before the 2026-09-28 run collects them. ---
+  - name: Edison Energy   # jobs.lever.co/edisonenergy/2792a476-86c0-420d-968b-8e42d3cb7441
+    industry: consulting
+    candidates:
+      lever: [edisonenergy]
+    verified: true
+  - name: E Source   # jobs.ashbyhq.com/e-source/db9508b7-7551-414f-b066-011e0c8c9e68
+    industry: energy_analytics
+    candidates:
+      ashby: [e-source]
+    verified: true
+  - name: Energy Solutions   # job-boards.greenhouse.io/energysolutions/jobs/4719461007 (utility efficiency programs)
+    industry: consulting
+    candidates:
+      greenhouse: [energysolutions]
+    verified: true
+  - name: Cadeo Group   # jobs.lever.co/cadeogroup/9cd7a216-d638-447e-aed3-dc5630d8d7ee
+    industry: consulting
+    candidates:
+      lever: [cadeogroup]
+    verified: true
+  - name: Ameresco   # ameresco.wd5.myworkdayjobs.com/Ameresco/job/Solar-and-Battery-Energy-Storage-Systems-Data-Analyst_R3020
+    industry: developer
+    candidates:
+      workday: [{tenant: ameresco, site: Ameresco, wd: 5}]
+    verified: true
+  - name: Resonant Energy   # job-boards.greenhouse.io/resonantenergy/jobs/5272575008
+    industry: developer
+    candidates:
+      greenhouse: [resonantenergy]
+    verified: true
+  - name: Copia Power   # jobs.lever.co/copiapower/aa8e50c1-b794-4d11-8f28-c33d075aadb1
+    industry: developer
+    candidates:
+      lever: [copiapower]
+    verified: true
+  - name: SOLV Energy   # board root only: solvenergy.wd1.myworkdayjobs.com/SOLV_External_Career
+    industry: developer
+    candidates:
+      workday: [{tenant: solvenergy, site: SOLV_External_Career, wd: 1}]
+    verified: false
+  - name: TerraPower   # job-boards.greenhouse.io/terrapowerllc/jobs/4260360009
+    industry: developer
+    candidates:
+      greenhouse: [terrapowerllc]
+    verified: true
+  - name: Kairos Power   # job-boards.greenhouse.io/kairospower/jobs/5432782004
+    industry: developer
+    candidates:
+      greenhouse: [kairospower]
+    verified: true
+  - name: Last Energy   # jobs.lever.co/last-energy/f778ceb3-7374-4e9a-85ce-d8260cdcbe9d
+    industry: developer
+    candidates:
+      lever: [last-energy]
+    verified: true
+  - name: The Nuclear Company   # job-boards.greenhouse.io/thenuclearcompany/jobs/5389021008
+    industry: developer
+    candidates:
+      greenhouse: [thenuclearcompany]
+    verified: true
+  - name: Keel Infrastructure   # job-boards.greenhouse.io/keelinfrastructure/jobs/5231554008
+    industry: data_center
+    candidates:
+      greenhouse: [keelinfrastructure]
+    verified: true
+  - name: ECL   # jobs.lever.co/ecldc/1d8e21c5-4936-404e-822b-8491bae3ad1b (off-grid data centers)
+    industry: data_center
+    candidates:
+      lever: [ecldc]
+    verified: true
+  - name: Chariot Energy   # job-boards.greenhouse.io/chariotenergy/jobs/4009385009
+    industry: retailer
+    candidates:
+      greenhouse: [chariotenergy]
+    verified: true
+  - name: Aurora Solar   # jobs.lever.co/aurorasolar/a8e6f979-e5c1-4fa1-b3dc-96b12bfbf065
+    industry: energy_analytics
+    candidates:
+      lever: [aurorasolar]
+    verified: true
+  - name: Verse   # job-boards.greenhouse.io/verse/jobs/5186881008 (utility rates and storage software)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [verse]
+    verified: true
+  - name: Buzz Solutions   # job-boards.greenhouse.io/buzzsolutions/jobs/4520424008 (power-line inspection AI)
+    industry: energy_analytics
+    candidates:
+      greenhouse: [buzzsolutions]
+    verified: true
+  - name: Neara   # jobs.ashbyhq.com/neara/b89c5fc1-3997-4a43-bb4e-99f791622742 (grid digital twins)
+    industry: energy_analytics
+    candidates:
+      ashby: [neara]
+    verified: true
+  - name: Redaptive   # jobs.lever.co/redaptiveinc/bab4a525-10ca-47fe-ac59-de31927affcb (energy-as-a-service)
+    industry: energy_analytics
+    candidates:
+      lever: [redaptiveinc]
+    verified: true
+  - name: NREL   # board root only: nrel.wd5.myworkdayjobs.com/NLR
+    industry: energy_analytics
+    candidates:
+      workday: [{tenant: nrel, site: NLR, wd: 5}]
+    verified: false
+  - name: Fluence Energy   # fluenceenergy.wd12.myworkdayjobs.com/fluenceenergy-jobs/job/Battery-and-Module-Hardware-Engineer_JR100067-1
+    industry: grid_vendor
+    candidates:
+      workday: [{tenant: fluenceenergy, site: fluenceenergy-jobs, wd: 12}]
     verified: true
 
 # Slug patterns discover.py derives candidates from when a company has no
