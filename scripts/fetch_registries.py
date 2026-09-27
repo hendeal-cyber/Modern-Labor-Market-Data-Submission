@@ -303,22 +303,18 @@ def token_of(url: str) -> tuple[str, str] | None:
     return platform, parts[0]
 
 
-def cdx_filter(pattern: str) -> str:
-    """The CDX `filter` value matching `pattern` anywhere in the URL.
-
-    The server compiles "url:<regex>" as one Python regex, so an inline flag
-    such as (?i) must open it. The first dispatch (2026-09-27) sent
-    "url:.*(?i)(energy|...)", a regex error on Python 3.11, and every page of
-    every domain came back empty.
-    """
-    flags = ""
-    m = re.match(r"^\(\?[a-zA-Z]+\)", pattern)
-    if m:
-        flags, pattern = m.group(0), pattern[m.end():]
-    return f"url:{flags}.*{pattern}"
-
-
 def fetch_commoncrawl(session, cfg: dict, manifest: dict, tokens_in_frame: set[str]) -> None:
+    """Every distinct board token in the newest crawl, read page by page.
+
+    The filter is applied HERE, not by the server. Sent as the CDX `filter`
+    parameter, it made every page answer 404 on the second dispatch
+    (2026-09-27), after the regex error of the first was fixed, and the index
+    for these six domains is only about fifteen pages, so reading them whole is
+    cheap. Keeping every token, not only those whose URL names an energy term,
+    lets tokens be joined to registry names later: a Greenhouse or Lever URL
+    carries no job title, so a keyword filter alone would miss most boards.
+    """
+    import requests
     r = session.get_json(cfg["index_list"], use_etag=False)
     rec = manifest["commoncrawl"]
     if not r.ok:
@@ -326,45 +322,56 @@ def fetch_commoncrawl(session, cfg: dict, manifest: dict, tokens_in_frame: set[s
         return
     api = r.data[0]["cdx-api"]          # newest crawl first
     rec["index"] = r.data[0]["id"]
-    flt = quote(cdx_filter(cfg["url_filter"]), safe="")
+    keyword = re.compile(cfg["url_filter"])
     found: dict[tuple[str, str], dict] = {}
     for domain in cfg["domains"]:
         target = f"*.{domain}" if domain == "myworkdayjobs.com" else f"{domain}/*"
-        base = f"{api}?url={quote(target, safe='')}&output=json&fl=url&filter={flt}"
+        base = f"{api}?url={quote(target, safe='')}&output=json&fl=url"
         n = session.get_json(base + "&showNumPages=true", use_etag=False)
         pages = int((n.data or {}).get("pages", 0)) if n.ok else 0
         cap = min(pages, cfg["max_pages_per_domain"])
-        # Spread the capped pages evenly over the index, which is sorted by
-        # URL, so a cap samples the whole alphabet of tokens, not its start.
+        # Spread a capped read evenly over the index, which is sorted by URL,
+        # so a cap samples the whole alphabet of tokens, not its start.
         picks = sorted({int(i * pages / cap) for i in range(cap)}) if cap else []
-        seen, statuses = 0, []
+        seen, statuses, diag = 0, [], None
         for pg in picks:
             resp = session.get_bytes(f"{base}&page={pg}", use_etag=False)
             statuses.append(resp.status)
             if not resp.ok:
+                if diag is None:     # keep the server's own words once per domain
+                    try:
+                        raw = requests.get(f"{base}&page={pg}", timeout=60)
+                        diag = f"{raw.status_code}: {raw.text[:300]}"
+                    except requests.RequestException as exc:
+                        diag = f"{type(exc).__name__}: {exc}"
                 continue
             for line in resp.data.decode("utf-8", errors="replace").splitlines():
                 try:
                     url = json.loads(line)["url"]
-                except (ValueError, KeyError):
+                except (ValueError, KeyError, TypeError):
                     continue
                 t = token_of(url)
                 if not t:
                     continue
                 seen += 1
                 row = found.setdefault(t, {"platform": t[0], "token": t[1], "urls": 0,
-                                           "example_url": url})
+                                           "energy_urls": 0, "example_url": url})
                 row["urls"] += 1
+                if keyword.search(url):
+                    if not row["energy_urls"]:
+                        row["example_url"] = url
+                    row["energy_urls"] += 1
         rec.setdefault("domains", {})[domain] = {"pages": pages, "read": len(picks), "urls": seen,
-                                                 "page_statuses": statuses}
-        print(f"cc {domain}: {pages} pages, read {len(picks)}, {seen} matching urls")
-    rows = sorted(found.values(), key=lambda r: -r["urls"])
+                                                 "page_statuses": statuses, "diagnostic": diag}
+        print(f"cc {domain}: {pages} pages, read {len(picks)}, {seen} urls, {diag or ''}")
+    rows = sorted(found.values(), key=lambda r: (-r["energy_urls"], -r["urls"]))
     for row in rows:
         t = row["token"].lower()
         row["in_frame"] = t in tokens_in_frame or t.split("/")[0] in tokens_in_frame
     write_csv(OUT / "ats_tokens.csv", rows,
-              ["platform", "token", "urls", "example_url", "in_frame"])
-    rec.update(tokens=len(rows), not_in_frame=sum(not r["in_frame"] for r in rows))
+              ["platform", "token", "urls", "energy_urls", "example_url", "in_frame"])
+    rec.update(tokens=len(rows), energy_tokens=sum(1 for r in rows if r["energy_urls"]),
+               not_in_frame=sum(not r["in_frame"] for r in rows))
 
 
 # ---------------------------------------------------------------- helpers

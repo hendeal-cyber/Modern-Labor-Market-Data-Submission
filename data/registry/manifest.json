@@ -1,7 +1,231 @@
 {
   "fetched_at": "2026-09-27T22:23:29+00:00",
-  "pages": {},
-  "eia": {},
+  "pages": {
+    "il_icc_ares": {
+      "url": "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx",
+      "status": 200,
+      "error": null,
+      "bytes": 39025,
+      "text_chars": 7034
+    },
+    "il_icc_ares2": {
+      "url": "https://icc.illinois.gov/authority/alternative-retail-electric-suppliers",
+      "status": 200,
+      "error": null,
+      "bytes": 39025,
+      "text_chars": 7034
+    },
+    "il_plugin_offers": {
+      "url": "https://www.pluginillinois.org/offers.aspx",
+      "status": 200,
+      "error": null,
+      "bytes": 44321,
+      "text_chars": 1717
+    },
+    "ny_dps_esco": {
+      "url": "https://dps.ny.gov/energy-services-company-esco-competitive-market-information",
+      "status": 200,
+      "error": null,
+      "bytes": 59991,
+      "text_chars": 6776
+    },
+    "ny_oru_esco": {
+      "url": "https://www.oru.com/en/save-money/shop-for-energy-suppliers/energy-service-companies",
+      "status": 200,
+      "error": null,
+      "bytes": 127387,
+      "text_chars": 18314
+    },
+    "md_fe_suppliers": {
+      "url": "https://www.firstenergycorp.com/customer_choice/maryland/supplier_list.html",
+      "status": 200,
+      "error": null,
+      "bytes": 59481,
+      "text_chars": 4788
+    },
+    "pa_fe_suppliers": {
+      "url": "https://www.firstenergycorp.com/customer_choice/pennsylvania/supplier_list.html",
+      "status": 404,
+      "error": "HTTP 404"
+    },
+    "nj_fe_suppliers": {
+      "url": "https://www.firstenergycorp.com/customer_choice/new_jersey/supplier_list.html",
+      "status": 200,
+      "error": null,
+      "bytes": 57837,
+      "text_chars": 4280
+    },
+    "oh_fe_suppliers": {
+      "url": "https://www.firstenergycorp.com/customer_choice/ohio/supplier_list.html",
+      "status": 404,
+      "error": "HTTP 404"
+    },
+    "nj_bpu_shopping": {
+      "url": "https://www.nj.gov/bpu/commercial/shopping.html",
+      "status": 200,
+      "error": null,
+      "bytes": 18519,
+      "text_chars": 5774
+    },
+    "pa_powerswitch": {
+      "url": "https://www.papowerswitch.com/shop-for-electricity/shop-for-your-home/by-distributor/",
+      "status": 404,
+      "error": "HTTP 404"
+    },
+    "ma_energyswitch": {
+      "url": "https://www.energyswitchma.gov/",
+      "status": 200,
+      "error": null,
+      "bytes": 5302,
+      "text_chars": 116
+    },
+    "ct_energizect": {
+      "url": "https://energizect.com/rate-board/compare-energy-supplier-rates",
+      "status": 200,
+      "error": null,
+      "bytes": 118977,
+      "text_chars": 3552
+    },
+    "tx_puct_reps": {
+      "url": "https://www.puc.texas.gov/industry/electric/directories/rep/alpha_rep.aspx",
+      "status": 200,
+      "error": null,
+      "bytes": 178155,
+      "text_chars": 10442
+    },
+    "pjm_members": {
+      "url": "https://www.pjm.com/about-pjm/member-services/member-list.aspx",
+      "status": 200,
+      "error": null,
+      "bytes": 478174,
+      "text_chars": 95742
+    },
+    "pjm_members_form": {
+      "url": "https://www.pjm.com/forms/memberList.aspx",
+      "status": 200,
+      "error": null,
+      "bytes": 12636,
+      "text_chars": 256
+    },
+    "isone_directory": {
+      "url": "https://www.iso-ne.com/participate/participant-asset-listings/directory",
+      "status": 200,
+      "error": null,
+      "bytes": 62918,
+      "text_chars": 9170
+    },
+    "ercot_rq": {
+      "url": "https://www.ercot.com/services/rq/re",
+      "status": 200,
+      "error": null,
+      "bytes": 78984,
+      "text_chars": 12882
+    },
+    "nyiso_participants": {
+      "url": "https://www.nyiso.com/market-participants",
+      "status": 202,
+      "error": "HTTP 202"
+    },
+    "miso_members": {
+      "url": "https://www.misoenergy.org/about/miso-members/",
+      "status": 200,
+      "error": null,
+      "bytes": 60666,
+      "text_chars": 3993
+    },
+    "usajobs_terms": {
+      "url": "https://developer.usajobs.gov/guides/terms-of-use",
+      "status": 200,
+      "error": null,
+      "bytes": 19699,
+      "text_chars": 2142
+    },
+    "usajobs_home": {
+      "url": "https://developer.usajobs.gov/",
+      "status": 200,
+      "error": null,
+      "bytes": 21131,
+      "text_chars": 1559
+    },
+    "usajobs_search_api": {
+      "url": "https://developer.usajobs.gov/api-reference/get-api-search",
+      "status": 200,
+      "error": null,
+      "bytes": 71623,
+      "text_chars": 20615
+    },
+    "usajobs_rate_limit": {
+      "url": "https://developer.usajobs.gov/guides/rate-limiting",
+      "status": 200,
+      "error": null,
+      "bytes": 19108,
+      "text_chars": 1331
+    },
+    "usajobs_auth": {
+      "url": "https://developer.usajobs.gov/guides/authentication",
+      "status": 200,
+      "error": null,
+      "bytes": 20916,
+      "text_chars": 2520
+    },
+    "usajobs_agencies": {
+      "url": "https://data.usajobs.gov/api/codelist/agencysubelements",
+      "status": 200,
+      "error": null,
+      "bytes": 164285,
+      "text_chars": 164285
+    },
+    "eia_ngqs_guide": {
+      "url": "https://www.eia.gov/naturalgas/ngqs/ngqs_user_guide.pdf",
+      "status": 200,
+      "error": null,
+      "bytes": 1887050,
+      "text_chars": 40350
+    },
+    "commoncrawl_terms": {
+      "url": "https://commoncrawl.org/terms-of-use",
+      "status": 200,
+      "error": null,
+      "bytes": 47964,
+      "text_chars": 30046
+    }
+  },
+  "eia": {
+    "eia861": {
+      "tried": [
+        {
+          "url": "https://www.eia.gov/electricity/data/eia861/zip/f8612025.zip",
+          "status": 200
+        },
+        {
+          "url": "https://www.eia.gov/electricity/data/eia861/archive/zip/f8612025.zip",
+          "status": 200
+        },
+        {
+          "url": "https://www.eia.gov/electricity/data/eia861/zip/f8612024.zip",
+          "status": 200
+        }
+      ],
+      "year": 2024,
+      "url": "https://www.eia.gov/electricity/data/eia861/zip/f8612024.zip",
+      "member": "Sales_Ult_Cust_2024.xlsx",
+      "rows": 1518,
+      "not_in_frame": 1472
+    },
+    "eia860": {
+      "tried": [
+        {
+          "url": "https://www.eia.gov/electricity/data/eia860/xls/eia8602025.zip",
+          "status": 200
+        }
+      ],
+      "year": 2025,
+      "url": "https://www.eia.gov/electricity/data/eia860/xls/eia8602025.zip",
+      "member": "3_1_Generator_Y2025.xlsx",
+      "rows": 5852,
+      "not_in_frame": 5794
+    }
+  },
   "commoncrawl": {
     "index": "CC-MAIN-2026-39",
     "domains": {
@@ -65,5 +289,10 @@
     },
     "tokens": 0,
     "not_in_frame": 0
+  },
+  "fetched_at_by_stage": {
+    "pages": "2026-09-27T22:17:38+00:00",
+    "eia": "2026-09-27T22:17:38+00:00",
+    "cc": "2026-09-27T22:23:29+00:00"
   }
 }

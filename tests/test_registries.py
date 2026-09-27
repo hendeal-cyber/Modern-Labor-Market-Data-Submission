@@ -99,19 +99,19 @@ def run():
     check(len(rows) == 2, f"EIA-860 note row read as a utility: {len(rows)} rows")
     check(reg.parse_eia860(_df([["no header here"]])) == [], "EIA-860 without a header returned rows")
 
-    # --- the Common Crawl filter must compile as the server compiles it ---
+    # --- the Common Crawl keyword filter (applied locally) must compile and
+    # match. Sent to the server it failed twice on 2026-09-27: a regex error,
+    # then a 404 on every page.
     import re as _re, yaml as _yaml
     pattern = _yaml.safe_load((ROOT / "config" / "registry_sources.yaml").read_text())["commoncrawl"]["url_filter"]
-    flt = reg.cdx_filter(pattern)
-    check(flt.startswith("url:"), f"CDX filter lacks its field: {flt!r}")
     try:
-        rx = _re.compile(flt[len("url:"):])
+        rx = _re.compile(pattern)
         check(bool(rx.search("https://acme.wd5.myworkdayjobs.com/en-US/X/job/Houston/Energy-Analyst_R1")),
-              "CDX filter misses an energy job URL")
+              "keyword filter misses an energy job URL")
         check(not rx.search("https://job-boards.greenhouse.io/acmebank/jobs/123"),
-              "CDX filter matches an unrelated board")
+              "keyword filter matches an unrelated board")
     except _re.error as exc:
-        check(False, f"CDX filter is not a valid regex ({exc}): {flt[:40]!r}")
+        check(False, f"keyword filter is not a valid regex ({exc})")
 
     # --- page text keeps link and option labels, drops scripts ---
     text = reg.html_to_text('<script>var x="Hidden Energy";</script><ul><li><a href="/s/1">'
