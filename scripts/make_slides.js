@@ -59,6 +59,14 @@ const TENTATIVE = Object.entries(BOOT)
   .filter(([k, v]) => v && v.p_value !== null && v.p_value < 0.05 && !FRAGILE.has(k)
           && Math.max(v.p_value, (RR[k] && RR[k].bootstrap_p) || 0) >= 0.02)
   .map(([k]) => PRETTY[k] || k);
+// Survivors that are not significant once pay is price-adjusted (clustered
+// p on the BEA model, which has no bootstrap). Same rule as the paper and
+// the executive summary.
+const REAL = ((analysis && analysis.models && analysis.models.real_pay) || {}).coefficients || {};
+const PRICE_LOST = Object.entries(BOOT)
+  .filter(([k, v]) => v && v.p_value !== null && v.p_value < 0.05 && !FRAGILE.has(k)
+          && REAL[k] && REAL[k].p_value >= 0.05)
+  .map(([k]) => PRETTY[k] || k);
 const OVERTURNED = Object.entries(BOOT).filter(([k, v]) => {
   const c = ((analysis.models || {}).core || {}).coefficients || {};
   return v && v.p_value !== null && c[k] && c[k].p_value < 0.05 && v.p_value >= 0.05;
@@ -237,10 +245,11 @@ function bullets(s, items, x, y, w, h) {
       SURVIVORS.length
         ? `Within disclosed pay, ${SURVIVORS.join(", ")} ${SURVIVORS.length === 1 ? "is the only attribute" : "are the only attributes"} distinguishable from zero`
           + (TENTATIVE.length ? ` — ${TENTATIVE.join(" and ")} only narrowly, so read ${TENTATIVE.length === 1 ? "it" : "them"} as tentative` : "")
+          + (PRICE_LOST.length ? `; ${PRICE_LOST.join(" and ")} ${PRICE_LOST.length === 1 ? "does" : "do"} not survive price adjustment` : "")
         : "Within disclosed pay, no attribute is distinguishable from zero under the pre-registered inference",
       `${OVERTURNED} coefficients reach significance under clustered standard errors and do NOT survive the wild cluster bootstrap — reported as inconclusive, not as findings`,
       "Seniority was predicted to dominate and does; it also survives every robustness cut applied",
-    ], M, 3.4, W - 2 * M, 2.6);
+    ], M, 3.4, W - 2 * M, 2.9);
   } else {
     s.addShape(pres.ShapeType.roundRect, { x: M, y: 1.6, w: W - 2 * M, h: 2.2,
       rectRadius: 0.12, fill: { color: LIGHT }, line: { color: LIGHT } });

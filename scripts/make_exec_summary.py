@@ -196,12 +196,38 @@ def main() -> int:
             A("`docs/audit-log.md` for how these verdicts have moved between "
               "collection runs.")
             A("")
-        A("Seniority is the one result the study would defend without "
-          "qualification: it is")
-        A("the most precisely estimated coefficient, it was predicted in "
-          "advance, and it")
-        A("survives every robustness cut applied here.")
-        A("")
+        # Computed. The price-adjusted model had shown for several builds
+        # that the Northeast coefficient is not there in real terms, and no
+        # generated document said so.
+        real = ((a.get("models") or {}).get("real_pay") or {}).get("coefficients") or {}
+        p_lost = [n for n in survivors if n not in fragile and real
+                  and (real.get(n) or {}).get("p_value", 1) >= 0.05]
+        if p_lost:
+            names = " and ".join(pretty(n) for n in p_lost)
+            A(f"**{names[0].upper() + names[1:]} "
+              + ("does" if len(p_lost) == 1 else "do")
+              + " not survive adjusting pay for regional price levels** "
+              "(BEA regional price parities; clustered p "
+              + ", ".join(f"{real[n]['p_value']:.2f}" for n in p_lost)
+              + "), so read "
+              + ("it" if len(p_lost) == 1 else "them")
+              + " as nominal only.")
+            A("")
+        # Conditional on the cuts it claims. This was a literal that would
+        # have gone on asserting seniority's robustness had any cut withdrawn it.
+        _sen_robust = ("seniority_rank" in survivors
+                       and "seniority_rank" not in fragile
+                       and (not real or (real.get("seniority_rank") or {})
+                            .get("p_value", 1) < 0.05)
+                       and survivors[0] == "seniority_rank")
+        if _sen_robust:
+            A("Seniority is the one result the study would defend without "
+              "qualification: it is")
+            A("the most precisely estimated coefficient, it was predicted in "
+              "advance, and it")
+            A("survives every robustness cut applied here, including price "
+              "adjustment.")
+            A("")
         # Computed, not asserted. An earlier draft of this paragraph carried
         # the concentration figures as literals, in a generator whose entire
         # purpose is that no number is hand-entered.

@@ -51,6 +51,62 @@ def reported_p(name: str, model_coefs: dict, boot: dict) -> tuple[float, str]:
     return row.get("p_value", 1.0), "clustered"
 
 
+def price_sensitive(analysis: dict | None) -> tuple[list[str], list[str]]:
+    """Core bootstrap survivors that lose clustered significance once pay is
+    price-adjusted, and non-survivors that gain it there.
+
+    The price-adjusted model has no bootstrap, so this compares like with
+    like on the clustered p-value only. It exists because the paper reported
+    a Northeast premium on nominal pay without saying that the premium is not
+    there in real terms, which is the first thing a reader would ask.
+    """
+    models = (analysis or {}).get("models") or {}
+    real = (models.get("real_pay") or {}).get("coefficients") or {}
+    if not real:
+        return [], []
+    boot = bootstrap_p(analysis)
+    fragile = set(((analysis or {}).get("region_robustness") or {})
+                  .get("verdicts_changed") or [])
+    survivors = [n for n, p in boot.items() if p < 0.05 and n not in fragile]
+    lost = [n for n in survivors
+            if (real.get(n) or {}).get("p_value", 1) >= 0.05]
+    gained = [n for n, r in real.items()
+              if n != "const" and r.get("p_value", 1) < 0.05
+              and n not in survivors]
+    return lost, gained
+
+
+def price_adjustment_note(analysis: dict | None) -> list[str]:
+    lost, gained = price_sensitive(analysis)
+    real = (((analysis or {}).get("models") or {}).get("real_pay") or {}
+            ).get("coefficients") or {}
+    out: list[str] = []
+    if lost:
+        out.append("**What price adjustment changes.** "
+                   + ", ".join(f"`{n}`" for n in lost)
+                   + (" passes" if len(lost) == 1 else " pass")
+                   + " the bootstrap on nominal pay but "
+                   + ("is" if len(lost) == 1 else "are")
+                   + " not significant once pay is deflated by regional price parities ("
+                   + ", ".join(f"clustered p {real[n]['p_value']:.3f}" for n in lost)
+                   + ").")
+        if "region_northeast" in lost:
+            out.append("That is consistent with the nominal Northeast premium "
+                       "reflecting price levels rather than real pay.")
+    if gained:
+        out.append(("Conversely, " if lost else "**What price adjustment changes.** ")
+                   + ", ".join(f"`{n}` ({real[n]['coef']:+.3f}, clustered p "
+                               f"{real[n]['p_value']:.3f})" for n in gained)
+                   + (" reaches" if len(gained) == 1 else " reach")
+                   + " clustered significance only in real terms. No bootstrap is "
+                   "run on this model, so under the pre-registered procedure "
+                   + ("it is" if len(gained) == 1 else "they are")
+                   + " not a finding.")
+    if out:
+        out.append("")
+    return out
+
+
 def coefficient_table(model: dict, boot: dict | None = None) -> list[str]:
     boot = boot or {}
     if boot:
@@ -119,6 +175,12 @@ def main() -> int:
     by_m = disc.get("by_mandate", {}) or {}
     m_share = (by_m.get("mandate") or {}).get("share_disclosed")
     n_share = (by_m.get("no_mandate") or {}).get("share_disclosed")
+    # Counted, not asserted: two sentences said "roughly a quarter".
+    _multi_loc = None
+    if _rows:
+        _nl = [r.get("n_locations") for r in _rows if r.get("n_locations")]
+        if _nl:
+            _multi_loc = sum(1 for x in _nl if int(float(x)) > 1) / len(_nl)
 
     A("# Determinants of Advertised Pay in the US Energy and Data Center Sector")
     A("## Evidence from employer-published job postings")
@@ -227,6 +289,26 @@ def main() -> int:
               + (f"; {' and '.join(_robust)} "
                  f"{'survive' if len(_robust) > 1 else 'survives'} both." if _robust
                  else "."))
+        # Same rule as the executive summary: a survivor whose weaker p
+        # (bootstrap or region check) is 0.02 or more is tentative. The paper
+        # named them as findings with no such flag.
+        _rr_p = {k: (v or {}).get("bootstrap_p") for k, v in
+                 (((analysis.get("region_robustness") or {})
+                   .get("by_variable") or {}).items())}
+        _tent = [k for k, _ in sig if k not in _fragile and _boot
+                 and max(_boot.get(k, 0), _rr_p.get(k) or 0) >= 0.02]
+        if _tent:
+            A(f"Read {' and '.join(pretty.get(k, f'`{k}`') for k in _tent)} as "
+              "**tentative**: "
+              + ("each passes" if len(_tent) > 1 else "it passes")
+              + " both checks with a p-value above 0.02 on")
+            A("at least one, and verdicts this close to 0.05 have moved between "
+              "collection runs.")
+        _plost, _ = price_sensitive(analysis)
+        if _plost:
+            A(f"{' and '.join(pretty.get(k, f'`{k}`') for k in _plost)} "
+              + ("does" if len(_plost) == 1 else "do")
+              + " not survive adjusting pay for regional price levels (section 5).")
         if _boot:
             dropped = [k for k, v in core_coefs.items()
                        if k != "const" and v.get("p_value", 1) < 0.05
@@ -261,17 +343,33 @@ def main() -> int:
 
     A("## 2. Institutional background")
     A("")
-    A("Sixteen US jurisdictions require employers to state a pay scale in the")
-    A("posting itself. Colorado was first, in 2021; California, New York and")
-    A("Washington followed; Illinois House Bill 3129 took effect on 1 January 2025")
-    A("and Massachusetts in October 2025. The full table, with effective dates, is")
-    A("in `config/scope.yaml` so a reader can audit which jurisdictions count.")
+    # Counted from the build. This said "Sixteen" as a literal, which was
+    # never the table's count: 14 are listed, and 13 were in force at the
+    # last snapshot (Connecticut's posting law starts 2026-10-01).
+    _in_force = (funnel or {}).get("mandate_states_in_force") or []
+    if _in_force:
+        A(f"At the last snapshot, {len(_in_force)} US jurisdictions required "
+          "employers to state a pay")
+        A(f"scale in the posting itself ({', '.join(_in_force)}). Colorado "
+          "was first, in 2021;")
+    else:
+        A("Several US jurisdictions require employers to state a pay scale in "
+          "the posting itself. Colorado was first, in 2021;")
+    A("California, New York and Washington followed; Illinois House Bill 3129")
+    A("took effect on 1 January 2025, Massachusetts in October 2025 and Virginia")
+    A("on 1 July 2026. Connecticut's posting requirement takes effect on 1 October")
+    A("2026, after the snapshots used here, so no posting in this study counts as")
+    A("covered by it. The full table, with effective dates, is in")
+    A("`config/scope.yaml`, and each snapshot is coded against the laws in force")
+    A("on its date.")
     A("")
     A("Coverage attaches to the location of the work. A posting listing several")
     A("locations is therefore covered if **any** of them is covered, which is how")
     A("`mandate_state` is computed; `states_listed` and `n_locations` are retained")
-    A("so the rule can be checked or recomputed. Roughly a quarter of postings")
-    A("list more than one location, so the choice is not cosmetic.")
+    A("so the rule can be checked or recomputed.")
+    if _multi_loc is not None:
+        A(f"Of the in-scope postings, {_multi_loc:.0%} list more than one "
+          "location, so the choice is not cosmetic.")
     A("")
     A("Where no mandate applies, disclosure is voluntary and therefore selected.")
     A("This is the central limitation of the pay models and is treated as such:")
@@ -335,9 +433,14 @@ def main() -> int:
             for reason, count in list(funnel["rejection_reasons"].items())[:12]:
                 A(f"| `{reason}` | {count:,} |")
             A("")
+        # Formatted: this printed the raw Python dict, with '' as a key.
+        _metros = sorted((funnel.get("usable_by_metro") or {}).items(),
+                         key=lambda kv: -kv[1])
+        _mtxt = ", ".join(f"{(k or 'outside the named metros').replace('_', ' ')} {v}"
+                          for k, v in _metros)
         A(f"Distinct employers contributing a disclosed range: "
-          f"**{funnel.get('distinct_employers_with_pay', 0)}**. "
-          f"By metro: `{funnel.get('usable_by_metro', {})}`.")
+          f"**{funnel.get('distinct_employers_with_pay', 0)}**."
+          + (f" Disclosed ranges by metro: {_mtxt}." if _mtxt else ""))
         A("")
         if not funnel.get("floor_met"):
             A(f"> The pre-registered floor of {funnel.get('min_usable_n')} usable")
@@ -418,9 +521,13 @@ def main() -> int:
     A("Cluster-robust standard errors are biased downward when clusters are few.")
     A("Simulation with twelve employer clusters covers the planted coefficient 92%")
     A("of the time against a nominal 95%, and rejects a cluster-level placebo at")
+    # The bootstrap has run unconditionally since the 2026-09-22 amendment;
+    # this said it ran only below thirty clusters.
     A("9.5% against a nominal 5%. A **wild cluster bootstrap is therefore estimated")
-    A("and reported**, not merely recommended, whenever the realized employer count")
-    A("falls below thirty; section 5 gives it. An earlier version of this paper")
+    A("and reported** on every run, and every significance claim is read from it.")
+    A("The pre-registration requires it below thirty employer clusters; it is kept")
+    A("above thirty as well, because thirty-odd clusters are still few (amendment")
+    A("of 2026-09-22). Section 5 gives it. An earlier version of this paper")
     A("cited 88% coverage, measured on a simulation whose employer-level shock was")
     A("applied to one posting per employer instead of to all of them — so the")
     A("figure justifying clustered errors had been computed on data with no")
@@ -465,13 +572,18 @@ def main() -> int:
                       f"| {row.get('n', 0):,} |")
             A("")
             A("Coverage follows the job's location, so a posting listing any covered")
-            A("location counts as covered. Around a quarter of postings list more")
-            A("than one, and `states_listed` is retained so the rule can be checked.")
+            A("location counts as covered"
+              + (f"; {_multi_loc:.0%} of postings list more than one"
+                 if _multi_loc is not None else "")
+              + ", and `states_listed` is retained so the rule can be checked.")
             A("")
             rb = disc.get("robustness") or {}
             if rb:
-                A("**Robustness.** The size of the gap is sensitive to one")
-                A("jurisdiction, so it is cut three ways rather than quoted once:")
+                # Sensitivity is measured, not asserted: this called the gap
+                # "sensitive to one jurisdiction" at a 5-point spread.
+                A("**Robustness.** The gap is cut three ways rather than quoted "
+                  "once, because it was")
+                A("once sensitive to a single jurisdiction:")
                 A("")
                 A("| Sample | Mandate states | No mandate | Gap |")
                 A("|---|---|---|---|")
@@ -502,8 +614,10 @@ def main() -> int:
                     emps = _c.Counter(r["employer"] for r in nd)
                     va = sum(1 for r in nd
                              if "VA" in (r.get("states_listed") or r.get("state") or ""))
-                    A(f"Only **{len(nd)}** posting(s) covered by a mandate fail to "
-                      f"state pay.")
+                    A(f"Only **{len(nd)}** "
+                      + ("posting covered by a mandate fails" if len(nd) == 1
+                         else "postings covered by a mandate fail")
+                      + " to state pay.")
                     if va:
                         A(f"{va} of them list Virginia, whose mandate took effect on "
                           f"1 July 2026 and is")
@@ -530,6 +644,8 @@ def main() -> int:
             # The bootstrap is estimated on the core specification only, so its
             # column belongs to that table and nowhere else.
             L.extend(coefficient_table(model, boot_ps if key == "core" else None))
+            if key == "real_pay":
+                L.extend(price_adjustment_note(analysis))
 
         boot = analysis.get("wild_cluster_bootstrap") or {}
         if boot.get("by_variable"):
@@ -539,7 +655,9 @@ def main() -> int:
             A(f"With {boot.get('n_clusters')} employer clusters, the asymptotic")
             A("clustered p-values above are anti-conservative, and the")
             A("pre-registration requires a wild cluster bootstrap before any")
-            A("significance claim at this cluster count. It is estimated here, not")
+            A("significance claim " + ("at this cluster count." if (boot.get("n_clusters") or 0) < 30
+                                       else "below thirty clusters, a line this sample clears only narrowly.")
+              + " It is estimated here, not")
             A("merely recommended: the restricted (null-imposed) variant of Cameron,")
             A(f"Gelbach and Miller (2008) with Rademacher weights drawn once per")
             A(f"employer, {boot.get('reps_requested')} replications.")
@@ -697,6 +815,22 @@ def main() -> int:
         if m_share is not None and n_share is not None:
             A(f"| H2 | A mandate raises disclosure | + | "
               f"{m_share:.1%} vs {n_share:.1%} — **supported**, descriptively |")
+        # H6 was committed with the note that it is recorded "precisely so a
+        # null cannot be quietly dropped", and this table then dropped it.
+        # It is read off the range-width model, which has no bootstrap, so
+        # its verdict rests on clustered p and says so.
+        _rw = ((analysis.get("models") or {}).get("range_width", {})
+               .get("coefficients", {}).get("mandate_state"))
+        if _rw:
+            _c, _p = _rw.get("coef", 0), _rw.get("p_value", 1)
+            _dir = "wider" if _c > 0 else "narrower"
+            _mark = ("supported" if (_c > 0 and _p < 0.05) else
+                     "**contradicted**" if (_c < 0 and _p < 0.05) else "inconclusive")
+            A(f"| H6 | Mandate states advertise wider ranges | + | "
+              f"{_dir} ({_c:+.3f} log points), p = {_p:.3f} clustered, "
+              f"no bootstrap on this model — {_mark} |")
+        else:
+            A("| H6 | Mandate states advertise wider ranges | + | not estimated |")
         A("")
         deg = core.get("degree_required") or {}
         deg_p = reported_p("degree_required", core, bootstrap_p(analysis))[0]
@@ -753,20 +887,40 @@ def main() -> int:
     A("")
     A("1. The outcome is **advertised** pay, not realized pay. Employers may")
     A("   negotiate away from the posted range in either direction.")
-    A("2. **Disclosure is selected.** Where no mandate applies only about a")
-    A("   quarter of postings state pay, so every pay coefficient is conditional")
+    # Items 2, 4 and 5 were literals that had gone stale: "only about a
+    # quarter" disclose without a mandate (49% on these data), the price
+    # check "reported when the BEA table has been fetched" (it is), and
+    # "seven of the nine" lost to the bootstrap (a figure from 23 clusters).
+    A("2. **Disclosure is selected.** Where no mandate applies, "
+      + (f"{n_share:.0%} of postings" if n_share is not None else "only some postings"))
+    A("   state pay, so every pay coefficient is conditional")
     A("   on disclosure. This is the central threat, and it is why the disclosure")
     A("   model is a headline result rather than a footnote.")
     A("3. The mandate contrast is **associational**. One cross-section admits no")
     A("   difference-in-differences.")
-    A("4. Pay is **nominal**. A price-adjusted robustness check is implemented and")
-    A("   reported when the BEA table has been fetched.")
-    A("5. **Few employer clusters, one of them dominant.** Cluster-robust errors")
-    A("   under-cover with few clusters, measured at 92% against a nominal 95% and")
-    A("   over-rejecting a cluster-level placebo at 9.5% against 5%. Every")
-    A("   significance claim in section 5 is therefore read off the wild cluster")
-    A("   bootstrap, under which seven of the nine coefficients that clustered")
-    A("   errors called significant become inconclusive.")
+    _rp = ((analysis or {}).get("models") or {}).get("real_pay")
+    if _rp:
+        A("4. Pay is **nominal** in the headline model. The BEA price-adjusted")
+        A(f"   re-estimate (N = {_rp.get('n')}) is in section 5; its note says which")
+        A("   verdicts depend on nominal pay.")
+    else:
+        A("4. Pay is **nominal**. The BEA price-adjusted re-estimate did not run on")
+        A("   this build, so regional differences include price-level differences.")
+    _bv = (((analysis or {}).get("wild_cluster_bootstrap") or {})
+           .get("by_variable") or {})
+    _cc = (((analysis or {}).get("models") or {}).get("core") or {}).get("coefficients") or {}
+    _cl_sig = [n for n in _bv if _cc.get(n, {}).get("p_value", 1) < 0.05]
+    _lost = [n for n in _cl_sig if (_bv[n].get("p_value") or 1) >= 0.05]
+    _ncl = (analysis or {}).get("n_clusters", 0)
+    _shr = (analysis or {}).get("largest_employer_share") or 0
+    A(f"5. **Few employer clusters.** {_ncl} employers, the largest supplying "
+      f"{_shr:.1%} of observations.")
+    A("   Cluster-robust errors under-cover with few clusters, measured at 92%")
+    A("   against a nominal 95% and over-rejecting a cluster-level placebo at 9.5%")
+    A("   against 5%. Every significance claim in section 5 is therefore read off")
+    A("   the wild cluster bootstrap"
+      + (f", under which {len(_lost)} of the {len(_cl_sig)} coefficients that "
+         "clustered errors call significant become inconclusive." if _cl_sig else "."))
     # Four, per docs/limitations.md section 10: the pre-registration's
     # "three times" was written before the national rescope, the fourth.
     A("6. The scope **widened four times in response to the data**. The")
@@ -850,8 +1004,10 @@ def main() -> int:
     A("- `data/analysis/postings.csv` — the analysis dataset")
     A("- `data/analysis/selection_funnel.json` — full funnel and rejection reasons")
     A("")
-    A("Reproduce with `pip install -r requirements.txt && python tests/run_all.py`,")
-    A("then `python src/lmstudy/collect/run.py && python src/lmstudy/build_dataset.py`.")
+    A("Reproduce with `pip install -r requirements.txt && python3 tests/run_all.py`,")
+    A("then `PYTHONPATH=src python3 -m lmstudy.build_dataset && PYTHONPATH=src python3 -m lmstudy.analyze`")
+    A("on the committed snapshots in `data/raw/`. Collection itself runs only in")
+    A("GitHub Actions (`.github/workflows/collect.yml`).")
     A("")
 
     out = ROOT / "paper" / "paper.md"

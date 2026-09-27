@@ -31,6 +31,9 @@ explaining it away. Section 5 reports every cut.
 
 Within the postings that do disclose, the attributes that predict pay at
 conventional significance under the wild cluster bootstrap are seniority, Northeast location and `skill_cloud`.
+Read Northeast location and `skill_cloud` as **tentative**: each passes both checks with a p-value above 0.02 on
+at least one, and verdicts this close to 0.05 have moved between collection runs.
+Northeast location does not survive adjusting pay for regional price levels (section 5).
 A further 2 attributes reach significance under
 clustered standard errors but not under the bootstrap, which is
 the inference this study pre-registered; they are reported as
@@ -54,17 +57,21 @@ the disclosure contrast estimable.
 
 ## 2. Institutional background
 
-Sixteen US jurisdictions require employers to state a pay scale in the
-posting itself. Colorado was first, in 2021; California, New York and
-Washington followed; Illinois House Bill 3129 took effect on 1 January 2025
-and Massachusetts in October 2025. The full table, with effective dates, is
-in `config/scope.yaml` so a reader can audit which jurisdictions count.
+At the last snapshot, 13 US jurisdictions required employers to state a pay
+scale in the posting itself (CA, CO, DC, HI, IL, MA, MD, MN, NJ, NY, VA, VT, WA). Colorado was first, in 2021;
+California, New York and Washington followed; Illinois House Bill 3129
+took effect on 1 January 2025, Massachusetts in October 2025 and Virginia
+on 1 July 2026. Connecticut's posting requirement takes effect on 1 October
+2026, after the snapshots used here, so no posting in this study counts as
+covered by it. The full table, with effective dates, is in
+`config/scope.yaml`, and each snapshot is coded against the laws in force
+on its date.
 
 Coverage attaches to the location of the work. A posting listing several
 locations is therefore covered if **any** of them is covered, which is how
 `mandate_state` is computed; `states_listed` and `n_locations` are retained
-so the rule can be checked or recomputed. Roughly a quarter of postings
-list more than one location, so the choice is not cosmetic.
+so the rule can be checked or recomputed.
+Of the in-scope postings, 20% list more than one location, so the choice is not cosmetic.
 
 Where no mandate applies, disclosure is voluntary and therefore selected.
 This is the central limitation of the pay models and is treated as such:
@@ -126,7 +133,7 @@ Rejections by reason:
 | `non_us` | 82 |
 | `no_us_state` | 46 |
 
-Distinct employers contributing a disclosed range: **34**. By metro: `{'': 93, 'northern_virginia': 15, 'remote_national': 9, 'denver': 34, 'chicago': 36, 'indianapolis': 4, 'new_york': 9, 'bay_area': 7, 'boston': 11, 'minneapolis': 2}`.
+Distinct employers contributing a disclosed range: **34**. Disclosed ranges by metro: outside the named metros 93, chicago 36, denver 34, northern virginia 15, boston 11, remote national 9, new york 9, bay area 7, indianapolis 4, minneapolis 2.
 
 ### 3.4 Regressor coding and audit
 
@@ -169,8 +176,10 @@ Cluster-robust standard errors are biased downward when clusters are few.
 Simulation with twelve employer clusters covers the planted coefficient 92%
 of the time against a nominal 95%, and rejects a cluster-level placebo at
 9.5% against a nominal 5%. A **wild cluster bootstrap is therefore estimated
-and reported**, not merely recommended, whenever the realized employer count
-falls below thirty; section 5 gives it. An earlier version of this paper
+and reported** on every run, and every significance claim is read from it.
+The pre-registration requires it below thirty employer clusters; it is kept
+above thirty as well, because thirty-odd clusters are still few (amendment
+of 2026-09-22). Section 5 gives it. An earlier version of this paper
 cited 88% coverage, measured on a simulation whose employer-level shock was
 applied to one posting per employer instead of to all of them — so the
 figure justifying clustered errors had been computed on data with no
@@ -192,11 +201,10 @@ log points at 5% significance and 80% power.
 | no mandate state | 49.2% | 132 |
 
 Coverage follows the job's location, so a posting listing any covered
-location counts as covered. Around a quarter of postings list more
-than one, and `states_listed` is retained so the rule can be checked.
+location counts as covered; 20% of postings list more than one, and `states_listed` is retained so the rule can be checked.
 
-**Robustness.** The size of the gap is sensitive to one
-jurisdiction, so it is cut three ways rather than quoted once:
+**Robustness.** The gap is cut three ways rather than quoted once, because it was
+once sensitive to a single jurisdiction:
 
 | Sample | Mandate states | No mandate | Gap |
 |---|---|---|---|
@@ -206,7 +214,7 @@ jurisdiction, so it is cut three ways rather than quoted once:
 
 The gap is large under every cut and stable across them, a spread of 5 points. An earlier version of this study reported it swinging from 50 to 71 points and sensitive to Virginia alone; that sensitivity was an artifact of including a federal consultancy's public health, national security and law-enforcement postings, removed in audit round 4 as outside the sector under study.
 
-Only **10** posting(s) covered by a mandate fail to state pay.
+Only **10** postings covered by a mandate fail to state pay.
 5 of them list Virginia, whose mandate took effect on 1 July 2026 and is
 the newest in the table, so partial compliance with a very recent statute
 is a plausible reading.
@@ -324,12 +332,16 @@ is a plausible reading.
 
 *** p<0.01, ** p<0.05, * p<0.10. N = 212, R² = 0.562, SE: cluster.
 
+**What price adjustment changes.** `region_northeast` passes the bootstrap on nominal pay but is not significant once pay is deflated by regional price parities (clustered p 0.356).
+That is consistent with the nominal Northeast premium reflecting price levels rather than real pay.
+Conversely, `mandate_state` (-0.081, clustered p 0.013) reaches clustered significance only in real terms. No bootstrap is run on this model, so under the pre-registered procedure it is not a finding.
+
 ### Inference: the wild cluster bootstrap
 
 With 34 employer clusters, the asymptotic
 clustered p-values above are anti-conservative, and the
 pre-registration requires a wild cluster bootstrap before any
-significance claim at this cluster count. It is estimated here, not
+significance claim below thirty clusters, a line this sample clears only narrowly. It is estimated here, not
 merely recommended: the restricted (null-imposed) variant of Cameron,
 Gelbach and Miller (2008) with Rademacher weights drawn once per
 employer, 9999 replications.
@@ -408,6 +420,7 @@ held, which is the point of having written them down.
 | H5 | A required degree raises pay | + | positive, not significant (bootstrap) — inconclusive |
 | H7 | Data centers pay more than utilities | + | positive, not significant (bootstrap) — inconclusive |
 | H2 | A mandate raises disclosure | + | 93.9% vs 49.2% — **supported**, descriptively |
+| H6 | Mandate states advertise wider ranges | + | narrower (-0.222 log points), p = 0.052 clustered, no bootstrap on this model — inconclusive |
 
 ### Who discloses pay
 
@@ -438,20 +451,20 @@ These are treated at length in `docs/limitations.md`. In short:
 
 1. The outcome is **advertised** pay, not realized pay. Employers may
    negotiate away from the posted range in either direction.
-2. **Disclosure is selected.** Where no mandate applies only about a
-   quarter of postings state pay, so every pay coefficient is conditional
+2. **Disclosure is selected.** Where no mandate applies, 49% of postings
+   state pay, so every pay coefficient is conditional
    on disclosure. This is the central threat, and it is why the disclosure
    model is a headline result rather than a footnote.
 3. The mandate contrast is **associational**. One cross-section admits no
    difference-in-differences.
-4. Pay is **nominal**. A price-adjusted robustness check is implemented and
-   reported when the BEA table has been fetched.
-5. **Few employer clusters, one of them dominant.** Cluster-robust errors
-   under-cover with few clusters, measured at 92% against a nominal 95% and
-   over-rejecting a cluster-level placebo at 9.5% against 5%. Every
-   significance claim in section 5 is therefore read off the wild cluster
-   bootstrap, under which seven of the nine coefficients that clustered
-   errors called significant become inconclusive.
+4. Pay is **nominal** in the headline model. The BEA price-adjusted
+   re-estimate (N = 212) is in section 5; its note says which
+   verdicts depend on nominal pay.
+5. **Few employer clusters.** 34 employers, the largest supplying 20.0% of observations.
+   Cluster-robust errors under-cover with few clusters, measured at 92%
+   against a nominal 95% and over-rejecting a cluster-level placebo at 9.5%
+   against 5%. Every significance claim in section 5 is therefore read off
+   the wild cluster bootstrap, under which 2 of the 5 coefficients that clustered errors call significant become inconclusive.
 6. The scope **widened four times in response to the data**. The
    specification was pre-registered before the national sample was
    collected; amendments after that point are dated in
@@ -499,5 +512,7 @@ line. More employers is what would make the inference sturdy.
 - `data/analysis/postings.csv` — the analysis dataset
 - `data/analysis/selection_funnel.json` — full funnel and rejection reasons
 
-Reproduce with `pip install -r requirements.txt && python tests/run_all.py`,
-then `python src/lmstudy/collect/run.py && python src/lmstudy/build_dataset.py`.
+Reproduce with `pip install -r requirements.txt && python3 tests/run_all.py`,
+then `PYTHONPATH=src python3 -m lmstudy.build_dataset && PYTHONPATH=src python3 -m lmstudy.analyze`
+on the committed snapshots in `data/raw/`. Collection itself runs only in
+GitHub Actions (`.github/workflows/collect.yml`).

@@ -40,9 +40,11 @@ under the wild cluster bootstrap the pre-registration requires:
 close enough to 0.05 that a handful of added observations can move the verdict. See
 `docs/audit-log.md` for how these verdicts have moved between collection runs.
 
+**A Northeast location does not survive adjusting pay for regional price levels** (BEA regional price parities; clustered p 0.36), so read it as nominal only.
+
 Seniority is the one result the study would defend without qualification: it is
 the most precisely estimated coefficient, it was predicted in advance, and it
-survives every robustness cut applied here.
+survives every robustness cut applied here, including price adjustment.
 
 **2 further attributes reach significance under clustered standard errors and
 not under the bootstrap** — being advertised hourly, a South location.
