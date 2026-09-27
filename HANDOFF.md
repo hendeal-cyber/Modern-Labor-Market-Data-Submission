@@ -21,6 +21,7 @@ Do not quote numbers from below this block.*
 | Overturned by the bootstrap | `degree_stem`, `skill_ml_ai`, `industry_data_center` |
 | Without the largest employer (Crusoe) | Seniority, required experience and Northeast hold. **`skill_cloud` is lost (0.055)** and `remote_eligible` becomes significant (0.040). Computed on every build (`largest_employer_robustness`) |
 | Owner decision (2026-09-27) | **"Keep Crusoe in, and continue as planned."** Crusoe stays in scope. The no-largest-employer check is still reported on every build |
+| Owner decision (2026-09-27) | **"Please write in recommendations 1-3 AND USA jobs into the handoff, as I would like to pursue ALL of these options, in whatever order you recommend."** All four source routes are approved (see "Do these next" item 2) |
 | Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
 
 ### What round 9 found (full record: `docs/audit-log.md` round 9)
@@ -45,10 +46,15 @@ Do not quote numbers from below this block.*
    `test_consistency.py`); commit; push.
 2. **Between runs:** more employer searches, domain-restricted to each
    ATS, confirming only from live job URLs. Record each batch in §8 BEFORE
-   the run that collects it. Three systematic options (EIA-861/860
-   registries, the Common Crawl URL index, and state PUC and RTO participant
-   lists) are set out in `docs/next-session-prompt.md` §8, for the owner to
-   choose. Employers added after the 09-30 run starts cannot enter the study.
+   the run that collects it. **The owner approved ALL four systematic routes
+   (2026-09-27)**, in this order: (1) state PUC supplier and RTO participant
+   lists in the mandate states; (2) the EIA-861/860/176 registries, fetched
+   by a new `sources.yml` Actions job; (3) the USAJOBS API for the federal
+   power administrations (read its terms first; the owner must add the free
+   key as the secrets `USAJOBS_API_KEY` and `USAJOBS_USER_AGENT`); (4) the
+   Common Crawl URL index as a registry of ATS board tokens. Details are in
+   `docs/next-session-prompt.md` §8. Employers added after the 09-30 run
+   starts cannot enter the study.
 3. **After the 09-30 run:** the final audit, a finalisation pass over the
    paper, summary and deck against the bootstrap, and a HANDOFF marked
    "collection closed". Report N, clusters and the largest share.
