@@ -543,7 +543,7 @@ Energy, Copia Power, SOLV Energy, and the nuclear developers TerraPower,
 Kairos Power, Last Energy and The Nuclear Company), data centers (Keel
 Infrastructure, ECL), a retailer (Chariot Energy) and a grid vendor (Fluence).
 Confirmed in existing entries from live URLs: Amperon, SEL, and Associated
-Electric Cooperative. Five more by the same method before the 28 September run: OneEnergy Renewables, Brightcore Energy, Nira Energy, Energy Exemplar (verified) and American Transmission Co (board root, unverified). Frame: 297 -> 324 employers. Batch 6, added the same evening before the 28 September run and before any of its data exist: New Leaf Energy, Akaysha Energy, Equilibrium Energy, Gridware, Orenda (sector evidence required per posting) verified, and Pivot Energy (board root, unverified). Frame: 330. Batch 7, the same evening and before any of its data exist: VELCO (Vermont transmission), IPX Power, Catalyze, Scale Microgrids, TAR and RMI (sector evidence required per posting), all verified from live job URLs. South Jersey Industries, denied on 2026-09-23 for want of a supported ATS, was found on Workday and verified. AI-cloud providers that surfaced (Fluidstack, Together AI, Vultr) were not added: the frame has no cloud-provider category, and Crusoe was admitted as a data center builder and operator. Frame: 336. Batch 8, the same evening (22:00–23:30 UTC) and before any of its data exist, by the same live-job-URL method, now also searching by name for the kinds of employer the state supplier and community-choice lists hold (source route 1, approved by the owner on 2026-09-27): San Diego Community Power (a California community choice aggregator, a public load-serving entity), Perch Energy (community solar subscriptions), LevelTen Energy and Tapestry (analytics), Sunrun, Avantus, 1st Avenue Power, ConnectGen, X-energy and Blue Energy (developers, the last two nuclear), Form Energy, Energy Vault and Canadian Solar (storage and solar manufacturers), all verified, and Palmetto Clean Technology (board root, unverified). Edged Energy's guessed board names are replaced by the one a live job URL shows (greenhouse `edged_global`), so it becomes verified. Not added, by rules already applied: a third Hanwha board (Qcells) and Canadian Solar's developer subsidiary (Recurrent Energy) as duplicate-cluster risks, a commodity trader, a gas pipeline, and an asset manager's investment roles. *Expected effect, stated in advance:* more clusters, most of them developers and manufacturers, which have yielded few disclosed-pay rows; San Diego Community Power and LevelTen (California and Washington, both mandate states) are the likeliest to add usable rows. Frame: 350. The nuclear developers'
+Electric Cooperative. Five more by the same method before the 28 September run: OneEnergy Renewables, Brightcore Energy, Nira Energy, Energy Exemplar (verified) and American Transmission Co (board root, unverified). Frame: 297 -> 324 employers. Batch 6, added the same evening before the 28 September run and before any of its data exist: New Leaf Energy, Akaysha Energy, Equilibrium Energy, Gridware, Orenda (sector evidence required per posting) verified, and Pivot Energy (board root, unverified). Frame: 330. Batch 7, the same evening and before any of its data exist: VELCO (Vermont transmission), IPX Power, Catalyze, Scale Microgrids, TAR and RMI (sector evidence required per posting), all verified from live job URLs. South Jersey Industries, denied on 2026-09-23 for want of a supported ATS, was found on Workday and verified. AI-cloud providers that surfaced (Fluidstack, Together AI, Vultr) were not added: the frame has no cloud-provider category, and Crusoe was admitted as a data center builder and operator. Frame: 336. Batch 8, the same evening (committed 22:22 UTC) and before any of its data exist, by the same live-job-URL method, now also searching by name for the kinds of employer the state supplier and community-choice lists hold (source route 1, approved by the owner on 2026-09-27): San Diego Community Power (a California community choice aggregator, a public load-serving entity), Perch Energy (community solar subscriptions), LevelTen Energy and Tapestry (analytics), Sunrun, Avantus, 1st Avenue Power, ConnectGen, X-energy and Blue Energy (developers, the last two nuclear), Form Energy, Energy Vault and Canadian Solar (storage and solar manufacturers), all verified, and Palmetto Clean Technology (board root, unverified). Edged Energy's guessed board names are replaced by the one a live job URL shows (greenhouse `edged_global`), so it becomes verified. Not added, by rules already applied: a third Hanwha board (Qcells) and Canadian Solar's developer subsidiary (Recurrent Energy) as duplicate-cluster risks, a commodity trader, a gas pipeline, and an asset manager's investment roles. *Expected effect, stated in advance:* more clusters, most of them developers and manufacturers, which have yielded few disclosed-pay rows; San Diego Community Power and LevelTen (California and Washington, both mandate states) are the likeliest to add usable rows. Frame: 350. The nuclear developers'
 engineering roles will mostly fail the role screen by design, because §2
 admits engineering only where it is analytics-adjacent. They are in the frame
 for their analytics, market and siting roles.
@@ -686,7 +686,7 @@ beside the other sources in `docs/limitations.md`.
 
 Frame: 350 → 366 (the collector's loader).
 
-**Addendum, 2026-09-28 00:10 UTC, before the 28 September run: batch 11
+**Addendum, 2026-09-28 (just after midnight UTC), before the 28 September run: batch 11
 and the outcome of source route 2.** The EIA-861 (2024; 1,518 utilities by
 retail customers) and EIA-860 (2025; 5,852 generator operators by operable
 MW) lists were ranked against the frame, mandate states first
@@ -701,7 +701,7 @@ scale rather than a new finding, and it is recorded so the next search does
 not repeat it. One employer found along the way enters, verified: Industrial
 Electric Manufacturing (switchgear; Fremont, California). Frame: 366 → 367.
 
-**Addendum, 2026-09-28 00:30 UTC, before the 28 September run: batch 12.**
+**Addendum, 2026-09-28 (just after midnight UTC), before the 28 September run: batch 12.**
 Serverfarm (data center operator), Exowatt (power systems for data
 centers) and CARIAN (utility energy-efficiency program services, which also
 serves other sectors, so it must show sector evidence per posting, as ICF and
@@ -714,7 +714,7 @@ since batch 3 on guessed board names) is confirmed on Ashby from a live job
 URL, and its guessed names are dropped. Energy by 5 (energy procurement
 advisory, Chicago) enters from its board root, unverified. Frame: 371.
 
-**Correction, 2026-09-28 00:55 UTC, before the 28 September run.** Batch 10
+**Correction, 2026-09-28 (just after midnight UTC), before the 28 September run.** Batch 10
 entered Bonneville and Western Area Power Administration as new employers,
 but both were already in the frame (batch 2, on guessed board names that never
 resolved). The existing-entry check by normalised name, a standing rule, was
@@ -724,11 +724,11 @@ dropped. Southwestern Power Administration was new. A full scan of the frame
 finds no other duplicate name. The frame counts stated in the entries above
 from batch 10 on were two too high: **the frame is 369** (the collector's
 loader). No data existed for any of these entries, so no result is affected.
-Also before the 28 September run (01:00 UTC): Apex Clean Energy (in the
+Also before the 28 September run: Apex Clean Energy (in the
 frame since the first batch, on guessed Greenhouse and Lever names that never
 resolved) is confirmed on SmartRecruiters (`ApexCleanEnergy`) from live job
 URLs in Charlottesville, Virginia, a mandate state. The guesses are dropped.
 Frame unchanged at 369.
-Also before the 28 September run (01:10 UTC): Gas South (retail natural gas
+Also before the 28 September run: Gas South (retail natural gas
 supplier, Atlanta; owned by Cobb EMC, not related to Southern Company Gas),
 verified from a live job URL. Frame: 370.

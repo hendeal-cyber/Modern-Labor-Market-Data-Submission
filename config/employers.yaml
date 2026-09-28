@@ -354,7 +354,7 @@ developers:              # renewable and data center developers
                          # postings; re-check if its output looks synthetic
   - name: Apex Clean Energy
     industry: developer
-    # Corrected 2026-09-28 01:00 UTC (batch 12) from live job URLs, e.g.
+    # Corrected 2026-09-28 (batch 12) from live job URLs, e.g.
     # jobs.smartrecruiters.com/ApexCleanEnergy/743999869856952-project-finance-analyst-renewable-energy
     # (Charlottesville, VA). The guessed greenhouse/lever slugs are dropped.
     candidates:
@@ -1411,7 +1411,7 @@ energy_analytics_batch2:
     verified: false
   - name: David Energy
     metro: new_york
-    # Corrected 2026-09-28 00:40 UTC (batch 12) from a live job URL:
+    # Corrected 2026-09-28 (batch 12) from a live job URL:
     # jobs.ashbyhq.com/davidenergy/211251e3-8df1-4b59-a320-bac2d50ad0dc
     # ("Retail Ops Analyst"). The guessed slugs are dropped; greenhouse:david
     # was already a rejected token (a creative agency).
@@ -2749,7 +2749,7 @@ national_batch4:
     candidates:
       greenhouse: [lunarenergy]
     verified: false
-  # --- Batch 11, 2026-09-28 00:10 UTC, before the 28 September run (source
+  # --- Batch 11, 2026-09-28, before the 28 September run (source
   # route 2: the EIA-861/860 ranked lists, data/registry/eia_ranked_missing.csv;
   # found while searching the largest missing operators) ---
   - name: Industrial Electric Manufacturing   # job-boards.greenhouse.io/industrialelectricmanufacturing/jobs/4377645009 (switchgear for utilities and data centers; Fremont CA)
@@ -2757,7 +2757,7 @@ national_batch4:
     candidates:
       greenhouse: [industrialelectricmanufacturing]
     verified: true
-  # --- Batch 12, 2026-09-28 00:30 UTC, before the 28 September run (role-title
+  # --- Batch 12, 2026-09-28, before the 28 September run (role-title
   # searches, same live-job-URL method) ---
   - name: Serverfarm   # jobs.lever.co/serverfarm/db9465f0-e6e1-4b06-8376-fcf0b1e0ce21 (data center operator; Energy and Sustainability Manager)
     industry: data_center

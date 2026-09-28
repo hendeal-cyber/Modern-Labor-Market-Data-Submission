@@ -1,6 +1,6 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — 2026-09-28 00:15 UTC (after an interim check; three scheduled runs pending, first at 09:17 today)
+## RESUME HERE — 2026-09-28, just after midnight UTC (after an interim check; three scheduled runs pending, first at 09:17 today)
 
 *This block wins over everything below it. Do not quote numbers from below it.*
 
