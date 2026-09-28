@@ -2802,6 +2802,50 @@ national_batch4:
   # (pre-registration section 8). Southeastern PA has no active subelement
   # code of its own, and regulators (FERC, DOE headquarters) are out of scope
   # as state regulators are. ---
+  # --- Batch 13, 2026-09-28, before the 29 September run: source route 3
+  # widened by owner decision ("I approve options C and D", 2026-09-28) to
+  # federal energy agencies, regulators included. Codes are active
+  # subelements in USAJOBS's own code list (data/registry/raw/usajobs_agencies.txt).
+  # Multi-mission agencies must show energy evidence per posting. The Army
+  # Corps of Engineers (ARCE) is left out: thousands of mostly civil-works
+  # postings, hydropower a small part. All are coded industry `utility`,
+  # the reference category, because the model has no regulator category
+  # and adding one after seeing data is not done here. Federal rows are
+  # identified by platform (usajobs) and isolated by the excluding_federal
+  # cut and federal_robustness. ---
+  - name: Federal Energy Regulatory Commission   # USAJOBS DNFE (active)
+    industry: utility
+    federal: true
+    candidates:
+      usajobs: [DNFE]
+    verified: true
+  - name: Nuclear Regulatory Commission   # USAJOBS NU00 (active)
+    industry: utility
+    federal: true
+    candidates:
+      usajobs: [NU00]
+    verified: true
+  - name: Department of Energy Headquarters   # USAJOBS DN00 (active): EIA, Office of Electricity, Grid Deployment, Loan Programs among others
+    industry: utility
+    federal: true
+    requires_sector_evidence: true
+    candidates:
+      usajobs: [DN00]
+    verified: true
+  - name: Bureau of Reclamation   # USAJOBS IN07 (active): the second-largest US hydropower producer, also a water agency
+    industry: utility
+    federal: true
+    requires_sector_evidence: true
+    candidates:
+      usajobs: [IN07]
+    verified: true
+  - name: Bureau of Ocean Energy Management   # USAJOBS IN27 (active): offshore energy leasing, wind and oil and gas
+    industry: utility
+    federal: true
+    requires_sector_evidence: true
+    candidates:
+      usajobs: [IN27]
+    verified: true
   - name: Southwestern Power Administration   # USAJOBS subelement DNSW (code list: "Southwestern Power Administration", SWPA, active)
     industry: utility
     federal: true

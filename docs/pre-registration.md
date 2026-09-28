@@ -829,3 +829,39 @@ pipeline could not place, and change 2 removes roles the taxonomy never
 admitted. On this run the regressor budget passes the pre-registered
 threshold for Model 2, so the extended specification is used. That is the
 rule in §4 operating, not a choice made here.
+
+### 2026-09-28 — owner approves options C and D: federal energy agencies (regulators included) join the frame, before the 29 September run
+
+**Owner decision, 2026-09-28, quoted:** "I approve options C and D." (The
+options are set out in `docs/next-session-prompt.md` §6. Options A, a
+broader professional-role population, and B, an extended collection, were
+not approved. The role taxonomy and the 2026-09-30 end of collection are
+unchanged.)
+
+**What changed (C).** Five federal agencies enter through the USAJOBS
+Search API, by their active subelement codes in USAJOBS's own code list:
+the Federal Energy Regulatory Commission (DNFE), the Nuclear Regulatory
+Commission (NU00), Department of Energy headquarters (DN00, which includes
+EIA, the Office of Electricity, the Grid Deployment Office and the Loan
+Programs Office), the Bureau of Reclamation (IN07) and the Bureau of Ocean
+Energy Management (IN27). **This reverses the frame's earlier exclusion
+of regulators** ("out of scope as state regulators are"), by owner
+decision. DOE headquarters, Reclamation and BOEM are multi-mission, so each
+posting must show energy evidence, as for the multi-sector consultancies.
+The Army Corps of Engineers is left out: its board is thousands of mostly
+civil-works postings, hydropower a small part. NERC is not a federal agency
+and is not on USAJOBS; it is to be searched on its own ATS under option D.
+The role screen is unchanged. FERC's main series, "Energy Industry
+Analyst", passes it as written, and most other federal titles do not. The
+agencies are coded industry `utility`, the reference category, because
+the model has no regulator category and one is not added after seeing data.
+
+**Expected effect, stated in advance.** About +10 to +40 federal rows at
+any time, all with stated GS or agency pay, mostly FERC and DOE. They raise
+disclosure on whichever side of the mandate line their states fall. FERC
+and DOE headquarters are in DC, a mandate jurisdiction. The
+`excluding_federal` cut and `federal_robustness` report every verdict they
+move. Frame: 370 → 375.
+
+**(D)** Frame expansion through the four source routes continues, under
+the existing rules.

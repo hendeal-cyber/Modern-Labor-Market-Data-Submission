@@ -55,7 +55,7 @@ pre-registration, audit log, limitations and ledger.
   - **New and tentative:** `region_west` (0.020, not in real terms) and
     `degree_stem` (0.024, **fails without Crusoe**).
 - **Inconclusive:** `skill_ml_ai` (0.059).
-- **Frame:** 370 employers. Batches 4–12 (2026-09-27/28) each carry an evidence URL
+- **Frame:** 375 employers (batch 13 federal agencies added after round 10). Batches 4–12 (2026-09-27/28) each carry an evidence URL
   in `config/employers.yaml`.
 - **USAJOBS:** key works. The preflight found BPA 13 postings, WAPA 15, SWPA
   0 and TVA 0. One federal row entered (WAPA, Public Utilities Specialist).
@@ -88,8 +88,13 @@ pre-registration, audit log, limitations and ledger.
 - 2026-09-28: run the 09-28 collection now rather than at 09:17 (done).
 - 2026-09-28: the owner wants **~1,000 observations**, "a full national
   scale, to the extent possible", and USAJOBS extended "from FERC to NERC,
-  etc." (~100 jobs). **The owner has asked how feasible this is. The answer
-  is in §6. Its options need the owner's choice before any is built.**
+  etc." (~100 jobs).
+- 2026-09-28: **"I approve options C and D."** A and B are NOT approved: the
+  role taxonomy and the 2026-09-30 end of collection stand. C was done at
+  once (batch 13: FERC `DNFE`, NRC `NU00`, DOE HQ `DN00`, Reclamation
+  `IN07`, BOEM `IN27`; the last three require sector evidence; coded
+  `utility`; the Army Corps left out; NERC is not federal, so search its
+  own ATS). Frame 375.
 
 ## 6. OPEN: the path to ~1,000 observations (measured 2026-09-28)
 
@@ -108,7 +113,12 @@ the current population (expect about 500–560). It is reachable only with A
 with B and D. A and B are changes to registered design and are the owner's
 decision.
 
-**Next action:** wait for the owner's choice among A–D. Continue D meanwhile.
+**Decided 2026-09-28: C and D approved, A and B not.** C is done (batch 13).
+**Next action:** D. Search NERC's own ATS, and keep working the registry
+candidate lists (`data/registry/*.csv`) and role-title searches. Record every
+addition in §8 before 09:17 UTC on 09-30. At the 09-29 audit, read the first
+FERC, NRC and DOE rows and check the sector-evidence gate on DOE HQ,
+Reclamation and BOEM.
 
 ## 7. Rules that always apply (from the original brief)
 
