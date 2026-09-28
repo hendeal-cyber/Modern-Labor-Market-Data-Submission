@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: "Comma-separated subset: pages,eia,cc,usajobs"
+        description: "Comma-separated subset: pages,eia,cc,usajobs,render (render: browser-rendered pages named in ids)"
         required: false
         default: "pages,eia,cc"
       ids:
@@ -44,7 +44,22 @@ jobs:
       - name: Test the registry parsers
         run: python tests/test_registries.py
 
+      - name: Install a browser (render stage only)
+        if: contains(github.event.inputs.only, 'render')
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+
+      - name: Render JavaScript-built pages (render stage only)
+        if: contains(github.event.inputs.only, 'render')
+        env:
+          LMSTUDY_USER_AGENT: >-
+            lmstudy-research/0.1 (academic labor-market study;
+            +https://github.com/${{ github.repository }})
+        run: python scripts/render_pages.py --ids "${{ github.event.inputs.ids }}"
+
       - name: Fetch registries
+        if: github.event.inputs.only != 'render'
         env:
           LMSTUDY_USER_AGENT: >-
             lmstudy-research/0.1 (academic labor-market study;

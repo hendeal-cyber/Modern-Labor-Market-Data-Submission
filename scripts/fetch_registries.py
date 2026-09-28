@@ -448,7 +448,8 @@ def main(argv=None) -> int:
     # One source failing must not lose the others: each records its own error.
     if "pages" in only:
         try:
-            pages = [p for p in cfg["pages"] if not ids or p["id"] in ids]
+            pages = [p for p in cfg["pages"]
+                     if not p.get("render") and (not ids or p["id"] in ids)]
             fetch_pages(session, pages, manifest)
         except Exception as exc:
             manifest["pages_error"] = f"{type(exc).__name__}: {exc}"

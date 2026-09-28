@@ -59,6 +59,14 @@ pages:
   - {id: isolvedhire_privacy,    url: "https://admin.isolvedhire.com/privacy-policy/"}
   - {id: serc_isolved_board,     url: "https://serc1.isolvedhire.com/jobs/", keep_html: true}
   - {id: isolvedhire_robots,     url: "https://serc1.isolvedhire.com/robots.txt"}
+  # --- Rendered in a browser (scripts/render_pages.py, stage "render"),
+  # because a plain fetch returns an empty JavaScript shell. Terms first:
+  # the boards are rendered only after their vendor's terms are read
+  # (owner, 2026-09-28: WECC and SERC as a proof of concept). ---
+  - {id: paylocity_terms_rendered, url: "https://www.paylocity.com/terms-and-conditions/", render: true}
+  - {id: paylocity_legal_rendered, url: "https://www.paylocity.com/legal/", render: true}
+  - {id: wecc_board_rendered,      url: "https://recruiting.paylocity.com/recruiting/jobs/All/de2bf5e8-555f-4abc-beff-5806c9378455/Western-Electricity-Coordinating-Council", render: true}
+  - {id: serc_board_rendered,      url: "https://serc1.isolvedhire.com/jobs/", render: true}
   # --- Route 2: EIA-176 has no bulk file; its query system's guide names the endpoints ---
   - {id: eia_ngqs_guide,     url: "https://www.eia.gov/naturalgas/ngqs/ngqs_user_guide.pdf"}
   - {id: commoncrawl_terms,  url: "https://commoncrawl.org/terms-of-use"}
