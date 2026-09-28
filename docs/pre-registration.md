@@ -732,3 +732,19 @@ Frame unchanged at 369.
 Also before the 28 September run: Gas South (retail natural gas
 supplier, Atlanta; owned by Cobb EMC, not related to Southern Company Gas),
 verified from a live job URL. Frame: 370.
+
+**Addendum, 2026-09-28, before the 28 September run: the USAJOBS key works,
+and what to expect from it.** The owner added the secrets. A preflight
+(`sources.yml --only usajobs`, run 5, committed 00:20 UTC) returned HTTP 200
+for all four codes. Bonneville lists 13 postings and Western Area 15, every
+one with a stated pay range. Southwestern and TVA list none today. Their
+titles are federal position titles ("Public Utilities Specialist",
+"Electronics Engineer", "High Voltage Electrician", "Contract Specialist").
+**The role screen is not changed for them.** Run through it unchanged, the
+sampled titles are all rejected, including the Public Utilities Specialist
+series, whose work is rate and power-marketing analysis. Widening the
+taxonomy to admit them, after seeing them, would be the kind of change this
+document exists to prevent. *Expected effect, stated in advance:* few or no
+federal rows enter N. The `excluding_federal` cut and `federal_robustness`
+report whatever does. If the owner wants the federal series admitted, it
+needs a dated amendment of §2's taxonomy, with its effect reported.
