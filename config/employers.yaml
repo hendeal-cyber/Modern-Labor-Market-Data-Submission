@@ -354,10 +354,12 @@ developers:              # renewable and data center developers
                          # postings; re-check if its output looks synthetic
   - name: Apex Clean Energy
     industry: developer
+    # Corrected 2026-09-28 01:00 UTC (batch 12) from live job URLs, e.g.
+    # jobs.smartrecruiters.com/ApexCleanEnergy/743999869856952-project-finance-analyst-renewable-energy
+    # (Charlottesville, VA). The guessed greenhouse/lever slugs are dropped.
     candidates:
-      greenhouse: [apexcleanenergy]
-      lever: [apexcleanenergy]
-    verified: false
+      smartrecruiters: [ApexCleanEnergy]
+    verified: true
   # Verified 2026-09-27 from live job URLs (HV power engineering for solar,
   # wind and storage): jobs.lever.co/intersect/98a13a3c-f2a2-4f53-8ed2-5c3316b94b42
   - name: Intersect Power

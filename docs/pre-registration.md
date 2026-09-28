@@ -724,3 +724,8 @@ dropped. Southwestern Power Administration was new. A full scan of the frame
 finds no other duplicate name. The frame counts stated in the entries above
 from batch 10 on were two too high: **the frame is 369** (the collector's
 loader). No data existed for any of these entries, so no result is affected.
+Also before the 28 September run (01:00 UTC): Apex Clean Energy (in the
+frame since the first batch, on guessed Greenhouse and Lever names that never
+resolved) is confirmed on SmartRecruiters (`ApexCleanEnergy`) from live job
+URLs in Charlottesville, Virginia, a mandate state. The guesses are dropped.
+Frame unchanged at 369.

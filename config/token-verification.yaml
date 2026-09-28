@@ -120,10 +120,15 @@ employers:
     priority: 2_analyst_roles_good_ats
     resolved_in_last_run: false
   Apex Clean Energy:
-    status: unchecked
+    status: confirmed
     industry: developer
     priority: 4_unlocated
     resolved_in_last_run: false
+    platform: smartrecruiters
+    token: ApexCleanEnergy
+    evidence: https://jobs.smartrecruiters.com/ApexCleanEnergy/743999869856952-project-finance-analyst-renewable-energy
+    checked_on: '2026-09-28'
+    note: 'batch 12: found by domain-restricted search'
   Aqua Illinois (Essential Utilities):
     status: confirmed
     evidence: resolved in collection manifest

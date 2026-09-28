@@ -54,6 +54,11 @@
    8–11 collect for the first time on 09-28: read every new board. Watch
    the Hanwha-style duplicate-cluster risk, and read Stem, Giga Energy and
    Canadian Solar rows for off-taxonomy manufacturing roles.
+   **Cologix** now also shows a Greenhouse board (`cologixinc`, e.g.
+   job-boards.greenhouse.io/cologixinc/jobs/4585264006, "Energy Strategy
+   Analyst") beside its Lever board. If Lever returns nothing on 09-28, move
+   the entry to Greenhouse (record it in §8). Do not list both: two live
+   boards would count the same jobs twice.
 2. If the owner adds the USAJOBS key before a run, the federal rows arrive
    with it. Read them against the `excluding_federal` cut.
 3. Between runs, more employer searches. Anything added must be in
