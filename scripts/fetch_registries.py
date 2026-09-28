@@ -133,7 +133,8 @@ def fetch_pages(session, pages: list[dict], manifest: dict) -> None:
     raw.mkdir(parents=True, exist_ok=True)
     for page in pages:
         r = session.get_bytes(page["url"], use_etag=False)
-        rec = {"url": page["url"], "status": r.status, "error": r.error}
+        rec = {"url": page["url"], "status": r.status, "error": r.error,
+               "fetched_at": manifest["fetched_at"]}
         if r.ok:
             data = r.data
             if data[:4] == b"%PDF":
@@ -144,6 +145,11 @@ def fetch_pages(session, pages: list[dict], manifest: dict) -> None:
             if text is not None:
                 (raw / f"{page['id']}.txt").write_text(
                     f"# source: {page['url']}\n# fetched: {manifest['fetched_at']}\n\n{text}\n")
+            # Link targets are lost in the text version; a page marked
+            # keep_html (a job board whose footer links to its terms) is also
+            # kept as it came.
+            if page.get("keep_html") and data[:4] != b"%PDF":
+                (raw / f"{page['id']}.html").write_bytes(data)
             rec.update(bytes=len(data), text_chars=len(text or ""))
         manifest["pages"][page["id"]] = rec
         print(f"page {page['id']}: {r.status} {rec.get('text_chars', '')}")
@@ -426,8 +432,11 @@ def check_usajobs(manifest: dict) -> None:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="pages,eia,cc")
+    ap.add_argument("--ids", default="",
+                    help="comma-separated page ids: fetch only these pages")
     args = ap.parse_args(argv)
     only = set(args.only.split(","))
+    ids = {i for i in args.ids.split(",") if i}
 
     from lmstudy.netclient import PoliteSession
     cfg = yaml.safe_load((ROOT / "config" / "registry_sources.yaml").read_text())
@@ -439,7 +448,8 @@ def main(argv=None) -> int:
     # One source failing must not lose the others: each records its own error.
     if "pages" in only:
         try:
-            fetch_pages(session, cfg["pages"], manifest)
+            pages = [p for p in cfg["pages"] if not ids or p["id"] in ids]
+            fetch_pages(session, pages, manifest)
         except Exception as exc:
             manifest["pages_error"] = f"{type(exc).__name__}: {exc}"
     if "eia" in only:
@@ -467,9 +477,16 @@ def main(argv=None) -> int:
                            ("usajobs", "usajobs")):
             if stage not in only and key in prev:
                 manifest[key] = prev[key]
+        # A dispatch limited to some page ids keeps the other pages' records.
+        if ids and "pages" in only:
+            manifest["pages"] = {**prev.get("pages", {}), **manifest["pages"]}
         manifest.setdefault("fetched_at_by_stage", prev.get("fetched_at_by_stage", {}))
     manifest.setdefault("fetched_at_by_stage", {})
     for stage in only:
+        # Some pages only: each page record carries its own fetch time, and
+        # the stage's date still says when all pages were last fetched.
+        if stage == "pages" and ids:
+            continue
         manifest["fetched_at_by_stage"][stage] = manifest["fetched_at"]
     prev_path.write_text(json.dumps(manifest, indent=2, default=str) + "\n")
     print(json.dumps({k: v for k, v in manifest.items() if k != "pages"}, indent=1, default=str)[:3000])

@@ -14,6 +14,10 @@ on:
         description: "Comma-separated subset: pages,eia,cc,usajobs"
         required: false
         default: "pages,eia,cc"
+      ids:
+        description: "Optional comma-separated page ids (only those pages are fetched)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -48,7 +52,7 @@ jobs:
           # Route 3 preflight only (--only usajobs): counts and titles, no postings.
           USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
           USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
-        run: python scripts/fetch_registries.py --only "${{ github.event.inputs.only || 'pages,eia,cc' }}"
+        run: python scripts/fetch_registries.py --only "${{ github.event.inputs.only || 'pages,eia,cc' }}" --ids "${{ github.event.inputs.ids }}"
 
       - name: Commit registries
         if: always()

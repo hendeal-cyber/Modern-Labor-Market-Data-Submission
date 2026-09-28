@@ -135,6 +135,32 @@ def run():
     check("Agera Energy LLC" in text and "Verde Energy USA & Co" in text, f"list text lost: {text!r}")
     check("Hidden Energy" not in text, "script content leaked into page text")
 
+    # --- a dispatch limited to some page ids fetches only those, and keeps
+    # every other page's record in the manifest (2026-09-28, terms pages) ---
+    import json as _json, tempfile as _tempfile
+    saved_out, saved_fetch = reg.OUT, reg.fetch_pages
+    got = []
+    def fake_fetch(session, pages, manifest):
+        for p in pages:
+            got.append(p["id"])
+            manifest["pages"][p["id"]] = {"url": p["url"], "status": 200}
+    try:
+        with _tempfile.TemporaryDirectory() as tmp:
+            reg.OUT = pathlib.Path(tmp)
+            reg.fetch_pages = fake_fetch
+            prev = {"pages": {"pjm_members": {"status": 200}, "ukg_terms": {"status": 0}},
+                    "fetched_at_by_stage": {"pages": "2026-09-27T00:00:00+00:00"}}
+            (reg.OUT / "manifest.json").write_text(_json.dumps(prev))
+            reg.main(["--only", "pages", "--ids", "ukg_terms"])
+            out = _json.loads((reg.OUT / "manifest.json").read_text())
+    finally:
+        reg.OUT, reg.fetch_pages = saved_out, saved_fetch
+    check(got == ["ukg_terms"], f"--ids fetched {got}, want only ukg_terms")
+    check("pjm_members" in out["pages"], "--ids dropped an unfetched page's record")
+    check(out["pages"].get("ukg_terms", {}).get("status") == 200, "--ids did not record the fetched page")
+    check(out["fetched_at_by_stage"].get("pages") == "2026-09-27T00:00:00+00:00",
+          "--ids moved the all-pages fetch date")
+
     print(f"registries: {total - len(fails)}/{total} checks passed")
     for f in fails:
         print("  FAIL", f)

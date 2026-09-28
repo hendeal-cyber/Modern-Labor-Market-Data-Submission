@@ -42,6 +42,23 @@ pages:
   - {id: usajobs_rate_limit, url: "https://developer.usajobs.gov/guides/rate-limiting"}
   - {id: usajobs_auth,       url: "https://developer.usajobs.gov/guides/authentication"}
   - {id: usajobs_agencies,   url: "https://data.usajobs.gov/api/codelist/agencysubelements"}
+  # --- Terms of the job sites NERC and two regional entities post on
+  # (2026-09-28, owner: "fetch the terms pages and report back"). Read
+  # before any adapter is considered; nothing here collects postings. ---
+  - {id: ukg_terms,              url: "https://www.ukg.com/terms-of-use"}
+  - {id: ukg_acceptable_use,     url: "https://www.ukg.com/policies/acceptable-use"}
+  - {id: ukg_legal,              url: "https://www.ukg.com/legal"}
+  - {id: nerc_ultipro_board,     url: "https://recruiting.ultipro.com/NOR1051NAER/JobBoard/ba2b3e29-74c9-419d-8370-c92c1cbb838a", keep_html: true}
+  - {id: ultipro_robots,         url: "https://recruiting.ultipro.com/robots.txt"}
+  - {id: paylocity_text_terms,   url: "https://recruiting.paylocity.com/recruiting/textTermsAndFaq.htm"}
+  - {id: paylocity_terms,        url: "https://www.paylocity.com/terms-and-conditions/"}
+  - {id: wecc_paylocity_board,   url: "https://recruiting.paylocity.com/recruiting/jobs/All/de2bf5e8-555f-4abc-beff-5806c9378455/Western-Electricity-Coordinating-Council", keep_html: true}
+  - {id: paylocity_robots,       url: "https://recruiting.paylocity.com/robots.txt"}
+  - {id: isolved_terms,          url: "https://www.isolvedhcm.com/legal/terms-of-use"}
+  - {id: isolved_terms_conditions, url: "https://www.isolvedhcm.com/legal/agreements/terms-and-conditions"}
+  - {id: isolvedhire_privacy,    url: "https://admin.isolvedhire.com/privacy-policy/"}
+  - {id: serc_isolved_board,     url: "https://serc1.isolvedhire.com/jobs/", keep_html: true}
+  - {id: isolvedhire_robots,     url: "https://serc1.isolvedhire.com/robots.txt"}
   # --- Route 2: EIA-176 has no bulk file; its query system's guide names the endpoints ---
   - {id: eia_ngqs_guide,     url: "https://www.eia.gov/naturalgas/ngqs/ngqs_user_guide.pdf"}
   - {id: commoncrawl_terms,  url: "https://commoncrawl.org/terms-of-use"}
