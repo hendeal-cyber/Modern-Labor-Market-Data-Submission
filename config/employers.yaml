@@ -962,19 +962,27 @@ grid_operators_batch2:
       workday: [{tenant: isonewengland, site: careers}]
     verified: false
   - name: Bonneville Power Administration
+    # Source route 3 (batch 10, 2026-09-27): read through the official USAJOBS
+    # Search API, subelement DN03 (code list: "Bonneville Power Administration", active). The
+    # guessed ATS slugs never resolved and are dropped. A federal power
+    # marketing administration, so a utility; federal pay is a separate
+    # regime (pre-registration section 8).
+    industry: utility
+    federal: true
     candidates:
-      greenhouse: [bonnevillepoweradministration, bonneville-power-administration, bonnevillepower]
-      lever: [bonnevillepoweradministration, bonneville-power-administration, bonnevillepower]
-      ashby: [bonnevillepoweradministration, bonneville-power-administration, bonnevillepower]
-      workday: [{tenant: bonnevillepoweradministration, site: careers}]
-    verified: false
+      usajobs: [DN03]
+    verified: true
   - name: Western Area Power Administration
+    # Source route 3 (batch 10, 2026-09-27): read through the official USAJOBS
+    # Search API, subelement DNWP (code list: "Western Area Power Administration, WAPA", active). The
+    # guessed ATS slugs never resolved and are dropped. A federal power
+    # marketing administration, so a utility; federal pay is a separate
+    # regime (pre-registration section 8).
+    industry: utility
+    federal: true
     candidates:
-      greenhouse: [westernareapoweradministration, western-area-power-administration, westernarea]
-      lever: [westernareapoweradministration, western-area-power-administration, westernarea]
-      ashby: [westernareapoweradministration, western-area-power-administration, westernarea]
-      workday: [{tenant: westernareapoweradministration, site: careers}]
-    verified: false
+      usajobs: [DNWP]
+    verified: true
 
 # --- frame expansion, batch 2 (20 employers) ---
 data_center_operators_batch2:
@@ -2772,6 +2780,8 @@ national_batch4:
     verified: false
   # --- Batch 10, 2026-09-27, before the 28 September run (source route 3):
   # the federal power marketing administrations, through the official USAJOBS
+  # (Bonneville and Western Area were already in the frame, in
+  # grid_operators_batch2, and carry their USAJOBS codes there)
   # Search API (platform `usajobs`, token = the agency subelement code in
   # USAJOBS's own code list, data/registry/raw/usajobs_agencies.txt). They
   # are utilities. They collect only once the owner adds the free key as the
@@ -2781,18 +2791,6 @@ national_batch4:
   # (pre-registration section 8). Southeastern PA has no active subelement
   # code of its own, and regulators (FERC, DOE headquarters) are out of scope
   # as state regulators are. ---
-  - name: Bonneville Power Administration   # USAJOBS subelement DN03 (code list: "Bonneville Power Administration", active)
-    industry: utility
-    federal: true
-    candidates:
-      usajobs: [DN03]
-    verified: true
-  - name: Western Area Power Administration   # USAJOBS subelement DNWP (code list: "Western Area Power Administration", WAPA, active)
-    industry: utility
-    federal: true
-    candidates:
-      usajobs: [DNWP]
-    verified: true
   - name: Southwestern Power Administration   # USAJOBS subelement DNSW (code list: "Southwestern Power Administration", SWPA, active)
     industry: utility
     federal: true

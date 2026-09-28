@@ -713,3 +713,14 @@ Also in batch 12: David Energy (a Brooklyn retail supplier, in the frame
 since batch 3 on guessed board names) is confirmed on Ashby from a live job
 URL, and its guessed names are dropped. Energy by 5 (energy procurement
 advisory, Chicago) enters from its board root, unverified. Frame: 371.
+
+**Correction, 2026-09-28 00:55 UTC, before the 28 September run.** Batch 10
+entered Bonneville and Western Area Power Administration as new employers,
+but both were already in the frame (batch 2, on guessed board names that never
+resolved). The existing-entry check by normalised name, a standing rule, was
+skipped for batch 10. The duplicates are removed, and the USAJOBS codes now
+sit on the original entries, which become verified with their guessed slugs
+dropped. Southwestern Power Administration was new. A full scan of the frame
+finds no other duplicate name. The frame counts stated in the entries above
+from batch 10 on were two too high: **the frame is 369** (the collector's
+loader). No data existed for any of these entries, so no result is affected.
