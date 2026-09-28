@@ -348,6 +348,41 @@ disclosure contrast and the pay model are reported without them too
 adds the key: until then these employers contribute nothing, and the frame
 records them as present but unread.
 
+## 9d. NERC and two regional entities: the job sites' terms, read before any adapter
+
+NERC posts on UKG Pro Recruiting (formerly UltiPro), WECC on Paylocity and
+SERC on isolved Hire. None of the three has an adapter here. On 2026-09-28
+the owner asked for their terms to be read first. The pages were saved by
+the registry job (`data/registry/raw/`, fetched 02:33 UTC), which collects no
+postings:
+
+- **UKG (NERC).** UKG's Terms of Use cover "this site and related
+  sub-domains". The Unlawful or Prohibited Use section says: "You may not
+  use any robot, spider, scraper or other automated means to access the
+  Site or any UKG accounts, computer systems or networks." The job board
+  (`recruiting.ultipro.com`) sits on a different domain, but it is a UKG
+  computer system, and the page links no terms of its own. Its robots.txt
+  disallows everything except job-board paths (`Allow: */JobBoard/`). That
+  is a crawler convention, not a grant that overrides the terms. Read
+  conservatively, as iCIMS was (section 9b), **automated collection from
+  UKG boards is not permitted**, and NERC stays out.
+- **Paylocity (WECC).** Undetermined. Paylocity's general terms page
+  (`paylocity.com/terms-and-conditions/`) is built by JavaScript and came
+  back empty. The one terms page that did render covers only its
+  text-message job-alert service. `recruiting.paylocity.com` has no
+  robots.txt (HTTP 404), and the WECC board page links no terms. The page
+  needs a browser-rendered fetch before anything can be said.
+- **isolved (SERC).** isolved's website terms cover only
+  `www.isolvedhcm.com`. They contain no clause on automated access, though
+  they forbid copying or downloading that site's content without
+  permission. The job-board host's robots.txt restricts only admin and
+  internal-job paths, and it publishes a sitemap of job listings
+  (`feeds.isolvedhire.com/site_map_index.xml`). The board links no terms;
+  the isolved Talent Acquisition privacy policy governs only personal
+  data. Nothing read prohibits reading public listings. The SERC board
+  showed no open listings in the saved page (it may render them with
+  JavaScript), so the yield would be a handful at most.
+
 ## 10. The population is national and all-seniority, and that was not the original design
 
 The study began as a question about early-career software and data roles within

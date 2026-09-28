@@ -35,8 +35,11 @@ and B (extended collection) are **not approved**: the taxonomy and the
   (Core Scientific, Cipher, Hut 8, Soluna, LightEdge), Argonne, nuclear and
   fusion developers, Workable-hosted solar developers and more. **NERC is on
   UKG/UltiPro** (recruiting.ultipro.com/NOR1051NAER), WECC on Paylocity,
-  SERC on iSolved: no adapter, so none enters without the owner approving a
-  new adapter. Everything further must be in §8 before 09:17 UTC on 09-30.
+  SERC on iSolved: no adapter. Their terms were read 2026-09-28
+  (limitations §9d): UKG bans "any robot, spider, scraper or other
+  automated means", so NERC stays out; Paylocity's terms page did not
+  render (undetermined); isolved's terms do not forbid reading public
+  listings, but SERC's board showed no open listings. Owner to decide. Everything further must be in §8 before 09:17 UTC on 09-30.
   At round 11, read the first rows from every batch-14 board.
 - Without A, expect roughly 520–600 by 09-30.
 
