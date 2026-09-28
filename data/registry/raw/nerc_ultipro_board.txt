@@ -1,0 +1,20 @@
+# source: https://recruiting.ultipro.com/NOR1051NAER/JobBoard/ba2b3e29-74c9-419d-8370-c92c1cbb838a
+# fetched: 2026-09-28T02:33:08+00:00
+
+0" class="alert alert-danger">
+:
+:
+:
+:
+0 -->
+1 && showAllLocations() == false, text: $.t('Opportunity.Opportunities.MoreLocations', { count : Locations().length - 1 }), click: function(){showAllLocations(true)}, event: {keypress: function(data, e){if(e.keyCode === 13 || e.keyCode === 32){return true} else{return false}} ? function(){showAllLocations(true)} : null}">
+1 && showAllLocations() == true, text: $.t('Opportunity.Opportunities.Less'), click: function(){showAllLocations(false)}, event: {keypress: function(data, e){if(e.keyCode === 13 || e.keyCode === 32){return true} else{return false}} ? function(){showAllLocations(false)} : null}">
+0">
+0">
+1, text: $.t('Opportunity.Opportunities.MoreLocations', { count : Locations().length - 1 })">
+0 ? 'true' : 'false', matchCount: matchCount() }), attr: { 'data-matchcount': matchCount() }" data-automation="personalized-card-open-completed-secondmsg">
+You are using an unsupported browser.
+To use this site, please use a supported browser.
+Download Firefox
+Download Chrome
+Download Internet Explorer

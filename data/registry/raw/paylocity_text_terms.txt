@@ -1,0 +1,133 @@
+# source: https://recruiting.paylocity.com/recruiting/textTermsAndFaq.htm
+# fetched: 2026-09-28T02:33:08+00:00
+
+﻿
+Paylocity | Terms of Service and FAQ
+Paylocity Job Messages Terms of Service and Support FAQs
+Below are the Paylocity Job Messages Terms of Service as well as answers
+to commonly asked questions that should take care of your inquiry. If
+you don’t find what you’re looking for, please contact the Employer for
+additional support via their website.
+Paylocity Job Messages Terms of Service
+This is a legally binding agreement between you and Paylocity
+Corporation (“Paylocity,” “we” or “us”), subject to which you may access
+and use the Paylocity Job Messages Service (the “Service”). Through the
+Service, you can text a keyword to a number to request a link
+to jobs offered by a Paylocity customer (each an “Employer”).
+When you use the Service, we may collect certain data and information
+from you, as further explained in our Privacy Policy. Please carefully
+read the terms below as well as the Privacy Policy before using the
+Service.
+BY USING THE SERVICE, YOU AGREE TO BE BOUND BY THESE TERMS OF SERVICE
+AND THE PRIVACY POLICY. IF YOU DO NOT ACCEPT THESE TERMS, DO NOT USE THE
+SERVICE.
+By texting a keyword to an Employer number, we will respond
+with a welcome message and a link to the Employer’s promoted jobs. This
+is a one-time message program that will only send messages in response
+to a text message of an Employer keyword. You acknowledge that the
+welcome message and link will be sent to the mobile phone number you use
+to send the keyword to the Employer number. Message and data
+rates may apply for any message sent by us. You are solely responsible
+for all message and data charges that you incur. Please contact your
+mobile service provider about such charges. The following carriers are
+supported: AT&T, Verizon Wireless, Sprint, and T-Mobile USA, and the
+additional carriers listed here. Please note that even though a carrier
+is supported, number messaging capabilities may not be enabled for
+all mobile service plans. Carriers are not liable for delayed or
+undelivered messages.
+You may opt out of the Service at any time. To stop receiving text
+alerts, text STOP to the number. After you submit a request
+to unsubscribe, you will receive one final text alert from us confirming
+that you are unsubscribed. If you want to resubscribe, just text START,
+and we will start sending SMS messages to you again if you text us an
+Employer keyword. For questions about the Service or if you are experiencing
+issues with the Service, you can reply to a text message from us with
+the word Help, or you can help via email to
+textsupport@paylocity.com
+.
+The Paylocity Job Messages Service and any content provided through the
+Service is offered on an "as is" and “as available” basis and: (1) may
+not be complete or accurate, (2) may not be available in all areas at
+all times; and (3) may not continue to work in the event of product,
+software, coverage, or other service changes made by your wireless
+carrier. Paylocity may change or discontinue the Service without notice
+or liability to you. Paylocity and its related companies and each of
+their respective officers, directors, and employees are not responsible
+and shall not be liable for any losses or injuries of any kind
+resulting, directly or indirectly, from the Paylocity Job Messages
+Service or any content provided through the Service, or from technical
+failures or delays of any kind. Paylocity reserves the right to cease
+delivery of text alerts to any person at any time in its sole
+discretion.
+Dispute Resolution: YOU AND PAYLOCITY AGREE TO RESOLVE ANY DISPUTES
+ARISING UNDER THESE TERMS OF SERVICE ONLY ON AN INDIVIDUAL BASIS THROUGH
+FINAL AND BINDING ARBITRATION. The parties hereby expressly waive any
+right to bring any action, lawsuit, or proceeding as a class or
+collective action, private attorney general action, or any other
+proceeding in which any party acts or proposes to act in a
+representative capacity in connection with any dispute. Notwithstanding
+the foregoing, Paylocity may seek injunctive relief in any court of
+competent jurisdiction for disputes related to the enforcement or
+validity of Paylocity’s intellectual property or other proprietary
+rights. Any controversy or claim arising out of or relating to these
+Terms of Service and the agreements and policies referenced herein, or
+the breach thereof, shall be governed by and construed in accordance
+with the laws of the State of Illinois, without giving effect to its
+conflict of laws provisions, and shall be adjudicated by arbitration
+before a single arbitrator administered by the American Arbitration
+Association in accordance with its Commercial Arbitration Rules. The
+judgment on the award rendered by the arbitrator may be entered in any
+court having jurisdiction thereof. The arbitrator shall be experienced
+in and knowledgeable about legal issues related to e-commerce and
+software as a service. The arbitrator will conduct hearings, if any, by
+teleconference or videoconference, rather than by personal appearances,
+unless the arbitrator determines upon request by you or by us that an
+in-person hearing is appropriate. Any in-person appearances will be held
+at a location that is reasonably convenient to both parties with due
+consideration of their ability to travel and other pertinent
+circumstances. If the parties are unable to agree on a location, such
+determination should be made by the AAA or by the arbitrator. Each party
+shall bear its own costs and expenses and an equal share of the
+arbitrator’s and administrative fees of arbitration unless you are able
+to demonstrate that the cost of arbitration will be prohibitive as
+compared to the costs of litigation, and the arbitrator deems a
+different allocation of filing fees and hearing fees is necessary to
+prevent the arbitration from being cost-prohibitive. A reasoned opinion
+shall accompany the award of the arbitrator. Except as may be required
+by law, neither a party nor an arbitrator may disclose the existence,
+content, or results of any arbitration hereunder without the prior
+written consent of both parties. NO PART OF THIS AGREEMENT TO ARBITRATE
+MAY BE AMENDED, DISCHARGED, MODIFIED, OR WAIVED EXCEPT IN A WRITING
+SIGNED BY BOTH PARTIES. Notwithstanding any of the foregoing, nothing in
+these Terms of Service will preclude you from bringing issues to the
+attention of federal, state, or local agencies, and, if the law allows,
+they can seek relief against us for you.
+With the exception of any of the language above in this Dispute
+Resolution provision relating to the waiver of class and representative
+actions, if a court decides that any part of this Dispute Resolution
+provision is invalid or unenforceable, the other parts of this Dispute
+Resolution provision shall still apply. If a court decides that any
+aspect of the language above in this Dispute Resolution provision
+relating to the waiver of class and representative actions is invalid or
+unenforceable, then the entirety of this Dispute Resolution provision
+shall be null and void. The remainder of these Terms of Service will
+continue to apply and be unaffected by this severability provision.
+Frequently Asked Questions
+Why am I receiving a message from Paylocity?
+You may have seen a poster or sign advertising jobs by an Employer near
+you, with a keyword to text to a number. By texting the
+keyword such as “JOBS1234” to our number you are requesting a
+link to jobs for a specific Employer who is using the Paylocity platform
+to manage their recruiting and employment needs. Paylocity manages the
+auto-responses to the keyword texts on behalf of the employer to make it
+easy for job seekers to view and apply to the employer’s jobs.
+How do I view and apply for jobs?
+By clicking the provided link in the text response, you will be taken to
+the job postings, job description, application or contact form for the
+employer. From that link you can view the promoted job(s) and apply,
+and/or submit your contact information to the employer to be considered
+for their job openings.
+What is the status of my job application, how do I find out more about
+the jobs?
+For information about jobs you may have applied to or general employment
+questions, please contact the employer directly.

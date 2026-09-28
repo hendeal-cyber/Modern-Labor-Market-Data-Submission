@@ -1,0 +1,11 @@
+# source: https://serc1.isolvedhire.com/robots.txt
+# fetched: 2026-09-28T02:33:08+00:00
+
+User-agent: *
+Disallow: /admin/
+Disallow: /stats/
+Disallow: /internaljobs/
+Disallow: /internaljobsbyorganization/
+Disallow: /internaljobsbyorganizationmap/
+Disallow: /internaljobsearch/
+Sitemap: https://feeds.isolvedhire.com/site_map_index.xml

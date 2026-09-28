@@ -1,0 +1,930 @@
+# source: https://www.isolvedhcm.com/legal/agreements/terms-and-conditions
+# fetched: 2026-09-28T02:33:08+00:00
+
+ 
+© 2026 isolved. All Rights Reserved. 
+Terms and Conditions 
+ 
+These Terms and Conditions (“Terms and Conditions”) are incorporated into the Order Form(s) (the “Order 
+Form”) and are an integral part of the Agreement between Employer and isolved. The Version of the Terms 
+and Conditions applicable to the Agreement is identified on the Order Form. 
+1. Definitions: Capitalized terms not otherwise defined herein are defined in Exhibit A.  
+2. Services; Access Rights. 
+2 . 1 . Services. On a non-exclusive basis, isolved shall provide the Services to Employer for the applicable 
+Subscription Term, subject to the Terms and Conditions herein and in the Documentation . 
+2 . 2 . Access Rights. 
+a. To the extent isolved determines necessary for provision of the Services, isolved grants to 
+Employer a non-transferable, non-exclusive and revocable subscription right, without the 
+right to grant sublicenses, to access the features and functions of the Sof tware applicable 
+to the Services during the Subscription Term for such Services. Access to and use of the 
+Software by Employer is limited solely to use of the Services for processing internal data of 
+Employer and its Affiliates. Employer will access and use the Software in accordance with the 
+Documentation and such other instructions and policies established by isolved, in each case 
+as in effect from time to time. 
+b. Employer shall not, and shall not permit any other person to, access or use the Services 
+except as expressly permitted in the Documentation and, in the case of Third -Party 
+Materials, the applicable third-party license or service agreement. For purposes of clarity and 
+without limiting the generality of the fore-going, Employer shall not, and will cause the Users 
+to, without the prior consent of isolved or except as this Agreement expressly permits: (i) 
+resell, sublicense, lease, time-share or otherwise make the Service available to any third 
+party (other than Employer Affiliates as expressly permitted in the Documentation);  (ii) send 
+or store infringing or unlawful material; (iii) send or store Malicious Code; (iv) attempt to gain 
+unauthorized access to, or disrupt the integrity or performance of, the Service or the data 
+contained therein; (v) permit access to the Service by a Direct Competitor of isolved, or 
+access the Service for the purpose of building a competitive product, service or user 
+interface; (vi) use the Service, or permit it to be used, for purposes of product evaluation, 
+benchmarking or other comparative analysis intended for publication; (vii) decompile, 
+disassemble, reverse engineer or otherwise attempt to obtain or perceive the source code 
+from which any software component of the Service is compiled or interpreted, and Employer 
+acknowledges that nothing in the Agreement will be construed to grant Employer any right to 
+obtain or use such source code; or (viii) copy or modify any component or feature of the 
+Software or the Documentation, or create any derivative work from any of the foregoing.  
+c. The Parties acknowledge and agree that the Agreement contemplates access and user 
+rights with respect to the Service and no software is being provided and no licenses with 
+regard to any software are being granted under the Agreement. Employer acknowledges that 
+there are no licenses granted by implication under the Agreement. isolved reserves all rights 
+that are not expressly granted. 
+d. Employer acknowledges that, as between the Parties hereto, isolved owns all intellectual 
+property rights and proprietary interests that are embodied in, or practiced by, the Service 
+and the Documentation. 
+2 . 3 . Service Changes. isolved reserves the right, in its sole discretion, to make any changes to the 
+Services that it deems necessary or useful : (a) to maintain or enhance: (i) the quality or delivery of 
+isolved services to its customers; (ii) the competitive strength of or market for isolved services; or 
+(iii) the Services’ cost efficiency or performance; (b) in the event of product unavailability, end -of-
+life, or changes to software requirements; or (c) to comply with applicable Law. Any reduction in 
+quantity of employees, use of services or any other changes to the Services by Employer shall not 
+© 2026 isolved. All Rights Reserved.  
+reduce the Fees unless agreed to in writing by isolved, at the sole discretion of isolved. No 
+requested changes will be effective unless and until memorialized in a written change order signed 
+by both Parties. 
+3. Subscription Term & Termination. 
+3 . 1 . Term of Agreement. The Agreement shall become effective on the “Effective Date” and shall 
+continue until the expiration of the Initial Term set forth in the Order Form (or if no Initial Term is 
+listed, the third anniversary of the Effective Date) (the “Initial Term”); PROVIDED THAT THE 
+AGREEMENT SHALL AUTOMATICALLY RENEW ANNUALLY FOR SEPARATE BUT SUCCESSIVE ONE (1) 
+YEAR TERMS (each a “Renewal Term,” and together with the Initial Term, the “Subscription Term”), 
+UNLESS AND UNTIL TERMINATED AS FOLLOWS:  
+a. at the end of the Initial Term or any Renewal Term by either Party upon written notice to the 
+other Party received not less than sixty (60) days prior to the expiration thereof;  
+b. by either Party for material breach after providing thirty (30) days prior written notice to the 
+other Party of a material breach of the Agreement by the other Party, which shall state with 
+specificity the alleged material breach and allow for the thirty (30) days to cure, and only if 
+such breach remains uncured at the expiration of such period;  
+c. by isolved if (i) Employer fails to timely pay any Fees or other amounts due to isolved under the 
+Agreement and such failure continues for five (5) business days after isolved notifies 
+Employer in writing of its intent to terminate as a result thereof, or (ii) Employer’s right to 
+receive any Services subscribed to by Employer are suspended (each a “Suspension of 
+Service”) due to Employer’s failure to meet the eligibility requirements for such Services set 
+forth in the Documentation, including the Eligibility Requirements in Exhibit B hereto and such 
+Suspension of Service (A) continues for a period of more than thirty (30) consecutive days or 
+(B) if Suspension of Service is cured within such period, a Suspension of Service occurs more 
+than once in any twelve (12) month period. 
+3 . 2 . Suspension of Service. isolved may suspend, terminate, or otherwise deny Employer’s, any User’s, 
+or any other person’s access to or use of all or any part of the Services or related materials, without 
+incurring any resulting obligation or liability, if: (a) isolved receives a judicial or other governmental 
+demand or order, subpoena, or law enforcement request that expressly or by reasonable 
+implication requires isolved to do so; or (b) isolved believes, in its good faith and reasonable 
+discretion, that: (i) Employer or any User has failed to comply with any material term of the 
+Agreement, or accessed or used the Services beyond the scope of the rights granted, for a purpose 
+not authorized under the Documentation or in any manner that does not comply with any  
+instruction or requirement of any Service specifications (in which case, isolved shall provide 
+reasonable advanced notice to Employer of the suspension, termination or denial of access); (ii) 
+Employer or any User is, has been, or is likely to be involved in any fraudulent, misleading, or unlawful 
+activities relating to or in connection with any of the Services; or (iii) this Agreement expires or is 
+terminated. This Section 3.2 does not limit any isolved rights or remedies, whether at law, in equity, 
+under the Documentation. 
+3 . 3 . Early Termination with Fee. In addition to the rights set forth in Section 3.1 and provided Employer is 
+then in good standing and otherwise not in default of this Agreement or any other agreements with 
+isolved, Employer may terminate the Agreement at any time after the first year of the Initial Term, 
+upon thirty (30) days written notice and payment of the remaining contract balance as identified on 
+the applicable order form (“Early Termination Fee”). For the avoidance of doubt the Early 
+Termination Fee shall not be payable if Employer terminates the Agreement by delivery of a notice 
+of nonrenewal pursuant to Section 3.1(a) or in connection with an uncured, material breach of this 
+Agreement by isolved pursuant to Section 3.1(b) hereof. The Early Termination F ee shall be invoiced 
+to Employer in one (1) lump sum and shall become due and payable via ACH from Employer’s 
+account, wire transfer, or check, no earlier than the third business day after the date of invoice. The 
+Parties acknowledge and agree that the Fees being agreed to under this Agreement are based on 
+the number of anticipated employees of Employer processed using the Services for the duration of 
+the Subscription Term and that isolved would suffer damages caused by Employer’s termination of 
+the Agreement or discontinuance of use of the Services prior to the end of the Subscription Term, 
+which otherwise would be difficult to accurately estimate. As a result, the Early Termination Fee 
+shall also be payable upon written notice from isolved, if Employer discontinues use of the Service 
+for its (or its Affiliates that receive Services) employees during the Subscription Term and such 
+discontinued use continues for a period of thirty (30) consecutive days after receipt of such written 
+© 2026 isolved. All Rights Reserved.  
+notice. The Parties further agree that the Early Termination Fee is a reasonable estimate of the 
+anticipated or actual harm that might arise from Employer’s early termination of this Agreement or 
+use of the Service. The Parties further acknowledge and agree that the Early Termination Fee 
+constitutes compensation, and not a penalty. 
+3 . 4 . Survival. In the event of termination of the Agreement for any reason, this Section 3.4 (Survival), 
+Section 5 (Representations, Warranties, and Disclaimers), Section 6.1 (Marks), Section 7 (Fees & 
+Additional Products), Section 8 (Indemnification), Section 9 (Confidentiality and Data Privacy), 
+Section 10 (Limitation of Liability), Section 11 (Miscellaneous), and any other terms that pursuant to 
+their terms survive the termination of the Agreement, will survive termination of this Agreement.  
+4. Additional Service Terms. 
+4 . 1 . Accuracy of Employer Information and Review of Data. Employer acknowledges that the Services 
+will be provided based upon timely information provided to isolved by Employer and its Users either 
+through the Software or otherwise. Employer understands the timely and accurate performance of 
+the Services is contingent upon adherence by Employer to the isolved ACH and applicable statutory 
+print deadlines as may exist from time to time. The Software makes available to Employer and 
+isolved may deliver to Employer or its Affiliates deliverables in the form of reports (including, to the 
+extent applicable, payroll reports, employee earnings statements, deduction disbursement records 
+and benefits reports) (collectively “Reports”). Employer agrees to promptly review all Reports and 
+timely notify isolved of any irregularities, errors or incorrect information. Employer acknowledges 
+that certain Reports are used by isolved as the basis for initiating wires (including payroll and tax 
+filing) and timely notice to isolved may mean notice within twenty-four (24) hours of User’s 
+submission of applicable information to the Software or isolved (depending on the date of 
+submission and wiring deadlines) may be necessary. isolved is not responsible or liable for any 
+delays or failures of performance or the Services caused in whole or part by Employer’s or its User’s 
+delay in performing or failure to perform any of its obligations under this Agreement, including 
+Employer’s or its User’s failure to adhere to deadlines. (“Employer Failure” ). 
+4 . 2 . Employer’s Use of the Service Regarding Compliance with Laws. As between Employer and isolved, 
+Employer (and not isolved) will be responsible for Employer’s compliance with all applicable Law 
+related to the operation of Employer’s business, including as it may relate to privacy and security 
+laws; or data, information or records (including where relevant to the Services protection of 
+biometric data or information) under the direct or indirect control of Employer or its Affiliates, as 
+well as wage and related tax laws. Employer will not rely solely on use of the Service to comply with 
+the Law. Employer shall not transmit, and it shall not cause any User or Affiliate to transmit to 
+isolved any information, including personal information, of any individual who i s a resident of the 
+European Union, or that would subject isolved to the laws of a jurisdiction other than the United 
+States. 
+4 . 3 . Fraudulent Activity. Employer acknowledges and agrees that it (and not isolved) is responsible for 
+the security and privacy of its systems and assets, including bank and financial services accounts, 
+email accounts, isolved account accessed by any User, Aff iliate or Agent and Employer’s databases. 
+For the avoidance of doubt, isolved is not responsible for any unlawful acts or omissions of 
+Employer, its Users or Affiliates. isolved will not be liable for any criminal or other unlawful activity 
+originating with or derived from Employer’s systems, isolved account access credentials, premises, 
+property or databases, including but not limited to: fraud (including but not limited to fraudulent or 
+fraudulently induced instructions to isolved or any third party relative to the Services), acts of 
+deception, impersonation, identity or other theft, larceny, embezzlement, forgery, money 
+laundering, computer or software hacking, viruses or Malware, or phishing.  
+4 . 4 . Data Integration. See Data Integration Acknowledgement, attached hereto as an exhibit, if 
+applicable. 
+4 . 5 . Employer Systems and Cooperation. Employer shall at all times during the Term: (a) set up, 
+maintain, and operate in good repair and in accordance with the Documentation all Employer 
+systems on or through which the Services are accessed or used; (b) provide  isolved personnel with 
+such access to Employer’s premises and Employer systems as is necessary for isolved to perform 
+the Services in accordance with the Documentation; and (c) provide all cooperation and assistance 
+as isolved may reasonably request to enable isolved to exercise its rights and perform its 
+obligations under and in connection with this Agreement. 
+4 . 6 . Employer Control and Responsibility. Employer has and will retain sole responsibility for: (a) all 
+Employer data not under the exclusive control of isolved, including Confidential Information or other 
+© 2026 isolved. All Rights Reserved.  
+information protected by law, as well as the content and use of such data; (b) all information, 
+instructions, and materials provided by or on behalf of Employer or any User in connection with the 
+Services; (c) Employer’s in- formation technology infrastructure, including computers, software, 
+databases, electronic systems (including database management systems), and networks, whether 
+operated directly by Employer, through an Affiliate or through a third -party (“Employer Systems”); 
+(d) the security and use of Employer’s and its Users’ access credentials; and (e) all access to and 
+use of the Services in Employer’s instance of the Software, including isolved materials accessed 
+directly or indirectly by or through the Employer Systems or its or its Users’ access credentials, with 
+or without Employer’s knowledge or consent, including all results obtained from, and all 
+conclusions, decisions, and actions based on, such access or use.  
+4 . 7 . Employer Access and Security. Employer shall employ all physical, administrative, and technical 
+controls, screening, and security procedures and other safeguards necessary to: (a) securely 
+administer the distribution and use of all access credentials and protect against any unauthorized 
+access to or use of the Services; and (b) control the content and use of Employer Data, including 
+the uploading or other provision of Employer data for provision of the Services.  
+5. Representations, Warranties, and Disclaimers. 
+5 . 1 . Mutual Representations and Warranties. Each Party represents and warrants to the other, that 
+such Party has the power and authority to execute and deliver the Agreement and to perform its 
+obligations under the Agreement, has duly executed and delivered the  Agreement and that 
+assuming due execution by the other Party, the Agreement constitutes the legal, valid and binding 
+obligation of such Party enforceable against it in accordance with its terms.  
+5 . 2 . isolved Warranties and Disclaimer. isolved warrants that it shall perform the Services (a)in 
+substantial compliance with the Documentation; (b)using personnel of industry standard skill, 
+experience and qualifications; and (c)in a timely, workmanlike, and p rofessional manner in 
+accordance with generally recognized industry standards for similar services. ISOLVED MAKES NO 
+REPRESENTATIONS OR WARRANTIES RELATIVE TO ANY THIRD PARTY INCLUDING ANY SERVICE 
+PROVIDER. EXCEPT FOR THE EXPRESS WARRANTIES SET FORTH IN TH E AGREEMENT, TO THE 
+MAXIMUM EXTENT PER- MITTED BY APPLICABLE LAW, THE SERVICES, THE DOCUMENTATION, AND 
+ALL SERVICES PERFORMED BY ISOLVED UNDER THE AGREEMENT ARE PROVIDED “AS IS,” AND 
+ISOLVED HEREBY DISCLAIMS ANY AND ALL OTHER REPRESENTATIONS AND WARRANTIES , WHETHER 
+EXPRESS OR IMPLIED, INCLUDING, ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR 
+A PARTICULAR PURPOSE INCLUDING COMPLIANCE WITH ANY LAW OR GOVERNMENTAL REGULATION 
+AND ISOLVED DOES NOT WARRANT THAT THE OPERATION OF THE SERVICE WILL BE UNINT ERRUPTED 
+OR ERROR-FREE. 
+5 . 3 . Additional Disclaimers. Employer acknowledges and agrees that:  
+a. isolved is not providing legal, financial, investment, benefits, or tax advice to Employer and 
+Employer acknowledges it is solely responsible for the timely filing of all payroll and other tax 
+returns and the timely payment of all payroll and other taxes f or its employees; certain 
+Services may be provided by third parties, other than isolved and its Affiliates, and isolved will 
+not be liable for Services provided by any such third parties that Employer directly contracts 
+with or otherwise consents to receive for such or such portion of the Services; certain 
+Services require certain power of attorney, ACH or other authorizations of Employer in favor of 
+isolved and its Affiliates, and the execution and delivery of such will be a condition to any 
+isolved obligation to provide such Services. Employer acknowledges it, and not isolved, is 
+responsible for receiving direct deposit authorization or any other required consent for 
+performance of the Services from its Employees and agrees to obtain such authorization and 
+consent from its Employees, and Employer agrees to produce for inspection by isolved any 
+such authorizations upon reasonable request by isolved;  
+b. Employer represents and warrants that it has and will have all rights, authorizations, and 
+consents required by law or otherwise for the provision by it or its Users of all data and 
+information, including but not limited to Personal Information, to isolved  and use by isolved of 
+such data and information, to perform the Services as contemplated in this Agreement – 
+including but not limited to the use of AI Functionalities as further described in Section 5.6 
+herein and the Documentation. Employer hereby grants to isolved and its Affiliates during  the 
+Term a royalty free, fully-paid, non-exclusive, non-transferable-right (except as set forth in 
+Section 11.4), sub-licensable , worldwide right to use, process, transmit, and store such data 
+and information, including with the use of AI Functionalities as further described in Section 5.6 
+© 2026 isolved. All Rights Reserved.  
+herein, for the purpose of providing to Employer and the Users the Services and any other 
+activities expressly agreed to by Employer. Employer represents and warrants that it has all 
+rights necessary to grant this license for the stated purposes; and  
+c. To the extent isolved is providing payroll service hereunder, Employer has engaged isolved to 
+act as its agent for the purpose of providing payroll processing services on its behalf and 
+Employer will identify, designate, or otherwise hold isolved out to its employees and other 
+payees as providing payroll processing services on Employer’s behalf.  Notwithstanding the 
+foregoing, Employer’s obligation to a payee, including an employee or any other party entitled 
+to receive funds via the payroll processing services provided by isolved, shall not be 
+extinguished if isolved fails to remit the funds to the payee.  
+5 . 4 . Insurance. 
+a. Employer shall during the Subscription Term maintain errors and omissions, crime, cyber and 
+general liability insurance in the aggregate amount of at least one million dollars ($1,000,000). 
+Upon the reasonable request of isolved, Employer shall provide a c ertificate of insurance 
+evidencing such insurance to isolved. 
+b. isolved shall carry, for the Subscription Term, the following insurance coverages (i) employer 
+liability insurance of at least one million dollars ($1,000,000), (ii) commercial general liability 
+insurance of at least one million dollars ($1,000,000) per oc currence, and at least two million 
+dollars ($2,000,000) in the aggregate and (iii) errors and omissions coverage (including 
+coverage for cyber liability) of at least five million dollars ($5,000,000) in the aggregate. Upon 
+the reasonable request of Employer, isolved shall provide a certificate of insurance evidencing 
+such insurance to isolved. 
+c. Insurance companies providing coverage under this Agreement must be rated by A.M. Best 
+with at least an A rating. 
+5 . 5 . OFAC and isolved’s KYC process. Employer acknowledges that isolved must conduct and verify 
+Employer’s identity to comply with their Know Your Customer (“KYC”) requirements. Employer 
+agrees to disclose any and all information to isolved upon their reasonabl e request for KYC 
+purposes. Employer agrees that isolved may terminate this Agreement immediately (without any 
+refund or credit for payments made) if Employer fails to disclose, provides inaccurate information, 
+or does not satisfy the isolved KYC validation. 
+5 . 6 . AI. Certain Services may contain and/or integrate the use of Artificial Intelligence functionalities 
+offered by isolved or a third-party software provider (“AI Functionalities”) that utilize artificial 
+intelligence, including, but not limited to, generative artificial intelligence and large language 
+models, to process  data provided by Employer or its Users as an input for the AI Functionalities 
+(“Input”) and generate result such as text, audio, images, code or other content from the use or 
+application of the AI Functionalities (collectively, “Output”) or to perform decision -making, 
+automation, or other actions based on Inputs or contextual data. By accessing and using any AI 
+Functionalities, Employer is responsible for all Inputs and Outputs and accepts the  risk that the 
+Outputs may not be unique or suitable for all purposes and may contain errors, inconsistencies, 
+hallucinations, or outdated information. AI Functionalities are not a replacement for professional 
+advice, including but not limited to areas of medical, legal, financial or other specialized domains. 
+Employer also acknowledges and agrees if it connects Employer’s isolved Services to a third party’s 
+AI Functionalities (“Connected Services”), Employer hereby authorizes isolved to: (a) allow  the 
+Connected Services to access, use, process and transfer Employer Data, which may include 
+Personal Information and Sensitive Personal Information, from Employer’s isolved Services instance 
+to the Connected Service and expressly consents to such activit y; and (b) retrieve Output from the 
+Connected Services and to import such Output into Employer’s isolved Services instance.  In the 
+event that Employer Data is transferred outside of Employer's isolved Services instance to the 
+Connected Services, then this Agreement shall not apply to Employer Data when it is not stored in, 
+processed by, or run on or through the isolved Services.  Employer is solely responsible for the Third 
+Party’s use of the isolved Services, if any.   Employer’s use of the Connected Serv ices is pursuant to 
+the terms between Employer and the relevant third party.  Although not required, isolved 
+recommends Employer’s use of the enterprise version of the Connected Services in conjunction 
+with the Services. isolved shall not be liable for any use or reliance by Employer on the Outputs or its 
+use of the Connected Services, including any training that may be conducted by the Connected 
+Services using Employer Data. Employer should use its own judgement to determine if Output is 
+appropriate for the intended use, accepting or rejecting suggestions, is solely responsible for 
+© 2026 isolved. All Rights Reserved.  
+reviewing and otherwise its own verification thereof prior to any use or reliance, and should not be 
+the sole basis for business decisions. Employer shall use AI Functionalities in compliance with 
+applicable laws and policies of isolved and the AI Functionalities providers. Employer agrees that 
+use of isolved AI products and services, including how inputed and outputed data is used and 
+managed by any such, shall be subject to isolved’s AI Transparency and Acceptable Use Policy as 
+may be revised from time to time. 
+6. Intellectual Property. 
+6 . 1 . Marks. Each Party acknowledges and agrees that the Marks of the other Party and its Affiliates 
+(including, but not limited to, with respect to isolved, isolved® and all messaging and branding, in 
+existence now or in the future, related to the Services) are exclusively owned by such other Party 
+and such other Party retains all right, title and interest in and to all proprietary rights in such Marks 
+and grants no rights therein other than as expressly granted under the Agreement. Each Party 
+grants to the other Party a revocable, non-exclusive, nontransferable, royalty-free license, with no 
+right to sublicense, to use such Party’s Marks for the sole purpose of providing the Service, 
+marketing and selling access to the Services (including to employees of Employe r and other third 
+parties, which rights expressly permit isolved to list Employer’s logos and information on its 
+website) provided, that such use is in conformance with such Party’s trademark and branding 
+policies in place from time to time (which each Party agrees to make available upon request). All 
+goodwill from the use of a Party’s Marks will inure solely to such Party.  
+6 . 2 . Feedback. You expressly acknowledge and agree that all Feedback provided to isolved becomes the 
+sole and exclusive property of isolved, and as between Employer and isolved shall not be treated as 
+Confidential Information. Providing Feedback to isolved does  not and will not grant or give Employer 
+any right title or interest in the Feedback or Services, including but not limited to enhancements, 
+improvements, bug fixes, updates, modifications, derivative works thereof, regardless of media 
+such Feedback is provided in. isolved may use and disclose, perpetually, irrevocably and without 
+restriction of any kind, Feedback in any manner and for any purpose whatsoever without further 
+notice or compensation to Employer and without retention by Employer of any propriet ary or other 
+right or claim. Employer hereby assigns any and all right, title or interest you may have in and to any 
+and all Feedback. 
+7. Fees & Additional Products. 
+7 . 1 . Fees. 
+a. Generally. Employer will timely pay any and all Fees, plus any applicable taxes, calculated in 
+accordance with the applicable Order Form, Statement of Work, Additional Fees or other terms 
+as applicable, or as otherwise agreed upon by the Parties from time to time. isolved may 
+increase Fees after the first twelve (12) months of the Initial Term. 
+b. Implementation Fees. Employer agrees to pay fifty percent (50%) of the implementation fees 
+via ACH or wire within ten (10) business days of signing this Agreement and prior to the start 
+of implementation, and implementation shall only begin once those funds have cleared the 
+isolved bank account. Any remaining implementation fees shall be due upon the availability of 
+Services, or thirty (30) days from the Effective Date, whichever is sooner. isolved reserves the 
+right, at its sole discretion, to collect any outstanding implementation fees on the first billing 
+cycle. Nothwithstanding anything in this provision, where by no fault of isolved, Employer does 
+not complete implementation on any Service (including partial implementation as it relates to 
+bundled Services) within the first twelve (12) months of purchase, isolved may charge an 
+additional implementation fee to begin or otherwise restart implementation on  the 
+outstanding Service (subject to then current availability of Service).  
+c. Unless specifically set forth otherwise in the Order Form or Statement of Work, Employer 
+authorizes isolved to withdraw via bank draft the amount due on all invoices on or after the 
+due date set forth on such invoice. Without limiting the foregoing, isolve d, in its sole 
+discretion, may instead choose to invoice Employer on a monthly basis for all Fees accrued 
+during the preceding month, and the amounts due under such invoice shall be payable by 
+Employer within thirty (30) days after receiving such invoice. Employer acknowledges that 
+certain invoices may be delivered by making them available to Employer via the Software. 
+Upon written notice to the Employer, isolved may charge Employer interest at the rate of 1.5% 
+per month (or the maximum allowed by law if less) on any past due amounts from the due date 
+thereof until the payment date. Fees do not include taxes related to the Services which are 
+the sole obligation of Employer (other than income taxes applicable to isolved related to 
+© 2026 isolved. All Rights Reserved.  
+receipt of the Fees). 
+d. Credit Card Payments. In its sole discretion, isolved may accept credit card payments for 
+some of its provided services. Employer agrees that isolved shall charge an extra 3 -6% for 
+payments made by credit card. 
+7 . 2 . Additional Fees and Expenses. 
+a. Additional Fees. Employer agrees to pay to isolved any additional fees (“Additional Fees”) in 
+accordance with the isolved published Additional Fee Schedule in effect as of the date such 
+Additional Fee is incurred. Additional Fees may include, but are not l imited to, fees for non-
+sufficient funds in an Employer account (NSF), Notification of Change (NOC) charges, wiring 
+fees, stop payment/void check fees, check shipping fees, Employer account changes, 
+signature or logo change fee, late payroll submission fee, zero quarterly report fees, and 
+missing or applied for tax identification numbers. 
+7 . 3 . Expenses. Employer shall reimburse isolved (in the month immediately following the month in which 
+the applicable Fees and expenses are incurred) for all reasonable fees and expenses incurred by 
+isolved pursuant to the isolved Travel and Expense policy, in effect from time to time. Under all 
+possible circumstances, isolved will obtain advanced consent from Employer before incurring any 
+Expenses. 
+7 . 4 . Invoice Review. Employer agrees and acknowledges that it is its responsibility to access and review 
+its invoices as provided through the isolved platform. Employer must notify isolved of any disputed 
+invoice or discrepancy with charges within thirty (30) calendar days of the invoice date. Employer 
+waives its right to dispute an invoice if it does not notify isolved within such time.  
+8. Indemnification. 
+8 . 1 . Employer Indemnity. Employer will indemnify, defend and hold harmless the isolved and its directors, 
+officers, employees, shareholders, members and Affiliates from and against any claim, action, 
+proceeding, loss, expense or damage (including reasonable attorneys’ fees) (“Claims”) alleged to 
+arise out of or related to any of the following acts or omissions of the Employer: (i) any 
+misrepresentations, unauthorized representations or unauthorized warranties made by the 
+Employer or its Affiliates or Users regarding the Services; (ii) any failure by the Employer, its Users or 
+Affiliates to comply with applicable Law, including but not limited to privacy and security laws; (iii) 
+any Claims (as defined below), related to biometric information including but not limi ted Claims 
+related to the improper or unlawful collection, use, storage or disposal of biometric or other 
+protected information (iv) allegations that the Employer’s data infringes or misappropriates a third 
+party’s intellectual property or other rights; (v) any breach of any warranty or obligation of this 
+Agreement; (vi) any personal injury or property damage caused by the Employer; (viii) gross 
+negligence or more culpable act or omission (including recklessness, willful misconduct or fraud) by 
+the Employer, any User, or any third party on behalf of Employer or any User, ( ix) violations of 
+Sections 4.2 (Employer Use of the Service Regarding Compliance with Laws) and 4.3 (Fraudulent 
+Activity) in connection with this Agreement. Each Party acknowledges and agrees that it shall be 
+liable for any act or omission of any of its Affiliates (or Affiliates’ employees, representatives or 
+Users) that if taken by such Party would constitute a breach of the Agreement and that such Party 
+shall take any and all reasonable actions to cause such Affiliates to comply with the covenants and 
+obligations of the Agreement. 
+8 . 2 . isolved Indemnity. isolved will defend, indemnify, and hold Employer, its directors, officers, 
+employees, shareholders, members, and affiliated companies (the “Employer Indemnitees”) 
+harmless from and against any Claims made or brought against Employer Ind emnitees by a third 
+party alleging that the use of any isolved Software or the Services as contemplated under the 
+Agreement and in the applicable Documentation infringes on the U. S. intellectual property rights of 
+a third party (“IP Rights”). isolved may, at its sole option and expense: (a) procure for Employer the 
+right to continue using the Service under the terms of the Agreement; or (b) replace or modify the 
+Service to be non-infringing without material decrease in functionality. If isolved determines that 
+neither (a) or (b) are practical, then isolved may terminate the subscription and access to the 
+affected portion of the Software or Services and refund to Employer the unused portion of the 
+prepaid fees for the affected portion of the Software or Services as of the effective date of 
+termination. Notwithstanding the provisions of this Section 8.2, isolved assumes no liability for 
+infringement claims arising from (w) the combination of any Software or Services with products not 
+provided by isolved, (x) any modification to the isolved Software or Services unless such 
+modification was made by isolved or at the written direction of isolved, (y) compliance with 
+© 2026 isolved. All Rights Reserved.  
+Employer’s design requirements or specifications, or (z) use of the Software or Service not in 
+accordance with the applicable Documentation. THE PROVISIONS OF THIS SECTION 8.2 STATE THE 
+ENTIRE LIABILITY AND OBLIGATIONS OF ISOLVED, AND THE EXCLUSIVE REMEDY OF EMPLOYER, WITH 
+RESPECT TO ANY ACTUAL OR ALLEGED INFRINGEMENT OF ANY PATENT RIGHT, COPYRIGHT, TRADE 
+SECRET, TRADEMARK OR OTHER IP RIGHT. 
+8 . 3 . Claims. The indemnified party will: (a) promptly notify the indemnifying party of any Claim for which 
+it believes it is entitled to indemnification; (b) grant the indemnifying party sole control of the 
+defense of such Claim (provided it agrees to be liable for such indemnity); and (c) provide the 
+indemnifying party with assistance reasonably necessary to perform the above. The indemnified 
+party may, at its option and expense, be represented by separate counsel in any such action. No 
+Party entitled to indemnification hereunder will be subject to the terms of a settlement without 
+such Party’s prior written consent. 
+9. Confidentiality. 
+9 . 1 . Generally. Either Party hereto (a “Disclosing Party”) may, from time to time during the Term, furnish 
+or make available to the other Party hereto (the “Recipient”) certain Confidential Information. As a 
+condition to being provided access to Confidential Information, the Receiving Party shall: (a)not 
+access or use Confidential Information other than as necessary to exercise its rights or perform its 
+obligations under and in accordance with this Agreement; (b)except as may be permitted by and 
+subject to its compliance with legally compelled disclosure as described in Section 9.2, not disclose 
+or permit access to Confidential Information other than to its Representatives who: (i) need to 
+know such Confidential Information for purposes of the Receiving Party’s e xercise of its rights or 
+performance of its obligations under and in accordance with this Agreement; (ii) have been 
+informed of the confidential nature of the Confidential Information and the Receiving Party’s 
+obligations under this Section and (iii) are bound by confidentiality and restricted use covenants at 
+least as protective of the Confidential Information as the terms set forth herein; (c)safeguard the 
+Confidential Information from unauthorized use, access, or disclosure using at least the degree of 
+care it uses to protect its similar sensitive information and in no event less than a commercially 
+reasonable degree of care; and (d)promptly notify the Disclosing Party of any unauthorized use or 
+disclosure of Confidential Information and use its best efforts to cooperate with Disclosing Party to 
+prevent further unauthorized use or disclosure; and (e)ensure its Representatives’ compliance 
+with, and be responsible and liable for any of its Representatives’ non-compliance with, the terms of 
+this Section. Notwithstanding any other provisions of this Agreement, the Receiving Party’s 
+obligations under this Section with respect to any Confidential Information that constitutes a trade 
+secret under any applicable Law will continue until such time, if ever, as such Confidential 
+Information ceases to qualify for trade secret protection under one or more such applicable Laws 
+other than as a result of any act or omission of the Receiving Party or any of its Representatives.  
+9 . 2 . Legally Compelled Disclosure. A Party (the “Compelled Party”) will not be in breach of the 
+Agreement by delivering some or all of the Confidential Information or Personal Information of the 
+other Party to a court, law enforcement officials, governmental ag encies or other third parties as 
+may be required by law. If the Receiving Party or any of its Representatives is compelled by 
+applicable Law to disclose any Confidential Information then, to the extent permitted by applicable 
+Law, the Receiving Party shall: (a) promptly, and prior to such disclosure, notify the Disclosing Party 
+in writing of such requirement so that the Disclosing Party can seek a protective order or other 
+remedy or waive its rights under Section 9.1; and (b) provide reasonable assistance t o the 
+Disclosing Party, at the Disclosing Party’s sole cost and expense, in opposing such disclosure or 
+seeking a protective order or other limitations on disclosure. If the Disclosing Party waives 
+compliance or, after providing the notice and assistance required under this Section 9.2 the 
+Receiving Party remains required by Law to disclose any Confidential Information, the Receiving 
+Party shall disclose only that portion of the Confidential Information that, on the advice of the 
+Receiving Party’s legal counsel, the Receiving Party is legally required to disclose and, on the 
+Disclosing Party’s request, shall use commercially reasonable efforts to obtain assurances from the 
+applicable court or other presiding authority that such Confidential Information will be afforded 
+confidential treatment. 
+9 . 3 . Prior Non-Disclosure Agreement. Any existing non-disclosure agreement entered into by the 
+Parties is hereby superseded and replaced by the terms in this Section 9, which will govern all 
+disclosures and exchanges of Confidential Information made by the Part ies previously under this 
+Agreement. 
+9 . 4 . Data Privacy. isolved shall protect all Personal Information of Employer and its Users input or 
+© 2026 isolved. All Rights Reserved.  
+submitted into the Service, except information input or submitted into community locations or 
+folders under Employer’s or a User’s control, using the same degree of care it uses to protect its 
+own Confidential Information and in compliance with the isolved Data Security Addendum, 
+incorporated hereto as Exhibit C. 
+9 . 5 . Equitable Relief. Each Party agrees that a breach of its obligations in this Section 9 may cause the 
+other harm for which monetary damages would not be adequate compensation and agrees that, in 
+the event of such breach, the other Party is entitled to seek equitable relief, including injunctive 
+relief, in addition to any other remedy available at law or in equity, subject to any express exclusions 
+or limitation in the Agreement. 
+9 . 6 . State-Specific Privacy Provisions – See State-Specific Addendum at Exhibit E. 
+10. Limitation of Damages and Liability. 
+1 0 . 1 . No Consequential or Indirect Damages. EXCEPT FOR OBLIGATIONS TO MAKE PAYMENTS UNDER THIS 
+AGREEMENT OR LOSSES RELATED TO CIRCUMSTANCES DESCRIBED IN SECTION 4.3, IN NO EVENT 
+SHALL EITHER PARTY, ITS REPRESENTATIVES OR AFFILIATES BE LIABLE TO THE OTHER PARTY O R ANY 
+THIRD PARTY FOR CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR 
+ENHANCED DAMAGES OR LOST PROFITS OR REVENUES, INTERRUPTION OF BUSINESS, LOST DATA, 
+OR DIMINUTION IN VALUE, ARISING OUT OF, RELATING TO, OR IN CONNECTION WITH ANY BRE ACH OF 
+THIS AGREEMENT, REGARDLESS OF (A) WHETHER SUCH DAMAGES WERE FORESEEABLE, (B) 
+WHETHER OR NOT A PARTY WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND (C) THE 
+LEGAL OR EQUITABLE THEORY (CONTRACT, TORT, OR OTHERWISE) UPON WHICH THE CLAIM IS 
+BASED. ISOLVED SHALL NOT BE LIABLE DIRECTLY OR INDIRECTLY FOR ANY EMPLOYER FAILURE TO 
+COMPLY WITH THE TERMS OF THIS AGREEMENT. 
+1 0 . 2 . Limitation of Liability. EXCEPT FOR OBLIGATIONS TO MAKE PAYMENTS UNDER THIS AGREEMENT, 
+LOSSES RELATED TO CIRCUMSTANCES DESCRIBED IN SECTION 4.3, IN NO EVENT SHALL EITHER 
+PARTY’S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER 
+ARISING OUT OF OR RELATED TO BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE) OR 
+OTHERWISE, EXCEED AN AMOUNT EQUAL TO THE TOTALAMOUNT ACTUALLY PAID BY THE 
+EMPLOYER UNDER THE APPLICABLE ORDER FORM IN THE TWELVE (12) MONTH PERIOD IMMEDIATELY 
+PRECEDING THE FIRST EVENT GIVING RISE TO LIABILITY. THE EXISTENCE OF MORE THAN ONE CLAIM 
+SHALL NOT ENLARGE THIS LIMIT. 
+11. Miscellaneous 
+1 1 . 1 . Entire Agreement. The Parties agree that the Agreement, together with the Order Form and any 
+exhibits, schedules or attachments thereto, made between Employer and isolved whether by 
+execution of such documents by both Parties or incorporated by reference, as amended from time 
+to time consistent with the terms thereof, constitutes the complete and exclusive understanding 
+and statement of the terms and conditions relating to the Services, and constitute one single 
+agreement between the Parties. If any conflict exists between these Terms and Conditions and the 
+Order Form, the Order Form shall control. This Agreement cannot be altered, amended or modified 
+except in writing executed by each Party. The waiver of, or failure to exercise any rights under the 
+Agreement will not be deemed a waiver of any right under the Agreement, except to the extent in a 
+writing executed by such Party. If any provision of the Agreement is held invalid or unenforceable by 
+any court or agency of competent jurisdiction, it will be severed, and the remaining terms of the 
+Agreement shall remain in full force and effect. 
+1 1 . 2 . Choice of Law. The Agreement and its subject matter will be construed and enforced in accordance 
+with the laws of the State of North Carolina without regard for its choice of law provisions. Any 
+dispute must be litigated in the state or federal courts located in Mecklenburg County, North 
+Carolina to whose exclusive jurisdiction the Parties hereby consent. For purposes of establishing 
+jurisdiction in North Carolina under this Agreement, each Party hereby waives, to the fullest extent 
+permitted by applicable law, any claim that: (i) it is not personally subject to the jurisdiction of the 
+court; (ii) it is immune from any legal process with respect to it or its property; and (iii) any suit, 
+action or proceeding is brought in an inconvenient forum. In the event any proceedings, or legal 
+action is brought by either Party against the other arising out of or in connection with the 
+Agreement, the prevailing Party will be entitled to recover its costs and reasonable attorney’s fees. 
+Each Party waives its right to a trial by jury for all matters or disputes arising from this Agreement.  
+1 1 . 3 . Assignment. isolved will have the right to assign its rights under this Agreement to any third party 
+provided isolved gives notice to Employer of such assignment within sixty (60) days of such 
+© 2026 isolved. All Rights Reserved.  
+assignment. isolved may assign any or all of its rights under this Agreement or delegate its 
+obligations, in whole or in part, to any Affiliate of isolved without notice. Employer may not assign 
+any of its rights under this Agreement or delegate any of its obligations to any third party without 
+the prior written consent of isolved, which consent shall not be unreasonably withheld, conditioned, 
+or delayed. For purposes hereof, a change in control of more than fifty percent (50%) of Employer’s 
+ownership (or its parent company’s ownership), whether by merger, sale of equity securities or 
+otherwise, will constitute an assignment of this Agreement by Employer. isolved has no obligation 
+to any third party (including, without limitation, Employer’s employees and/or  any taxing 
+authorities) by virtue of this Agreement. Any purported assignment or delegation in violation of this 
+Section shall be null and void. No assignment or delegation shall relieve the assigning or delegating 
+Party of any of its obligations hereunder unless the non-assigning or non-delegating Party enters a 
+novation releasing the assigning or delegating Party of its obligation under the Agreement.  
+1 1 . 4 . Relationship of Parties. isolved is an independent contractor and not an employee, partner or agent 
+of Employer, and the employees of Employer are not entitled to any of the benefits of employment 
+granted by isolved to its own employees. Neither Party will have any authority to enter into any 
+contract or other agreement on behalf of the other Party. Nothing in the Agreement creates or will 
+be deemed to create third party beneficiaries of or under the Agreement. isolved has no obligation 
+to any third party (including, without limitation, Employer’s employees and/or any taxing 
+authorities) by virtue of this Agreement or provision of the Services.  
+1 1 . 5 . Force Majeure. Any Party hereto will be excused from performance under the Agreement for any 
+period of time that the Party is prevented from performing its obligations under the Agreement as a 
+result of an act of God, war, pandemic, earthquake, civil disobedience, court order, criminal acts, 
+distributed denial of service attacks, utility or communication failures, labor dispute, or other cause 
+beyond the Party’s reasonable control. In the event of a change to any Law affecting the Services, 
+notwithstanding Section 2.3, isolved may modify the Services (the “Modified Services”) to the 
+extent reasonably necessary to address such changes upon reasonable prior notice to Employer 
+(which may include adjustment to the Service Fees applicable to the Service); provide d, that 
+Employer shall have the right, without it constituting a breach of this Agreement, to terminate the 
+Modified Service(s) , by delivery of written notice to isolved within thirty (30) days of the date that 
+Employer receives notice of such Modified Services, with such termination to be effective thirty 
+(30) days after delivery of such termination notice and, unless it would constitute a vio lation of the 
+Law, during such period the Service Fees shall remain unchanged.  
+1 1 . 6 . Notices. Each Party shall deliver all notices, requests, consents, claims, demands, waivers, and 
+other communications under this Agreement (each, a “Notice”) in writing and addressed to the 
+other Party at its address set forth on the Order Form. Each Party shall deliver all Notices by 
+personal delivery, nationally recognized over- night courier (with all fees prepaid), email (in each 
+case, with confirmation of transmission), or certified or registered mail (in each case, return receipt 
+requested, postage prepaid). Except as otherwise provided in this Agreement, Notice is effective 
+only (a) upon receipt by the receiving Party and (b) if the Party giving the Notice complied with the 
+requirements of this Section. For the avoidance of doubt, all notices required  or permitted under 
+this Agreement shall be sent to isolved as follows: TO: isolved inc.: 11215 N. Community House Rd. 
+Suite 800 Charlotte, NC 28277 Attn: Chief Legal Officer. Email address for Notices: 
+legal@isolvedhcm.com 
+1 1 . 7 . Administrative Corrections. To the extent that such actions do not materially impact the terms of 
+the Agreement or the intentions of the Parties at the time the Agreement or any Documentation 
+associated therewith was executed, the Parties agree to cooperate with each other to correct any 
+typographical, clerical or scrivener’s error or omissions in the contents of the Documentation. The 
+Parties agree that such corrections are intended solely to address minor errors understood by both 
+Parties as such, and that any correction of same shall not constitute a reformation or formal 
+amendment of the Agreement but will be acknowledged in writing by both Parties. The Parties agree 
+that nothing in this Section shall modify Employer’s obligations in any other Section of  this 
+Agreement. 
+1 1 . 8 . Further Assurance. (a)Each of the Parties hereto shall use commercially reasonable efforts to, and 
+shall cause its respective Affiliates to use their commercially reasonable efforts to, from time to 
+time at the request of the other Party, without any additional consideration, furnish the other Party 
+such further information or assurances, execute and deliver such additional documents, 
+instruments and conveyances, and take such other actions, as may be reasonably necessary or 
+appropriate in the opinion of counsel to the requesting Party to carry out the provisions of this 
+Agreement. (b) On an annual basis and whenever reasonable grounds for insecurity arises with 
+© 2026 isolved. All Rights Reserved.  
+respect to representations herein made by Employer or related to any of its employees, vendors or 
+Affiliates, isolved may in writing demand adequate assurance of compliance with the Law and 
+eligibility of Users, proof of any authorizations necessary for the lawful provision by isolved of the 
+Services, and until such assurance is received by isolved, it may, if commercially reasonable, 
+suspend its performance hereunder, and such suspension shall not be considered a breach by 
+isolved of this Agreement. 
+Exhibit A 
+Definitions 
+“Additional Fees” means fees, in addition to those on the Order Form, for which isolved may charge Employer 
+based on additional costs to isolved caused by Employer. Additional Fees include Non -Sufficient Fund Fees 
+(“NSF”) resulting from Employer’s overdrawn or underfunded bank account, Notification of Change (“NOC”) 
+charges imposed for the change (by Employer) of information related to Employer’s account, wiring fees, stop 
+payment/void check fees, check shipping fees, Employer account changes, signature or logo change fee, late 
+payroll submission fee, zero quarterly report fees, and missing or applied for tax identification numbers. The 
+then current isolved Additional Fees schedule is available upon request.  
+“Agent” means a person empowered by applicable law to act on behalf of a Party. Agent may also be a Contact 
+or administrator of a Client/Employer/Company account. 
+“Affiliate” means, when used with respect to a Party, any partnership, corporation, limited liability company or 
+other legal entity that either directly or indirectly, through one or more intermediaries, controls, is controlled by, 
+or is under common control with, the specified Party. The term “control” (including the terms “controlled by” 
+and “under common control with”) means the possession, directly or indirectly, of the power to direct or cause 
+the direction of the management and policies of a Party, whether through the ownership of voting securities, by 
+contract or other-wise. 
+“Agreement” means these Terms and Conditions, together with the Order Form and any associated Exhibits 
+and Addenda, including but not limited to any Service Summary, Service Terms, Statements of Work, inclusive 
+of the exhibits or schedules thereto, made between Employer and isolved whether by execution of such 
+document by both Parties or incorporated by reference, as amended from time to time consistent with the 
+terms thereof. The Agreement is part of the Documentation.  
+“Client” means Employer, the authorized representative employee of Employer, or other authorized agent, 
+acting as a point of contact and administrator of Employer’s account,  
+“Company” refers to Employer entity or entities, which will be in receipt of the Services identified in the 
+Agreement and Documentation, on behalf of which Contacts or Agents as identified in the Documentation act.  
+“Confidential Information” means non-public information regarding a Party’s business, including but not limited 
+to sales and marketing plans and strategies, future product and service plans, price lists, financial and business 
+information, trade secrets, customer lists, financial plans and data, balance sheet information, customer 
+information, hardware, software, or product information, including any and all software of isolved, non -public 
+isolved Product information, and the terms of the Agreement will be deemed Confidential Information; provided 
+however, that the term Confidential Information will not include information which (a) constitutes Personal 
+Information input or sub- mitted by Employer or any User in locations within the Service under Employer or  User 
+control, including community locations and folders, (b) becomes generally available to the public in any manner 
+or form through no fault of the Recipient or its employees, independent contractors, agents or representatives, 
+(c) is independently known or developed by Recipient without benefit of the Confidential Information, (d) is 
+rightfully received from another source on a non-confidential basis, (e) is released for disclosure with the 
+Disclosing Party’s prior written consent and (f) deidentified or aggregated information. Confidential Information 
+includes any SOC audit documentation provided pursuant to the Documentation.  
+“Customer” or “customer” means the counterparty to an Agreement or Documentation with isolved. See also 
+definition for Employer herein. 
+“Direct Competitor” means a third party (other than an Affiliate of Employer) that is engaged in the business of 
+providing human capital management services or solutions to employers, including but not limited to payroll, 
+tax filing, COBRA or other benefit administration services. 
+“Documentation” means all documentation capturing how the Parties intend for the Services to be provided. It 
+includes the Agreement, the Order Form, authorizations, Implementation Guide/Kit, diligence documents, and 
+schedules or addenda that contain terms, conditions, covenants, representations or manifestations of the 
+understanding between the Parties for the provision of the Services.  
+© 2026 isolved. All Rights Reserved.  
+“Effective Date” means the date the Order Form is executed by Employer and isolved or, if stated, such other 
+start date or effective date stated in the Order Form. 
+“Employees” means employees, contractors, consultants or other individuals, end users or Users of Services as 
+provided to Employer and related to this Agreement and the Documentation.  
+“Employer” refers to the Customer subscribing to the Services and a Party to this Agreement, who will be in 
+receipt of the Services identified in the Agreement and Documentation.  
+“Equipment” refers to any hardware or device provided by isolved to Employer for use relative to the Services, 
+including but not limited to, time clocks. 
+“Fees” means, collectively, any Service Fees, Additional Fees, or any other fees due under the Agreement.  
+“Information Security Incident” means confirmed unauthorized access to and acquisition of unencrypted or 
+unredacted Personal Information provided by Employer in connection with the Services and while in the 
+possession of isolved during the Term of this Agreement and as determined by applicable law. 
+“isolved” means the isolved entity that executed the Agreement.  
+“isolved Data Security Addendum” means the isolved Data Security Addendum available as an exhibit hereto 
+where applicable. 
+“Law” means any statute, law, ordinance, regulation, rule, code, order, constitution, treaty, common law, 
+judgment, decree, or other requirement of any federal, state, local, or foreign government or political 
+subdivision thereof, or any arbitrator, court, or tribunal of competent jurisdiction. 
+“Malicious Code” means viruses, worms, time bombs, Trojan horses and other harmful or malicious code, files, 
+scripts, agents or programs. 
+“Marks” means a Party’s names, trademarks, service marks, trade dresses, tradenames, brand names, designs, 
+logos or corporate names, whether registered or unregistered, and all goodwill associated therewith.  
+“Parties” means collectively Employer and isolved, and each is a “Party.”  
+“Personal Information” means information that identifies a particular individual and the storage, use and 
+protection of such information is defined by applicable law. “Personal Information” does not include encrypted, 
+deidentified or aggregated information. 
+“Service” or “Services” means the services and functionalities provided by isolved to its customers through the 
+hosted, on-demand, cloud-based isolved® platform, as provided in the Documentation, and including any and 
+all updates thereto from time to time. 
+“Software” means any software program(s) through which the Service will be provided.  
+“Statement of Work” means any Statement of Work between Employer and isolved, setting forth in detail the 
+work, services, and deliverables to be provided by isolved in respect of any professional services work. Not all 
+Agreements will include a Statement of Work. 
+“Users” means Employer’s Employees, agents, contractors, consultants or other individuals who reasonably 
+have a need to access the Service and are authorized by Employer (subject to approval by isolved) to use the 
+Service on Employer’s behalf. 
+“Version” isolved updates the forms of documentation from time to time. “Version” refers to the edition or 
+specific expression of a document among the Documentation that is applicable to a specific Agreement.  
+Exhibit B 
+Eligibility Requirements 
+Eligibility Requirements as described in the Terms and Conditions and mentioned elsewhere in the Agreement 
+or Documentation refers to actual and discretionary criteria that renders the provision of Services to Employer 
+possible, ethical and commercially reasonable. 
+Services are available only for as long as Employer and Users meets the isolved Eligibility Requirements. Those 
+Eligibility Requirements include, but are not limited to: 
+1. Employer is not seeking Services outside the United States. 
+© 2026 isolved. All Rights Reserved.  
+2. Users are not outside the United States. 
+3. Neither Employer nor or its affiliates are engaged, directly or indirectly, in a business, enterprise or other  
+acts or omissions that would limit banking or other regulated service part of or ancillary to the isolved  
+Services described in the Agreement. Such businesses or enterprises may include, but are not limited to, 
+cannabis related businesses (also known as “CRB”) or certain gambling.  
+4. Neither Employer nor its affiliates are engaged in a business, enterprise or other acts or omissions that 
+might jeopardize relationships isolved has with third parties. Such activities could include, but are not 
+limited to, criminal enterprises, which could result in loss of business to isolved, irreparable reputational 
+harm to isolved or loss of critical vendor relationships. 
+Should the nature or any specific aspect of these Eligibility Requirements materially change, isolved will 
+inform Employer as soon as practicable. For the avoidance of doubt, Eligibility Requirements may be updated 
+without prior notice to Employer. 
+Exhibit C 
+isolved Data Security Addendum 
+This isolved Data Security Addendum governs isolved data privacy and security obligations in connection with 
+any Personal Information of Employer that may be in isolved custody or under isolved control during 
+performance of the Service. 
+1. Information Security Measures 
+1 . 1 . Compliance with Laws. isolved will use commercially reasonable efforts to comply with applicable 
+data privacy and data security laws. 
+1 . 2 . Security Standards. isolved has and will maintain commercially reasonable technical and 
+organizational measures designed to 
+a. provide for the security of Employer’s Personal Information in isolved’s custody or under the 
+control of isolved and (b) ensure the ongoing confidentiality, integrity, and availability of 
+processing systems and the Service. Such measures include procedures  to protect the 
+confidentiality and security of Personal Information in isolved’s custody and to detect and 
+respond to Information Security Incidents. isolved may undertake such measures as 
+reasonably appropriate: implement access controls to Personal Information systems, 
+including controls to identify and permit access only to authorized individuals and controls 
+designed to prevent access to Personal Information through fraudulent means; (ii) implement 
+employee training programs and background checks; (iii) implement encryption of Personal 
+Information when reasonably necessary and (iv) implement commercially reasonable disaster 
+recovery and business continuity process and procedures. 
+1 . 3 . Disclosure. isolved will limit access to Personal Information to persons who, in the reasonable 
+discretion of isolved, have a need to know the Personal Information in connection with performance 
+by isolved of the Service. Nothing in this isolved Data Security Addendum shall limit the ability of 
+isolved to make disclosures reasonably required or helpful for (i) compliance by isolved with 
+applicable Law; (ii) establishing or maintaining a legal claim or defense; (iii) responding to a 
+government or other regulatory inquiry; (iv) obtaining or establishing an insurance policy or claim; or 
+(v) as otherwise necessary to comply with this isolved Data Security Ad dendum. 
+1 . 4 . Subcontractor Compliance. Prior to providing access to Personal Information to any third -party 
+service provider, isolved will: (i) conduct a reasonable investigation of such third party to ensure 
+that the third party is capable of complying with requirements regarding the privacy, confidentiality 
+and security of Personal Information that are at least as protective of Personal Information as the 
+requirements imposed on isolved under this isolved Data Security Addendum and (ii) contractually 
+impose upon such a third party the same or substantially similar contractual duties imposed on 
+isolved by this isolved Data Security Addendum. 
+2. Information Security Incident Response 
+2 . 1 . Notice of Unauthorized Access to Personal Information. isolved will notify Employer of any 
+Information Security Incident as soon as reasonably practical after isolved confirms the Information 
+Security Incident, and as required by applicable law. 
+© 2026 isolved. All Rights Reserved.  
+2 . 2 . Incident Response Mitigation. In the event of an Information Security Incident, isolved will (i) 
+conduct a reasonable investigation of the Information Security Incident; (ii) to the extent that the 
+Information Security Incident was solely caused by isolved, use commercially reasonable efforts 
+and take actions to rectify, prevent, contain, mitigate, and remediate the Information Security 
+Incident; and (iii) take any and all steps reasonably necessary to comply with applicable privacy 
+laws and regulations. 
+Exhibit D 
+Time and Attendance Applications Addendum 
+1. This addendum to the Agreement (“Time Addendum”) is applicable to isolved Time and Attendance 
+applications named in the Order Form. 
+2. NOTICE: EMPLOYERS USING ISOLVED TIME AND ATTENDANCE EQUIPMENT MAY WISH TO CONSULT WITH 
+LEGAL COUNSEL TO DETERMINE WHAT OBLIGATIONS THEY MAY HAVE TO EMPLOYEES USING SUCH 
+DEVICES. ALTHOUGH ISOLVED FERVENTLY BELIEVES THAT ITS TIME AND ATTENDANCE EQUIPMENT DOES 
+NOT USE, COLLECT OR STORE BIOMETRIC DATA, EMPLOYER MAY WISH, OUT OF AN ABUNDANCE OF 
+CAUTION, TO TAKE PREVENTATIVE MEASURES TO COMPLY WITH APPLICABLE LAW.  
+3. SPECIAL TERMS OF USE. 
+3 . 1 . EMPLOYER AGREES TO OBTAIN INFORMED CONSENT FROM AND TO MAKE ANY AND ALL 
+DISCLOSURES AND OF ANY KIND WHATSOEVER AS REQUIRED BY LAW TO ALL USERS OF THE TIME 
+AND ATTENDANCE EQUIPMENT. 
+3 . 2 . EMPLOYER UNDERSTANDS THAT SUCH INFORMED CONSENT, DISCLOSURES AND COMPLETE 
+COMPLIANCE BY EMPLOYER WITH APPLICABLE LAW IS A CONDITION FOR USING TIME AND 
+ATTENDANCE EQUIPMENT. 
+3 . 3 . EMPLOYER IS SOLELY RESPONSIBLE FOR INDEPENDENTLY DEVELOPING AND IMPLEMENTING ANY 
+AND ALL BIOMETRIC DATA AND INFORMATION CAPTURE, USE, RETENTION OR DESTRUCTION 
+POLICIES AND PROCEDURES THAT MAY BE REQUIRED BY LAW.  
+3 . 4 . EMPLOYER AGREES TO DISCLOSE TO AND INFORM ALL USERS OF THE TIME AND ATTENDANCE 
+EQUIPMENT THAT IF FOR ANY REASON ISOLVED WERE TO RECEIVE BIOMETRIC INFORMATION, IT 
+WOULD DELETE IT IMMEDIATELY. ISOLVED COMPLIES WITH APPLICABLE RETENTION AND 
+DESTRUCTION REQUIREMENTS AS DEFINED BY LAW. NEITHER ISOLVED NOR THE TIME AND ATTEN -
+DANCE EQUIPMENT COLLECT, CAPTURE, POSSESS, PURCHASE, RECEIVE, OBTAIN, USE OR STORE 
+ANY BIOMETRIC INFORMATION OR DATA DEFINED BY LAW. FURTHERMORE, ISOLVED DOES NOT SELL, 
+LEASE, TRADE OR OTHERWISE PROFIT FROM ANY INFORMATION, BIOMETRIC OR NOT, IT MAY 
+RECEIVE FROM EMPLOYERS. 
+4. Access Rights to Time and Attendance Applications. 
+4 . 1 . Employer will have internet access to the Time and Attendance application(s) indicated in the Order 
+Form into which the Agreement is incorporated by reference. 
+4 . 2 . Employer will have access to the Time and Attendance Service, the website at which it is available 
+(the “Website”), the software on the Website (“Software”) and related materials made available as 
+part of the Time and Attendance Service by isolved. isolved grants Employer a non-exclusive, non-
+transferable license, during the Term of the Agreement, to use the Time and Attendance Service for 
+Employer’s own internal business purposes. Employer acknowledges and agrees that the Time and 
+Attendance Service, Website, Software and materials that are made available as part of the Time 
+and Attendance Service may be updated and changed from time to time, in the sole discretion of 
+isolved. Employer’s continued use of the Time and Attendance Service after isolved posts a ny 
+changes will constitute Employer’s acceptance of such changes.  
+4 . 3 . EMPLOYER MAY NOT LEASE OR DISTRIBUTE THE SOFTWARE, ANY COPY, OR ANY RELATED WRITTEN 
+MATERIALS IN WHOLE OR IN PART. EMPLOYER MAY NOT USE THE SOFTWARE TO CONDUCT ANY 
+SERVICE FOR THIRD PARTIES (I.E., TO PROCESS THIRD PARTY INFORMATION THROUGH THE 
+SOFTWARE) UNLESS SEPARATELY LICENSED TO DO SO BY ISOLVED IN WRITING. ANY USE OF THE 
+SOFTWARE OR TIME AND ATTENDANCE EQUIPMENT, EXCEPT AS EXPRESSLY PERMITTED IN THIS 
+AGREEMENT, MAY SUBJECT EMPLOYER TO CIVIL DAMAGES AND ATTORNEY’S FEES AND IS A 
+CRIMINAL OFFENSE. 
+© 2026 isolved. All Rights Reserved.  
+5. Biometric Information. 
+5 . 1 . Some models of isolved time clocks use a touchpad feature which allows punching with the scan of 
+a finger. In connection with these clocks, isolved does not collect, store, or share any biometric 
+information. 
+6. Subscription Service Plan. 
+6 . 1 . If Employer is subscribing to Time and Attendance Service, a Service Plan is included in the 
+subscription Fee. If Employer is renting Time and Attendance Equipment a Service Plan is included in 
+Employer’s rental Fee. If Employer is purchasing Time and Attendance Equipment a Service Plan is 
+not included in the purchase price of Employer’s Time and Attendance Equipment; however, 
+Employer may purchase a Service Plan for which Employer will be billed separately from the 
+purchase price of the Time and Attendance Equipment. If Employer has a Service Plan, Employer’s 
+rights and isolved obligations under the Service Plan shall be governed by this Section. 
+6 . 2 . Technical Support. Employer will have access to isolved online support center at https://www.my -
+timeforce.com/support, which contains a document library, videos, downloads and updates, and 
+answers to frequently asked questions. Employer will have unlimited technical support Monday 
+through Friday 6:00 am to 6:00 pm (Mountain Time) by telephone (toll free (800) 697 -7010) and 
+email (tech@isolvedhcm.com). Employer will have unlimited technical support by chat Monday 
+through Friday 7:30 am to 3:00 pm (Mountain Time). 
+6 . 3 . Software Updates. Employer will receive all standard updates to the Software.  
+6 . 4 . Time and Attendance Equipment Repair Services. If a unit of Time and Attendance Equipment 
+becomes inoperable, isolved will repair or replace the unit as provided by this Section; provided, 
+however, that isolved agrees to perform only those repairs involvin g worn or failing Time and 
+Attendance Equipment components that have failed during ordinary use of the Time and  
+6 . 5 . Attendance Equipment under normal operating conditions. isolved will first attempt to repair the 
+unit by remote troubleshooting with the assistance of Employer’s personnel, whether by phone, 
+email, or live chat. If a repair cannot be made remotely, Employer must ship the unit, at Employer’s 
+sole expense, to isolved. isolved will attempt to repair the unit. If the unit cannot be repaired, isolved 
+will replace the unit with a refurbished or new unit, at the sole discretion of isolved. The obligations 
+of isolved under this section do not cover Excluded Repairs. “Excluded Repairs” includes repair or 
+damage caused by accident, disaster (which includes but is not limited to fire, flood, water, wind, 
+earth movement, and/or lightning), neglect, power transients, abuse or misuse, the failure of 
+Employer or anyone using the Time and Attendance Equipment to follow manufacturer’s published 
+operating instructions, or unauthorized modifications or repair of Time and Attendance Equipment 
+by persons other than authorized representatives of isolved. Nor will isolved obligations under this 
+section include electrical work external to the Time and Attendance Equipment or maintenance of 
+accessories, attachments, or other devices not furnished by isolved.  
+7. Purchased Time and Attendance Equipment. This section applies if Employer is purchasing Time and At -
+tendance Equipment through the Agreement. 
+7 . 1 . Transportation Charges, Title and Risk of Loss. Unless otherwise specifically accepted by isolved in 
+writing: (a) all transportation charges shall be paid by Employer; (b) insurance charges and other 
+applicable charges shall be borne by Employer; (c) title shall pass upon receipt of payment in full by 
+isolved; and (d) risk of loss shall pass to Employer upon delivery by isolved to a carrier at the 
+shipping point. isolved does not ordinarily, but may, if requested in writing by Employer and at 
+Employer’s sole expense, place insurance on a shipment as nearly as possible in accordance with 
+Employer’s written instructions, but in each such case isolved acts only as agent for Employer, and 
+isolved assumes no liability whatsoever as a result of making such insuran ce arrangements. 
+7 . 2 . Taxes. Unless otherwise indicated in the Agreement, all prices and charges are exclusive of excise, 
+sales, use, property, or like taxes. If any such taxes must be paid by isolved or if isolved is liable for 
+the collection of such tax, the amount thereof shall be in addition to the amounts for the items sold. 
+Employer agrees to promptly pay all such taxes or to reimburse isolved for them upon receipt of 
+isolved’s invoice. If Employer claims exemption from any sales, use or other tax, Employer shall  
+timely provide to isolved an exemption certificate or other valid proof of exemption and shall 
+indemnify and hold harmless isolved from and against any such tax, together with any interest or 
+penalties thereon which may be assessed if the Time and Attendan ce Equipment is held to be 
+taxable. 
+© 2026 isolved. All Rights Reserved.  
+7 . 3 . Maintenance and Disclaimer of Warranties. isolved is selling the Time and Attendance Equipment to 
+Employer “AS-IS” AND isolved MAKES NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING 
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR  
+PURPOSE. The purchase price of the Time and Attendance Equipment includes set -up and 
+configuration assistance for a period of thirty (30) days after Employer’s purchase of the Time and 
+Attendance Equipment. Unless Employer purchases a Service Plan,  
+Employer is required at Employer’s cost to keep the Time and Attendance Equipment in good 
+working condition and to pay for all supplies and repairs. If Employer purchases a Service Plan, 
+isolved will provide Employer with the maintenance and service included in the Service Plan as 
+described above. If Employer purchases a maintenance or service plan from a third-party provider, 
+Employ- er agrees that isolved is not responsible to provide the maintenance or service and 
+Employer will make all claims related to maintenance and service to the third party. Employer agrees 
+that any claims related to maintenance or service will not affect Employer’s obligation to pay all Fees 
+when due. 
+7 . 4 . Returns. ALL SALES OF TIME AND ATTENDANCE EQUIPMENT ARE FINAL. No Time and Attendance  
+Equipment will be accepted for return without prior written approval of an executive level employee 
+of isolved, which approval shall be in the sole discretion of isolved. All properly approved returns are 
+subject to a restocking charge. isolved reserves the right, at its sole discretion, to refuse the return 
+of any Time and Attendance Equipment for credit. If approval is granted, Employer agrees to pay a 
+twenty five percent (25%) restocking charge on all Time and Attendance Equipment re - turned; 
+provided such returned items are in the original package or crate when received. Authorized returns 
+must be shipped prepaid to the isolved address provided upon receipt of authorization and must be 
+insured at the expense of the Employer. isolved shall not be responsi ble for Time and Attendance 
+Equipment damaged or lost in-transit during any return. 
+7 . 5 . Resale of Time and Attendance Equipment. Employer agrees to provide isolved with a right of first 
+refusal to re-purchase their Time and Attendance Equipment at a commercially reasonable price, to 
+be determined completely and solely by isolved, upon the Employer’s decision to sell or dispose of 
+any Time and Attendance Equipment purchased from isolved. If isolved chooses to not exercise the 
+purchase right, Employer agrees to delete any and all data stored on the Time and Attendance 
+Equipment before dispossessing itself of or disposing of the Time and Attendance Equipment. 
+Employer, and not isolved, will be exclusively responsible for any and all loss or liability associated 
+directly or indirectly with any claim, lawsuit, penalties or fines related to any Time and Attendance 
+Equipment not in possession of isolved. 
+7 . 6 . Any rights not expressly granted herein are reserved by isolved.  
+Exhibit E 
+California Privacy Addendum 
+This California Privacy Addendum (“Addendum”) is made pursuant to the terms of the California Privacy Rights 
+Act of 2020 (“CPRA”). The following terms apply to the Agreement into which this Addendum is incorporated, as 
+related to the data and information of California residents (“California Consumers”): 
+1. isolved does not sell personal information of California Consumers.  
+2. isolved will only share or disclose the personal information of California Consumers for the limited and 
+specific purposes of providing the Services (as defined in the Agreement), except as required by law.  
+3. isolved will is obligated to comply with the CPRA of and will require from its service providers involved in 
+the provision of the Services the same level of privacy protection as required by the CPRA.  
+4. Employer (as defined in the Agreement) may take reasonable and appropriate steps to help ensure that 
+isolved uses the personal information of California Consumers in a manner consistent with the 
+Employer’s obligations under the CPRA. 
+5. isolved must notify the Employer if isolved determines that it can no longer meet the obligations 
+contained in Addendum and any other applicable requirements under the CPRA.  
+6. isolved grants the Employer the right to take reasonable and appropriate steps to stop and remediate 
+unauthorized use of the personal information of California Consumers.  
+© 2026 isolved. All Rights Reserved.  
+The isolved Privacy Policy can be found at the following link: https://www.isolvedhcm.com/legal/privacy -policy. 
+CPRA resources may be found at the following link: https: /oag.ca.gov/privacy/consumer -privacy-resources. 
+Exhibit F 
+Data Integration Acknowledgement 
+The Parties agree to and acknowledge the following: 
+1. isolved will establish various methods for transferring Employer’s data to and from isolved as may be 
+reasonably required by isolved to perform the Services in connection with the Agreement. Employer shall 
+use the method(s) established by isolved, which may include the use of third-party systems (the “Third-
+Party Systems”) to integrate with, or otherwise transfer such data to or from the isolved Platform. 
+Employer shall furnish such data in a timely manner as reasonably required by isolved to satisfy its 
+obligations under the Agreement. isolved shall have no liability for issues that may arise as a result of 
+Employer failing to timely provide isolved with required or inaccurate information. The data to be 
+transferred to and from isolved using the Third-Party Systems includes, but is not limited to, metrics, 
+aggregations, metadata, employee information, pay information, employee benefit information, or other 
+sensitive information which can be highly confidential. This data may be shared as necessary with 
+relevant requested third parties to facilitate your Services through the Platform.  
+2. isolved makes no warranties, guarantees, or representations regarding any third -party’s use, retention, 
+or security of the shared data. isolved assumes no responsibility and is not liable for any erroneous data a 
+third-party may send to the isolved database on Employer’s behalf, whether such errors were caused by 
+Employer or the third party or the continuing compatibility and stability of any integration or interface 
+with Third-Party Systems. 
+3. Employer represents and warrants that any information it provides to isolved using a Third -Party System 
+has been reviewed by Employer and is accurate. 
+4. isolved shall have no responsibility or obligation to review any such information provided by Employer 
+using a Third-Party System, and isolved shall have no liability for any such inaccuracies or other issues 
+that may arise as a result of Employer’s use of such Third-Party System. isolved shall accept all data from 
+Employer as-is and will assume that it is correct, complete, and accurate unless Employer promptly 
+notifies isolved of any such inaccuracies. 
+5. Employer agrees and acknowledges that it is responsible for ensuring that all data has been successfully 
+transferred to isolved, and that it must promptly notify isolved if such transfer of data failed or was 
+incomplete or inaccurate. 
+6. Employer agrees and acknowledges that it assumes all responsibility and liability for its use of any Third -
+Party System to share data with isolved. 
+7. Employer acknowledges that it has or will obtain any required agreements with such third parties as 
+necessary to use such Third- Party Systems to share data with isolved. 

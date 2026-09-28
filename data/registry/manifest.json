@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-28T00:20:27+00:00",
+  "fetched_at": "2026-09-28T02:33:08+00:00",
   "pages": {
     "il_icc_ares": {
       "url": "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx",
@@ -188,6 +188,114 @@
       "error": null,
       "bytes": 47964,
       "text_chars": 30046
+    },
+    "ukg_terms": {
+      "url": "https://www.ukg.com/terms-of-use",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 302816,
+      "text_chars": 33931
+    },
+    "ukg_acceptable_use": {
+      "url": "https://www.ukg.com/policies/acceptable-use",
+      "status": 403,
+      "error": "HTTP 403",
+      "fetched_at": "2026-09-28T02:33:08+00:00"
+    },
+    "ukg_legal": {
+      "url": "https://www.ukg.com/legal",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 292518,
+      "text_chars": 18984
+    },
+    "nerc_ultipro_board": {
+      "url": "https://recruiting.ultipro.com/NOR1051NAER/JobBoard/ba2b3e29-74c9-419d-8370-c92c1cbb838a",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 435286,
+      "text_chars": 1054
+    },
+    "ultipro_robots": {
+      "url": "https://recruiting.ultipro.com/robots.txt",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 144,
+      "text_chars": 144
+    },
+    "paylocity_text_terms": {
+      "url": "https://recruiting.paylocity.com/recruiting/textTermsAndFaq.htm",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 11221,
+      "text_chars": 8180
+    },
+    "paylocity_terms": {
+      "url": "https://www.paylocity.com/terms-and-conditions/",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 1290,
+      "text_chars": 0
+    },
+    "wecc_paylocity_board": {
+      "url": "https://recruiting.paylocity.com/recruiting/jobs/All/de2bf5e8-555f-4abc-beff-5806c9378455/Western-Electricity-Coordinating-Council",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 28961,
+      "text_chars": 696
+    },
+    "paylocity_robots": {
+      "url": "https://recruiting.paylocity.com/robots.txt",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-28T02:33:08+00:00"
+    },
+    "isolved_terms": {
+      "url": "https://www.isolvedhcm.com/legal/terms-of-use",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 538581,
+      "text_chars": 37089
+    },
+    "isolved_terms_conditions": {
+      "url": "https://www.isolvedhcm.com/legal/agreements/terms-and-conditions",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 271176,
+      "text_chars": 81646
+    },
+    "isolvedhire_privacy": {
+      "url": "https://admin.isolvedhire.com/privacy-policy/",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 96235,
+      "text_chars": 36750
+    },
+    "serc_isolved_board": {
+      "url": "https://serc1.isolvedhire.com/jobs/",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 18153,
+      "text_chars": 156
+    },
+    "isolvedhire_robots": {
+      "url": "https://serc1.isolvedhire.com/robots.txt",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-28T02:33:08+00:00",
+      "bytes": 243,
+      "text_chars": 243
     }
   },
   "eia": {

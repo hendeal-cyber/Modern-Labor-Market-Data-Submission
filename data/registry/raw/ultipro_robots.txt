@@ -1,0 +1,9 @@
+# source: https://recruiting.ultipro.com/robots.txt
+# fetched: 2026-09-28T02:33:08+00:00
+
+User-agent: *
+Disallow: /
+Allow: */JobBoard/
+Disallow: */JobBoardView
+Disallow: */JobBoard/*/Styles
+Disallow: */JobBoard/*/AnonymousSessionCheck
