@@ -24,7 +24,9 @@ name: Collect postings
 # build_dataset ignores anything later anyway. Manual runs still work.
 on:
   schedule:
-    - cron: "17 9 28-30 9 *"    # 09:17 UTC on Sep 28, 29 and 30 only
+    # The 28 September run was dispatched by hand at 00:36 UTC on the owner's
+    # request (pre-registration section 8), so the cron keeps only 29 and 30.
+    - cron: "17 9 29-30 9 *"    # 09:17 UTC on Sep 29 and 30 only
   workflow_dispatch:
     inputs:
       limit:

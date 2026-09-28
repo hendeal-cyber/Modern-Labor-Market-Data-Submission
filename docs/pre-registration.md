@@ -779,3 +779,20 @@ from the GS and agency pay plans and are always stated. So any such rows raise
 the disclosure share on whichever side of the mandate line their states fall,
 and the without-federal figures are the ones comparable to the rest of the
 study.
+
+### 2026-09-28 — the 28 September run moved from 09:17 UTC to a manual dispatch just after midnight (owner request), before it ran
+
+**Owner request, 2026-09-28, quoted:** "Are you able to pause the future run
+and run it now instead, rather than waiting and idling until its scheduled
+time hits?"
+
+**What changed.** The 28 September collection is dispatched by hand at
+about 00:36 UTC instead of by the 09:17 cron. The cron now names 29 and 30
+September only, so it does not also run today. Its snapshot is dated
+2026-09-28 either way, so the collection dates are unchanged: one run per
+day on 28, 29 and 30 September, closing with snapshots dated 2026-09-30.
+Made before the run, and not prompted by any data. The only difference a
+reader could see is that postings opened between 00:36 and 09:17 UTC today
+are not in today's snapshot, and they are caught by the 29 September run if
+still open. Today is a Monday, so the workflow does its weekly full re-read
+of descriptions either way.
