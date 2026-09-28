@@ -55,7 +55,7 @@ pre-registration, audit log, limitations and ledger.
   - **New and tentative:** `region_west` (0.020, not in real terms) and
     `degree_stem` (0.024, **fails without Crusoe**).
 - **Inconclusive:** `skill_ml_ai` (0.059).
-- **Frame:** 404 employers (batch 13 federal agencies and batch 14, 29 employers under option D, added after round 10). Batches 4–12 (2026-09-27/28) each carry an evidence URL
+- **Frame:** 407 employers (batch 13 federal agencies and batches 14–15, 32 employers under option D, added after round 10). Batches 4–12 (2026-09-27/28) each carry an evidence URL
   in `config/employers.yaml`.
 - **USAJOBS:** key works. The preflight found BPA 13 postings, WAPA 15, SWPA
   0 and TVA 0. One federal row entered (WAPA, Public Utilities Specialist).
@@ -114,7 +114,7 @@ with B and D. A and B are changes to registered design and are the owner's
 decision.
 
 **Decided 2026-09-28: C and D approved, A and B not.** C is done (batch 13).
-**Batch 14 done** (29 employers, frame 404; NERC is on UKG/UltiPro, which
+**Batches 14–15 done** (32 employers, frame 407; searches now mostly return employers already in the frame; NERC is on UKG/UltiPro, which
 has no adapter, so it needs an owner decision). **Next action:** D. Keep working the registry
 candidate lists (`data/registry/*.csv`) and role-title searches. Record every
 addition in §8 before 09:17 UTC on 09-30. At the 09-29 audit, read the first

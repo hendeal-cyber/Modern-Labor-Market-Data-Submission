@@ -3007,6 +3007,23 @@ national_batch4:
     candidates:
       workable: [habitat-energy]
     verified: false
+  # --- Batch 15, 2026-09-28, before the 29 September run: option D, same
+  # method (role-title searches in mandate states). ---
+  - name: Calibrant Energy   # apply.workable.com/calibrant-energy/j/286F0335B8 (on-site solar, storage and microgrids for large power users; Project Development Manager)
+    industry: developer
+    candidates:
+      workable: [calibrant-energy]
+    verified: true
+  - name: Xcimer Energy   # jobs.lever.co/xcimer/4340fe0b-4456-4fbc-8146-0d972e6b8de0 (laser fusion power developer, Denver CO, as Helion Energy)
+    industry: developer
+    candidates:
+      lever: [xcimer]
+    verified: true
+  - name: BlocPower   # job-boards.greenhouse.io/blocpower/jobs/4025161008 (building electrification and efficiency retrofits, Brooklyn NY, as Elephant Energy; a Lever board also appears in search, and only this one is listed)
+    industry: developer
+    candidates:
+      greenhouse: [blocpower]
+    verified: true
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already
   # a rejected token; hanwhaenergyusa and 174powerglobal are Hanwha boards
@@ -3034,7 +3051,9 @@ national_batch4:
   # materials recycling); Pacifico Energy (Japan roles); Enode, Enpal,
   # Gridcog, Fuse Energy, Util-Assist and Metergy (non-US); TC Energy
   # (pipelines); state commissions (Oregon PUC, California Energy Commission),
-  # as state regulators remain out of scope.
+  # as state regulators remain out of scope. Batch 15, not added: SpryPoint
+  # (utility billing software, mostly water utilities) and InCharge Energy
+  # (EV charging, which the frame has no category for).
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.

@@ -942,3 +942,23 @@ these, and adding one needs the owner's approval, so none enters. PG&E
   addition helped or hurt the headline is reported at audit round 11.
 
 Frame: 375 → 404.
+
+**Addendum, 2026-09-28 (02:25 UTC by the clock), before the 29 September run: batch 15.**
+Three more by the same method, found by role-title searches aimed at
+mandate states, all verified from live job URLs:
+- Calibrant Energy (on-site solar, storage and microgrids, California).
+- Xcimer Energy (laser fusion, Denver, as Helion).
+- BlocPower (building electrification, Brooklyn, as Elephant Energy). It
+  also shows a Lever board, and only the Greenhouse board is listed.
+
+Not added: SpryPoint (utility billing software, mostly for water utilities)
+and InCharge Energy (EV charging, which has no frame category).
+
+*Saturation, recorded as a finding:* in this batch's searches nearly every
+energy, utility or data-center employer returned from the supported ATS
+hosts was already in the frame (15 of the 20 boards checked in its last
+three searches). Further
+gains from option D will be small.
+
+*Expected effect, stated in advance:* three small clusters, few rows.
+Frame: 404 → 407.
