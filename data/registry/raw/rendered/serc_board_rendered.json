@@ -1,0 +1,67 @@
+{
+ "url": "https://serc1.isolvedhire.com/jobs/",
+ "status": 200,
+ "final_url": "https://serc1.isolvedhire.com/jobs/",
+ "text": "Current Job Listings\nJobs\nLogin\nSign Up For Job Alerts!\nName\nEmail\nLocation (city, state or zip code)\nAccept Terms of Service\n I agree to the terms of service and privacy policy.\nSend Me Jobs\n\npowered by Refer.io\n\nMaintained by isolved People Cloud - \u00a9 2026 Refresh",
+ "links": [
+  {
+   "text": "Jobs",
+   "href": "https://serc1.isolvedhire.com/jobs/"
+  },
+  {
+   "text": "Login",
+   "href": "https://serc1.isolvedhire.com/account/login.php"
+  },
+  {
+   "text": "terms of service",
+   "href": "https://refer.io/blog/terms-widget"
+  },
+  {
+   "text": "privacy policy.",
+   "href": "https://refer.io/blog/privacy-widget"
+  },
+  {
+   "text": "Refer.io",
+   "href": "https://www.refer.io/"
+  },
+  {
+   "text": "Refer.io's Subscriber Communication Policy",
+   "href": "https://refer.io/subscriber-communication-policy"
+  },
+  {
+   "text": "Refer.io",
+   "href": "https://refer.io/blog"
+  },
+  {
+   "text": "Refresh",
+   "href": "javascript:void(0);"
+  }
+ ],
+ "json_responses": [
+  {
+   "url": "https://go-api-dot-refer-io.appspot.com/api/v3/widget/preflight?api_key=75829acf_isolvedhire_serc1&job_title=&",
+   "method": "GET",
+   "status": 200,
+   "content_type": "application/json; charset=UTF-8",
+   "chars": 633,
+   "body": "{\"search_term\":\"\",\"location\":\"Chicago, IL US\",\"employer\":{\"id\":\"52580\",\"enabled\":true,\"collectResumes\":true,\"collectOptIns\":true,\"showHiddenLink\":true,\"showReferioLink\":true,\"createdAt\":\"2020-02-27T20:53:59Z\",\"updatedAt\":\"2026-09-27T07:19:39Z\",\"name\":\"SERC Reliability Corporation\",\"industry\":\"Utility\",\"url\":\"http://serc1.isolvedhire.com\",\"mainColor\":\"\",\"primaryColor\":\"#062E59\",\"primaryButtonColor\":\"\",\"secondaryColor\":\"#666666\",\"secondaryButtonColor\":\"\",\"tertiaryColor\":\"\",\"tertiaryButtonColor\":\"\",\"hyperlinkColor\":\"\",\"logo\":\"https://storage.googleapis.com/referio_company_logos/52580/75829acf_isolvedhire_serc1-1717401101.png\"}}\n"
+  },
+  {
+   "url": "https://serc1.isolvedhire.com/core/widget/2272/follow-us?jsParamsJson=%7B%22domain_id%22:2272,%22rule%22:%22follow_us%22%7D",
+   "method": "GET",
+   "status": 200,
+   "content_type": "application/json",
+   "chars": 292,
+   "body": "{\"success\":true,\"message\":\"follow_us\",\"data\":{\"facebook_url\":\"\",\"facebook_title\":\"Follow Our Jobs On Facebook\",\"instagram_url\":\"\",\"instagram_title\":\"Follow Our Jobs On Instagram\",\"linkedin_url\":\"\",\"linkedin_title\":\"See us on LinkedIn\",\"twitter_url\":\"\",\"twitter_title\":\"Follow Our Jobs On X\"}}"
+  },
+  {
+   "url": "https://serc1.isolvedhire.com/core/widget/2272/share-this-job?jsParamsJson=%7B%22domain_id%22:2272,%22domain_name%22:%22isolvedhire.com%22,%22domain_title%22:%22SERC+Reliability+Corporation%22,%22subdomain_name%22:%22serc1%22,%22source_id%22:0,%22employee_name%22:%22%22,%22job%22:%7B%22id%22:0,%22title%22:%22%22,%22city%22:%22%22,%22name%22:%22%22,%22abbreviation%22:%22%22,%22description%22:%22%22,%22advertisingTitle%22:%22%22%7D,%22use_www_job_pages_url%22:false,%22rule%22:%22share_this_job%22%7D",
+   "method": "GET",
+   "status": 200,
+   "content_type": "application/json",
+   "chars": 3418,
+   "body": "{\"success\":true,\"message\":\"share_this_job\",\"data\":{\"facebook_url\":\"https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fserc1.isolvedhire.com%2Fcore%2Fwidget%2F2272%2Fshare-this-job%3FjsParamsJson%3D%257B%2522domain_id%2522%3A2272%2C%2522domain_name%2522%3A%2522isolvedhire.com%2522%2C%2522domain_title%2522%3A%2522SERC%2BReliability%2BCorporation%2522%2C%2522subdomain_name%2522%3A%2522serc1%2522%2C%2522source_id%2522%3A0%2C%2522employee_name%2522%3A%2522%2522%2C%2522job%2522%3A%257B%2522id%2522%3A0%2C%2522title%2522%3A%2522%2522%2C%2522city%2522%3A%2522%2522%2C%2522name%2522%3A%2522%2522%2C%2522abbreviation%2522%3A%2522%2522%2C%2522description%2522%3A%2522%2522%2C%2522advertisingTitle%2522%3A%2522%2522%257D%2C%2522use_www_job_pages_url%2522%3Afalse%2C%2522rule%2522%3A%2522share_this_job%2522%257D&amp;t=&amp;src=sp\",\"facebook_title\":\"Share with your friends on Facebook!\",\"instagram_url\":\"\",\"instagram_title\":\"Share with your friends on Instagram\",\"linkedin_url\":\"https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fserc1.isolvedhire.com%2Fcore%2Fwidget%2F2272%2Fshare-this-job%3FjsParamsJson%3D%257B%2522domain_id%2522%3A2272%2C%2522domain_name%2522%3A%2522isolvedhire.com%2522%2C%2522domain_title%2522%3A%2522SERC%2BReliability%2BCorporation%2522%2C%2522subdomain_name%2522%3A%2522serc1%2522%2C%2522source_id%2522%3A0%2C%2522employee_name%2522%3A%2522%2522%2C%2522job%2522%3A%257B%2522id%2522%3A0%2C%2522title%2522%3A%2522%2522%2C%2522city%2522%3A%2522%2522%2C%2522name%2522%3A%2522%2522%2C%2522abbreviation%2522%3A%2522%2522%2C%2522description%2522%3A%2522%2522%2C%2522advertisingTitle%2522%3A%2522%2522%257D%2C%2522use_www_job_pages_url%2522%3Afalse%2C%2522rule%2522%3A%2522share_this_job%2522%257D%3Flatest_6ab9d4d718949&title=Current+Career+Opportunities+at+SERC+Reliability+Corporation&summary=Current+Career+Opportunities+at+SERC+Reliability+Corporation&source=serc1.isolvedhire.com\",\"linkedin_title\":\"Share these jobs on LinkedIn\",\"twitter_url\":\"https://twitter.com/intent/tweet?text=Current+Career+Opportunities+at+SERC+Reliability+Corporation+%23jobs+https%3A%2F%2Fserc1.isolvedhire.com%2Fcore%2Fwidget%2F2272%2Fshare-this-job%3FjsParamsJson%3D%257B%2522domain_id%2522%3A2272%2C%2522domain_name%2522%3A%2522isolvedhire.com%2522%2C%2522domain_title%2522%3A%2522SERC%2BReliability%2BCorporation%2522%2C%2522subdomain_name%2522%3A%2522serc1%2522%2C%2522source_id%2522%3A0%2C%2522employee_name%2522%3A%2522%2522%2C%2522job%2522%3A%257B%2522id%2522%3A0%2C%2522title%2522%3A%2522%2522%2C%2522city%2522%3A%2522%2522%2C%2522name%2522%3A%2522%2522%2C%2522abbreviation%2522%3A%2522%2522%2C%2522description%2522%3A%2522%2522%2C%2522advertisingTitle%2522%3A%2522%2522%257D%2C%2522use_www_job_pages_url%2522%3Afalse%2C%2522rule%2522%3A%2522share_this_job%2522%257D\",\"twitter_title\":\"Click to share this post on X\",\"share_url\":\"https://serc1.isolvedhire.com/core/widget/2272/share-this-job?jsParamsJson=%7B%22domain_id%22:2272,%22domain_name%22:%22isolvedhire.com%22,%22domain_title%22:%22SERC+Reliability+Corporation%22,%22subdomain_name%22:%22serc1%22,%22source_id%22:0,%22employee_name%22:%22%22,%22job%22:%7B%22id%22:0,%22title%22:%22%22,%22city%22:%22%22,%22name%22:%22%22,%22abbreviation%22:%22%22,%22description%22:%22%22,%22advertisingTitle%22:%22%22%7D,%22use_www_job_pages_url%22:false,%22rule%22:%22share_this_job%22%7D\",\"share_url_short\":\"\",\"job_title\":\" | \",\"listing_title\":\"\"}}"
+  }
+ ],
+ "fetched_at": "2026-09-28T02:45:30+00:00"
+}
