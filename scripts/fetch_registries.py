@@ -403,6 +403,26 @@ def write_csv(path: pathlib.Path, rows: list[dict], fields: list[str]) -> None:
         w.writerows(rows)
 
 
+def check_usajobs(manifest: dict) -> None:
+    """Route 3 preflight: does the owner's key answer, and what would each
+    federal employer return? Records counts and a few titles, stores no
+    posting. Runs with the same secrets as the collection job."""
+    from lmstudy.collect import ats
+    from lmstudy.netclient import PoliteSession
+    rec = manifest.setdefault("usajobs", {})
+    if ats.usajobs_headers() is None:
+        rec["error"] = "USAJOBS_API_KEY / USAJOBS_USER_AGENT not set in this job"
+        return
+    session = PoliteSession(min_interval=1.0, timeout=60)
+    for code in ("DN03", "DNWP", "DNSW", "TV00"):
+        postings, resp = ats.fetch_usajobs(session, code, code, max_pages=2)
+        rec[code] = {"status": resp.status, "error": resp.error, "postings": len(postings),
+                     "sample": [f"{p.title} | {p.location_raw} | "
+                                f"{p.comp_min}-{p.comp_max} {p.comp_interval}"
+                                for p in postings[:5]]}
+        print(f"usajobs {code}: {resp.status} {len(postings)} postings")
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="pages,eia,cc")
@@ -427,6 +447,11 @@ def main(argv=None) -> int:
             fetch_eia(session, cfg["eia"], manifest, names)
         except Exception as exc:
             manifest["eia"]["error"] = f"{type(exc).__name__}: {exc}"
+    if "usajobs" in only:
+        try:
+            check_usajobs(manifest)
+        except Exception as exc:
+            manifest.setdefault("usajobs", {})["error"] = f"{type(exc).__name__}: {exc}"
     if "cc" in only:
         cc = PoliteSession(min_interval=cfg["commoncrawl"]["min_interval_seconds"], timeout=120)
         try:
@@ -438,7 +463,8 @@ def main(argv=None) -> int:
     prev_path = OUT / "manifest.json"
     if prev_path.exists():
         prev = json.loads(prev_path.read_text())
-        for key, stage in (("pages", "pages"), ("eia", "eia"), ("commoncrawl", "cc")):
+        for key, stage in (("pages", "pages"), ("eia", "eia"), ("commoncrawl", "cc"),
+                           ("usajobs", "usajobs")):
             if stage not in only and key in prev:
                 manifest[key] = prev[key]
         manifest.setdefault("fetched_at_by_stage", prev.get("fetched_at_by_stage", {}))

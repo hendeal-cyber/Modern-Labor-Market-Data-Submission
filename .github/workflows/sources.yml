@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: "Comma-separated subset: pages,eia,cc"
+        description: "Comma-separated subset: pages,eia,cc,usajobs"
         required: false
         default: "pages,eia,cc"
 
@@ -45,6 +45,9 @@ jobs:
           LMSTUDY_USER_AGENT: >-
             lmstudy-research/0.1 (academic labor-market study;
             +https://github.com/${{ github.repository }})
+          # Route 3 preflight only (--only usajobs): counts and titles, no postings.
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
         run: python scripts/fetch_registries.py --only "${{ github.event.inputs.only || 'pages,eia,cc' }}"
 
       - name: Commit registries
