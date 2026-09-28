@@ -2852,6 +2852,161 @@ national_batch4:
     candidates:
       usajobs: [DNSW]
     verified: true
+  # --- Batch 14, 2026-09-28, before the 29 September run: option D
+  # (owner, 2026-09-28: "I approve options C and D"). Same live-job-URL
+  # method: unclaimed tokens from the Common Crawl list
+  # (data/registry/ats_tokens.csv), the EIA-861 ranked list (California
+  # community choice aggregators), and role-title searches restricted to the
+  # supported ATS hosts. Data centers: operators that build and run their
+  # own campuses enter under the rule Crusoe entered by (Crusoe itself began
+  # as a bitcoin miner); AI-cloud resellers stay out (batch 7). ---
+  - name: Teragen Energy   # jobs.ashbyhq.com/teragenenergy/a5fdd480-fb86-4dc2-a514-35fd7a82ce31 (solid-oxide fuel cells for AI data centers; NOT Terra-Gen, the wind and solar producer)
+    industry: grid_vendor
+    candidates:
+      ashby: [teragenenergy]
+    verified: true
+  - name: Emerald AI   # jobs.ashbyhq.com/emerald-ai/e002a690-1d06-4210-b41e-79bd96e0668e (data-center power flexibility software; Software Engineer - Datacenter/Power Systems)
+    industry: energy_analytics
+    candidates:
+      ashby: [emerald-ai]
+    verified: true
+  - name: Argonne National Laboratory   # argonne.wd1.myworkdayjobs.com/Argonne_Careers/job/Energy-Systems-Analyst_419860 (DOE national laboratory; multi-mission, so each posting must show sector evidence)
+    industry: energy_analytics
+    requires_sector_evidence: true
+    candidates:
+      workday: [{tenant: argonne, site: Argonne_Careers, wd: 1}]
+    verified: true
+  - name: Emporia Energy   # job-boards.greenhouse.io/emporiarevolutionizinghomeenergy/jobs/5124335008 (home energy monitors, EV chargers, virtual power plant)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [emporiarevolutionizinghomeenergy]
+    verified: true
+  - name: Elephant Energy   # job-boards.greenhouse.io/elephantenergy/jobs/4599739008 (home electrification: solar, batteries, heat pumps; Broomfield CO)
+    industry: developer
+    candidates:
+      greenhouse: [elephantenergy]
+    verified: true
+  - name: Lumen Energy   # jobs.ashbyhq.com/lumen.energy/71b0f7bb-4980-4853-a8e6-1a8612d8db83 (commercial rooftop solar brokerage; Manager, Project Finance)
+    industry: developer
+    candidates:
+      ashby: [lumen.energy]
+    verified: true
+  - name: GridUnity   # jobs.ashbyhq.com/gridunity/9d4d683b-ac50-45f2-85b9-d19e1565c9f3 (interconnection-queue software for utilities and RTOs)
+    industry: energy_analytics
+    candidates:
+      ashby: [gridunity]
+    verified: true
+  - name: Antares   # jobs.ashbyhq.com/Antares/a584c7bc-ce61-418f-b89a-045b618bc8fd (nuclear microreactor developer; not TAR, already in the frame)
+    industry: developer
+    candidates:
+      ashby: [Antares]
+    verified: true
+  - name: Radiant Industries   # jobs.ashbyhq.com/radiant-industries/8325a3e8-3a82-459a-bce7-31ab5da29e97 (portable nuclear microreactors; El Segundo CA)
+    industry: developer
+    candidates:
+      ashby: [radiant-industries]
+    verified: true
+  - name: Valar Atomics   # job-boards.greenhouse.io/valaratomics/jobs/4115379009 (high-temperature gas reactors; CFD Analyst)
+    industry: developer
+    candidates:
+      greenhouse: [valaratomics]
+    verified: true
+  - name: Commonwealth Fusion Systems   # jobs.lever.co/cfsenergy/7ddc68f4-aab5-4f1e-8e1c-fc9c1badfd5a (fusion power developer, as Helion Energy)
+    industry: developer
+    candidates:
+      lever: [cfsenergy]
+    verified: true
+  - name: Quaise Energy   # board root only: job-boards.greenhouse.io/quaise (deep geothermal drilling)
+    industry: developer
+    candidates:
+      greenhouse: [quaise]
+    verified: false
+  - name: Core Scientific   # job-boards.greenhouse.io/corescientific/jobs/7999253002 (owns and operates HPC and mining data center campuses in seven states)
+    industry: data_center
+    candidates:
+      greenhouse: [corescientific]
+    verified: true
+  - name: Cipher Digital   # job-boards.greenhouse.io/cipherminingtechnologiesinc/jobs/4136401009 (builds and operates data centers for mining and HPC)
+    industry: data_center
+    candidates:
+      greenhouse: [cipherminingtechnologiesinc]
+    verified: true
+  - name: Hut 8   # job-boards.greenhouse.io/hut8/jobs/5169139008 (power and data center infrastructure for mining and HPC)
+    industry: data_center
+    candidates:
+      greenhouse: [hut8]
+    verified: true
+  - name: Soluna   # job-boards.greenhouse.io/soluna/jobs/5523491004 (data centers sited at renewable plants to use curtailed power)
+    industry: data_center
+    candidates:
+      greenhouse: [soluna]
+    verified: true
+  - name: LightEdge   # jobs.lever.co/lightedge/d42e293e-330e-4e55-baff-5bc55afeb151 (colocation data centers in IA, MO, NE, TX, NC)
+    industry: data_center
+    candidates:
+      lever: [lightedge]
+    verified: true
+  - name: City Utilities of Springfield   # cityutilities.wd5.myworkdayjobs.com/en-US/Careers/job/IT-Business-Intelligence-Analyst-I_R25_287 (municipal electric and gas utility, Missouri; also water, broadband and transit, so each posting must show sector evidence)
+    industry: utility
+    requires_sector_evidence: true
+    candidates:
+      workday: [{tenant: cityutilities, site: Careers, wd: 5}]
+    verified: true
+  - name: Clean Power Alliance   # apply.workable.com/clean-power-alliance/j/835F5532AA (Analyst, Power Supply and Compliance; a California CCA, a public load-serving entity, as San Diego Community Power)
+    industry: utility
+    candidates:
+      workable: [clean-power-alliance]
+    verified: true
+  - name: Common Energy   # apply.workable.com/common-energy-1/j/09554CF0E4 (community solar subscriptions, as Perch Energy)
+    industry: retailer
+    candidates:
+      workable: [common-energy-1]
+    verified: true
+  - name: Adapture Renewables   # job-boards.greenhouse.io/adapturerenewables/jobs/5365903008 (solar and storage IPP; Oakland CA)
+    industry: developer
+    candidates:
+      greenhouse: [adapturerenewables]
+    verified: true
+  - name: Scout Clean Energy   # apply.workable.com/scout-clean-energy/j/372FEEEAAD (wind, solar and storage developer; Boulder CO)
+    industry: developer
+    candidates:
+      workable: [scout-clean-energy]
+    verified: true
+  - name: SolRiver Capital   # apply.workable.com/solriver-capital/j/AA29AD5EB0 (solar IPP; Denver CO)
+    industry: developer
+    candidates:
+      workable: [solriver-capital]
+    verified: true
+  - name: SolAmerica Energy   # apply.workable.com/solamerica-energy/j/5BC704170E (solar and storage developer and owner; Atlanta GA)
+    industry: developer
+    candidates:
+      workable: [solamerica-energy]
+    verified: true
+  - name: Urban Grid Solar Projects   # apply.workable.com/urban-grid-solar-projects/j/7712C71A18 (utility-scale solar and storage IPP; Houston TX)
+    industry: developer
+    candidates:
+      workable: [urban-grid-solar-projects]
+    verified: true
+  - name: Korsail Energy   # apply.workable.com/korsail-energy-1/j/61539B33A9 (solar and storage developer; Denver CO)
+    industry: developer
+    candidates:
+      workable: [korsail-energy-1]
+    verified: true
+  - name: SunPower   # jobs.lever.co/sunpower/8b313bb2-9f03-47c4-a752-31c175db6362 (residential solar, as Sunrun)
+    industry: developer
+    candidates:
+      lever: [sunpower]
+    verified: true
+  - name: Omnidian   # jobs.lever.co/omnidian/b7ee676a-935b-473b-9df3-6b3f28b0c397 (performance assurance for distributed solar and storage; Seattle)
+    industry: energy_analytics
+    candidates:
+      lever: [omnidian]
+    verified: true
+  - name: Habitat Energy   # board root only: apply.workable.com/habitat-energy (battery and renewable asset optimisation; US office in Austin)
+    industry: energy_analytics
+    candidates:
+      workable: [habitat-energy]
+    verified: false
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already
   # a rejected token; hanwhaenergyusa and 174powerglobal are Hanwha boards
@@ -2866,6 +3021,20 @@ national_batch4:
   # oneok and vermilionenergy (oil and gas), dragos (industrial cybersecurity
   # vendor), and non-US boards (venaenergy, momentenergy, rollsroycesmr) are
   # left out; Terra-Gen is already in the frame under its own Ashby token.
+  # Correction, batch 14: ashby:teragenenergy is Teragen Energy (fuel cells),
+  # not Terra-Gen, so it entered in batch 14 as its own employer. Batch 14,
+  # not added: NERC (UKG/UltiPro board, recruiting.ultipro.com/NOR1051NAER,
+  # no adapter), WECC (Paylocity) and SERC (iSolved), both no adapter;
+  # PG&E (careers.pge.com, not a supported ATS); AI-cloud providers CoreWeave
+  # and Lambda (batch 7 rule); Galaxy (crypto firm, batch 12); GoodLeap
+  # (lender, batch 12); Kraken Technologies (lever:kraken123, part of the
+  # Octopus Energy group already in the frame, a duplicate-cluster risk);
+  # Pacific Fusion (open boards on both Greenhouse and Ashby, and one
+  # employer never gets two live boards); Redwood Materials (battery
+  # materials recycling); Pacifico Energy (Japan roles); Enode, Enpal,
+  # Gridcog, Fuse Energy, Util-Assist and Metergy (non-US); TC Energy
+  # (pipelines); state commissions (Oregon PUC, California Energy Commission),
+  # as state regulators remain out of scope.
 
 # Slug patterns discover.py derives candidates from when a company has no
 # confirmed token: lowercase, strip punctuation, with and without spaces/dashes.

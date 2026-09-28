@@ -865,3 +865,80 @@ move. Frame: 370 → 375.
 
 **(D)** Frame expansion through the four source routes continues, under
 the existing rules.
+
+### 2026-09-28 — option D, batch 14: 29 employers, recorded before the 29 September run
+
+Written at 02:22 UTC by the clock, before the 29 September run and before
+any of these employers' data exist. Same live-job-URL method as batches
+4–12, under the owner's approval of option D ("I approve options C and D",
+2026-09-28). Sources: unclaimed tokens in the Common Crawl list
+(`data/registry/ats_tokens.csv`), the EIA-861 ranked list (California
+community choice aggregators) and role-title searches restricted to the
+supported ATS hosts. Every name was checked against the frame by normalised
+name and by board token, and a full duplicate scan found none.
+
+**Added (29).**
+- *Utilities and load-serving entities:* Clean Power Alliance (a
+  Los Angeles community choice aggregator, as San Diego Community Power) and
+  City Utilities of Springfield, Missouri (electric and gas, also water,
+  broadband and transit, so each posting must show sector evidence).
+- *Data centers:* Core Scientific, Cipher Digital, Hut 8, Soluna and
+  LightEdge. The first four build and operate their own campuses for
+  mining and HPC hosting. They enter under the rule Crusoe entered by (a
+  data center builder and operator; Crusoe itself began as a bitcoin
+  miner). AI-cloud providers (CoreWeave, Lambda) stay out under the batch
+  7 rule.
+- *Developers:* Adapture Renewables, Scout Clean Energy, SolRiver Capital,
+  SolAmerica Energy, Urban Grid Solar Projects, Korsail Energy, Lumen
+  Energy, Elephant Energy and SunPower (residential, as Sunrun); nuclear and
+  fusion developers Antares, Radiant Industries, Valar Atomics and
+  Commonwealth Fusion Systems (as Oklo, Kairos and Helion); Quaise Energy
+  (geothermal).
+- *Analytics and grid technology:* Emerald AI, GridUnity, Omnidian,
+  Habitat Energy, Emporia Energy, Teragen Energy, and Argonne National
+  Laboratory (as NREL, but multi-mission, so each posting must show sector
+  evidence).
+- *Retail:* Common Energy (community solar subscriptions, as Perch).
+- Quaise and Habitat enter from board roots, unverified. The rest are
+  verified from live job URLs quoted in `config/employers.yaml`.
+
+**Correction.** The batch 9 note said Terra-Gen was "already in the frame
+under its own Ashby token". The Ashby token `teragenenergy` is Teragen
+Energy, a fuel-cell maker, not Terra-Gen. It enters here as its own
+employer. Terra-Gen's entry is unchanged: guessed board names that have not
+resolved.
+
+**NERC (searched under C and D).** NERC posts on UKG Pro Recruiting
+(recruiting.ultipro.com/NOR1051NAER). Two of its regional entities use
+Paylocity (WECC) and iSolved (SERC). The study has no adapter for any of
+these, and adding one needs the owner's approval, so none enters. PG&E
+(careers.pge.com) is not on a supported ATS either.
+
+**Not added, recorded so they are not re-chased:**
+- CoreWeave and Lambda (AI cloud).
+- Galaxy (a crypto firm) and GoodLeap (a lender), as in batch 12.
+- Kraken Technologies, part of the Octopus Energy group already in the
+  frame (a duplicate-cluster risk).
+- Pacific Fusion, which has open boards on both Greenhouse and Ashby (one
+  employer never gets two live boards).
+- Redwood Materials (battery-materials recycling).
+- Non-US boards: Pacifico Energy's Japan roles, Enode, Enpal, Gridcog, Fuse
+  Energy, Util-Assist and Metergy.
+- TC Energy (pipelines).
+- State commissions (Oregon PUC, California Energy Commission). State
+  regulators remain out of scope; the owner's decision covered federal
+  agencies.
+
+**Expected effect, stated in advance.**
+- More clusters. The five data-center operators add clusters beside Crusoe,
+  so Crusoe's share should fall. They also bear on H7 (data centers pay
+  more than utilities).
+- Most developers, nuclear and fusion firms have yielded few disclosed-pay
+  analytics rows before.
+- Clean Power Alliance (California, a mandate state, with nine current
+  postings seen) and Argonne (Illinois, a mandate state) are the likeliest
+  to add usable rows.
+- About +15 to +45 usable rows over the two remaining runs. Whether each
+  addition helped or hurt the headline is reported at audit round 11.
+
+Frame: 375 → 404.

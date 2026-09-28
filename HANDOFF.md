@@ -10,7 +10,7 @@
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
 | **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 and 30 Sep: 09:17 UTC by cron** (`17 9 29-30 9 *`). Collection closes with snapshots dated 2026-09-30. Check-ins: 29 and 30 Sep at 10:45 UTC (trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
-| Frame | **375 employers** (collector's loader; batch 13 federal agencies added 2026-09-28) |
+| Frame | **404 employers** (collector's loader; batch 13 federal agencies and batch 14, 29 employers under option D, both added 2026-09-28 before the 29 Sep run) |
 | **Usable N** | **472** (in scope 631) |
 | **Employer clusters** | **86** |
 | **Largest employer** | **Crusoe 10.4%** (49 of 472) |
@@ -30,8 +30,14 @@ and B (extended collection) are **not approved**: the taxonomy and the
   Reclamation and BOEM entered through USAJOBS (batch 13, §8). Frame 375.
   The last three need energy evidence per posting. The Army Corps is left
   out. Coded `utility`.
-- **D, ongoing:** keep expanding the frame. Search NERC on its own ATS.
-  Everything must be in §8 before 09:17 UTC on 09-30.
+- **D, ongoing:** batch 14 (29 employers, §8, frame 375 → 404) is in
+  before the 09-29 run: Clean Power Alliance, five data-center operators
+  (Core Scientific, Cipher, Hut 8, Soluna, LightEdge), Argonne, nuclear and
+  fusion developers, Workable-hosted solar developers and more. **NERC is on
+  UKG/UltiPro** (recruiting.ultipro.com/NOR1051NAER), WECC on Paylocity,
+  SERC on iSolved: no adapter, so none enters without the owner approving a
+  new adapter. Everything further must be in §8 before 09:17 UTC on 09-30.
+  At round 11, read the first rows from every batch-14 board.
 - Without A, expect roughly 520–600 by 09-30.
 
 ### Do these next
