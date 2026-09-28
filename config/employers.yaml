@@ -1401,12 +1401,13 @@ energy_analytics_batch2:
     verified: false
   - name: David Energy
     metro: new_york
+    # Corrected 2026-09-28 00:40 UTC (batch 12) from a live job URL:
+    # jobs.ashbyhq.com/davidenergy/211251e3-8df1-4b59-a320-bac2d50ad0dc
+    # ("Retail Ops Analyst"). The guessed slugs are dropped; greenhouse:david
+    # was already a rejected token (a creative agency).
     candidates:
-      greenhouse: [davidenergy, david-energy, david]
-      lever: [davidenergy, david-energy, david]
-      ashby: [davidenergy, david-energy, david]
-      workday: [{tenant: davidenergy, site: careers}]
-    verified: false
+      ashby: [davidenergy]
+    verified: true
   # Verified 2026-09-22. Lever token is "octoenergy", not any octopus* form.
   # A global board, so the US-only screen carries the weight; the Houston roles
   # (Energy Markets Analyst, Senior Power Market Analyst) are exact taxonomy
@@ -2764,6 +2765,11 @@ national_batch4:
     candidates:
       ashby: [CARIAN]
     verified: true
+  - name: Energy by 5   # board root only: jobs.lever.co/energy-by-5?location=Chicago,+IL (energy procurement and management advisory)
+    industry: consulting
+    candidates:
+      lever: [energy-by-5]
+    verified: false
   # --- Batch 10, 2026-09-27, before the 28 September run (source route 3):
   # the federal power marketing administrations, through the official USAJOBS
   # Search API (platform `usajobs`, token = the agency subelement code in

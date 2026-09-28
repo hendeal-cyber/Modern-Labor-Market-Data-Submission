@@ -563,12 +563,15 @@ employers:
     checked_on: '2026-09-22'
   David Energy:
     status: confirmed
-    evidence: resolved in collection manifest
-    checked_on: '2026-09-22'
+    evidence: https://jobs.ashbyhq.com/davidenergy/211251e3-8df1-4b59-a320-bac2d50ad0dc
+    checked_on: '2026-09-28'
     industry: energy_analytics
     priority: 1_mandate_metro
     resolved_in_last_run: false
     metro: new_york
+    platform: ashby
+    token: davidenergy
+    note: 'batch 12: found by domain-restricted search'
   Daymark Energy Advisors:
     status: denied
     industry: consulting

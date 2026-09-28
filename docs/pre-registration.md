@@ -709,3 +709,7 @@ Guidehouse do). All three are verified from live job URLs. Left out: a
 logistics REIT's data-center power role (Prologis), a fintech lender
 (GoodLeap), a crypto firm (Galaxy) and a pipeline company (Enbridge).
 Frame: 367 → 370.
+Also in batch 12: David Energy (a Brooklyn retail supplier, in the frame
+since batch 3 on guessed board names) is confirmed on Ashby from a live job
+URL, and its guessed names are dropped. Energy by 5 (energy procurement
+advisory, Chicago) enters from its board root, unverified. Frame: 371.
