@@ -748,3 +748,34 @@ document exists to prevent. *Expected effect, stated in advance:* few or no
 federal rows enter N. The `excluding_federal` cut and `federal_robustness`
 report whatever does. If the owner wants the federal series admitted, it
 needs a dated amendment of §2's taxonomy, with its effect reported.
+
+### 2026-09-28 — the federal Public Utilities Specialist series admitted to the role taxonomy (owner decision), before any federal posting was collected
+
+**Owner decision, 2026-09-28, quoted:** "Yes, admit the Public Utilities
+Specialist series as an amendment."
+
+**What changed.** `public utilities specialist` joins `roles.include_any`
+in `config/scope.yaml`. This is OPM series 1130, which does rate,
+power-marketing and regulatory analysis at the federal power marketing
+administrations. It is the federal counterpart of the rate, tariff and
+regulatory analyst titles §2 already admits. Exclusions are still judged
+first, so a sales role in the same series stays out. Bonneville's current
+"Public Utilities Specialist (Customer Account Executive)" is removed by the
+existing "account executive" exclusion. Pinned in `tests/test_filters.py`
+with that real title.
+
+**When, relative to the data.** Made after the owner and I had seen the
+federal *titles* in the key preflight (run 5), and before any federal
+posting was collected or entered the dataset. It is recorded as a change
+prompted by seeing the titles, which it was.
+
+**Effect, stated whichever way it goes.** On the committed corpus it changes
+no row: no existing title contains the phrase. The rebuild is identical at
+N = 377, 52 clusters, Crusoe 13.0%. Its effect comes only through federal
+postings, from the 28 September run on. Those rows face the
+`excluding_federal` disclosure cut and the `federal_robustness`
+re-estimate, which report every verdict they move. Federal pay ranges come
+from the GS and agency pay plans and are always stated. So any such rows raise
+the disclosure share on whichever side of the mandate line their states fall,
+and the without-federal figures are the ones comparable to the rest of the
+study.

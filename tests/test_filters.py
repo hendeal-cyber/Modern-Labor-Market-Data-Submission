@@ -467,6 +467,16 @@ def check_role_concepts():
         if filters.screen_all(t, "", scope)[0]:
             fails.append(f"concept screen wrongly ADMITTED {t!r}")
 
+    # The federal Public Utilities Specialist series, admitted by the owner on
+    # 2026-09-28 (pre-registration section 8). The second title is verbatim
+    # from Bonneville's USAJOBS listing (preflight, sources.yml run 5): a
+    # sales role in the same series, which the existing "account executive"
+    # exclusion must still remove.
+    if not filters.screen_all("Public Utilities Specialist", "", scope)[0]:
+        fails.append("the Public Utilities Specialist series was not admitted")
+    if filters.screen_all("Public Utilities Specialist (Customer Account Executive)", "", scope)[0]:
+        fails.append("a Public Utilities Specialist sales role got past the exclusions")
+
     # The concept layer must never override an explicit exclusion.
     roles = scope["roles"]
     if not roles.get("include_concepts"):

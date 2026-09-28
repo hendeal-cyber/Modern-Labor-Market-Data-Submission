@@ -207,6 +207,12 @@ roles:
     - rate analyst
     - rates analyst
     - tariff analyst
+    # The federal Public Utilities Specialist series (OPM 1130): rate,
+    # power-marketing and regulatory analysis at the power marketing
+    # administrations. Admitted by owner decision 2026-09-28, before the
+    # first federal collection (pre-registration section 8). Exclusions still
+    # apply first: "(Customer Account Executive)" stays out as sales.
+    - public utilities specialist
     # --- Market, commercial and procurement analytics ---
     - market analyst
     - market analysis

@@ -62,9 +62,12 @@
 2. **USAJOBS key added by the owner (2026-09-28) and working.** The
    preflight got HTTP 200: BPA 13 postings, WAPA 15, SWPA and TVA 0. The
    unchanged role screen rejects the sampled federal titles (e.g. "Public
-   Utilities Specialist"), so expect few federal rows. Read any against the
-   `excluding_federal` cut. Admitting the GS series would be a taxonomy
-   amendment for the owner to decide; see §8.
+   Utilities Specialist"), so the owner decided (2026-09-28): **"Yes, admit the Public Utilities
+   Specialist series as an amendment."** It is in `include_any`, recorded in
+   §8 and changes no existing row. Expect a handful of Public Utilities
+   Specialist rows. Other federal titles stay out, and so does the Customer
+   Account Executive variant, as sales. Read them against the
+   `excluding_federal` cut.
 3. Between runs, more employer searches. Anything added must be in
    `employers.yaml` and §8 **before 09:17 UTC on 09-30**.
 4. After the 09-30 run: final audit, finalisation pass, "collection closed".
