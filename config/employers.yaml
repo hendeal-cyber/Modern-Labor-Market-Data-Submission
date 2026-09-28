@@ -2746,6 +2746,24 @@ national_batch4:
     candidates:
       greenhouse: [industrialelectricmanufacturing]
     verified: true
+  # --- Batch 12, 2026-09-28 00:30 UTC, before the 28 September run (role-title
+  # searches, same live-job-URL method) ---
+  - name: Serverfarm   # jobs.lever.co/serverfarm/db9465f0-e6e1-4b06-8376-fcf0b1e0ce21 (data center operator; Energy and Sustainability Manager)
+    industry: data_center
+    candidates:
+      lever: [serverfarm]
+    verified: true
+  - name: Exowatt   # jobs.lever.co/exowatt/03fb158a-bb67-4b2b-8360-b756308fea32 (solar-thermal power for data centers)
+    industry: grid_vendor
+    candidates:
+      lever: [exowatt]
+    verified: true
+  - name: CARIAN   # jobs.ashbyhq.com/CARIAN/a85b2840-08d4-4d1c-af2e-8fce8dac1553 (project controls for utility energy-efficiency programs; serves other sectors too)
+    industry: consulting
+    requires_sector_evidence: true
+    candidates:
+      ashby: [CARIAN]
+    verified: true
   # --- Batch 10, 2026-09-27, before the 28 September run (source route 3):
   # the federal power marketing administrations, through the official USAJOBS
   # Search API (platform `usajobs`, token = the agency subelement code in

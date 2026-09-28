@@ -700,3 +700,12 @@ aggregators other than San Diego's). That is limitations 9b measured at
 scale rather than a new finding, and it is recorded so the next search does
 not repeat it. One employer found along the way enters, verified: Industrial
 Electric Manufacturing (switchgear; Fremont, California). Frame: 366 → 367.
+
+**Addendum, 2026-09-28 00:30 UTC, before the 28 September run: batch 12.**
+Serverfarm (data center operator), Exowatt (power systems for data
+centers) and CARIAN (utility energy-efficiency program services, which also
+serves other sectors, so it must show sector evidence per posting, as ICF and
+Guidehouse do). All three are verified from live job URLs. Left out: a
+logistics REIT's data-center power role (Prologis), a fintech lender
+(GoodLeap), a crypto firm (Galaxy) and a pipeline company (Enbridge).
+Frame: 367 → 370.
