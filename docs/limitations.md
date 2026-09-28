@@ -383,6 +383,38 @@ postings:
   showed no open listings in the saved page (it may render them with
   JavaScript), so the yield would be a handful at most.
 
+**Proof of concept with a real browser (owner request, 2026-09-28).**
+`scripts/render_pages.py` opens a page once in headless Chromium, in the
+registry job, and saves the rendered text, the page's links and the JSON it
+loads. It collects nothing into the study. Three findings:
+
+1. **Paylocity's terms page rendered.** It returned 121,000 characters,
+   where the plain fetch got none. Its footer "Terms and Conditions" page
+   holds only product agreements: an API licence accepted "on behalf of a
+   company that is a client or partner", developer-tool terms for
+   registered accounts, and rewards and card programs. There is no website
+   terms of use and no clause on automated access. Calling Paylocity's
+   data endpoints directly could arguably fall under the API licence,
+   which a non-client cannot accept. Reading the public board page as a
+   browser does falls under nothing read.
+2. **WECC's jobs did not need JavaScript.** All five open jobs were already
+   in the plain HTML, as JSON embedded in the page. The "unsupported
+   browser" text was only the visible fallback, and the earlier text
+   extraction discarded the embedded data. Of the five, one title passes
+   the role screen ("Senior Reliability Assessments Engineer"). Its
+   location is "Fully Remote / Remote Worker - N/A", with no US state, so
+   the geography screen rejects it. Expected yield from WECC: zero usable
+   rows.
+3. **SERC's rendered board has no listings,** only a job-alert sign-up
+   form. Expected yield: zero.
+
+The general lesson: the barrier for the 112 employers the frame could not
+read (`config/token-verification.yaml`) is rarely JavaScript. Workday
+pages are JavaScript too, and the study reads them through the data they
+load. The barriers are which vendor hosts the board and what that vendor's
+terms allow (iCIMS, Oracle Cloud HCM and now UKG prohibit automated access).
+A browser can render any of them; the terms decide, vendor by vendor.
+
 ## 10. The population is national and all-seniority, and that was not the original design
 
 The study began as a question about early-career software and data roles within

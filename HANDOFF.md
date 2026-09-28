@@ -39,7 +39,12 @@ and B (extended collection) are **not approved**: the taxonomy and the
   (limitations §9d): UKG bans "any robot, spider, scraper or other
   automated means", so NERC stays out; Paylocity's terms page did not
   render (undetermined); isolved's terms do not forbid reading public
-  listings, but SERC's board showed no open listings. Owner to decide. Everything further must be in §8 before 09:17 UTC on 09-30.
+  listings, but SERC's board showed no open listings. Browser proof of
+  concept (owner request; `scripts/render_pages.py`, sources.yml stage
+  `render`): Paylocity's terms rendered and contain no automation ban;
+  WECC's 5 jobs were embedded JSON in plain HTML, 1 passes the role screen
+  but is remote with no state; SERC has no listings. No adapter built:
+  expected yield zero (limitations §9d). Everything further must be in §8 before 09:17 UTC on 09-30.
   At round 11, read the first rows from every batch-14 board.
 - Without A, expect roughly 520–600 by 09-30.
 
