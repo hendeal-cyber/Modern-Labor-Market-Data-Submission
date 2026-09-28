@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-27T22:42:42+00:00",
+  "fetched_at": "2026-09-28T00:20:27+00:00",
   "pages": {
     "il_icc_ares": {
       "url": "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx",
@@ -429,9 +429,48 @@
     "energy_tokens": 356,
     "not_in_frame": 8925
   },
+  "usajobs": {
+    "DN03": {
+      "status": 200,
+      "error": null,
+      "postings": 13,
+      "sample": [
+        "Contract Specialist | Portland, Oregon; The Dalles, Oregon; Umatilla, Oregon; Vancouver, Washington | 74678.0-125378.0 year",
+        "Meteorologist | Portland, Oregon | 96443.0-125378.0 year",
+        "Interior Designer | Portland, Oregon | 96443.0-125378.0 year",
+        "Public Utilities Specialist (Customer Account Executive) | Portland, Oregon; Seattle, Washington; Spokane, Washington | 106991.0-155521.0 year",
+        "Electronics Engineer | Spokane, Washington | 118204.0-145483.0 year"
+      ]
+    },
+    "DNWP": {
+      "status": 200,
+      "error": null,
+      "postings": 15,
+      "sample": [
+        "High Voltage Electrician (Lineman) Journeyman | Yuma, Arizona; Elverta, California; Redding, California; Brush, Colorado; Craig, Colorado; Montrose, Colorado; Hinton, Iowa; Fort Peck, Montana; Glendive, Montana; Havre, Montana; Bismarck, North Dakota; Devils Lake, North Dakota; Jamestown, North Dakota; West Fargo, North Dakota; Boulder City, Nevada; Armour, South Dakota; Pierre, South Dakota; Rapid City, South Dakota; Watertown, South Dakota; Cody, Wyoming | 59.81-85.36 hour",
+        "High Voltage Electrician Lineman (Apprentice) | Phoenix, Arizona; Yuma, Arizona; Elverta, California; Redding, California; Brush, Colorado; Craig, Colorado; Montrose, Colorado; Hinton, Iowa; Fort Peck, Montana; Glendive, Montana; Havre, Montana; Bismarck, North Dakota; Devils Lake, North Dakota; Jamestown, North Dakota; West Fargo, North Dakota; Boulder City, Nevada; Armour, South Dakota; Pierre, South Dakota; Rapid City, South Dakota; Watertown, South Dakota; Cody, Wyoming | 44.11-64.47 hour",
+        "High Voltage Electrician (Apprentice) | Coolidge, Arizona; Page, Arizona; Phoenix, Arizona; Yuma, Arizona; Elverta, California; Keswick, California; Parker Dam, California; Tracy, California; Brush, Colorado; Craig, Colorado; Montrose, Colorado; Hinton, Iowa; Conrad, Montana; Fort Peck, Montana; Glendive, Montana; Havre, Montana; Miles City, Montana; Bismarck, North Dakota; Devils Lake, North Dakota; Jamestown, North Dakota; West Fargo, North Dakota; Williston, North Dakota; Gering, Nebraska; Shiprock, New Mexico; Boulder City, Nevada; Fort Thompson, South Dakota; Huron, South Dakota; Philip, South Dakota; Rapid City, South Dakota; Sioux Falls, South Dakota; Watertown, South Dakota; Casper, Wyoming | 40.5-55.48 hour",
+        "High Voltage Electrician (Journeyman) | Coolidge, Arizona; Page, Arizona; Phoenix, Arizona; Yuma, Arizona; Elverta, California; Keswick, California; Parker Dam, California; Tracy, California; Brush, Colorado; Craig, Colorado; Fountain, Colorado; Montrose, Colorado; Hinton, Iowa; Conrad, Montana; Fort Peck, Montana; Glendive, Montana; Havre, Montana; Miles City, Montana; Bismarck, North Dakota; Devils Lake, North Dakota; Jamestown, North Dakota; West Fargo, North Dakota; Williston, North Dakota; Gering, Nebraska; Shiprock, New Mexico; Boulder City, Nevada; Fort Thompson, South Dakota; Huron, South Dakota; Philip, South Dakota; Rapid City, South Dakota; Sioux Falls, South Dakota; Watertown, South Dakota; Casper, Wyoming | 59.81-85.36 hour",
+        "High Voltage Electrician (Craftsman-in-Training) | Coolidge, Arizona; Page, Arizona; Phoenix, Arizona; Yuma, Arizona; Elverta, California; Keswick, California; Parker Dam, California; Tracy, California; Brush, Colorado; Craig, Colorado; Fountain, Colorado; Montrose, Colorado; Hinton, Iowa; Conrad, Montana; Fort Peck, Montana; Glendive, Montana; Havre, Montana; Miles City, Montana; Bismarck, North Dakota; Devils Lake, North Dakota; Jamestown, North Dakota; West Fargo, North Dakota; Williston, North Dakota; Gering, Nebraska; Shiprock, New Mexico; Boulder City, Nevada; Fort Thompson, South Dakota; Huron, South Dakota; Philip, South Dakota; Rapid City, South Dakota; Sioux Falls, South Dakota; Watertown, South Dakota; Casper, Wyoming | 56.07-76.82 hour"
+      ]
+    },
+    "DNSW": {
+      "status": 200,
+      "error": null,
+      "postings": 0,
+      "sample": []
+    },
+    "TV00": {
+      "status": 200,
+      "error": null,
+      "postings": 0,
+      "sample": []
+    }
+  },
   "fetched_at_by_stage": {
     "pages": "2026-09-27T22:17:38+00:00",
     "eia": "2026-09-27T22:42:42+00:00",
-    "cc": "2026-09-27T22:26:32+00:00"
+    "cc": "2026-09-27T22:26:32+00:00",
+    "usajobs": "2026-09-28T00:20:27+00:00"
   }
 }
