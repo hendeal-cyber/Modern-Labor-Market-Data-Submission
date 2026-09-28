@@ -2738,6 +2738,14 @@ national_batch4:
     candidates:
       greenhouse: [lunarenergy]
     verified: false
+  # --- Batch 11, 2026-09-28 00:10 UTC, before the 28 September run (source
+  # route 2: the EIA-861/860 ranked lists, data/registry/eia_ranked_missing.csv;
+  # found while searching the largest missing operators) ---
+  - name: Industrial Electric Manufacturing   # job-boards.greenhouse.io/industrialelectricmanufacturing/jobs/4377645009 (switchgear for utilities and data centers; Fremont CA)
+    industry: grid_vendor
+    candidates:
+      greenhouse: [industrialelectricmanufacturing]
+    verified: true
   # --- Batch 10, 2026-09-27, before the 28 September run (source route 3):
   # the federal power marketing administrations, through the official USAJOBS
   # Search API (platform `usajobs`, token = the agency subelement code in

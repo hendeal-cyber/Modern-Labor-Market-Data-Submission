@@ -1,28 +1,64 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — handoff of 2026-09-27, late evening (state as of audit round 9; three scheduled runs pending; migrating to a new conversation)
+## RESUME HERE — 2026-09-28 00:15 UTC (after an interim check; three scheduled runs pending, first at 09:17 today)
 
-*A new conversation starts here. This block wins over everything below it.
-Do not quote numbers from below this block.*
+*This block wins over everything below it. Do not quote numbers from below it.*
 
-### State at handoff — AUDITED through run 29
+### State — AUDITED data through run 29, plus the interim fixes of 2026-09-27 evening
 
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
-| **Collection** | **Three owner-approved scheduled runs remain: 09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`, which cannot fire after that). Slug discovery is off. **Collection closes with snapshots dated 2026-09-30** (`study.collection_end`, enforced in `build_dataset.snapshots_in_window`). **Session migrated 2026-09-27:** the old conversation's 10:45 UTC check-ins were deleted. The new session sets its own (`docs/next-session-prompt.md` §1, step 4) |
-| Frame | **336 employers** (269 at the start of 2026-09-27). Batches 4–7 were found from live job URLs, each quoted in `config/employers.yaml` under `national_batch4`, and each recorded in pre-registration §8 before its data existed. Batches 5–7 first collect on 09-28 |
-| **Usable N** | **365** (in scope 484, raw 4,589) |
+| **Collection** | Three owner-approved scheduled runs: **09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`). Collection closes with snapshots dated 2026-09-30. Check-ins set by this session for **10:45 UTC** each day (send_later ids trig_01LwJq31PuaMBpkDHxcpHwd9, trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
+| Frame | **367 employers** (collector's loader). Batches 8–11 added 2026-09-27/28, all in pre-registration §8 before the 09-28 run |
+| **Usable N** | **377** (in scope 497) |
 | **Employer clusters** | **52** |
-| **Largest employer** | **Crusoe 13.4%** (49 of 365), then Invenergy 47 |
-| Obs per regressor | 24.3. `interpretable: true`. All four pre-registered conditions pass |
-| Disclosure gap (H2) | 94.3% (n=282) vs 49.0% (n=202), **45pp**, 44.7–48.1 across cuts. **Associational, not causal** |
-| Survive bootstrap AND region check | `seniority_rank` (0.0001 / 0.0005; every version of the data). **`yrs_exp_min` (0.0023 / 0.0030): H3 now supported**, robust without Crusoe and in real terms. `region_northeast` and `skill_cloud`: **tentative**; the Northeast premium is not significant in real terms, and `skill_cloud` does not survive dropping Crusoe |
-| Overturned by the bootstrap | `degree_stem`, `skill_ml_ai`, `industry_data_center` |
-| Without the largest employer (Crusoe) | Seniority, required experience and Northeast hold. **`skill_cloud` is lost (0.055)** and `remote_eligible` becomes significant (0.040). Computed on every build (`largest_employer_robustness`) |
-| Owner decision (2026-09-27) | **"Keep Crusoe in, and continue as planned."** Crusoe stays in scope. The no-largest-employer check is still reported on every build |
-| Owner decision (2026-09-27) | **"Please write in recommendations 1-3 AND USA jobs into the handoff, as I would like to pursue ALL of these options, in whatever order you recommend."** All four source routes are approved (see "Do these next" item 2) |
-| Tests | `tests/run_all.py` ALL SUITES PASSED, consistency 29/29, slide QA clean |
+| **Largest employer** | **Crusoe 13.0%** (49 of 377) |
+| Obs per regressor | 25.1. `interpretable: true`. All four pre-registered conditions pass |
+| Disclosure gap (H2) | 94.2% (n=294) vs 49.3% (n=203), **45.0pp**, 44.4–47.6 across cuts. **Associational, not causal** |
+| Survive bootstrap AND region check | `seniority_rank`, `yrs_exp_min` (H3 supported), `region_northeast` (not significant in real terms, p 0.54; exploratory), `skill_cloud` (tentative; now holds without Crusoe at 0.043) |
+| Overturned by the bootstrap | `skill_ml_ai`, `industry_data_center` (`degree_stem` no longer passes clustered errors) |
+| Without Crusoe | only `remote_eligible` changes verdict |
+| Tests | ALL SUITES PASSED (now 13 suites incl. registries, usajobs), consistency 29/29 |
+
+### What happened on the evening of 2026-09-27 (full record: audit-log "Interim check — 2026-09-27", §8 last two entries)
+
+- **Two defects fixed, measured, pinned:** US towns named after foreign
+  places were read as non-US (Eversource's Berlin, CT; "New Mexico";
+  Vancouver, WA), and a nested repost differing by one full stop survived
+  deduplication. N 365 → 377. Both flatter two tentative findings, and that
+  is recorded as such.
+- **All four source routes are built:**
+  1. Route 1: `scripts/registry_candidates.py` →
+     `data/registry/state_rto_candidates.csv` (PJM members by parent, PUCT
+     REPs). Most state supplier pages render client-side, so only PJM and
+     Texas parsed. Batch 8 came from name searches.
+  2. Route 2: `.github/workflows/sources.yml` + `scripts/fetch_registries.py`
+     → `eia861_utilities.csv`, `eia860_owners.csv`,
+     `eia_ranked_missing.csv`. Low yield: large utilities run unsupported
+     ATSs (batch 11, one employer).
+  3. Route 3: **USAJOBS adapter built and tested; waiting on the owner's
+     key.** Secrets `USAJOBS_API_KEY` and `USAJOBS_USER_AGENT`. BPA, WAPA,
+     SWPA and TVA are in the frame and skip cleanly until then. The federal
+     regime is pre-registered and coded (`excluding_federal` cut and
+     `federal_robustness`).
+  4. Route 4: Common Crawl → `ats_tokens.csv` (9,026 tokens) → batch 9.
+- EIA-176 (gas distributors) has no bulk file; its query system's guide is
+  saved (`data/registry/raw/eia_ngqs_guide.txt`) but not yet used.
+
+### Do these next
+
+1. **Each check-in (10:45 UTC, 28–30 Sep):** audit the run as the next round
+   (round 10 is next; add "Ten rounds" to `make_paper.py` and
+   `test_consistency.py`, plus a row in the paper's audit table). Batches
+   8–11 collect for the first time on 09-28: read every new board. Watch
+   the Hanwha-style duplicate-cluster risk, and read Stem, Giga Energy and
+   Canadian Solar rows for off-taxonomy manufacturing roles.
+2. If the owner adds the USAJOBS key before a run, the federal rows arrive
+   with it. Read them against the `excluding_federal` cut.
+3. Between runs, more employer searches. Anything added must be in
+   `employers.yaml` and §8 **before 09:17 UTC on 09-30**.
+4. After the 09-30 run: final audit, finalisation pass, "collection closed".
 
 ### What round 9 found (full record: `docs/audit-log.md` round 9)
 

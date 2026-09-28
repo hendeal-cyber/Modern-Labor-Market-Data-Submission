@@ -68,6 +68,36 @@ def parse_tx_reps(text: str) -> list[str]:
     return names
 
 
+def rank_eia(names: set[str]) -> None:
+    """Route 2: EIA-861 utilities (by retail customers) and EIA-860 operators
+    (by operable MW) missing from the frame, utilities in mandate states
+    first, into data/registry/eia_ranked_missing.csv."""
+    import sys
+    import yaml
+    sys.path.insert(0, str(ROOT / "src"))
+    from lmstudy.build_dataset import mandate_effective_dates, mandates_in_force
+    scope = yaml.safe_load((ROOT / "config" / "scope.yaml").read_text())
+    mandate = set(mandates_in_force(mandate_effective_dates(scope), "2026-09-30"))
+    out = []
+    for fname, size_col, source in (("eia861_utilities.csv", "customers", "EIA-861"),
+                                    ("eia860_owners.csv", "nameplate_mw", "EIA-860")):
+        path = ROOT / "data" / "registry" / fname
+        if not path.exists():
+            continue
+        for row in csv.DictReader(path.open()):
+            if reg.in_frame(row["name"], names):
+                continue
+            states = set(row["states"].split())
+            out.append({"source": source, "name": row["name"], "states": row["states"],
+                        "ownership": row.get("ownership", ""),
+                        "size": row[size_col], "size_unit": size_col,
+                        "mandate_state": bool(states & mandate)})
+    out.sort(key=lambda r: (r["source"], not r["mandate_state"], -float(r["size"] or 0)))
+    reg.write_csv(ROOT / "data" / "registry" / "eia_ranked_missing.csv", out,
+                  ["source", "name", "states", "ownership", "size", "size_unit", "mandate_state"])
+    print(f"{len(out)} EIA entities outside the frame -> eia_ranked_missing.csv")
+
+
 def main() -> int:
     names, _ = reg.frame_index()
     rows: dict[str, dict] = {}
@@ -102,6 +132,7 @@ def main() -> int:
                     "in_frame": reg.in_frame(row["name"], names),
                     "source_urls": " ".join(sorted(row["source_urls"]))})
     out.sort(key=lambda r: (r["in_frame"], -r["entities"], r["name"].lower()))
+    rank_eia(names)
     reg.write_csv(OUT, out, ["name", "registries", "entities", "sectors", "in_frame", "source_urls"])
     print(f"{len(out)} companies, {sum(not r['in_frame'] for r in out)} not in the frame -> {OUT}")
     return 0

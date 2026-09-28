@@ -685,3 +685,18 @@ own research use, so the owner should register as the requester. Quoted
 beside the other sources in `docs/limitations.md`.
 
 Frame: 350 → 366 (the collector's loader).
+
+**Addendum, 2026-09-28 00:10 UTC, before the 28 September run: batch 11
+and the outcome of source route 2.** The EIA-861 (2024; 1,518 utilities by
+retail customers) and EIA-860 (2025; 5,852 generator operators by operable
+MW) lists were ranked against the frame, mandate states first
+(`data/registry/eia_ranked_missing.csv`). The largest missing names were
+searched on each supported ATS's domain. Almost all are subsidiaries of
+parents already in the frame or already denied (Exelon's utilities on
+iCIMS, National Grid, FirstEnergy, Dominion, Con Edison), or public
+entities hiring through NEOGOV and their own portals (SMUD, LADWP, Seattle,
+Snohomish and Clark PUDs, Colorado Springs, the California community choice
+aggregators other than San Diego's). That is limitations 9b measured at
+scale rather than a new finding, and it is recorded so the next search does
+not repeat it. One employer found along the way enters, verified: Industrial
+Electric Manufacturing (switchgear; Fremont, California). Frame: 366 → 367.
