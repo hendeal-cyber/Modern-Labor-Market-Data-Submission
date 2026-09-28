@@ -21,6 +21,21 @@
 | USAJOBS | Key works (owner, 2026-09-28). Public Utilities Specialist series admitted by owner amendment. **One federal row** (WAPA). `federal_robustness`: no verdict changes |
 | Tests | ALL SUITES PASSED, consistency 29/29, slide QA clean |
 
+### OPEN — the owner's ~1,000-observation goal (asked 2026-09-28)
+
+Measured and set out in `docs/next-session-prompt.md` §6:
+- **A.** Broaden roles to all salaried professional roles: about +400–550
+  from data already collected. It is the only lever that reaches ~1,000. It is
+  a post-data population change, so report it as a second population beside
+  the primary.
+- **B.** Extend collection to a new fixed end date: about +5–20 a day.
+- **C.** More federal agencies via USAJOBS: about +10–40. FERC and NRC are
+  regulators, which the frame excludes. NERC is not federal.
+- **D.** Keep expanding the frame: +20–60 per run.
+
+A, B and C need the owner's choice; D continues. Without A, expect about
+500–560 by 09-30.
+
 ### Do these next
 
 1. **29 and 30 Sep check-ins (10:45 UTC):** audit each run as rounds 11
