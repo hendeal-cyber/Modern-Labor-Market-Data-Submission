@@ -2780,6 +2780,11 @@ national_batch4:
     candidates:
       lever: [energy-by-5]
     verified: false
+  - name: Gas South   # job-boards.greenhouse.io/gassouth/jobs/7423814 (Natural Gas Analyst; retail natural gas supplier owned by Cobb EMC, Atlanta; not Southern Company Gas)
+    industry: retailer
+    candidates:
+      greenhouse: [gassouth]
+    verified: true
   # --- Batch 10, 2026-09-27, before the 28 September run (source route 3):
   # the federal power marketing administrations, through the official USAJOBS
   # (Bonneville and Western Area were already in the frame, in

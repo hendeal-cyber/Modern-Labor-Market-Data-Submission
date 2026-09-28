@@ -729,3 +729,6 @@ frame since the first batch, on guessed Greenhouse and Lever names that never
 resolved) is confirmed on SmartRecruiters (`ApexCleanEnergy`) from live job
 URLs in Charlottesville, Virginia, a mandate state. The guesses are dropped.
 Frame unchanged at 369.
+Also before the 28 September run (01:10 UTC): Gas South (retail natural gas
+supplier, Atlanta; owned by Cobb EMC, not related to Southern Company Gas),
+verified from a live job URL. Frame: 370.

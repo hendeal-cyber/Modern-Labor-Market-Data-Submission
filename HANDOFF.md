@@ -10,7 +10,7 @@
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
 | **Collection** | Three owner-approved scheduled runs: **09:17 UTC on 28, 29 and 30 September** (cron `17 9 28-30 9 *`). Collection closes with snapshots dated 2026-09-30. Check-ins set by this session for **10:45 UTC** each day (send_later ids trig_01LwJq31PuaMBpkDHxcpHwd9, trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
-| Frame | **369 employers** (collector's loader). Batches 8–12 added 2026-09-27/28, all in pre-registration §8 before the 09-28 run |
+| Frame | **370 employers** (collector's loader). Batches 8–12 added 2026-09-27/28, all in pre-registration §8 before the 09-28 run |
 | **Usable N** | **377** (in scope 497) |
 | **Employer clusters** | **52** |
 | **Largest employer** | **Crusoe 13.0%** (49 of 377) |
