@@ -365,6 +365,12 @@ change made afterwards; and `scope-decision.md`, `decision-log.md` and the
 probe measurements record what each option was worth at the time it was chosen,
 so a reader discounting these results can check what was known when.
 
+A fifth widening, smaller and after the national sample existed: on
+2026-09-28 the owner admitted the federal Public Utilities Specialist series
+to the role taxonomy. That was after seeing federal job titles, and before any
+federal posting was collected (pre-registration section 8). It admits one
+federal row on the 28 September data.
+
 The early-career question survives as a pre-specified subsample, reported
 whether or not it agrees with the full sample.
 

@@ -2701,6 +2701,10 @@ national_batch4:
     verified: true
   - name: Heron Power   # jobs.ashbyhq.com/heron-power/725a7ec8-9f2c-4099-b509-18624d4ed4fb (solid-state transformers)
     industry: grid_vendor
+    # Its postings give the town alone ("Scotts Valley"), which names no
+    # state. Headquarters: Scotts Valley, California. Declared as Austin
+    # Energy's was (audit round 10), used only when a posting names no state.
+    location_fallback: "Scotts Valley, CA"
     candidates:
       ashby: [heron-power]
     verified: true

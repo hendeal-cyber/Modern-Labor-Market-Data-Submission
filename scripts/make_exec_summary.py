@@ -280,13 +280,15 @@ def main() -> int:
             A("hard to separate.")
             A("")
     if overturned:
-        A(f"**{len(overturned)} further attributes reach significance under "
+        _one = len(overturned) == 1
+        A(f"**{len(overturned)} further attribute{'' if _one else 's'} "
+          f"reach{'es' if _one else ''} significance under "
           f"clustered standard errors and")
         A("not under the bootstrap** — "
           + ", ".join(pretty(n) for n in overturned) + ".")
         A("With few employer clusters the asymptotic p-values are "
-          "anti-conservative, so these")
-        A("are reported as inconclusive rather than as findings. An "
+          f"anti-conservative, so {'it is' if _one else 'these are'}")
+        A("reported as inconclusive rather than as a finding. An "
           "underpowered null is not")
         A("a measured zero, and neither is a finding.")
         A("")
@@ -360,7 +362,7 @@ def main() -> int:
     A("  pay coefficient is conditional on disclosure. This is the central "
       "threat, and it")
     A("  is why the disclosure result is a headline rather than a footnote.")
-    A("- **The scope widened four times in response to the data.** Disclosed "
+    A("- **The scope widened five times in response to the data.** Disclosed "
       "in")
     A("  `docs/limitations.md`; the specification was pre-registered before "
       "the national")

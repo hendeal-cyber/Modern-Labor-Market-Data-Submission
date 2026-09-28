@@ -999,6 +999,108 @@ longer passes clustered errors, so two coefficients, not three, are
 overturned by the bootstrap. Deliverables regenerated; ALL SUITES PASSED,
 consistency 29/29.
 
+### Round 10 — run 30, the first collection of batches 5–12 and of USAJOBS (2026-09-28)
+
+**Scope.** Collection run 30 (Actions 36362800276) was dispatched by hand
+at 00:36 UTC, at the owner's request, instead of by the 09:17 cron. The
+snapshot date is 2026-09-28 either way (pre-registration section 8). 53
+minutes; Monday, so every description was re-read. 370 employers attempted,
+156 boards found, 3,632 postings. It was the first collection of batches
+5–12 and of the USAJOBS route, using the key the owner added. All 127 added
+in-scope rows were read, matched on `url` to the audited N = 377 dataset.
+Then the pay extremes, single figures, duplicate URLs, the federal rows,
+and every new board that collected postings but added no row. No row left,
+and one changed: an AES requisition edited to list Virginia alone, still
+covered.
+
+**Defect 1 — location forms never met before.** Reading why the silent new
+boards were silent found in-scope US postings rejected as having no state:
+"Tucson, AZ - Downtown" (a facility after the state code),
+"United States - Massachusetts - Boston" and "Washington - Pullman" (state
+before city), "San Francisco Bay Area" and "SF Bay Area" (the metro's own
+name), and "Mt. View California" (no comma). `canonicalize_place` now reads
+each form. Over all 1,051 distinct raw locations, exactly 12 resolve
+differently, every one correctly, and "Remote - Texas" is unchanged. The
+largest casualty was **SEL (Schweitzer Engineering Laboratories)**, confirmed
+in batch 5 and collected for the first time today: every one of its postings
+said "Washington - Pullman", so it would have entered as a board with no
+rows. Heron Power's postings give the town alone ("Scotts Valley"), so it
+declares `location_fallback: "Scotts Valley, CA"`, as Austin Energy did in
+round 9. Pinned in `test_geo.py` and `test_pipeline.py` with the real
+strings. Both tests fail with the old code or declaration restored from a
+backup copy. 18 in-scope rows enter.
+
+**Defect 2 — eleven off-taxonomy postings at new employers, removed by nine phrases**, each the sibling of
+an exclusion already listed, and each phrase measured to match exactly its
+target in the whole corpus:
+- human capital (Bonneville's "Human Capital Data Analyst", HR)
+- workforce ("Director, Nuclear Workforce Pipeline Development")
+- training & development (sibling of learning & development)
+- labor compliance (SOLV, three roles, labour-law compliance)
+- construction supervisor (CARIAN)
+- quality engineer (Giga Energy, manufacturing)
+- fuel development (TerraPower, nuclear fuel R&D)
+- emc compliance (SEL, product EMC testing; sibling of "packaging")
+- development lead engineer (SEL, recloser product engineering)
+
+Pinned in `test_filters.py` with the real titles, beside in-scope neighbours
+that must stay: "Nuclear Siting Project Manager", "Project Manager, Tax
+Credit Compliance", "Senior Compliance Specialist". It fails with the
+exclusions removed from a backup copy.
+
+**Federal rows.** The key works. One federal row enters: Western Area's
+"Public Utilities Specialist (Contracts and Energy Services)", $61,722–$129,742,
+a multi-grade GS range, admitted by the owner's amendment of this morning.
+Bonneville's only in-scope row was the HR analyst above. Its other Public
+Utilities Specialist posting is a Customer Account Executive, excluded as
+sales. `excluding_federal` moves the gap by 0.02 points, and
+`federal_robustness` changes no verdict.
+
+**Not defects, left as found.** SMA America's "Remote, Unites States" (sic)
+and IPX Power's bare "United States" stay rejected, like Intersect Power's in
+round 9. Tyba's "SF Bay Area, Chicago, LA or Remote" is a compound list the
+resolver does not split. Neara's and Akaysha's postings are non-US.
+Serverfarm (38 postings), Exowatt, VEIR, Lunar and Fourth Power collected
+only technician, field, manufacturing or sales roles. Helion, Perch,
+ConnectGen and Antora resolved no board: their boards returned nothing to the
+public API on this run. Cologix's Lever board still returns 24 postings, so
+the Greenhouse board seen in a search is not added. Energy Solutions' two
+"Energy Efficiency Project Manager I" postings nest by location but differ by
+73 characters of description, so they are two requisitions under the
+2026-09-22 rule. New Leaf's four internal-candidate postings are four cities
+with four pay bands.
+
+**Checked and found clean.** No duplicate URLs. No low bound below $30,000.
+No single-figure or hourly row among the additions. Lowest new pay: Energy
+Solutions' project managers at $69,000–$79,000 and Ameresco's Site
+Origination Analyst at $64,000–$92,500. Highest: Tapestry's Senior
+Engineering Manager at $262,000–$369,000, then Gridware's directors. All are
+stated ranges.
+
+**Result.**
+
+| | Pre-run (interim, audited) | Run 30, unaudited | Run 30, audited |
+|---|---|---|---|
+| Usable N | 377 | 470 | **472** |
+| In scope | 497 | 624 | **631** |
+| Clusters | 52 | 85 | **86** |
+| Largest employer | Crusoe 13.0% | Crusoe 10.4% | **Crusoe 10.4%** (49 of 472) |
+| Obs per regressor | 25.1 | — | **31.5**; the budget rule now selects Model 2 (extended) |
+| Disclosure gap | 45.0pp | 43.6pp | **43.1pp** (91.7% of 384 vs 48.6% of 247; 42.3–44.8 across four cuts) |
+
+**Verdicts.** `seniority_rank` (0.0001) and `yrs_exp_min` (0.0001) are
+unchanged in kind, as on every version of the data. `skill_cloud`
+strengthens to 0.0014 and holds without Crusoe (0.003) and in real terms.
+`region_northeast` (0.006) survives the bootstrap and the region check but
+not price adjustment (clustered p 0.92). **Two coefficients newly survive:**
+`region_west` (+0.125, 0.020), which is also not significant in real terms
+(0.26), and `degree_stem` (+0.051, 0.024), which **fails without Crusoe**.
+Both are tentative. `skill_ml_ai` (0.059) passes the region check but not
+the bootstrap: inconclusive. The 95 new usable rows are mostly analytics,
+software and development roles at developers, nuclear firms and grid
+software companies in mandate states. That is the composition the frame
+expansion said to expect, and it is why verdicts moved.
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

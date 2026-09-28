@@ -1,25 +1,37 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — 2026-09-28, just after midnight UTC (after an interim check; three scheduled runs pending, first at 09:17 today)
+## RESUME HERE — 2026-09-28, after audit round 10 (run 30); two scheduled runs left, 09:17 UTC on 29 and 30 September
 
 *This block wins over everything below it. Do not quote numbers from below it.*
 
-### State — AUDITED data through run 29, plus the interim fixes of 2026-09-27 evening
+### State — AUDITED through run 30 (round 10)
 
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
-| **Collection** | Three owner-approved runs: **28 Sep dispatched by hand ~00:36 UTC at the owner's request; 09:17 UTC on 29 and 30 September by cron** (`17 9 29-30 9 *`). Collection closes with snapshots dated 2026-09-30. Check-ins set by this session for **10:45 UTC** each day (send_later ids trig_01LwJq31PuaMBpkDHxcpHwd9, trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
-| Frame | **370 employers** (collector's loader). Batches 8–12 added 2026-09-27/28, all in pre-registration §8 before the 09-28 run |
-| **Usable N** | **377** (in scope 497) |
-| **Employer clusters** | **52** |
-| **Largest employer** | **Crusoe 13.0%** (49 of 377) |
-| Obs per regressor | 25.1. `interpretable: true`. All four pre-registered conditions pass |
-| Disclosure gap (H2) | 94.2% (n=294) vs 49.3% (n=203), **45.0pp**, 44.4–47.6 across cuts. **Associational, not causal** |
-| Survive bootstrap AND region check | `seniority_rank`, `yrs_exp_min` (H3 supported), `region_northeast` (not significant in real terms, p 0.54; exploratory), `skill_cloud` (tentative; now holds without Crusoe at 0.043) |
-| Overturned by the bootstrap | `skill_ml_ai`, `industry_data_center` (`degree_stem` no longer passes clustered errors) |
-| Without Crusoe | only `remote_eligible` changes verdict |
-| Tests | ALL SUITES PASSED (now 13 suites incl. registries, usajobs), consistency 29/29 |
+| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 and 30 Sep: 09:17 UTC by cron** (`17 9 29-30 9 *`). Collection closes with snapshots dated 2026-09-30. Check-ins: 29 and 30 Sep at 10:45 UTC (trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
+| Frame | **370 employers** (collector's loader) |
+| **Usable N** | **472** (in scope 631) |
+| **Employer clusters** | **86** |
+| **Largest employer** | **Crusoe 10.4%** (49 of 472) |
+| Obs per regressor | 31.5. The budget rule selects **Model 2 (extended)**. `interpretable: true`. All four conditions pass |
+| Disclosure gap (H2) | 91.7% (n=384) vs 48.6% (n=247), **43.1pp**, 42.3–44.8 across four cuts (incl. excluding_federal). **Associational, not causal** |
+| Survive bootstrap AND region check | `seniority_rank`, `yrs_exp_min` (both robust everywhere); `skill_cloud` (0.0014, robust to Crusoe and prices; exploratory, no prediction); `region_northeast` (not in real terms); **new, tentative:** `region_west` (0.020, not in real terms) and `degree_stem` (0.024, **fails without Crusoe**) |
+| Inconclusive | `skill_ml_ai` (0.059; passes the region check, not the bootstrap) |
+| USAJOBS | Key works (owner, 2026-09-28). Public Utilities Specialist series admitted by owner amendment. **One federal row** (WAPA). `federal_robustness`: no verdict changes |
+| Tests | ALL SUITES PASSED, consistency 29/29, slide QA clean |
+
+### Do these next
+
+1. **29 and 30 Sep check-ins (10:45 UTC):** audit each run as rounds 11
+   and 12 ("Eleven/Twelve rounds" are already in `make_paper.py` and
+   `test_consistency.py`; add the paper's audit-table row). Watch
+   `degree_stem` and `region_west` (tentative), and whether new location
+   forms appear on silent boards. Read why every silent board was silent,
+   which is how round 10 found SEL.
+2. Between runs, employer searches. Anything added must be in
+   `employers.yaml` and §8 **before 09:17 UTC on 09-30**.
+3. After the 09-30 run: final audit, finalisation pass, "collection closed".
 
 ### What happened on the evening of 2026-09-27 (full record: audit-log "Interim check — 2026-09-27", §8 last two entries)
 

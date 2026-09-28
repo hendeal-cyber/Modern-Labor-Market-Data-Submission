@@ -493,7 +493,8 @@ def main() -> int:
             if _log.exists() else 0
         _word = {1: "One round", 2: "Two rounds", 3: "Three rounds",
                  4: "Four rounds", 5: "Five rounds", 6: "Six rounds",
-                 7: "Seven rounds", 8: "Eight rounds", 9: "Nine rounds"}.get(_rounds,
+                 7: "Seven rounds", 8: "Eight rounds", 9: "Nine rounds",
+                 10: "Ten rounds", 11: "Eleven rounds", 12: "Twelve rounds"}.get(_rounds,
                                                          f"{_rounds} rounds")
         A(f"{_word} of hand-auditing are recorded in `docs/audit-log.md`.")
         A("Each read real collected titles rather than a synthetic sample, and")
@@ -516,6 +517,7 @@ def main() -> int:
             A("| 8 | Run 28 (cancelled at employer 209 of 269): all 58 added rows | GE Vernova's first collection added 18 rows and a cluster; two were off-taxonomy (packaging compliance, sales). \"$1M to $30M\" project sizes were read as $30 an hour, the only usable row of a phantom Duke cluster. The Ashby adapter had crashed on every board since the cache commit. The first next-day cache read reused 352 descriptions with no disclosure drift |")
         if _rounds >= 9:
             A("| 9 | Run 29, the national frame expansion (133 added rows) | Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 49 usable rows, reported with a sensitivity check |")
+            A("| 10 | Run 30 (28 Sep, dispatched early at the owner's request), the first collection of batches 5-12 and USAJOBS | US towns named after foreign cities read as non-US (Eversource's Berlin, CT), and a repost differing by one full stop, both fixed between runs. Location forms never met before (\"Tucson, AZ - Downtown\", \"Washington - Pullman\", \"San Francisco Bay Area\") rejected every posting of a newly confirmed employer (SEL) on its first collection. Eleven off-taxonomy postings at new employers (HR, labour compliance, construction, manufacturing quality, product engineering) |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")
@@ -966,9 +968,10 @@ def main() -> int:
     A("   the wild cluster bootstrap"
       + (f", under which {len(_lost)} of the {len(_cl_sig)} coefficients that "
          "clustered errors call significant become inconclusive." if _cl_sig else "."))
-    # Four, per docs/limitations.md section 10: the pre-registration's
-    # "three times" was written before the national rescope, the fourth.
-    A("6. The scope **widened four times in response to the data**. The")
+    # Five, per docs/limitations.md section 10: the pre-registration's
+    # "three times" was written before the national rescope, the fourth; the
+    # fifth is the federal Public Utilities Specialist series (2026-09-28).
+    A("6. The scope **widened five times in response to the data**. The")
     A("   specification was pre-registered before the national sample was")
     A("   collected; amendments after that point are dated in")
     A("   `docs/pre-registration.md` section 8.")

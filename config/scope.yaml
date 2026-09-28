@@ -536,6 +536,17 @@ roles:
     - contracts specialist
     - supplier development
     - learning & development
+    # Audit round 10 (run 30): siblings of exclusions already listed, each
+    # matching exactly the one role it targets in the whole corpus.
+    - human capital              # HR (Bonneville "Human Capital Data Analyst")
+    - workforce                  # HR ("Nuclear Workforce Pipeline Development")
+    - training & development     # sibling of learning & development
+    - labor compliance           # labour-law compliance (SOLV, 3 roles)
+    - construction supervisor    # sibling of construction project manager
+    - quality engineer           # manufacturing quality (Giga Energy)
+    - fuel development           # nuclear fuel R&D engineering (TerraPower)
+    - emc compliance             # product EMC testing (SEL), sibling of "packaging"
+    - development lead engineer  # relay/recloser product engineering (SEL)
     - learning and development
 
 # ---------------------------------------------------------------------------

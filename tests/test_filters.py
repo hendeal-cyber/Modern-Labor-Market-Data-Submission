@@ -477,6 +477,27 @@ def check_role_concepts():
     if filters.screen_all("Public Utilities Specialist (Customer Account Executive)", "", scope)[0]:
         fails.append("a Public Utilities Specialist sales role got past the exclusions")
 
+    # Audit round 10 (run 30): off-taxonomy roles, verbatim, each removed by
+    # a sibling of an exclusion already listed.
+    for t in ("Human Capital Data Analyst",
+              "Director, Nuclear Workforce Pipeline Development",
+              "Training & Development Manager - Content Developer",
+              "Labor Compliance Specialist (Temporary Assignment)",
+              "Labor Compliance Manager",
+              "Construction Supervisor (Transmission Survey and GIS)",
+              "Quality Engineer, Switchboards & AI",
+              "Manager, Fuel Development & Testing",
+              "Lead EMC Compliance Engineer",
+              "Development Lead Engineer - Power Distribution & Reclosing"):
+        if filters.screen_all(t, "", scope)[0]:
+            fails.append(f"round-10 off-taxonomy role ADMITTED: {t!r}")
+    # ...while the in-scope neighbours from the same run stay in.
+    for t in ("Nuclear Siting Project Manager \u2013 Natrium Technology",
+              "Project Manager, Tax Credit Compliance",
+              "Senior Compliance Specialist"):
+        if not filters.screen_all(t, "", scope)[0]:
+            fails.append(f"round-10 in-scope role REJECTED: {t!r}")
+
     # The concept layer must never override an explicit exclusion.
     roles = scope["roles"]
     if not roles.get("include_concepts"):

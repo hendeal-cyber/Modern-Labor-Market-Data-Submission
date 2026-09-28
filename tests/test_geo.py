@@ -325,6 +325,23 @@ def run():
         if not is_non_us(loc):
             fails.append(f"is_non_us({loc!r}) wrongly False (a foreign place)")
 
+    # Location forms first met on run 30 (2026-09-28), each verbatim from a
+    # real posting that passed the role screen and was then rejected as
+    # having no US state: Tucson Electric Power's facility suffix, Ameresco's
+    # country-state-city form, TAR's metro name, ECL's missing comma.
+    for loc, want in (("Tucson, AZ - Downtown", "AZ"), ("Tucson, AZ - Irvington", "AZ"),
+                      ("United States - Massachusetts - Boston", "MA"),
+                      ("San Francisco Bay Area", "CA"), ("Mt. View California", "CA")):
+        if resolve_us_state(loc) != want:
+            fails.append(f"resolve_us_state({loc!r}) = {resolve_us_state(loc)!r}, want {want}")
+    # ...without inventing states: a word that merely ends a place name is
+    # not a state ("Washington Heights"), and a foreign suffix stays foreign.
+    for loc, want in (("Washington Heights", None), ("Kansas City", None),
+                      ("Remote - Texas", "TX"),
+                      ("Sydney, New South Wales, Australia", None)):
+        if resolve_us_state(loc) != want:
+            fails.append(f"resolve_us_state({loc!r}) = {resolve_us_state(loc)!r}, want {want}")
+
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:
         print("  FAIL", f)

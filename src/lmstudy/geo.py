@@ -114,6 +114,15 @@ def detect_arrangement(location_raw: str, description: str = "") -> str:
 # manifest (scope_diagnostics.locations_of_in_role) rather than invented.
 _COUNTRY_PREFIX_RE = re.compile(r"^\s*(?:US|USA|U\.S\.|United States)\s*[-\u2013]\s*", re.IGNORECASE)
 _STATE_FIRST_RE = re.compile(r"^\s*([A-Z]{2})\s*,\s*(.+?)\s*$")
+_CITY_STATE_SUFFIX_RE = re.compile(r"^\s*([^,]+?)\s*,\s*([A-Za-z]{2})\s*[-\u2013]\s*\S.*$")
+_STATE_NAME_CITY_RE = re.compile(r"^\s*([A-Za-z .]+?)\s*[-\u2013]\s*([A-Za-z .'-]+?)\s*$")
+_BAY_AREA_RE = re.compile(r"(?:san francisco|sf)\s+bay\s+area", re.IGNORECASE)
+# "<city> <full state name>" with no comma. Longest names first, so "West
+# Virginia" is not read as "Virginia".
+_TRAILING_STATE_NAME_RE = re.compile(
+    r"^(.+?)\s+(" + "|".join(sorted((re.escape(n) for n in STATE_ABBR if len(n) > 2),
+                                    key=len, reverse=True)) + r")$",
+    re.IGNORECASE)
 
 
 def canonicalize_place(fragment: str) -> str:
@@ -124,6 +133,26 @@ def canonicalize_place(fragment: str) -> str:
     the sector gate was broken.
     """
     text = _COUNTRY_PREFIX_RE.sub("", fragment or "")
+    # Forms first met on run 30 (audit round 10), each observed, not guessed:
+    #   "Tucson, AZ - Downtown"            a facility after the state code
+    #   "Massachusetts - Boston"           (from "United States - Massachusetts - Boston")
+    #   "San Francisco Bay Area"           the metro's own name
+    #   "Mt. View California"              city and state name with no comma
+    m = _CITY_STATE_SUFFIX_RE.match(text)
+    if m and m.group(2).upper() in _STATE_CODES:
+        return f"{m.group(1).strip()}, {m.group(2).upper()}"
+    m = _STATE_NAME_CITY_RE.match(text)
+    if m and m.group(1).strip().lower() in STATE_ABBR:
+        return f"{m.group(2).strip()}, {STATE_ABBR[m.group(1).strip().lower()]}"
+    if _BAY_AREA_RE.fullmatch(text.strip()):
+        return "San Francisco, CA"
+    if "," not in text:
+        m = _TRAILING_STATE_NAME_RE.match(text.strip())
+        city = m.group(1).strip(" -\u2013") if m else ""
+        # "Remote - Texas" is a bare state, handled below as it always was;
+        # only a real place name before the state is a city.
+        if city and city.lower() not in ("remote", "hybrid", "onsite", "on-site", "us", "usa"):
+            return f"{city}, {STATE_ABBR[m.group(2).lower()]}"
     match = _STATE_FIRST_RE.match(text)
     if match:
         state, city = match.group(1), match.group(2)

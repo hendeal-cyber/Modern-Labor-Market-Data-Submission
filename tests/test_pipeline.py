@@ -166,6 +166,14 @@ def check_location_fallback():
         fails.append("fallback applied to a non-US posting")
     if with_location_fallback("Austin Energy", None) != "Austin Energy":
         fails.append("fallback applied with none declared")
+    # Heron Power (audit round 10): its postings say "Scotts Valley" alone.
+    import yaml as _yaml, pathlib as _pl
+    emp = _yaml.safe_load((_pl.Path(__file__).resolve().parents[1] / "config" / "employers.yaml").read_text())
+    heron = [e for g in emp.values() if isinstance(g, list) for e in g
+             if isinstance(e, dict) and e.get("name") == "Heron Power"]
+    fb = heron[0].get("location_fallback") if heron else None
+    if geo.resolve_us_state(with_location_fallback("Scotts Valley", fb)) != "CA":
+        fails.append(f"Heron Power's 'Scotts Valley' not placed in CA (fallback {fb!r})")
     return fails
 
 

@@ -796,3 +796,36 @@ reader could see is that postings opened between 00:36 and 09:17 UTC today
 are not in today's snapshot, and they are caught by the 29 September run if
 still open. Today is a Monday, so the workflow does its weekly full re-read
 of descriptions either way.
+
+### 2026-09-28 — audit round 10: location forms read, one declared location, nine role exclusions
+
+**What changed.** Found by reading run 30's 127 added rows and every silent
+new board (`docs/audit-log.md`, round 10). Each change was measured across
+the whole corpus before being kept.
+
+1. **Location (population).** `canonicalize_place` reads four forms first
+   met on this run: a facility after the state code ("Tucson, AZ -
+   Downtown"), state before city ("Washington - Pullman", "United States -
+   Massachusetts - Boston"), the metro's own name ("San Francisco Bay
+   Area"), and city and state name without a comma ("Mt. View
+   California"). 12 of 1,051 distinct raw locations change, all correctly.
+   Heron Power declares `location_fallback: "Scotts Valley, CA"` (its
+   headquarters), used only where a posting names no state. 18 in-scope
+   rows enter, 9 of them SEL's.
+2. **Role screen (population).** Nine phrases join `exclude_any`, each the
+   sibling of an existing exclusion, each matching only its target: human
+   capital, workforce, training & development, labor compliance,
+   construction supervisor, quality engineer, fuel development, emc
+   compliance, development lead engineer. 11 in-scope rows leave, 10 of
+   them usable.
+
+**Effect on the headline, stated whichever way it goes.** Against run 30 as
+collected: N 470 → 472, clusters 85 → 86 (Heron Power), largest employer
+Crusoe 10.4% → 10.4%, disclosure gap 43.6 → 43.1 points. The location
+fixes add rows in California and Washington, mostly software and
+engineering pay, and the exclusions remove HR, compliance and manufacturing
+pay. Neither was chosen for its effect. Change 1 corrects postings the
+pipeline could not place, and change 2 removes roles the taxonomy never
+admitted. On this run the regressor budget passes the pre-registered
+threshold for Model 2, so the extended specification is used. That is the
+rule in §4 operating, not a choice made here.
