@@ -1,0 +1,6 @@
+# source: https://apply.workable.com/api/v1/widget/accounts/korsail-energy-1
+# fetched: 2026-09-29T11:52:48+00:00
+
+{"name":"Korsail Energy","description":"
+Korsail Energy was founded by a team of solar finance and development experts to leverage our complementary combination of skills and establish a forward-thinking, offtake-focused development firm with the resources and expertise to bring projects to fruition. Headquartered in Denver, Colorado, we specialize in the end-to-end development of utility-scale greenfield solar and storage projects, as well as cutting-edge energy generation technologies such as hydrogen and carbon capture. From project inception to commercial operation, we drive innovation and sustainability in the energy industry. As a rapidly expanding organization, we are seeking dedicated producers to collaborate with us in originating and constructing an extensive portfolio of projects nationwide.
+","jobs":[]}

@@ -1,0 +1,6 @@
+# source: https://apply.workable.com/api/v1/widget/accounts/common-energy-1
+# fetched: 2026-09-29T11:52:48+00:00
+
+{"name":"Common Energy","description":"
+Common Energy is revolutionizing the energy sector. Our platform enables virtually anyone to connect their utility account to a new clean energy project, lower carbon emissions, and save money on their electricity. There is no on-site installation and signing up only takes two minutes. As such, we are a clean energy accelerator, and key part of the solution to mitigate global climate change.
+","jobs":[]}

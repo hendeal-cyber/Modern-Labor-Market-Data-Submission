@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-28T02:33:08+00:00",
+  "fetched_at": "2026-09-29T11:52:48+00:00",
   "pages": {
     "il_icc_ares": {
       "url": "https://www.icc.illinois.gov/Electricity/authorities/ARES.aspx",
@@ -296,6 +296,66 @@
       "fetched_at": "2026-09-28T02:33:08+00:00",
       "bytes": 243,
       "text_chars": 243
+    },
+    "probe_gh_corescientific": {
+      "url": "https://boards-api.greenhouse.io/v1/boards/corescientific/jobs",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-29T11:52:48+00:00"
+    },
+    "probe_gh_soluna": {
+      "url": "https://boards-api.greenhouse.io/v1/boards/soluna/jobs",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-29T11:52:48+00:00"
+    },
+    "probe_gh_elephantenergy": {
+      "url": "https://boards-api.greenhouse.io/v1/boards/elephantenergy/jobs",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-29T11:52:48+00:00"
+    },
+    "probe_gh_blocpower": {
+      "url": "https://boards-api.greenhouse.io/v1/boards/blocpower/jobs",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-29T11:52:48+00:00"
+    },
+    "probe_gh_quaise": {
+      "url": "https://boards-api.greenhouse.io/v1/boards/quaise/jobs",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-29T11:52:48+00:00",
+      "bytes": 11930,
+      "text_chars": 11930
+    },
+    "probe_lv_sunpower": {
+      "url": "https://api.lever.co/v0/postings/sunpower?mode=json",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-29T11:52:48+00:00"
+    },
+    "probe_lv_blocpower": {
+      "url": "https://api.lever.co/v0/postings/BlocPower?mode=json",
+      "status": 404,
+      "error": "HTTP 404",
+      "fetched_at": "2026-09-29T11:52:48+00:00"
+    },
+    "probe_wk_common_energy": {
+      "url": "https://apply.workable.com/api/v1/widget/accounts/common-energy-1",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-29T11:52:48+00:00",
+      "bytes": 459,
+      "text_chars": 447
+    },
+    "probe_wk_korsail": {
+      "url": "https://apply.workable.com/api/v1/widget/accounts/korsail-energy-1",
+      "status": 200,
+      "error": null,
+      "fetched_at": "2026-09-29T11:52:48+00:00",
+      "bytes": 831,
+      "text_chars": 826
     }
   },
   "eia": {
