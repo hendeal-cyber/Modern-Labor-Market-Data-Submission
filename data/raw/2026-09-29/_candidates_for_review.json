@@ -1,0 +1,171 @@
+[
+  {
+    "employer": "Terra-Gen",
+    "platform": "ashby",
+    "token": "terra",
+    "listed": 10,
+    "employer_searched": "Terra-Gen",
+    "distinctive_tokens": [
+      "gen",
+      "terra"
+    ],
+    "n_postings": 10,
+    "sample_titles": [
+      "Freelance Videogame Subtitlers  \u2013 Esports ",
+      "Japanese-to-US English Freelance Video Game Localizers",
+      "Freelance On-Site Multilingual LQA Tester \u2013 S\u00e3o Paulo",
+      "German-to-English Freelance Healthcare Translators and Editors",
+      "General Application for Freelance Video Game Localizers",
+      "Freelance On-Site Multilingual LQA Tester \u2013 Buenos Aires",
+      "Freelance On-Site Multilingual LQA Tester \u2013 Milwaukee",
+      "Join Our Healthcare Linguist Talent Pool"
+    ],
+    "locations_seen": [
+      "Buenos Aires",
+      "Milwaukee",
+      "Remote",
+      "S\u00e3o Paulo, Brazil",
+      "Worldwide"
+    ],
+    "sample_url": "https://jobs.ashbyhq.com/terra/64a6ecbb-b4bb-4423-866e-a8b85b153b85",
+    "sector_confidence": 0.0,
+    "distinct_sector_terms": 0,
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "Yes Energy",
+    "platform": "greenhouse",
+    "token": "yesenergy",
+    "listed": 16,
+    "employer_searched": "Yes Energy",
+    "distinctive_tokens": [
+      "yes"
+    ],
+    "n_postings": 16,
+    "sample_titles": [
+      "Account Executive",
+      "AI Evaluation Engineer",
+      "Business Development Representative",
+      "Customer Support & Market Data Specialist II",
+      "Data Engineer II",
+      "Data Scientist II",
+      "Fullstack Engineer",
+      "Global People Business Partner"
+    ],
+    "locations_seen": [
+      "Boston, Massachusetts, United States, Boulder, Colorado, United States, Chicago, Illinois, United States, Glendora, California, United States, Remote - US, Richmond, Virginia, United States",
+      "Boulder, CO",
+      "Boulder, Colorado",
+      "Boulder, Colorado, United States",
+      "Bucharest, Romania",
+      "Newton, Massachusetts, United States",
+      "Remote",
+      "Remote, United States",
+      "Richmond, VA"
+    ],
+    "sample_url": "https://job-boards.greenhouse.io/yesenergy/jobs/5422960008",
+    "sector_confidence": 0.188,
+    "distinct_sector_terms": 5,
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "Dairyland Power Cooperative",
+    "platform": "workday",
+    "token": "dairynet/DPCcareers",
+    "wd_instance": 1,
+    "listed": 29,
+    "site_guessed": false,
+    "employer_searched": "Dairyland Power Cooperative",
+    "distinctive_tokens": [
+      "cooperative",
+      "dairyland",
+      "power"
+    ],
+    "n_postings": 5,
+    "sample_titles": [
+      "Business Analyst Intern",
+      "Intern, Energy Data Analyst",
+      "GIS Specialist I",
+      "Manager, Regional Transmission Services",
+      "Project Manager I - Transmission"
+    ],
+    "locations_seen": [
+      "La Crosse, Wisconsin"
+    ],
+    "sample_url": "https://dairynet.wd1.myworkdayjobs.com/DPCcareers/job/La-Crosse-Wisconsin/Business-Analyst-Intern_JR101065",
+    "sector_confidence": 0.2,
+    "distinct_sector_terms": 1,
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "Rondo Energy",
+    "platform": "greenhouse",
+    "token": "rondoenergy",
+    "listed": 15,
+    "employer_searched": "Rondo Energy",
+    "distinctive_tokens": [
+      "rondo"
+    ],
+    "n_postings": 15,
+    "sample_titles": [
+      "Director, Global Supply Chain & Strategic Sourcing",
+      "Director of People",
+      "Electrical Systems Engineer - Power and Controls",
+      "Engineering Manager, Project Delivery",
+      "Mechanical Design Engineer",
+      "Mechanical Engineer \u2013 Field Integrations ",
+      "Project Controls Engineer - Cost & Planning",
+      "Senior Legal Counsel"
+    ],
+    "locations_seen": [
+      "Alameda, CA",
+      "Alameda, California",
+      "London, England, United Kingdom",
+      "Madrid",
+      "Madrid, Spain"
+    ],
+    "sample_url": "https://job-boards.greenhouse.io/rondoenergy/jobs/4707487006",
+    "sector_confidence": 0.0,
+    "distinct_sector_terms": 0,
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  },
+  {
+    "employer": "Energy by 5",
+    "platform": "lever",
+    "token": "energy-by-5",
+    "listed": 10,
+    "employer_searched": "Energy by 5",
+    "distinctive_tokens": [],
+    "n_postings": 10,
+    "sample_titles": [
+      "Account Manager- Energy & Sustainability",
+      "California Energy  Advisor- Commercial Sales",
+      "California Energy  Advisor- Commercial Sales",
+      "Commercial Referral Partner (Independent, Commission-Based)",
+      "Energy  Advisor- Commercial Sales",
+      "Energy  Advisor- Commercial Sales",
+      "Energy  Advisor- Commercial Sales",
+      "Energy  Advisor- Commercial Sales"
+    ],
+    "locations_seen": [
+      "Baltimore, MD",
+      "Chicago, IL",
+      "Columbus, OH",
+      "Dallas, TX",
+      "Houston, TX",
+      "Irving, TX",
+      "Los Angeles, CA",
+      "New York City, NY",
+      "San Diego, CA"
+    ],
+    "sample_url": "https://jobs.lever.co/energy-by-5/1f1b91a9-a406-4db0-a4d1-f99ae993a357",
+    "sector_confidence": 0.2,
+    "distinct_sector_terms": 3,
+    "review_required": true,
+    "note": "Unconfirmed slug match. Verify this board belongs to the intended employer, then add the token to config/employers.yaml as a declared candidate. Until then it contributes no data."
+  }
+]
