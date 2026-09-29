@@ -9,7 +9,7 @@
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
-| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 and 30 Sep: 09:17 UTC by cron** (`17 9 29-30 9 *`). Collection closes with snapshots dated 2026-09-30. Check-ins: 29 and 30 Sep at 10:45 UTC (trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
+| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 Sep: the cron did not fire; run 31 dispatched by hand at 10:46 UTC** (§8). 30 Sep: 09:17 UTC by cron (`17 9 29-30 9 *`), with a hand dispatch if it has not started by 09:40 UTC. Collection closes with snapshots dated 2026-09-30. Check-ins: 29 and 30 Sep at 10:45 UTC (trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
 | Frame | **407 employers** (collector's loader; batch 13 federal agencies and batches 14–15, 32 employers under option D, all added 2026-09-28 before the 29 Sep run) |
 | **Usable N** | **472** (in scope 631) |
 | **Employer clusters** | **86** |

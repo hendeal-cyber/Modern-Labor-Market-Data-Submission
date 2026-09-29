@@ -962,3 +962,17 @@ gains from option D will be small.
 
 *Expected effect, stated in advance:* three small clusters, few rows.
 Frame: 404 → 407.
+
+### 2026-09-29 — the 29 September run dispatched by hand after the cron did not fire
+
+GitHub's scheduler did not start the 09:17 UTC run. At the 10:45 UTC
+check-in no scheduled or queued run existed. The same workflow's cron has
+fired before (run 20), and GitHub documents scheduled runs as best-effort.
+The approved 29 September run was therefore dispatched by hand at 10:46 UTC
+by the clock, with the same inputs as run 30. The snapshot is dated
+2026-09-29 either way. The collection dates, the frame and the stopping rule
+are unchanged, so nothing about the design moves. If the cron fires late as
+well, the runs queue (concurrency group `collect`), and same-day snapshots
+merge rather than duplicate (audit round 7). The 30 September run gets a
+check at 09:40 UTC, with a hand dispatch if its cron has not started by
+then.
