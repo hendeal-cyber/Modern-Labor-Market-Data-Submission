@@ -248,6 +248,27 @@ def check_same_day_merge_and_same_url():
         fails.append(f"same-URL rows not collapsed to the latest: {sorted(rows)}")
     elif rows["new"]["first_seen_run"] != "2026-09-21":
         fails.append("the kept row must carry the earliest first_seen_run")
+
+    # Audit round 11, the real strings: Vantage retitled a posting on run 31
+    # and the new version's Workday date was the relative label.
+    vurl = ("https://vantagedc.wd1.myworkdayjobs.com/Vantage/job/Denver-Colorado/"
+            "Senior-Manager--Capital-Markets--NA_R23666")
+    vrows = {
+        "v_old": {"url": vurl, "employer": "Vantage Data Centers",
+                  "title": "Senior Manager, Capital Markets, NA",
+                  "posted_at": "2026-07-10", "posting_age_days": 81,
+                  "first_seen_run": "2026-09-21", "last_seen_run": "2026-09-28"},
+        "v_new": {"url": vurl, "employer": "Vantage Data Centers",
+                  "title": "Capital Markets Senior Manager, NA",
+                  "posted_at": "Posted Yesterday", "posting_age_days": None,
+                  "first_seen_run": "2026-09-29", "last_seen_run": "2026-09-29"},
+    }
+    collapse_same_url(vrows)
+    kept_v = vrows.get("v_new", {})
+    if kept_v.get("title") != "Capital Markets Senior Manager, NA":
+        fails.append("the retitled (latest) Vantage version must be kept")
+    if kept_v.get("posting_age_days") != 81 or kept_v.get("posted_at") != "2026-07-10":
+        fails.append(f"an unreadable posting date must take the earlier version's: {kept_v.get('posted_at')!r}")
     return fails
 
 

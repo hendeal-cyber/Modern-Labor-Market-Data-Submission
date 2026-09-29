@@ -342,6 +342,24 @@ def run():
         if resolve_us_state(loc) != want:
             fails.append(f"resolve_us_state({loc!r}) = {resolve_us_state(loc)!r}, want {want}")
 
+    # Run 31 (2026-09-29, audit round 11), verbatim: Radiant's and Emerald
+    # AI's dotted "D.C." was read as Washington STATE or not at all, and The
+    # Nuclear Company's two-site posting lost its DC mandate site.
+    for loc, want in (("Washington, D.C.", "DC"), ("Washington D.C.", "DC"),
+                      ("Remote; Los Angeles or Washington, D.C. preferred", "DC"),
+                      ("Bay Area", "CA")):
+        if resolve_us_state(loc) != want:
+            fails.append(f"resolve_us_state({loc!r}) = {resolve_us_state(loc)!r}, want {want}")
+    for loc, want in (("Columbia, SC  or Washington D.C", ["SC", "DC"]),
+                      ("Columbia, SC or Washington, D.C", ["SC", "DC"])):
+        if resolve_us_states(loc) != want:
+            fails.append(f"resolve_us_states({loc!r}) = {resolve_us_states(loc)!r}, want {want}")
+    # ...and the neighbours stay put.
+    for loc, want in (("Washington", "WA"), ("Seattle, Washington", "WA"),
+                      ("Washington, DC", "DC"), ("Tampa Bay Area", None)):
+        if resolve_us_state(loc) != want:
+            fails.append(f"resolve_us_state({loc!r}) = {resolve_us_state(loc)!r}, want {want}")
+
     print(f"geo: {len(fails)} failure(s) across {len(GAZ)} gazetteer entries")
     for f in fails:
         print("  FAIL", f)

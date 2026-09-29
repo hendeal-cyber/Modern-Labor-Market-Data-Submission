@@ -180,6 +180,13 @@ def collapse_same_url(rows: dict) -> int:
     The latest sighting is kept, because it is what the employer advertises
     now, with the EARLIEST first_seen_run, because that is when the job was
     first seen. Rows without a URL are left alone.
+
+    If the kept version's posting date is not a date, the newest earlier
+    version's date is carried over. Workday lists postings with relative
+    labels ("Posted Yesterday") that only the detail read replaces with a
+    date; run 31 retitled a Vantage posting (first read 2026-07-10) and its
+    new version kept "Posted Yesterday", so posting_age_days, a Model 2
+    regressor, went blank on a pay-disclosed row (audit round 11).
     """
     # Keyed with the employer too: a URL shared ACROSS employers cannot be one
     # requisition, whatever produced it.
@@ -196,6 +203,11 @@ def collapse_same_url(rows: dict) -> int:
         keys.sort(key=lambda k: (rows[k]["last_seen_run"], rows[k]["first_seen_run"]))
         keep = keys[-1]
         rows[keep]["first_seen_run"] = min(rows[k]["first_seen_run"] for k in keys)
+        if rows[keep].get("posting_age_days") is None:
+            dated = [k for k in keys[:-1] if rows[k].get("posting_age_days") is not None]
+            if dated:
+                rows[keep]["posted_at"] = rows[dated[-1]].get("posted_at")
+                rows[keep]["posting_age_days"] = rows[dated[-1]]["posting_age_days"]
         for k in keys[:-1]:
             del rows[k]
             dropped += 1

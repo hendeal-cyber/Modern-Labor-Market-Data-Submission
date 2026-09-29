@@ -116,7 +116,14 @@ _COUNTRY_PREFIX_RE = re.compile(r"^\s*(?:US|USA|U\.S\.|United States)\s*[-\u2013
 _STATE_FIRST_RE = re.compile(r"^\s*([A-Z]{2})\s*,\s*(.+?)\s*$")
 _CITY_STATE_SUFFIX_RE = re.compile(r"^\s*([^,]+?)\s*,\s*([A-Za-z]{2})\s*[-\u2013]\s*\S.*$")
 _STATE_NAME_CITY_RE = re.compile(r"^\s*([A-Za-z .]+?)\s*[-\u2013]\s*([A-Za-z .'-]+?)\s*$")
-_BAY_AREA_RE = re.compile(r"(?:san francisco|sf)\s+bay\s+area", re.IGNORECASE)
+_BAY_AREA_RE = re.compile(r"(?:(?:san francisco|sf)\s+)?bay\s+area", re.IGNORECASE)
+# "Washington, D.C." (dotted) split at the comma left "D.C." unread, and the
+# city "Washington" was then read as the STATE, WA (audit round 11: two
+# Radiant rows in Washington State, and "Columbia, SC or Washington D.C"
+# coded outside any mandate). Only the dotted form is caught: the undotted
+# "Washington, DC" already resolves. Trailing words ("... D.C. preferred")
+# do not matter.
+_DOTTED_DC_RE = re.compile(r"\bwashington\s*,?\s*d\.\s?c\b\.?", re.IGNORECASE)
 # "<city> <full state name>" with no comma. Longest names first, so "West
 # Virginia" is not read as "Virginia".
 _TRAILING_STATE_NAME_RE = re.compile(
@@ -138,6 +145,11 @@ def canonicalize_place(fragment: str) -> str:
     #   "Massachusetts - Boston"           (from "United States - Massachusetts - Boston")
     #   "San Francisco Bay Area"           the metro's own name
     #   "Mt. View California"              city and state name with no comma
+    # And on run 31 (audit round 11):
+    #   "Washington, D.C." / "Washington D.C"  the dotted district
+    #   "Bay Area"                         the metro's name without "San Francisco"
+    if _DOTTED_DC_RE.search(text):
+        return "Washington, DC"
     m = _CITY_STATE_SUFFIX_RE.match(text)
     if m and m.group(2).upper() in _STATE_CODES:
         return f"{m.group(1).strip()}, {m.group(2).upper()}"
