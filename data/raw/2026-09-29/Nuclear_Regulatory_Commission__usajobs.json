@@ -264,5 +264,24 @@
   "comp_interval": "year",
   "payload": null,
   "industry": "utility"
+ },
+ {
+  "platform": "usajobs",
+  "employer": "Nuclear Regulatory Commission",
+  "board_token": "NU00",
+  "external_id": "886764700",
+  "title": "Senior Allegations Program Manager",
+  "location_raw": "Atlanta, Georgia; Naperville, Illinois; Rockville, Maryland; King of Prussia, Pennsylvania; Arlington, Texas",
+  "description": "This position is located in Office of the Chief Nuclear Reactor Inspector, Division of Oversight and Compliance Programs, Allegations and Enforcement Branch. The supervisor is Shelbie Lewman, Acting Branch Chief. This position is subject to Confidential Financial Disclosure reporting requirements. This position is subject to security ownership restriction reporting requirements. The successful candidate will perform the full range of Senior Allegations Program Manager duties. Such duties include but are not limited to: Provides authoritative guidance, direction and oversight of the NRC Allegation Management Program. This includes development and maintenance of Management Directive 8.8. Prepares complex briefings, papers, and letters in support of staff presentations to senior-level officials at the Commission, Congress, responses to the general public and other organized groups regarding regulatory considerations of allegations and investigations Serves as one of the focal points for allegations matters needing coordination with the Office of General Counsel. Prepares coordinated responses and information to assigned correspondence, including communications from Congressional sources, Federal, State and local officials licensees, the general public, and various industrial and civic organizations regarding allegations. Performs special projects as directed regarding allegations or serves on a task force to resolve issues concerning allegations. These task force duties involve handling of sensitive and confidential information. In order to qualify for this position, you must have at least one year of specialized experience at the next lower grade level in the Federal service or equivalent experience in the private or public sector. SPECIALIZED EXPERIENCE is defined as: Knowledge of principles, theories and practices involving the NRC program for the management and resolution of allegations concerning NRC regulated activities; and skills sufficient to coordinate the efforts of numerous staff personnel working in many disciplines on assigned allegations projects, particularly when serving on a task-force. The ideal candidate will be able to demonstrate the following: Knowledge of the NRC Allegations Program, including policies, practices, and procedures; with knowledge of criteria and responsibilities Ability to interact and coordinate with technical, legal, managerial, and senior leadership across the NRC, other government agencies, industry organizations, and licensees to provide trainings, briefings, and authoritative guidance. Ability to communicate well, both orally and in writing; demonstrated ability to establish effective working relationships with subordinates, supervisors, peers, and government and industry officials. Ability to independently manage, organize, plan, and carry out to completion special tasks and assignments. A description of how you possess the specialized experience as well as how you meet the qualifications desired in an ideal candidate must be addressed in your resume. The NRC encourages applicants to provide job experience details in your resume. Applicants may also use the supplemental vacancy question to provide additional information pertaining to the specialized experience and ideal candidate criteria. PLEASE BE CLEAR AND CONCISE. WE WILL NOT MAKE ASSUMPTIONS REGARDING YOUR EXPERIENCE. There are no education requirements for this position. You must meet the qualifications for this position by no later than 30 calendar days after the closing date of this announcement and before placement in the position. All information in your resume must be true and accurate. Conditions of Employment: This is a Drug Testing position Must be able to meet and maintain security & suitability requirements.",
+  "url": "https://www.usajobs.gov:443/job/886764700",
+  "posted_at": "2026-09-29T12:16:08.7000",
+  "updated_at": "2026-09-29T12:16:08.7000",
+  "department": "Nuclear Regulatory Commission",
+  "employment_type": "",
+  "comp_min": 156451.0,
+  "comp_max": 197200.0,
+  "comp_interval": "year",
+  "payload": null,
+  "industry": "utility"
  }
 ]

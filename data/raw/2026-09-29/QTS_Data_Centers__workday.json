@@ -463,29 +463,6 @@
   "platform": "workday",
   "employer": "QTS Data Centers",
   "board_token": "qtsdatacenters/QTS",
-  "external_id": "Senior-Technical-Compliance-Analyst_R2026-1244",
-  "title": "Senior Technical Compliance Analyst",
-  "location_raw": "Groningen, NL; Amsterdam, NL",
-  "description": "The Senior Technology Compliance Analyst is responsible for the implementation of new compliance standards and monitoring QTS\u2019 adherence to compliance standards for all products offered by QTS.\n\nResponsibilities , other duties may be assigned:\n\n- Maintenance of enterprise control set\n\n- Perform controls rationalization as new IT and operational compliance standards are implemented simplify the enterprise control set\n\n- Evaluate and interpret IT and operational compliance standards requirements and provide guidance to process and control owners on the objective and intent of the requirement\n\n- Engage with process and control owners to understand technical process steps, identify mapping to compliance standards, evaluate gaps, and track execution\n\n- Drive the creation and maintenance of enterprise compliance documentation set (policies, standards, specifications, baselines, guidelines and procedures)\n\n- Complete controls obligations necessary to meet company compliance, audit, and security program requirements\n\n- Provide compliance support for vulnerability scanning and other security related audits\n\n- Prepares and presents status reports, risks, recommendations, and lessons learned to all levels of management\n\n- Develops key performance indicators and metrics to measure and report on the health of the compliance program\n\n- Facilitate risk assessments across corporate business units.\n\n- Negotiate acceptable time-frames to comply with audit findings by interfacing with auditors, IT management and business personnel\n\n- Manage internal and external resources in a variety of scenarios including compliance readiness assessments, controls implementations, and control execution monitoring\n\nBasic Qualifications:\n\n- Bachelor\u2019s Degree in Information Security, Accounting and Information Systems, IT Risk Management or related field or equivalent professional experience\n\n- Six or more years of combined experience in IT Audit, IT Risk Management or IT Compliance\n\n- Two or more years\u00a0of experience with governance, risk, and compliance tools.\n\n- Direct experience in implementing, managing or assessing at least three of the following compliance programs:\n\n- SOC 1\n\n- SOC 2\n\n- ISO 27001\n\n- PCI DSS v3.2\n\n- SOX IT Audit\n\nPreferred Qualifications:\n\n- IT risk, information security & compliance experience or Public accounting/consulting experience in the IT Audit or Advisory domain\n\n- Experience with use of GRC tools for enterprise-wide controls maintenance, control execution, and policy/procedure development\n\n- Experience working in the data center industry\n\n- Certifications: Certified Information Systems Auditor (CISA), Certified in Risk and Information Systems Control (CRISC), GIAC Critical Controls Certification (GCCC), or GIAC Security Essentials (GSEC)\n\nKnowledge, Skills & Abilities:\n\n- Excellent verbal and written communication skills\n\n- Strong technical, analytical and problem-solving skills\n\n- Ability to interact with personnel on all levels to resolve issues and provide solutions in a timely manner\n\n- Understands the need for, and consistently practices, effective teamwork with others.\n\n- Capable of prioritizing and managing assignments, tasks and projects to completion with minimal supervision\n\n- Ability to maintain a detail-oriented approach while multitasking in a fast-paced environment\n\n- Project management discipline, research skills and multi-tasking abilities; prioritize work activities, set goals and develop achievable action plans\n\n- Ability to identify and resolve problems in a timely manner, anticipate barriers to execution; gather and analyze information, consider alternate solutions and achieve results despite resource constraints\n\n- Intermediate to advanced proficiency in the use of Microsoft Office products, including Word, Excel and PowerPoint\n\nTotal Rewards:\n\n- 25 days annual leave\n\n- 5,250 EUR training bursary\n\n- Company car scheme - eligibility required\n\n- Pension scheme with Allianz\n\n- Occupational disability allowance\n\n- Voluntary health insurance\n\n- Voluntary pet insurance\n\n- This position in bonus eligible\n\nThe duties and responsibilities described here are not exhaustive and additional assignments, duties, or responsibilities may be required of this position.\u00a0 Assignments, duties, and responsibilities may be changed at any time, with or without notice, by QTS in its sole discretion. We provide individuals with disabilities reasonable accommodations to participate in the job application or interview process, to perform essential job functions, and to receive other benefits and privileges of employment in accordance with applicable law. Please contact us to request an accommodation on TalentAcquisition&#64;QTSDataCenters.com",
-  "url": "https://qtsdatacenters.wd5.myworkdayjobs.com/QTS/job/Groningen-NL/Senior-Technical-Compliance-Analyst_R2026-1244",
-  "posted_at": "Posted 30+ Days Ago",
-  "updated_at": null,
-  "department": null,
-  "employment_type": "",
-  "comp_min": null,
-  "comp_max": null,
-  "comp_interval": null,
-  "payload": {
-   "externalPath": "/job/Groningen-NL/Senior-Technical-Compliance-Analyst_R2026-1244",
-   "detail_from_cache": true,
-   "detail_fetched_at": "2026-09-28"
-  },
-  "industry": "data_center"
- },
- {
-  "platform": "workday",
-  "employer": "QTS Data Centers",
-  "board_token": "qtsdatacenters/QTS",
   "external_id": "Pre-Development-Program-Manager_R2026-0608-1",
   "title": "Pre-Development Program Manager",
   "location_raw": "Ashburn, VA",
@@ -523,6 +500,29 @@
   "comp_interval": null,
   "payload": {
    "externalPath": "/job/Ashburn-VA/Senior-DevOps-Engineer-1_R2026-0017-1",
+   "detail_from_cache": true,
+   "detail_fetched_at": "2026-09-28"
+  },
+  "industry": "data_center"
+ },
+ {
+  "platform": "workday",
+  "employer": "QTS Data Centers",
+  "board_token": "qtsdatacenters/QTS",
+  "external_id": "Senior-Technical-Compliance-Analyst_R2026-1244",
+  "title": "Senior Technical Compliance Analyst",
+  "location_raw": "Groningen, NL; Amsterdam, NL",
+  "description": "The Senior Technology Compliance Analyst is responsible for the implementation of new compliance standards and monitoring QTS\u2019 adherence to compliance standards for all products offered by QTS.\n\nResponsibilities , other duties may be assigned:\n\n- Maintenance of enterprise control set\n\n- Perform controls rationalization as new IT and operational compliance standards are implemented simplify the enterprise control set\n\n- Evaluate and interpret IT and operational compliance standards requirements and provide guidance to process and control owners on the objective and intent of the requirement\n\n- Engage with process and control owners to understand technical process steps, identify mapping to compliance standards, evaluate gaps, and track execution\n\n- Drive the creation and maintenance of enterprise compliance documentation set (policies, standards, specifications, baselines, guidelines and procedures)\n\n- Complete controls obligations necessary to meet company compliance, audit, and security program requirements\n\n- Provide compliance support for vulnerability scanning and other security related audits\n\n- Prepares and presents status reports, risks, recommendations, and lessons learned to all levels of management\n\n- Develops key performance indicators and metrics to measure and report on the health of the compliance program\n\n- Facilitate risk assessments across corporate business units.\n\n- Negotiate acceptable time-frames to comply with audit findings by interfacing with auditors, IT management and business personnel\n\n- Manage internal and external resources in a variety of scenarios including compliance readiness assessments, controls implementations, and control execution monitoring\n\nBasic Qualifications:\n\n- Bachelor\u2019s Degree in Information Security, Accounting and Information Systems, IT Risk Management or related field or equivalent professional experience\n\n- Six or more years of combined experience in IT Audit, IT Risk Management or IT Compliance\n\n- Two or more years\u00a0of experience with governance, risk, and compliance tools.\n\n- Direct experience in implementing, managing or assessing at least three of the following compliance programs:\n\n- SOC 1\n\n- SOC 2\n\n- ISO 27001\n\n- PCI DSS v3.2\n\n- SOX IT Audit\n\nPreferred Qualifications:\n\n- IT risk, information security & compliance experience or Public accounting/consulting experience in the IT Audit or Advisory domain\n\n- Experience with use of GRC tools for enterprise-wide controls maintenance, control execution, and policy/procedure development\n\n- Experience working in the data center industry\n\n- Certifications: Certified Information Systems Auditor (CISA), Certified in Risk and Information Systems Control (CRISC), GIAC Critical Controls Certification (GCCC), or GIAC Security Essentials (GSEC)\n\nKnowledge, Skills & Abilities:\n\n- Excellent verbal and written communication skills\n\n- Strong technical, analytical and problem-solving skills\n\n- Ability to interact with personnel on all levels to resolve issues and provide solutions in a timely manner\n\n- Understands the need for, and consistently practices, effective teamwork with others.\n\n- Capable of prioritizing and managing assignments, tasks and projects to completion with minimal supervision\n\n- Ability to maintain a detail-oriented approach while multitasking in a fast-paced environment\n\n- Project management discipline, research skills and multi-tasking abilities; prioritize work activities, set goals and develop achievable action plans\n\n- Ability to identify and resolve problems in a timely manner, anticipate barriers to execution; gather and analyze information, consider alternate solutions and achieve results despite resource constraints\n\n- Intermediate to advanced proficiency in the use of Microsoft Office products, including Word, Excel and PowerPoint\n\nTotal Rewards:\n\n- 25 days annual leave\n\n- 5,250 EUR training bursary\n\n- Company car scheme - eligibility required\n\n- Pension scheme with Allianz\n\n- Occupational disability allowance\n\n- Voluntary health insurance\n\n- Voluntary pet insurance\n\n- This position in bonus eligible\n\nThe duties and responsibilities described here are not exhaustive and additional assignments, duties, or responsibilities may be required of this position.\u00a0 Assignments, duties, and responsibilities may be changed at any time, with or without notice, by QTS in its sole discretion. We provide individuals with disabilities reasonable accommodations to participate in the job application or interview process, to perform essential job functions, and to receive other benefits and privileges of employment in accordance with applicable law. Please contact us to request an accommodation on TalentAcquisition&#64;QTSDataCenters.com",
+  "url": "https://qtsdatacenters.wd5.myworkdayjobs.com/QTS/job/Groningen-NL/Senior-Technical-Compliance-Analyst_R2026-1244",
+  "posted_at": "Posted 30+ Days Ago",
+  "updated_at": null,
+  "department": null,
+  "employment_type": "",
+  "comp_min": null,
+  "comp_max": null,
+  "comp_interval": null,
+  "payload": {
+   "externalPath": "/job/Groningen-NL/Senior-Technical-Compliance-Analyst_R2026-1244",
    "detail_from_cache": true,
    "detail_fetched_at": "2026-09-28"
   },

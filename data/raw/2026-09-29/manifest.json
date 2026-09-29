@@ -1,6 +1,6 @@
 {
   "run_date": "2026-09-29",
-  "collected_at": "2026-09-29T10:47:32.145618+00:00",
+  "collected_at": "2026-09-29T15:56:17.295124+00:00",
   "employers_attempted": 407,
   "results": [
     {
@@ -44,8 +44,8 @@
       "found": true,
       "platform": "workday",
       "token": "vst/vistra_careers",
-      "listed": 166,
-      "postings": 9,
+      "listed": 167,
+      "postings": 10,
       "file": "Vistra__workday.json",
       "site_guessed": false
     },
@@ -61,7 +61,7 @@
       "found": true,
       "platform": "workday",
       "token": "aquaamerica/Essential_Careers",
-      "listed": 98,
+      "listed": 96,
       "postings": 6,
       "file": "Aqua_Illinois__Essential_Utilities___workday.json",
       "site_guessed": false
@@ -72,7 +72,7 @@
       "found": true,
       "platform": "workday",
       "token": "aes/AES_US",
-      "listed": 168,
+      "listed": 170,
       "postings": 28,
       "file": "AES_Indiana__workday.json",
       "site_guessed": false
@@ -89,7 +89,7 @@
       "found": true,
       "platform": "workday",
       "token": "dukeenergy/search",
-      "listed": 92,
+      "listed": 98,
       "postings": 4,
       "file": "Duke_Energy_Indiana__workday.json",
       "site_guessed": false
@@ -106,7 +106,7 @@
       "found": true,
       "platform": "workday",
       "token": "nisource/NiSource",
-      "listed": 75,
+      "listed": 74,
       "postings": 8,
       "file": "NiSource___NIPSCO__workday.json",
       "site_guessed": false
@@ -147,8 +147,8 @@
       "found": true,
       "platform": "workday",
       "token": "equinix/External",
-      "listed": 265,
-      "postings": 11,
+      "listed": 262,
+      "postings": 12,
       "file": "Equinix__workday.json",
       "site_guessed": false
     },
@@ -164,7 +164,7 @@
       "found": true,
       "platform": "workday",
       "token": "qtsdatacenters/QTS",
-      "listed": 289,
+      "listed": 288,
       "postings": 23,
       "file": "QTS_Data_Centers__workday.json",
       "site_guessed": false
@@ -181,7 +181,7 @@
       "found": true,
       "platform": "workday",
       "token": "cyrusone/CyrusOneCareerPortal",
-      "listed": 127,
+      "listed": 128,
       "postings": 7,
       "file": "CyrusOne__workday.json",
       "site_guessed": false
@@ -226,7 +226,7 @@
       "found": true,
       "platform": "workday",
       "token": "nttglobaldatacenters/External",
-      "listed": 225,
+      "listed": 230,
       "postings": 5,
       "file": "NTT_Global_Data_Centers__workday.json",
       "site_guessed": false
@@ -237,7 +237,7 @@
       "found": true,
       "platform": "workday",
       "token": "vantagedc/Vantage",
-      "listed": 179,
+      "listed": 178,
       "postings": 8,
       "file": "Vantage_Data_Centers__workday.json",
       "site_guessed": false
@@ -248,7 +248,7 @@
       "found": true,
       "platform": "workday",
       "token": "stackinfra/STACK_AMER",
-      "listed": 60,
+      "listed": 58,
       "postings": 3,
       "file": "STACK_Infrastructure__workday.json",
       "site_guessed": false
@@ -276,7 +276,7 @@
       "found": true,
       "platform": "workday",
       "token": "ironmountain/iron-mountain-jobs",
-      "listed": 347,
+      "listed": 350,
       "postings": 6,
       "file": "Iron_Mountain_Data_Centers__workday.json",
       "site_guessed": false
@@ -287,8 +287,8 @@
       "found": true,
       "platform": "lever",
       "token": "t5datacenters",
-      "listed": 95,
-      "postings": 95,
+      "listed": 97,
+      "postings": 97,
       "file": "T5_Data_Centers__lever.json",
       "site_guessed": false
     },
@@ -345,7 +345,7 @@
       "found": true,
       "platform": "greenhouse",
       "token": "clearwayjobs",
-      "listed": 53,
+      "listed": 51,
       "postings": 53,
       "file": "Clearway_Energy__greenhouse.json",
       "site_guessed": false
@@ -395,7 +395,7 @@
       "found": true,
       "platform": "workday",
       "token": "icf/ICFEXTERNAL_CAREER_SITE",
-      "listed": 414,
+      "listed": 415,
       "postings": 49,
       "file": "ICF__workday.json",
       "site_guessed": false
@@ -406,8 +406,8 @@
       "found": true,
       "platform": "workday",
       "token": "guidehouse/External",
-      "listed": 835,
-      "postings": 122,
+      "listed": 838,
+      "postings": 124,
       "file": "Guidehouse__workday.json",
       "site_guessed": false
     },
@@ -440,7 +440,7 @@
       "platform": "workday",
       "token": "hitachi/hitachi",
       "listed": 3000,
-      "postings": 21,
+      "postings": 72,
       "file": "Hitachi_Energy__workday.json",
       "site_guessed": false
     },
@@ -450,8 +450,8 @@
       "found": true,
       "platform": "workday",
       "token": "gevernova/Vernova_ExternalSite",
-      "listed": 2221,
-      "postings": 97,
+      "listed": 2238,
+      "postings": 98,
       "file": "GE_Vernova__workday.json",
       "site_guessed": false
     },
@@ -467,8 +467,8 @@
       "found": true,
       "platform": "workday",
       "token": "itron/Itron",
-      "listed": 62,
-      "postings": 3,
+      "listed": 59,
+      "postings": 4,
       "file": "Itron__workday.json",
       "site_guessed": false
     },
@@ -490,7 +490,7 @@
       "found": true,
       "platform": "workday",
       "token": "alliantenergy/alliant",
-      "listed": 37,
+      "listed": 38,
       "postings": 5,
       "file": "Alliant_Energy__workday.json",
       "site_guessed": false
@@ -501,7 +501,7 @@
       "found": true,
       "platform": "workday",
       "token": "iberdrola/Iberdrola",
-      "listed": 231,
+      "listed": 241,
       "postings": 12,
       "file": "Avangrid__workday.json",
       "site_guessed": false
@@ -566,8 +566,8 @@
       "found": true,
       "platform": "workday",
       "token": "eversource/ExternalSite",
-      "listed": 226,
-      "postings": 36,
+      "listed": 228,
+      "postings": 38,
       "file": "Eversource_Energy__workday.json",
       "site_guessed": false
     },
@@ -641,7 +641,7 @@
       "found": true,
       "platform": "workday",
       "token": "portlandgeneral/pgn",
-      "listed": 26,
+      "listed": 27,
       "postings": 2,
       "file": "Portland_General_Electric__workday.json",
       "site_guessed": false
@@ -664,7 +664,7 @@
       "found": true,
       "platform": "workday",
       "token": "xcelenergy/External",
-      "listed": 258,
+      "listed": 259,
       "postings": 34,
       "file": "Xcel_Energy__workday.json",
       "site_guessed": true
@@ -687,7 +687,7 @@
       "found": true,
       "platform": "workday",
       "token": "austintexas/COA_Careers",
-      "listed": 100,
+      "listed": 101,
       "postings": 6,
       "file": "Austin_Energy__workday.json",
       "site_guessed": false
@@ -734,8 +734,8 @@
       "found": true,
       "platform": "workday",
       "token": "ameren/External",
-      "listed": 84,
-      "postings": 7,
+      "listed": 85,
+      "postings": 8,
       "file": "Ameren_Illinois__workday.json",
       "site_guessed": false
     },
@@ -769,7 +769,7 @@
       "found": true,
       "platform": "workday",
       "token": "sjindustries/SJI",
-      "listed": 33,
+      "listed": 29,
       "postings": 1,
       "file": "South_Jersey_Industries__workday.json",
       "site_guessed": false
@@ -861,8 +861,8 @@
       "found": true,
       "platform": "usajobs",
       "token": "DN03",
-      "listed": 17,
-      "postings": 17,
+      "listed": 18,
+      "postings": 18,
       "file": "Bonneville_Power_Administration__usajobs.json",
       "site_guessed": false
     },
@@ -960,8 +960,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "tract",
-      "listed": 9,
-      "postings": 9,
+      "listed": 10,
+      "postings": 10,
       "file": "Tract__greenhouse.json",
       "site_guessed": false
     },
@@ -1065,8 +1065,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "cypresscreekrenewables",
-      "listed": 17,
-      "postings": 17,
+      "listed": 18,
+      "postings": 18,
       "file": "Cypress_Creek_Renewables__greenhouse.json",
       "site_guessed": false
     },
@@ -1218,8 +1218,8 @@
       "found": true,
       "platform": "workday",
       "token": "woodmac/woodmaccareers",
-      "listed": 66,
-      "postings": 9,
+      "listed": 68,
+      "postings": 10,
       "file": "Wood_Mackenzie__workday.json",
       "site_guessed": false
     },
@@ -1306,8 +1306,8 @@
       "found": true,
       "platform": "lever",
       "token": "octoenergy",
-      "listed": 167,
-      "postings": 167,
+      "listed": 170,
+      "postings": 171,
       "file": "Octopus_Energy__lever.json",
       "site_guessed": false
     },
@@ -1392,8 +1392,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "charlesriverassociates",
-      "listed": 84,
-      "postings": 84,
+      "listed": 85,
+      "postings": 85,
       "file": "Charles_River_Associates__greenhouse.json",
       "site_guessed": false
     },
@@ -1553,7 +1553,7 @@
       "found": true,
       "platform": "workday",
       "token": "selinc/SEL",
-      "listed": 298,
+      "listed": 297,
       "postings": 9,
       "file": "SEL_Schweitzer_Engineering_Laboratories__workday.json",
       "site_guessed": false
@@ -1804,7 +1804,7 @@
       "found": true,
       "platform": "workday",
       "token": "aep/AEPCareerSite",
-      "listed": 231,
+      "listed": 249,
       "postings": 14,
       "file": "AEP_Energy__workday.json",
       "site_guessed": false
@@ -1887,8 +1887,8 @@
       "found": true,
       "platform": "workday",
       "token": "wgl/AltaGas",
-      "listed": 43,
-      "postings": 2,
+      "listed": 44,
+      "postings": 3,
       "file": "Washington_Gas__workday.json",
       "site_guessed": false
     },
@@ -1994,7 +1994,7 @@
       "platform": "workday",
       "token": "cleco/ClecoJobs",
       "listed": 16,
-      "postings": 2,
+      "postings": 3,
       "file": "Cleco__workday.json",
       "site_guessed": false
     },
@@ -2037,7 +2037,7 @@
       "found": true,
       "platform": "workday",
       "token": "derivaenergy/Careers",
-      "listed": 7,
+      "listed": 8,
       "postings": 3,
       "file": "Deriva_Energy__workday.json",
       "site_guessed": false
@@ -2048,7 +2048,7 @@
       "found": true,
       "platform": "workday",
       "token": "talenenergy/TalenCareers",
-      "listed": 51,
+      "listed": 52,
       "postings": 2,
       "file": "Talen_Energy__workday.json",
       "site_guessed": false
@@ -2081,7 +2081,7 @@
       "found": true,
       "platform": "greenhouse",
       "token": "onenergy",
-      "listed": 53,
+      "listed": 52,
       "postings": 53,
       "file": "ON_energy__greenhouse.json",
       "site_guessed": false
@@ -2147,8 +2147,8 @@
       "found": true,
       "platform": "ashby",
       "token": "Crusoe",
-      "listed": 355,
-      "postings": 355,
+      "listed": 357,
+      "postings": 357,
       "file": "Crusoe__ashby.json",
       "site_guessed": false
     },
@@ -2252,7 +2252,7 @@
       "found": true,
       "platform": "ashby",
       "token": "base-power",
-      "listed": 192,
+      "listed": 190,
       "postings": 192,
       "file": "Base_Power__ashby.json",
       "site_guessed": false
@@ -2263,7 +2263,7 @@
       "found": true,
       "platform": "workday",
       "token": "bloomenergy/BloomEnergyCareers",
-      "listed": 184,
+      "listed": 183,
       "postings": 7,
       "file": "Bloom_Energy__workday.json",
       "site_guessed": false
@@ -2291,7 +2291,7 @@
       "found": true,
       "platform": "ashby",
       "token": "e-source",
-      "listed": 16,
+      "listed": 15,
       "postings": 16,
       "file": "E_Source__ashby.json",
       "site_guessed": false
@@ -2302,8 +2302,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "energysolutions",
-      "listed": 16,
-      "postings": 16,
+      "listed": 14,
+      "postings": 17,
       "file": "Energy_Solutions__greenhouse.json",
       "site_guessed": false
     },
@@ -2319,8 +2319,8 @@
       "found": true,
       "platform": "workday",
       "token": "ameresco/Ameresco",
-      "listed": 99,
-      "postings": 1,
+      "listed": 3000,
+      "postings": 146,
       "file": "Ameresco__workday.json",
       "site_guessed": false
     },
@@ -2347,7 +2347,7 @@
       "found": true,
       "platform": "workday",
       "token": "solvenergy/SOLV_External_Career",
-      "listed": 146,
+      "listed": 147,
       "postings": 4,
       "file": "SOLV_Energy__workday.json",
       "site_guessed": false
@@ -2519,7 +2519,7 @@
       "found": true,
       "platform": "workday",
       "token": "atcllc/atcllc",
-      "listed": 37,
+      "listed": 39,
       "postings": 3,
       "file": "American_Transmission_Co__workday.json",
       "site_guessed": false
@@ -2542,7 +2542,7 @@
       "platform": "greenhouse",
       "token": "energyexemplarllc",
       "listed": 38,
-      "postings": 38,
+      "postings": 39,
       "file": "Energy_Exemplar__greenhouse.json",
       "site_guessed": false
     },
@@ -2646,7 +2646,7 @@
       "found": true,
       "platform": "lever",
       "token": "ScaleMicrogridSolutions",
-      "listed": 17,
+      "listed": 16,
       "postings": 17,
       "file": "Scale_Microgrids__lever.json",
       "site_guessed": false
@@ -2718,7 +2718,7 @@
       "found": true,
       "platform": "workday",
       "token": "sunrun/Sunrun_Careers",
-      "listed": 275,
+      "listed": 273,
       "postings": 2,
       "file": "Sunrun__workday.json",
       "site_guessed": false
@@ -2757,7 +2757,7 @@
       "found": true,
       "platform": "workday",
       "token": "xenergy/X-energyUS",
-      "listed": 113,
+      "listed": 112,
       "postings": 6,
       "file": "X_energy__workday.json",
       "site_guessed": false
@@ -2768,7 +2768,7 @@
       "found": true,
       "platform": "ashby",
       "token": "blue-energy",
-      "listed": 20,
+      "listed": 19,
       "postings": 20,
       "file": "Blue_Energy__ashby.json",
       "site_guessed": false
@@ -2779,8 +2779,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "palmettocleantech",
-      "listed": 15,
-      "postings": 15,
+      "listed": 17,
+      "postings": 17,
       "file": "Palmetto_Clean_Technology__greenhouse.json",
       "site_guessed": false
     },
@@ -2812,7 +2812,7 @@
       "found": true,
       "platform": "workday",
       "token": "canadiansolar/CanadianSolar",
-      "listed": 155,
+      "listed": 156,
       "postings": 6,
       "file": "Canadian_Solar__workday.json",
       "site_guessed": false
@@ -2829,7 +2829,7 @@
       "found": true,
       "platform": "greenhouse",
       "token": "gigaenergy",
-      "listed": 58,
+      "listed": 57,
       "postings": 58,
       "file": "Giga_Energy__greenhouse.json",
       "site_guessed": false
@@ -2954,8 +2954,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "industrialelectricmanufacturing",
-      "listed": 133,
-      "postings": 133,
+      "listed": 134,
+      "postings": 134,
       "file": "Industrial_Electric_Manufacturing__greenhouse.json",
       "site_guessed": false
     },
@@ -3015,8 +3015,13 @@
     {
       "employer": "Federal Energy Regulatory Commission",
       "industry": "utility",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "usajobs",
+      "token": "DNFE",
+      "listed": 1,
+      "postings": 1,
+      "file": "Federal_Energy_Regulatory_Commission__usajobs.json",
+      "site_guessed": false
     },
     {
       "employer": "Nuclear Regulatory Commission",
@@ -3024,8 +3029,8 @@
       "found": true,
       "platform": "usajobs",
       "token": "NU00",
-      "listed": 14,
-      "postings": 14,
+      "listed": 15,
+      "postings": 15,
       "file": "Nuclear_Regulatory_Commission__usajobs.json",
       "site_guessed": false
     },
@@ -3091,7 +3096,7 @@
       "found": true,
       "platform": "workday",
       "token": "argonne/Argonne_Careers",
-      "listed": 92,
+      "listed": 90,
       "postings": 14,
       "file": "Argonne_National_Laboratory__workday.json",
       "site_guessed": false
@@ -3163,8 +3168,8 @@
       "found": true,
       "platform": "greenhouse",
       "token": "valaratomics",
-      "listed": 92,
-      "postings": 92,
+      "listed": 93,
+      "postings": 93,
       "file": "Valar_Atomics__greenhouse.json",
       "site_guessed": false
     },
@@ -3174,7 +3179,7 @@
       "found": true,
       "platform": "lever",
       "token": "cfsenergy",
-      "listed": 104,
+      "listed": 103,
       "postings": 104,
       "file": "Commonwealth_Fusion_Systems__lever.json",
       "site_guessed": false
@@ -3182,8 +3187,13 @@
     {
       "employer": "Quaise Energy",
       "industry": "developer",
-      "found": false,
-      "postings": 0
+      "found": true,
+      "platform": "greenhouse",
+      "token": "quaise",
+      "listed": 10,
+      "postings": 10,
+      "file": "Quaise_Energy__greenhouse.json",
+      "site_guessed": false
     },
     {
       "employer": "Core Scientific",
@@ -3208,7 +3218,7 @@
       "found": true,
       "platform": "greenhouse",
       "token": "hut8",
-      "listed": 43,
+      "listed": 42,
       "postings": 43,
       "file": "Hut_8__greenhouse.json",
       "site_guessed": false
@@ -3364,8 +3374,8 @@
       "found": true,
       "platform": "lever",
       "token": "xcimer",
-      "listed": 47,
-      "postings": 47,
+      "listed": 48,
+      "postings": 48,
       "file": "Xcimer_Energy__lever.json",
       "site_guessed": false
     },
@@ -3378,25 +3388,37 @@
   ],
   "detail_cache": {
     "cached_records": 3738,
-    "reused": 692,
-    "fetched": 42,
+    "reused": 836,
+    "fetched": 102,
     "refetched_stale": 1,
     "refetched_edited": 0,
     "max_age_days": 7
   },
-  "total_postings": 4210,
+  "total_postings": 4449,
   "scope_diagnostics": {
-    "listed": 12272,
-    "in_metro_wrong_role": 6164,
+    "listed": 15232,
+    "in_metro_wrong_role": 8076,
     "titles_in_metro": {
-      "Solar Appointment Setter": 78,
-      "Junior Structural Engineer s nem\u010dinou": 51,
+      "Site Safety Manager": 294,
+      "Solar Electrician": 153,
+      "Construction Project Manager": 152,
+      "Administrative Assistant": 149,
+      "Associate Project Engineer": 146,
+      "Project Controls Scheduler": 146,
+      "Regional Operations & Maintenance Manager": 146,
+      "Assistant Construction Manager": 146,
+      "Project Commissioning Engineer": 146,
+      "Project Manager - Facility Condition Assessments & Capital P": 146,
+      "DER Monitoring Platform Technician": 146,
+      "Marketing Co-op": 146,
+      "Solar Appointment Setter": 75,
+      "Structural Engineer s nem\u010dinou": 52,
       "Field Sales Consultant": 44,
       "Solar Sales Representative": 32,
       "Critical Environments Operator III": 14,
       "Construction Manager": 12,
-      "Critical Environments Operator IV": 12,
       "Solar Technician": 11,
+      "Critical Environments Operator IV": 11,
       "Business Process Improvement and Internal Control Specialist": 11,
       "Mechanical Engineer": 11,
       "Equipment Maintenance Technician": 11,
@@ -3405,36 +3427,24 @@
       "Electrical Engineer": 9,
       "Street Sales Specialist": 9,
       "Wind Technician": 8,
-      "Utility Technician": 8,
       "Senior Project Manager": 8,
-      "Field Service Technician Class C": 8,
-      "Project Engineer": 8,
-      "Engineering Intern": 8,
-      "Solar Electrician": 8,
-      "Energy Sales Retail Associate": 8,
-      "Construction Project Manager": 7,
-      "Critical Environments Operator II": 7,
-      "Driver": 7,
-      "Residential Energy Auditor": 7,
-      "Project Manager": 7,
-      "Quality Engineer": 7,
-      "Machinist": 7
+      "Field Service Technician Class C": 8
     },
-    "unknown_place_wrong_role": 1972,
-    "kept": 734,
-    "role_ok_wrong_place": 158,
+    "unknown_place_wrong_role": 2734,
+    "kept": 938,
+    "role_ok_wrong_place": 208,
     "locations_of_in_role": {
+      "Mannheim, Baden-Wurttemberg, Germany": 51,
       "Bengaluru": 24,
       "Ho Chi Minh City, Ho Chi Minh, Vietnam": 15,
       "Chennai, Tamil Nadu, India": 10,
-      "Bangalore Office BLS2": 8,
+      "Bangalore Office BLS2": 9,
       "Hyderabad": 8,
       "IN - Chennai": 7,
       "Vaesteras, Vastmanland County, Sweden": 6,
       "Bengaluru, Karnataka, India": 5,
       "Hyderabad TS IN 26": 4,
       "Tokyo, Japan": 3,
-      "Chennai": 3,
       "India, Bangalore": 3,
       "Ciudad de Mexico, D. F.": 2,
       "Amsterdam": 2,
@@ -3442,20 +3452,20 @@
       "London, England": 2,
       "IND | Bangalore | Level 10, CITRINE Bloc": 2,
       "London (GB80)": 2,
-      "New Delhi, India": 2,
       "Zurich, Zurich, Switzerland": 2,
       "Krakow, Lesser Poland, Poland": 2,
       "Dammam, Eastern Region, Saudi Arabia": 2,
       "Cairo, Cairo, Egypt": 2,
       "Lodz, Lodz, Poland": 2,
       "Berlin": 2,
+      "Chennai": 2,
       "Bangalore": 1,
       "Mumbai, India": 1,
       "Navi Mumbai, india": 1,
       "Melbourne, Australia": 1,
       "Cyberjaya, Malaysia": 1
     },
-    "neither": 3244
+    "neither": 3276
   },
   "slug_candidates_for_review": 5
 }
