@@ -59,6 +59,19 @@ pages:
   - {id: isolvedhire_privacy,    url: "https://admin.isolvedhire.com/privacy-policy/"}
   - {id: serc_isolved_board,     url: "https://serc1.isolvedhire.com/jobs/", keep_html: true}
   - {id: isolvedhire_robots,     url: "https://serc1.isolvedhire.com/robots.txt"}
+  # --- Board probes after run 31 (audit round 11): eight batch 14-15 boards
+  # resolved "no board found". The public jobs APIs the collector itself
+  # reads, fetched once to see whether the token is wrong (404) or the board
+  # is empty (200, no jobs). ---
+  - {id: probe_gh_corescientific, url: "https://boards-api.greenhouse.io/v1/boards/corescientific/jobs"}
+  - {id: probe_gh_soluna,         url: "https://boards-api.greenhouse.io/v1/boards/soluna/jobs"}
+  - {id: probe_gh_elephantenergy, url: "https://boards-api.greenhouse.io/v1/boards/elephantenergy/jobs"}
+  - {id: probe_gh_blocpower,      url: "https://boards-api.greenhouse.io/v1/boards/blocpower/jobs"}
+  - {id: probe_gh_quaise,         url: "https://boards-api.greenhouse.io/v1/boards/quaise/jobs"}
+  - {id: probe_lv_sunpower,       url: "https://api.lever.co/v0/postings/sunpower?mode=json"}
+  - {id: probe_lv_blocpower,      url: "https://api.lever.co/v0/postings/BlocPower?mode=json"}
+  - {id: probe_wk_common_energy,  url: "https://apply.workable.com/api/v1/widget/accounts/common-energy-1"}
+  - {id: probe_wk_korsail,        url: "https://apply.workable.com/api/v1/widget/accounts/korsail-energy-1"}
   # --- Rendered in a browser (scripts/render_pages.py, stage "render"),
   # because a plain fetch returns an empty JavaScript shell. Terms first:
   # the boards are rendered only after their vendor's terms are read
