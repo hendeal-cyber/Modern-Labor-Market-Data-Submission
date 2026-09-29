@@ -19,8 +19,8 @@ below are unchanged. Confirm the state before acting, then act.**
 3. Read, in order: `HANDOFF.md` (RESUME HERE, to the next `##`);
    `docs/audit-log.md` round 10 and the interim check of 2026-09-27;
    `docs/pre-registration.md` §8, the last six entries.
-4. Check-ins exist for **2026-09-29 and 09-30 at 10:45 UTC**
-   (trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY).
+4. Check-ins exist for **2026-09-30 at 09:40 UTC (cron guard) and 10:45 UTC (final audit)**
+   (trig_01NZpbdr7D6o6nBLcLNEaf7f, trig_01DZEo3k1e41Gxp5aBxXaPuY).
    `list_triggers` confirms them. A new conversation must delete these
    and set its own, so two sessions never audit one run.
 5. List `collect.yml` runs (GitHub MCP `actions_list`). Audit any finished
@@ -41,25 +41,28 @@ pages,eia,cc,usajobs`). Deliverables are all generated, never hand-edited:
 paper, executive summary, figures, deck, `data/analysis/*`, codebook,
 pre-registration, audit log, limitations and ledger.
 
-## 3. Audited state (round 10, data through run 30, 2026-09-28)
+## 3. Audited state (round 11, data through run 31, 2026-09-29)
 
-- **N = 472**, **86 employer clusters**, largest employer **Crusoe 10.4%**
-  (49 rows). 31.5 observations per regressor, so the budget rule selects
+- **N = 531**, **99 employer clusters**, largest employer **Crusoe 9.2%**
+  (49 rows). 35.4 observations per regressor, so the budget rule selects
   **Model 2 (extended)**. All four conditions pass; `interpretable` true.
-- **Disclosure gap:** 91.7% (n=384) vs 48.6% (n=247), **43.1pp**, 42.3–44.8
+- **Disclosure gap:** 91.6% (n=438) vs 47.8% (n=272), **43.8pp**, 43.1–45.2
   across four cuts (incl. `excluding_federal`). ASSOCIATIONAL, NOT CAUSAL.
 - **Survive the bootstrap and the region check:**
-  - `seniority_rank` and `yrs_exp_min`: robust everywhere.
-  - `skill_cloud` (0.0014): robust to Crusoe and to prices; exploratory.
-  - `region_northeast`: not significant in real terms.
-  - **New and tentative:** `region_west` (0.020, not in real terms) and
-    `degree_stem` (0.024, **fails without Crusoe**).
-- **Inconclusive:** `skill_ml_ai` (0.059).
+  - `seniority_rank`, `yrs_exp_min` and `skill_cloud` (0.0013): robust
+    everywhere (`skill_cloud` is exploratory).
+  - `region_northeast` (0.011) and `region_west` (0.012): not significant
+    in real terms.
+  - **Tentative:** `degree_stem` (0.032, **fails without Crusoe**).
+    `yrs_exp_stated` (0.028) is a control.
+- **Inconclusive:** `skill_ml_ai` (0.068), `family_ai_ml` (0.053).
 - **Frame:** 407 employers (batch 13 federal agencies and batches 14–15, 32 employers under option D, added after round 10). Batches 4–12 (2026-09-27/28) each carry an evidence URL
   in `config/employers.yaml`.
-- **USAJOBS:** key works. The preflight found BPA 13 postings, WAPA 15, SWPA
-  0 and TVA 0. One federal row entered (WAPA, Public Utilities Specialist).
-- **Tests:** ALL SUITES PASSED (13 suites), consistency 29/29.
+- **USAJOBS:** key works. Three federal rows (two BPA, one WAPA, all Public
+  Utilities Specialist). NRC's postings fall outside the taxonomy, DOE HQ and
+  Reclamation fail the sector gate, and FERC, BOEM, SWPA and TVA had none open
+  on run 31.
+- **Tests:** ALL SUITES PASSED (13 suites), consistency 30/30.
 
 ## 4. Schedule and stopping rule (as registered now)
 

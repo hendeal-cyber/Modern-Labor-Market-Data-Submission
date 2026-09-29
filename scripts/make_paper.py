@@ -261,10 +261,19 @@ def main() -> int:
             "remote_eligible": "remote eligibility", "degree_stem": "a STEM degree",
             "degree_required": "a required degree", "yrs_exp_min": "required experience",
             "industry_data_center": "being a data center operator",
-            "region_northeast": "Northeast location", "region_south": "South location",
-            "region_west": "West location", "family_ai_ml": "an AI/ML role family",
+            "region_northeast": "a Northeast location", "region_south": "a South location",
+            "region_west": "a West location", "family_ai_ml": "an AI/ML role family",
             "skill_cloud": "a stated cloud skill",
+            "yrs_exp_stated": "stating an experience minimum",
         }
+
+        def _names(keys, cap=False):
+            """'a', 'a and b', 'a, b and c': three names joined by 'and' alone
+            read as one phrase (audit round 11)."""
+            items = [pretty.get(k, f"`{k}`") for k in keys]
+            text = (" and ".join(items) if len(items) <= 2
+                    else ", ".join(items[:-1]) + " and " + items[-1])
+            return text[0].upper() + text[1:] if cap and text else text
         named = [pretty.get(k, f"`{k}`") for k, _ in sig[:4]]
         basis = "the wild cluster bootstrap" if _boot else "clustered standard errors"
         A("Within the postings that do disclose, the attributes that predict pay at")
@@ -279,15 +288,15 @@ def main() -> int:
         # reports as inconclusive as findings (audit round 6).
         _fragile = set((analysis.get("region_robustness") or {})
                        .get("verdicts_changed") or [])
-        _withdrawn = [pretty.get(k, f"`{k}`") for k, _ in sig if k in _fragile]
-        _robust = [pretty.get(k, f"`{k}`") for k, _ in sig if k not in _fragile]
+        _withdrawn = [k for k, _ in sig if k in _fragile]
+        _robust = [k for k, _ in sig if k not in _fragile]
         if _withdrawn:
-            A(f"{' and '.join(_withdrawn)} "
+            A(f"{_names(_withdrawn, cap=True)} "
               f"{'do' if len(_withdrawn) > 1 else 'does'} not survive "
               "re-estimation without the nationwide-remote postings (a")
             A("robustness check added after pre-registration, reported either way) and "
               f"{'are' if len(_withdrawn) > 1 else 'is'} reported as inconclusive"
-              + (f"; {' and '.join(_robust)} "
+              + (f"; {_names(_robust)} "
                  f"{'survive' if len(_robust) > 1 else 'survives'} both." if _robust
                  else "."))
         # Same rule as the executive summary: a survivor whose weaker p
@@ -299,7 +308,7 @@ def main() -> int:
         _tent = [k for k, _ in sig if k not in _fragile and _boot
                  and max(_boot.get(k, 0), _rr_p.get(k) or 0) >= 0.02]
         if _tent:
-            A(f"Read {' and '.join(pretty.get(k, f'`{k}`') for k in _tent)} as "
+            A(f"Read {_names(_tent)} as "
               "**tentative**: "
               + ("each passes" if len(_tent) > 1 else "it passes")
               + " both checks with a p-value above 0.02 on")
@@ -312,14 +321,14 @@ def main() -> int:
         _expl = [k for k, _ in sig if k not in _fragile and k not in _pred
                  and k not in _tent]
         if _expl:
-            _en = " and ".join(pretty.get(k, f"`{k}`") for k in _expl)
+            _en = _names(_expl)
             A(f"{_en[0].upper() + _en[1:]} carried no "
               "directional prediction in the pre-registration, so "
               + ("it is" if len(_expl) == 1 else "they are")
               + " reported as exploratory.")
         _plost, _ = price_sensitive(analysis)
         if _plost:
-            A(f"{' and '.join(pretty.get(k, f'`{k}`') for k in _plost)} "
+            A(f"{_names(_plost, cap=True)} "
               + ("does" if len(_plost) == 1 else "do")
               + " not survive adjusting pay for regional price levels (section 5).")
         if _boot:
@@ -518,6 +527,7 @@ def main() -> int:
         if _rounds >= 9:
             A("| 9 | Run 29, the national frame expansion (133 added rows) | Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 49 usable rows, reported with a sensitivity check |")
             A("| 10 | Run 30 (28 Sep, dispatched early at the owner's request), the first collection of batches 5-12 and USAJOBS | US towns named after foreign cities read as non-US (Eversource's Berlin, CT), and a repost differing by one full stop, both fixed between runs. Location forms never met before (\"Tucson, AZ - Downtown\", \"Washington - Pullman\", \"San Francisco Bay Area\") rejected every posting of a newly confirmed employer (SEL) on its first collection. Eleven off-taxonomy postings at new employers (HR, labour compliance, construction, manufacturing quality, product engineering) |")
+            A("| 11 | Run 31 (29 Sep, dispatched by hand when the cron did not fire), the first collection of the federal energy agencies and batches 13-15 | The dotted \"Washington, D.C.\" read as Washington State, which put two rows in the West and cost a two-site posting its DC mandate site. A retitled Workday posting lost its posting date, a Model 2 regressor. Generated lists of three names read as one phrase in the summary, paper and deck |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")

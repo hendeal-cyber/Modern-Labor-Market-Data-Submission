@@ -256,6 +256,31 @@ def run():
         chk("no stale cluster-coverage figure in paper or limitations",
             not stale, str(stale))
 
+    # 20. Generated lists of names read as lists. Round 11's summary said
+    # "Read a West location and stating an experience minimum at all and a
+    # STEM degree as tentative": three names joined by "and" alone.
+    summary = ROOT / "docs" / "executive-summary.md"
+    if summary.exists():
+        import re as _re
+        runons = [m.group(0)[:120] for m in _re.finditer(r"\*\*[^*\n]*\*\*", summary.read_text())
+                  if m.group(0).count(" and ") >= 2]
+        # The paper's own sentence, which said "Read West location and
+        # `yrs_exp_stated` and a STEM degree as **tentative**".
+        runons += [m.group(0)[:120] for m in _re.finditer(r"Read [^\n]*? as \*\*tentative\*\*", paper)
+                   if m.group(0).count(" and ") >= 2]
+        # The deck's own phrase: "— yrs_exp_stated and a STEM degree and a
+        # West location only narrowly".
+        _deck = ROOT / "paper" / "presentation.pptx"
+        if _deck.exists():
+            import zipfile as _zf
+            with _zf.ZipFile(_deck) as _z:
+                _dt = " ".join(" ".join(_re.findall(r"<a:t>([^<]*)</a:t>", _z.read(nm).decode("utf8", "ignore")))
+                               for nm in _z.namelist() if _re.match(r"ppt/slides/slide\d+\.xml$", nm))
+            runons += [m.group(0)[:120] for m in _re.finditer(r"— [^—;]*? only narrowly", _dt)
+                       if m.group(0).count(" and ") >= 2]
+        chk("summary, paper and deck join three or more names with commas, not 'and' alone",
+            not runons, str(runons))
+
     print(f"consistency: {n - len(fails)}/{n} checks passed")
     for x in fails:
         print("  FAIL", x)

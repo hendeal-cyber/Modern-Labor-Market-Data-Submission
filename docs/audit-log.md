@@ -1101,6 +1101,121 @@ software and development roles at developers, nuclear firms and grid
 software companies in mandate states. That is the composition the frame
 expansion said to expect, and it is why verdicts moved.
 
+### Round 11 — run 31, the first collection of batches 13–15 (2026-09-29)
+
+**Scope.** GitHub's scheduler did not start the 09:17 UTC run, so collection
+run 31 (Actions 36557665821) was dispatched by hand at 10:46 UTC, with the
+same inputs as run 30 (pre-registration section 8). It took 52 minutes.
+407 employers attempted, 183 boards found, 4,210 postings. It was the first
+collection of batch 13 (the federal energy agencies) and batches 14–15.
+Every added in-scope row (79) was read, matched on `url` to the audited
+N = 472 dataset. Then:
+- the pay extremes, single figures and duplicate URLs;
+- the federal boards;
+- every new board that collected postings but added few or no rows, each
+  posting run through the screens with the reason it was rejected.
+
+No row left. One existing row changed: Vantage retitled its Capital Markets
+posting (defect 2).
+
+**Defect 1: the dotted "Washington, D.C." was read as Washington State.**
+Split at the comma, "D.C." was not recognised as a state, so the city
+"Washington" was read as the state name. "Washington D.C." resolved to
+nothing. Found while reading why Emerald AI's board was silent. Effects:
+- two Radiant rows sat in WA (West) instead of DC (South);
+- The Nuclear Company's "Columbia, SC or Washington D.C" posting lost its DC
+  site and was coded outside any mandate;
+- three Emerald AI postings (in DC and the Bay Area) were rejected as having
+  no state.
+
+Any fragment with the dotted district now resolves to DC, and a bare
+"Bay Area" joins the San Francisco Bay Area rule ("Tampa Bay Area" stays
+unread). Over all 1,136 distinct raw locations exactly 7 resolve
+differently, each correctly. N is unchanged. The gap narrows by 0.4 points,
+44.2 → 43.8: this fix hurt the headline, and is kept because it is right.
+Pinned in `test_geo.py` with the real strings; it fails against a backup
+copy of the old code.
+
+**Defect 2: a retitled posting lost its posting date.** Vantage retitled
+"Senior Manager, Capital Markets, NA" on the same requisition, and the new
+version's Workday date was the relative label "Posted Yesterday". The kept
+row's `posting_age_days`, a Model 2 regressor, went blank on a pay-disclosed
+row. When one URL's versions merge and the kept version's date is
+unreadable, the newest earlier version's date (2026-07-10) now carries over.
+Pinned in `test_pipeline.py` with the real strings; it fails against a
+backup copy.
+
+**Defect 3: generated lists of three names read as one phrase.** The summary
+said "Read a West location and stating an experience minimum at all and a
+STEM degree as tentative". The paper said the same with the raw names "West
+location and `yrs_exp_stated`", and the deck printed `yrs_exp_stated`
+verbatim. The three generators now join names as "a, b and c", and the
+paper and deck carry the plain-language names. A consistency check (now
+30 checks) fails on the old output of each.
+
+**Federal rows.**
+- NRC collected 14 postings, all outside the role taxonomy (attorneys,
+  engineers, a "Senior Reactor Analyst").
+- DOE headquarters (11) and Reclamation (32) fail the sector-evidence gate
+  on every posting (intelligence, HR, legal, civil works, security). None
+  mentions power: the gate working as designed.
+- FERC, BOEM, Southwestern and TVA had no open postings.
+- Two Bonneville Public Utilities Specialist rows enter at $114,684–$149,091
+  and $135,522–$176,183. With Western Area's one row, federal rows are 3 of
+  531. `federal_robustness` changes one verdict, `family_ai_ml`
+  (0.053 → 0.0495).
+
+**Not defects, left as found.**
+- Clean Power Alliance had only two open postings (the other seven seen in
+  search results on 09-28 are no longer on its board). One enters. The other says only "United States" (a
+  remote option), and stays unplaced like IPX Power's.
+- Calibrant's two Directors of Regulatory and Policy say "United States" too.
+- Emerald AI, LightEdge, Teragen, SolAmerica, SolRiver and Lumen collected
+  only roles outside the taxonomy.
+- Hut 8, Urban Grid, Habitat, City Utilities and Cipher add in-scope rows
+  without pay.
+- **Boards that resolved nothing,** probed through the public APIs by the
+  registry job:
+  - Core Scientific, Soluna, Elephant Energy and SunPower return 404. Core
+    Scientific's job pages are live, but its API is not, so it cannot be
+    read by the supported route.
+  - BlocPower's Greenhouse token is dead; its board is on Lever, and the
+    frame entry is corrected before the 30 September run.
+  - Quaise Energy's board is live and names itself "Quaise Energy, Inc".
+    It was unverified, so the collector skipped its bare first-word token.
+    It is now verified from a live job URL.
+  - Common Energy's and Korsail's boards are empty.
+
+**Checked and found clean.** No duplicate URLs. No single-figure or hourly
+row among the additions. Lowest new pay: Scout Clean Energy's Associate
+Engineer at $80,000–$90,000 and Eversource's Associate Software Engineer at
+$82,300–$91,440. Highest: Commonwealth Fusion's VP, Capital Markets at
+$250,000–$350,000, then Radiant's Principal Embedded Software Engineer at
+$200,500–$314,475.
+
+**Result.**
+
+| | Round 10 (audited) | Run 31, unaudited | Run 31, audited |
+|---|---|---|---|
+| Usable N | 472 | 531 | **531** |
+| In scope | 631 | 707 | **710** |
+| Clusters | 86 | 99 | **99** |
+| Largest employer | Crusoe 10.4% | Crusoe 9.2% | **Crusoe 9.2%** (49 of 531) |
+| Obs per regressor | 31.5 | — | **35.4**; Model 2 (extended) |
+| Disclosure gap | 43.1pp | 44.2pp | **43.8pp** (91.6% of 438 vs 47.8% of 272; 43.1–45.2 across four cuts) |
+
+**Verdicts.** `seniority_rank` (0.0001), `yrs_exp_min` (0.0001) and
+`skill_cloud` (0.0013) survive every check. `region_northeast` (0.011) and
+`region_west` (0.012) survive the bootstrap and the region check but not
+price adjustment (clustered p 0.64 and 0.16): nominal only. `degree_stem`
+(0.032) is tentative and fails without Crusoe (0.081). `yrs_exp_stated`,
+the companion to the imputed experience minimum, reaches 0.028: a control,
+not a hypothesis. `skill_ml_ai` (0.068) and `family_ai_ml` (0.053) pass the
+region check but not the bootstrap: inconclusive. Verdicts are unchanged in
+kind from round 10. The 59 new usable rows are mostly software, finance and
+development roles at nuclear, fusion and solar developers in mandate
+states.
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

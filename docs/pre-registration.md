@@ -976,3 +976,36 @@ well, the runs queue (concurrency group `collect`), and same-day snapshots
 merge rather than duplicate (audit round 7). The 30 September run gets a
 check at 09:40 UTC, with a hand dispatch if its cron has not started by
 then.
+
+### 2026-09-29 — audit round 11: the dotted "Washington, D.C.", a retitled posting's date, and two frame corrections before the 30 September run
+
+Made after seeing run 31 (full record: audit-log round 11). Each change is
+pinned by a test built from the real strings. Each test fails against a
+backup copy of the old code.
+
+1. **Location.** A fragment naming the dotted district ("Washington, D.C.",
+   "Washington D.C") resolves to DC. Before, the city was read as the state
+   (WA), or nothing was read. A bare "Bay Area" now reads as the San
+   Francisco Bay Area. Exactly 7 of 1,136 raw location strings change.
+   - Effect: N is unchanged at 531. Two Radiant rows move from the West to
+     the South. One Nuclear Company posting gains its DC mandate site. Three
+     Emerald AI postings enter scope without pay.
+   - **It hurt the headline:** the disclosure gap narrows from 44.2 to 43.8
+     points.
+2. **Posting date.** When versions of one URL merge and the kept version's
+   date is unreadable (Workday's "Posted Yesterday"), the newest earlier
+   version's date carries over. This restores `posting_age_days`, a Model 2
+   regressor, on one pay-disclosed row. It changes no verdict.
+3. **Generated text.** Lists of three or more names are joined as "a, b and
+   c" in the summary, paper and deck, which also stop printing raw
+   variable names. No number changes.
+4. **Frame corrections, before the 30 September run** (frame stays at 407):
+   - Quaise Energy is verified from a live job URL. The public API names the
+     company "Quaise Energy, Inc". Unverified, its bare first-word token was
+     skipped on run 31.
+   - BlocPower's dead Greenhouse token is replaced by its Lever board,
+     verified from a live job URL. Both spellings of the site name are
+     tried, and it is one board either way.
+   - *Expected effect, stated in advance:* a handful of rows at most. Quaise
+     (Houston, no mandate) states pay in its postings. BlocPower's analyst
+     roles are in New York, a mandate state.

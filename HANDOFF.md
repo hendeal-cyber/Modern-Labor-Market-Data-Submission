@@ -1,25 +1,44 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — 2026-09-28, after audit round 10 (run 30); two scheduled runs left, 09:17 UTC on 29 and 30 September
+## RESUME HERE — 2026-09-29, after audit round 11 (run 31); one scheduled run left, 09:17 UTC on 30 September
 
 *This block wins over everything below it. Do not quote numbers from below it.*
 
-### State — AUDITED through run 30 (round 10)
+### Round 11 in one paragraph (2026-09-29)
+
+Run 31's cron did not fire, so the run was dispatched by hand at 10:46 UTC
+(§8). **Audited: N = 531, 99 clusters, Crusoe 9.2% (49 of 531), 35.4 obs per
+regressor, Model 2, all four conditions pass.** Disclosure gap 43.8pp
+(91.6% of 438 vs 47.8% of 272), 43.1–45.2 across four cuts. Verdicts
+unchanged in kind: seniority, experience and cloud skill are robust
+everywhere; the Northeast and West regions are nominal only; a STEM degree is
+tentative and fails without Crusoe; `skill_ml_ai` and `family_ai_ml` are
+inconclusive. Three defects were fixed and pinned: the dotted
+"Washington, D.C." was read as WA, a retitled posting lost its date, and
+lists of three names ran together in the summary, paper and deck.
+Consistency is now 30/30. Quaise is verified and BlocPower moved to Lever
+before the 09-30 run. Federal: 3 rows (two Bonneville, one Western Area).
+NRC's postings are outside the taxonomy; DOE HQ and Reclamation fail the
+sector gate. A check at 09:40 UTC on 09-30 (trig_01NZpbdr7D6o6nBLcLNEaf7f)
+dispatches the run by hand if the cron misses again. The final audit check-in
+is 10:45 UTC (trig_01DZEo3k1e41Gxp5aBxXaPuY).
+
+### State — AUDITED through run 31 (round 11)
 
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
-| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 Sep: the cron did not fire; run 31 dispatched by hand at 10:46 UTC** (§8). 30 Sep: 09:17 UTC by cron (`17 9 29-30 9 *`), with a hand dispatch if it has not started by 09:40 UTC. Collection closes with snapshots dated 2026-09-30. Check-ins: 29 and 30 Sep at 10:45 UTC (trig_01UR6mPtfXF2j7P9rnnT8Xih, trig_01DZEo3k1e41Gxp5aBxXaPuY) |
+| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 Sep: the cron did not fire; run 31 dispatched by hand at 10:46 UTC** (§8). 30 Sep: 09:17 UTC by cron (`17 9 29-30 9 *`), with a hand dispatch if it has not started by 09:40 UTC. Collection closes with snapshots dated 2026-09-30. Check-ins on 30 Sep: 09:40 UTC cron guard (trig_01NZpbdr7D6o6nBLcLNEaf7f), 10:45 UTC final audit (trig_01DZEo3k1e41Gxp5aBxXaPuY) |
 | Frame | **407 employers** (collector's loader; batch 13 federal agencies and batches 14–15, 32 employers under option D, all added 2026-09-28 before the 29 Sep run) |
-| **Usable N** | **472** (in scope 631) |
-| **Employer clusters** | **86** |
-| **Largest employer** | **Crusoe 10.4%** (49 of 472) |
-| Obs per regressor | 31.5. The budget rule selects **Model 2 (extended)**. `interpretable: true`. All four conditions pass |
-| Disclosure gap (H2) | 91.7% (n=384) vs 48.6% (n=247), **43.1pp**, 42.3–44.8 across four cuts (incl. excluding_federal). **Associational, not causal** |
-| Survive bootstrap AND region check | `seniority_rank`, `yrs_exp_min` (both robust everywhere); `skill_cloud` (0.0014, robust to Crusoe and prices; exploratory, no prediction); `region_northeast` (not in real terms); **new, tentative:** `region_west` (0.020, not in real terms) and `degree_stem` (0.024, **fails without Crusoe**) |
-| Inconclusive | `skill_ml_ai` (0.059; passes the region check, not the bootstrap) |
-| USAJOBS | Key works (owner, 2026-09-28). Public Utilities Specialist series admitted by owner amendment. **One federal row** (WAPA). `federal_robustness`: no verdict changes |
-| Tests | ALL SUITES PASSED, consistency 29/29, slide QA clean |
+| **Usable N** | **531** (in scope 710) |
+| **Employer clusters** | **99** |
+| **Largest employer** | **Crusoe 9.2%** (49 of 531) |
+| Obs per regressor | 35.4. The budget rule selects **Model 2 (extended)**. `interpretable: true`. All four conditions pass |
+| Disclosure gap (H2) | 91.6% (n=438) vs 47.8% (n=272), **43.8pp**, 43.1–45.2 across four cuts (incl. excluding_federal). **Associational, not causal** |
+| Survive bootstrap AND region check | `seniority_rank`, `yrs_exp_min` (both robust everywhere); `skill_cloud` (0.0013, robust to Crusoe and prices; exploratory, no prediction); `region_northeast` (0.011) and `region_west` (0.012), both not in real terms; tentative: `degree_stem` (0.032, **fails without Crusoe**); `yrs_exp_stated` (0.028, a control) |
+| Inconclusive | `skill_ml_ai` (0.068) and `family_ai_ml` (0.053): pass the region check, not the bootstrap |
+| USAJOBS | Key works (owner, 2026-09-28). Public Utilities Specialist series admitted by owner amendment. **Three federal rows** (two BPA, one WAPA). `federal_robustness` changes `family_ai_ml` only (0.053 → 0.0495) |
+| Tests | ALL SUITES PASSED, consistency 30/30, slide QA clean |
 
 ### Owner decision on the ~1,000-observation options (2026-09-28)
 

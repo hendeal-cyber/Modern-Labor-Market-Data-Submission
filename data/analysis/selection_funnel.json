@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-29T11:31:18.504996+00:00",
+  "built_at": "2026-09-29T11:50:52.022722+00:00",
   "snapshots": [
     "2026-09-20",
     "2026-09-21",
@@ -14,11 +14,11 @@
     "rejected_no_sector_evidence": 1329,
     "rejected_screen": 7827,
     "passed_screen": 2923,
-    "rejected_geo": 743,
-    "passed_geo": 2180,
+    "rejected_geo": 740,
+    "passed_geo": 2183,
     "duplicate_sighting": 1466,
     "duplicate_repost": 7,
-    "unique_in_scope": 707,
+    "unique_in_scope": 710,
     "usable_with_pay": 531
   },
   "rejection_reasons": {
@@ -26,7 +26,7 @@
     "role_excluded": 3121,
     "no_sector_evidence_in_posting": 1329,
     "internship": 463,
-    "no_us_state": 436,
+    "no_us_state": 433,
     "other_group_company": 362,
     "non_us": 307
   },

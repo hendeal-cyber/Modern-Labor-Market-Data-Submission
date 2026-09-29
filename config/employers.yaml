@@ -2916,11 +2916,11 @@ national_batch4:
     candidates:
       lever: [cfsenergy]
     verified: true
-  - name: Quaise Energy   # board root only: job-boards.greenhouse.io/quaise (deep geothermal drilling)
+  - name: Quaise Energy   # job-boards.greenhouse.io/quaise/jobs/4291714009 (deep geothermal drilling; verified 2026-09-29 from the public API, company_name "Quaise Energy, Inc"; unverified, its bare first-word token was skipped on run 31)
     industry: developer
     candidates:
       greenhouse: [quaise]
-    verified: false
+    verified: true
   - name: Core Scientific   # job-boards.greenhouse.io/corescientific/jobs/7999253002 (owns and operates HPC and mining data center campuses in seven states)
     industry: data_center
     candidates:
@@ -3019,10 +3019,10 @@ national_batch4:
     candidates:
       lever: [xcimer]
     verified: true
-  - name: BlocPower   # job-boards.greenhouse.io/blocpower/jobs/4025161008 (building electrification and efficiency retrofits, Brooklyn NY, as Elephant Energy; a Lever board also appears in search, and only this one is listed)
+  - name: BlocPower   # jobs.lever.co/BlocPower/845e78ff-61a3-4c60-aaef-8d3181e0c051 (building electrification and efficiency retrofits, Brooklyn NY, as Elephant Energy). Corrected 2026-09-29: the Greenhouse token first listed returns 404 from the public API (run 31 found no board), so the Lever board replaces it; both spellings of the Lever site name are tried, one board either way
     industry: developer
     candidates:
-      greenhouse: [blocpower]
+      lever: [blocpower, BlocPower]
     verified: true
   # Not added, recorded so they are not re-chased: osv-edf (Workday) is the
   # Environmental Defense Fund, not EDF Renewables; lever:pattern is already

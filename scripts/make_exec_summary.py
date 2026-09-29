@@ -40,6 +40,15 @@ PRETTY = {
 }
 
 
+
+def join_names(items) -> str:
+    """'a', 'a and b', 'a, b and c'. Three names joined by 'and' alone read
+    as one run-on phrase in the summary (audit round 11)."""
+    items = list(items)
+    if len(items) <= 2:
+        return " and ".join(items)
+    return ", ".join(items[:-1]) + " and " + items[-1]
+
 def pretty(name: str) -> str:
     return PRETTY.get(name, f"`{name}`")
 
@@ -191,7 +200,7 @@ def main() -> int:
         marginal = [n for n in survivors if n not in fragile
                     and max(p_of(n), _rr_p.get(n) or 0) >= 0.02]
         if marginal:
-            names = " and ".join(pretty(n) for n in marginal)
+            names = join_names(pretty(n) for n in marginal)
             A(f"**Read {names} as tentative.** "
               + ("Each passes" if len(marginal) > 1 else "It passes")
               + " both checks, but with a p-value above 0.02 on at least one,")
@@ -207,7 +216,7 @@ def main() -> int:
         p_lost = [n for n in survivors if n not in fragile and real
                   and (real.get(n) or {}).get("p_value", 1) >= 0.05]
         if p_lost:
-            names = " and ".join(pretty(n) for n in p_lost)
+            names = join_names(pretty(n) for n in p_lost)
             A(f"**{names[0].upper() + names[1:]} "
               + ("does" if len(p_lost) == 1 else "do")
               + " not survive adjusting pay for regional price levels** "
@@ -226,7 +235,7 @@ def main() -> int:
         explor = [n for n in survivors if n not in fragile and n not in predicted
                   and n not in marginal]
         if explor:
-            names = " and ".join(pretty(n) for n in explor)
+            names = join_names(pretty(n) for n in explor)
             A(f"**{names[0].upper() + names[1:]} carried no directional prediction in "
               "the pre-registration**, so read "
               + ("it" if len(explor) == 1 else "them")
@@ -246,7 +255,7 @@ def main() -> int:
                     and (not real or (real.get(n) or {}).get("p_value", 1) < 0.05)
                     and (not lr_p or (lr_p.get(n) or 1) < 0.05)]
         if defended:
-            names = " and ".join(pretty(n) for n in defended)
+            names = join_names(pretty(n) for n in defended)
             A(f"{names[0].upper() + names[1:]} "
               + ("is the one result" if len(defended) == 1 else "are the results")
               + " the study would defend without qualification: "
@@ -260,7 +269,7 @@ def main() -> int:
             A(f"Dropping the largest employer ({lr['employer']}, "
               f"{lr['n_dropped']} observations) "
               + ("changes no verdict at the 5% level." if not flipped else
-                 "changes the verdict on " + " and ".join(flipped)
+                 "changes the verdict on " + join_names(flipped)
                  + "; read " + ("it" if len(flipped) == 1 else "them")
                  + " with that in mind."))
             A("")

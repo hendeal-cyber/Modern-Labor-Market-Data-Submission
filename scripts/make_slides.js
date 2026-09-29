@@ -41,7 +41,13 @@ const PRETTY = {
   industry_data_center: "being a data center operator",
   mandate_state: "a pay-transparency mandate", skill_cloud: "a stated cloud skill",
   family_ai_ml: "an AI/ML role family", hourly_original: "being advertised hourly",
+  yrs_exp_min: "required experience", yrs_exp_stated: "stating an experience minimum",
 };
+// 'a', 'a and b', 'a, b and c': three names joined by "and" alone read as one
+// phrase, and the deck printed "yrs_exp_stated and a STEM degree and a West
+// location" (audit round 11).
+const joinNames = (xs) => xs.length <= 2 ? xs.join(" and ")
+  : xs.slice(0, -1).join(", ") + " and " + xs[xs.length - 1];
 const FRAGILE = new Set((analysis && analysis.region_robustness
                          && analysis.region_robustness.verdicts_changed) || []);
 // Mandate jurisdictions in force at the latest snapshot, from the build.
@@ -243,9 +249,9 @@ function bullets(s, items, x, y, w, h) {
     bullets(s, [
       `Pay is stated far more often where a mandate applies, and the gap is stable across every cut — this is the result the study stands behind`,
       SURVIVORS.length
-        ? `Within disclosed pay, ${SURVIVORS.join(", ")} ${SURVIVORS.length === 1 ? "is the only attribute" : "are the only attributes"} distinguishable from zero`
-          + (TENTATIVE.length ? ` — ${TENTATIVE.join(" and ")} only narrowly, so read ${TENTATIVE.length === 1 ? "it" : "them"} as tentative` : "")
-          + (PRICE_LOST.length ? `; ${PRICE_LOST.join(" and ")} ${PRICE_LOST.length === 1 ? "does" : "do"} not survive price adjustment` : "")
+        ? `Within disclosed pay, ${joinNames(SURVIVORS)} ${SURVIVORS.length === 1 ? "is the only attribute" : "are the only attributes"} distinguishable from zero`
+          + (TENTATIVE.length ? ` — ${joinNames(TENTATIVE)} only narrowly, so read ${TENTATIVE.length === 1 ? "it" : "them"} as tentative` : "")
+          + (PRICE_LOST.length ? `; ${joinNames(PRICE_LOST)} ${PRICE_LOST.length === 1 ? "does" : "do"} not survive price adjustment` : "")
         : "Within disclosed pay, no attribute is distinguishable from zero under the pre-registered inference",
       `${OVERTURNED} coefficients reach significance under clustered standard errors and do NOT survive the wild cluster bootstrap — reported as inconclusive, not as findings`,
       "Seniority was predicted to dominate and does; it also survives every robustness cut applied",

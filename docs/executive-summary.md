@@ -9,23 +9,23 @@ reproducible with the commands in `README.md`; none is hand-entered.*
 
 ## What was measured
 
-**472 job postings** with an employer-stated pay range, from **86 employers**
-in the US energy, utility and data center sector, drawn from 8,226 postings
+**531 job postings** with an employer-stated pay range, from **99 employers**
+in the US energy, utility and data center sector, drawn from 12,441 postings
 collected from public applicant-tracking APIs — the upstream systems employers
 publish through. The dependent variable is the log of the advertised range midpoint.
 
 ## Finding 1 — the strongest regularity is about disclosure, not level
 
-Pay is stated in **91.7%** of postings in states that require a pay
-scale in the posting (n=384), against **48.6%** where no such law applies (n=247)
-— a gap of **42 to 45 percentage points** across every cut of the sample.
+Pay is stated in **91.5%** of postings in states that require a pay
+scale in the posting (n=438), against **47.8%** where no such law applies (n=272)
+— a gap of **43 to 45 percentage points** across every cut of the sample.
 
 **This is associational, not causal.** It is a single cross-section, so there is no
 time variation and no difference-in-differences is available. Employers who
 operate in mandate states differ from those who do not in ways these data cannot
 control for. It is reported as a descriptive contrast and nothing more.
 
-## Finding 2 — within disclosed pay, 6 attributes survive proper inference
+## Finding 2 — within disclosed pay, 7 attributes survive proper inference
 
 Of the regressors in the pre-specified model, these are distinguishable from zero
 under the wild cluster bootstrap the pre-registration requires:
@@ -33,17 +33,18 @@ under the wild cluster bootstrap the pre-registration requires:
 | Attribute | Effect on advertised pay | Bootstrap p | Survives the region check |
 |---|---|---|---|
 | seniority | +11.1% | 0.000 | yes |
-| required years of experience | +2.5% | 0.000 | yes |
-| a stated cloud skill | +12.4% | 0.001 | yes |
-| a Northeast location | +8.8% | 0.006 | yes |
-| a West location | +13.3% | 0.020 | yes |
-| a STEM degree | +5.2% | 0.024 | yes |
+| required years of experience | +2.6% | 0.000 | yes |
+| a stated cloud skill | +11.8% | 0.001 | yes |
+| a Northeast location | +9.2% | 0.011 | yes |
+| a West location | +13.4% | 0.012 | yes |
+| stating an experience minimum at all | -7.0% | 0.028 | yes |
+| a STEM degree | +5.2% | 0.032 | yes |
 
-**Read a West location and a STEM degree as tentative.** Each passes both checks, but with a p-value above 0.02 on at least one,
+**Read a West location, stating an experience minimum at all and a STEM degree as tentative.** Each passes both checks, but with a p-value above 0.02 on at least one,
 close enough to 0.05 that a handful of added observations can move the verdict. See
 `docs/audit-log.md` for how these verdicts have moved between collection runs.
 
-**A Northeast location and a West location do not survive adjusting pay for regional price levels** (BEA regional price parities; clustered p 0.92, 0.26), so read them as nominal only.
+**A Northeast location and a West location do not survive adjusting pay for regional price levels** (BEA regional price parities; clustered p 0.64, 0.16), so read them as nominal only.
 
 **A stated cloud skill and a Northeast location carried no directional prediction in the pre-registration**, so read them as exploratory rather than as a confirmed hypothesis.
 
@@ -52,9 +53,9 @@ and survives the bootstrap, the region check, price adjustment and dropping the 
 
 Dropping the largest employer (Crusoe, 49 observations) changes the verdict on a STEM degree; read it with that in mind.
 
-**1 further attribute reaches significance under clustered standard errors and
-not under the bootstrap** — a stated ML or AI skill.
-With few employer clusters the asymptotic p-values are anti-conservative, so it is
+**3 further attributes reach significance under clustered standard errors and
+not under the bootstrap** — a required degree, a stated ML or AI skill, an AI/ML role family.
+With few employer clusters the asymptotic p-values are anti-conservative, so these are
 reported as inconclusive rather than as a finding. An underpowered null is not
 a measured zero, and neither is a finding.
 
@@ -64,16 +65,16 @@ Stated here because each was either predicted or previously reported, and a read
 who takes only this page away should not take away a claim the data withdrew.
 
 - **A degree premium.** `degree_required` was predicted positive; the point estimate
-  is -0.0373 — the wrong sign — and at p=0.198 it is not
+  is -0.0566 — the wrong sign — and at p=0.051 it is not
   distinguishable from zero. Reported as inconclusive, not as a reversal.
-- **An AI or ML pay premium.** `skill_ml_ai` is +0.1039 at p=0.059.
+- **An AI or ML pay premium.** `skill_ml_ai` is +0.0919 at p=0.068.
   An earlier version of this study reported roughly +27% at p=0.003. That estimate
   did not survive audit round 4, which removed a multi-sector consultancy's public
   health, national security and fraud postings from the sample — much of the
   apparent AI premium was theirs, and outside the sector under study.
 - **Data center operators paying more than utilities.** Predicted positive; the
-  estimate is positive but at p=0.515 it is inconclusive.
-- **A pay-level effect of mandate states.** `mandate_state` is +0.0114 at p=0.739.
+  estimate is positive but at p=0.596 it is inconclusive.
+- **A pay-level effect of mandate states.** `mandate_state` is +0.0077 at p=0.822.
   Earlier versions reported a significant negative coefficient and explained it as
   disclosure selection. Audit round 6 found it was substantially an artifact: the pay
   parser was halving seventeen postings of the largest employer, all in mandate states
@@ -82,14 +83,14 @@ who takes only this page away should not take away a claim the data withdrew.
 
 ## What limits it
 
-- **Disclosure is selected.** Only 472 of 631 in-scope postings state pay, so every
+- **Disclosure is selected.** Only 531 of 710 in-scope postings state pay, so every
   pay coefficient is conditional on disclosure. This is the central threat, and it
   is why the disclosure result is a headline rather than a footnote.
 - **The scope widened five times in response to the data.** Disclosed in
   `docs/limitations.md`; the specification was pre-registered before the national
   sample was collected, and every later change is a dated amendment.
 - **Pay is nominal in the headline figures.** A price-adjusted check using BEA
-  regional price parities is reported on 434 observations in the paper.
+  regional price parities is reported on 487 observations in the paper.
 
 ## Where to look next
 
