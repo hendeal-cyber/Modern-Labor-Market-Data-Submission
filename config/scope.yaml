@@ -498,6 +498,14 @@ roles:
     #       this title entered on the literal "land development"
     - organizational development
     - benefits compliance
+    # Audit round 12, 2026-09-30 (run 34). "Director, Legal Commercial
+    # Development and Project Financing," (Bloom Energy) requires "J.D. from a
+    # top law school, and good standing with at least one U.S. State Bar": a
+    # lawyer, entered on "commercial development". Sibling of "legal
+    # operations" and "legal analyst"; measured on all 17,495 raw postings, it
+    # changes this title alone (every other "Director, Legal ..." title is
+    # already rejected as counsel).
+    - director, legal
     - legal analyst
     - procurement compliance
     - accounting

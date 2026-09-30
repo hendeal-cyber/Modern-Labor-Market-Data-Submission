@@ -498,6 +498,17 @@ def check_role_concepts():
         if not filters.screen_all(t, "", scope)[0]:
             fails.append(f"round-10 in-scope role REJECTED: {t!r}")
 
+    # Audit round 12 (run 34), verbatim: a lawyer (J.D. and bar required)
+    # admitted on "commercial development"; the neighbours from the same run
+    # and a regulatory director must stay.
+    if filters.screen_all("Director, Legal Commercial Development and Project Financing,", "", scope)[0]:
+        fails.append("round-12 legal role ADMITTED (Bloom Energy)")
+    for t in ("Director Strategic Planning (Integrated System Planning)",
+              "Regulatory Affairs Director, Large Loads and Market Policy",
+              "Senior Manager, Projects Development - Energy"):
+        if not filters.screen_all(t, "", scope)[0]:
+            fails.append(f"round-12 in-scope role REJECTED: {t!r}")
+
     # The concept layer must never override an explicit exclusion.
     roles = scope["roles"]
     if not roles.get("include_concepts"):
