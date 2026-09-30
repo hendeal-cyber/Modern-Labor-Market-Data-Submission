@@ -1022,3 +1022,12 @@ run was dispatched by hand at 09:41 UTC by the clock, with the same inputs.
 If the 09:17 cron fires late as well, it queues behind this run and merges
 into the same 2026-09-30 snapshot. The collection dates, frame and stopping
 rule are unchanged: collection closes with snapshots dated 2026-09-30.
+
+**Addendum, 2026-09-30 (10:17 UTC by the clock).** The 09:41 dispatch
+(run 33) failed its pre-collection test gate in 40 seconds and collected
+nothing. Run 32 had committed `data/` at an unaudited N = 536, while the
+paper and summary, regenerated only locally by design, still said 531, and
+the consistency suite refused to collect on the mismatch. The deliverables
+were regenerated from the committed data (85b8a9a), and the run was
+dispatched again at 10:14 UTC as run 34. It passed the gate and is
+collecting. Its snapshot is dated 2026-09-30, as registered.

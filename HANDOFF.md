@@ -28,7 +28,7 @@ is 10:45 UTC (trig_01DZEo3k1e41Gxp5aBxXaPuY).
 | | Value |
 |---|---|
 | Branch | `claude/wonderful-tesla-53lgo4`, the repository's DEFAULT branch |
-| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 Sep: the cron did not fire; run 31 dispatched by hand at 10:46 UTC** (§8). The 29 Sep cron then fired 6.5 hours late (run 32, 15:55 UTC, merged into the 09-29 snapshot). **30 Sep: not started by 09:40 UTC, so dispatched by hand at 09:41 UTC** (§8); a late cron would queue and merge into the same snapshot. Collection closes with snapshots dated 2026-09-30. Check-ins on 30 Sep: 09:40 UTC cron guard (trig_01NZpbdr7D6o6nBLcLNEaf7f), 10:45 UTC final audit (trig_01DZEo3k1e41Gxp5aBxXaPuY) |
+| **Collection** | 28 Sep: run 30, dispatched by hand at 00:36 UTC at the owner's request (audited). **29 Sep: the cron did not fire; run 31 dispatched by hand at 10:46 UTC** (§8). The 29 Sep cron then fired 6.5 hours late (run 32, 15:55 UTC, merged into the 09-29 snapshot). **30 Sep: not started by 09:40 UTC, so dispatched by hand at 09:41 UTC** (run 33, which failed its test gate because run 32's unaudited data no longer matched the paper; deliverables regenerated, redispatched 10:14 UTC as run 34, §8); a late cron would queue and merge into the same snapshot. Collection closes with snapshots dated 2026-09-30. Check-ins on 30 Sep: 09:40 UTC cron guard (trig_01NZpbdr7D6o6nBLcLNEaf7f), 10:45 UTC final audit (trig_01DZEo3k1e41Gxp5aBxXaPuY) |
 | Frame | **407 employers** (collector's loader; batch 13 federal agencies and batches 14–15, 32 employers under option D, all added 2026-09-28 before the 29 Sep run) |
 | **Usable N** | **531** (in scope 710) |
 | **Employer clusters** | **99** |
