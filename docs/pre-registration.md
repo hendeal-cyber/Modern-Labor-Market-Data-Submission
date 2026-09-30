@@ -1009,3 +1009,16 @@ backup copy of the old code.
    - *Expected effect, stated in advance:* a handful of rows at most. Quaise
      (Houston, no mandate) states pay in its postings. BlocPower's analyst
      roles are in New York, a mandate state.
+
+### 2026-09-30 — the 29 September cron fired 6.5 hours late, and the 30 September run was dispatched by hand
+
+GitHub's scheduler did start the 29 September cron in the end, at 15:55 UTC
+on 09-29, about 6.5 hours late. That was after run 31 had been dispatched by
+hand. As run 32 its snapshot is dated 2026-09-29, so it merged into run 31's
+same-day snapshot (audit round 7) rather than adding a day. It read the
+frame as corrected in round 11, with Quaise and BlocPower. At the 09:40 UTC
+check on 09-30 no run dated 2026-09-30 had started, so the final approved
+run was dispatched by hand at 09:41 UTC by the clock, with the same inputs.
+If the 09:17 cron fires late as well, it queues behind this run and merges
+into the same 2026-09-30 snapshot. The collection dates, frame and stopping
+rule are unchanged: collection closes with snapshots dated 2026-09-30.
