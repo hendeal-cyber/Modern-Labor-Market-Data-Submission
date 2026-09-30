@@ -25,7 +25,17 @@
   remain.
 - **Tests:** ALL SUITES PASSED, consistency 32/32, slide QA clean.
 - **Nothing is pending.** Any further change is a post-collection amendment
-  and needs the owner.
+  and needs the owner. The candidates are listed in
+  `docs/next-session-prompt.md` §6:
+  - the CI workflow gap that failed run 33;
+  - boards that could not be read (Core Scientific);
+  - option A as a second population, the only lever toward ~1,000;
+  - deck wording on `degree_stem`.
+- **Next session:** start from `docs/next-session-prompt.md`; the /compact
+  text is in `docs/compact-message.md`. The owner's instruction of
+  2026-09-30: "Please finish your analysis now, and then we will handoff and
+  compute any other changes, updates, or fixes in the next compaction
+  session."
 
 ### Round 11 in one paragraph (2026-09-29)
 

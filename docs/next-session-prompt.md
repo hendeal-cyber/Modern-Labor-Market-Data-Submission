@@ -13,19 +13,18 @@ below are unchanged. Confirm the state before acting, then act.**
 1. Call add_repo with owner "hendeal-cyber", repo
    "modern-labor-market-data-submission", access "push" (do not pre-check it).
    The clone may already be at /home/user/Modern-Labor-Market-Data-Submission.
-2. Work only on `claude/wonderful-tesla-53lgo4`, the DEFAULT branch, whose
-   `schedule:` cron fires. Push only there. Never merge or open a PR without
-   the owner.
+2. Work only on `claude/wonderful-tesla-53lgo4`, the DEFAULT branch. Push
+   only there. Never merge or open a PR without the owner.
 3. Read, in order: `HANDOFF.md` (RESUME HERE, to the next `##`);
-   `docs/audit-log.md` round 10 and the interim check of 2026-09-27;
-   `docs/pre-registration.md` §8, the last six entries.
-4. Check-ins exist for **2026-09-30 at 09:40 UTC (cron guard) and 10:45 UTC (final audit)**
-   (trig_01NZpbdr7D6o6nBLcLNEaf7f, trig_01DZEo3k1e41Gxp5aBxXaPuY).
-   `list_triggers` confirms them. A new conversation must delete these
-   and set its own, so two sessions never audit one run.
-5. List `collect.yml` runs (GitHub MCP `actions_list`). Audit any finished
-   run not yet in the audit log before anything else. Investigate any run
-   collecting for over 75 minutes.
+   `docs/audit-log.md` rounds 11 and 12; `docs/pre-registration.md` §8,
+   the last five entries.
+4. **Collection is CLOSED** (snapshot 2026-09-30). The collection cron is
+   removed and no check-ins exist (`list_triggers` returns none). Do NOT
+   dispatch `collect.yml`: a new snapshot is ignored by the build anyway,
+   and any extension is option B, which needs the owner.
+5. Confirm: `git log -1` is at or after 345ce6f; `python3 tests/run_all.py`
+   says ALL SUITES PASSED and consistency 32/32; `data/analysis/analysis.json`
+   has `n_estimation` 543 and `n_clusters` 100.
 
 ## 2. What the study is
 
@@ -58,19 +57,23 @@ pre-registration, audit log, limitations and ledger.
 - **Frame:** 407 employers (batch 13 federal agencies and batches 14–15, 32 employers under option D, added after round 10). Batches 4–12 (2026-09-27/28) each carry an evidence URL
   in `config/employers.yaml`.
 - **USAJOBS:** key works. Three federal rows (two BPA, one WAPA, all Public
-  Utilities Specialist). NRC's postings fall outside the taxonomy, DOE HQ and
-  Reclamation fail the sector gate, and FERC, BOEM, SWPA and TVA had none open
-  on run 31.
+  Utilities Specialist). NRC's and FERC's postings fall outside the taxonomy,
+  DOE HQ and Reclamation fail the sector gate, and BOEM, SWPA and TVA had
+  none open.
 - **Tests:** ALL SUITES PASSED (13 suites), consistency 32/32.
 
-## 4. Schedule and stopping rule (as registered now)
+## 4. Collection record and stopping rule
 
-- The run of 09-28 was dispatched by hand at 00:36 UTC at the owner's
-  request. Cron `17 9 29-30 9 *` covers the other two.
-- **Collection closes with snapshots dated 2026-09-30**
-  (`study.collection_end`, `snapshots_in_window`, pinned by a test). Frame
-  additions count only if they are in `employers.yaml` and §8 before the
-  09-30 run starts.
+- The three approved runs, 28–30 September:
+  - **28 Sep:** run 30, dispatched by hand at the owner's request.
+  - **29 Sep:** run 31, dispatched by hand after the cron did not fire; the
+    cron then fired 6.5 hours late as run 32, which merged into the same
+    snapshot.
+  - **30 Sep:** run 34, dispatched by hand. Run 33 had failed its test
+    gate, because run 32's unaudited data no longer matched the paper.
+- **Collection closed with snapshots dated 2026-09-30**
+  (`study.collection_end`, `snapshots_in_window`, pinned by a test). The
+  cron was removed (cron has no year field).
 - Connecticut's posting law starts 2026-10-01. Mandates are coded per
   snapshot date, so any extension past 09-30 is a coding event for CT rows.
 
@@ -97,31 +100,40 @@ pre-registration, audit log, limitations and ledger.
   `IN07`, BOEM `IN27`; the last three require sector evidence; coded
   `utility`; the Army Corps left out; NERC is not federal, so search its
   own ATS). Frame 375.
+- 2026-09-28: NERC and the regional entities. After the terms were read
+  (limitations §9d: UKG bans automated access; Paylocity's terms have no
+  ban; isolved's do not forbid reading), a browser proof of concept found
+  WECC's 5 jobs in plain HTML and SERC's board empty. Owner: **"Agreed, no
+  adapter."**
+- 2026-09-30: the owner closed collection: "most, if not all of the
+  scheduled runs have completed. Please finish your analysis now, and then
+  we will handoff and compute any other changes, updates, or fixes in the
+  next compaction session."
 
-## 6. OPEN: the path to ~1,000 observations (measured 2026-09-28)
+## 6. OPEN for the next session: candidate changes, each the owner's decision
 
-Measured on the 3,745 unique raw postings collected so far:
+Collection is closed at N = 543. Option A (all salaried professional roles
+as a second, labelled population; about +400 to +550 from data on disk) and
+option B (collection past 09-30) were NOT approved, and remain the only
+large levers toward ~1,000. Candidates found during the final rounds, none
+started:
 
-| Lever | Expected gain in usable N | What it changes | Needs |
-|---|---|---|---|
-| A. Broaden the role taxonomy from software/data/analytics to **all salaried professional roles** (finance, project management, customer success, engineering, operations management), still excluding field, trades, technicians and internships | **about +400 to +550** from data already on disk: 640 US pay-disclosed postings are now rejected only as "not software/data", before the sector and group filters | The population becomes "professional roles in the sector". It is a change made after seeing data, so report it as a **second, clearly labelled population**, with the pre-registered analytics-role population kept as the primary result | Owner decision; dated §8 amendment; both populations reported |
-| B. **Extend collection** past 2026-09-30 to a new fixed end date, declared before the extra runs (e.g. 2026-10-14, daily) | About +5 to +20 usable a day from new postings, more while new employers keep being added | The registered stopping rule. Fix the new date in advance, never "until N is reached". CT turns covered on 10-01, a coding event | Owner decision; amend `study.collection_end`, the cron and the test pinning it |
-| C. **More federal agencies** via USAJOBS: FERC (`DNFE`), NRC, EIA, DOE Office of Electricity and Grid Deployment and Loan Programs (DOE subelements), Bureau of Reclamation power, USACE hydropower | About +10 to +40 rows at any time (open postings, not ~100 in-scope ones); the taxonomy screens most federal titles out, and "Energy Industry Analyst" (FERC) needs a check | FERC and NRC are **regulators**, which the frame has excluded ("as state regulators are"). Admitting them is a scope change. Federal pay is its own regime; `excluding_federal` and `federal_robustness` already exist | Owner decision per agency class; §8 amendment. **NERC is not federal** (a private non-profit, not on USAJOBS); search its own ATS instead |
-| D. Keep expanding the frame through the four routes | +20 to +60 per run for new employers (run 30: +95 from ~70 new) | Nothing, within the rules | Nothing; continue |
-
-**Assessment given to the owner:** ~1,000 is not reachable by 09-30 within
-the current population (expect about 500–560). It is reachable only with A
-(the one large lever, available from data already collected), best combined
-with B and D. A and B are changes to registered design and are the owner's
-decision.
-
-**Decided 2026-09-28: C and D approved, A and B not.** C is done (batch 13).
-**Batches 14–15 done** (32 employers, frame 407; searches now mostly return employers already in the frame; NERC is on UKG/UltiPro, which
-has no adapter, so it needs an owner decision). **Next action:** D. Keep working the registry
-candidate lists (`data/registry/*.csv`) and role-title searches. Record every
-addition in §8 before 09:17 UTC on 09-30. At the 09-29 audit, read the first
-FERC, NRC and DOE rows and check the sector-evidence gate on DOE HQ,
-Reclamation and BOEM.
+1. **A workflow gap (found 2026-09-30).** `collect.yml` commits only
+   `data/`, by design (binary deck merge conflicts). So a run that lands
+   before an audit leaves the paper disagreeing with the data, and the next
+   run's test gate refuses to collect (run 33). This only matters if
+   collection ever reopens. Options: regenerate and commit the markdown
+   deliverables in CI, or run the consistency suite after collection rather
+   than before.
+2. **Core Scientific** (data-center operator): live job pages, but its
+   Greenhouse API returns 404, so it is unreadable by the supported route.
+   Soluna, Elephant, SunPower and BlocPower resolved no board either.
+3. **Option A as a second population:** the one lever toward ~1,000, from
+   data already on disk; it needs a dated §8 amendment and both populations
+   reported.
+4. **Presentation polish** the owner may want: the deck does not name
+   `degree_stem`'s fragility to Crusoe and to the federal rows (the paper and
+   summary do).
 
 ## 7. Rules that always apply (from the original brief)
 
@@ -196,12 +208,14 @@ and `test_consistency.py`; add a row to the paper's audit table (in
 `git push -u origin claude/wonderful-tesla-53lgo4`, retrying up to 4 times
 on network errors.
 
-## 9. After the last run
+## 9. After the last run — DONE (2026-09-30)
 
-Final audit, then a finalisation pass: re-read the paper, summary and deck
-against the bootstrap and robustness checks. Confirm 29/29. Mark HANDOFF
-"collection closed". Report N, clusters, the largest share, the conditions
-that pass, and every coefficient the bootstrap overturns.
+Final audit (round 12) and the finalisation pass are complete. The paper,
+summary and deck were re-read against the bootstrap and robustness checks,
+which led to three fixes (audit-log round 12). Consistency is 32/32, and
+HANDOFF says "collection closed". If anything is changed from here, rebuild,
+re-analyse and regenerate (section 8), and record a dated §8 amendment
+saying whether the change helped or hurt the headline.
 
 ---
 
