@@ -1,0 +1,21 @@
+[
+ {
+  "platform": "smartrecruiters",
+  "employer": "kWantera",
+  "board_token": "kWantera",
+  "external_id": "111827346",
+  "title": "Energy Data Analyst",
+  "location_raw": "Pittsburgh, PA",
+  "description": "kWantera is a\u00a0venture-backed startup company dedicated to helping companies manage\u00a0their energy. Our team of quantitative energy market analysts work\u00a0with our big data analytics platform to analyze and react to changing\u00a0market conditions. At kWantera, we promote a highly dedicated,\u00a0collaborative and creative work environment where our employees take\u00a0ownership of their role, taking much pride in their work. We aim to\u00a0continue innovating in the future, giving businesses the upper hand\u00a0on their energy decisions.\n\nWe are seeking for a\u00a0candidate who is passionate about making a difference in energy\u00a0industry using data analytics. Energy Data Analyst will act as a\u00a0bridge between our data science team and the energy market. He/she\u00a0will use data analysis techniques to find answers to research\u00a0questions raised by data science team, will evaluate the challenges\u00a0and opportunities in the market, backing the findings with solid\u00a0statistics, and will evaluate and analyze our products&apos; performance,\u00a0providing insightful feedback for improvements, just to count a few\u00a0of the responsibilities.\nThe ideal candidate\u00a0is experienced and comfortable with analyzing big data and crunching\u00a0numbers, is familiar with the electricity wholesale markets in the\u00a0US, and has programming background, preferably in Python. We are\u00a0seeking independent and critical thinkers, who are good team players.\n\n- Strong background in\u00a0data analytics. Must be familiar with basic statistical techniques\u00a0and metrics, such as implementing and evaluating regression analysis,\u00a0hypothesis testing, auto-correlation, probability distributions,\u00a0graphical representations, as well as confusion matrices to evaluate\u00a0accuracy, precision and error, etc. (Machine Learning background\u00a0is a plus).\n\n- Strong understanding\u00a0of energy markets in US (Previous work experience in the energy\u00a0domain, or extensive coursework and projects in the area)\n\n- Familiarity with\u00a0using Python for data analysis\u00a0 (or equivalent language).\n\n- A strong sense of\u00a0ownership\n\n- A team player\n\n- Strong verbal and\u00a0written communication skills\n\nCOMPENSATION\nVery competitive\u00a0salary, because you deserve it.\nEquity in the\u00a0 company, to keep you motivated.\n401(k) plan with\u00a0matching, because we care about your future!\n\nPERKS:\n\nUnlimited vacation,\u00a0we work hard and take time when we need it.\nMedical, dental and\u00a0vision coverage.\nFully stocked\u00a0fridge, coffee, espresso and tons of snacks to keep us going.\nFantastic modern\u00a0office space in Pittsburgh\u2019s Strip District with free parking.\nGreat office\u00a0environment with exceptionally talented coworkers.\n\nkWantera\u2019s staff\u00a0 is highly motivated to shake up the status quo of the modern electric\u00a0 and natural gas industries within the United States. Our technology\u00a0 platform, machine learning, and predictive analytics are cutting-edge\u00a0 entrants into the emerging world of Big Data. We seek people who will\u00a0 be similarly passionate\u00a0 about changing the world.",
+  "url": "https://api.smartrecruiters.com/v1/companies/kWantera/postings/111827346",
+  "posted_at": "2017-03-28T17:10:21.000Z",
+  "updated_at": "2017-03-28T17:10:21.000Z",
+  "department": null,
+  "employment_type": "Full-time",
+  "comp_min": null,
+  "comp_max": null,
+  "comp_interval": null,
+  "payload": null,
+  "industry": "energy_analytics"
+ }
+]
