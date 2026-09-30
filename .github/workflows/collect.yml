@@ -18,15 +18,14 @@ name: Collect postings
 # an employer adding a pay range to a live posting.
 #
 # Paused 2026-09-23 by the owner. Resumed 2026-09-27 for EXACTLY three daily
-# runs, 28-30 September, approved by the owner. The cron names those three
-# days, so it stops by itself: collection closes with snapshots dated
-# 2026-09-30 (study.collection_end, pre-registration section 8), and
-# build_dataset ignores anything later anyway. Manual runs still work.
+# runs, 28-30 September, approved by the owner. Collection closed with the
+# snapshot dated 2026-09-30 (study.collection_end, pre-registration section
+# 8), and build_dataset ignores anything later. Manual runs still work.
 on:
-  schedule:
-    # The 28 September run was dispatched by hand at 00:36 UTC on the owner's
-    # request (pre-registration section 8), so the cron keeps only 29 and 30.
-    - cron: "17 9 29-30 9 *"    # 09:17 UTC on Sep 29 and 30 only
+  # No schedule: collection closed with the 2026-09-30 snapshot
+  # (pre-registration section 8). The cron "17 9 29-30 9 *" was removed then,
+  # because cron has no year field and it would have fired again on 29-30
+  # September 2027. Manual dispatch remains for reproducing a run.
   workflow_dispatch:
     inputs:
       limit:

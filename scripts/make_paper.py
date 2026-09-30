@@ -274,7 +274,9 @@ def main() -> int:
             text = (" and ".join(items) if len(items) <= 2
                     else ", ".join(items[:-1]) + " and " + items[-1])
             return text[0].upper() + text[1:] if cap and text else text
-        named = [pretty.get(k, f"`{k}`") for k, _ in sig[:4]]
+        # Every survivor is named: truncating at four read as a complete list
+        # and left out three that pass (finalisation pass, audit round 12).
+        named = [pretty.get(k, f"`{k}`") for k, _ in sig]
         basis = "the wild cluster bootstrap" if _boot else "clustered standard errors"
         A("Within the postings that do disclose, the attributes that predict pay at")
         if len(named) == 1:
@@ -340,7 +342,11 @@ def main() -> int:
                 A("clustered standard errors but not under the bootstrap, which is")
                 A("the inference this study pre-registered; they are reported as")
                 A("inconclusive, not as findings.")
-        neg = [k for k, v in sig if v.get("coef", 0) < 0]
+        # Only a variable with a registered direction can be "predicted the
+        # other way". `yrs_exp_stated` is the indicator that travels with the
+        # imputed experience minimum and carries no hypothesis; the sentence
+        # fired on its sign alone (finalisation pass, audit round 12).
+        neg = [k for k, v in sig if v.get("coef", 0) < 0 and k in _pred]
         if neg:
             A(f"Note that {pretty.get(neg[0], neg[0])} enters **negatively**, which")
             A("was predicted the other way; section 5 reports it as contradicted.")
@@ -528,6 +534,7 @@ def main() -> int:
             A("| 9 | Run 29, the national frame expansion (133 added rows) | Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 49 usable rows, reported with a sensitivity check |")
             A("| 10 | Run 30 (28 Sep, dispatched early at the owner's request), the first collection of batches 5-12 and USAJOBS | US towns named after foreign cities read as non-US (Eversource's Berlin, CT), and a repost differing by one full stop, both fixed between runs. Location forms never met before (\"Tucson, AZ - Downtown\", \"Washington - Pullman\", \"San Francisco Bay Area\") rejected every posting of a newly confirmed employer (SEL) on its first collection. Eleven off-taxonomy postings at new employers (HR, labour compliance, construction, manufacturing quality, product engineering) |")
             A("| 11 | Run 31 (29 Sep, dispatched by hand when the cron did not fire), the first collection of the federal energy agencies and batches 13-15 | The dotted \"Washington, D.C.\" read as Washington State, which put two rows in the West and cost a two-site posting its DC mandate site. A retitled Workday posting lost its posting date, a Model 2 regressor. Generated lists of three names read as one phrase in the summary, paper and deck |")
+            A("| 12 | Runs 32 (the 29 Sep cron, 6.5 hours late) and 34 (30 Sep, the last collection) | A lawyer admitted on \"commercial development\" (Bloom Energy). A pre-registered robustness check, the pay model without federal rows, computed on every run but reported nowhere; in the final data it changes a verdict. Two generated sentences overstated: a list of survivors cut at four, and a control variable described as contradicting a prediction it never had |")
         A("")
         A("Every defect found is pinned by a regression test built from the real")
         A("title or location string that produced it, not from a reconstruction.")
@@ -805,6 +812,36 @@ def main() -> int:
                 A(f"| `{k}` | {bp_s} | {row['coef']:.4f} | {wp_s} |")
             A("")
             ch = lr.get("verdicts_changed") or []
+            A("No verdict changes at the 5% level." if not ch else
+              "Verdicts that change at the 5% level: "
+              + ", ".join(f"`{k}`" for k in ch) + ".")
+            A("")
+
+        # Pre-registered in section 8 (batch 10, 2026-09-27) and computed on
+        # every run since, but reported nowhere until the finalisation pass of
+        # audit round 12, when it changed a verdict.
+        fr = analysis.get("federal_robustness") or {}
+        if fr.get("by_variable"):
+            base = (analysis.get("wild_cluster_bootstrap") or {}).get("by_variable") or {}
+            A("### Robustness: without the federal employers")
+            A("")
+            A(f"Federal postings ({', '.join(fr.get('employers') or [])}) are set by "
+              "a separate pay regime, the GS and agency pay plans, and always state "
+              f"pay. They supply {fr['n_dropped']} observations. The core model is "
+              f"re-estimated without them, on {fr['n']} observations across "
+              f"{fr['n_clusters']} employers, with the same bootstrap as the "
+              "check above.")
+            A("")
+            A("| Variable | Bootstrap p (full) | Coef (without) | Bootstrap p (without) |")
+            A("|---|---|---|---|")
+            for k, row in fr["by_variable"].items():
+                bp = (base.get(k) or {}).get("p_value")
+                wp = row.get("bootstrap_p")
+                bp_s = "—" if bp is None else f"{bp:.3f}"
+                wp_s = "—" if wp is None else f"{wp:.3f}"
+                A(f"| `{k}` | {bp_s} | {row['coef']:.4f} | {wp_s} |")
+            A("")
+            ch = fr.get("verdicts_changed") or []
             A("No verdict changes at the 5% level." if not ch else
               "Verdicts that change at the 5% level: "
               + ", ".join(f"`{k}`" for k in ch) + ".")

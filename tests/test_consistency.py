@@ -281,6 +281,23 @@ def run():
         chk("summary, paper and deck join three or more names with commas, not 'and' alone",
             not runons, str(runons))
 
+    # 21. A robustness check that is computed must be reported. The federal
+    # re-estimate (pre-registration section 8, batch 10) ran on every run from
+    # 2026-09-28 and appeared in neither the paper nor the summary; in the
+    # final round it changed the verdict on a STEM degree.
+    if (a.get("federal_robustness") or {}).get("by_variable"):
+        _sum = summary.read_text() if summary.exists() else ""
+        chk("federal robustness reported in paper and summary",
+            "without the federal employers" in paper and "federal postings" in _sum)
+
+    # 22. The paper's "predicted the other way" sentence may name only a
+    # variable with a registered direction. It said so of `yrs_exp_stated`, a
+    # control with no hypothesis (finalisation pass, audit round 12).
+    import re as _re2
+    m = _re2.search(r"Note that (.+?) enters \*\*negatively\*\*", paper)
+    chk("'predicted the other way' names only a hypothesised variable",
+        not m or "experience minimum" not in m.group(1), m.group(1) if m else "")
+
     print(f"consistency: {n - len(fails)}/{n} checks passed")
     for x in fails:
         print("  FAIL", x)

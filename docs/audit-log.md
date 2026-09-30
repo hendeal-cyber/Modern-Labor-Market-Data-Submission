@@ -1216,6 +1216,100 @@ kind from round 10. The 59 new usable rows are mostly software, finance and
 development roles at nuclear, fusion and solar developers in mandate
 states.
 
+### Round 12 — runs 32 and 34, the last collection, and the finalisation pass (2026-09-30)
+
+**Scope.** Two collections since round 11:
+- **Run 32:** the 29 September cron, which GitHub started 6.5 hours late
+  (15:55 UTC). It merged into the 2026-09-29 snapshot.
+- **Run 34:** the 30 September run, dispatched by hand at 10:14 UTC (Actions
+  36701206743). The 09:41 dispatch, run 33, had failed its test gate: run
+  32's committed data (N = 536) no longer matched the paper. 407 employers
+  attempted, 185 boards found, 4,810 postings.
+
+Every in-scope row added since the audited N = 531 was read: 20 rows, 13
+with pay. Then the pay extremes, single figures, duplicate URLs, the federal
+boards, and each board that collected postings without adding rows. No row
+left. One existing row changed: an AES title lost a "-1" suffix. Collection
+closes with this snapshot, as registered.
+
+**Defect 1 — a lawyer admitted on "commercial development".** Bloom Energy's
+"Director, Legal Commercial Development and Project Financing," requires
+"J.D. from a top law school, and good standing with at least one U.S. State
+Bar". It is removed by "director, legal", a sibling of "legal operations"
+and "legal analyst". Measured on all 17,495 raw postings, the phrase changes
+this title alone: every other "Director, Legal ..." title is already
+rejected as counsel. Pinned in `test_filters.py` beside three in-scope
+neighbours from the same run. N 544 → 543.
+
+**Defect 2 — a pre-registered robustness check computed but never
+reported.** `federal_robustness` (pre-registration section 8, batch 10)
+re-estimates the pay model without the federal rows. It has run on every
+build since 2026-09-28 and appeared in neither the paper nor the summary.
+In the final data it changes a verdict: `degree_stem` moves from 0.043 to
+0.0505 without the 3 federal rows. The paper now has a section for it and
+the summary a sentence, both computed from the results. A consistency check
+fails on the old output.
+
+**Defect 3 — two generated sentences in the paper overstated.**
+- "The attributes that predict pay ... are" named only the first four of
+  seven bootstrap survivors, and read as a complete list.
+- "Note that stating an experience minimum enters negatively, which was
+  predicted the other way; section 5 reports it as contradicted" was false.
+  `yrs_exp_stated` is the control that travels with the imputed experience
+  minimum and carries no hypothesis. The sentence fired on the sign alone.
+
+Both are fixed: the list names every survivor, and the sentence now applies
+only to variables with a registered direction. A consistency check fails on
+the old output. The check count is now 32.
+
+**Not defects, left as found.**
+- Eversource's two "Analyst, Gas Quality Control" rows are two requisitions
+  (R-031927 in New Bedford; R-031920 at Southborough and three other sites),
+  with no nested locations. They stay under the 2026-09-22 rule, like its
+  multi-state Project Manager II postings.
+- Xcel's Director of Strategic Planning is coded as mandate-covered because
+  it lists Colorado beside Texas.
+- Quaise (10 postings, collected since run 32) and FERC (2) collected only
+  roles outside the taxonomy.
+- NRC (16) is outside the taxonomy. DOE HQ (14) and Reclamation (34) fail
+  the sector gate on every posting.
+- BlocPower's Lever board returned nothing under either spelling.
+- Federal rows stay at 3.
+
+**Checked and found clean.** No duplicate URLs. The five single-figure and
+two hourly rows are those audited in earlier rounds. The pay extremes are
+unchanged: Crusoe's VP of Product at $345,000–$385,000 at the top, and
+Guidehouse's campus analyst from $51,000 and TRIO's Energy Analyst at
+$60,000–$70,000 at the bottom.
+
+**Result (final).**
+
+| | Round 11 (audited) | Final, unaudited | Final, audited |
+|---|---|---|---|
+| Usable N | 531 | 544 | **543** |
+| In scope | 710 | 730 | **729** |
+| Clusters | 99 | 100 | **100** |
+| Largest employer | Crusoe 9.2% | — | **Crusoe 9.0%** (49 of 543) |
+| Obs per regressor | 35.4 | — | **36.2**; Model 2 (extended) |
+| Disclosure gap | 43.8pp | — | **43.8pp** (91.3% of 449 vs 47.5% of 280; 43.2–45.2 across four cuts) |
+
+**Final verdicts** (bootstrap p; region check; real terms; without Crusoe):
+- **Hold everywhere:** `seniority_rank` (0.0001) and `yrs_exp_min`
+  (0.0001), both predicted. `skill_cloud` (0.0006; 0.003; 0.0006; 0.002)
+  also holds everywhere but was not predicted, so it is exploratory.
+- **Nominal only:** `region_west` (0.011) and `region_northeast` (0.019).
+  Both survive the bootstrap and the region check but not price adjustment
+  (clustered p 0.15 and 0.71).
+- **Tentative:** `degree_stem` (0.043). It fails without Crusoe (0.087) and
+  without the federal rows (0.0505).
+- **A control:** `yrs_exp_stated` (0.023).
+- **Inconclusive:** `skill_ml_ai` (0.074; passes the region check at 0.012)
+  and `family_ai_ml` (0.083). Neither survives the bootstrap.
+
+**Overturned by the bootstrap:** `skill_ml_ai` and `family_ai_ml`, both
+significant under clustered standard errors. H2's disclosure contrast is the
+result the study stands behind. It is associational, not causal.
+
 <!--
 Round template. (Until audit round 6 the comment opened above round 5, so
 round 5 was committed inside it and never rendered.)

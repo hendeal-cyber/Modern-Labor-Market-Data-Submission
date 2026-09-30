@@ -1,8 +1,31 @@
 # Handoff — Modern Labor Market Data Submission
 
-## RESUME HERE — 2026-09-29, after audit round 11 (run 31); one scheduled run left, 09:17 UTC on 30 September
+## RESUME HERE — 2026-09-30: COLLECTION CLOSED; final audit (round 12) and finalisation pass done
 
 *This block wins over everything below it. Do not quote numbers from below it.*
+
+### Final state (round 12, data through run 34, snapshot 2026-09-30)
+
+- **N = 543** (in scope 729), **100 employer clusters**, largest employer
+  **Crusoe 9.0%** (49 of 543). 36.2 obs per regressor, **Model 2
+  (extended)**. `interpretable: true`, all four conditions pass.
+- **Disclosure gap (H2):** 91.3% (n=449) vs 47.5% (n=280), **43.8pp**,
+  43.2–45.2 across four cuts. **Associational, not causal.**
+- **Robust everywhere:** `seniority_rank`, `yrs_exp_min`; also
+  `skill_cloud` (exploratory, no prediction).
+- **Nominal only** (fail price adjustment): `region_west`,
+  `region_northeast`.
+- **Tentative:** `degree_stem` (0.043; fails without Crusoe and without the
+  federal rows). `yrs_exp_stated` (0.023) is a control.
+- **Overturned by the bootstrap:** `skill_ml_ai` (0.074), `family_ai_ml`
+  (0.083).
+- **Collection:** closed with the 2026-09-30 snapshot. The collection cron
+  was removed from `collect.yml` (cron has no year field, so it would have
+  fired again in September 2027); manual dispatch remains. No check-ins
+  remain.
+- **Tests:** ALL SUITES PASSED, consistency 32/32, slide QA clean.
+- **Nothing is pending.** Any further change is a post-collection amendment
+  and needs the owner.
 
 ### Round 11 in one paragraph (2026-09-29)
 

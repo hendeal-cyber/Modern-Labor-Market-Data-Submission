@@ -41,28 +41,27 @@ pages,eia,cc,usajobs`). Deliverables are all generated, never hand-edited:
 paper, executive summary, figures, deck, `data/analysis/*`, codebook,
 pre-registration, audit log, limitations and ledger.
 
-## 3. Audited state (round 11, data through run 31, 2026-09-29)
+## 3. Final audited state (round 12, collection CLOSED with the 2026-09-30 snapshot)
 
-- **N = 531**, **99 employer clusters**, largest employer **Crusoe 9.2%**
-  (49 rows). 35.4 observations per regressor, so the budget rule selects
-  **Model 2 (extended)**. All four conditions pass; `interpretable` true.
-- **Disclosure gap:** 91.6% (n=438) vs 47.8% (n=272), **43.8pp**, 43.1–45.2
-  across four cuts (incl. `excluding_federal`). ASSOCIATIONAL, NOT CAUSAL.
-- **Survive the bootstrap and the region check:**
-  - `seniority_rank`, `yrs_exp_min` and `skill_cloud` (0.0013): robust
-    everywhere (`skill_cloud` is exploratory).
-  - `region_northeast` (0.011) and `region_west` (0.012): not significant
-    in real terms.
-  - **Tentative:** `degree_stem` (0.032, **fails without Crusoe**).
-    `yrs_exp_stated` (0.028) is a control.
-- **Inconclusive:** `skill_ml_ai` (0.068), `family_ai_ml` (0.053).
+- **N = 543** (in scope 729), **100 employer clusters**, largest employer
+  **Crusoe 9.0%** (49 rows). 36.2 observations per regressor, **Model 2
+  (extended)**. All four conditions pass; `interpretable` true.
+- **Disclosure gap:** 91.3% (n=449) vs 47.5% (n=280), **43.8pp**, 43.2–45.2
+  across four cuts. ASSOCIATIONAL, NOT CAUSAL.
+- **Robust everywhere:** `seniority_rank`, `yrs_exp_min`, and `skill_cloud`
+  (exploratory). **Nominal only:** `region_west`, `region_northeast`.
+  **Tentative:** `degree_stem` (fails without Crusoe and without the federal
+  rows). **Overturned by the bootstrap:** `skill_ml_ai`, `family_ai_ml`.
+- **Nothing is pending.** The collection cron is removed and no check-ins
+  remain. Any further change is a post-collection amendment and needs the
+  owner.
 - **Frame:** 407 employers (batch 13 federal agencies and batches 14–15, 32 employers under option D, added after round 10). Batches 4–12 (2026-09-27/28) each carry an evidence URL
   in `config/employers.yaml`.
 - **USAJOBS:** key works. Three federal rows (two BPA, one WAPA, all Public
   Utilities Specialist). NRC's postings fall outside the taxonomy, DOE HQ and
   Reclamation fail the sector gate, and FERC, BOEM, SWPA and TVA had none open
   on run 31.
-- **Tests:** ALL SUITES PASSED (13 suites), consistency 30/30.
+- **Tests:** ALL SUITES PASSED (13 suites), consistency 32/32.
 
 ## 4. Schedule and stopping rule (as registered now)
 

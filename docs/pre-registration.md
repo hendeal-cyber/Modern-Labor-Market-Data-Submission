@@ -1031,3 +1031,44 @@ the consistency suite refused to collect on the mismatch. The deliverables
 were regenerated from the committed data (85b8a9a), and the run was
 dispatched again at 10:14 UTC as run 34. It passed the gate and is
 collecting. Its snapshot is dated 2026-09-30, as registered.
+
+### 2026-09-30 — audit round 12 and the finalisation pass: collection closed
+
+Made after seeing runs 32 and 34, the last collections (full record:
+audit-log round 12). Each change is pinned by a test that fails on a backup
+copy of the old code or output.
+
+1. **Role screen.** "director, legal" joins the exclusions, a sibling of
+   "legal operations" and "legal analyst". It removes one lawyer's posting
+   (J.D. and bar required) at Bloom Energy, which had been admitted on
+   "commercial development". It changes that title alone among all 17,495
+   raw postings. N 544 → 543. It removed a pay-disclosed mandate-state row,
+   so it narrowed the disclosure gap slightly: it hurt the headline, and is
+   kept because it is right.
+2. **Reporting.** The pay model without federal rows (`federal_robustness`,
+   registered here with batch 10) is now reported in the paper and summary.
+   It had been computed on every run since 2026-09-28 and reported nowhere.
+   In the final data it changes the verdict on `degree_stem`
+   (0.043 → 0.0505).
+3. **Generated text.** The paper's list of bootstrap survivors no longer
+   stops at four. Its "predicted the other way" sentence applies only to
+   variables with a registered direction: it had described `yrs_exp_stated`,
+   a control with no hypothesis, as contradicting a prediction. No number
+   changes.
+
+**Collection is closed.** The last snapshot is dated 2026-09-30, and
+`study.collection_end` excludes anything later.
+
+**Final sample:** N = 543 (in scope 729), 100 employer clusters, Crusoe the
+largest at 9.0% (49 of 543), 36.2 observations per regressor, Model 2. All
+four pre-registered conditions pass.
+
+**H2:** 91.3% of 449 mandate-state postings disclose pay against 47.5% of
+280 elsewhere, a gap of 43.8 points (43.2–45.2 across four cuts). It is
+associational, not causal.
+
+**Addendum, the same day.** The collection cron (`17 9 29-30 9 *`) is
+removed from `collect.yml`. Cron has no year field, so it would have fired
+again on 29–30 September 2027. The workflow's comment ("the cron names those
+three days, so it stops by itself") was wrong about that. Manual dispatch
+remains for reproducing a run. This changes no data.

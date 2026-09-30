@@ -273,6 +273,17 @@ def main() -> int:
                  + "; read " + ("it" if len(flipped) == 1 else "them")
                  + " with that in mind."))
             A("")
+        # The federal check, pre-registered and computed since batch 10, was
+        # reported nowhere until audit round 12, when it changed a verdict.
+        fr = a.get("federal_robustness") or {}
+        if fr.get("by_variable"):
+            fflip = [pretty(n) for n in fr.get("verdicts_changed") or []]
+            A(f"Dropping the {fr['n_dropped']} federal postings (a separate pay regime) "
+              + ("changes no verdict at the 5% level." if not fflip else
+                 "changes the verdict on " + join_names(fflip)
+                 + "; read " + ("it" if len(fflip) == 1 else "them")
+                 + " with that in mind."))
+            A("")
         # Computed, not asserted. An earlier draft of this paragraph carried
         # the concentration figures as literals, in a generator whose entire
         # purpose is that no number is hand-entered.
