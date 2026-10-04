@@ -6,4 +6,6 @@ data/interim/
 node_modules/
 package-lock.json
 paper/*.pdf
+# The deck's PDF copy is a deliverable (owner, 2026-10-04); other PDFs stay out.
+!paper/presentation.pdf
 paper/slide-*.jpg

@@ -1,0 +1,955 @@
+{
+ "built_at": "2026-10-04T22:37:51+00:00",
+ "snapshots": [
+  "2026-09-20",
+  "2026-09-21",
+  "2026-09-22",
+  "2026-09-27",
+  "2026-09-28",
+  "2026-09-29",
+  "2026-09-30"
+ ],
+ "frame": {
+  "employers_attempted": 407,
+  "boards_found_last_run": 185,
+  "last_run": "2026-09-30"
+ },
+ "platforms": [
+  {
+   "platform": "greenhouse",
+   "label": "Greenhouse",
+   "employers_with_postings": 67,
+   "raw": 5605,
+   "in_scope": 157,
+   "with_pay": 125,
+   "employers_with_pay": 35
+  },
+  {
+   "platform": "workday",
+   "label": "Workday",
+   "employers_with_postings": 56,
+   "raw": 4591,
+   "in_scope": 389,
+   "with_pay": 286,
+   "employers_with_pay": 36
+  },
+  {
+   "platform": "ashby",
+   "label": "Ashby",
+   "employers_with_postings": 25,
+   "raw": 4010,
+   "in_scope": 111,
+   "with_pay": 82,
+   "employers_with_pay": 12
+  },
+  {
+   "platform": "lever",
+   "label": "Lever",
+   "employers_with_postings": 21,
+   "raw": 2870,
+   "in_scope": 35,
+   "with_pay": 27,
+   "employers_with_pay": 10
+  },
+  {
+   "platform": "usajobs",
+   "label": "USAJOBS (federal)",
+   "employers_with_postings": 6,
+   "raw": 220,
+   "in_scope": 3,
+   "with_pay": 3,
+   "employers_with_pay": 2
+  },
+  {
+   "platform": "workable",
+   "label": "Workable",
+   "employers_with_postings": 8,
+   "raw": 130,
+   "in_scope": 20,
+   "with_pay": 14,
+   "employers_with_pay": 3
+  },
+  {
+   "platform": "smartrecruiters",
+   "label": "SmartRecruiters",
+   "employers_with_postings": 7,
+   "raw": 68,
+   "in_scope": 14,
+   "with_pay": 6,
+   "employers_with_pay": 2
+  },
+  {
+   "platform": "recruitee",
+   "label": "Recruitee",
+   "employers_with_postings": 1,
+   "raw": 1,
+   "in_scope": 0,
+   "with_pay": 0,
+   "employers_with_pay": 0
+  }
+ ],
+ "industry_in_scope": {
+  "utility": 208,
+  "developer": 152,
+  "data_center": 110,
+  "energy_analytics": 75,
+  "grid_vendor": 54,
+  "consulting": 44,
+  "grid_operator": 39,
+  "retailer": 38,
+  "cooperative": 6,
+  "gas_utility": 3
+ },
+ "industry_with_pay": {
+  "utility": 160,
+  "developer": 110,
+  "data_center": 76,
+  "energy_analytics": 60,
+  "grid_vendor": 42,
+  "grid_operator": 33,
+  "consulting": 33,
+  "retailer": 25,
+  "gas_utility": 3,
+  "cooperative": 1
+ },
+ "employers_by_industry": {
+  "consulting": 9,
+  "cooperative": 1,
+  "data_center": 11,
+  "developer": 31,
+  "energy_analytics": 19,
+  "gas_utility": 1,
+  "grid_operator": 3,
+  "grid_vendor": 10,
+  "retailer": 1,
+  "utility": 14
+ },
+ "role_in_scope": {
+  "software_data": 154,
+  "grid_power": 137,
+  "siting_dev": 123,
+  "market_commercial": 108,
+  "ai_ml": 71,
+  "regulatory": 59,
+  "other": 54,
+  "gis": 12,
+  "sustainability": 11
+ },
+ "role_with_pay": {
+  "software_data": 122,
+  "grid_power": 104,
+  "siting_dev": 80,
+  "market_commercial": 79,
+  "ai_ml": 55,
+  "other": 42,
+  "regulatory": 42,
+  "sustainability": 10,
+  "gis": 9
+ },
+ "state_with_pay": {
+  "CA": 124,
+  "CO": 69,
+  "MA": 61,
+  "IL": 45,
+  "TX": 34,
+  "NY": 26,
+  "WA": 19,
+  "CT": 18,
+  "OH": 17,
+  "VA": 15,
+  "DC": 11,
+  "MO": 8,
+  "IN": 6,
+  "WI": 6,
+  "MD": 6,
+  "ME": 4,
+  "NC": 3,
+  "OK": 3,
+  "NH": 3,
+  "NJ": 3,
+  "SC": 3,
+  "GA": 2,
+  "PA": 2,
+  "OR": 2,
+  "MN": 2,
+  "FL": 1,
+  "UT": 1,
+  "NM": 1,
+  "ID": 1,
+  "VT": 1,
+  "AZ": 1
+ },
+ "state_in_scope": {
+  "CA": 132,
+  "TX": 100,
+  "CO": 69,
+  "MA": 63,
+  "IL": 46,
+  "NY": 36,
+  "VA": 21,
+  "OH": 21,
+  "CT": 19,
+  "WA": 19,
+  "IN": 15,
+  "PA": 15,
+  "NC": 14,
+  "MO": 14,
+  "DC": 12,
+  "MD": 10,
+  "GA": 9,
+  "FL": 6,
+  "WI": 6,
+  "SC": 5,
+  "AZ": 4,
+  "OR": 4,
+  "ME": 4,
+  "NJ": 4,
+  "UT": 3,
+  "KS": 3,
+  "OK": 3,
+  "NH": 3,
+  "LA": 3,
+  "IA": 2,
+  "MN": 2,
+  "WV": 2,
+  "TN": 1,
+  "NM": 1,
+  "MI": 1,
+  "ID": 1,
+  "VT": 1
+ },
+ "no_state_with_pay": 45,
+ "region_with_pay": {
+  "west": 218,
+  "northeast": 118,
+  "midwest": 84,
+  "south": 78
+ },
+ "region_disclosure": {
+  "midwest": {
+   "n": 110,
+   "share_disclosed": 0.7636,
+   "n_mandate": 54
+  },
+  "northeast": {
+   "n": 145,
+   "share_disclosed": 0.8138,
+   "n_mandate": 115
+  },
+  "remote_national": {
+   "n": 55,
+   "share_disclosed": 0.8182,
+   "n_mandate": 0
+  },
+  "south": {
+   "n": 186,
+   "share_disclosed": 0.4194,
+   "n_mandate": 59
+  },
+  "west": {
+   "n": 233,
+   "share_disclosed": 0.9356,
+   "n_mandate": 221
+  }
+ },
+ "employers_with_pay": [
+  {
+   "employer": "Crusoe",
+   "n": 49,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Invenergy",
+   "n": 47,
+   "industry": "utility"
+  },
+  {
+   "employer": "Eversource Energy",
+   "n": 38,
+   "industry": "utility"
+  },
+  {
+   "employer": "AEP Energy",
+   "n": 25,
+   "industry": "retailer"
+  },
+  {
+   "employer": "Xcel Energy",
+   "n": 20,
+   "industry": "utility"
+  },
+  {
+   "employer": "AES Indiana",
+   "n": 18,
+   "industry": "utility"
+  },
+  {
+   "employer": "ERCOT",
+   "n": 18,
+   "industry": "grid_operator"
+  },
+  {
+   "employer": "GE Vernova",
+   "n": 18,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Avangrid",
+   "n": 16,
+   "industry": "utility"
+  },
+  {
+   "employer": "Scout Clean Energy",
+   "n": 11,
+   "industry": "developer"
+  },
+  {
+   "employer": "New York ISO",
+   "n": 10,
+   "industry": "grid_operator"
+  },
+  {
+   "employer": "Nexamp",
+   "n": 10,
+   "industry": "developer"
+  },
+  {
+   "employer": "Energy Solutions",
+   "n": 9,
+   "industry": "consulting"
+  },
+  {
+   "employer": "Tapestry",
+   "n": 9,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Ameren Illinois",
+   "n": 8,
+   "industry": "utility"
+  },
+  {
+   "employer": "Oklo",
+   "n": 8,
+   "industry": "developer"
+  },
+  {
+   "employer": "SEL Schweitzer Engineering Laboratories",
+   "n": 8,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Bloom Energy",
+   "n": 7,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Commonwealth Fusion Systems",
+   "n": 7,
+   "industry": "developer"
+  },
+  {
+   "employer": "E Source",
+   "n": 7,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "EnergyHub",
+   "n": 7,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Gridware",
+   "n": 7,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "ICF",
+   "n": 7,
+   "industry": "consulting"
+  },
+  {
+   "employer": "Radiant Industries",
+   "n": 7,
+   "industry": "developer"
+  },
+  {
+   "employer": "The Nuclear Company",
+   "n": 7,
+   "industry": "developer"
+  },
+  {
+   "employer": "Vantage Data Centers",
+   "n": 7,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Guidehouse",
+   "n": 6,
+   "industry": "consulting"
+  },
+  {
+   "employer": "X-energy",
+   "n": 6,
+   "industry": "developer"
+  },
+  {
+   "employer": "California ISO",
+   "n": 5,
+   "industry": "grid_operator"
+  },
+  {
+   "employer": "TerraPower",
+   "n": 5,
+   "industry": "developer"
+  },
+  {
+   "employer": "Valar Atomics",
+   "n": 5,
+   "industry": "developer"
+  },
+  {
+   "employer": "Verse",
+   "n": 5,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Alliant Energy",
+   "n": 4,
+   "industry": "utility"
+  },
+  {
+   "employer": "Charles River Associates",
+   "n": 4,
+   "industry": "consulting"
+  },
+  {
+   "employer": "New Leaf Energy",
+   "n": 4,
+   "industry": "developer"
+  },
+  {
+   "employer": "Rowan Digital Infrastructure",
+   "n": 4,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Antares",
+   "n": 3,
+   "industry": "developer"
+  },
+  {
+   "employer": "Cypress Creek Renewables",
+   "n": 3,
+   "industry": "developer"
+  },
+  {
+   "employer": "Flexential",
+   "n": 3,
+   "industry": "data_center"
+  },
+  {
+   "employer": "GridUnity",
+   "n": 3,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Hanwha Renewables",
+   "n": 3,
+   "industry": "developer"
+  },
+  {
+   "employer": "SOLV Energy",
+   "n": 3,
+   "industry": "developer"
+  },
+  {
+   "employer": "STACK Infrastructure",
+   "n": 3,
+   "industry": "data_center"
+  },
+  {
+   "employer": "The Brattle Group",
+   "n": 3,
+   "industry": "consulting"
+  },
+  {
+   "employer": "Tract",
+   "n": 3,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Voltus",
+   "n": 3,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Washington Gas",
+   "n": 3,
+   "industry": "gas_utility"
+  },
+  {
+   "employer": "Xcimer Energy",
+   "n": 3,
+   "industry": "developer"
+  },
+  {
+   "employer": "Yes Energy",
+   "n": 3,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "1st Avenue Power",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "American Transmission Co",
+   "n": 2,
+   "industry": "utility"
+  },
+  {
+   "employer": "Avantus",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Bonneville Power Administration",
+   "n": 2,
+   "industry": "utility"
+  },
+  {
+   "employer": "Capital Power",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Clearway Energy",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Equinix",
+   "n": 2,
+   "industry": "data_center"
+  },
+  {
+   "employer": "GridCARE",
+   "n": 2,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Heron Power",
+   "n": 2,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Itron",
+   "n": 2,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Kairos Power",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Modo Energy",
+   "n": 2,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "NREL",
+   "n": 2,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "NTT Global Data Centers",
+   "n": 2,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Plus Power",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Sense",
+   "n": 2,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Solar Landscape",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Sunrun",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "WeaveGrid",
+   "n": 2,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Wunder Capital",
+   "n": 2,
+   "industry": "developer"
+  },
+  {
+   "employer": "Adapture Renewables",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "Ameresco",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "Argonne National Laboratory",
+   "n": 1,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Austin Energy",
+   "n": 1,
+   "industry": "utility"
+  },
+  {
+   "employer": "Brightcore Energy",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "CARIAN",
+   "n": 1,
+   "industry": "consulting"
+  },
+  {
+   "employer": "Canadian Solar",
+   "n": 1,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Clean Power Alliance",
+   "n": 1,
+   "industry": "utility"
+  },
+  {
+   "employer": "Cologix",
+   "n": 1,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Customized Energy Solutions",
+   "n": 1,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "EdgeConneX",
+   "n": 1,
+   "industry": "data_center"
+  },
+  {
+   "employer": "Emporia Energy",
+   "n": 1,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Energy Vault",
+   "n": 1,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Energy and Environmental Economics (E3)",
+   "n": 1,
+   "industry": "consulting"
+  },
+  {
+   "employer": "Euclid Power",
+   "n": 1,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Form Energy",
+   "n": 1,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Industrial Electric Manufacturing",
+   "n": 1,
+   "industry": "grid_vendor"
+  },
+  {
+   "employer": "Leeward Renewable Energy",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "LevelTen Energy",
+   "n": 1,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Madison Energy Infrastructure",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "NRECA National Rural Electric Cooperative Association",
+   "n": 1,
+   "industry": "cooperative"
+  },
+  {
+   "employer": "Omnidian",
+   "n": 1,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Orenda",
+   "n": 1,
+   "industry": "energy_analytics"
+  },
+  {
+   "employer": "Origis Energy",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "QTS Data Centers",
+   "n": 1,
+   "industry": "data_center"
+  },
+  {
+   "employer": "RMI",
+   "n": 1,
+   "industry": "consulting"
+  },
+  {
+   "employer": "Reactivate",
+   "n": 1,
+   "industry": "developer"
+  },
+  {
+   "employer": "South Jersey Industries",
+   "n": 1,
+   "industry": "utility"
+  },
+  {
+   "employer": "TRIO",
+   "n": 1,
+   "industry": "consulting"
+  },
+  {
+   "employer": "VELCO",
+   "n": 1,
+   "industry": "utility"
+  },
+  {
+   "employer": "Western Area Power Administration",
+   "n": 1,
+   "industry": "utility"
+  }
+ ],
+ "mandate_dates": {
+  "CA": "2023-01-01",
+  "CO": "2021-01-01",
+  "CT": "2026-10-01",
+  "DC": "2024-06-30",
+  "HI": "2024-01-01",
+  "IL": "2025-01-01",
+  "MD": "2024-10-01",
+  "MA": "2025-10-29",
+  "MN": "2025-01-01",
+  "NJ": "2025-06-01",
+  "NY": "2023-09-17",
+  "VT": "2025-07-01",
+  "VA": "2026-07-01",
+  "WA": "2023-01-01"
+ },
+ "pay_hist": [
+  {
+   "lo": 50000,
+   "hi": 75000,
+   "n": 12
+  },
+  {
+   "lo": 75000,
+   "hi": 100000,
+   "n": 65
+  },
+  {
+   "lo": 100000,
+   "hi": 125000,
+   "n": 99
+  },
+  {
+   "lo": 125000,
+   "hi": 150000,
+   "n": 119
+  },
+  {
+   "lo": 150000,
+   "hi": 175000,
+   "n": 90
+  },
+  {
+   "lo": 175000,
+   "hi": 200000,
+   "n": 70
+  },
+  {
+   "lo": 200000,
+   "hi": 225000,
+   "n": 33
+  },
+  {
+   "lo": 225000,
+   "hi": 250000,
+   "n": 28
+  },
+  {
+   "lo": 250000,
+   "hi": 275000,
+   "n": 12
+  },
+  {
+   "lo": 275000,
+   "hi": 300000,
+   "n": 9
+  },
+  {
+   "lo": 300000,
+   "hi": 325000,
+   "n": 5
+  },
+  {
+   "lo": 325000,
+   "hi": 350000,
+   "n": 0
+  },
+  {
+   "lo": 350000,
+   "hi": 375000,
+   "n": 1
+  },
+  {
+   "lo": 375000,
+   "hi": 400000,
+   "n": 0
+  }
+ ],
+ "pay_stats": {
+  "mean": 151839,
+  "median": 144360,
+  "sd": 50497,
+  "min": 65000,
+  "max": 365000
+ },
+ "seniority_profile": {
+  "mean_log_pay": 11.87731,
+  "mean_rank": 3.403315,
+  "n_by_rank": {
+   "1": 42,
+   "2": 125,
+   "3": 157,
+   "4": 62,
+   "5": 108,
+   "6": 46,
+   "7": 3
+  },
+  "label_by_rank": {
+   "1": "entry",
+   "2": "mid",
+   "3": "senior",
+   "4": "staff_principal",
+   "5": "manager",
+   "6": "director",
+   "7": "executive"
+  }
+ },
+ "early_career": {
+  "in_scope": 118,
+  "with_pay": 80,
+  "max_years": 3,
+  "ranks_with_pay": {
+   "1": 40,
+   "2": 40
+  }
+ },
+ "multi_location_share": 0.1399,
+ "example_posting": {
+  "employer": "Invenergy",
+  "title": "Analyst, Development",
+  "state": "IL",
+  "pay_min": 60000.0,
+  "pay_max": 77000.0,
+  "url": "https://invenergyllc.wd1.myworkdayjobs.com/invenergycareers/job/Chicago-IL/Analyst--Development_R11155-1",
+  "ats_platform": "workday"
+ },
+ "audit_rounds": [
+  {
+   "round": 1,
+   "target": "Regressor coding",
+   "result": "Three systematic false positives, all firing on company boilerplate rather than on anything asked of the applicant"
+  },
+  {
+   "round": 2,
+   "target": "`role_family`",
+   "result": "6 of 53 assignments wrong (89%). Four had reached a live measurement and sat in the top eleven rows by pay"
+  },
+  {
+   "round": 3,
+   "target": "`seniority_rank`, `state`",
+   "result": "21 of 141 wrong (85.1%). One defect changed the headline disclosure contrast"
+  },
+  {
+   "round": 4,
+   "target": "The industry umbrella itself",
+   "result": "A multi-sector consultancy supplied 22% of the sample and three rows of it were energy work. 337 postings removed; the AI-premium finding did not survive"
+  },
+  {
+   "round": 5,
+   "target": "The concept role screen and dedupe",
+   "result": "All 40 titles the new matcher admitted were read: 4 false positives caught before the rebuild. One nested-location repost found in 1,940 records and collapsed"
+  },
+  {
+   "round": 6,
+   "target": "Run 26: all 115 added rows, then the whole corpus",
+   "result": "The pay parser was still halving 17 Invenergy rows and recording 9 NYISO rows at their floor. Every usable \"Hitachi Energy\" row belonged to a sister company. Connecticut was coded as a mandate state before its law took effect. Fixing them withdrew `mandate_state` and `region_west`, which had passed the bootstrap on the unaudited data"
+  },
+  {
+   "round": 7,
+   "target": "Run 27, the first live run of the description cache",
+   "result": "The cache reused every posting it held within its window, with no disclosure drift. A second run on the same date had overwritten the first run's files, dropping a closed posting, and an edited requisition was counted twice. Both fixed at the cause"
+  },
+  {
+   "round": 8,
+   "target": "Run 28 (cancelled at employer 209 of 269): all 58 added rows",
+   "result": "GE Vernova's first collection added 18 rows and a cluster; two were off-taxonomy (packaging compliance, sales). \"$1M to $30M\" project sizes were read as $30 an hour, the only usable row of a phantom Duke cluster. The Ashby adapter had crashed on every board since the cache commit. The first next-day cache read reused 352 descriptions with no disclosure drift"
+  },
+  {
+   "round": 9,
+   "target": "Run 29, the national frame expansion (133 added rows)",
+   "result": "Crusoe's salaries were read as monthly because a \"$300 per month\" commuter benefit sat above them: nine rows at their ceiling or missing. Austin Energy's postings, labelled with facility names, were rejected as having no state. Six off-taxonomy roles at new employers. Crusoe alone supplied 49 usable rows, reported with a sensitivity check"
+  },
+  {
+   "round": 10,
+   "target": "Run 30 (28 Sep, dispatched early at the owner's request), the first collection of batches 5-12 and USAJOBS",
+   "result": "US towns named after foreign cities read as non-US (Eversource's Berlin, CT), and a repost differing by one full stop, both fixed between runs. Location forms never met before (\"Tucson, AZ - Downtown\", \"Washington - Pullman\", \"San Francisco Bay Area\") rejected every posting of a newly confirmed employer (SEL) on its first collection. Eleven off-taxonomy postings at new employers (HR, labour compliance, construction, manufacturing quality, product engineering)"
+  },
+  {
+   "round": 11,
+   "target": "Run 31 (29 Sep, dispatched by hand when the cron did not fire), the first collection of the federal energy agencies and batches 13-15",
+   "result": "The dotted \"Washington, D.C.\" read as Washington State, which put two rows in the West and cost a two-site posting its DC mandate site. A retitled Workday posting lost its posting date, a Model 2 regressor. Generated lists of three names read as one phrase in the summary, paper and deck"
+  },
+  {
+   "round": 12,
+   "target": "Runs 32 (the 29 Sep cron, 6.5 hours late) and 34 (30 Sep, the last collection)",
+   "result": "A lawyer admitted on \"commercial development\" (Bloom Energy). A pre-registered robustness check, the pay model without federal rows, computed on every run but reported nowhere; in the final data it changes a verdict. Two generated sentences overstated: a list of survivors cut at four, and a control variable described as contradicting a prediction it never had"
+  }
+ ]
+}

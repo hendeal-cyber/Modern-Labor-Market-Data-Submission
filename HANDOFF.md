@@ -4,6 +4,47 @@
 
 *This block wins over everything below it. Do not quote numbers from below it.*
 
+### 2026-10-04: the presentation rebuilt for an academic audience (the last task)
+
+The owner deviated from the open candidates to finish the study with the
+presentation: "After the presentation is complete, that is where we will end
+our time and can count this study as complete." The paper is unchanged
+("no changes are required for the paper"). No data, screen, model or frame
+changed, so no section 8 amendment applies.
+
+- **Deliverables:** `paper/presentation.pptx` (submission copy, no speaker
+  notes, per the owner), `paper/presentation_with_notes.pptx` (presenter copy,
+  a script in the notes of the 18 main slides) and `paper/presentation.pdf`.
+  29 slides: 18 main slides in the owner's order (title; purpose; background;
+  data: scope, sources, funnel, employers; strategy; eight results slides;
+  threats; conclusion), then an appendix (A1-A10).
+- **Design:** IU Crimson 990000 and Cream EDEBEB; a typographic IU stamp on
+  every slide. If the author adds `paper/figures/deck/iu_mark.png` (the
+  official mark) or `paper/figures/deck/posting_screenshot.png` (the title
+  slide posting), the script uses them on the next build.
+- **Generated, not typed:** `scripts/make_deck_data.py` writes
+  `data/analysis/deck_data.json` (sources by platform, industry and role
+  counts, state counts, employer list, mandate dates, the seniority profile,
+  the paper's audit table); `scripts/make_slides.js` reads it with
+  analysis.json and selection_funnel.json. Verdicts use the paper's
+  thresholds. Rebuild: `python3 scripts/make_deck_data.py && node
+  scripts/make_slides.js`.
+- **Test change:** consistency check 18d now reads each slide separately: a
+  slide may name a predictor the bootstrap rejects only if that slide says
+  so ("overturned", "not significant", "inconclusive", "did not hold",
+  "controls for"); appendix tables are exempt. Proven against a backup copy
+  of the deck with slide 11's qualifiers stripped (fails, then passes on
+  restore). ALL SUITES PASSED, consistency 32/32, slide QA clean, both
+  decks pass the OOXML validator.
+- **Visual QA now possible:** LibreOffice rendered nothing before because
+  its Impress component was missing; `apt-get install libreoffice-impress
+  poppler-utils fonts-crosextra-caladea` makes `soffice --convert-to pdf`
+  work. Every slide was rendered and read.
+- **Open:** the owner reviews the deck section by section and sends changes.
+  The candidates in `docs/next-session-prompt.md` section 6 are closed by the
+  owner's decision to end the study after the presentation; candidate 4
+  (deck wording on `degree_stem`) is done (slide 16 and the robustness table).
+
 ### Final state (round 12, data through run 34, snapshot 2026-09-30)
 
 - **N = 543** (in scope 729), **100 employer clusters**, largest employer

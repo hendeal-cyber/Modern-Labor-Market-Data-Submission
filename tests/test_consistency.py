@@ -220,14 +220,15 @@ def run():
         import re as _re, zipfile
         try:
             with zipfile.ZipFile(deck) as z:
-                text = " ".join(
-                    " ".join(_re.findall(r"<a:t>([^<]*)</a:t>",
-                                         z.read(n).decode("utf8", "ignore")))
-                    for n in z.namelist()
-                    if _re.match(r"ppt/slides/slide\d+\.xml$", n))
+                names = sorted((n for n in z.namelist()
+                                if _re.match(r"ppt/slides/slide\d+\.xml$", n)),
+                               key=lambda n: int(_re.findall(r"\d+", n)[0]))
+                slides = [" ".join(_re.findall(r"<a:t>([^<]*)</a:t>",
+                                               z.read(n).decode("utf8", "ignore")))
+                          for n in names]
         except Exception:
-            text = ""
-        if text:
+            slides = []
+        if slides:
             fragile = set((a.get("region_robustness") or {}).get(
                 "verdicts_changed") or [])
             phrases = {
@@ -236,13 +237,24 @@ def run():
                 "degree_required": "a required degree",
                 "industry_data_center": "being a data center operator",
             }
-            named = [n for n, ph in phrases.items()
-                     if ph in text
-                     and (n in fragile
-                          or (boot_d.get(n, {}).get("p_value") is not None
-                              and boot_d[n]["p_value"] >= 0.05))]
-            chk("deck names no predictor the bootstrap or region check rejects",
-                not named, str(named))
+            # Since 2026-10 the deck reports what did not hold, on purpose. A
+            # slide may name a rejected predictor only when that same slide
+            # says it was rejected, or names it as a control. Checked per
+            # slide, so a rejection stated on one slide cannot license a claim
+            # on another. Appendix slides are full coefficient tables with
+            # their p-values beside every name, and are exempt.
+            qualifiers = ("overturned", "not significant", "inconclusive",
+                          "did not hold", "controls for")
+            named = sorted({f"{n} (slide {i})" for i, text in enumerate(slides, 1)
+                            if "APPENDIX" not in text
+                            for n, ph in phrases.items()
+                            if ph in text
+                            and not any(q in text.lower() for q in qualifiers)
+                            and (n in fragile
+                                 or (boot_d.get(n, {}).get("p_value") is not None
+                                     and boot_d[n]["p_value"] >= 0.05))})
+            chk("deck names no predictor the bootstrap or region check rejects, "
+                "except on a slide that says so", not named, str(named))
 
     # 19. The coverage figure offered as evidence for clustering must be the
     # measured one. 88% was computed on a fixture whose employer shock reached

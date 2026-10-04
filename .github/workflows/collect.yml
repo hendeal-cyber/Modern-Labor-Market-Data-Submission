@@ -131,6 +131,7 @@ jobs:
         continue-on-error: true
         run: |
           npm install --no-audit --no-fund pptxgenjs
+          python scripts/make_deck_data.py
           node scripts/make_slides.js
           pip install python-pptx
           python scripts/qa_slides.py

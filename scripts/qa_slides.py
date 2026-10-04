@@ -1,9 +1,11 @@
 """Geometric QA for the generated deck.
 
-LibreOffice cannot load any .pptx in this environment, so image-based visual QA
-is unavailable. These checks cover the same defect classes the rendering pass
-would look for: out-of-bounds shapes, thin margins, overlapping text, and text
-too long for its box.
+These checks cover the defect classes a rendering pass looks for: out-of-bounds
+shapes, thin margins, overlapping text, and text too long for its box. They do
+not replace looking at the slides. LibreOffice renders a .pptx only when its
+Impress component is installed (apt package libreoffice-impress); without it
+the conversion fails with "source file could not be loaded", which is why
+earlier sessions had no visual QA.
 """
 from __future__ import annotations
 
