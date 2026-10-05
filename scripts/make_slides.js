@@ -214,10 +214,17 @@ function build(withNotes) {
       bold: true, charSpacing: 1.5, color: dark ? WHITE : CRIMSON } } });
     return objs;
   };
-  p.defineSlideMaster({ title: "CONTENT", background: { color: WHITE }, objects: stamp(false),
-    slideNumber: { x: W - M - 0.6, y: 6.93, w: 0.6, h: 0.36, fontFace: BODY, fontSize: 10, color: MUTED, align: "right", valign: "middle" } });
-  p.defineSlideMaster({ title: "DARK", background: { color: CRIMSON }, objects: stamp(true),
-    slideNumber: { x: W - M - 0.6, y: 6.93, w: 0.6, h: 0.36, fontFace: BODY, fontSize: 10, color: CREAM, align: "right", valign: "middle" } });
+  // Titles are layout placeholders, not text boxes, so PowerPoint's outline,
+  // navigation pane, accessibility checker and "Reset slide" see them.
+  const titlePh = (o) => ({ placeholder: { options: Object.assign({ name: "title", type: "title",
+    fontFace: HEAD, bold: true, margin: 0, valign: "top", align: "left" }, o), text: "" } });
+  const slideNum = (color) => ({ x: W - M - 0.6, y: 6.93, w: 0.6, h: 0.36, fontFace: BODY, fontSize: 10, color, align: "right", valign: "middle" });
+  p.defineSlideMaster({ title: "CONTENT", background: { color: WHITE },
+    objects: stamp(false).concat([titlePh({ x: M, y: 0.62, w: CW, h: 0.95, fontSize: 26, color: INK })]), slideNumber: slideNum(MUTED) });
+  p.defineSlideMaster({ title: "TITLE", background: { color: CRIMSON },
+    objects: stamp(true).concat([titlePh({ x: M, y: 1.25, w: 6.9, h: 2.3, fontSize: 36, color: WHITE })]), slideNumber: slideNum(CREAM) });
+  p.defineSlideMaster({ title: "SECTION", background: { color: CRIMSON },
+    objects: stamp(true).concat([titlePh({ x: M, y: 2.9, w: CW, h: 1.0, fontSize: 40, color: WHITE })]), slideNumber: slideNum(CREAM) });
 
   for (const t of ["Introduction", "Institutional background", "Data", "Empirical strategy", "Results",
     "Threats to validity", "Conclusion", "Appendix"]) p.addSection({ title: t });
@@ -240,13 +247,13 @@ function build(withNotes) {
   function content(section, kicker, title) {
     const s = p.addSlide({ masterName: "CONTENT", sectionTitle: section });
     T(s, kicker.toUpperCase(), { x: M, y: 0.34, w: CW, h: 0.28, fontSize: 11, bold: true, color: CRIMSON, charSpacing: 2 });
-    T(s, title, { x: M, y: 0.62, w: CW, h: 0.95, fontFace: HEAD, fontSize: 26, bold: true, color: INK, valign: "top" });
+    s.addText(title, { placeholder: "title" });
     return s;
   }
   function divider(section, kicker, title, sub) {
-    const s = p.addSlide({ masterName: "DARK", sectionTitle: section });
+    const s = p.addSlide({ masterName: "SECTION", sectionTitle: section });
     T(s, kicker.toUpperCase(), { x: M, y: 2.5, w: CW, h: 0.35, fontSize: 13, bold: true, color: CREAM, charSpacing: 3 });
-    T(s, title, { x: M, y: 2.9, w: CW, h: 1.0, fontFace: HEAD, fontSize: 40, bold: true, color: WHITE });
+    s.addText(title, { placeholder: "title" });
     if (sub) T(s, sub, { x: M, y: 3.95, w: 9.5, h: 1.0, fontSize: 16, color: CREAM });
     return s;
   }
@@ -303,10 +310,9 @@ function build(withNotes) {
 
   // ======================================================== 1. Title (S1)
   {
-    const s = p.addSlide({ masterName: "DARK", sectionTitle: "Introduction" });
+    const s = p.addSlide({ masterName: "TITLE", sectionTitle: "Introduction" });
     T(s, "RESEARCH PRESENTATION  ·  OCTOBER 2026", { x: M, y: 0.75, w: 7, h: 0.3, fontSize: 12, bold: true, color: CREAM, charSpacing: 3 });
-    T(s, "Determinants of Advertised Pay in the US Energy and Data Center Sector",
-      { x: M, y: 1.25, w: 6.9, h: 2.3, fontFace: HEAD, fontSize: 36, bold: true, color: WHITE });
+    s.addText("Determinants of Advertised Pay in the US Energy and Data Center Sector", { placeholder: "title" });
     T(s, "Evidence from employer-published job postings", { x: M, y: 3.6, w: 6.9, h: 0.5, fontFace: HEAD, fontSize: 20, italic: true, color: CREAM });
     T(s, "Alexander J. Henderson", { x: M, y: 4.75, w: 6.9, h: 0.45, fontSize: 20, bold: true, color: WHITE });
     T(s, "Kelley School of Business, Indiana University", { x: M, y: 5.2, w: 6.9, h: 0.4, fontSize: 15, color: CREAM });
@@ -1121,6 +1127,15 @@ async function applyTheme(file) {
   const body = Object.entries(slots).map(([k, v]) => `<a:${k}><a:srgbClr val="${v}"/></a:${k}>`).join("");
   xml = xml.replace(/<a:clrScheme name="[^"]*">[\s\S]*?<\/a:clrScheme>/, `<a:clrScheme name="Indiana University">${body}</a:clrScheme>`);
   zip.file(name, xml);
+  // pptxgenjs numbers its title placeholders from 100. A title placeholder
+  // conventionally carries no index (0), and tools that look for the slide
+  // title by index find none, so drop it in layouts and slides alike; the two
+  // still match on type="title".
+  for (const f of Object.keys(zip.files).filter((n) => /^ppt\/(slides\/slide|slideLayouts\/slideLayout)\d+\.xml$/.test(n))) {
+    const x = await zip.file(f).async("string");
+    const y = x.replace(/<p:ph\s+idx="\d+"\s+type="title"/g, '<p:ph type="title"');
+    if (y !== x) zip.file(f, y);
+  }
   fs.writeFileSync(file, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
 }
 
