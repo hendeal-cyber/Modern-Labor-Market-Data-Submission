@@ -177,7 +177,8 @@ const HYP = [
 // Mandate history, from the dated table in config/scope.yaml.
 const STATE_NAME = { CA: "California", CO: "Colorado", CT: "Connecticut", DC: "the District of Columbia", HI: "Hawaii",
   IL: "Illinois", MA: "Massachusetts", MD: "Maryland", MN: "Minnesota", NJ: "New Jersey", NY: "New York",
-  VA: "Virginia", VT: "Vermont", WA: "Washington", TX: "Texas", OH: "Ohio", MO: "Missouri" };
+  VA: "Virginia", VT: "Vermont", WA: "Washington", TX: "Texas", OH: "Ohio", MO: "Missouri",
+  NH: "New Hampshire", ME: "Maine", RI: "Rhode Island", PA: "Pennsylvania", IN: "Indiana", WI: "Wisconsin" };
 const sname = (k) => STATE_NAME[k] || k;
 const longDate = (iso) => new Date(iso + "T00:00:00Z").toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const IN_FORCE = (F.mandate_states_in_force || []).slice().sort((a, b) => D.mandate_dates[a].localeCompare(D.mandate_dates[b]));
@@ -222,7 +223,7 @@ function build(withNotes) {
   p.defineSlideMaster({ title: "CONTENT", background: { color: WHITE },
     objects: stamp(false).concat([titlePh({ x: M, y: 0.62, w: CW, h: 0.95, fontSize: 26, color: INK })]), slideNumber: slideNum(MUTED) });
   p.defineSlideMaster({ title: "TITLE", background: { color: CRIMSON },
-    objects: stamp(true).concat([titlePh({ x: M, y: 1.25, w: 6.9, h: 2.3, fontSize: 36, color: WHITE })]), slideNumber: slideNum(CREAM) });
+    objects: stamp(true).concat([titlePh({ x: M, y: 1.25, w: 6.6, h: 2.3, fontSize: 36, color: WHITE })]), slideNumber: slideNum(CREAM) });
   p.defineSlideMaster({ title: "SECTION", background: { color: CRIMSON },
     objects: stamp(true).concat([titlePh({ x: M, y: 2.9, w: CW, h: 1.0, fontSize: 40, color: WHITE })]), slideNumber: slideNum(CREAM) });
 
@@ -313,38 +314,59 @@ function build(withNotes) {
     const s = p.addSlide({ masterName: "TITLE", sectionTitle: "Introduction" });
     T(s, "RESEARCH PRESENTATION  ·  OCTOBER 2026", { x: M, y: 0.75, w: 7, h: 0.3, fontSize: 12, bold: true, color: CREAM, charSpacing: 3 });
     s.addText("Determinants of Advertised Pay in the US Energy and Data Center Sector", { placeholder: "title" });
-    T(s, "Evidence from employer-published job postings", { x: M, y: 3.6, w: 6.9, h: 0.5, fontFace: HEAD, fontSize: 20, italic: true, color: CREAM });
-    T(s, "Alexander J. Henderson", { x: M, y: 4.75, w: 6.9, h: 0.45, fontSize: 20, bold: true, color: WHITE });
-    T(s, "Kelley School of Business, Indiana University", { x: M, y: 5.2, w: 6.9, h: 0.4, fontSize: 15, color: CREAM });
+    T(s, "Evidence from employer-published job postings", { x: M, y: 3.6, w: 6.6, h: 0.5, fontFace: HEAD, fontSize: 20, italic: true, color: CREAM });
+    T(s, "Alexander J. Henderson", { x: M, y: 4.75, w: 6.6, h: 0.45, fontSize: 20, bold: true, color: WHITE });
+    T(s, "Kelley School of Business, Indiana University", { x: M, y: 5.2, w: 6.6, h: 0.4, fontSize: 15, color: CREAM });
     T(s, `${fmt(N)} postings  ·  ${NCL} employers  ·  collected ${D.snapshots[0].slice(8)}–${D.snapshots[D.snapshots.length - 1].slice(8)} September 2026`,
-      { x: M, y: 5.75, w: 6.9, h: 0.35, fontSize: 13, color: CREAM });
+      { x: M, y: 5.75, w: 6.6, h: 0.35, fontSize: 13, color: CREAM });
 
-    // The posting: the author's screenshot if supplied, else the same posting
-    // drawn from the dataset row, labelled as such.
-    const cx = 8.0, cy = 0.75, cw = W - M - 8.0, chh = 5.55;
+    // The posting on the right: the author's screenshot of it if supplied,
+    // with the pay range and coverage read from the same dataset record.
+    const cx = 7.6, cy = 0.75, cw = W - M - 7.6, chh = 5.55;
     s.addShape(p.shapes.RECTANGLE, { x: cx, y: cy, w: cw, h: chh, fill: { color: WHITE }, line: { type: "none" },
       shadow: { type: "outer", color: "000000", opacity: 0.35, blur: 12, offset: 4, angle: 90 } });
-    if (SCREENSHOT) {
-      s.addImage({ path: SCREENSHOT, x: cx + 0.12, y: cy + 0.12, w: cw - 0.24, h: chh - 0.24, sizing: { type: "contain", w: cw - 0.24, h: chh - 0.24 } });
-    } else if (D.example_posting) {
-      const e = D.example_posting;
-      T(s, "AN OBSERVATION IN THE SAMPLE", { x: cx + 0.35, y: cy + 0.35, w: cw - 0.7, h: 0.3, fontSize: 10, bold: true, color: CRIMSON, charSpacing: 2 });
-      T(s, e.employer, { x: cx + 0.35, y: cy + 0.8, w: cw - 0.7, h: 0.35, fontSize: 14, color: MUTED });
-      T(s, e.title, { x: cx + 0.35, y: cy + 1.15, w: cw - 0.7, h: 0.6, fontFace: HEAD, fontSize: 24, bold: true, color: INK });
-      T(s, "Chicago, Illinois  ·  Full time", { x: cx + 0.35, y: cy + 1.8, w: cw - 0.7, h: 0.3, fontSize: 13, color: MUTED });
-      R(s, { x: cx + 0.35, y: cy + 2.35, w: cw - 0.7, h: 1.25, fill: { color: TINT } });
-      T(s, "Pay range", { x: cx + 0.55, y: cy + 2.48, w: cw - 1.1, h: 0.3, fontSize: 12, color: CRIMSON_DK, bold: true });
-      T(s, `${usd(e.pay_min)} – ${usd(e.pay_max)}`, { x: cx + 0.55, y: cy + 2.8, w: cw - 1.1, h: 0.6, fontFace: HEAD, fontSize: 28, bold: true, color: CRIMSON });
-      T(s, [
-        { text: "Illinois requires a pay scale in every posting (HB 3129, 2025).", options: { breakLine: true } },
-        { text: "Midpoint used in the pay model: " + usd((e.pay_min + e.pay_max) / 2) },
-      ], { x: cx + 0.35, y: cy + 3.85, w: cw - 0.7, h: 0.75, fontSize: 12, color: INK });
-      T(s, "Drawn from the dataset record; the author's screenshot of this posting replaces this panel.",
-        { x: cx + 0.35, y: cy + chh - 0.6, w: cw - 0.7, h: 0.4, fontSize: 10, italic: true, color: MUTED });
+    const e = D.example_posting;
+    const listed = e ? String(e.states_listed || e.state).split(";") : [];
+    const covered = listed.filter((k) => IN_FORCE.includes(k));
+    const later = listed.filter((k) => !IN_FORCE.includes(k) && D.mandate_dates[k]);
+    T(s, "AN OBSERVATION IN THE SAMPLE", { x: cx + 0.3, y: cy + 0.25, w: cw - 0.6, h: 0.3, fontSize: 10, bold: true, color: CRIMSON, charSpacing: 2 });
+    let y = cy + 0.65;
+    if (SCREENSHOT && e) {
+      T(s, `${e.employer}  ·  the employer's own careers site`, { x: cx + 0.3, y, w: cw - 0.6, h: 0.3, fontSize: 12, color: MUTED });
+      y += 0.38;
     }
+    if (SCREENSHOT) {
+      // Width-fitted at the image's own aspect ratio, read from the PNG header.
+      const buf = fs.readFileSync(SCREENSHOT);
+      const ratio = buf.readUInt32BE(20) / buf.readUInt32BE(16);
+      const iw = cw - 0.6, ih = iw * ratio;
+      s.addImage({ path: SCREENSHOT, x: cx + 0.3, y, w: iw, h: ih, altText: e ? `Job posting: ${e.employer}, ${e.title}` : "Job posting",
+        line: { color: RULE, width: 0.75 } });
+      y += ih + 0.22;
+    } else if (e) {
+      T(s, e.employer, { x: cx + 0.3, y, w: cw - 0.6, h: 0.35, fontSize: 14, color: MUTED });
+      T(s, e.title, { x: cx + 0.3, y: y + 0.35, w: cw - 0.6, h: 0.85, fontFace: HEAD, fontSize: 22, bold: true, color: INK });
+      y += 1.35;
+    }
+    if (e) {
+      R(s, { x: cx + 0.3, y, w: cw - 0.6, h: 1.1, fill: { color: TINT } });
+      T(s, SCREENSHOT ? "Pay range, stated further down the posting" : "Pay range",
+        { x: cx + 0.5, y: y + 0.12, w: cw - 1.0, h: 0.3, fontSize: 12, color: CRIMSON_DK, bold: true });
+      T(s, `${usd(e.pay_min)} – ${usd(e.pay_max)}`, { x: cx + 0.5, y: y + 0.45, w: cw - 1.0, h: 0.55, fontFace: HEAD, fontSize: 26, bold: true, color: CRIMSON });
+      y += 1.25;
+      T(s, [
+        { text: `Lists ${joinNames(listed)}: covered through ${joinNames(covered.map(sname))} (law in force since ${joinNames(covered.map((k) => longDate(D.mandate_dates[k])))}).`, options: { breakLine: true } },
+        { text: `Midpoint used in the pay model: ${usd(e.pay_midpoint)}` },
+      ], { x: cx + 0.3, y, w: cw - 0.6, h: 0.75, fontSize: 12, color: INK, paraSpaceAfter: 4 });
+    }
+    T(s, SCREENSHOT ? "Screenshot of the employer's posting (October 2026); pay range and coverage from the collected record."
+      : "Drawn from the dataset record.",
+    { x: cx + 0.3, y: cy + chh - 0.55, w: cw - 0.6, h: 0.42, fontSize: 10, italic: true, color: MUTED, valign: "bottom" });
     notes(s, "Title. This study asks what in a job posting predicts the pay an employer advertises, in the US energy and data-center sector. " +
       `It uses ${fmt(N)} postings with a stated pay range from ${NCL} employers, collected directly from employers' own job boards between ` +
-      `${D.snapshots[0]} and ${D.snapshots[D.snapshots.length - 1]}. The panel on the right is one observation: an entry-level analyst posting in Chicago, where Illinois law requires the range.`);
+      `${D.snapshots[0]} and ${D.snapshots[D.snapshots.length - 1]}.` +
+      (e ? ` The panel on the right is one observation: ${e.employer}'s ${e.seniority_label}-level posting "${e.title}", at ${usd(e.pay_min)} to ${usd(e.pay_max)}. ` +
+        `It lists ${joinNames(listed.map(sname))}, so it is covered by the ${joinNames(covered.map(sname))} law: a posting counts as covered if any listed location is.` : ""));
   }
 
   // ======================================================== 2. Purpose (S2)

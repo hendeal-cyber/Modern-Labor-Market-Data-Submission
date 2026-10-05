@@ -98,8 +98,11 @@ def main() -> int:
                        "n_mandate": int(sub.mandate_state.sum())}
 
     early = postings[(postings.early_career == 1)]
-    example = pay[(pay.employer == "Invenergy") & (pay.title == "Analyst, Development")
-                  & (pay.state == "IL")].head(1)
+    # The posting on the title slide: the author's screenshot
+    # (paper/figures/deck/posting_screenshot.png) is of this requisition. The
+    # Invenergy posting first chosen had closed by 2026-10-04.
+    example = pay[pay.url.str.contains("R-031417", regex=False)
+                  & (pay.employer == "Eversource Energy")].head(1)
 
     data = {
         "built_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
@@ -139,8 +142,10 @@ def main() -> int:
                          "ranks_with_pay": {int(k): int(v) for k, v in early[early.pay_disclosed == 1]
                                             .seniority_rank.value_counts().sort_index().items()}},
         "multi_location_share": round((postings.n_locations > 1).mean(), 4),
-        "example_posting": example[["employer", "title", "state", "pay_min", "pay_max", "url",
-                                    "ats_platform"]].to_dict("records")[0] if len(example) else None,
+        "example_posting": example[["employer", "title", "state", "states_listed", "n_locations",
+                                    "pay_min", "pay_max", "pay_midpoint", "seniority_label",
+                                    "posted_at", "url", "ats_platform"]].to_dict("records")[0]
+                           if len(example) else None,
         "audit_rounds": audit_rounds(),
     }
     (ANALYSIS / "deck_data.json").write_text(json.dumps(data, indent=1, default=int) + "\n")

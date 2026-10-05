@@ -40,6 +40,16 @@ changed, so no section 8 amendment applies.
   its Impress component was missing; `apt-get install libreoffice-impress
   poppler-utils fonts-crosextra-caladea` makes `soffice --convert-to pdf`
   work. Every slide was rendered and read.
+- **Title slide posting (2026-10-05):** the Invenergy posting first chosen
+  had closed, so the owner supplied a screenshot of Eversource's "Associate
+  Analyst, Transmission (Hybrid Schedule)" (R-031417; Westwood MA, Hooksett
+  NH, Berlin CT; $71,610-$79,570). The screenshot is cropped to the job card
+  (`paper/figures/deck/posting_screenshot.png`; the original is
+  `posting_screenshot_original.png`). Its pay range sits below the visible
+  part, so the slide shows the range from the collected record, labelled as
+  such. `make_deck_data.py` selects the record by its requisition number.
+- **Editable:** slide titles are real title placeholders on three layouts
+  (CONTENT, TITLE, SECTION); charts and tables are native PowerPoint objects.
 - **Open:** the owner reviews the deck section by section and sends changes.
   The candidates in `docs/next-session-prompt.md` section 6 are closed by the
   owner's decision to end the study after the presentation; candidate 4

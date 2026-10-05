@@ -1,5 +1,5 @@
 {
- "built_at": "2026-10-04T22:37:51+00:00",
+ "built_at": "2026-10-05T01:36:19+00:00",
  "snapshots": [
   "2026-09-20",
   "2026-09-21",
@@ -882,12 +882,17 @@
  },
  "multi_location_share": 0.1399,
  "example_posting": {
-  "employer": "Invenergy",
-  "title": "Analyst, Development",
-  "state": "IL",
-  "pay_min": 60000.0,
-  "pay_max": 77000.0,
-  "url": "https://invenergyllc.wd1.myworkdayjobs.com/invenergycareers/job/Chicago-IL/Analyst--Development_R11155-1",
+  "employer": "Eversource Energy",
+  "title": "Associate Analyst, Transmission (Hybrid Schedule)",
+  "state": "MA",
+  "states_listed": "MA;NH;CT",
+  "n_locations": 3,
+  "pay_min": 71610.0,
+  "pay_max": 79570.0,
+  "pay_midpoint": 75590.0,
+  "seniority_label": "entry",
+  "posted_at": "2026-09-15",
+  "url": "https://eversource.wd1.myworkdayjobs.com/ExternalSite/job/Westwood-MA/Associate-Analyst--Transmission--Hybrid-Schedule-_R-031417",
   "ats_platform": "workday"
  },
  "audit_rounds": [
