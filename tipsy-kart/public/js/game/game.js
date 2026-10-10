@@ -534,6 +534,22 @@ export class Game {
     if (this._stateTimer <= 0) { this._stateTimer = 0.25; this.emitState(); }
   }
 
+  /** Haptics-oriented gameplay events for a human slot (see README). */
+  emitSlot(evt, k, extra) {
+    if (!k || !k.isHuman || k.slot === null || k.slot === undefined) return;
+    this.emit(evt, { slot: k.slot, ...extra });
+  }
+
+  /** Bump-type hits (wall / kart) are throttled to one per 300 ms per slot. */
+  emitBump(k, kind) {
+    if (!k || !k.isHuman) return;
+    const now = performance.now();
+    this._bumpAt = this._bumpAt || [-1e9, -1e9, -1e9, -1e9];
+    if (now - this._bumpAt[k.slot] < 300) return;
+    this._bumpAt[k.slot] = now;
+    this.emitSlot('hit', k, { kind });
+  }
+
   handleEvents() {
     const race = this.race;
     const viewOf = (k) => k && k.isHuman ? this.viewports.views.find((v) => v.slot === k.slot) : null;
@@ -543,26 +559,50 @@ export class Game {
       switch (e.type) {
         case 'count': this.audio.sfx('count'); this.emitState(true); break;
         case 'go': this.audio.sfx('go'); this.emitState(true); break;
-        case 'lap': if (v) { v.flash(`LAP ${e.kart.lapsDone + 1}`, 1.5, 'lap', now); this.audio.sfx('lap'); } break;
-        case 'finalLap': if (v) { v.flash('FINAL LAP!', 2, 'final', now); this.audio.sfx('finalLap'); } break;
-        case 'finish': if (e.kart.isHuman) { this.audio.sfx('finish'); this.emitState(true); } break;
+        case 'lap':
+        case 'finalLap':
+          if (v) {
+            if (e.type === 'lap') { v.flash(`LAP ${e.kart.lapsDone + 1}`, 1.5, 'lap', now); this.audio.sfx('lap'); }
+            else { v.flash('FINAL LAP!', 2, 'final', now); this.audio.sfx('finalLap'); }
+          }
+          this.emitSlot('lap', e.kart, { lap: e.kart.lapsDone + 1, totalLaps: race.laps });
+          break;
+        case 'finish':
+          if (e.kart.isHuman) { this.audio.sfx('finish'); this.emitSlot('finish', e.kart, { place: e.place }); this.emitState(true); }
+          break;
         case 'box': if (v) this.audio.sfx('box'); break;
-        case 'itemReady': if (v) this.audio.sfx('itemReady'); break;
+        case 'itemReady':
+          if (v) this.audio.sfx('itemReady');
+          this.emitSlot('itemGot', e.kart, { item: e.kart.item });
+          break;
         case 'pad': if (v) this.audio.sfx('pad'); break;
-        case 'useItem': if (v) this.audio.sfx(e.item === 'bouncer' ? 'throw' : e.item === 'slick' ? 'splat' : 'click'); break;
-        case 'hit': if (v) { v.flash(e.by === 'slick' ? 'STICKY!' : 'CORKED!', 1.2, 'hit', now); this.audio.sfx('spin'); } break;
+        case 'useItem':
+          if (v) this.audio.sfx(e.item === 'bouncer' ? 'throw' : e.item === 'slick' ? 'splat' : 'click');
+          this.emitSlot('itemUsed', e.kart, { item: e.item });
+          break;
+        case 'hit':
+          if (v) { v.flash(e.by === 'slick' ? 'STICKY!' : 'CORKED!', 1.2, 'hit', now); this.audio.sfx('spin'); }
+          this.emitSlot('hit', e.kart, { kind: e.by });
+          break;
         case 'blocked': if (v) { v.flash('BLOCKED!', 1, 'lap', now); } break;
+        case 'bump':
+          this.emitBump(e.kart, 'kart');
+          this.emitBump(e.other, 'kart');
+          break;
         default: break;
       }
     }
     race.events.length = 0;
     for (const k of race.karts) {
-      if (k.events.length && k.isHuman) {
+      if (k.isHuman) {
         for (const e of k.events) {
           if (e === 'boost' || e === 'hop' || e === 'bump' || e === 'shieldPop' || e === 'respawn' || e.startsWith('tier')) this.audio.sfx(e);
+          if (e === 'bump') this.emitBump(k, 'wall');
         }
+        for (const b of k.boostLog) this.emitSlot('boost', k, { tier: b.tier, source: b.source });
       }
       k.events.length = 0;
+      k.boostLog.length = 0;
     }
   }
 }
