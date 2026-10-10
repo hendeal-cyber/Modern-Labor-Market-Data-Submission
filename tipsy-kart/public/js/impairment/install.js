@@ -2,6 +2,9 @@
 //
 //   <script type="module" src="/js/impairment/install.js"></script>
 //
+// The engine's main.js also imports js/impairment/index.js automatically and
+// calls its default export (install). Both paths are idempotent.
+//
 // Works whether the engine creates `window.game` before or after this module
 // loads: it installs immediately if the engine is ready, otherwise it listens
 // for a `game-ready` event on window/document and polls as a fallback.
@@ -18,7 +21,7 @@
 // haptics), 'drinksChanged', 'settingsChanged', 'toast', 'round'.
 
 import { createImpairment } from './filter.js';
-import { installDrinkTracking, ensureSession, setSettings } from './drinks.js';
+import { installDrinkTracking, ensureSession, setSettings, syncPlayerStatus } from './drinks.js';
 import { mountHostSettings, loadSavedSettings } from './host-settings.js';
 
 export { createImpairment } from './filter.js';
@@ -56,6 +59,13 @@ export function installImpairment(game, opts = {}) {
   const saved = opts.skipSaved ? null : loadSavedSettings(opts.storage);
   if (saved) setSettings(saved, game);
 
+  // keep p.bac etc. fresh for the HUD/phones (BAC falls slowly with time)
+  if (opts.syncMs !== 0 && typeof setInterval === 'function') {
+    const timer = setInterval(() => syncPlayerStatus(game), opts.syncMs || 1000);
+    if (timer && timer.unref) timer.unref();
+    api.stopSync = () => clearInterval(timer);
+  }
+
   if (opts.ui !== false) {
     try { api.ui = mountHostSettings(game, { document: opts.document, storage: opts.storage }); } catch (e) {
       if (typeof console !== 'undefined') console.warn('[impairment] host settings panel failed', e);
@@ -64,6 +74,15 @@ export function installImpairment(game, opts = {}) {
   if (typeof console !== 'undefined' && opts.quiet !== true) console.info('[impairment] installed on window.game');
   return api;
 }
+
+/** Plugin hook used by the engine's main.js: `mod.default(game)` / `mod.install(game)`. */
+export function install(game, opts) {
+  if (!game) return null;
+  const doc = typeof document !== 'undefined' ? document : undefined;
+  return installImpairment(game, Object.assign({ document: doc }, opts));
+}
+
+export default install;
 
 /**
  * Install as soon as `win.game` is ready: now, on `game-ready`, or by polling.

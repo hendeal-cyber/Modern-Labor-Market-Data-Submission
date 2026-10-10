@@ -212,3 +212,22 @@ test('hudModel: icon, bar fill, limit tick, colour', () => {
 test('disclaimer line text', () => {
   assert.equal(DISCLAIMER, 'Tipsy Kart is just a game. Never drink and drive in real life.');
 });
+
+test('engine-shaped raceFinished: results array with .raceIndex and isHuman flags; status mirrored on players', () => {
+  const g = game4();
+  let refreshed = 0;
+  g.refreshUI = () => { refreshed++; };
+  const results = [
+    { place: 1, id: 'cpu1', isHuman: false, slot: -1 },
+    { place: 2, id: 'h0', isHuman: true, slot: 0, finished: true },
+    { place: 3, id: 'h2', isHuman: true, slot: 2, finished: false },
+  ];
+  results.raceIndex = 0;
+  g.fire('raceFinished', results);
+  g.fire('raceFinished', results); // duplicate emit
+  assert.deepEqual(g.session.players.map((p) => p.drinks), [1, 0, 1, 0]);
+  assert.ok(refreshed >= 1, 'engine UI refreshed after drinks change');
+  assert.ok(Math.abs(g.session.players[0].bac - 0.0301) < 0.0005, 'p.bac mirrored for the engine HUD');
+  assert.equal(g.session.players[0].tierLabel, 'Buzzed');
+  assert.equal(g.session.players[1].bac, 0);
+});

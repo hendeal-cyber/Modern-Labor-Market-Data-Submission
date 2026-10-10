@@ -336,3 +336,23 @@ test('T11 CPUs never affected: isCpu karts return raw; only slots 0-3 get filter
   const odd = createImpairment(5, g2);
   assert.equal(odd.filter(raw, 1 / 60, ctxOf({ drinks: 5 })), raw);
 });
+
+test('engine ctx shape: countdown blocks events; a sudden stop counts as a respawn; visual accepts the engine arg object', () => {
+  // countdown: racePhase 'countdown' keeps the race clock at 0 => no events however long it lasts
+  const log = [];
+  const { imp } = setup({ drinks: 5, onEvent: (e) => log.push(e) });
+  const dt = 1 / 60;
+  const eng = (phase, speed) => ({ time: 0, speed, drinks: 5, raceIndex: 0, slot: 0, kartState: { speed, maxSpeed: 33, racePhase: phase } });
+  for (let i = 0; i < 60 * 300; i++) imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, eng('countdown', 30));
+  assert.equal(log.filter((e) => e.type !== 'fumble').length, 0);
+  // racing at speed, then an instant stop (teleport) => sinceRespawn resets
+  for (let i = 0; i < 60 * 10; i++) imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, eng('racing', 30));
+  assert.ok(imp.state.sinceRespawn > 5);
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, eng('racing', 0));
+  assert.equal(imp.state.sinceRespawn, 0);
+  const fx = imp.visual({ time: 12.5, slot: 0, speed: 20, kartState: {}, drinks: 5, raceIndex: 0 });
+  assert.ok(fx.blurPx > 0 && Number.isFinite(fx.swayDeg));
+  assert.deepEqual(fx, imp.visual(12.5));
+  const small = imp.visual({ time: 12.5, viewport: { w: 960, h: 540 } });
+  assert.ok(Math.abs(small.blurPx - fx.blurPx / 2) < 1e-9);
+});

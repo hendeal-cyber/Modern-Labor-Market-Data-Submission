@@ -183,9 +183,29 @@ export function newNight(game = globalThis.window && globalThis.window.game) {
   return s.seed;
 }
 
+/**
+ * Mirror the display status onto each session player so the engine HUD and the
+ * phone lane can read it without importing this module:
+ *   p.bac (number, %), p.tierLabel, p.overLimit, p.impairLevel.
+ */
+export function syncPlayerStatus(game, now = Date.now()) {
+  const s = game && game.session;
+  if (!s || !Array.isArray(s.players)) return;
+  for (const p of s.players) {
+    if (!p) continue;
+    const st = getImpairmentStatus(p.slot, game, now);
+    p.bac = st.bac;
+    p.tierLabel = st.tierLabel;
+    p.overLimit = st.overLimit;
+    p.impairLevel = st.level;
+  }
+}
+
 function announce(game, evt = 'drinksChanged') {
   const s = game && game.session;
   if (!s) return;
+  syncPlayerStatus(game);
+  if (typeof game.refreshUI === 'function') { try { game.refreshUI(); } catch (e) { /* engine UI is optional */ } }
   const payload = evt === 'settingsChanged'
     ? Object.assign({}, s.settings)
     : (s.players || []).map((p) => ({ slot: p.slot, drinks: p.drinks, water: !!p.water }));
@@ -205,7 +225,7 @@ function normaliseFinish(arg, game) {
   const s = game.session;
   let results = null;
   let raceIndex;
-  if (Array.isArray(arg)) results = arg;
+  if (Array.isArray(arg)) { results = arg; raceIndex = arg.raceIndex; } // engine: array with a .raceIndex property
   else if (arg && typeof arg === 'object') { results = arg.results || arg.standings || null; raceIndex = arg.raceIndex; }
   if (raceIndex === undefined) raceIndex = s.raceIndex;
   return { results, raceIndex };
@@ -286,8 +306,9 @@ export function installDrinkTracking(game) {
   // cupFinished: deliberately nothing. Only newNight() resets drinks.
   game.on('cupFinished', () => {});
 
-  game.on('playerJoined', () => { sess(); });
+  game.on('playerJoined', () => { sess(); syncPlayerStatus(game); });
   game.on('playerLeft', () => { sess(); });
+  syncPlayerStatus(game);
 
   return api;
 }

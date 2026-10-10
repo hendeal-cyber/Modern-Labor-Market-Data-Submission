@@ -55,7 +55,7 @@ export function invertMul(st) {
 function freshDynamicState() {
   return {
     t: 0,
-    sinceGo: 0, sinceRespawn: 99, slowFor: 0, lastEventT: -99,
+    sinceGo: 0, sinceRespawn: 99, slowFor: 0, lastEventT: -99, prevSpd: 0,
     y: 0, v: 0, thr: 0, brk: 0, heldSteer: 0, heldThr: 0, heldBrk: 0,
     prevDrift: false, driftDropped: false, driftPressT: 0,
     prevItem: false, itemFireAt: null, itemUntil: 0, itemActive: false,
@@ -120,9 +120,13 @@ export function createImpairment(slot, game, opts = {}) {
     const speedNorm = clamp01(Number.isFinite(sp) ? sp : (fin(ctx.speed, NaN) / fin(k.maxSpeed, 30)));
     const spd = Number.isFinite(speedNorm) ? speedNorm : 1;
     if (Number.isFinite(k.raceTime)) st.sinceGo = k.raceTime;
-    else if (k.countdown > 0 || k.started === false) st.sinceGo = 0;
+    else if (k.racePhase === 'countdown' || k.countdown > 0 || k.started === false) st.sinceGo = 0;
     else st.sinceGo += dt;
-    st.sinceRespawn = k.respawning ? 0 : st.sinceRespawn + dt;
+    // Respawn: an explicit flag if the engine sends one, else a kart whose speed
+    // drops from a real speed to ~0 in a single step (only a teleport does that).
+    const respawning = !!k.respawning || k.frozen > 0 || (st.prevSpd > 0.25 && spd < 0.02 && dt > 0);
+    st.prevSpd = spd;
+    st.sinceRespawn = respawning ? 0 : st.sinceRespawn + dt;
     st.slowFor = spd < 0.1 ? st.slowFor + dt : 0;
 
     // ---- IDENTITY PATH: L == 0 returns the very same object ----
@@ -140,7 +144,7 @@ export function createImpairment(slot, game, opts = {}) {
 
     const P = paramsAt(st.Ls);
 
-    if (k.respawning) {
+    if (respawning) {
       ouF.reset(); ouS.reset(); st.y = st.v = 0;
       st.lapseUntil = -1; st.invEnd = -1; // never freeze a kart that is being put back
     }
@@ -225,7 +229,12 @@ export function createImpairment(slot, game, opts = {}) {
     return { steer: s, throttle: thr, brake: clamp01(fin(st.brk)), drift, useItem };
   }
 
+  // Accepts visual(t, vp) or the engine's visual({time, viewport?, ...}).
   function visual(t, vp) {
+    if (t && typeof t === 'object') {
+      vp = vp || t.viewport || t.vp;
+      t = t.time;
+    }
     const tt = Number.isFinite(t) ? t : (typeof performance !== 'undefined' ? performance.now() / 1000 : 0);
     const settings = (game && game.session && game.session.settings) || {};
     return computeVisualFx(st, tt, vp && vp.w > 0 && vp.h > 0 ? vp : REFERENCE_VIEWPORT, settings);
