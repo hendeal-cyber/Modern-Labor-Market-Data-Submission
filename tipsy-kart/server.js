@@ -9,8 +9,9 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const PORT = parseInt(process.env.PORT || '3000', 10);
+const DEFAULT_PORT = parseInt(process.env.PORT || '3000', 10);
 const HOST = process.env.HOST || '0.0.0.0';
+let PORT = DEFAULT_PORT;
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const MIME = {
@@ -82,7 +83,7 @@ function serveFile(req, res, filePath) {
   });
 }
 
-const server = http.createServer((req, res) => {
+function handleRequest(req, res) {
   if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method not allowed');
   let pathname;
   try {
@@ -98,20 +99,47 @@ const server = http.createServer((req, res) => {
   const filePath = path.normalize(path.join(PUBLIC_DIR, pathname));
   if (filePath !== PUBLIC_DIR && !filePath.startsWith(PUBLIC_DIR + path.sep)) return send(res, 403, 'Forbidden');
   serveFile(req, res, filePath);
-});
-
-// Optional network hub (phone-controller lane).
-const hubPath = path.join(__dirname, 'net', 'hub.js');
-if (fs.existsSync(hubPath)) {
-  try {
-    const hub = require(hubPath);
-    if (hub && typeof hub.attach === 'function') hub.attach(server);
-  } catch (e) {
-    console.error('[tipsy-kart] failed to attach net/hub.js:', e);
-  }
 }
 
-server.listen(PORT, HOST, () => {
+/**
+ * Start the server. Resolves to { httpServer, port, close() }.
+ * opts.port: port to bind (0 = random free port). opts.host: bind address.
+ */
+function start(opts = {}) {
+  const port = opts.port ?? DEFAULT_PORT;
+  const host = opts.host || HOST;
+  const httpServer = http.createServer(handleRequest);
+
+  // Optional network hub (phone-controller lane).
+  const hubPath = path.join(__dirname, 'net', 'hub.js');
+  if (fs.existsSync(hubPath)) {
+    try {
+      const hub = require(hubPath);
+      if (hub && typeof hub.attach === 'function') hub.attach(httpServer);
+    } catch (e) {
+      console.error('[tipsy-kart] failed to attach net/hub.js:', e);
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    httpServer.once('error', reject);
+    httpServer.listen(port, host, () => {
+      httpServer.off('error', reject);
+      PORT = httpServer.address().port;
+      if (!opts.quiet) printBanner();
+      resolve({
+        httpServer,
+        port: PORT,
+        close: () => new Promise((res) => {
+          if (typeof httpServer.closeAllConnections === 'function') httpServer.closeAllConnections();
+          httpServer.close(() => res());
+        }),
+      });
+    });
+  });
+}
+
+function printBanner() {
   const i = info();
   console.log('');
   console.log('  Tipsy Kart is running!');
@@ -123,6 +151,13 @@ server.listen(PORT, HOST, () => {
     console.log('  (No LAN IPv4 address found - phones cannot join until this machine is on a network.)');
   }
   console.log('');
-});
+}
 
-module.exports = server;
+module.exports = { start, info };
+
+if (require.main === module) {
+  start().catch((e) => {
+    console.error('[tipsy-kart] failed to start:', e.message);
+    process.exit(1);
+  });
+}
