@@ -442,9 +442,33 @@ export class Game {
   }
 
   // ---------------------------------------------------------------- loop
+  /** Refresh the per-slot filter ctx / kartState (shared with visualFx). */
+  _updateKartCtx(k) {
+    const slot = k.slot;
+    const p = this.player(slot);
+    const ctx = k._filterCtx || (k._filterCtx = { kartState: {} });
+    ctx.time = this.simTime;
+    ctx.speed = k.speed;
+    ctx.drinks = p ? p.drinks || 0 : 0;
+    ctx.raceIndex = this.session.raceIndex;
+    ctx.slot = slot;
+    const ks = ctx.kartState;
+    ks.speed = k.speed; ks.maxSpeed = 33; ks.drifting = k.drifting; ks.driftTier = k.driftTier;
+    ks.boosting = k.boostTime > 0; ks.offroad = k.q.offroad; ks.spinning = k.spinTime > 0;
+    ks.place = k.place; ks.lap = k.lapsDone + 1; ks.item = k.item; ks.finished = k.finished;
+    ks.wrongWay = k.wrongWay; ks.heading = k.h; ks.grounded = k.grounded; ks.racePhase = this.race.phase;
+    // seconds since GO (negative while the countdown runs)
+    ks.raceTime = this.race.phase === 'countdown' ? -this.race.countdown : this.race.time;
+    // falling off the track or frozen just after a respawn
+    ks.respawning = k.frozen > 0 || !k.q.hasGround;
+    return ctx;
+  }
+
   _humanInput(k, dt) {
     const slot = k.slot;
+    const ctx = this._updateKartCtx(k);
     if (k.finished || (k.autopilot && !this._autopilot[slot])) {
+      // the race is over for this player: CPU autopilot, no impairment filter
       k.autopilot = true;
       return this.autoDrivers.get(k).update(dt, this.race);
     }
@@ -460,18 +484,6 @@ export class Game {
         k.lastItemPressed = false;
       }
     }
-    const p = this.player(slot);
-    const ctx = k._filterCtx || (k._filterCtx = { kartState: {} });
-    ctx.time = this.simTime;
-    ctx.speed = k.speed;
-    ctx.drinks = p ? p.drinks || 0 : 0;
-    ctx.raceIndex = this.session.raceIndex;
-    ctx.slot = slot;
-    const ks = ctx.kartState;
-    ks.speed = k.speed; ks.maxSpeed = 33; ks.drifting = k.drifting; ks.driftTier = k.driftTier;
-    ks.boosting = k.boostTime > 0; ks.offroad = k.q.offroad; ks.spinning = k.spinTime > 0;
-    ks.place = k.place; ks.lap = k.lapsDone + 1; ks.item = k.item; ks.finished = k.finished;
-    ks.wrongWay = k.wrongWay; ks.heading = k.h; ks.grounded = k.grounded; ks.racePhase = this.race.phase;
     const f = this.inputFilters[slot];
     if (typeof f === 'function' && f !== identity) {
       try {
@@ -527,6 +539,7 @@ export class Game {
       session: this.session,
       raceIndex: this.session.raceIndex,
       drinksOf: (slot) => this.player(slot)?.drinks || 0,
+      hudModel: this.impairment && typeof this.impairment.hudModel === 'function' ? (slot) => this.impairment.hudModel(slot) : null,
       warnOnce: (k, e) => this.warnOnce(k, e),
     });
     this.audio.updateEngines(race.karts.filter((k) => k.isHuman));
