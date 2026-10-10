@@ -305,6 +305,28 @@ describe('4 phones + host on the real game', () => {
     await P[3].page.waitForFunction(() => document.getElementById('flash').classList.contains('on'), null, { timeout: 3000 });
   });
 
+  test('connect timeout: a WebSocket that never answers falls back to SSE (and a queued phone stays on its transport)', { timeout: 30000 }, async () => {
+    const ctx = await browser.newContext({ ...devices['Pixel 7 landscape'], ignoreHTTPSErrors: true });
+    await ctx.addInitScript(() => { window.WebSocket = class { constructor() { this.readyState = 0; } send() {} close() {} }; });
+    const page = await ctx.newPage();
+    await page.goto(`${srv.secureUrl}/controller`);
+    // 2 x 4 s connect timeouts, then SSE; the room is full, so it ends up queued over SSE
+    await page.waitForFunction(() => window.tipsyController.link.transport === 'sse' && window.tipsyController.S.queuePos > 0, null, { timeout: 15000 });
+    await ctx.close();
+  });
+
+  test('phone watchdog: a socket that silently stops delivering is replaced within ~5-7 s, same slot', { timeout: 30000 }, async () => {
+    const ph = P[2];
+    const before = await hostEval(() => window.__ev.joined.length);
+    await ph.page.evaluate(() => { window.tipsyController.link.ws.onmessage = null; }); // deaf, but the TCP socket stays open
+    const t0 = Date.now();
+    const j = await until(() => hostEval((n) => window.__ev.joined.slice(n).find((x) => x.reconnected), before), 12000, 'watchdog reconnect');
+    assert.equal(j.slot, ph.slot);
+    const dt = Date.now() - t0;
+    assert.ok(dt >= 4000 && dt < 9000, `watchdog after ${dt} ms`);
+    await ph.page.waitForFunction(() => window.tipsyController.link.status === 'online');
+  });
+
   test('iOS-style motion permission: only requested inside the Let\'s go tap; denial falls back to touch', { timeout: 30000 }, async () => {
     const ok = await openPhone(await phoneContext({ perm: 'granted' }), srv.secureUrl, { orientation: 0 });
     assert.deepEqual(await ok.page.evaluate(() => window.__perm), [], 'not requested on load');

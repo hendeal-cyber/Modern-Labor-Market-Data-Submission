@@ -352,10 +352,10 @@ export function initNetHost(game, opts = {}) {
       }
       if (hud.lap != null && phase === 'racing') {
         const lp = lapSeen.get(slot);
-        if (lp != null && hud.lap > lp && !hud.finished) send({ t: 'vibe', slot, cue: 'lap' });
+        if (!engineSays.lap && lp != null && hud.lap > lp && !hud.finished) send({ t: 'vibe', slot, cue: 'lap' });
         lapSeen.set(slot, hud.lap);
       }
-      if (hud.finished && !finishedSeen.has(slot)) { finishedSeen.add(slot); send({ t: 'vibe', slot, cue: 'finish' }); }
+      if (hud.finished && !finishedSeen.has(slot)) { finishedSeen.add(slot); if (!engineSays.finish) send({ t: 'vibe', slot, cue: 'finish' }); }
       if (phase === 'lobby') { finishedSeen.delete(slot); lapSeen.delete(slot); }
     }
   }
@@ -365,7 +365,7 @@ export function initNetHost(game, opts = {}) {
   // ---------------------------------------------------------------- game events
   const on = typeof game.on === 'function' ? game.on.bind(game) : () => {};
   on('raceStart', () => { if (!mapPhase(gameState().phase)) forced.phase = 'racing'; vibeAll('go'); pushHud(true); });
-  on('raceFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'results'; for (const [slot] of roster) send({ t: 'vibe', slot, cue: 'finish' }); pushHud(true); });
+  on('raceFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'results'; pushHud(true); });
   on('cupFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'cupResults'; pushHud(true); });
   on('stateChanged', (st) => pushHud(false, st));
   // The big screen removed a phone player itself (e.g. the lobby's remove button): free the slot on the hub too.
@@ -374,9 +374,16 @@ export function initNetHost(game, opts = {}) {
     if (!Number.isInteger(slot) || slot === dropping || !roster.has(slot)) return;
     if (!findPlayer(slot, false)) { send({ t: 'kick', slot }); added.delete(slot); }
   });
-  for (const [evt, cue] of [['hit', 'bump'], ['boost', 'boost'], ['itemUsed', 'item']]) {
-    on(evt, (e) => { if (e && Number.isInteger(e.slot)) send({ t: 'vibe', slot: e.slot, cue }); });
-  }
+  // Engine haptics events (human slots only), mapped to phone cues. Feature-detected: an engine that
+  // never emits them leaves the derived lap/finish vibes below in charge.
+  const engineSays = { lap: false, finish: false };
+  const vibeSlot = (slot, cue) => { if (Number.isInteger(slot) && roster.has(slot)) send({ t: 'vibe', slot, cue }); };
+  on('hit', (e) => { if (e) vibeSlot(e.slot, e.kind === 'wall' || e.kind === 'kart' ? 'hitSoft' : 'hit'); });
+  on('boost', (e) => { if (e) vibeSlot(e.slot, e.tier >= 1 && e.tier <= 3 ? `boost${e.tier}` : 'boost'); });
+  on('itemUsed', (e) => { if (e) vibeSlot(e.slot, 'item'); });
+  on('itemGot', (e) => { if (e) vibeSlot(e.slot, 'itemGot'); });
+  on('lap', (e) => { if (e) { engineSays.lap = true; vibeSlot(e.slot, 'lap'); } });
+  on('finish', (e) => { if (e) { engineSays.finish = true; finishedSeen.add(e.slot); vibeSlot(e.slot, 'finish'); } });
 
   // ---------------------------------------------------------------- socket
   function connect() {

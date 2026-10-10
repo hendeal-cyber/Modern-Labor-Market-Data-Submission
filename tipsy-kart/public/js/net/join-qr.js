@@ -67,6 +67,7 @@ export async function mountJoinQr(el) {
     + '<div>The https link shows a one-time browser warning because the game runs on this laptop, not the internet. The connection is still encrypted.</div>'
     + '<ol><li><b>iPhone (Safari):</b> "This Connection Is Not Private" &rarr; Show Details &rarr; visit this website &rarr; Visit Website.</li>'
     + '<li><b>Android (Chrome):</b> "Your connection is not private" &rarr; Advanced &rarr; Proceed to the address (unsafe).</li>'
+    + '<li>If the link opens inside another app (camera, chat), use "Open in Chrome" / "Open in Safari".</li>'
     + '<li>Phones and laptop must be on the same Wi-Fi. Guest, hotel and campus networks often block this: use a phone hotspot instead. Allow Node through the firewall if asked.</li></ol>';
   if (embedded) {
     qrBox = el;
