@@ -54,28 +54,48 @@ export function urlsFor(info, idx) {
   return { ip, http, https, join, ips };
 }
 
-export async function mountJoinQr(el, opts = {}) {
+export async function mountJoinQr(el) {
   injectStyle();
-  el.classList.add('tk-join');
-  el.innerHTML = '';
-  const qrBox = document.createElement('div'); qrBox.className = 'tk-qr';
-  const urlEl = document.createElement('div'); urlEl.className = 'tk-url';
-  const altEl = document.createElement('div'); altEl.className = 'tk-alt';
-  const wrong = document.createElement('button'); wrong.type = 'button'; wrong.textContent = 'Wrong address? ▸';
+  // Embedded mode: the engine's lobby already has #join-qr (a white square that styles a direct
+  // <svg> child) plus #join-url / #join-alt. We fill those and add our extras after #join-alt.
+  const urlHost = document.getElementById('join-url');
+  const embedded = !!urlHost && el.id === 'join-qr';
+  let qrBox; let urlEl; let altEl; let extras;
+  const wrong = document.createElement('button'); wrong.type = 'button'; wrong.textContent = 'Wrong address? \u25b8';
   const help = document.createElement('details'); help.className = 'tk-help';
   help.innerHTML = '<summary>Phones can\'t connect?</summary>'
     + '<div>The https link shows a one-time browser warning because the game runs on this laptop, not the internet. The connection is still encrypted.</div>'
     + '<ol><li><b>iPhone (Safari):</b> "This Connection Is Not Private" &rarr; Show Details &rarr; visit this website &rarr; Visit Website.</li>'
     + '<li><b>Android (Chrome):</b> "Your connection is not private" &rarr; Advanced &rarr; Proceed to the address (unsafe).</li>'
     + '<li>Phones and laptop must be on the same Wi-Fi. Guest, hotel and campus networks often block this: use a phone hotspot instead. Allow Node through the firewall if asked.</li></ol>';
-  el.append(qrBox, urlEl, altEl, wrong, help);
+  if (embedded) {
+    qrBox = el;
+    urlEl = urlHost;
+    altEl = document.getElementById('join-alt') || document.createElement('div');
+    extras = document.getElementById('tk-join-extra');
+    if (!extras) {
+      extras = document.createElement('div'); extras.id = 'tk-join-extra'; extras.className = 'tk-join';
+      (altEl.parentNode || el.parentNode).appendChild(extras);
+    }
+    extras.innerHTML = '';
+    extras.append(wrong, help);
+  } else {
+    el.classList.add('tk-join');
+    el.innerHTML = '';
+    qrBox = document.createElement('div'); qrBox.className = 'tk-qr';
+    urlEl = document.createElement('div'); urlEl.className = 'tk-url';
+    altEl = document.createElement('div'); altEl.className = 'tk-alt';
+    el.append(qrBox, urlEl, altEl, wrong, help);
+  }
 
   let info = null; let idx = 0; let lastUrl = '';
   async function draw() {
     if (!info) return;
     const u = urlsFor(info, idx);
     wrong.hidden = u.ips.length < 2;
+    // always (re)write the text: the engine's lobby writes its own http URL here at startup
     urlEl.textContent = u.join || 'Waiting for the server...';
+    if (urlEl.dataset) urlEl.dataset.url = u.join || '';
     altEl.textContent = u.join !== u.http && u.http ? `No tilt? ${u.http} (touch steering only)` : '';
     if (!u.join || u.join === lastUrl) return;
     lastUrl = u.join;
@@ -86,6 +106,7 @@ export async function mountJoinQr(el, opts = {}) {
       qr.make();
       qrBox.innerHTML = qr.createSvgTag({ cellSize: 8, margin: 4, scalable: true });
       qrBox.title = u.join;
+      qrBox.dataset.url = u.join;
     } catch (e) { qrBox.textContent = 'QR unavailable: type the address below.'; }
   }
   wrong.addEventListener('click', () => { idx++; lastUrl = ''; draw(); });
@@ -94,15 +115,15 @@ export async function mountJoinQr(el, opts = {}) {
     try {
       const r = await fetch('/api/info', { cache: 'no-store' });
       const next = await r.json();
-      const changed = JSON.stringify([next.joinUrl, next.ips]) !== JSON.stringify(info && [info.joinUrl, info.ips]);
+      if (JSON.stringify([next.joinUrl, next.ips]) !== JSON.stringify(info && [info.joinUrl, info.ips])) lastUrl = '';
       info = next;
-      if (changed) { lastUrl = ''; draw(); }
-    } catch (e) { /* retry */ }
+      draw();
+    } catch (e) { /* retry next tick */ }
     return info;
   }
   await refresh();
-  // HTTPS comes up a moment after HTTP; keep checking until it does (then every 10 s for IP changes)
-  const timer = setInterval(refresh, info && info.httpsPort ? 10000 : 1000);
+  // HTTPS comes up a moment after HTTP, and the engine may overwrite the URL text once: re-check every 2 s
+  const timer = setInterval(refresh, 2000);
   return { refresh, stop() { clearInterval(timer); }, get info() { return info; }, get joinUrl() { return urlEl.textContent; } };
 }
 

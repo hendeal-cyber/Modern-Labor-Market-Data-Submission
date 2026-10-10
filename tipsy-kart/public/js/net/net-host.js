@@ -79,6 +79,8 @@ export function initNetHost(game, opts = {}) {
 
   function send(obj) { if (ws && ws.readyState === 1) { ws.send(JSON.stringify(obj)); return true; } return false; }
 
+  function refreshUi() { try { if (typeof game.refreshUI === 'function') game.refreshUI(); } catch (e) { /* ignore */ } }
+
   function emit(evt, payload) {
     try { if (typeof game.emit === 'function') game.emit(evt, payload); } catch (e) { console.error('[net-host] emit', evt, e); }
     try { window.dispatchEvent(new CustomEvent(`tipsy:${evt}`, { detail: payload })); } catch (e) { /* ignore */ }
@@ -113,12 +115,15 @@ export function initNetHost(game, opts = {}) {
     try { if (typeof game.addPlayer === 'function') game.addPlayer({ slot: entry.slot, name: entry.name, color: entry.color }); } catch (e) { console.error('[net-host] addPlayer', e); }
   }
 
+  let dropping = -1;
   function dropKart(slot) {
+    dropping = slot;
     added.delete(slot); last.delete(slot); lastItem.delete(slot); pendingUse.delete(slot); coastFrom.delete(slot); coastSent.delete(slot); pushed.delete(slot);
     lapSeen.delete(slot); finishedSeen.delete(slot); seeded.delete(slot); roster.delete(slot);
     try { if (typeof game.removePlayer === 'function') game.removePlayer(slot); } catch (e) { console.error('[net-host] removePlayer', e); }
     const i = session.players.findIndex((x) => x && x.slot === slot);
     if (i >= 0 && typeof game.removePlayer !== 'function') session.players.splice(i, 1);
+    dropping = -1;
   }
 
   function setInput(slot, inp) {
@@ -186,6 +191,7 @@ export function initNetHost(game, opts = {}) {
         if (!m.resumed) { lastItem.set(m.slot, 0); pendingUse.delete(m.slot); }
         coastFrom.delete(m.slot);
         emit('playerJoined', { slot: m.slot, name: m.name, color: m.color, reconnected: !!m.resumed, player: p });
+        refreshUi();
         pushHud(true);
         break;
       }
@@ -196,6 +202,7 @@ export function initNetHost(game, opts = {}) {
         const r = roster.get(m.slot); if (r) r.connected = false;
         emit('playerLeft', { slot: m.slot, reason: m.reason, released: !!m.released });
         if (m.released) dropKart(m.slot);
+        refreshUi();
         break;
       }
       case 'input': onInput(m); break;
@@ -204,6 +211,7 @@ export function initNetHost(game, opts = {}) {
         const p = findPlayer(m.slot, false); if (p) p.name = m.name;
         const r = roster.get(m.slot); if (r) r.name = m.name;
         emit('playerRenamed', { slot: m.slot, name: m.name });
+        refreshUi();
         break;
       }
       case 'ready': {
@@ -258,6 +266,7 @@ export function initNetHost(game, opts = {}) {
     if (next === cur) return;
     if (typeof game.adjustDrinks === 'function') { try { game.adjustDrinks(m.slot, next - cur); } catch (e) { console.error(e); } } else p.drinks = next;
     emit('drinkChanged', { slot: m.slot, drinks: next, delta: next - cur });
+    refreshUi();
     pushHud(true);
   }
 
@@ -285,7 +294,7 @@ export function initNetHost(game, opts = {}) {
       if (laps != null) out.laps = Number(laps);
       const place = h.place != null ? h.place : (h.position != null ? h.position : h.rank);
       if (place != null) out.place = Number(place);
-      const of = h.of != null ? h.of : (st.racers != null && Array.isArray(st.racers) ? st.racers.length : st.fieldSize != null ? st.fieldSize : null);
+      const of = h.of != null ? h.of : h.totalKarts != null ? h.totalKarts : (st.racers != null && Array.isArray(st.racers) ? st.racers.length : st.fieldSize != null ? st.fieldSize : null);
       if (of != null) out.of = Number(of);
       const item = h.item != null ? h.item : (h.heldItem != null ? h.heldItem : null);
       if (item !== undefined) out.item = item && typeof item === 'object' ? (item.name || item.type || item.id || null) : item;
@@ -356,6 +365,12 @@ export function initNetHost(game, opts = {}) {
   on('raceFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'results'; for (const [slot] of roster) send({ t: 'vibe', slot, cue: 'finish' }); pushHud(true); });
   on('cupFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'cupResults'; pushHud(true); });
   on('stateChanged', () => pushHud(false));
+  // The big screen removed a phone player itself (e.g. the lobby's remove button): free the slot on the hub too.
+  on('playerLeft', (e) => {
+    const slot = e && e.slot;
+    if (!Number.isInteger(slot) || slot === dropping || !roster.has(slot)) return;
+    if (!findPlayer(slot, false)) { send({ t: 'kick', slot }); added.delete(slot); }
+  });
   for (const [evt, cue] of [['hit', 'bump'], ['boost', 'boost'], ['itemUsed', 'item']]) {
     on(evt, (e) => { if (e && Number.isInteger(e.slot)) send({ t: 'vibe', slot: e.slot, cue }); });
   }

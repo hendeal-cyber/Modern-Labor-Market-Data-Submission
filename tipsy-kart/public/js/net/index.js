@@ -44,6 +44,7 @@ export function init(game = window.game) {
 }
 
 export default init;
+export const install = init;
 
 function waitForGame() {
   if (window.game) { try { init(window.game); } catch (e) { console.error('[tipsy net]', e); } return; }
