@@ -138,12 +138,19 @@ test('getImpairmentStatus: shape and values', () => {
   assert.equal(none.drinks, 0); assert.equal(none.present, false);
 });
 
-test('getImpairmentStatus in water mode: bac 0, level 0, drinks kept', () => {
+test('getImpairmentStatus in water mode: honest BAC, level 0, drinks kept', () => {
   const g = game4({ drinks: 4 });
   setWaterMode(0, true, g);
-  const st = getImpairmentStatus(0, g);
-  assert.equal(st.drinks, 4); assert.equal(st.bac, 0); assert.equal(st.level, 0);
-  assert.equal(st.water, true); assert.equal(st.overLimit, false);
+  const now = Date.now();
+  const st = getImpairmentStatus(0, g, now);
+  assert.equal(st.drinks, 4); assert.equal(st.level, 0);
+  assert.ok(Math.abs(st.bac - 0.1204) < 0.0005, `honest est. BAC in water mode (${st.bac})`);
+  assert.equal(st.water, true); assert.equal(st.overLimit, true, 'still over the limit by BAC');
+  assert.equal(hudModel(0, g, now).icon, 'water');
+  // one drink then water: under the limit, and the level floor does not apply in water mode
+  const h = game4({ drinks: 1 });
+  setWaterMode(0, true, h);
+  assert.equal(getImpairmentStatus(0, h).overLimit, false);
   setWaterMode(0, false, g);
   assert.equal(getImpairmentStatus(0, g).level, 4);
 });
