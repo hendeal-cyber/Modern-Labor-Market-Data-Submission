@@ -6,13 +6,16 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node test/smoke.mjs"
+    "test": "node test/smoke.mjs",
+    "test:net": "node --test test/net/"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "three": "^0.169.0"
+    "selfsigned": "^5.5.0",
+    "three": "^0.169.0",
+    "ws": "^8.22.0"
   },
   "devDependencies": {
     "playwright-core": "^1.56.1"
