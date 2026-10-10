@@ -108,7 +108,7 @@ try {
     window.__fxArg = null;
     window.game.visualFx[0] = (arg) => { window.__fxArg = arg && { viewport: arg.viewport, raceTime: arg.kartState && arg.kartState.raceTime, respawning: arg.kartState && arg.kartState.respawning }; return { blurPx: 0 }; };
     window.game.visualFx[2] = () => ({}); // ignores its argument
-    window.game.visualFx[1] = () => ({ blurPx: 1.5, swayDeg: 3, doubleVision: 0.6, tunnel: 0.5, hueShift: 20, saturate: 1.4, blink: 0.1 });
+    window.game.visualFx[1] = () => ({ blurPx: 1.5, swayDeg: 3, doubleVision: 0.6, tunnel: 0.5, hueShift: 20, saturate: 1.4, blink: 0.1, joltPx: 4 });
   });
 
   // 3. start the cup from the lobby button
@@ -160,6 +160,18 @@ try {
   await page.evaluate(() => { window.game.session.players[0].bac = 0.06; });
   await page.waitForFunction(() => document.querySelector('.vp[data-slot="0"] .hud-drinks').textContent.includes('est. BAC 0.060%'), null, { timeout: 30000 });
   check(true, 'HUD shows est. BAC 0.060%');
+  const tf1 = await page.evaluate(() => document.querySelector('.vp[data-slot="1"] canvas').style.transform);
+  check(/translateY\(4(\.0)?px\)/.test(tf1) && !tf1.includes('translate('), `joltPx renders as a vertical bump (${tf1})`);
+  await page.evaluate(() => {
+    window.game.impairment = { hudModel: (slot) => ({ icon: 'mug', count: 3, drinks: 3, bacText: 'est. BAC 0.090%', barFill: 0.45, limitTick: 0.4, color: 'red', tierLabel: 'Over the limit', overLimit: true, water: false, slot }) };
+  });
+  await page.waitForFunction(() => {
+    const el = document.querySelector('.vp[data-slot="2"] .hud-drinks');
+    return el && el.textContent.includes('est. BAC 0.090%') && el.textContent.includes('Over the limit') && el.querySelector('.bac-bar b');
+  }, null, { timeout: 30000 });
+  check(true, 'HUD uses game.impairment.hudModel (BAC text, LIMIT tick, tier label)');
+  await page.screenshot({ path: path.join(shots, '02b-hud-model.png') });
+  await page.evaluate(() => { delete window.game.impairment; });
   check(st.hud.length === 3 && st.hud.every((h) => 'place' in h && 'lap' in h && 'totalLaps' in h && 'item' in h && 'finished' in h && 'speed' in h), 'getState().hud has per-slot HUD data');
 
   // useItem edge trigger

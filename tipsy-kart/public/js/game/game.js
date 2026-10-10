@@ -442,24 +442,9 @@ export class Game {
   }
 
   // ---------------------------------------------------------------- loop
-  _humanInput(k, dt) {
+  /** Refresh the per-slot filter ctx / kartState (shared with visualFx). */
+  _updateKartCtx(k) {
     const slot = k.slot;
-    if (k.finished || (k.autopilot && !this._autopilot[slot])) {
-      k.autopilot = true;
-      return this.autoDrivers.get(k).update(dt, this.race);
-    }
-    let raw;
-    if (this._autopilot[slot]) raw = sanitizeInput(this.autoDrivers.get(k).update(dt, this.race));
-    else {
-      const kb = this.keyboard.inputFor(slot);
-      raw = kb ? sanitizeInput(kb) : this.rawInputs[slot] ? { ...this.rawInputs[slot] } : { ...NEUTRAL };
-      if (this.itemLatch[slot]) {
-        // a press arrived since the last step: guarantee the race sees a rising edge
-        raw.useItem = true;
-        this.itemLatch[slot] = false;
-        k.lastItemPressed = false;
-      }
-    }
     const p = this.player(slot);
     const ctx = k._filterCtx || (k._filterCtx = { kartState: {} });
     ctx.time = this.simTime;
@@ -476,6 +461,29 @@ export class Game {
     ks.raceTime = this.race.phase === 'countdown' ? -this.race.countdown : this.race.time;
     // falling off the track or frozen just after a respawn
     ks.respawning = k.frozen > 0 || !k.q.hasGround;
+    return ctx;
+  }
+
+  _humanInput(k, dt) {
+    const slot = k.slot;
+    const ctx = this._updateKartCtx(k);
+    if (k.finished || (k.autopilot && !this._autopilot[slot])) {
+      // the race is over for this player: CPU autopilot, no impairment filter
+      k.autopilot = true;
+      return this.autoDrivers.get(k).update(dt, this.race);
+    }
+    let raw;
+    if (this._autopilot[slot]) raw = sanitizeInput(this.autoDrivers.get(k).update(dt, this.race));
+    else {
+      const kb = this.keyboard.inputFor(slot);
+      raw = kb ? sanitizeInput(kb) : this.rawInputs[slot] ? { ...this.rawInputs[slot] } : { ...NEUTRAL };
+      if (this.itemLatch[slot]) {
+        // a press arrived since the last step: guarantee the race sees a rising edge
+        raw.useItem = true;
+        this.itemLatch[slot] = false;
+        k.lastItemPressed = false;
+      }
+    }
     const f = this.inputFilters[slot];
     if (typeof f === 'function' && f !== identity) {
       try {
@@ -531,6 +539,7 @@ export class Game {
       session: this.session,
       raceIndex: this.session.raceIndex,
       drinksOf: (slot) => this.player(slot)?.drinks || 0,
+      hudModel: this.impairment && typeof this.impairment.hudModel === 'function' ? (slot) => this.impairment.hudModel(slot) : null,
       warnOnce: (k, e) => this.warnOnce(k, e),
     });
     this.audio.updateEngines(race.karts.filter((k) => k.isHuman));

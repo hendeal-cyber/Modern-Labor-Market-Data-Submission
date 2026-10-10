@@ -23,6 +23,9 @@ export const ITEM_ICONS = {
 };
 const ITEM_KEYS = Object.keys(ITEM_ICONS);
 
+const WATER_ICON = '<svg viewBox="0 0 24 24" class="mug"><path d="M6 4h12l-1.5 17h-9z" fill="rgba(127,233,255,0.35)" stroke="#7fe9ff" stroke-width="1.5"/><path d="M7.2 10h9.6l-1 10.5h-7.6z" fill="#7fe9ff"/></svg>';
+const BAC_COLORS = { green: '#3cd46a', amber: '#ffc93c', red: '#ff4d4d' };
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const DRINK_ICON = '<svg viewBox="0 0 24 24" class="mug"><path d="M5 6h11v14H5z" fill="#ffc93c"/><path d="M5 4h11v4H5z" fill="#fff"/><path d="M16 9h3a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3" stroke="#ffc93c" stroke-width="2" fill="none"/></svg>';
 
 class PlayerView {
@@ -228,7 +231,7 @@ export class Viewports {
       const saturate = Math.max(0, num('saturate', 1));
       const zoom = Math.max(0.5, num('zoom', 1));
       const blink = clamp01(num('blink', 0));
-      const jolt = Math.max(0, num('joltPx', 0));
+      const jolt = num('joltPx', 0); // vertical bump in CSS px (sign = direction)
 
       v.updateCamera(dt, k, sway, now, camLag, fovWobble);
       this.trackView.follow(v.camera);
@@ -257,8 +260,8 @@ export class Viewports {
         (Math.abs(hue) > 0.5 ? `hue-rotate(${hue.toFixed(0)}deg) ` : '') +
         (Math.abs(saturate - 1) > 0.01 ? `saturate(${saturate.toFixed(2)})` : '');
       if (css !== v.fxCss) { v.fxCss = css; v.canvas.style.filter = css || 'none'; }
-      const jx = jolt > 0.05 ? (Math.random() - 0.5) * 2 * jolt : 0, jy = jolt > 0.05 ? (Math.random() - 0.5) * 2 * jolt : 0;
-      const tf = (Math.abs(zoom - 1) > 0.001 || jolt > 0.05) ? `translate(${jx.toFixed(1)}px,${jy.toFixed(1)}px) scale(${zoom.toFixed(3)})` : '';
+      const bump = Math.abs(jolt) > 0.05;
+      const tf = (Math.abs(zoom - 1) > 0.001 || bump) ? `translateY(${(bump ? jolt : 0).toFixed(1)}px) scale(${zoom.toFixed(3)})` : '';
       if (v.cache.tf !== tf) { v.cache.tf = tf; v.canvas.style.transform = tf; }
       const top = (tunnel * 0.95).toFixed(2);
       if (v.cache.tunnel !== top) { v.cache.tunnel = top; v.tunnel.style.opacity = top; }
@@ -281,9 +284,7 @@ export class Viewports {
     v.set('name', u.name, p ? p.name : 'Spectating ' + k.name);
     const lap = Math.min(race.laps, Math.max(1, k.lapsDone + 1));
     v.set('lap', u.lap, k.finished ? 'FINISHED' : `LAP ${lap}/${race.laps}`);
-    const drinks = p ? p.drinks || 0 : 0;
-    const bac = p && typeof p.bac === 'number' && Number.isFinite(p.bac) ? `est. BAC ${p.bac.toFixed(3)}%` : 'BAC --';
-    v.set('drinks', u.drinks, `${DRINK_ICON}<span>${drinks}</span><em>${bac}</em>`, 'innerHTML');
+    this.updateDrinkHud(v, p, ctx);
     v.set('speed', u.speed, String(Math.round(k.speed * 3.6)));
     // item slot with roulette
     let icon = '';
@@ -314,6 +315,38 @@ export class Viewports {
     v.set('centerCls', u.center, 'hud-center ' + cls, 'className');
     const wd = k.wrongWay && !k.finished && race.phase === 'racing' ? 'block' : 'none';
     if (v.cache.warn !== wd) { v.cache.warn = wd; u.warn.style.display = wd; }
+  }
+
+  /** Drinks / BAC readout. Uses game.impairment.hudModel(slot) when the impairment lane provides it. */
+  updateDrinkHud(v, p, ctx) {
+    const u = v.ui;
+    let model = null;
+    if (ctx.hudModel && v.slot >= 0) {
+      v.hudT = (v.hudT || 0) - ctx.dt;
+      if (v.hudT <= 0 || !v.hudModel) {
+        v.hudT = 0.25;
+        try { v.hudModel = ctx.hudModel(v.slot); } catch (e) { v.hudModel = null; ctx.warnOnce('impairment.hudModel', e); }
+      }
+      model = v.hudModel;
+    }
+    let html;
+    if (model && typeof model === 'object') {
+      const col = BAC_COLORS[model.color] || model.color || '#3cd46a';
+      const fill = Math.max(0, Math.min(1, +model.barFill || 0)) * 100;
+      const tick = Math.max(0, Math.min(1, +model.limitTick || 0)) * 100;
+      const icon = model.icon === 'water' || model.water ? WATER_ICON : DRINK_ICON;
+      const count = model.count ?? model.drinks ?? (p ? p.drinks || 0 : 0);
+      html = `${icon}<span>${esc(count)}</span><div class="bac">` +
+        `<em>${esc(model.bacText || '')}</em>` +
+        `<div class="bac-bar"><i style="width:${fill.toFixed(1)}%;background:${esc(col)}"></i><b style="left:${tick.toFixed(1)}%"><span>LIMIT</span></b></div>` +
+        (model.tierLabel ? `<div class="bac-tier" style="color:${esc(col)}">${esc(model.tierLabel)}</div>` : '') +
+        `</div>`;
+    } else {
+      const drinks = p ? p.drinks || 0 : 0;
+      const bac = p && typeof p.bac === 'number' && Number.isFinite(p.bac) ? `est. BAC ${p.bac.toFixed(3)}%` : 'BAC --';
+      html = `${DRINK_ICON}<span>${drinks}</span><em>${bac}</em>`;
+    }
+    v.set('drinks', u.drinks, html, 'innerHTML');
   }
 
   updateExtra(ctx) {
