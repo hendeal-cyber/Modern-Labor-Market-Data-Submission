@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Tipsy Kart</title>
+  <link rel="stylesheet" href="css/host.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.min.js" } }
+  </script>
+</head>
+<body data-screen="lobby">
+  <div id="app">
+    <!-- ============================== LOBBY ============================== -->
+    <section id="screen-lobby" class="screen active">
+      <header class="logo">
+        <h1><span class="t1">TIPSY</span><span class="t2">KART</span></h1>
+        <p class="tagline">Party kart racing for up to 4 phones &amp; a pile of CPU rivals</p>
+      </header>
+
+      <div class="lobby-grid">
+        <div class="panel join-panel">
+          <h2>Join on your phone</h2>
+          <div id="join-qr" class="qr-placeholder" aria-label="QR code to join"><span>QR</span></div>
+          <div class="join-url-wrap">
+            <div class="hint">Same Wi-Fi, then open:</div>
+            <div id="join-url" class="join-url">&hellip;</div>
+            <div id="join-alt" class="hint"></div>
+          </div>
+        </div>
+
+        <div class="panel players-panel">
+          <h2>Drivers</h2>
+          <div id="player-cards" class="cards"></div>
+          <div class="row">
+            <button id="btn-add-test" class="btn ghost">Add test player</button>
+          </div>
+        </div>
+
+        <div class="panel settings-panel">
+          <h2>Cup settings</h2>
+          <label>Races <select id="set-races">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option>
+          </select></label>
+          <label>Laps <select id="set-laps">
+            <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
+          </select></label>
+          <label>CPU karts <select id="set-cpus">
+            <option value="auto" selected>Fill grid to 8</option>
+            <option value="0">None</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+          </select></label>
+          <h3>The cup</h3>
+          <ol id="track-list" class="track-list"></ol>
+        </div>
+      </div>
+
+      <div class="lobby-actions">
+        <button id="btn-start" class="btn big">Start Cup</button>
+      </div>
+      <p class="keys-help">Keyboard test: <b>P1</b> WASD, Space drift, E item &nbsp;·&nbsp; <b>P2</b> arrows, Shift drift, Enter item</p>
+      <p class="disclaimer">Tipsy Kart is just a game. Never drink and drive in real life.</p>
+    </section>
+
+    <!-- ============================== RACE ============================== -->
+    <section id="screen-race" class="screen">
+      <div id="viewports" class="viewports" data-count="1"></div>
+      <div id="race-banner" class="race-banner"></div>
+      <button id="btn-quit" class="btn tiny quit" title="Quit to lobby">Quit</button>
+    </section>
+
+    <!-- ============================== RESULTS ============================== -->
+    <section id="screen-results" class="screen">
+      <div class="panel results-panel">
+        <h1 id="results-title">Race results</h1>
+        <p id="results-sub" class="sub"></p>
+        <table class="table">
+          <thead><tr><th></th><th>Driver</th><th>Time</th><th>Points</th><th>Total</th><th>Drinks</th></tr></thead>
+          <tbody id="results-body"></tbody>
+        </table>
+        <div class="row center"><button id="btn-next" class="btn big">Next race</button></div>
+      </div>
+    </section>
+
+    <!-- ============================== STANDINGS ============================== -->
+    <section id="screen-standings" class="screen">
+      <div class="panel results-panel">
+        <h1>Cup standings</h1>
+        <div id="podium" class="podium"></div>
+        <table class="table">
+          <thead><tr><th></th><th>Driver</th><th>Points</th><th>Drinks</th></tr></thead>
+          <tbody id="standings-body"></tbody>
+        </table>
+        <div class="row center">
+          <button id="btn-again" class="btn big">Play again</button>
+          <button id="btn-lobby" class="btn ghost">Back to lobby</button>
+        </div>
+      </div>
+    </section>
+    <canvas id="minimap" class="minimap"></canvas>
+  </div>
+  <button id="btn-mute" class="btn tiny mute">Sound: on (M)</button>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
