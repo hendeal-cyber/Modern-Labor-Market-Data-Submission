@@ -61,8 +61,11 @@ export function computeVisualFx(st, t, vp = REFERENCE_VIEWPORT, settings = {}) {
     saturate: P.saturate,
     ghostDx: dv * 0.018 * vp.w * (0.6 + 0.4 * Math.sin(gs * TAU * t / 5.9 + ph[5])),
     ghostDy: dv * 0.005 * vp.h * Math.sin(gs * TAU * t / 7.7 + ph[6]),
-    zoom: Math.cos(th) + aspect * Math.sin(th),
+    // The engine rolls the camera itself, so a CSS zoom would only crop and
+    // pulse. Only a renderer that rotates the canvas with CSS (and therefore has
+    // to hide the rotated corners) should opt in with settings.cssRotateZoom.
+    zoom: settings.cssRotateZoom ? Math.cos(th) + aspect * Math.sin(th) : 1,
     blink,
-    joltPx: 6 * sc * hiccupEnvelope(st),
+    joltPx: comfort * 6 * sc * hiccupEnvelope(st),
   };
 }

@@ -192,7 +192,7 @@ test('visual fx: neutral at L=0 and within caps at L=5 for any time', () => {
   assert.equal(neutralFx().zoom, 1);
   let maxBlur = 0, maxSway = 0, maxZoom = 0, maxGhost = 0;
   for (let i = 0; i < 4000; i++) {
-    const fx = computeVisualFx(visState(5), i * 0.05);
+    const fx = computeVisualFx(visState(5), i * 0.05, undefined, { cssRotateZoom: true });
     maxBlur = Math.max(maxBlur, fx.blurPx);
     maxSway = Math.max(maxSway, Math.abs(fx.swayDeg));
     maxZoom = Math.max(maxZoom, fx.zoom);
@@ -243,4 +243,14 @@ test('visual fx: values grow with level (blur, sway amplitude, double vision, tu
     let prev = -1;
     for (const L of [0, 1, 2, 3, 4, 5]) { const v = peak(L, key); assert.ok(v >= prev - 1e-9, `${key} at L=${L}`); prev = v; }
   }
+});
+
+test('S6/N2: zoom is 1 unless the CSS-rotate fallback is on; comfort halves the hiccup jolt', () => {
+  for (let i = 0; i < 200; i++) assert.equal(computeVisualFx(visState(5), i * 0.1).zoom, 1);
+  const z = computeVisualFx(visState(5), 1.0, undefined, { cssRotateZoom: true }).zoom;
+  assert.ok(z > 1 && z <= 1.13, `fallback zoom ${z}`);
+  const full = computeVisualFx(visState(3, { t: 2.0, hicStart: 2.0 }), 1, undefined, {});
+  const calm = computeVisualFx(visState(3, { t: 2.0, hicStart: 2.0 }), 1, undefined, { comfortVisuals: true });
+  assert.equal(full.joltPx, 6);
+  assert.equal(calm.joltPx, 3);
 });
