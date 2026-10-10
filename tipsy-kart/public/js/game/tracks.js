@@ -49,7 +49,7 @@ export const TRACKS = [
     noWall: [],
     theme: {
       sky: [0x0b0624, 0x3a1257], fog: 0x1a0b33, fogNear: 90, fogFar: 360,
-      ground: 0x1c1830, groundAlt: 0x242040, road: 0x2a2a3a, roadAlt: 0x323246, line: 0x3cf0ff,
+      ground: 0x1c1830, groundAlt: 0x242040, road: 0x34344a, roadAlt: 0x3c3c55, line: 0x3cf0ff,
       shoulder: 0x3a2f5c, curbA: 0xff3cc8, curbB: 0x3cf0ff, wallA: 0xff3cc8, wallB: 0x3c5cff,
       skirt: 0x221a3a, mud: 0x2b5a3a, sun: 0xb7a6ff, hemiSky: 0x7a5cff, hemiGround: 0x20122e,
       scenery: 'city', night: true,

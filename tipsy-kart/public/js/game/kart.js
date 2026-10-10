@@ -81,6 +81,7 @@ export class Kart {
     this.finished = false;
     this.finishTime = 0;
     this.place = 1;
+    this.boostLog = []; // transient {source, tier} per boost, drained like events
     this.events = [];   // transient events for audio/fx: 'boost','bump','spin','pad','item','lap'
   }
 
@@ -99,10 +100,12 @@ export class Kart {
     this.lastSafeD = d;
   }
 
-  boost(seconds, kick = 6) {
+  /** source: 'drift' | 'pad' | 'item'; tier: mini-turbo tier 1..3 (0 otherwise) */
+  boost(seconds, kick = 6, source = 'item', tier = 0) {
     this.boostTime = Math.max(this.boostTime, seconds);
     this.kick = Math.max(this.kick, kick);
     this.events.push('boost');
+    this.boostLog.push({ source, tier });
   }
 
   /** Returns true if the hit landed (false if a shield or invulnerability blocked it). */
@@ -215,7 +218,7 @@ export class Kart {
     // --- drifting ---
     if (this.drifting) {
       if (!drift || spd < 8 || this.spinTime > 0) {
-        if (this.driftTier > 0 && this.spinTime <= 0) this.boost(DRIFT_BOOST[this.driftTier - 1], 3 + this.driftTier * 2);
+        if (this.driftTier > 0 && this.spinTime <= 0) this.boost(DRIFT_BOOST[this.driftTier - 1], 3 + this.driftTier * 2, 'drift', this.driftTier);
         this.drifting = false;
         this.driftCharge = 0;
         this.driftTier = 0;
