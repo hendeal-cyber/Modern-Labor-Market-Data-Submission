@@ -238,3 +238,13 @@ test('engine-shaped raceFinished: results array with .raceIndex and isHuman flag
   assert.equal(g.session.players[0].tierLabel, 'Buzzed');
   assert.equal(g.session.players[1].bac, 0);
 });
+
+test('N1: the HUD bar is red whenever overLimit (heavy player at the race-3 floor)', () => {
+  const g = game4();
+  const now = Date.now();
+  Object.assign(g.session.players[0], { drinks: 2, drinkLog: [now], bodyKg: 120, sex: 'm' });
+  const st = getImpairmentStatus(0, g, now);
+  assert.ok(st.bac < st.limit, `est. BAC ${st.bac} is under the 0.05 line`);
+  assert.equal(st.overLimit, true, 'but level 2 reads over the limit');
+  assert.equal(hudModel(0, g, now).color, 'red');
+});

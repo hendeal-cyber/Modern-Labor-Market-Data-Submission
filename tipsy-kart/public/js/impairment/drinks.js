@@ -107,7 +107,7 @@ export function getImpairmentStatus(slot, game = globalThis.window && globalThis
 /** HUD view-model (spec 6.1): mug/water icon, 0..0.20 bar fill, limit tick and colour. */
 export function hudModel(slot, game = globalThis.window && globalThis.window.game, now = Date.now()) {
   const st = getImpairmentStatus(slot, game, now);
-  const color = st.bac >= st.limit ? 'red' : st.bac >= 0.03 ? 'amber' : 'green';
+  const color = st.overLimit || st.bac >= st.limit ? 'red' : st.bac >= 0.03 ? 'amber' : 'green';
   return {
     icon: st.water ? 'water' : 'mug',
     count: st.water ? 0 : st.drinks,
