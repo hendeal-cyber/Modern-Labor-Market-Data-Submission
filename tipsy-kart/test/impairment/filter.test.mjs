@@ -382,3 +382,36 @@ test('B1: a live lapse blink / hiccup jolt never freezes once the filter stops b
   assert.ok(imp.visual({ time: t }).joltPx > 0);
   assert.equal(imp.visual({ time: t + 1 }).joltPx, 0);
 });
+
+test('S3: race serial — a new cup (raceIndex back to 0) and single-race cups get fresh streams and a level snap', () => {
+  const game = makeFakeGame({ drinks: [4, 0, 0, 0] });
+  const api = installImpairment(game, { ui: false, quiet: true, skipSaved: true, syncMs: 0 });
+  const imp = api.filters[0];
+  const steerRun = () => {
+    const outs = [];
+    for (let i = 0; i < 600; i++) {
+      outs.push(game.inputFilters[0]({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, 1 / 60,
+        { time: i / 60, speed: 30, drinks: game.session.players[0].drinks, raceIndex: 0, slot: 0, kartState: { speed: 30, maxSpeed: 33, racePhase: 'racing' } }).steer);
+    }
+    return outs;
+  };
+  game.fire('raceStart', { raceIndex: 0 });
+  assert.equal(game.session.raceSerial, 1);
+  const cup1 = steerRun();
+  assert.equal(imp.state.race, 1);
+  game.fire('cupFinished', []);
+  game.fire('raceStart', { raceIndex: 0 }); // cup 2, race 1: engine raceIndex is 0 again
+  assert.equal(game.session.raceSerial, 2);
+  const cup2 = steerRun();
+  assert.equal(imp.state.race, 2, 'filter reset for the new race');
+  assert.notDeepEqual(cup2, cup1, 'cup 2 does not replay cup 1\'s random streams');
+
+  // single-race cups: raceIndex is always 0; a mid-results drink change still snaps at the next start
+  game.session.players[0].drinks = 0;
+  steerRun();
+  assert.ok(imp.state.Ls > 0, 'still easing within the same race');
+  game.fire('raceStart', { raceIndex: 0 });
+  game.inputFilters[0]({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, 1 / 60, { time: 0, raceIndex: 0, drinks: 0, slot: 0, kartState: {} });
+  assert.equal(imp.state.Ls, 0, 'new single-race cup snaps the level');
+  assert.equal(imp.state.race, 3);
+});

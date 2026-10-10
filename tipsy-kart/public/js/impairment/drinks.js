@@ -263,6 +263,10 @@ export function installDrinkTracking(game) {
 
   game.on('raceStart', () => {
     const s = sess();
+    // Night-wide race counter. The engine's raceIndex restarts at 0 every cup
+    // (and is always 0 in single-race cups), so the filter keys its per-race
+    // reset and random streams on this instead.
+    s.raceSerial = (Number.isFinite(s.raceSerial) ? s.raceSerial : 0) + 1;
     s._drinksAwardedFor = undefined; // a new race may award again
     if (!s._toastShown) {
       const any = s.players.some((p) => p.connected !== false

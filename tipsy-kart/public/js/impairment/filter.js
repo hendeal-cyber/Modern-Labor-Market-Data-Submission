@@ -1,6 +1,6 @@
 // Per-slot impairment input filter + visual effects (spec section 5.3).
 // Pure ES module: no DOM, no wall-clock reads inside filter(), so output is
-// deterministic for a given (session seed, slot, raceIndex, input sequence).
+// deterministic for a given (session seed, slot, race serial, input sequence).
 //
 //   const imp = createImpairment(slot, game, { onEvent });
 //   game.inputFilters[slot] = imp.filter;   // (rawInput, dt, ctx) -> input
@@ -111,7 +111,10 @@ export function createImpairment(slot, game, opts = {}) {
     if (k.isCpu) return raw; // belt and braces: never CPUs
     dt = clamp(fin(dt), 0, 0.1); // clamp hitches
     const Lt = level(ctx);
-    const ri = ctx.raceIndex ?? (game && game.session && game.session.raceIndex) ?? 0;
+    // Race key: the night-wide serial kept by drinks.js (bumped on every
+    // raceStart), else the engine's raceIndex (which restarts every cup).
+    const sess = game && game.session;
+    const ri = (sess && Number.isFinite(sess.raceSerial) ? sess.raceSerial : undefined) ?? ctx.raceIndex ?? (sess && sess.raceIndex) ?? 0;
     if (ri !== st.race) resetForRace(ri, Lt);
     st.Ls += (Lt - st.Ls) * (1 - Math.exp(-dt / 2));
 
