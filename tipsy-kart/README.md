@@ -57,6 +57,50 @@ Press **M** to mute or unmute.
 
 Circuits: **Hoppy Hills**, **Neon Nightcap**, **Frosty Pint Pass**, **Lime Lagoon**.
 
+### Playing a Beerio night
+
+> **Never drink and drive.** Tipsy Kart is just a game. The "est. BAC" it shows is a rough party
+> estimate, not a measurement, and it says nothing about whether you are fit to drive.
+
+**Setup**
+
+1. On the host laptop, run `npm install && npm start`. Open `http://localhost:3000/` on the
+   laptop or TV.
+2. Every phone joins the same Wi-Fi as the laptop and scans the lobby QR, which points to
+   `https://<laptop-LAN-IP>:3443/controller`. The page shows a one-time certificate warning:
+   - iPhone: tap **Show Details**, then **visit this website**.
+   - Android: tap **Advanced**, then **Proceed**.
+
+   Then type a name, tap **Let's go**, allow motion access for tilt steering, and calibrate.
+   Up to 4 phones can join, and CPU karts fill the rest of the grid.
+3. If phones can't connect, see the lobby hints. Guest and campus Wi-Fi often isolates
+   devices, so use a phone hotspot instead.
+4. Before a party, run through [docs/ON-DEVICE-CHECKLIST.md](docs/ON-DEVICE-CHECKLIST.md).
+
+**Drinks are counted for you.** Every human player gets **+1 drink at the end of every race**,
+DNFs included, and the game gets harder to drive as the count rises. Each player's estimated BAC
+also falls slowly over time between drinks. By **race 3 onward** most players are past the limit
+line, and driving gets genuinely hard: wandering steering, delayed and fumbled inputs, blur,
+sway and double vision. The first time anyone gets there, the game shows a one-off toast,
+"Everyone's over the limit. Good luck.". Drink counts carry over from cup to cup. They only
+reset when the host presses **New night**.
+
+**The host Tipsy panel.** Open it with the **Tipsy** button at the bottom left of the host
+screen. The button is hidden while a race is running.
+
+* **Intensity**: Lightweight, Standard or Hardcore. This scales how strong every effect is.
+* **Limit line**: 0.05 % or 0.08 %. This sets where a player shows as "over the limit".
+* **Water mode** (per player): that player drinks water. Their races count waters instead of
+  drinks and they drive with no impairment. Alcohol already counted still shows in their est. BAC.
+* **- / +** (per player): correct a player's drink count by hand. Each phone can also adjust its own
+  count with the -/+ drink buttons on its results card.
+* **Body weight and sex** (per player): used for the BAC estimate.
+* **Comfort visuals** halves the sway and wobble effects, for anyone prone to motion sickness.
+  **Phone swim** makes the phone buttons drift when a player is drunk.
+* **New night (reset drinks)**: the only way to set every drink count back to zero.
+
+Pace yourselves, keep water on the table, and arrange a ride home.
+
 ## Tests
 
 ```bash

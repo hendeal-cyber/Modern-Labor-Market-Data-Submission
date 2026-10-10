@@ -12,32 +12,43 @@ IP rule: no code, data or assets are copied from Nintendo or Mario Kart. That in
 
 The game is in the `tipsy-kart/` folder of `hendeal-cyber/Modern-Labor-Market-Data-Submission`, on branch `claude/beerio-kart-multiplayer-t2w870`. That branch is the integration branch.
 
-Lane branches. They exist locally in the original container, and each one is worked on in its own git worktree under `.claude/worktrees/`:
+**Status: INTEGRATED.** All lanes are merged into this branch at their final tips, and every automated suite passes on the merged tree.
 
-| Branch | Model | Purpose | Status on the integration branch |
+Lane branches. They exist locally in the original container, and each one was worked on in its own git worktree under `.claude/worktrees/`:
+
+| Branch | Model | Purpose | Final SHA merged |
 | --- | --- | --- | --- |
-| `lane/research-phone` | Opus | Phone-controller research spec (`docs/research/phone-controls.md`) | Merged (f53bbe0) |
-| `lane/research-impairment` | Opus | Drink-impairment research spec (`docs/research/impairment.md`) | Merged (f1cf4cc) |
-| `lane/engine` | Opus | Core game and server | Checkpoint-merged at 1e8234d (in progress) |
-| `lane/controller` | Sonnet | Phone controller, built to the phone spec | Checkpoint-merged at 6ad12d0 (in progress) |
-| `lane/impairment` | Sonnet | Drink impairment, built to the impairment spec | Checkpoint-merged at 5d323ea (in progress) |
+| `lane/research-phone` | Opus | Phone-controller research spec (`docs/research/phone-controls.md`) | f53bbe0 |
+| `lane/research-impairment` | Opus | Drink-impairment research spec (`docs/research/impairment.md`) | f1cf4cc |
+| `lane/engine` | Opus | Core game and server | 068eb7d |
+| `lane/controller` | Sonnet | Phone controller, built to the phone spec | f3a5033 |
+| `lane/impairment` | Sonnet | Drink impairment, built to the impairment spec | 40840d1 |
 
-**Current state (backup checkpoint).** All three implementation lanes are merged here at their current tips, purely as a durability backup. That is not the final integration. The research lanes have reviewed the implementations against their specs, and each lane is fixing those review findings on its own branch. Some of those fixes were still uncommitted in the engine and controller worktrees when this checkpoint was taken, so they are not in it.
+They were merged in the order engine, impairment, controller, with no conflicts. `package.json` holds the union of every lane's deps and scripts. The review findings from the research lanes were fixed in each lane before this merge. Each lane's status file is at `docs/handoff/<lane>.md`, and its integration notes are in `docs/INTEGRATION-<lane>.md`.
 
-Each lane keeps a status file at `docs/handoff/<lane>.md`, and its integration notes are in `docs/INTEGRATION-<lane>.md`.
+## Test results on the integrated tree
 
-Test suites, all run from `tipsy-kart/` after `npm install`:
-- `npm test`: engine smoke (headless browser).
-- `npm run test:net`: controller protocol, tilt and phone e2e tests.
-- `node --test test/impairment/`: impairment unit tests. `CALIBRATE=1` adds the calibration run and `E2E=1` the browser run.
+All suites were run one at a time from `tipsy-kart/` after `npm install`, on a quiet machine.
+
+| Suite | Command | Result |
+| --- | --- | --- |
+| Engine smoke (headless browser, impairment plugin installed) | `npm test` | 42/42 PASS, "All smoke checks passed" (about 2.3 min) |
+| Impairment unit | `node --test test/impairment/` | 67 tests: 65 pass, 0 fail, 2 skipped (the opt-in CALIBRATE and E2E runs) |
+| Impairment calibration (20 seeds) | `CALIBRATE=1 node test/impairment/calibrate.mjs` | 26/26 PASS, "ALL TARGETS MET" |
+| Impairment e2e (real game, 4 players, drinks 0/2/5) | `E2E=1 node --test test/impairment/` | 67 tests: 66 pass, 0 fail, 1 skipped (CALIBRATE) |
+| Controller / net (4 phones + host on the real game, protocol, tilt, timing) | `npm run test:net` | 50/50 pass, 5 suites |
+| Manual server check | `npm start` then `curl` | `/`, `/controller` and `/api/info` return 200 over HTTP on 3000 and over HTTPS on 3443 (self-signed). `/api/info` lists both plugins and `joinUrl` `https://<lan-ip>:3443/controller` |
+
+IP sweep: the keyword grep over `tipsy-kart/` has no hits in game code, assets or UI. The only matches are the IP-rule statements in this file and in `docs/research/phone-controls.md`, plus the CSS colour name `peachpuff` inside vendored three.js.
+
+The real-phone checks the automated suites cannot cover are in `docs/ON-DEVICE-CHECKLIST.md`. The "Playing a Beerio night" section of `README.md` explains how to play.
 
 The separate repo `hendeal-cyber/tipsy-kart` (public, still empty) is attached to the session. Pushing to it is blocked by the permission system until the user explicitly allows it. Do not try to work around that block.
 
 ## Remaining plan
 
-1. The lanes finish fixing the review findings and commit them on `lane/engine`, `lane/controller` and `lane/impairment`.
-2. FINAL INTEGRATION (still pending): integration-qa merges the final lane tips into this branch following `docs/INTEGRATION-*.md`. It runs every test suite plus a 4-phone Playwright test, then pushes this branch. Once the user grants permission, it also copies the contents of `tipsy-kart/` to the root of `hendeal-cyber/tipsy-kart` and pushes them to its `main` branch.
-3. The research lanes re-check the final result against their specs. Any fixes go back to the same lanes.
+1. Run `docs/ON-DEVICE-CHECKLIST.md` on real iPhone and Android phones. Send any failures back to the owning lane.
+2. Once the user grants permission, copy the contents of `tipsy-kart/` to the root of `hendeal-cyber/tipsy-kart` and push them to its `main` branch.
 
 Never commit `.claude/worktrees/`, `node_modules/` or `.cert/`.
 
@@ -48,6 +59,6 @@ Never commit `.claude/worktrees/`, `node_modules/` or `.cert/`.
 
 ## Resuming in a fresh session
 
-1. Check out `claude/beerio-kart-multiplayer-t2w870` and run `cd tipsy-kart && npm install && npm test`.
-2. If the local lane branches are gone, recreate each lane from this branch, for example `git worktree add .claude/worktrees/controller -b lane/controller`. Then re-apply any review fixes listed in that lane's `docs/handoff/<lane>.md`.
+1. Check out `claude/beerio-kart-multiplayer-t2w870` and run `cd tipsy-kart && npm install && npm test && npm run test:net && node --test test/impairment/`.
+2. For further work, branch a lane from this integrated branch, for example `git worktree add .claude/worktrees/controller -b lane/controller-2`.
 3. Read `docs/handoff/*.md` and `docs/research/*.md`, then continue the plan above.
