@@ -55,6 +55,7 @@ class PlayerView {
       driftBar: $('.hud-drift i'), center: $('.hud-center'), warn: $('.hud-warn'),
     };
     this.cache = {};
+    this.cssSize = { w: 0, h: 0 };
     this.camera = new THREE.PerspectiveCamera(62, 16 / 9, 0.3, 1600);
     this.camYaw = null;
     this.fov = 62;
@@ -165,6 +166,7 @@ export class Viewports {
     const scale = Math.min(dpr, n === 1 ? 1.5 : n === 2 ? 1.25 : 1);
     const pw = Math.max(64, Math.round(w * scale)), ph = Math.max(64, Math.round(h * scale));
     for (const v of this.views) {
+      v.cssSize = { w, h };
       if (v.canvas.width !== pw || v.canvas.height !== ph) { v.canvas.width = pw; v.canvas.height = ph; }
       v.camera.aspect = w / h;
       v.baseFov = w / h > 2.2 ? 50 : w / h > 1.5 ? 60 : 66;
@@ -211,7 +213,7 @@ export class Viewports {
       v.kart = k;
       let fx = null;
       if (v.slot >= 0) {
-        try { fx = ctx.visualFx[v.slot] ? ctx.visualFx[v.slot]({ time: now, slot: v.slot, speed: k.speed, kartState: k, drinks: ctx.drinksOf(v.slot), raceIndex: ctx.raceIndex }) : null; } catch (e) { fx = null; ctx.warnOnce('visualFx', e); }
+        try { fx = ctx.visualFx[v.slot] ? ctx.visualFx[v.slot]({ time: now, slot: v.slot, speed: k.speed, kartState: k._filterCtx ? k._filterCtx.kartState : k, drinks: ctx.drinksOf(v.slot), raceIndex: ctx.raceIndex, viewport: v.cssSize }) : null; } catch (e) { fx = null; ctx.warnOnce('visualFx', e); }
       }
       const num = (key, def) => { const x = fx ? +fx[key] : NaN; return Number.isFinite(x) ? x : def; };
       const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -280,8 +282,8 @@ export class Viewports {
     const lap = Math.min(race.laps, Math.max(1, k.lapsDone + 1));
     v.set('lap', u.lap, k.finished ? 'FINISHED' : `LAP ${lap}/${race.laps}`);
     const drinks = p ? p.drinks || 0 : 0;
-    const bac = p && typeof p.bac === 'number' ? p.bac.toFixed(2) : '--';
-    v.set('drinks', u.drinks, `${DRINK_ICON}<span>${drinks}</span><em>BAC ${bac}</em>`, 'innerHTML');
+    const bac = p && typeof p.bac === 'number' && Number.isFinite(p.bac) ? `est. BAC ${p.bac.toFixed(3)}%` : 'BAC --';
+    v.set('drinks', u.drinks, `${DRINK_ICON}<span>${drinks}</span><em>${bac}</em>`, 'innerHTML');
     v.set('speed', u.speed, String(Math.round(k.speed * 3.6)));
     // item slot with roulette
     let icon = '';

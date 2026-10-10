@@ -472,6 +472,10 @@ export class Game {
     ks.boosting = k.boostTime > 0; ks.offroad = k.q.offroad; ks.spinning = k.spinTime > 0;
     ks.place = k.place; ks.lap = k.lapsDone + 1; ks.item = k.item; ks.finished = k.finished;
     ks.wrongWay = k.wrongWay; ks.heading = k.h; ks.grounded = k.grounded; ks.racePhase = this.race.phase;
+    // seconds since GO (negative while the countdown runs)
+    ks.raceTime = this.race.phase === 'countdown' ? -this.race.countdown : this.race.time;
+    // falling off the track or frozen just after a respawn
+    ks.respawning = k.frozen > 0 || !k.q.hasGround;
     const f = this.inputFilters[slot];
     if (typeof f === 'function' && f !== identity) {
       try {
