@@ -88,8 +88,20 @@ server) and `TIPSY_QUIET=1`.
 
 ```bash
 cd tipsy-kart
-npm run test:net     # node --test test/net/   (protocol, tilt math, 4 phones + host e2e)
+npm run test:net     # node --test --test-concurrency=1 test/net/*.test.js   (44 tests, ~3.5 min)
 ```
+
+- `protocol.test.js` covers the hub over `ws` and over `ws-lite`. It tests slots, queue, resume, replace, kick,
+  idle, reservation, dead detection, SSE+POST, guards, `/api/info`, cert fallbacks, and relay latency < 50 ms.
+- `tilt.test.js` covers the steering math (the spec's worked example), the stick curve, phase mapping and QR
+  URLs.
+- `phones.e2e.test.js` runs the real game host and 4 phones: 2 https (one with WebSocket forced to fail, so
+  SSE+POST) and 2 http (one on the LAN IP, so insecure). Extra phones cover the queue and permission cases. It
+  checks join, tilt mapping, the stick, gas, drift and item, and a full lap driven by tilt with GAS held. It also
+  checks offline coast and reconnect, page reload resume, host reload with drinks restored, kick, the lobby
+  remove button, vibes, the iOS permission flow, page hygiene and rtt.
+  Latency is budgeted as 150 ms plus two measured host frames, because the sandbox renders with software GL at
+  2 to 5 fps. Measured values: touch 200-310 ms, SSE 50-800 ms, coast 220-270 ms.
 
 The e2e suite drives the **real** game with Playwright 1.56 from `/opt/node-tools/node_modules/playwright`
 (falling back to the `playwright-core` devDependency), with `PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`.
