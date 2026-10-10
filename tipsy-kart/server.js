@@ -102,7 +102,9 @@ function handleRequest(req, res) {
 }
 
 /**
- * Start the server. Resolves to { httpServer, port, close() }.
+ * Start the server. Resolves to { httpServer, port, httpsPort, close() }.
+ * httpsPort is set when net/hub.js exposes ready()/info() with an httpsPort
+ * (the controller lane's HTTPS server), otherwise it is null.
  * opts.port: port to bind (0 = random free port). opts.host: bind address.
  */
 function start(opts = {}) {
@@ -112,9 +114,10 @@ function start(opts = {}) {
 
   // Optional network hub (phone-controller lane).
   const hubPath = path.join(__dirname, 'net', 'hub.js');
+  let hub = null;
   if (fs.existsSync(hubPath)) {
     try {
-      const hub = require(hubPath);
+      hub = require(hubPath);
       if (hub && typeof hub.attach === 'function') hub.attach(httpServer);
     } catch (e) {
       console.error('[tipsy-kart] failed to attach net/hub.js:', e);
@@ -123,23 +126,51 @@ function start(opts = {}) {
 
   return new Promise((resolve, reject) => {
     httpServer.once('error', reject);
-    httpServer.listen(port, host, () => {
+    httpServer.listen(port, host, async () => {
       httpServer.off('error', reject);
       PORT = httpServer.address().port;
-      if (!opts.quiet) printBanner();
+      const httpsPort = await hubHttpsPort(hub);
+      if (!opts.quiet) printBanner(httpsPort);
       resolve({
         httpServer,
         port: PORT,
-        close: () => new Promise((res) => {
-          if (typeof httpServer.closeAllConnections === 'function') httpServer.closeAllConnections();
-          httpServer.close(() => res());
-        }),
+        httpsPort,
+        close: async () => {
+          if (hub && typeof hub.close === 'function') {
+            try { await hub.close(); } catch (e) { /* ignore */ }
+          }
+          await new Promise((res) => {
+            if (typeof httpServer.closeAllConnections === 'function') httpServer.closeAllConnections();
+            httpServer.close(() => res());
+          });
+        },
       });
     });
   });
 }
 
-function printBanner() {
+/** Feature-detect the hub's HTTPS port: await hub.ready() (max 5 s), then hub.info().httpsPort. */
+async function hubHttpsPort(hub) {
+  if (!hub || typeof hub.info !== 'function') return null;
+  try {
+    if (typeof hub.ready === 'function') {
+      let timer;
+      await Promise.race([
+        Promise.resolve(hub.ready()),
+        new Promise((res) => { timer = setTimeout(res, 5000); }),
+      ]);
+      clearTimeout(timer);
+    }
+    const i = await hub.info();
+    const p = i && Number(i.httpsPort);
+    return Number.isInteger(p) && p > 0 ? p : null;
+  } catch (e) {
+    console.error('[tipsy-kart] net/hub.js info() failed:', e.message);
+    return null;
+  }
+}
+
+function printBanner(httpsPort) {
   const i = info();
   console.log('');
   console.log('  Tipsy Kart is running!');
@@ -147,6 +178,10 @@ function printBanner() {
   if (i.lanUrls.length) {
     console.log('  Phones on the same Wi-Fi join at:');
     for (const u of i.controllerUrls) console.log(`    ${u}`);
+    if (httpsPort) {
+      console.log(`  Secure (HTTPS) controller on port ${httpsPort}:`);
+      for (const ip of lanAddresses()) console.log(`    https://${ip}:${httpsPort}/controller`);
+    }
   } else {
     console.log('  (No LAN IPv4 address found - phones cannot join until this machine is on a network.)');
   }

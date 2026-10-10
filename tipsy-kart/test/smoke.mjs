@@ -26,7 +26,6 @@ const check = (ok, msg) => {
   console.log(`${ok ? 'PASS' : 'FAIL'}  ${msg}`);
   if (!ok) failures++;
 };
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const { start } = require('../server.js');
 const srv = await start({ port: 0, host: '127.0.0.1', quiet: true });
@@ -53,6 +52,11 @@ page.on('pageerror', (e) => errors.push('pageerror: ' + e.message));
 page.on('requestfailed', (r) => errors.push('requestfailed: ' + r.url()));
 
 const state = () => page.evaluate(() => window.game.getState());
+// Wait for simulated (not wall-clock) time so slow software-GL machines still pass.
+const waitSim = async (seconds, ms = 120000) => {
+  const t0 = await page.evaluate(() => window.game.simTime);
+  await page.waitForFunction((t) => window.game.simTime >= t, t0 + seconds, { timeout: ms, polling: 100 });
+};
 const waitPhase = async (phase, ms = 60000) => {
   await page.waitForFunction((p) => window.game.getState().phase === p, phase, { timeout: ms, polling: 100 });
 };
@@ -77,6 +81,8 @@ try {
     window.__ev = { playerJoined: [], playerLeft: [], raceStart: [], raceFinished: [], cupFinished: [], stateChanged: 0 };
     for (const k of ['playerJoined', 'playerLeft', 'raceStart', 'raceFinished', 'cupFinished']) window.game.on(k, (p) => window.__ev[k].push(p));
     window.game.on('stateChanged', () => { window.__ev.stateChanged++; });
+    window.__hap = [];
+    for (const k of ['hit', 'boost', 'itemUsed', 'itemGot', 'lap', 'finish']) window.game.on(k, (p) => window.__hap.push({ evt: k, ...p }));
   });
 
   // 2. add players (2 through the lobby button, 1 through the hub API)
@@ -115,7 +121,7 @@ try {
   const startPos = Object.fromEntries((await state()).positions.map((p) => [p.id, p]));
   // 4. drive slot 0 with setPlayerInput
   await page.evaluate(() => window.game.setPlayerInput(0, { steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }));
-  await sleep(2500);
+  await waitSim(2.5);
   st = await state();
   const p0 = st.positions.find((p) => p.slot === 0);
   const p0s = startPos[p0.id];
@@ -126,7 +132,7 @@ try {
   // autopilot for longer driving (input still flows through the filter)
   await page.evaluate(() => window.game.debug.autopilot(0, true));
   const before = p0.progress;
-  await sleep(4000);
+  await waitSim(4);
   st = await state();
   const p0b = st.positions.find((p) => p.slot === 0);
   check(p0b.progress > before + 20, `slot 0 keeps progressing around the track (${before} -> ${p0b.progress})`);
@@ -166,6 +172,10 @@ try {
     return { used, heldIgnored, usedAgain: k.item === null && k.shieldTime > 0 };
   });
   check(itemRes.used && itemRes.heldIgnored && itemRes.usedAgain, `useItem is edge-triggered ${JSON.stringify(itemRes)}`);
+  const hap = await page.evaluate(() => window.__hap);
+  check(hap.some((h) => h.evt === 'itemUsed' && h.slot === 1 && h.item === 'fizz'), 'itemUsed {slot, item} emitted');
+  check(hap.some((h) => h.evt === 'boost' && h.slot === 1 && h.tier === 0), 'boost {slot, tier} emitted');
+  check(hap.every((h) => Number.isInteger(h.slot) && h.slot >= 0 && h.slot <= 2), `haptic events only for human slots (${hap.length} events: ${[...new Set(hap.map((h) => h.evt))].join(',')})`);
 
   const fps = await page.evaluate(() => new Promise((r) => { let n = 0; const t0 = performance.now(); const f = () => { n++; if (performance.now() - t0 < 2000) requestAnimationFrame(f); else r(n / ((performance.now() - t0) / 1000)); }; requestAnimationFrame(f); }));
   console.log(`info  headless software-GL frame rate with 3 viewports: ${fps.toFixed(1)} fps`);
@@ -187,7 +197,7 @@ try {
     await page.click('#btn-next');
     await waitPhase('racing');
     await page.evaluate(() => { for (let s = 0; s < 3; s++) window.game.debug.autopilot(s, true); });
-    await sleep(3000);
+    await waitSim(2);
     await page.screenshot({ path: path.join(shots, `04-race${r + 1}.png`) });
     await page.evaluate(() => window.game.debugFinishRace());
   }
@@ -205,7 +215,7 @@ try {
   await page.evaluate(() => window.game.startCup({ races: 1, laps: 1 }));
   await waitPhase('racing');
   await page.evaluate(() => { for (let s = 0; s < 4; s++) window.game.debug.autopilot(s, true); });
-  await sleep(2500);
+  await waitSim(2);
   check(await page.locator('.vp-canvas').count() === 4, '4 player viewports rendered');
   await page.screenshot({ path: path.join(shots, '06-race-4p.png') });
   await page.evaluate(() => window.game.debugFinishRace());
@@ -216,7 +226,7 @@ try {
   await page.evaluate(() => window.game.startCup({ races: 1, laps: 3 }));
   await waitPhase('racing');
   await page.evaluate(() => window.game.debug.autopilot(0, true));
-  await sleep(3500);
+  await waitSim(3);
   await page.screenshot({ path: path.join(shots, '07-race-1p.png') });
   await page.evaluate(() => window.game.debugFinishRace());
 

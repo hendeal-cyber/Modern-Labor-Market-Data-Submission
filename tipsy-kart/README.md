@@ -112,7 +112,10 @@ tipsy-kart/
 
 * `node server.js` (`npm start`) auto-starts the server only when the file is run directly.
 * `require('./server').start({ port, host, quiet })` returns a Promise of
-  `{ httpServer, port, close() }`. Pass `port: 0` to get a random free port.
+  `{ httpServer, port, httpsPort, close() }`. Pass `port: 0` to get a random free port.
+  `httpsPort` is read from the hub if `net/hub.js` exports `ready()` and `info()`:
+  the server awaits `hub.ready()` for at most 5 s, then reads `hub.info().httpsPort`.
+  Otherwise `httpsPort` is `null`. `close()` also calls `hub.close()` if the hub has one.
 * If `net/hub.js` exists, `require('./net/hub').attach(httpServer)` is called before the server listens.
 * `GET /api/info` returns
   `{ port, lanUrls, controllerUrls, plugins }`.
@@ -144,6 +147,19 @@ plugins have loaded, the game emits `pluginsLoaded`.
 | `debug.autopilot(slot, on)` | Lets the CPU driver steer a human slot. Its input still goes through `inputFilters`. |
 | `debug.setTimeScale(s)` | Speeds up or slows down the simulation. |
 | `ready` | `true` once the game is constructed. A `game-ready` window event is also dispatched. |
+
+#### Gameplay events for phone haptics
+
+The following events are emitted with `game.emit` for human slots only. CPU karts never emit them.
+
+| Event | Payload | When |
+| --- | --- | --- |
+| `hit` | `{slot, kind}` | `kind` is `'slick'` (ran into a Sticky Spill) or `'bouncer'` (hit by a Cork Bomb), or a bump: `'wall'` (wall impact at more than 6 units/s into the wall) or `'kart'` (kart-to-kart bump at more than 5 units/s closing speed). Bumps are throttled to one per 300 ms per slot. |
+| `boost` | `{slot, tier, source}` | `source` is `'drift'` (mini-turbo, `tier` 1-3), `'pad'` (boost pad, `tier` 0) or `'item'` (Fizz Boost, `tier` 0). |
+| `itemUsed` | `{slot, item}` | An item was fired. `item` is one of `fizz`, `slick`, `bouncer`, `bubble`. |
+| `itemGot` | `{slot, item}` | The item roulette finished and the item is ready. |
+| `lap` | `{slot, lap, totalLaps}` | The player crossed the line and started lap `lap`, which is 2 or more. |
+| `finish` | `{slot, place}` | The player finished the race. `debugFinishRace()` does not emit it. |
 
 `raceFinished` results are an array of
 `{place, id, name, color, isHuman, slot, finished, time, bestLap, points, totalPoints}`.

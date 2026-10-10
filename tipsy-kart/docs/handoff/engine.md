@@ -26,6 +26,11 @@ Branch: `lane/engine`. Worktree: `.claude/worktrees/agent-a99f73f95dc94826e`.
 6. The title line "Tipsy Kart is just a game. Never drink and drive in real life." is shown.
 7. The `game-ready` window event fires and `window.game.ready = true` is set.
 
+## Follow-up (haptics): done
+- Per-slot events: `hit {slot, kind}`, `boost {slot, tier, source}`, `itemUsed {slot, item}`, `itemGot {slot, item}`, `lap {slot, lap, totalLaps}` and `finish {slot, place}`. They are emitted for human slots only. Wall and kart bumps are throttled to one per 300 ms per slot.
+- `start()` also resolves `httpsPort`, taken from `hub.info()` after `await hub.ready()` (5 s timeout), or `null`.
+- The smoke test now waits on simulated time instead of wall-clock time, so a busy machine does not fail it.
+
 ## In progress / next steps
 - Optional polish: puffier clouds, wheel spin, and a start-boost mechanic.
 - Re-run `npm test` after merging the other lanes. The test fails on any console error.
