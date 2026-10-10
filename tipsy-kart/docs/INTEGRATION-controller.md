@@ -15,7 +15,7 @@ This file lists what the engine and the other lanes need to know, and what is st
   request handler and the same hub, with a self-signed certificate made by `net/cert.js`;
 - wraps `httpServer.close()` so the hub's timers, sockets and the HTTPS server shut down with it.
 
-`require('./net/hub').ready()` resolves once HTTPS is listening, or once it has been given up on.
+`require('./net/hub')` exports `attach`, `ready()` (resolves once HTTPS is listening or was given up on), `info()` (join URLs, `httpsPort`) and `close()` (stops timers, sockets and the HTTPS twin). The engine's `start()` resolves `httpsPort` from them and calls `close()`. With `start({port: 0})` and no `HTTPS_PORT`/`PORT` env, HTTPS also takes a free port instead of 3443.
 `require('./net/hub').info()` returns the join URLs. The engine's startup banner still prints the plain-HTTP
 phone links. The hub prints a second block with the https QR link (set `TIPSY_QUIET=1` to silence it).
 Optionally, the engine banner could drop its phone lines and print `hub.info().joinUrl` instead.
@@ -54,7 +54,9 @@ a floating join panel with player cards is shown in the lobby (press **J** to to
 | `getImpairmentStatus(slot)` → `{drinks,bac,level,tierLabel,limit,overLimit}` | **not on the engine yet** (impairment lane). When present, the phone meter shows `level/5`, because the impairment spec's level runs 0..5, with the label `tierLabel`. Without it, the fallback is drinks/6 with the labels Sober, Warm, Giggly, Wobbly and Legless |
 | `adjustDrinks(slot, delta)` | **not on the engine yet** (impairment lane). Used when present |
 | `setWaterMode(slot, bool)` | not used: the phone has no water button yet |
-| `on('hit'/'boost'/'itemUsed', {slot})` | not emitted by the engine. The phone `bump`/`boost`/`item` vibes stay silent until it is |
+| `on('hit'/'boost'/'itemUsed'/'itemGot'/'lap'/'finish', {slot,...})` | present (engine 1e8234d). Cues: hit slick/bouncer → `hit` [120,40,60], wall/kart → `hitSoft` 45; boost tier 1/2/3 → `boost1/2/3` (rising), pad/item → `boost`; itemUsed → `item`; itemGot → `itemGot`; lap → `lap`; finish → `finish`. Once the engine emits lap/finish, the bridge stops deriving them from `getState()` |
+| `on('impairmentEvent', {type,slot})` or `game.impairment.on('event', cb)` | impairment lane; both feature-detected (deduped within 150 ms) → `woozy` cue on that phone (vibration on Android, colour flash on iOS). No input delay is added on the phone |
+| `on('drinksChanged')` | impairment lane; triggers an immediate HUD push so the drinks count and tipsy meter refresh at once |
 
 Remove-button interop: when the lobby's own remove (✕) button calls `game.removePlayer(slot)` on a phone player,
 the bridge sees `playerLeft` with the player gone from `session.players` and sends `kick` to the hub. The phone
@@ -80,7 +82,7 @@ npm start            # http :3000 and https :3443
 
 Environment variables: `PORT` (3000), `HTTPS_PORT` (3443), `TIPSY_HTTPS=0` (HTTP only), `TIPSY_JOIN=http` (put
 the http URL in the QR), `TIPSY_HOST=<ip>` (force the advertised address), `TIPSY_CERT`/`TIPSY_KEY` (your own,
-for example mkcert), `TIPSY_CERT_DIR`, `TIPSY_IDLE_MS` (180000), `TIPSY_LOBBY_RESERVE_MS` (60000),
+for example mkcert), `TIPSY_CERT_DIR`, `TIPSY_IDLE_MS` (180000) and `TIPSY_LOBBY_RESERVE_MS` (60000) (both apply only while someone is queued for a slot, because a kick or expiry wipes that player's drinks), `TIPSY_LOBBY_CAP_MS` (900000, the hard cap otherwise),
 `TIPSY_HOST_ANY=1` (let a non-local browser be the host), `TIPSY_WS=lite` (force the hand-rolled WebSocket
 server) and `TIPSY_QUIET=1`.
 
@@ -121,7 +123,8 @@ It launches `channel: 'chromium'` (the new headless mode). The default headless 
   loaded, and it runs the full protocol suite as well.
 - The phone listens for `deviceorientation` from page load on platforms without a permission prompt, so the
   sensor check after "Let's go" is instant.
-- The spec's `server.js` `start({port, httpsPort})` returning `httpsPort` is not in the engine's `start()`. Read
-  `require('./net/hub').info().httpsPort` after `await hub.ready()`.
+- Lobby idle kick and reservation expiry use the spec's 180 s / 60 s only while the queue is non-empty, otherwise a 15 min cap (review item 5).
+- Phone behaviour beyond the spec (review fixes): the steering frame sticks to the last landscape angle (an iPhone rotating to portrait mid-roll keeps steering; a real 90/270 flip mirrors the neutral, no auto-recalibration); while racing the portrait overlay becomes a small banner and rotation does not release held buttons; phone-side 5 s watchdog and 4 s connect timeout (count toward the SSE fallback); a socket is reopened after > 2 s in the background; Back is guarded during play; calibration waits 300 ms after the tap and samples 600 ms; fullscreen + landscape lock and the wake lock are re-requested on the next touch after an app switch; the iOS switch haptic sits only on ITEM (no pointer capture there).
+- Not done: optional auto-recalibration during the 3-2-1 countdown (a player may be holding a deliberate lean; manual Recalibrate and the double-tap on the wheel stay).
 - Not verifiable headlessly (spec 6.4): real iOS Safari wss-versus-self-signed behaviour, the motion permission
   prompt, the native switch haptic, and wake lock on hardware.
