@@ -273,7 +273,9 @@ export function initNetHost(game, opts = {}) {
   // ---------------------------------------------------------------- HUD out (5 Hz, only changes)
   function gameState() { try { return typeof game.getState === 'function' ? (game.getState() || {}) : {}; } catch (e) { return {}; } }
 
+  /** Cheap: reads game.phase when the engine exposes it, else falls back to getState(). */
   function currentPhase() {
+    if (typeof game.phase === 'string') return mapPhase(game.phase) || forced.phase || 'lobby';
     const st = gameState();
     return mapPhase(st.phase) || mapPhase(st.state) || forced.phase || 'lobby';
   }
@@ -318,10 +320,11 @@ export function initNetHost(game, opts = {}) {
     return { drinks, impair: { level: Math.round(lv * 100) / 100, label: FALLBACK_LABELS[Math.min(4, Math.floor(lv * 4.999))] } };
   }
 
-  function pushHud(force) {
+  function pushHud(force, given) {
     if (!api.connected) return;
-    const st = gameState();
-    const phase = mapPhase(st.phase) || mapPhase(st.state) || forced.phase || 'lobby';
+    // getState() is not free (standings, positions): skip it entirely while no phone is in the room
+    const st = roster.size ? (given && typeof given === 'object' ? given : gameState()) : {};
+    const phase = roster.size ? (mapPhase(st.phase) || mapPhase(st.state) || forced.phase || 'lobby') : currentPhase();
     const all = { phase };
     if (session.raceIndex != null) all.raceIndex = session.raceIndex;
     const allKey = JSON.stringify(all);
@@ -364,7 +367,7 @@ export function initNetHost(game, opts = {}) {
   on('raceStart', () => { if (!mapPhase(gameState().phase)) forced.phase = 'racing'; vibeAll('go'); pushHud(true); });
   on('raceFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'results'; for (const [slot] of roster) send({ t: 'vibe', slot, cue: 'finish' }); pushHud(true); });
   on('cupFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'cupResults'; pushHud(true); });
-  on('stateChanged', () => pushHud(false));
+  on('stateChanged', (st) => pushHud(false, st));
   // The big screen removed a phone player itself (e.g. the lobby's remove button): free the slot on the hub too.
   on('playerLeft', (e) => {
     const slot = e && e.slot;
