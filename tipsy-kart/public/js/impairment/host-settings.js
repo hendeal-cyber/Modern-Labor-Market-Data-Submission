@@ -53,7 +53,7 @@ const CSS = {
     border: '0', borderRadius: '14px', cursor: 'pointer', opacity: '0.85',
   },
   panel: {
-    position: 'fixed', left: '10px', bottom: '48px', zIndex: '9998', width: '300px',
+    position: 'fixed', left: '10px', bottom: '48px', zIndex: '9998', width: '340px',
     maxHeight: '70vh', overflowY: 'auto', boxSizing: 'border-box', padding: '10px 12px',
     font: '12px/1.4 system-ui, sans-serif', color: '#fff', background: 'rgba(27,16,51,0.94)',
     border: '1px solid #ffc93c', borderRadius: '10px', display: 'none',
@@ -61,10 +61,11 @@ const CSS = {
   row: { display: 'flex', alignItems: 'center', gap: '6px', margin: '4px 0', flexWrap: 'wrap' },
   small: { padding: '2px 8px', cursor: 'pointer' },
   toasts: {
-    position: 'fixed', top: '12px', left: '50%', transform: 'translateX(-50%)', zIndex: '9999',
-    pointerEvents: 'none', textAlign: 'center', font: '700 18px system-ui, sans-serif',
-    color: '#fff', textShadow: '0 2px 6px #000',
+    position: 'fixed', top: '8px', left: '50%', transform: 'translateX(-50%)', zIndex: '9999',
+    pointerEvents: 'none', textAlign: 'center', font: '700 13px/1.3 system-ui, sans-serif',
+    color: '#fff', textShadow: '0 1px 3px #000', maxWidth: '90vw',
   },
+  toastLine: { margin: '2px 0', padding: '2px 10px', background: 'rgba(27,16,51,0.78)', borderRadius: '8px' },
 };
 
 export function mountHostSettings(game, opts = {}) {
@@ -115,7 +116,7 @@ export function mountHostSettings(game, opts = {}) {
     wl.appendChild(h(doc, 'input', { type: 'checkbox', checked: !!st.water, onchange: (e) => { imp.setWaterMode(p.slot, e.target.checked); render(); } }));
     wl.appendChild(h(doc, 'span', { text: ' water' }));
     row.appendChild(wl);
-    row.appendChild(h(doc, 'span', { text: `${st.bac.toFixed(3)}% ${st.tierLabel}`, style: { opacity: '0.8', flexBasis: '100%' } }));
+    row.appendChild(h(doc, 'span', { text: `${st.bac.toFixed(3)}% ${st.tierLabel}`, style: { opacity: '0.8', width: '130px' } }));
     const kg = h(doc, 'input', {
       type: 'number', min: '40', max: '200', placeholder: 'kg', value: p.bodyKg == null ? '' : String(p.bodyKg),
       style: { width: '52px' }, onchange: (e) => { imp.setBody(p.slot, { bodyKg: e.target.value }); render(); },
@@ -135,11 +136,12 @@ export function mountHostSettings(game, opts = {}) {
     panel.appendChild(choice('Limit line', LIMITS, settings().limitLine, (v) => imp.setSettings({ limitLine: v })));
     const cv = h(doc, 'label', { style: CSS.row });
     cv.appendChild(h(doc, 'input', { type: 'checkbox', checked: !!settings().comfortVisuals, onchange: (e) => { imp.setSettings({ comfortVisuals: e.target.checked }); persist(); } }));
-    cv.appendChild(h(doc, 'span', { text: ' Comfort visuals (halve sway / wobble / camera lag)' }));
+    cv.title = 'Halves camera sway, FOV wobble and camera lag. Controls stay impaired.';
+    cv.appendChild(h(doc, 'span', { text: ' Comfort visuals' }));
     panel.appendChild(cv);
     const sw = h(doc, 'label', { style: CSS.row });
     sw.appendChild(h(doc, 'input', { type: 'checkbox', checked: settings().phoneSwim !== false, onchange: (e) => { imp.setSettings({ phoneSwim: e.target.checked }); persist(); } }));
-    sw.appendChild(h(doc, 'span', { text: ' Phone button "swim" when drunk' }));
+    sw.appendChild(h(doc, 'span', { text: ' Phone buttons swim' }));
     panel.appendChild(sw);
     for (const p of players()) panel.appendChild(playerRow(p));
     panel.appendChild(h(doc, 'div', { style: CSS.row },
@@ -151,7 +153,7 @@ export function mountHostSettings(game, opts = {}) {
   }
 
   function showText(text, ms) {
-    const line = h(doc, 'div', { text, style: { margin: '2px 0' } });
+    const line = h(doc, 'div', { text, style: CSS.toastLine });
     toasts.appendChild(line);
     const timer = (opts.setTimeout || (typeof setTimeout !== 'undefined' ? setTimeout : null));
     if (timer) timer(() => { if (line.parentNode) line.parentNode.removeChild(line); }, ms);
@@ -167,6 +169,20 @@ export function mountHostSettings(game, opts = {}) {
   const refresh = () => { if (open) render(); };
   offs.push(imp.on('drinksChanged', refresh));
   offs.push(imp.on('settingsChanged', refresh));
+
+  // Keep the button out of the split-screen HUD while a race is running.
+  const syncVisibility = () => {
+    const racing = game.phase === 'countdown' || game.phase === 'racing';
+    btn.style.display = racing ? 'none' : '';
+    if (racing && open) setOpen(false);
+  };
+  if (typeof game.on === 'function') {
+    for (const evt of ['stateChanged', 'raceStart', 'raceFinished', 'cupFinished']) {
+      const off = game.on(evt, () => syncVisibility());
+      if (typeof off === 'function') offs.push(off);
+    }
+  }
+  syncVisibility();
 
   root.appendChild(btn);
   root.appendChild(panel);
