@@ -198,3 +198,15 @@ test('mountHostSettings is a no-op without a DOM; saved settings round-trip and 
   assert.equal(g2.session.settings.intensity, 0.6, 'saved host settings are applied on install');
   assert.equal(g2.session.settings.limitLine, 0.08);
 });
+
+test('N6: index.js exports a deep-frozen copy of the parameter table', async () => {
+  const idx = await import('../../public/js/impairment/index.js');
+  const params = await import('../../public/js/impairment/params.js');
+  assert.equal(typeof idx.default, 'function');
+  assert.deepEqual(JSON.parse(JSON.stringify(idx.TABLE)), JSON.parse(JSON.stringify(params.TABLE)));
+  assert.notEqual(idx.TABLE, params.TABLE);
+  assert.ok(Object.isFrozen(idx.TABLE) && Object.isFrozen(idx.TABLE.delayMs) && Object.isFrozen(idx.CAPS));
+  assert.throws(() => { idx.TABLE.delayMs[2] = 999; }, TypeError);
+  assert.throws(() => { idx.TABLE.newRow = []; }, TypeError);
+  assert.equal(params.TABLE.delayMs[2], 130, 'internal table untouched');
+});
