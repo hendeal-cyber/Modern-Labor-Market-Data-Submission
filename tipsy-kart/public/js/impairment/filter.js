@@ -1,6 +1,6 @@
 // Per-slot impairment input filter + visual effects (spec section 5.3).
 // Pure ES module: no DOM, no wall-clock reads inside filter(), so output is
-// deterministic for a given (session seed, slot, raceIndex, input sequence).
+// deterministic for a given (session seed, slot, race serial, input sequence).
 //
 //   const imp = createImpairment(slot, game, { onEvent });
 //   game.inputFilters[slot] = imp.filter;   // (rawInput, dt, ctx) -> input
@@ -62,6 +62,7 @@ function freshDynamicState() {
     lapseStart: -1, lapseUntil: -1, invStart: -1, invEnd: -1,
     hicStart: -1, hicSign: 1,
     lastEvent: null,
+    lastCtxTime: NaN, // ctx.time of the latest filter() call (engine sim clock)
   };
 }
 
@@ -110,21 +111,30 @@ export function createImpairment(slot, game, opts = {}) {
     if (k.isCpu) return raw; // belt and braces: never CPUs
     dt = clamp(fin(dt), 0, 0.1); // clamp hitches
     const Lt = level(ctx);
-    const ri = ctx.raceIndex ?? (game && game.session && game.session.raceIndex) ?? 0;
+    // Race key: the night-wide serial kept by drinks.js (bumped on every
+    // raceStart), else the engine's raceIndex (which restarts every cup).
+    const sess = game && game.session;
+    const ri = (sess && Number.isFinite(sess.raceSerial) ? sess.raceSerial : undefined) ?? ctx.raceIndex ?? (sess && sess.raceIndex) ?? 0;
     if (ri !== st.race) resetForRace(ri, Lt);
     st.Ls += (Lt - st.Ls) * (1 - Math.exp(-dt / 2));
 
     // bookkeeping that must run even on the identity path
     st.t += dt;
+    if (Number.isFinite(ctx.time)) st.lastCtxTime = ctx.time;
     const sp = fin(k.speedNorm, NaN);
     const speedNorm = clamp01(Number.isFinite(sp) ? sp : (fin(ctx.speed, NaN) / fin(k.maxSpeed, 30)));
     const spd = Number.isFinite(speedNorm) ? speedNorm : 1;
+    // seconds since GO: the engine's kartState.raceTime (negative in the countdown),
+    // else inferred from racePhase for an engine that does not send it
     if (Number.isFinite(k.raceTime)) st.sinceGo = k.raceTime;
     else if (k.racePhase === 'countdown' || k.countdown > 0 || k.started === false) st.sinceGo = 0;
     else st.sinceGo += dt;
-    // Respawn: an explicit flag if the engine sends one, else a kart whose speed
-    // drops from a real speed to ~0 in a single step (only a teleport does that).
-    const respawning = !!k.respawning || k.frozen > 0 || (st.prevSpd > 0.25 && spd < 0.02 && dt > 0);
+    // Respawn: the engine's kartState.respawning when it sends one (lane/engine
+    // 63542d1+); only for an engine without it, infer a respawn from a kart whose
+    // speed drops from a real speed to ~0 in a single step (a teleport).
+    const respawning = typeof k.respawning === 'boolean'
+      ? k.respawning
+      : (k.frozen > 0 || (st.prevSpd > 0.25 && spd < 0.02 && dt > 0));
     st.prevSpd = spd;
     st.sinceRespawn = respawning ? 0 : st.sinceRespawn + dt;
     st.slowFor = spd < 0.1 ? st.slowFor + dt : 0;
@@ -230,10 +240,22 @@ export function createImpairment(slot, game, opts = {}) {
   }
 
   // Accepts visual(t, vp) or the engine's visual({time, viewport?, ...}).
+  //
+  // Event envelopes (lapse blink, hiccup jolt) run on the filter's clock. The
+  // engine stops calling the filter once a human finishes (autopilot), so when
+  // the kart has finished, or the caller's time is more than 0.1 s ahead of the
+  // last filter call, any live event is cleared instead of freezing on screen.
   function visual(t, vp) {
+    let finished = false;
     if (t && typeof t === 'object') {
       vp = vp || t.viewport || t.vp;
+      finished = !!(t.kartState && t.kartState.finished);
       t = t.time;
+    }
+    const stale = Number.isFinite(t) && Number.isFinite(st.lastCtxTime) && t - st.lastCtxTime > 0.1;
+    if (finished || stale) {
+      st.lapseUntil = -1; st.lapseStart = -1;
+      st.hicStart = -1;
     }
     const tt = Number.isFinite(t) ? t : (typeof performance !== 'undefined' ? performance.now() / 1000 : 0);
     const settings = (game && game.session && game.session.settings) || {};

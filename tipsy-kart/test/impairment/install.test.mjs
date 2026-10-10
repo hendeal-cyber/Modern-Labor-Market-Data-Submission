@@ -74,7 +74,14 @@ test('phone events are forwarded on the impairment bus', () => {
   }
   assert.ok(evs.length > 3);
   assert.ok(evs.every((e) => e.slot === 0 && ['lapse', 'invert', 'hiccup', 'fumble'].includes(e.type)));
-  assert.ok(emitted.some(([name]) => name === 'impairmentEvent'));
+  const viaGame = emitted.filter(([name]) => name === 'impairmentEvent').map(([, p]) => p);
+  assert.equal(viaGame.length, evs.length, 'every impairment event also goes through game.emit');
+  for (const p of viaGame) {
+    assert.deepEqual(Object.keys(p).sort(), ['slot', 'type']);
+    assert.equal(p.slot, 0);
+    assert.ok(['lapse', 'invert', 'hiccup', 'fumble'].includes(p.type));
+  }
+  assert.ok(viaGame.some((p) => p.type !== 'fumble'), 'lapse/invert/hiccup are emitted, not only fumbles');
 });
 
 test('autoInstall: engine already there', () => {
@@ -190,4 +197,16 @@ test('mountHostSettings is a no-op without a DOM; saved settings round-trip and 
   installImpairment(g2, { ui: false, quiet: true, storage: st });
   assert.equal(g2.session.settings.intensity, 0.6, 'saved host settings are applied on install');
   assert.equal(g2.session.settings.limitLine, 0.08);
+});
+
+test('N6: index.js exports a deep-frozen copy of the parameter table', async () => {
+  const idx = await import('../../public/js/impairment/index.js');
+  const params = await import('../../public/js/impairment/params.js');
+  assert.equal(typeof idx.default, 'function');
+  assert.deepEqual(JSON.parse(JSON.stringify(idx.TABLE)), JSON.parse(JSON.stringify(params.TABLE)));
+  assert.notEqual(idx.TABLE, params.TABLE);
+  assert.ok(Object.isFrozen(idx.TABLE) && Object.isFrozen(idx.TABLE.delayMs) && Object.isFrozen(idx.CAPS));
+  assert.throws(() => { idx.TABLE.delayMs[2] = 999; }, TypeError);
+  assert.throws(() => { idx.TABLE.newRow = []; }, TypeError);
+  assert.equal(params.TABLE.delayMs[2], 130, 'internal table untouched');
 });

@@ -138,12 +138,19 @@ test('getImpairmentStatus: shape and values', () => {
   assert.equal(none.drinks, 0); assert.equal(none.present, false);
 });
 
-test('getImpairmentStatus in water mode: bac 0, level 0, drinks kept', () => {
+test('getImpairmentStatus in water mode: honest BAC, level 0, drinks kept', () => {
   const g = game4({ drinks: 4 });
   setWaterMode(0, true, g);
-  const st = getImpairmentStatus(0, g);
-  assert.equal(st.drinks, 4); assert.equal(st.bac, 0); assert.equal(st.level, 0);
-  assert.equal(st.water, true); assert.equal(st.overLimit, false);
+  const now = Date.now();
+  const st = getImpairmentStatus(0, g, now);
+  assert.equal(st.drinks, 4); assert.equal(st.level, 0);
+  assert.ok(Math.abs(st.bac - 0.1204) < 0.0005, `honest est. BAC in water mode (${st.bac})`);
+  assert.equal(st.water, true); assert.equal(st.overLimit, true, 'still over the limit by BAC');
+  assert.equal(hudModel(0, g, now).icon, 'water');
+  // one drink then water: under the limit, and the level floor does not apply in water mode
+  const h = game4({ drinks: 1 });
+  setWaterMode(0, true, h);
+  assert.equal(getImpairmentStatus(0, h).overLimit, false);
   setWaterMode(0, false, g);
   assert.equal(getImpairmentStatus(0, g).level, 4);
 });
@@ -230,4 +237,14 @@ test('engine-shaped raceFinished: results array with .raceIndex and isHuman flag
   assert.ok(Math.abs(g.session.players[0].bac - 0.0301) < 0.0005, 'p.bac mirrored for the engine HUD');
   assert.equal(g.session.players[0].tierLabel, 'Buzzed');
   assert.equal(g.session.players[1].bac, 0);
+});
+
+test('N1: the HUD bar is red whenever overLimit (heavy player at the race-3 floor)', () => {
+  const g = game4();
+  const now = Date.now();
+  Object.assign(g.session.players[0], { drinks: 2, drinkLog: [now], bodyKg: 120, sex: 'm' });
+  const st = getImpairmentStatus(0, g, now);
+  assert.ok(st.bac < st.limit, `est. BAC ${st.bac} is under the 0.05 line`);
+  assert.equal(st.overLimit, true, 'but level 2 reads over the limit');
+  assert.equal(hudModel(0, g, now).color, 'red');
 });

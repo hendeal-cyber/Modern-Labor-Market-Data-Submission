@@ -72,10 +72,11 @@ function settingsOf(game) {
 /**
  * Pure status for the phone and HUD. Safe to call every frame.
  * Returns {drinks, bac, level, tierLabel, limit, overLimit, ...extras}.
- * `bac` is 0 in water mode (the filter is identity then); `drinks` is kept.
- * `overLimit` is true when est. BAC >= limit line, or when the tier is
- * "Over the limit" or worse (level >= 1.5), so the race-3 guarantee also reads
- * as over the limit for heavy players whose est. BAC is lower.
+ * `bac` is always the honest estimate, also in water mode (gameplay level is 0
+ * then, but alcohol already drunk does not vanish); `drinks` is kept.
+ * `overLimit` is true when est. BAC >= limit line, or (not in water mode) when the
+ * tier is "Over the limit" or worse (level >= 1.5), so the race-3 guarantee also
+ * reads as over the limit for heavy players whose est. BAC is lower.
  */
 export function getImpairmentStatus(slot, game = globalThis.window && globalThis.window.game, now = Date.now()) {
   const p = getPlayer(game, slot);
@@ -87,7 +88,7 @@ export function getImpairmentStatus(slot, game = globalThis.window && globalThis
     };
   }
   const level = levelFor(p, cfg.intensity);
-  const bac = p.water ? 0 : estimateBAC(p, now);
+  const bac = estimateBAC(p, now);
   const tier = tierIndex(level);
   return {
     drinks: Math.max(0, Math.floor(Number(p.drinks) || 0)),
@@ -95,7 +96,7 @@ export function getImpairmentStatus(slot, game = globalThis.window && globalThis
     level,
     tierLabel: TIER_LABELS[tier],
     limit: cfg.limitLine,
-    overLimit: !p.water && (bac >= cfg.limitLine || level >= 1.5),
+    overLimit: bac >= cfg.limitLine || (!p.water && level >= 1.5),
     tier,
     water: !!p.water,
     waters: p.waters || 0,
@@ -106,7 +107,7 @@ export function getImpairmentStatus(slot, game = globalThis.window && globalThis
 /** HUD view-model (spec 6.1): mug/water icon, 0..0.20 bar fill, limit tick and colour. */
 export function hudModel(slot, game = globalThis.window && globalThis.window.game, now = Date.now()) {
   const st = getImpairmentStatus(slot, game, now);
-  const color = st.bac >= st.limit ? 'red' : st.bac >= 0.03 ? 'amber' : 'green';
+  const color = st.overLimit || st.bac >= st.limit ? 'red' : st.bac >= 0.03 ? 'amber' : 'green';
   return {
     icon: st.water ? 'water' : 'mug',
     count: st.water ? 0 : st.drinks,
@@ -262,6 +263,10 @@ export function installDrinkTracking(game) {
 
   game.on('raceStart', () => {
     const s = sess();
+    // Night-wide race counter. The engine's raceIndex restarts at 0 every cup
+    // (and is always 0 in single-race cups), so the filter keys its per-race
+    // reset and random streams on this instead.
+    s.raceSerial = (Number.isFinite(s.raceSerial) ? s.raceSerial : 0) + 1;
     s._drinksAwardedFor = undefined; // a new race may award again
     if (!s._toastShown) {
       const any = s.players.some((p) => p.connected !== false

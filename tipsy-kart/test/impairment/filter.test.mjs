@@ -356,3 +356,77 @@ test('engine ctx shape: countdown blocks events; a sudden stop counts as a respa
   const small = imp.visual({ time: 12.5, viewport: { w: 960, h: 540 } });
   assert.ok(Math.abs(small.blurPx - fx.blurPx / 2) < 1e-9);
 });
+
+test('B1: a live lapse blink / hiccup jolt never freezes once the filter stops being called', () => {
+  const findEvent = (want) => {
+    const { imp } = setup({ drinks: 5, seed: 21 });
+    const st = imp.state;
+    const dt = 1 / 60;
+    for (let i = 0; i < 60 * 1800; i++) {
+      const t = i * dt;
+      imp.filter({ steer: 0.2, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctxOf({ time: t, kartState: { raceTime: t } }));
+      if (want === 'lapse' && st.t < st.lapseUntil && st.t - st.lapseStart > 0.1) return { imp, t };
+      if (want === 'hiccup' && st.hicStart >= 0 && st.t - st.hicStart < 0.05) return { imp, t };
+    }
+    throw new Error('no ' + want);
+  };
+  // lapse: blink is on while the filter runs, then the engine stops calling it (kart finished)
+  let { imp, t } = findEvent('lapse');
+  assert.ok(imp.visual({ time: t }).blink > 0, 'blink while lapsing');
+  assert.equal(imp.visual({ time: t + 1 }).blink, 0, 'stale clock clears the blink');
+  assert.equal(imp.visual({ time: t + 1 }).tunnel, paramsAt(5).tunnel);
+  ({ imp, t } = findEvent('lapse'));
+  assert.equal(imp.visual({ time: t, kartState: { finished: true } }).blink, 0, 'finished kart clears the blink');
+  // hiccup jolt
+  ({ imp, t } = findEvent('hiccup'));
+  assert.ok(imp.visual({ time: t }).joltPx > 0);
+  assert.equal(imp.visual({ time: t + 1 }).joltPx, 0);
+});
+
+test('S3: race serial — a new cup (raceIndex back to 0) and single-race cups get fresh streams and a level snap', () => {
+  const game = makeFakeGame({ drinks: [4, 0, 0, 0] });
+  const api = installImpairment(game, { ui: false, quiet: true, skipSaved: true, syncMs: 0 });
+  const imp = api.filters[0];
+  const steerRun = () => {
+    const outs = [];
+    for (let i = 0; i < 600; i++) {
+      outs.push(game.inputFilters[0]({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, 1 / 60,
+        { time: i / 60, speed: 30, drinks: game.session.players[0].drinks, raceIndex: 0, slot: 0, kartState: { speed: 30, maxSpeed: 33, racePhase: 'racing' } }).steer);
+    }
+    return outs;
+  };
+  game.fire('raceStart', { raceIndex: 0 });
+  assert.equal(game.session.raceSerial, 1);
+  const cup1 = steerRun();
+  assert.equal(imp.state.race, 1);
+  game.fire('cupFinished', []);
+  game.fire('raceStart', { raceIndex: 0 }); // cup 2, race 1: engine raceIndex is 0 again
+  assert.equal(game.session.raceSerial, 2);
+  const cup2 = steerRun();
+  assert.equal(imp.state.race, 2, 'filter reset for the new race');
+  assert.notDeepEqual(cup2, cup1, 'cup 2 does not replay cup 1\'s random streams');
+
+  // single-race cups: raceIndex is always 0; a mid-results drink change still snaps at the next start
+  game.session.players[0].drinks = 0;
+  steerRun();
+  assert.ok(imp.state.Ls > 0, 'still easing within the same race');
+  game.fire('raceStart', { raceIndex: 0 });
+  game.inputFilters[0]({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, 1 / 60, { time: 0, raceIndex: 0, drinks: 0, slot: 0, kartState: {} });
+  assert.equal(imp.state.Ls, 0, 'new single-race cup snaps the level');
+  assert.equal(imp.state.race, 3);
+});
+
+test('engine 63542d1+: explicit kartState.respawning / raceTime win over the inferences', () => {
+  const { imp } = setup({ drinks: 5 });
+  const dt = 1 / 60;
+  const ctx = (speed, respawning, raceTime) => ({ time: 0, speed, drinks: 5, raceIndex: 0, slot: 0, kartState: { speed, maxSpeed: 33, racePhase: 'racing', respawning, raceTime } });
+  for (let i = 0; i < 600; i++) imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(30, false, 10 + i * dt));
+  // a hard stop with respawning:false (e.g. a crash into a wall) is NOT treated as a respawn
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(0, false, 20));
+  assert.ok(imp.state.sinceRespawn > 5);
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(30, true, 20));
+  assert.equal(imp.state.sinceRespawn, 0);
+  // negative raceTime (countdown) keeps the race clock below the 4 s event guard
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(0, false, -2.5));
+  assert.equal(imp.state.sinceGo, -2.5);
+});

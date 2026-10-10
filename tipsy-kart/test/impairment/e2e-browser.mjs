@@ -166,14 +166,20 @@ export async function runE2E({ log = console.log } = {}) {
         check(st.status.every((s) => s.drinks === target && s.overLimit), `${tag}: status shows ${target} drinks and over the limit`);
       }
       // finish the race; drinks must go up by one for every human
-      await page.evaluate(() => window.game.debugFinishRace());
-      const after = await page.evaluate(() => window.game.session.players.map((p) => p.drinks));
+      // (the banner is checked in the same tick: it expires after 6 s, and a
+      // loaded machine can take longer than that to reach the next step)
+      const fin = await page.evaluate(() => {
+        window.game.debugFinishRace();
+        return {
+          drinks: window.game.session.players.map((p) => p.drinks),
+          banner: [...document.querySelectorAll('div')].some((d) => d.textContent === 'Round!'),
+        };
+      });
+      const after = fin.drinks;
       check(after.every((d) => d === Math.min(15, target + 1)), `${tag}: raceFinished gave every human +1 (now ${after.join(',')})`);
+      check(fin.banner, `${tag}: "Round!" banner shown on the host page`);
       await page.screenshot({ path: path.join(shots, `impairment-results${r + 1}.png`) });
     }
-    // banner/toast overlay from the host settings module
-    const overlay = await page.evaluate(() => [...document.querySelectorAll('div')].some((d) => d.textContent === 'Round!'));
-    check(overlay, '"Round!" banner shown on the host page');
     // open the settings panel and screenshot it
     await page.click('button[title="Impairment settings"]');
     await sleep(200);

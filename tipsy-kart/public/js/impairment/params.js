@@ -13,12 +13,12 @@ export const KNOTS = [0, 1, 2, 3, 4, 5];
 
 export const TABLE = {
   // --- control (input) parameters, section 3.2 ---
-  delayMs:          [0, 30, 130, 155, 180, 195],     // spec L3..5: 180, 230, 280 (retuned)
+  delayMs:          [0, 30, 130, 165, 185, 195],     // spec L3..5: 180, 230, 280 (retuned)
   deadzone:         [0, 0.03, 0.10, 0.12, 0.14, 0.15],   // spec L3..5: 0.14, 0.18, 0.22 (retuned)
   steerGain:        [1.00, 1.03, 1.12, 1.18, 1.24, 1.30],
   steerTn:          [0, 0.033, 0.091, 0.111, 0.133, 0.154],
   steerZeta:        [1.00, 0.80, 0.50, 0.40, 0.33, 0.28],   // spec L3..5: 0.42, 0.36, 0.32 (retuned)
-  wanderFastSd:     [0, 0.03, 0.14, 0.145, 0.15, 0.15],   // spec L2..5: 0.10, 0.14, 0.18, 0.22 (retuned)
+  wanderFastSd:     [0, 0.03, 0.14, 0.155, 0.16, 0.16],   // spec L2..5: 0.10, 0.14, 0.18, 0.22 (retuned)
   wanderSlowSd:     [0, 0.02, 0.06, 0.08, 0.10, 0.12],
   leanBias:         [0, 0.005, 0.012, 0.018, 0.024, 0.030],
   pedalTau:         [0, 0.03, 0.15, 0.22, 0.30, 0.38],
