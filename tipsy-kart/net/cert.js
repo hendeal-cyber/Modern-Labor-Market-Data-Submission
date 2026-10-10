@@ -23,8 +23,8 @@ function cachedIsUsable(certPem, ips) {
   try {
     const x = new crypto.X509Certificate(certPem);
     if (new Date(x.validTo).getTime() - Date.now() < 7 * DAY) return false;
-    const san = x.subjectAltName || '';
-    return ips.every((ip) => san.includes(`IP Address:${ip}`));
+    const have = new Set(String(x.subjectAltName || '').split(/,\s*/).map((e) => e.trim()));
+    return ips.every((ip) => have.has(`IP Address:${ip}`)); // exact: 10.0.0.1 must not match 10.0.0.12
   } catch (e) { return false; }
 }
 

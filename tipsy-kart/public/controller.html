@@ -23,8 +23,8 @@
   input[type=text] { -webkit-user-select: text; user-select: text; touch-action: auto; }
   .hidden { display: none !important; }
 
-  #app { position: fixed; inset: 0; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
-  .screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2vh; padding: 3vh 6vw; }
+  #app { position: fixed; inset: 0; }
+  .screen { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2vh; padding: 3vh 6vw; }
 
   /* ---------- join / calibrate ---------- */
   .logo { font-size: clamp(22px, 8vh, 44px); font-weight: 900; letter-spacing: .02em; color: var(--c); margin: 0; }
@@ -42,7 +42,10 @@
   a.btn { text-decoration: none; display: inline-block; }
 
   /* ---------- pad ---------- */
-  #pad { position: absolute; inset: 0; }
+  #pad { position: absolute; }
+  /* notches, rounded corners and the home indicator: keep every control inside the safe area */
+  #pad, .screen { inset: env(safe-area-inset-top) env(safe-area-inset-right) max(env(safe-area-inset-bottom), 14px) env(safe-area-inset-left); }
+  .screen.overlay { inset: 0; padding: max(3vh, env(safe-area-inset-top)) max(6vw, env(safe-area-inset-right)) max(3vh, env(safe-area-inset-bottom)) max(6vw, env(safe-area-inset-left)); }
   #status { position: absolute; top: 0; left: 0; right: 0; height: 14vh; min-height: 40px; display: flex; align-items: center; gap: 2vw; padding: 0 2vw; background: #17171d; border-bottom: 2px solid var(--c); font-size: clamp(12px, 4.4vh, 20px); }
   #status .who { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 0 1 28%; }
   #status .who .num { flex: none; width: 2.2em; height: 2.2em; border-radius: 50%; background: var(--c); color: #111; display: grid; place-items: center; font-weight: 900; }
@@ -72,7 +75,7 @@
   .mode-tilt #leftCol { flex-basis: 26%; }
   .mode-tilt #rightCol { flex-basis: 38%; }
 
-  #stickZone { position: absolute; inset: 0; }
+  #stickZone { position: absolute; top: 0; bottom: 0; left: 16px; right: 16px; } /* off the screen edges */
   .mode-tilt #stickZone { display: none; }
   #stickHint { position: absolute; left: 0; right: 0; bottom: 8vh; text-align: center; color: #555566; font-size: 5vh; letter-spacing: .1em; pointer-events: none; }
   #stickBase, #stickKnob { position: absolute; border-radius: 50%; pointer-events: none; display: none; transform: translate(-50%, -50%); }
@@ -126,7 +129,12 @@
   #rotate { display: none; z-index: 40; background: #111; }
   #rotate .phone { width: 12vw; max-width: 60px; aspect-ratio: 1/2; border: 4px solid #fff; border-radius: 10px; animation: rot 2.4s ease-in-out infinite; }
   @keyframes rot { 0%, 25% { transform: rotate(0); } 60%, 100% { transform: rotate(-90deg); } }
-  @media (orientation: portrait) { #rotate { display: flex; } }
+  #rotateBanner { display: none; position: absolute; left: 50%; top: 15vh; transform: translateX(-50%); z-index: 26; background: #ffd166; color: #111; padding: 6px 14px; border-radius: 999px; font-weight: 800; pointer-events: none; white-space: nowrap; }
+  @media (orientation: portrait) {
+    #rotate { display: flex; }
+    body.racing #rotate { display: none; }        /* never block the pad mid-race */
+    body.racing #rotateBanner { display: block; }
+  }
   .spinner { width: 8vh; height: 8vh; min-width: 36px; min-height: 36px; border-radius: 50%; border: 5px solid #333; border-top-color: var(--c); animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -237,6 +245,7 @@
   <section id="ended" class="screen overlay hidden"><h1 class="logo" id="endedTitle">You were removed</h1><p class="sub" id="endedText"></p><button id="rejoin" class="btn" type="button">Join again</button></section>
 
   <div id="toast" class="hidden"></div>
+  <div id="rotateBanner">Turn back to landscape</div>
   <div class="flash" id="flash"></div>
   <section id="rotate" class="screen overlay"><div class="phone"></div><h1 class="logo">Turn your phone sideways</h1><p class="sub">If it won't rotate, turn off Portrait Orientation Lock in Control Center.</p></section>
 </div>

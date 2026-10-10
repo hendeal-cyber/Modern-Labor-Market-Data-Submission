@@ -15,9 +15,10 @@ export class Controls {
    *                      stickKnob, itemBtn, brakeBtn
    * @param {()=>void} onEdge  called after every control state change (the caller sends input at once)
    */
-  constructor(els, onEdge) {
+  constructor(els, onEdge, opts = {}) {
     this.els = els;
     this.onEdge = onEdge;
+    this.keepOnRotate = opts.keepOnRotate || (() => false);
     this.active = false;
     this.itemCount = 0;
     this.region = null;      // 'gas' | 'drift' | 'brake' | null  (right cluster)
@@ -68,8 +69,10 @@ export class Controls {
     // ---- right cluster
     const rc = e.rightCol;
     rc.addEventListener('pointerdown', (ev) => {
-      if (!this.active || this.rightPid != null) return;
+      if (!this.active) return;
       ev.preventDefault();
+      // newest pointer wins: a thumb that "lifted" without a pointerup (it happens) must not lock the cluster
+      if (this.rightPid != null && this.rightPid !== ev.pointerId) { const old = this.rightPid; this.rightPid = null; rel(rc, old); }
       this.rightPid = ev.pointerId;
       capture(rc, ev);
       let r = this.hit(ev.clientX, ev.clientY);
@@ -92,13 +95,15 @@ export class Controls {
     ib.addEventListener('pointerdown', (ev) => {
       if (!this.active || this.itemPid != null) return;
       ev.preventDefault();
-      this.itemPid = ev.pointerId; capture(ib, ev);
+      // no setPointerCapture here: capture would turn the tap into a captured drag and iOS would not
+      // toggle the hidden switch (no native haptic). The release is watched on window instead.
+      this.itemPid = ev.pointerId;
       ib.classList.add('down');
       this.itemCount++;
       this.onEdge();
     });
-    const ibUp = (ev) => { if (ev.pointerId !== this.itemPid) return; this.itemPid = null; rel(ib, ev.pointerId); ib.classList.remove('down'); };
-    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((t) => ib.addEventListener(t, ibUp));
+    const ibUp = (ev) => { if (ev.pointerId !== this.itemPid) return; this.itemPid = null; ib.classList.remove('down'); };
+    ['pointerup', 'pointercancel'].forEach((t) => window.addEventListener(t, ibUp, true));
 
     // ---- BRAKE button (tilt mode)
     const bb = e.brakeBtn;
@@ -143,7 +148,8 @@ export class Controls {
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') all(); });
     window.addEventListener('blur', all);
     window.addEventListener('pagehide', all);
-    window.addEventListener('orientationchange', all);
+    // an iPhone rolled hard mid-corner may rotate to portrait: keep holding gas while racing
+    window.addEventListener('orientationchange', () => { if (!this.keepOnRotate()) all(); });
   }
 
   setStick(v) {

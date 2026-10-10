@@ -44,6 +44,7 @@ function loadWsServerCtor() {
   if (process.env.TIPSY_WS !== 'lite') {
     try { return require('ws').WebSocketServer; } catch (e) { /* fall through to the hand-rolled one */ }
   }
+  if (process.env.TIPSY_QUIET !== '1' || process.env.TIPSY_WS === 'lite') console.log('[tipsy-kart] using the built-in WebSocket server (net/ws-lite.js): the `ws` package is not installed or TIPSY_WS=lite');
   return require('./ws-lite').WebSocketServer;
 }
 
@@ -72,6 +73,9 @@ class Hub {
     this.cfg = {
       idleMs: envInt('TIPSY_IDLE_MS', 180000),
       reserveMs: envInt('TIPSY_LOBBY_RESERVE_MS', 60000),
+      // Idle kicks and reservation expiry wipe a player's drinks, so they only happen when someone
+      // is waiting in the queue for the slot, or after this hard cap.
+      capMs: envInt('TIPSY_LOBBY_CAP_MS', 15 * 60000),
       hostAny: process.env.TIPSY_HOST_ANY === '1',
     };
     this.sessionId = crypto.randomBytes(8).toString('hex');
@@ -263,7 +267,13 @@ class Hub {
     if (pathname === '/sse') {
       if (req.method !== 'GET') { res.writeHead(405); res.end(); return true; }
       const old = this.sse.get(token);
-      if (old) old.terminate();
+      if (old) {
+        // same-token replace: detach first so the host does not see a leave + join for one phone
+        const slot = old.meta && old.meta.slot;
+        const p = slot >= 0 ? this.players[slot] : null;
+        if (p && p.conn === old) { p.conn = null; old.meta.slot = -1; }
+        old.terminate();
+      }
       const conn = new SseConn(req, res, token);
       this.sse.set(token, conn);
       conn.onClose(() => { if (this.sse.get(token) === conn) this.sse.delete(token); });
@@ -554,8 +564,17 @@ class Hub {
     return this.localAddrs.has(a) || lan.localAddresses().has(a);
   }
 
+  /** Anti DNS-rebinding: the Host header must name this machine, not some outside hostname. */
+  hostHeaderOk(conn) {
+    if (this.cfg.hostAny || conn.hostHeader == null) return true;
+    let h = String(conn.hostHeader).trim().toLowerCase();
+    if (h.startsWith('[')) h = h.slice(1, h.indexOf(']'));
+    else h = h.replace(/:\d+$/, '');
+    return h === 'localhost' || h === '127.0.0.1' || h === '::1' || lan.localAddresses().has(h);
+  }
+
   onHostHello(conn) {
-    if (!this.isLocal(conn)) { conn.send({ t: 'error', code: 'host-not-local' }, true); conn.close(4005, 'host must be local'); return undefined; }
+    if (!this.isLocal(conn) || !this.hostHeaderOk(conn)) { conn.send({ t: 'error', code: 'host-not-local' }, true); conn.close(4005, 'host must be local'); return undefined; }
     conn.meta.role = 'host';
     if (this.host && this.host !== conn) {
       const old = this.host;
@@ -651,8 +670,11 @@ class Hub {
     };
   }
 
+  /** Idle limit right now: the short one only while someone is queued for a slot. */
+  idleLimit() { return this.queue.length ? Math.min(this.cfg.idleMs, this.cfg.capMs) : this.cfg.capMs; }
+
   isIdle(p) {
-    return p.connected && this.room.phase === 'lobby' && Date.now() - p.lastActive >= this.cfg.idleMs * 5 / 6;
+    return p.connected && this.room.phase === 'lobby' && Date.now() - p.lastActive >= this.idleLimit() * 5 / 6;
   }
 
   rosterDirty() {
@@ -702,13 +724,14 @@ class Hub {
       if (p.connected) {
         if (!lobby) continue;
         const idle = now - p.lastActive;
-        if (idle >= this.cfg.idleMs) this.kick(p.slot, 'idle');
-        else if (idle >= this.cfg.idleMs * 5 / 6 && !p.toasted) {
+        const limit = this.idleLimit();
+        if (idle >= limit) this.kick(p.slot, 'idle');
+        else if (idle >= limit * 5 / 6 && !p.toasted) {
           p.toasted = true;
           p.conn.send({ t: 'toast', text: 'Still there? Tap anything', ms: 4000 });
           this.rosterDirty();
         }
-      } else if (lobby && now - Math.max(p.disconnectedAt, this.lobbySince) > this.cfg.reserveMs) {
+      } else if (lobby && now - Math.max(p.disconnectedAt, this.lobbySince) > (this.queue.length ? Math.min(this.cfg.reserveMs, this.cfg.capMs) : this.cfg.capMs)) {
         this.release(p.slot, 'expired');
       }
     }
@@ -740,9 +763,11 @@ module.exports = {
   attach(httpServer) { const h = getHub(); h.attachServer(httpServer); return h; },
   /** Optional for custom routers: answers /sse and /msg, returns true if it handled the request. */
   handleHttp(req, res) { return getHub().handleHttp(req, res); },
-  info() { return getHub().info(); },
+  info() { return singleton ? singleton.info() : null; },
   /** Resolves once the HTTPS twin is listening (or has been given up on). */
-  ready() { return getHub().ready; },
+  ready() { return singleton ? singleton.ready : Promise.resolve(); },
+  /** Stop timers, sockets and the HTTPS twin (server.js start().close() calls this). */
+  close() { if (singleton) singleton.shutdown(); },
   getHub,
   COLORS,
 };

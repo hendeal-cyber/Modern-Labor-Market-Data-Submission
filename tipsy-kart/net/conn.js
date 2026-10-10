@@ -49,6 +49,7 @@ class WsConn extends Conn {
   constructor(ws, req) {
     super('ws', req && req.socket && req.socket.remoteAddress);
     this.ws = ws;
+    this.hostHeader = req && req.headers ? req.headers.host : null;
     ws.on('message', (data, isBinary) => {
       if (isBinary === true) { this.close(1003, 'text only'); return; }
       this._rxText(typeof data === 'string' ? data : data.toString('utf8'));

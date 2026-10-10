@@ -47,9 +47,10 @@ const els = {
   rightCol: $('rightCol'), driftBand: $('driftBand'), gasArea: $('gasArea'), brakeStrip: $('brakeStrip'),
   stickZone: $('stickZone'), stickBase: $('stickBase'), stickKnob: $('stickKnob'), itemBtn: $('itemBtn'), brakeBtn: $('brakeBtn'),
 };
-const controls = new Controls(els, () => sendNow());
+const controls = new Controls(els, () => sendNow(), { keepOnRotate: () => phaseIsPad() });
 
-if (isIos()) { Haptics.attachSwitch(els.itemBtn); Haptics.attachSwitch(els.driftBand); }
+// iOS native switch haptic on direct ITEM taps (not on DRIFT: a rolled-in thumb never "taps" it)
+if (isIos()) Haptics.attachSwitch(els.itemBtn);
 
 // ---------------------------------------------------------------- input send loop (2.1, 2.3)
 let seq = 0; let lastSent = null; let lastSentAt = 0; let liveSteer = 0;
@@ -57,9 +58,10 @@ let seq = 0; let lastSent = null; let lastSentAt = 0; let liveSteer = 0;
 function buildInput() {
   const c = controls.read();
   const tiltMode = S.mode === 'tilt';
-  const steer = tiltMode ? tilt.steer() : c.stick;
-  liveSteer = steer;
   const padOn = controls.active;
+  const raw = tiltMode ? tilt.steer() : c.stick;
+  liveSteer = raw;                 // the lobby card gauge still shows tilt feedback
+  const steer = padOn ? raw : 0;   // but nothing steers the kart unless the pad is up
   let throttle = c.throttle;
   if (padOn && settings.autoGas && !c.brake) throttle = 1;
   return { steer, throttle: padOn ? throttle : 0, brake: padOn ? c.brake : 0, drift: padOn ? c.drift : false, item: controls.itemCount, mode: S.mode };
@@ -132,6 +134,8 @@ function render() {
   $('pad').classList.toggle('mode-touch', S.mode !== 'tilt');
   document.getElementById('app').classList.toggle('lefty', !!settings.lefty);
   controls.setActive(padShown);
+  // while racing a hard roll may rotate an iPhone to portrait: never block the pad, just hint
+  document.body.classList.toggle('racing', padShown);
 
   // overlays
   const everIn = S.everWelcomed || S.slot != null;
@@ -212,6 +216,7 @@ function renderSettings() {
     insecure: 'Tilt needs the secure link (https). This basic link only has touch steering.',
     denied: 'Motion access was blocked. Close the Safari tab and reopen the link to be asked again.',
     nosensor: 'No motion sensor found on this device, so touch steering is used.',
+    android: 'No motion data. If this phone has a motion sensor: Chrome \u22ee \u2192 Site settings \u2192 Motion sensors \u2192 Allow, then reload.',
     '': '',
   }[S.tiltWhy] || '';
   $('whyTiltText').textContent = why;
@@ -234,10 +239,28 @@ async function requestWake() {
     wakeLock = await navigator.wakeLock.request('screen');
     wakeLock.addEventListener('release', () => { wakeLock = null; });
   } catch (e) {
-    if (!S.wakeTip) { S.wakeTip = true; toast('Tip: set Auto-Lock to Never during the party', 5000); }
+    // without a secure context there is no Wake Lock API at all: tell people once
+    if (!S.wakeTip && window.isSecureContext !== true) { S.wakeTip = true; toast('Tip: set Auto-Lock to Never during the party', 5000); }
   }
 }
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && S.started) requestWake(); });
+let fsLost = false; let wantFs = false;
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible' || !S.started) return;
+  requestWake();
+  if (wantFs) fsLost = true; // Android drops fullscreen + the orientation lock after an app switch
+});
+function regainScreen() {
+  if (!S.started) return;
+  if (wakeLock === null) requestWake();
+  if (fsLost && !document.fullscreenElement) {
+    fsLost = false;
+    try {
+      Promise.resolve(document.documentElement.requestFullscreen({ navigationUI: 'hide' }))
+        .then(() => (screen.orientation && screen.orientation.lock ? screen.orientation.lock('landscape') : null)).catch(() => {});
+    } catch (e) { /* not available */ }
+  } else fsLost = false;
+}
+for (const id of ['pad', 'card']) $(id).addEventListener('pointerdown', regainScreen, true);
 
 $('go').addEventListener('click', () => {
   // ---- everything needing the user gesture runs synchronously, before any await
@@ -248,6 +271,7 @@ $('go').addEventListener('click', () => {
   try {
     const de = document.documentElement;
     if (document.fullscreenEnabled && de.requestFullscreen) {
+      wantFs = true;
       Promise.resolve(de.requestFullscreen({ navigationUI: 'hide' })).then(() => {
         if (screen.orientation && screen.orientation.lock) return screen.orientation.lock('landscape');
         return null;
@@ -269,18 +293,32 @@ async function go(nm, permP) {
   if (window.isSecureContext !== true) why = 'insecure';
   else if (!('DeviceOrientationEvent' in window)) why = 'nosensor';
   else if (perm === 'denied') why = 'denied';
-  else { tiltOk = await tilt.start(); if (!tiltOk) why = 'nosensor'; }
+  else { tiltOk = await tilt.start(); if (!tiltOk) why = /Android/i.test(navigator.userAgent) ? 'android' : 'nosensor'; }
   S.tiltAvail = tiltOk; S.tiltWhy = why;
   S.mode = tiltOk && settings.mode !== 'touch' ? 'tilt' : 'touch';
   if (nm && nm !== S.name) { S.name = nm; lsSet('tipsyKart.name', nm); link.send({ t: 'name', name: nm }); }
   S.started = true;
   S.calibrating = S.mode === 'tilt';
+  armBackGuard();
   render();
+}
+
+// A stray Back swipe must not drop a racer out of the game.
+let backGuard = false;
+function armBackGuard() {
+  if (backGuard) return;
+  backGuard = true;
+  try { history.pushState({ tipsyGuard: 1 }, ''); } catch (e) { /* ignore */ }
+  window.addEventListener('popstate', () => {
+    if (!S.started || S.ended) return;
+    try { history.pushState({ tipsyGuard: 1 }, ''); } catch (e) { /* ignore */ }
+    toast('Use Settings \u2192 Leave to quit', 3000);
+  });
 }
 
 $('calibGo').addEventListener('click', async () => {
   $('calibGo').disabled = true;
-  await tilt.calibrate(500);
+  await tilt.calibrate();
   $('calibGo').disabled = false;
   S.calibrating = false; render();
 });
@@ -293,13 +331,13 @@ function setMode(m) {
   controls.releaseAll();
   render();
 }
-for (const b of $('setMode').querySelectorAll('button')) b.addEventListener('click', () => { setMode(b.dataset.mode); if (b.dataset.mode === 'tilt') tilt.calibrate(500); });
+for (const b of $('setMode').querySelectorAll('button')) b.addEventListener('click', () => { setMode(b.dataset.mode); if (b.dataset.mode === 'tilt') tilt.calibrate(); });
 $('setRange').addEventListener('input', (e) => { settings.maxDeg = Number(e.target.value); saveSettings(); renderSettings(); });
 $('setInvert').addEventListener('change', (e) => { settings.invert = e.target.checked; saveSettings(); });
 $('setAuto').addEventListener('change', (e) => { settings.autoGas = e.target.checked; saveSettings(); });
 $('setLefty').addEventListener('change', (e) => { settings.lefty = e.target.checked; saveSettings(); render(); });
 $('setHaptics').addEventListener('change', (e) => { settings.haptics = e.target.checked; saveSettings(); if (e.target.checked) haptics.cue('tick'); });
-$('setCal').addEventListener('click', async () => { await tilt.calibrate(500); toast('Calibrated'); });
+$('setCal').addEventListener('click', async () => { await tilt.calibrate(); toast('Calibrated'); });
 $('setName').addEventListener('change', (e) => {
   const nm = clean(e.target.value);
   if (nm) { S.name = nm; lsSet('tipsyKart.name', nm); link.send({ t: 'name', name: nm }); render(); }
@@ -324,7 +362,7 @@ $('rejoin').addEventListener('click', () => {
 let lastWheelTap = 0;
 $('wheel').addEventListener('pointerdown', () => {
   const now = performance.now();
-  if (now - lastWheelTap < 400) { tilt.calibrate(500); toast('Calibrated'); }
+  if (now - lastWheelTap < 400) { tilt.calibrate(); toast('Calibrated'); }
   lastWheelTap = now;
 });
 $('readyBtn').addEventListener('click', () => { S.ready = !S.ready; link.send({ t: 'ready', ready: S.ready }); render(); });

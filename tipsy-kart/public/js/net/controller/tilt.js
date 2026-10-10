@@ -39,28 +39,45 @@ export function stickCurve(dx, radius, deadFrac = 0.08, exponent = 1.3) {
   return Math.round(Math.sign(n) * m ** exponent * 100) / 100 + 0;
 }
 
+/** Normalise an angle to 0/90/180/270. */
+export function normAngle(a) { return ((Math.round(a / 90) * 90) % 360 + 360) % 360; }
+
+/**
+ * The landscape frame to steer in. iPhones cannot lock orientation, so a hard roll can rotate the
+ * page to portrait (0/180) mid-corner: keep using the last landscape angle (90/270) in that case.
+ */
+export function landscapeAngle(screenAngle, lastLandscape = 90) {
+  const a = normAngle(screenAngle);
+  return a === 90 || a === 270 ? a : lastLandscape;
+}
+
 export class Tilt {
-  constructor(settings) {
-    this.settings = settings;     // { maxDeg, invert } read live
+  /**
+   * @param {object} settings {maxDeg, invert}, read live
+   * @param {{angle?:()=>number}} [opts] angle source (tests); defaults to the screen orientation
+   */
+  constructor(settings, opts = {}) {
+    this.settings = settings;
+    this.angleFn = opts.angle || currentScreenAngle;
+    this.landscape = landscapeAngle(this.angleFn(), 90);
     this.filtered = 0;
     this.neutral = 0;
     this.has = false;
     this.last = 0;
     this.running = false;
+    this.listening = false;
     this.raw = 0;
     this._h = (e) => this.onEvent(e);
-    this._orient = () => { setTimeout(() => this.calibrate(500), 300); };
+  }
+
+  /** Start receiving events (no waiting). Safe to call early where no permission prompt exists. */
+  listen() {
+    if (this.listening || typeof window === 'undefined') return;
+    this.listening = true;
+    window.addEventListener('deviceorientation', this._h);
   }
 
   /** Starts listening. Resolves true if a real (non-null beta) event arrives within 1 s. */
-  /** Start receiving events (no waiting). Safe to call early where no permission prompt exists. */
-  listen() {
-    if (this.listening) return;
-    this.listening = true;
-    window.addEventListener('deviceorientation', this._h);
-    window.addEventListener('orientationchange', this._orient);
-  }
-
   start() {
     if (this.running) return Promise.resolve(this.has);
     this.running = true;
@@ -78,13 +95,20 @@ export class Tilt {
 
   stop() {
     this.running = false; this.listening = false;
-    window.removeEventListener('deviceorientation', this._h);
-    window.removeEventListener('orientationchange', this._orient);
+    if (typeof window !== 'undefined') window.removeEventListener('deviceorientation', this._h);
   }
 
   onEvent(e) {
     if (e.beta == null || e.gamma == null) return;
-    this.raw = steerDegFromOrientation(e.beta, e.gamma, currentScreenAngle());
+    const a = landscapeAngle(this.angleFn(), this.landscape);
+    if (a !== this.landscape) {
+      // a real 90 <-> 270 flip: the screen's right axis reversed, so mirror the neutral (and the
+      // filter state) instead of recalibrating mid-race
+      this.landscape = a;
+      this.neutral = -this.neutral;
+      this.filtered = -this.filtered;
+    }
+    this.raw = steerDegFromOrientation(e.beta, e.gamma, this.landscape);
     if (!this.has) { this.filtered = this.raw; this.last = performance.now(); this.has = true; }
   }
 
@@ -97,16 +121,21 @@ export class Tilt {
     return this.filtered;
   }
 
-  /** Average the filtered angle for `ms` and make it the neutral. Memory only: grip changes per session. */
-  calibrate(ms = 500) {
+  /**
+   * Wait `delayMs` (the tap itself jolts the phone), then average the filtered angle for `ms` and make it
+   * the neutral. Memory only: grip changes per session.
+   */
+  calibrate(ms = 600, delayMs = 300) {
     return new Promise((resolve) => {
-      const samples = [];
-      const iv = setInterval(() => { if (this.has) samples.push(this.tick()); }, 20);
       setTimeout(() => {
-        clearInterval(iv);
-        if (samples.length) this.neutral = samples.reduce((a, b) => a + b, 0) / samples.length;
-        resolve(this.neutral);
-      }, ms);
+        const samples = [];
+        const iv = setInterval(() => { if (this.has) samples.push(this.tick()); }, 20);
+        setTimeout(() => {
+          clearInterval(iv);
+          if (samples.length) this.neutral = samples.reduce((x, y) => x + y, 0) / samples.length;
+          resolve(this.neutral);
+        }, ms);
+      }, delayMs);
     });
   }
 

@@ -7,6 +7,9 @@
 import { ssGet, ssSet } from './store.js';
 
 const BACKOFF = [250, 500, 1000, 2000];
+const CONNECT_TIMEOUT_MS = 4000; // no welcome/full by then: count it as a failed attempt
+const WATCHDOG_MS = 5000;        // the server pings every 2 s; 5 s of silence means the link is dead
+const HIDDEN_FORCE_MS = 2000;    // back from > 2 s in the background: assume the socket is stale
 
 export class Link {
   /**
@@ -31,6 +34,10 @@ export class Link {
     this.pendingInput = null;
     this.inFlight = false;
     this.gen = 0; // bumped for every connection attempt so late events from old ones are ignored
+    this.reachable = false; // got welcome OR full on the current connection
+    this.lastRx = 0;
+    this.connTimer = null;
+    this.hiddenAt = 0;
   }
 
   on(evt, fn) { this.handlers[evt] = fn; return this; }
@@ -42,9 +49,20 @@ export class Link {
     this.terminal = null;
     this.open();
     const wake = () => { if (document.visibilityState !== 'hidden') this.reconnectNow(); };
-    document.addEventListener('visibilitychange', wake);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') { this.hiddenAt = performance.now(); return; }
+      const away = this.hiddenAt ? performance.now() - this.hiddenAt : 0;
+      this.hiddenAt = 0;
+      // after a real trip to the background the socket may look OPEN but be dead (iOS especially)
+      if (away > HIDDEN_FORCE_MS && !this.terminal) { this.attempt = 0; this.open(); } else wake();
+    });
     window.addEventListener('online', wake);
     window.addEventListener('pageshow', wake);
+    // phone-side watchdog, for both transports
+    this.watchdog = setInterval(() => {
+      if (this.terminal || this.status !== 'online' || !this.lastRx) return;
+      if (performance.now() - this.lastRx > WATCHDOG_MS) this.down(this.gen, 4000, 'watchdog');
+    }, 1000);
   }
 
   /** After kicked/left: try again as a newcomer with the same token. */
@@ -60,9 +78,12 @@ export class Link {
     this.teardown();
     if (this.terminal) return;
     this.gen++;
-    this.welcomed = false;
+    this.welcomed = false; this.reachable = false;
     this.queue = []; this.pendingInput = null; this.inFlight = false;
-    if (this.transport === 'ws') this.openWs(this.gen); else this.openSse(this.gen);
+    const gen = this.gen;
+    clearTimeout(this.connTimer);
+    this.connTimer = setTimeout(() => { if (gen === this.gen && !this.reachable) this.down(gen, 1006, 'timeout'); }, CONNECT_TIMEOUT_MS);
+    if (this.transport === 'ws') this.openWs(gen); else this.openSse(gen);
   }
 
   teardown() {
@@ -128,16 +149,19 @@ export class Link {
   // ---------------------------------------------------------------- common
 
   onText(text) {
+    this.lastRx = performance.now();
     let m;
     try { m = JSON.parse(text); } catch (e) { return; }
     if (!m || typeof m.t !== 'string') return;
     switch (m.t) {
       case 'welcome':
-        this.welcomed = true; this.everWelcomed = true; this.attempt = 0; this.preFailures = 0; this.sseFailures = 0;
+        this.welcomed = true; this.reachable = true; clearTimeout(this.connTimer); this.everWelcomed = true; this.attempt = 0; this.preFailures = 0; this.sseFailures = 0;
         this.setStatus('online');
         this.emit('welcome', m);
         return;
-      case 'full': this.setStatus('online'); this.emit('full', m); return;
+      case 'full': // the server answered: the transport works, so this never counts as a failure
+        this.reachable = true; clearTimeout(this.connTimer); this.attempt = 0; this.preFailures = 0;
+        this.setStatus('online'); this.emit('full', m); return;
       case 'ping': this.send({ t: 'pong', id: m.id }); return;
       case 'kicked': this.terminal = 'kicked'; this.emit('kicked', m); return;
       case 'closed': // SSE equivalent of a close code
@@ -154,8 +178,9 @@ export class Link {
     this.gen++; // ignore everything else from this attempt
     this.teardown();
     this.sseClosedCode = null;
-    const wasWelcomed = this.welcomed;
-    this.welcomed = false;
+    clearTimeout(this.connTimer);
+    const wasWelcomed = this.welcomed || this.reachable;
+    this.welcomed = false; this.reachable = false; this.lastRx = 0;
     if (this.terminal) { this.setStatus('closed'); return; }
     if (code === 4003) { this.terminal = 'replaced'; this.setStatus('closed'); this.emit('replaced'); return; }
     if (code === 4002) { this.terminal = 'kicked'; this.setStatus('closed'); this.emit('kicked', { reason: 'host' }); return; }
