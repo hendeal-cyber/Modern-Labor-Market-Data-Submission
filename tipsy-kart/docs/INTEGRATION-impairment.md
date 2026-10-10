@@ -18,15 +18,20 @@ Both paths are idempotent: `install.js` also self-installs on `window.game`, on 
 ## For the phone-controller lane
 Send `game.impairment.getImpairmentStatus(slot)` on `drinksChanged`/`settingsChanged` (and every few seconds for the falling BAC). Forward `game.impairment.on('event', ...)` to that slot's phone for haptics. Wire the phone +1/-1 and water controls (0.8 s hold) to `adjustDrinks` and `setWaterMode`. `session.settings.phoneSwim` says whether the buttons should swim. Do not add any delay on the phone.
 
-## For the engine lane (small requests)
-1. Filter ctx `kartState`: please add `raceTime` (s since GO) and `respawning` (or `frozen`). Today the lane infers GO from `racePhase === 'countdown'` and a respawn from a one-step stop to zero speed.
-2. `visualFx[slot](arg)`: pass `arg.viewport = {w, h}` (CSS px of that viewport) so `blurPx`, `ghostDx/Dy` and `joltPx` scale to the viewport. Without it they are in px for a 1920x1080 reference.
-3. HUD: show `est. BAC 0.060%` (three decimals) from `p.bac`, and optionally `p.tierLabel`.
-4. Visual fields: all of `blurPx, swayDeg, doubleVision, tunnel, hueShift, camLagS, fovWobbleDeg, saturate, ghostDx, ghostDy, zoom, blink, joltPx` are consumed by lane/engine 3c2d5dc. The ghost alpha there is `0.42 * doubleVision` (max 0.315), inside the 0.40 cap.
-   - `zoom` is always 1, because the engine rolls the camera itself and a CSS zoom would only crop and pulse. A renderer that rotates the canvas with CSS can set `session.settings.cssRotateZoom = true` to get the corner-hiding zoom (at most 1.13).
-   - `joltPx` is halved by Comfort visuals.
-   - A lapse blink or hiccup jolt is cleared when `visualFx` is called with `kartState.finished`, or with a `time` more than 0.1 s past the last filter call. The engine stops filtering finished karts.
-5. `test/smoke.mjs` passes with this plugin installed, on lane/engine 1e8234d (merged here as d0a489c). The 3c2d5dc version used wall-clock sleeps and was flaky under load, with or without the plugin.
+## For the engine lane
+Done in lane/engine 63542d1 and 5c03af5, merged here:
+- `kartState.raceTime` (negative in the countdown) and `respawning` are used directly. The racePhase and speed-drop inferences remain only as fallbacks.
+- `visualFx` gets `viewport {w, h}`, so `blurPx`, `ghostDx/Dy` and `joltPx` are in that viewport's CSS px.
+- The HUD reads `hudModel(slot)`. These field names are stable: `icon`, `count`, `drinks`, `bacText` (`est. BAC 0.060%`), `barFill`, `limitTick`, `color` (`green`/`amber`/`red`), `tierLabel`, `overLimit` and `water`.
+- `kartState.finished` stays fresh, which makes the B1 blink and jolt clearing reliable.
+- `joltPx` renders as translateY, and `zoom: 1` is a no-op.
+
+All of `blurPx, swayDeg, doubleVision, tunnel, hueShift, camLagS, fovWobbleDeg, saturate, ghostDx, ghostDy, zoom, blink, joltPx` are consumed. The ghost alpha is `0.42 * doubleVision` (max 0.315), inside the 0.40 cap.
+- `zoom` is always 1, because the engine rolls the camera itself. A renderer that rotates the canvas with CSS can set `session.settings.cssRotateZoom = true` to get the corner-hiding zoom (at most 1.13).
+- `joltPx` is halved by Comfort visuals.
+- A lapse blink or hiccup jolt is cleared when `visualFx` is called with `kartState.finished`, or with a `time` more than 0.1 s past the last filter call.
+
+**Open, for the engine lane:** `test/smoke.mjs` (5c03af5, around line 159) sets `session.players[0].bac = 0.06` and waits for the HUD to show `est. BAC 0.060%`. With this plugin installed, the HUD reads `game.impairment.hudModel(0)`, which derives BAC from drinks, so that check times out. Every other check passes, and the whole smoke test passes when `js/impairment/index.js` is absent. The fix belongs in the smoke test: when `game.impairment` exists, call `game.impairment.adjustDrinks(0, 2)` (which gives est. BAC 0.060%) instead of writing `p.bac`.
 
 ## Tests
 - `node --test tipsy-kart/test/impairment/`: unit tests (about 7 s). `test/impairment/index.js` is a shim that makes the directory form work on Node 22.
