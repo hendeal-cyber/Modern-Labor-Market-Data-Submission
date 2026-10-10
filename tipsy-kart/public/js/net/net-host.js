@@ -385,6 +385,26 @@ export function initNetHost(game, opts = {}) {
   on('lap', (e) => { if (e) { engineSays.lap = true; vibeSlot(e.slot, 'lap'); } });
   on('finish', (e) => { if (e) { engineSays.finish = true; finishedSeen.add(e.slot); vibeSlot(e.slot, 'finish'); } });
 
+  // Impairment lane: momentary effects become a "woozy" cue on that phone (colour flash on iOS).
+  // game.emit('impairmentEvent', {type, slot}) or, as a fallback, game.impairment.on('event', cb).
+  const lastWoozy = new Map();
+  const woozy = (e) => {
+    if (!e || !Number.isInteger(e.slot)) return;
+    const t = now();
+    if (t - (lastWoozy.get(e.slot) || -1e9) < 150) return; // both sources may report the same moment
+    lastWoozy.set(e.slot, t);
+    vibeSlot(e.slot, 'woozy');
+  };
+  on('impairmentEvent', woozy);
+  let impHooked = false;
+  function hookImpairment() {
+    if (impHooked) return;
+    const imp = game.impairment;
+    if (imp && typeof imp.on === 'function') { impHooked = true; try { imp.on('event', woozy); } catch (e) { /* ignore */ } }
+  }
+  // drink count / tipsy meter refresh right away instead of on the next 5 Hz tick
+  on('drinksChanged', () => pushHud(false));
+
   // ---------------------------------------------------------------- socket
   function connect() {
     if (closed) return;
@@ -407,7 +427,7 @@ export function initNetHost(game, opts = {}) {
   function schedule() { if (closed) return; clearTimeout(timer); timer = setTimeout(connect, BACKOFF[Math.min(attempt++, BACKOFF.length - 1)]); }
 
   const staleTimer = setInterval(staleCheck, 50);
-  const hudTimer = setInterval(() => pushHud(false), HUD_MS);
+  const hudTimer = setInterval(() => { hookImpairment(); pushHud(false); }, HUD_MS); // the impairment plugin may load after us
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !open) { clearTimeout(timer); attempt = 0; connect(); } });
   connect();
 

@@ -14,6 +14,8 @@ export const PATTERNS = {
   boost2: [20, 30, 35, 30, 55],
   boost3: [20, 25, 35, 25, 55, 25, 90],
   itemGot: [12, 50, 12],
+  // impairment moments (lapse/invert/hiccup/fumble): a lazy, uneven sway, unlike any race cue
+  woozy: [30, 70, 50, 110, 80, 150, 120],
 };
 
 export function isIos() {
