@@ -124,12 +124,17 @@ export function createImpairment(slot, game, opts = {}) {
     const sp = fin(k.speedNorm, NaN);
     const speedNorm = clamp01(Number.isFinite(sp) ? sp : (fin(ctx.speed, NaN) / fin(k.maxSpeed, 30)));
     const spd = Number.isFinite(speedNorm) ? speedNorm : 1;
+    // seconds since GO: the engine's kartState.raceTime (negative in the countdown),
+    // else inferred from racePhase for an engine that does not send it
     if (Number.isFinite(k.raceTime)) st.sinceGo = k.raceTime;
     else if (k.racePhase === 'countdown' || k.countdown > 0 || k.started === false) st.sinceGo = 0;
     else st.sinceGo += dt;
-    // Respawn: an explicit flag if the engine sends one, else a kart whose speed
-    // drops from a real speed to ~0 in a single step (only a teleport does that).
-    const respawning = !!k.respawning || k.frozen > 0 || (st.prevSpd > 0.25 && spd < 0.02 && dt > 0);
+    // Respawn: the engine's kartState.respawning when it sends one (lane/engine
+    // 63542d1+); only for an engine without it, infer a respawn from a kart whose
+    // speed drops from a real speed to ~0 in a single step (a teleport).
+    const respawning = typeof k.respawning === 'boolean'
+      ? k.respawning
+      : (k.frozen > 0 || (st.prevSpd > 0.25 && spd < 0.02 && dt > 0));
     st.prevSpd = spd;
     st.sinceRespawn = respawning ? 0 : st.sinceRespawn + dt;
     st.slowFor = spd < 0.1 ? st.slowFor + dt : 0;

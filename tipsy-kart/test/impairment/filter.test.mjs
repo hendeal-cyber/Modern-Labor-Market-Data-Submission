@@ -415,3 +415,18 @@ test('S3: race serial — a new cup (raceIndex back to 0) and single-race cups g
   assert.equal(imp.state.Ls, 0, 'new single-race cup snaps the level');
   assert.equal(imp.state.race, 3);
 });
+
+test('engine 63542d1+: explicit kartState.respawning / raceTime win over the inferences', () => {
+  const { imp } = setup({ drinks: 5 });
+  const dt = 1 / 60;
+  const ctx = (speed, respawning, raceTime) => ({ time: 0, speed, drinks: 5, raceIndex: 0, slot: 0, kartState: { speed, maxSpeed: 33, racePhase: 'racing', respawning, raceTime } });
+  for (let i = 0; i < 600; i++) imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(30, false, 10 + i * dt));
+  // a hard stop with respawning:false (e.g. a crash into a wall) is NOT treated as a respawn
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(0, false, 20));
+  assert.ok(imp.state.sinceRespawn > 5);
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(30, true, 20));
+  assert.equal(imp.state.sinceRespawn, 0);
+  // negative raceTime (countdown) keeps the race clock below the 4 s event guard
+  imp.filter({ steer: 0, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctx(0, false, -2.5));
+  assert.equal(imp.state.sinceGo, -2.5);
+});
