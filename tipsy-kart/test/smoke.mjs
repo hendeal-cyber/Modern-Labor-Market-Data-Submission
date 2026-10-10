@@ -157,12 +157,19 @@ try {
   const fxArg = await page.evaluate(() => window.__fxArg);
   check(fxArg && fxArg.viewport && fxArg.viewport.w > 100 && fxArg.viewport.h > 100, `visualFx gets viewport size ${JSON.stringify(fxArg && fxArg.viewport)}`);
   check(fxArg && typeof fxArg.raceTime === 'number' && fxArg.raceTime > 0 && fxArg.respawning === false, `kartState has raceTime/respawning ${JSON.stringify(fxArg)}`);
-  await page.evaluate(() => { window.game.session.players[0].bac = 0.06; });
+  // With the impairment plugin installed the HUD derives BAC from the drink count
+  // (two drinks -> est. BAC 0.060%); without it the engine shows session.players[i].bac.
+  await page.evaluate(() => {
+    const g = window.game;
+    if (g.impairment && typeof g.impairment.adjustDrinks === 'function') g.impairment.adjustDrinks(0, 2);
+    else g.session.players[0].bac = 0.06;
+  });
   await page.waitForFunction(() => document.querySelector('.vp[data-slot="0"] .hud-drinks').textContent.includes('est. BAC 0.060%'), null, { timeout: 30000 });
   check(true, 'HUD shows est. BAC 0.060%');
   const tf1 = await page.evaluate(() => document.querySelector('.vp[data-slot="1"] canvas').style.transform);
   check(/translateY\(4(\.0)?px\)/.test(tf1) && !tf1.includes('translate('), `joltPx renders as a vertical bump (${tf1})`);
   await page.evaluate(() => {
+    window.__realImpairment = window.game.impairment;
     window.game.impairment = { hudModel: (slot) => ({ icon: 'mug', count: 3, drinks: 3, bacText: 'est. BAC 0.090%', barFill: 0.45, limitTick: 0.4, color: 'red', tierLabel: 'Over the limit', overLimit: true, water: false, slot }) };
   });
   await page.waitForFunction(() => {
@@ -171,7 +178,10 @@ try {
   }, null, { timeout: 30000 });
   check(true, 'HUD uses game.impairment.hudModel (BAC text, LIMIT tick, tier label)');
   await page.screenshot({ path: path.join(shots, '02b-hud-model.png') });
-  await page.evaluate(() => { delete window.game.impairment; });
+  await page.evaluate(() => {
+    if (window.__realImpairment) window.game.impairment = window.__realImpairment;
+    else delete window.game.impairment;
+  });
   check(st.hud.length === 3 && st.hud.every((h) => 'place' in h && 'lap' in h && 'totalLaps' in h && 'item' in h && 'finished' in h && 'speed' in h), 'getState().hud has per-slot HUD data');
 
   // useItem edge trigger
