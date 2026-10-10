@@ -55,7 +55,7 @@ class PlayerView {
       driftBar: $('.hud-drift i'), center: $('.hud-center'), warn: $('.hud-warn'),
     };
     this.cache = {};
-    this.camera = new THREE.PerspectiveCamera(62, 16 / 9, 0.3, 700);
+    this.camera = new THREE.PerspectiveCamera(62, 16 / 9, 0.3, 1600);
     this.camYaw = null;
     this.fov = 62;
     this.flashText = '';
@@ -192,10 +192,11 @@ export class Viewports {
     while (s.children.length) s.remove(s.children[0]);
     const th = track.def.theme;
     s.fog = new THREE.Fog(th.fog, th.fogNear, th.fogFar);
-    s.background = new THREE.Color(th.sky[1]);
+    s.background = new THREE.Color(th.fog);
     s.add(trackView.group, itemsView.group);
     for (const m of kartModels) s.add(m.root);
     this.trackView = trackView;
+    this.kartModels = kartModels;
     this.track = track;
     this.mmPath = null;
     for (const v of this.views) v.camYaw = null;
@@ -229,6 +230,12 @@ export class Viewports {
 
       v.updateCamera(dt, k, sway, now, camLag, fovWobble);
       this.trackView.follow(v.camera);
+      // hide other karts that are practically inside this camera
+      const cp = v.camera.position;
+      for (const m of this.kartModels) {
+        const o = m.kart;
+        m.root.visible = o === k || (o.x - cp.x) ** 2 + (o.y + 1 - cp.y) ** 2 + (o.z - cp.z) ** 2 > 12;
+      }
       this.renderer.render(this.scene, v.camera);
 
       const c = v.ctx, W = v.canvas.width, H = v.canvas.height;

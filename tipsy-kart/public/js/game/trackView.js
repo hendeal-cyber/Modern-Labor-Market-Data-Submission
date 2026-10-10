@@ -452,11 +452,17 @@ export class TrackView {
       g.fillStyle = col; g.font = 'bold 40px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
       g.fillText(words[n % words.length], 128, 50);
       const tex = this.own(new THREE.CanvasTexture(cv));
-      const sign = new THREE.Mesh(this.own(new THREE.PlaneGeometry(10, 3.75)), this.own(new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide })));
+      const sign = new THREE.Group();
+      sign.add(new THREE.Mesh(this.own(new THREE.PlaneGeometry(10, 3.75)), this.own(new THREE.MeshBasicMaterial({ map: tex }))));
+      const back = new THREE.Mesh(this.own(new THREE.PlaneGeometry(10, 3.75)), this.own(new THREE.MeshBasicMaterial({ color: 0x120a22 })));
+      back.rotation.y = Math.PI;
+      sign.add(back);
       const q2 = {};
       this.track.query(x, 0, z, -1, q2);
+      // face the road, angled toward oncoming traffic
+      const sg = q2.d >= 0 ? -1 : 1;
       sign.position.set(x, this.minY + 6 + r() * 4, z);
-      sign.rotation.y = Math.atan2(q2.rx, q2.rz) + Math.PI / 2;
+      sign.rotation.y = Math.atan2(q2.rx * sg - q2.tx * 0.8, q2.rz * sg - q2.tz * 0.8); // toward the road and oncoming karts
       this.group.add(sign);
       n++;
     });

@@ -11,7 +11,7 @@ export const STATS = {
   reverseMax: 9,
   coastDecel: 5,
   turnRate: 2.25,     // rad/s at mid speed
-  driftTurn: 1.9,
+  driftTurn: 1.65,
   grip: 10,
   driftGrip: 4.2,
   offroadGrip: 6,
@@ -253,7 +253,14 @@ export class Kart {
 
     // --- lateral grip ---
     const grip = this.drifting ? st.driftGrip : q.offroad ? st.offroadGrip : st.grip;
-    vR *= Math.exp(-grip * dt);
+    if (this.drifting && vF > 0) {
+      // drifting redirects the slide into forward motion instead of scrubbing it off
+      const mag = Math.min(Math.hypot(vF, vR) * (1 - 0.12 * dt), Math.max(maxS, Math.abs(vF)));
+      vR *= Math.exp(-grip * dt);
+      vF = Math.sqrt(Math.max(0, mag * mag - vR * vR));
+    } else {
+      vR *= Math.exp(-grip * dt);
+    }
 
     // rebuild velocity in the new heading frame (keeps slide)
     const vxw = fx * vF + rx * vR, vzw = fz * vF + rz * vR;

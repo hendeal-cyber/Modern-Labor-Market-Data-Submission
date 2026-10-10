@@ -63,8 +63,10 @@ export class AIDriver {
       drift = this.driftHold < 4 && (sameWay || k.driftTier < wantTier) && ang * k.driftDir > -0.35;
       if (!sameWay && k.driftTier >= 1) drift = false;
     } else {
+      if (this.driftHold > 0) this.driftCooldown = 1.2;
       this.driftHold = 0;
-      if (Math.abs(kMax) > 0.022 && spd > 20 && Math.sign(steer) === Math.sign(kMax) && Math.abs(steer) > 0.35) {
+      this.driftCooldown = Math.max(0, (this.driftCooldown || 0) - dt);
+      if (this.driftCooldown <= 0 && Math.abs(kMax) > 0.022 && spd > 20 && Math.sign(steer) === Math.sign(kMax) && Math.abs(steer) > 0.35) {
         drift = true;
       }
     }
