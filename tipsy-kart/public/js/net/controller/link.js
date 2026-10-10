@@ -72,9 +72,12 @@ export class Link {
     if (es) { es.onopen = es.onmessage = es.onerror = null; try { es.close(); } catch (e) { /* ignore */ } }
   }
 
+  /** visibilitychange/online/pageshow: skip the backoff wait, but never kill an attempt in flight. */
   reconnectNow() {
     if (this.terminal || this.status === 'online') return;
-    if (this.everWelcomed || this.status === 'connecting') this.open();
+    if (this.ws && this.ws.readyState <= 1) return;
+    if (this.es && this.es.readyState <= 1) return;
+    this.open();
   }
 
   // ---------------------------------------------------------------- websocket

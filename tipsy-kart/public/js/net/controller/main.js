@@ -122,7 +122,7 @@ function render() {
 
   // which screen
   const inGame = S.started && !S.ended && !(S.queuePos > 0 && S.slot == null);
-  show($('join'), !S.started && !S.ended && !(S.queuePos > 0 && S.slot == null));
+  show($('join'), !S.started && !S.ended);
   show($('calib'), S.started && S.calibrating && !S.ended);
   const padShown = inGame && !S.calibrating && phaseIsPad();
   const cardShown = inGame && !S.calibrating && !phaseIsPad();
@@ -135,7 +135,7 @@ function render() {
 
   // overlays
   const everIn = S.everWelcomed || S.slot != null;
-  show($('full'), S.queuePos > 0 && S.slot == null && !S.ended);
+  show($('full'), S.started && S.queuePos > 0 && S.slot == null && !S.ended);
   $('queuePos').textContent = String(S.queuePos);
   show($('ended'), !!S.ended);
   if (S.ended) {
@@ -369,6 +369,9 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
 screen.orientation && screen.orientation.addEventListener && screen.orientation.addEventListener('change', render);
 fetch('/api/info', { cache: 'no-store' }).then((r) => r.json()).then((i) => { S.urls = i; render(); }).catch(() => {});
 if (ssGet('tipsyKart.transport') === 'sse') link.transport = 'sse';
+// Where no permission prompt exists (Android, desktop) listen from the start, so the sensor is
+// already known to work by the time the player taps "Let's go".
+if (window.isSecureContext && 'DeviceOrientationEvent' in window && typeof DeviceOrientationEvent.requestPermission !== 'function') tilt.listen();
 render();
 link.start();
 

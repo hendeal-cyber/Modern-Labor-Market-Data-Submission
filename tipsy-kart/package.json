@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node test/smoke.mjs",
-    "test:net": "node --test test/net/"
+    "test:net": "node --test --test-concurrency=1 test/net/"
   },
   "engines": {
     "node": ">=18"

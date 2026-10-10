@@ -53,11 +53,18 @@ export class Tilt {
   }
 
   /** Starts listening. Resolves true if a real (non-null beta) event arrives within 1 s. */
+  /** Start receiving events (no waiting). Safe to call early where no permission prompt exists. */
+  listen() {
+    if (this.listening) return;
+    this.listening = true;
+    window.addEventListener('deviceorientation', this._h);
+    window.addEventListener('orientationchange', this._orient);
+  }
+
   start() {
     if (this.running) return Promise.resolve(this.has);
     this.running = true;
-    window.addEventListener('deviceorientation', this._h);
-    window.addEventListener('orientationchange', this._orient);
+    this.listen();
     return new Promise((resolve) => {
       const t0 = performance.now();
       const poll = () => {
@@ -70,7 +77,7 @@ export class Tilt {
   }
 
   stop() {
-    this.running = false;
+    this.running = false; this.listening = false;
     window.removeEventListener('deviceorientation', this._h);
     window.removeEventListener('orientationchange', this._orient);
   }
