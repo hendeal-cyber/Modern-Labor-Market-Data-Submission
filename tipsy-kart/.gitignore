@@ -2,3 +2,4 @@ node_modules/
 test/screenshots/
 # Keep the lockfile even though the repo root ignores lockfiles.
 !package-lock.json
+.cert/
