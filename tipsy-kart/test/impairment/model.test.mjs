@@ -179,8 +179,8 @@ test('ring buffer: returns the newest sample at or before now - delay', () => {
   const r3 = new InputRing(4);
   for (let i = 0; i < 10; i++) r3.push(i, { steer: i / 10, throttle: 0, brake: 0, drift: false, useItem: false });
   assert.equal(r3.length, 4);
-  assert.equal(r3.read(9).steer, 0.9);
   assert.equal(r3.read(0).steer, 0.6, 'oldest retained');
+  assert.equal(r3.read(9).steer, 0.9);
 });
 
 function visState(L, extra = {}) {
@@ -253,4 +253,24 @@ test('S6/N2: zoom is 1 unless the CSS-rotate fallback is on; comfort halves the 
   const calm = computeVisualFx(visState(3, { t: 2.0, hicStart: 2.0 }), 1, undefined, { comfortVisuals: true });
   assert.equal(full.joltPx, 6);
   assert.equal(calm.joltPx, 3);
+});
+
+test('N3: ring never drops a one-step button pulse when the delay shrinks, and never rewinds', () => {
+  const ring = new InputRing(256);
+  const dt = 1 / 60;
+  const seen = [];
+  let lastT = -Infinity, rewound = false;
+  for (let i = 0; i < 120; i++) {
+    const t = i * dt;
+    // a single-sample useItem tap at frame 30 and a single-sample drift tap at frame 31
+    ring.push(t, { steer: 0, throttle: 0, brake: 0, drift: i === 31, useItem: i === 30 });
+    const delay = i < 34 ? 0.15 : i < 80 ? 0.0 : 0.25; // shrink at frame 34 (skips frames 25..34), grow at 80
+    const d = ring.read(t - delay);
+    if (d.t < lastT) rewound = true;
+    lastT = d.t;
+    seen.push({ i, useItem: d.useItem, drift: d.drift });
+  }
+  assert.equal(seen.filter((x) => x.useItem).length, 1, 'the useItem tap is delivered exactly once');
+  assert.equal(seen.filter((x) => x.drift).length, 1, 'the drift tap is delivered exactly once');
+  assert.equal(rewound, false, 'a growing delay holds instead of replaying old samples');
 });
