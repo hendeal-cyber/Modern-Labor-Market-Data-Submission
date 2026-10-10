@@ -118,6 +118,14 @@ h1, h2, h3 { margin: 0; }
 .hud-drinks { display: flex; align-items: center; gap: 6px; font-size: calc(var(--u) * 2); margin-top: 4px; }
 .hud-drinks .mug { width: calc(var(--u) * 2.6); height: calc(var(--u) * 2.6); }
 .hud-drinks em { font-style: normal; font-size: 0.75em; color: var(--muted); margin-left: 6px; }
+.hud-drinks .bac { margin-left: 6px; display: flex; flex-direction: column; gap: 2px; }
+.hud-drinks .bac em { margin-left: 0; color: #fff; }
+.bac-bar { position: relative; width: calc(var(--u) * 13); height: calc(var(--u) * 0.8); background: rgba(0, 0, 0, 0.5); border-radius: 99px; margin-top: calc(var(--u) * 0.3); }
+.bac-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; }
+.bac-bar b { position: absolute; top: calc(var(--u) * -0.4); bottom: calc(var(--u) * -0.4); width: 2px; background: #fff; }
+.bac-bar b span { position: absolute; top: calc(var(--u) * 1.1); left: 50%; transform: translateX(-50%); font-size: calc(var(--u) * 0.85); letter-spacing: 0.08em; color: #fff; }
+.bac-tier { font-size: calc(var(--u) * 1.15); margin-top: calc(var(--u) * 0.9); white-space: nowrap; }
+.viewports[data-count="4"] .bac-tier, .viewports[data-count="3"] .bac-tier { margin-top: calc(var(--u) * 0.8); }
 .hud-speed b { font-size: calc(var(--u) * 4.2); font-style: italic; }
 .hud-speed span { font-size: calc(var(--u) * 1.6); margin-left: 4px; color: var(--muted); }
 .hud-drift { width: calc(var(--u) * 14); height: calc(var(--u) * 0.9); background: rgba(0, 0, 0, 0.45); border-radius: 99px; overflow: hidden; margin-top: 6px; margin-left: auto; }

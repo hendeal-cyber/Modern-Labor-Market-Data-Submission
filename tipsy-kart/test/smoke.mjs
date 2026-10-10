@@ -105,7 +105,10 @@ try {
         return input;
       };
     }
-    window.game.visualFx[1] = () => ({ blurPx: 1.5, swayDeg: 3, doubleVision: 0.6, tunnel: 0.5, hueShift: 20, saturate: 1.4, blink: 0.1 });
+    window.__fxArg = null;
+    window.game.visualFx[0] = (arg) => { window.__fxArg = arg && { viewport: arg.viewport, raceTime: arg.kartState && arg.kartState.raceTime, respawning: arg.kartState && arg.kartState.respawning }; return { blurPx: 0 }; };
+    window.game.visualFx[2] = () => ({}); // ignores its argument
+    window.game.visualFx[1] = () => ({ blurPx: 1.5, swayDeg: 3, doubleVision: 0.6, tunnel: 0.5, hueShift: 20, saturate: 1.4, blink: 0.1, joltPx: 4 });
   });
 
   // 3. start the cup from the lobby button
@@ -151,24 +154,54 @@ try {
   check(css.includes('blur') && css.includes('hue-rotate'), `visualFx applied to slot 1 canvas only (${css})`);
   const css0 = await page.evaluate(() => document.querySelector('.vp[data-slot="0"] canvas').style.filter);
   check(!css0 || css0 === 'none', 'slot 0 canvas unaffected');
+  const fxArg = await page.evaluate(() => window.__fxArg);
+  check(fxArg && fxArg.viewport && fxArg.viewport.w > 100 && fxArg.viewport.h > 100, `visualFx gets viewport size ${JSON.stringify(fxArg && fxArg.viewport)}`);
+  check(fxArg && typeof fxArg.raceTime === 'number' && fxArg.raceTime > 0 && fxArg.respawning === false, `kartState has raceTime/respawning ${JSON.stringify(fxArg)}`);
+  // With the impairment plugin installed the HUD derives BAC from the drink count
+  // (two drinks -> est. BAC 0.060%); without it the engine shows session.players[i].bac.
+  await page.evaluate(() => {
+    const g = window.game;
+    if (g.impairment && typeof g.impairment.adjustDrinks === 'function') g.impairment.adjustDrinks(0, 2);
+    else g.session.players[0].bac = 0.06;
+  });
+  await page.waitForFunction(() => document.querySelector('.vp[data-slot="0"] .hud-drinks').textContent.includes('est. BAC 0.060%'), null, { timeout: 30000 });
+  check(true, 'HUD shows est. BAC 0.060%');
+  const tf1 = await page.evaluate(() => document.querySelector('.vp[data-slot="1"] canvas').style.transform);
+  check(/translateY\(4(\.0)?px\)/.test(tf1) && !tf1.includes('translate('), `joltPx renders as a vertical bump (${tf1})`);
+  await page.evaluate(() => {
+    window.__realImpairment = window.game.impairment;
+    window.game.impairment = { hudModel: (slot) => ({ icon: 'mug', count: 3, drinks: 3, bacText: 'est. BAC 0.090%', barFill: 0.45, limitTick: 0.4, color: 'red', tierLabel: 'Over the limit', overLimit: true, water: false, slot }) };
+  });
+  await page.waitForFunction(() => {
+    const el = document.querySelector('.vp[data-slot="2"] .hud-drinks');
+    return el && el.textContent.includes('est. BAC 0.090%') && el.textContent.includes('Over the limit') && el.querySelector('.bac-bar b');
+  }, null, { timeout: 30000 });
+  check(true, 'HUD uses game.impairment.hudModel (BAC text, LIMIT tick, tier label)');
+  await page.screenshot({ path: path.join(shots, '02b-hud-model.png') });
+  await page.evaluate(() => {
+    if (window.__realImpairment) window.game.impairment = window.__realImpairment;
+    else delete window.game.impairment;
+  });
   check(st.hud.length === 3 && st.hud.every((h) => 'place' in h && 'lap' in h && 'totalLaps' in h && 'item' in h && 'finished' in h && 'speed' in h), 'getState().hud has per-slot HUD data');
 
   // useItem edge trigger
   const itemRes = await page.evaluate(async () => {
     const g = window.game;
+    // wait until the simulation has advanced (robust on slow software GL)
+    const tick = (sec = 0.2) => new Promise((r) => { const t = g.simTime + sec; const f = () => (g.simTime >= t ? r() : setTimeout(f, 30)); f(); });
     g.debug.autopilot(1, false);
     const k = g.race.karts.find((kk) => kk.slot === 1);
     k.item = 'fizz';
     g.setPlayerInput(1, { throttle: 1, useItem: true });
-    await new Promise((r) => setTimeout(r, 300));
+    await tick();
     const used = k.item === null;
     k.item = 'bubble';
     g.setPlayerInput(1, { throttle: 1, useItem: true }); // still held: no new edge
-    await new Promise((r) => setTimeout(r, 300));
+    await tick();
     const heldIgnored = k.item === 'bubble';
     g.setPlayerInput(1, { throttle: 1, useItem: false });
     g.setPlayerInput(1, { throttle: 1, useItem: true });
-    await new Promise((r) => setTimeout(r, 300));
+    await tick();
     return { used, heldIgnored, usedAgain: k.item === null && k.shieldTime > 0 };
   });
   check(itemRes.used && itemRes.heldIgnored && itemRes.usedAgain, `useItem is edge-triggered ${JSON.stringify(itemRes)}`);
