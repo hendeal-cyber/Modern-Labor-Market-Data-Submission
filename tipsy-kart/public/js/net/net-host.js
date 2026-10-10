@@ -9,8 +9,9 @@
 //   game.on(evt, cb), game.emit?.(evt, payload)
 //   game.getState()                  phase / positions / laps / items (shape probed, see readSlotHud)
 //   game.getHud?.(slot)              optional {lap,laps,place,of,item}
-//   game.getImpairmentStatus?.(slot) -> {drinks,bac,level 0..5,tierLabel,limit,overLimit}
-//   game.adjustDrinks?.(slot, delta), game.setWaterMode?.(slot, bool)   (impairment lane)
+//   getImpairmentStatus(slot) -> {drinks,bac,level 0..5,tierLabel,limit,overLimit}, adjustDrinks(slot, delta)
+//     (impairment lane) looked up on game.impairment first, then on game itself, at call time
+//     because the impairment plugin may install after this one
 
 const STALE_MS = 250;     // silence longer than this makes the kart coast
 const COAST_EASE_MS = 150; // steer eases to 0 over this long
@@ -251,10 +252,19 @@ export function initNetHost(game, opts = {}) {
   // ---------------------------------------------------------------- drinks
   function phaseNow() { return currentPhase(); }
 
+  /** Impairment API method, resolved at call time: game.impairment.fn, else game.fn, else null. */
+  function impFn(name) {
+    const im = game.impairment;
+    if (im && typeof im[name] === 'function') return im[name].bind(im);
+    if (typeof game[name] === 'function') return game[name].bind(game);
+    return null;
+  }
+
   function setDrinks(slot, n) {
     const p = findPlayer(slot, true);
     const cur = Number(p.drinks) || 0;
-    if (typeof game.adjustDrinks === 'function') { try { game.adjustDrinks(slot, n - cur); } catch (e) { console.error(e); } } else p.drinks = n;
+    const adj = impFn('adjustDrinks');
+    if (adj) { try { adj(slot, n - cur); } catch (e) { console.error(e); } } else p.drinks = n;
   }
 
   function onDrink(m) {
@@ -264,7 +274,8 @@ export function initNetHost(game, opts = {}) {
     const cur = Number(p.drinks) || 0;
     const next = Math.max(0, cur + m.delta);
     if (next === cur) return;
-    if (typeof game.adjustDrinks === 'function') { try { game.adjustDrinks(m.slot, next - cur); } catch (e) { console.error(e); } } else p.drinks = next;
+    const adj = impFn('adjustDrinks');
+    if (adj) { try { adj(m.slot, next - cur); } catch (e) { console.error(e); } } else p.drinks = next;
     emit('drinkChanged', { slot: m.slot, drinks: next, delta: next - cur });
     refreshUi();
     pushHud(true);
@@ -311,7 +322,7 @@ export function initNetHost(game, opts = {}) {
 
   function impairmentFor(slot, drinks) {
     let s = null;
-    try { if (typeof game.getImpairmentStatus === 'function') s = game.getImpairmentStatus(slot); } catch (e) { /* ignore */ }
+    try { const f = impFn('getImpairmentStatus'); if (f) s = f(slot); } catch (e) { /* ignore */ }
     if (s && typeof s === 'object') {
       const lv = clamp((Number(s.level) || 0) / 5, 0, 1); // the impairment lane's level is 0..5
       return { drinks: s.drinks != null ? s.drinks : drinks, impair: { level: Math.round(lv * 100) / 100, label: s.tierLabel || FALLBACK_LABELS[Math.min(4, Math.floor(lv * 4.999))], over: !!s.overLimit } };

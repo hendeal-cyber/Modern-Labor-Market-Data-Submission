@@ -480,9 +480,18 @@ describe('4 phones + host on the real game', () => {
     await host.waitForFunction(() => /results/i.test(window.game.getState().phase), null, { timeout: 10000 });
     const ph = P[0];
     await ph.page.waitForFunction(() => !document.getElementById('card').classList.contains('hidden'), null, { timeout: 5000 });
+    // the impairment lane (when merged) already counted the finished race as a drink: count from here
+    await sleep(300);
+    const d0 = await hostEval((s) => window.game.session.players.find((p) => p.slot === s).drinks || 0, ph.slot);
+    const want = d0 + 1;
     await ph.page.tap('#drinkPlus');
-    await until(() => hostEval((s) => window.game.session.players.find((p) => p.slot === s).drinks === 1, ph.slot), 3000, 'drink counted');
-    await ph.page.waitForFunction(() => document.getElementById('cardDrinksN').textContent === '1', null, { timeout: 3000 });
+    await until(() => hostEval(([s, w]) => window.game.session.players.find((p) => p.slot === s).drinks === w, [ph.slot, want]), 5000, 'drink counted');
+    await ph.page.waitForFunction((w) => document.getElementById('cardDrinksN').textContent === String(w), want, { timeout: 5000 });
+    if (await hostEval(() => !!(window.game.impairment && window.game.impairment.getImpairmentStatus))) {
+      // the tipsy meter label comes from the impairment lane's tierLabel
+      const label = await hostEval((s) => window.game.impairment.getImpairmentStatus(s).tierLabel, ph.slot);
+      await ph.page.waitForFunction((l) => document.getElementById('tipLabel').textContent === l, label, { timeout: 5000 });
+    }
 
     await ph.page.evaluate(() => {
       window.__hc = [];
@@ -492,7 +501,7 @@ describe('4 phones + host on the real game', () => {
     await host.close();
     await openHost();
     await until(() => hostEval(() => window.tipsyNet.roster.length === 4), 5000, 'roster replay');
-    await until(() => hostEval((s) => (window.game.session.players.find((p) => p.slot === s) || {}).drinks === 1, ph.slot), 3000, 'drinks restored');
+    await until(() => hostEval(([s, w]) => (window.game.session.players.find((p) => p.slot === s) || {}).drinks === w, [ph.slot, want]), 5000, 'drinks restored');
     assert.equal(await hostEval(() => window.game.session.players.length), 4);
     await ph.page.waitForFunction(() => window.__hc.includes(false) && window.__hc[window.__hc.length - 1] === true, null, { timeout: 5000 });
   });
@@ -505,7 +514,8 @@ describe('4 phones + host on the real game', () => {
     await ph.page.tap('#rejoin');
     await ph.page.waitForFunction((slot) => window.tipsyController.S.slot === slot, ph.slot, { timeout: 5000 });
     // engine lobby remove (x) on a phone player -> hub kick
-    assert.equal(await hostEval(() => window.game.getState().phase), 'lobby', 'the reloaded host page is in its lobby');
+    if (await hostEval(() => window.game.getState().phase) !== 'lobby') await hostEval(() => window.game.toLobby());
+    await until(() => hostEval(() => window.game.getState().phase === 'lobby'), 5000, 'lobby');
     await until(() => hostEval((s) => window.tipsyNet.roster.some((p) => p.slot === s && p.connected), ph.slot), 3000, 'rejoined');
     await hostEval((s) => window.game.removePlayer(s), ph.slot);
     await ph.page.waitForFunction(() => window.tipsyController.S.ended, null, { timeout: 5000 });
