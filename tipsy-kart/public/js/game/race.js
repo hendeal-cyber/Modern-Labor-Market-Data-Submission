@@ -102,7 +102,7 @@ export class Race {
           if (ds > track.length / 2) ds -= track.length;
           else if (ds < -track.length / 2) ds += track.length;
           if (Math.abs(ds) < pad.len / 2 && Math.abs(k.q.d - pad.d) < pad.halfW) {
-            k.boost(1.1, 7);
+            k.boost(1.1, 7, 'pad');
             k.padCooldown = 0.5;
             this.events.push({ type: 'pad', kart: k });
           }
@@ -228,7 +228,7 @@ export class Race {
     const fx = Math.sin(k.h), fz = Math.cos(k.h);
     const track = this.track;
     if (type === 'fizz') {
-      k.boost(1.5, 8);
+      k.boost(1.5, 8, 'item');
     } else if (type === 'bubble') {
       k.shieldTime = 7;
     } else if (type === 'slick') {
