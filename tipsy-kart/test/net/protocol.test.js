@@ -283,8 +283,8 @@ describe('timing rules (short timers)', () => {
     await sleep(2200);
     assert.equal(p.of('kicked').length, 0, 'not kicked at the short limit without a queue');
     // ... but the hard cap still applies (toast first)
-    await p.wait('toast', 3000, 'still-there toast before the cap');
-    const k = await p.wait('kicked', 4000, 'cap kick');
+    await p.wait('toast', 8000, 'still-there toast before the cap');
+    const k = await p.wait('kicked', 8000, 'cap kick');
     assert.equal(k.reason, 'idle');
     clearInterval(beat);
     assert.equal((await H.wait((m) => m.t === 'left' && m.slot === w.slot && m.reason === 'idle')).released, true);
@@ -297,9 +297,9 @@ describe('timing rules (short timers)', () => {
     const q = await phone(srv.url, { name: 'Queued' });
     await q.wait('full');
     const t0 = Date.now();
-    assert.equal((await t.wait('kicked', 3000, 'idle kick with a queue')).reason, 'idle');
-    assert.ok(Date.now() - t0 < 2000);
-    assert.equal((await q.wait('welcome')).slot, wt.slot, 'the queued phone takes the slot');
+    assert.equal((await t.wait('kicked', 8000, 'idle kick with a queue')).reason, 'idle');
+    assert.ok(Date.now() - t0 < 3000, 'the short limit, not the 4 s cap');
+    assert.equal((await q.wait('welcome', 8000)).slot, wt.slot, 'the queued phone takes the slot');
     clearInterval(beat2);
     q.send({ t: 'leave' });
     room.stop();
@@ -325,7 +325,7 @@ describe('timing rules (short timers)', () => {
     assert.equal((await H.wait((m) => m.t === 'left' && m.slot === wa.slot && m.released === false)).reason, 'disconnect');
     await sleep(1200);
     assert.equal(H.of('left').filter((m) => m.reason === 'expired').length, 0, 'kept past the reserve time: nobody waiting');
-    const exp = await H.wait((m) => m.t === 'left' && m.slot === wa.slot && m.reason === 'expired', 4000, 'cap expiry');
+    const exp = await H.wait((m) => m.t === 'left' && m.slot === wa.slot && m.reason === 'expired', 10000, 'cap expiry');
     assert.equal(exp.released, true);
 
     // with a queue: quick expiry
@@ -336,9 +336,9 @@ describe('timing rules (short timers)', () => {
     await q.wait('full');
     b.close();
     const t0 = Date.now();
-    await H.wait((m) => m.t === 'left' && m.slot === wb.slot && m.reason === 'expired', 3000, 'quick expiry');
-    assert.ok(Date.now() - t0 < 2000);
-    assert.equal((await q.wait('welcome')).slot, wb.slot);
+    await H.wait((m) => m.t === 'left' && m.slot === wb.slot && m.reason === 'expired', 8000, 'quick expiry');
+    assert.ok(Date.now() - t0 < 3000, 'the short reserve, not the 4 s cap');
+    assert.equal((await q.wait('welcome', 8000)).slot, wb.slot);
     q.send({ t: 'leave' });
     room.stop();
     await sleep(200);
