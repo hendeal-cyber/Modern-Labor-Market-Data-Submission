@@ -183,7 +183,10 @@ class Hub {
     srv.on('tlsClientError', () => { /* a phone that has not accepted the cert yet */ });
     this.attached.add(srv);
     this.servers.add(srv);
-    const port = envInt('HTTPS_PORT', 3443);
+    // HTTPS_PORT wins; otherwise 3443, except when HTTP itself was put on a non-default port by code
+    // (start({port: 0}) in tests): then take a free port instead of colliding on 3443.
+    const ephemeral = process.env.HTTPS_PORT == null && process.env.PORT == null && this.httpPort !== 3000;
+    const port = ephemeral ? 0 : envInt('HTTPS_PORT', 3443);
     const host = process.env.HOST || '0.0.0.0';
     await new Promise((resolve) => {
       srv.once('error', (e) => {

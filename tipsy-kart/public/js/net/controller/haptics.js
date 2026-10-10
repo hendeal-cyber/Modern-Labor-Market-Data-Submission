@@ -4,8 +4,18 @@
 // through a transparent <input type=checkbox switch> laid over the control (best effort only).
 
 export const PATTERNS = {
+  // spec 3.7
   tick: 30, go: [60, 40, 60], bump: 40, boost: [20, 30, 20], item: 15, lap: [40, 60, 40],
   finish: [80, 50, 80, 50, 200], drink: [200, 100, 200], warn: [30, 30, 30, 30, 30],
+  // engine haptics events (net-host maps them): strong hits, boosts that rise with the drift tier
+  hit: [120, 40, 60],                       // spun out / corked / sticky
+  hitSoft: 45,                              // wall or kart rub (throttled by the engine)
+  boost1: [20, 40, 35],
+  boost2: [20, 30, 35, 30, 55],
+  boost3: [20, 25, 35, 25, 55, 25, 90],
+  itemGot: [12, 50, 12],
+  // impairment moments (lapse/invert/hiccup/fumble): a lazy, uneven sway, unlike any race cue
+  woozy: [30, 70, 50, 110, 80, 150, 120],
 };
 
 export function isIos() {

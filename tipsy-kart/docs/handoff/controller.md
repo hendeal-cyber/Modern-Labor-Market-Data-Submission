@@ -1,13 +1,18 @@
 # Controller lane handoff
 
 Branch `lane/controller`, worktree `.claude/worktrees/agent-af59c7fef941754e2`. Spec: `docs/research/phone-controls.md`.
-`lane/engine` (605d587) is merged; everything is tested against the real game.
+`lane/engine` (5c03af5) and `lane/impairment` (4e9549c) are merged; everything is tested against the real game
+with the impairment plugin loaded. The research-phone review items 1-19, the engine haptics events and the
+impairment events are done (see `docs/INTEGRATION-controller.md` section 6).
 Integration notes for other lanes: `docs/INTEGRATION-controller.md`.
 
 ## Status: feature-complete, all tests green
 
-`npm run test:net` runs 44 tests in about 3.5 min, and all pass. The engine's `npm test` smoke test also passes with
-the plugin loaded.
+`npm run test:net` runs 50 tests in about 4 min, and all pass (also under load average ~6-9 on 4 cores).
+The engine's `npm test` smoke test passes with the net plugin when the impairment plugin is absent. With
+`lane/impairment` merged it fails at smoke.mjs:161 whether or not the net plugin is loaded: the test writes
+`session.players[0].bac = 0.06`, and the impairment plugin's 1 s `syncPlayerStatus` overwrites it. That is an
+engine and impairment test interaction to fix in their lanes.
 
 - `test/net/protocol.test.js`: hub protocol, run against both `ws` and `net/ws-lite.js`. It covers SSE+POST, idle
   kick, lobby reservation, dead detection, cert fallbacks, `/api/info`, and relay latency (< 50 ms).

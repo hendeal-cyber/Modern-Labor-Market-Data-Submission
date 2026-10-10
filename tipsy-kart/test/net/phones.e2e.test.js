@@ -193,20 +193,13 @@ describe('4 phones + host on the real game', () => {
     assert.equal(await hostEval((slot) => window.tipsyNet.roster.find((p) => p.slot === slot).transport, P[0].slot), 'ws');
   });
 
-  test('tilt mapping through the hub (calibrated at 0): +20 -> ~0.43, symmetric, deadzone, full lock', { timeout: 20000 }, async () => {
-    const steerAt = async (deg) => {
-      await P[0].cdp.send('DeviceOrientation.setDeviceOrientationOverride', betaGammaFor(deg));
-      await sleep(400); // 40 ms low-pass + send tick + relay
-      return (await hostEval((slot) => window.tipsyNet.lastInput(slot), P[0].slot)).steer;
-    };
-    const plus = await steerAt(20);
-    assert.ok(plus >= 0.33 && plus <= 0.53, `+20 deg -> ${plus}`);
-    const minus = await steerAt(-20);
-    assert.ok(minus < 0 && Math.abs(plus + minus) <= 0.05, `-20 deg -> ${minus}`);
-    assert.equal(await steerAt(2), 0);
-    assert.equal(await steerAt(60), 1);
-    assert.equal(await steerAt(0), 0);
-    assert.equal((await lastCall(P[0].slot)).steer, 0, 'the game got it via setPlayerInput');
+  test('lobby: tilt moves the card gauge but steers nothing (pad not up)', { timeout: 20000 }, async () => {
+    await P[0].cdp.send('DeviceOrientation.setDeviceOrientationOverride', betaGammaFor(20));
+    await sleep(500);
+    assert.equal((await hostEval((slot) => window.tipsyNet.lastInput(slot), P[0].slot)).steer, 0);
+    const knob = await P[0].page.evaluate(() => document.getElementById('cardGaugeKnob').style.left);
+    assert.ok(parseFloat(knob) > 55, `gauge knob at ${knob}`);
+    await P[0].cdp.send('DeviceOrientation.setDeviceOrientationOverride', betaGammaFor(0));
   });
 
   test('page hygiene: touch-action none, rotate overlay in portrait', async () => {
@@ -305,6 +298,29 @@ describe('4 phones + host on the real game', () => {
     await P[3].page.waitForFunction(() => document.getElementById('flash').classList.contains('on'), null, { timeout: 3000 });
   });
 
+  test('connect timeout: a WebSocket that never answers falls back to SSE (and a queued phone stays on its transport)', { timeout: 30000 }, async () => {
+    const ctx = await browser.newContext({ ...devices['Pixel 7 landscape'], ignoreHTTPSErrors: true });
+    await ctx.addInitScript(() => { window.WebSocket = class { constructor() { this.readyState = 0; } send() {} close() {} }; });
+    const page = await ctx.newPage();
+    await page.goto(`${srv.secureUrl}/controller`);
+    // 2 x 4 s connect timeouts, then SSE; the room is full, so it ends up queued over SSE
+    await page.waitForFunction(() => window.tipsyController.link.transport === 'sse' && window.tipsyController.S.queuePos > 0, null, { timeout: 15000 });
+    await ctx.close();
+  });
+
+  test('phone watchdog: a socket that silently stops delivering is replaced within ~5-7 s, same slot', { timeout: 30000 }, async () => {
+    const ph = P[2];
+    const before = await hostEval(() => window.__ev.joined.length);
+    await ph.page.evaluate(() => { window.tipsyController.link.ws.onmessage = null; }); // deaf, but the TCP socket stays open
+    const t0 = Date.now();
+    const j = await until(() => hostEval((n) => window.__ev.joined.slice(n).find((x) => x.reconnected), before), 12000, 'watchdog reconnect');
+    assert.equal(j.slot, ph.slot);
+    const dt = Date.now() - t0;
+    // 5 s after the LAST message received (a ping up to 2 s before the socket went deaf), checked every 1 s
+    assert.ok(dt >= 2500 && dt < 9000, `watchdog after ${dt} ms`);
+    await ph.page.waitForFunction(() => window.tipsyController.link.status === 'online');
+  });
+
   test('iOS-style motion permission: only requested inside the Let\'s go tap; denial falls back to touch', { timeout: 30000 }, async () => {
     const ok = await openPhone(await phoneContext({ perm: 'granted' }), srv.secureUrl, { orientation: 0 });
     assert.deepEqual(await ok.page.evaluate(() => window.__perm), [], 'not requested on load');
@@ -349,6 +365,27 @@ describe('4 phones + host on the real game', () => {
     await until(async () => { const c = await lastCall(ph.slot); return c && c.throttle === 0 && c.steer === 0 && c.drift === false; }, 1000, 'release');
   });
 
+  test('racing: tilt mapping through the hub (calibrated at 0): +20 -> ~0.43, symmetric, deadzone, full lock', { timeout: 20000 }, async () => {
+    const steerAt = async (deg) => {
+      await P[0].cdp.send('DeviceOrientation.setDeviceOrientationOverride', betaGammaFor(deg));
+      await sleep(300); // 40 ms low-pass settles
+      // then wait until what the phone sends is what the host has (the host page may be mid-frame)
+      return until(async () => {
+        const want = await P[0].page.evaluate(() => window.tipsyController.buildInput().steer);
+        const got = (await hostEval((slot) => window.tipsyNet.lastInput(slot), P[0].slot)).steer;
+        return got === want ? { v: got } : null;
+      }, 5000, `steer at ${deg} deg`).then((r) => r.v);
+    };
+    const plus = await steerAt(20);
+    assert.ok(plus >= 0.33 && plus <= 0.53, `+20 deg -> ${plus}`);
+    const minus = await steerAt(-20);
+    assert.ok(minus < 0 && Math.abs(plus + minus) <= 0.05, `-20 deg -> ${minus}`);
+    assert.equal(await steerAt(2), 0);
+    assert.equal(await steerAt(60), 1);
+    assert.equal(await steerAt(0), 0);
+    assert.equal((await lastCall(P[0].slot)).steer, 0, 'the game got it via setPlayerInput');
+  });
+
   test('item: 3 quick taps -> exactly 3 setPlayerInput calls with useItem:true', { timeout: 20000 }, async () => {
     const ph = P[2];
     const n0 = await hostEval((s) => window.__calls.filter((c) => c.slot === s && c.useItem).length, ph.slot);
@@ -389,6 +426,7 @@ describe('4 phones + host on the real game', () => {
       };
     });
     await hostEval((s) => { window.__pilotSlot = s; }, ph.slot);
+    await ph.page.evaluate(() => { window.__vib = []; });
     const gas = await center(ph.page, '#gasArea');
     await ph.fingers.down(1, gas.x, gas.y);
     const lap0 = await hostEval((s) => window.game.getState().hud.find((h) => h.slot === s).lap, ph.slot);
@@ -407,6 +445,8 @@ describe('4 phones + host on the real game', () => {
     assert.equal(c.throttle, 1);
     await ph.page.waitForFunction(() => window.tipsyController.S.lap === 2 && window.tipsyController.S.laps === 2, null, { timeout: 3000 });
     assert.match(await ph.page.textContent('#statMid'), /Lap 2\/2/);
+    // the engine's own 'lap' event reached this phone as the lap cue
+    await ph.page.waitForFunction(() => window.__vib.some((p) => JSON.stringify(p) === '[40,60,40]'), null, { timeout: 3000 });
     await ph.cdp.send('DeviceOrientation.setDeviceOrientationOverride', betaGammaFor(0));
     // keep holding gas for the stale test
   });
@@ -440,9 +480,18 @@ describe('4 phones + host on the real game', () => {
     await host.waitForFunction(() => /results/i.test(window.game.getState().phase), null, { timeout: 10000 });
     const ph = P[0];
     await ph.page.waitForFunction(() => !document.getElementById('card').classList.contains('hidden'), null, { timeout: 5000 });
+    // the impairment lane (when merged) already counted the finished race as a drink: count from here
+    await sleep(300);
+    const d0 = await hostEval((s) => window.game.session.players.find((p) => p.slot === s).drinks || 0, ph.slot);
+    const want = d0 + 1;
     await ph.page.tap('#drinkPlus');
-    await until(() => hostEval((s) => window.game.session.players.find((p) => p.slot === s).drinks === 1, ph.slot), 3000, 'drink counted');
-    await ph.page.waitForFunction(() => document.getElementById('cardDrinksN').textContent === '1', null, { timeout: 3000 });
+    await until(() => hostEval(([s, w]) => window.game.session.players.find((p) => p.slot === s).drinks === w, [ph.slot, want]), 5000, 'drink counted');
+    await ph.page.waitForFunction((w) => document.getElementById('cardDrinksN').textContent === String(w), want, { timeout: 5000 });
+    if (await hostEval(() => !!(window.game.impairment && window.game.impairment.getImpairmentStatus))) {
+      // the tipsy meter label comes from the impairment lane's tierLabel
+      const label = await hostEval((s) => window.game.impairment.getImpairmentStatus(s).tierLabel, ph.slot);
+      await ph.page.waitForFunction((l) => document.getElementById('tipLabel').textContent === l, label, { timeout: 5000 });
+    }
 
     await ph.page.evaluate(() => {
       window.__hc = [];
@@ -452,7 +501,7 @@ describe('4 phones + host on the real game', () => {
     await host.close();
     await openHost();
     await until(() => hostEval(() => window.tipsyNet.roster.length === 4), 5000, 'roster replay');
-    await until(() => hostEval((s) => (window.game.session.players.find((p) => p.slot === s) || {}).drinks === 1, ph.slot), 3000, 'drinks restored');
+    await until(() => hostEval(([s, w]) => (window.game.session.players.find((p) => p.slot === s) || {}).drinks === w, [ph.slot, want]), 5000, 'drinks restored');
     assert.equal(await hostEval(() => window.game.session.players.length), 4);
     await ph.page.waitForFunction(() => window.__hc.includes(false) && window.__hc[window.__hc.length - 1] === true, null, { timeout: 5000 });
   });
@@ -465,7 +514,8 @@ describe('4 phones + host on the real game', () => {
     await ph.page.tap('#rejoin');
     await ph.page.waitForFunction((slot) => window.tipsyController.S.slot === slot, ph.slot, { timeout: 5000 });
     // engine lobby remove (x) on a phone player -> hub kick
-    assert.equal(await hostEval(() => window.game.getState().phase), 'lobby', 'the reloaded host page is in its lobby');
+    if (await hostEval(() => window.game.getState().phase) !== 'lobby') await hostEval(() => window.game.toLobby());
+    await until(() => hostEval(() => window.game.getState().phase === 'lobby'), 5000, 'lobby');
     await until(() => hostEval((s) => window.tipsyNet.roster.some((p) => p.slot === s && p.connected), ph.slot), 3000, 'rejoined');
     await hostEval((s) => window.game.removePlayer(s), ph.slot);
     await ph.page.waitForFunction(() => window.tipsyController.S.ended, null, { timeout: 5000 });

@@ -9,8 +9,9 @@
 //   game.on(evt, cb), game.emit?.(evt, payload)
 //   game.getState()                  phase / positions / laps / items (shape probed, see readSlotHud)
 //   game.getHud?.(slot)              optional {lap,laps,place,of,item}
-//   game.getImpairmentStatus?.(slot) -> {drinks,bac,level 0..5,tierLabel,limit,overLimit}
-//   game.adjustDrinks?.(slot, delta), game.setWaterMode?.(slot, bool)   (impairment lane)
+//   getImpairmentStatus(slot) -> {drinks,bac,level 0..5,tierLabel,limit,overLimit}, adjustDrinks(slot, delta)
+//     (impairment lane) looked up on game.impairment first, then on game itself, at call time
+//     because the impairment plugin may install after this one
 
 const STALE_MS = 250;     // silence longer than this makes the kart coast
 const COAST_EASE_MS = 150; // steer eases to 0 over this long
@@ -251,10 +252,19 @@ export function initNetHost(game, opts = {}) {
   // ---------------------------------------------------------------- drinks
   function phaseNow() { return currentPhase(); }
 
+  /** Impairment API method, resolved at call time: game.impairment.fn, else game.fn, else null. */
+  function impFn(name) {
+    const im = game.impairment;
+    if (im && typeof im[name] === 'function') return im[name].bind(im);
+    if (typeof game[name] === 'function') return game[name].bind(game);
+    return null;
+  }
+
   function setDrinks(slot, n) {
     const p = findPlayer(slot, true);
     const cur = Number(p.drinks) || 0;
-    if (typeof game.adjustDrinks === 'function') { try { game.adjustDrinks(slot, n - cur); } catch (e) { console.error(e); } } else p.drinks = n;
+    const adj = impFn('adjustDrinks');
+    if (adj) { try { adj(slot, n - cur); } catch (e) { console.error(e); } } else p.drinks = n;
   }
 
   function onDrink(m) {
@@ -264,7 +274,8 @@ export function initNetHost(game, opts = {}) {
     const cur = Number(p.drinks) || 0;
     const next = Math.max(0, cur + m.delta);
     if (next === cur) return;
-    if (typeof game.adjustDrinks === 'function') { try { game.adjustDrinks(m.slot, next - cur); } catch (e) { console.error(e); } } else p.drinks = next;
+    const adj = impFn('adjustDrinks');
+    if (adj) { try { adj(m.slot, next - cur); } catch (e) { console.error(e); } } else p.drinks = next;
     emit('drinkChanged', { slot: m.slot, drinks: next, delta: next - cur });
     refreshUi();
     pushHud(true);
@@ -311,7 +322,7 @@ export function initNetHost(game, opts = {}) {
 
   function impairmentFor(slot, drinks) {
     let s = null;
-    try { if (typeof game.getImpairmentStatus === 'function') s = game.getImpairmentStatus(slot); } catch (e) { /* ignore */ }
+    try { const f = impFn('getImpairmentStatus'); if (f) s = f(slot); } catch (e) { /* ignore */ }
     if (s && typeof s === 'object') {
       const lv = clamp((Number(s.level) || 0) / 5, 0, 1); // the impairment lane's level is 0..5
       return { drinks: s.drinks != null ? s.drinks : drinks, impair: { level: Math.round(lv * 100) / 100, label: s.tierLabel || FALLBACK_LABELS[Math.min(4, Math.floor(lv * 4.999))], over: !!s.overLimit } };
@@ -352,10 +363,10 @@ export function initNetHost(game, opts = {}) {
       }
       if (hud.lap != null && phase === 'racing') {
         const lp = lapSeen.get(slot);
-        if (lp != null && hud.lap > lp && !hud.finished) send({ t: 'vibe', slot, cue: 'lap' });
+        if (!engineSays.lap && lp != null && hud.lap > lp && !hud.finished) send({ t: 'vibe', slot, cue: 'lap' });
         lapSeen.set(slot, hud.lap);
       }
-      if (hud.finished && !finishedSeen.has(slot)) { finishedSeen.add(slot); send({ t: 'vibe', slot, cue: 'finish' }); }
+      if (hud.finished && !finishedSeen.has(slot)) { finishedSeen.add(slot); if (!engineSays.finish) send({ t: 'vibe', slot, cue: 'finish' }); }
       if (phase === 'lobby') { finishedSeen.delete(slot); lapSeen.delete(slot); }
     }
   }
@@ -365,7 +376,7 @@ export function initNetHost(game, opts = {}) {
   // ---------------------------------------------------------------- game events
   const on = typeof game.on === 'function' ? game.on.bind(game) : () => {};
   on('raceStart', () => { if (!mapPhase(gameState().phase)) forced.phase = 'racing'; vibeAll('go'); pushHud(true); });
-  on('raceFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'results'; for (const [slot] of roster) send({ t: 'vibe', slot, cue: 'finish' }); pushHud(true); });
+  on('raceFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'results'; pushHud(true); });
   on('cupFinished', () => { if (!mapPhase(gameState().phase)) forced.phase = 'cupResults'; pushHud(true); });
   on('stateChanged', (st) => pushHud(false, st));
   // The big screen removed a phone player itself (e.g. the lobby's remove button): free the slot on the hub too.
@@ -374,9 +385,36 @@ export function initNetHost(game, opts = {}) {
     if (!Number.isInteger(slot) || slot === dropping || !roster.has(slot)) return;
     if (!findPlayer(slot, false)) { send({ t: 'kick', slot }); added.delete(slot); }
   });
-  for (const [evt, cue] of [['hit', 'bump'], ['boost', 'boost'], ['itemUsed', 'item']]) {
-    on(evt, (e) => { if (e && Number.isInteger(e.slot)) send({ t: 'vibe', slot: e.slot, cue }); });
+  // Engine haptics events (human slots only), mapped to phone cues. Feature-detected: an engine that
+  // never emits them leaves the derived lap/finish vibes below in charge.
+  const engineSays = { lap: false, finish: false };
+  const vibeSlot = (slot, cue) => { if (Number.isInteger(slot) && roster.has(slot)) send({ t: 'vibe', slot, cue }); };
+  on('hit', (e) => { if (e) vibeSlot(e.slot, e.kind === 'wall' || e.kind === 'kart' ? 'hitSoft' : 'hit'); });
+  on('boost', (e) => { if (e) vibeSlot(e.slot, e.tier >= 1 && e.tier <= 3 ? `boost${e.tier}` : 'boost'); });
+  on('itemUsed', (e) => { if (e) vibeSlot(e.slot, 'item'); });
+  on('itemGot', (e) => { if (e) vibeSlot(e.slot, 'itemGot'); });
+  on('lap', (e) => { if (e) { engineSays.lap = true; vibeSlot(e.slot, 'lap'); } });
+  on('finish', (e) => { if (e) { engineSays.finish = true; finishedSeen.add(e.slot); vibeSlot(e.slot, 'finish'); } });
+
+  // Impairment lane: momentary effects become a "woozy" cue on that phone (colour flash on iOS).
+  // game.emit('impairmentEvent', {type, slot}) or, as a fallback, game.impairment.on('event', cb).
+  const lastWoozy = new Map();
+  const woozy = (e) => {
+    if (!e || !Number.isInteger(e.slot)) return;
+    const t = now();
+    if (t - (lastWoozy.get(e.slot) || -1e9) < 150) return; // both sources may report the same moment
+    lastWoozy.set(e.slot, t);
+    vibeSlot(e.slot, 'woozy');
+  };
+  on('impairmentEvent', woozy);
+  let impHooked = false;
+  function hookImpairment() {
+    if (impHooked) return;
+    const imp = game.impairment;
+    if (imp && typeof imp.on === 'function') { impHooked = true; try { imp.on('event', woozy); } catch (e) { /* ignore */ } }
   }
+  // drink count / tipsy meter refresh right away instead of on the next 5 Hz tick
+  on('drinksChanged', () => pushHud(false));
 
   // ---------------------------------------------------------------- socket
   function connect() {
@@ -400,7 +438,7 @@ export function initNetHost(game, opts = {}) {
   function schedule() { if (closed) return; clearTimeout(timer); timer = setTimeout(connect, BACKOFF[Math.min(attempt++, BACKOFF.length - 1)]); }
 
   const staleTimer = setInterval(staleCheck, 50);
-  const hudTimer = setInterval(() => pushHud(false), HUD_MS);
+  const hudTimer = setInterval(() => { hookImpairment(); pushHud(false); }, HUD_MS); // the impairment plugin may load after us
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !open) { clearTimeout(timer); attempt = 0; connect(); } });
   connect();
 

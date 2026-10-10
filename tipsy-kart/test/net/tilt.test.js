@@ -84,3 +84,60 @@ test('join URLs cycle through the ranked addresses', async () => {
   assert.equal(urlsFor(Object.assign({}, info, { joinMode: 'http' }), 0).join, 'http://192.168.1.23:3000/controller');
   assert.equal(urlsFor(Object.assign({}, info, { httpsPort: null }), 0).join, 'http://192.168.1.23:3000/controller');
 });
+
+test('portrait mid-roll (iPhone, no orientation lock) keeps the steer sign; 90<->270 flip mirrors the neutral', async () => {
+  const { Tilt, landscapeAngle } = await mod('controller/tilt.js');
+  assert.equal(landscapeAngle(0, 90), 90);
+  assert.equal(landscapeAngle(180, 270), 270);
+  assert.equal(landscapeAngle(-90, 90), 270);
+  assert.equal(landscapeAngle(90, 270), 90);
+
+  let angle = 90;
+  const t = new Tilt({ maxDeg: 28, invert: false }, { angle: () => angle });
+  const ev = (deg) => Object.assign({}, betaGammaFor(deg));
+  t.onEvent(ev(0)); t.neutral = 0;
+  t.onEvent(ev(35)); t.filtered = t.raw;          // hard right roll
+  const before = t.steer();
+  assert.equal(before, 1);
+  angle = 0;                                       // the OS rotates the page to portrait mid-corner
+  t.onEvent(ev(35)); t.filtered = t.raw;
+  assert.equal(t.steer(), before, 'still full right in portrait');
+  t.onEvent(ev(-35)); t.filtered = t.raw;
+  assert.equal(t.steer(), -1, 'and steering the other way still works');
+  assert.equal(t.landscape, 90);
+
+  // a genuine flip to 270 (phone turned over): neutral is mirrored, not recalibrated
+  angle = 90; t.onEvent(ev(5)); t.neutral = 5; t.filtered = t.raw;
+  angle = 270; t.onEvent(ev(0));
+  assert.equal(t.landscape, 270);
+  assert.equal(t.neutral, -5);
+});
+
+test('gamma = +/-90 boundary: the two Euler representations of one pose steer the same', async () => {
+  const { steerDegFromOrientation, curve } = await mod('controller/tilt.js');
+  for (const b of [10, 30, 60, -20]) {
+    for (const g of [89.9, 89.5]) {
+      const a = steerDegFromOrientation(b, g, 90);
+      const c = steerDegFromOrientation(180 - b, -g, 90); // the same pose after gamma wraps past 90
+      assert.ok(Math.abs(a - c) < 0.5, `b=${b} g=${g}: ${a} vs ${c}`);
+      assert.equal(curve(a), curve(c));
+    }
+  }
+  // standing upright in the wheel grip (gamma ~ +/-90) is finite and continuous
+  assert.ok(Number.isFinite(steerDegFromOrientation(0, 90, 90)));
+  assert.ok(Math.abs(steerDegFromOrientation(0, 90, 90) - steerDegFromOrientation(0, -90, 90)) < 1e-6);
+});
+
+test('cert cache: SAN IPs are compared exactly', () => {
+  const { cachedIsUsable } = require('../../net/cert');
+  const { execFileSync } = require('child_process');
+  const fs = require('fs'); const os = require('os');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tk-san-'));
+  try {
+    execFileSync('openssl', ['req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-sha256', '-days', '30', '-subj', '/CN=t',
+      '-keyout', path.join(dir, 'k.pem'), '-out', path.join(dir, 'c.pem'), '-addext', 'subjectAltName=IP:10.0.0.12,IP:127.0.0.1'], { stdio: 'ignore' });
+    const pem = fs.readFileSync(path.join(dir, 'c.pem'), 'utf8');
+    assert.equal(cachedIsUsable(pem, ['10.0.0.12']), true);
+    assert.equal(cachedIsUsable(pem, ['10.0.0.1']), false, '10.0.0.1 is not 10.0.0.12');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
