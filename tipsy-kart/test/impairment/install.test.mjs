@@ -74,7 +74,14 @@ test('phone events are forwarded on the impairment bus', () => {
   }
   assert.ok(evs.length > 3);
   assert.ok(evs.every((e) => e.slot === 0 && ['lapse', 'invert', 'hiccup', 'fumble'].includes(e.type)));
-  assert.ok(emitted.some(([name]) => name === 'impairmentEvent'));
+  const viaGame = emitted.filter(([name]) => name === 'impairmentEvent').map(([, p]) => p);
+  assert.equal(viaGame.length, evs.length, 'every impairment event also goes through game.emit');
+  for (const p of viaGame) {
+    assert.deepEqual(Object.keys(p).sort(), ['slot', 'type']);
+    assert.equal(p.slot, 0);
+    assert.ok(['lapse', 'invert', 'hiccup', 'fumble'].includes(p.type));
+  }
+  assert.ok(viaGame.some((p) => p.type !== 'fumble'), 'lapse/invert/hiccup are emitted, not only fumbles');
 });
 
 test('autoInstall: engine already there', () => {

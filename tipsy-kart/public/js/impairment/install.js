@@ -45,9 +45,12 @@ export function installImpairment(game, opts = {}) {
   api.filters = [];
   for (const slot of HUMAN_SLOTS) {
     const imp = createImpairment(slot, game, {
+      // Phone-haptics contract: game.emit('impairmentEvent', {type, slot}) with
+      // type 'lapse' | 'invert' | 'hiccup' | 'fumble' and slot 0-3 (humans only).
       onEvent: (ev) => {
-        api.bus.emit('event', ev);
-        if (typeof game.emit === 'function') { try { game.emit('impairmentEvent', ev); } catch (e) { /* ignore */ } }
+        const payload = { type: ev.type, slot: ev.slot };
+        api.bus.emit('event', payload);
+        if (typeof game.emit === 'function') { try { game.emit('impairmentEvent', { ...payload }); } catch (e) { /* ignore */ } }
       },
     });
     api.filters[slot] = imp;
