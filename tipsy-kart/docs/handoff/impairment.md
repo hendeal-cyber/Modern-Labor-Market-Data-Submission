@@ -1,6 +1,6 @@
 # Impairment lane handoff (branch `lane/impairment`)
 
-Spec: `tipsy-kart/docs/research/impairment.md` (merged from `lane/research-impairment` f1cf4cc). Engine merged from `lane/engine` 3c2d5dc.
+Spec: `tipsy-kart/docs/research/impairment.md` (merged from `lane/research-impairment` f1cf4cc). Engine merged from `lane/engine` 1e8234d.
 Integration notes, engine requests and the calibration record: `tipsy-kart/docs/INTEGRATION-impairment.md`.
 
 ## Status: complete
@@ -16,5 +16,5 @@ Integration notes, engine requests and the calibration record: `tipsy-kart/docs/
 - Tuning scratch: `node tipsy-kart/test/impairment/lib/tune.mjs wanderFastSd=0,.03,.14,.145,.15,.15 levels=2,3 seeds=8`
 
 ## Open items (for other lanes)
-- Engine: add `kartState.raceTime` and `respawning` to the filter ctx; pass `viewport {w,h}` to visualFx; show the BAC with 3 decimals. `test/smoke.mjs` is flaky under machine load, with or without this plugin.
+- Engine: add `kartState.raceTime` and `respawning` to the filter ctx; pass `viewport {w,h}` to visualFx; show the BAC with 3 decimals. `npm test` (engine smoke) passes with this plugin on lane/engine 1e8234d.
 - Phone lane: use `getImpairmentStatus`, `adjustDrinks`, `setWaterMode`, and `game.impairment.on('event')` for haptics.

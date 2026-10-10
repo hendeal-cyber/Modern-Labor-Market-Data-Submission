@@ -19,7 +19,7 @@ Send `game.impairment.getImpairmentStatus(slot)` on `drinksChanged`/`settingsCha
 2. `visualFx[slot](arg)`: pass `arg.viewport = {w, h}` (CSS px of that viewport) so `blurPx`, `ghostDx/Dy` and `joltPx` scale to the viewport. Without it they are in px for a 1920x1080 reference.
 3. HUD: show `est. BAC 0.060%` (three decimals) from `p.bac`, and optionally `p.tierLabel`.
 4. Visual fields: all of `blurPx, swayDeg, doubleVision, tunnel, hueShift, camLagS, fovWobbleDeg, saturate, ghostDx, ghostDy, zoom, blink, joltPx` are consumed by lane/engine 3c2d5dc. The ghost alpha there is `0.42 * doubleVision` (max 0.315), inside the 0.40 cap.
-5. `test/smoke.mjs` is sensitive to machine load. It uses wall-clock sleeps at about 3 fps of software GL, so it fails with or without this plugin when other lanes run tests at the same time. It passes on a quiet machine.
+5. `test/smoke.mjs` passes with this plugin installed, on lane/engine 1e8234d (merged here as d0a489c). The 3c2d5dc version used wall-clock sleeps and was flaky under load, with or without the plugin.
 
 ## Tests
 - `node --test tipsy-kart/test/impairment/`: unit tests (about 7 s). `test/impairment/index.js` is a shim that makes the directory form work on Node 22.
