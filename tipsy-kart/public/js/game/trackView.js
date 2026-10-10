@@ -43,7 +43,7 @@ export class TrackView {
 
   buildLights() {
     const th = this.theme;
-    const hemi = new THREE.HemisphereLight(th.hemiSky, th.hemiGround, th.night ? 1.4 : 2.0);
+    const hemi = new THREE.HemisphereLight(th.hemiSky, th.hemiGround, th.night ? 1.9 : 2.0);
     const sun = new THREE.DirectionalLight(th.sun, th.night ? 1.1 : 2.2);
     sun.position.set(120, 200, 80);
     this.group.add(hemi, sun);
