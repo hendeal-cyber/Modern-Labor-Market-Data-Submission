@@ -356,3 +356,29 @@ test('engine ctx shape: countdown blocks events; a sudden stop counts as a respa
   const small = imp.visual({ time: 12.5, viewport: { w: 960, h: 540 } });
   assert.ok(Math.abs(small.blurPx - fx.blurPx / 2) < 1e-9);
 });
+
+test('B1: a live lapse blink / hiccup jolt never freezes once the filter stops being called', () => {
+  const findEvent = (want) => {
+    const { imp } = setup({ drinks: 5, seed: 21 });
+    const st = imp.state;
+    const dt = 1 / 60;
+    for (let i = 0; i < 60 * 1800; i++) {
+      const t = i * dt;
+      imp.filter({ steer: 0.2, throttle: 1, brake: 0, drift: false, useItem: false }, dt, ctxOf({ time: t, kartState: { raceTime: t } }));
+      if (want === 'lapse' && st.t < st.lapseUntil && st.t - st.lapseStart > 0.1) return { imp, t };
+      if (want === 'hiccup' && st.hicStart >= 0 && st.t - st.hicStart < 0.05) return { imp, t };
+    }
+    throw new Error('no ' + want);
+  };
+  // lapse: blink is on while the filter runs, then the engine stops calling it (kart finished)
+  let { imp, t } = findEvent('lapse');
+  assert.ok(imp.visual({ time: t }).blink > 0, 'blink while lapsing');
+  assert.equal(imp.visual({ time: t + 1 }).blink, 0, 'stale clock clears the blink');
+  assert.equal(imp.visual({ time: t + 1 }).tunnel, paramsAt(5).tunnel);
+  ({ imp, t } = findEvent('lapse'));
+  assert.equal(imp.visual({ time: t, kartState: { finished: true } }).blink, 0, 'finished kart clears the blink');
+  // hiccup jolt
+  ({ imp, t } = findEvent('hiccup'));
+  assert.ok(imp.visual({ time: t }).joltPx > 0);
+  assert.equal(imp.visual({ time: t + 1 }).joltPx, 0);
+});

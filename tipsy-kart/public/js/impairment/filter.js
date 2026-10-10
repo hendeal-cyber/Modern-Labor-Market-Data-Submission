@@ -62,6 +62,7 @@ function freshDynamicState() {
     lapseStart: -1, lapseUntil: -1, invStart: -1, invEnd: -1,
     hicStart: -1, hicSign: 1,
     lastEvent: null,
+    lastCtxTime: NaN, // ctx.time of the latest filter() call (engine sim clock)
   };
 }
 
@@ -116,6 +117,7 @@ export function createImpairment(slot, game, opts = {}) {
 
     // bookkeeping that must run even on the identity path
     st.t += dt;
+    if (Number.isFinite(ctx.time)) st.lastCtxTime = ctx.time;
     const sp = fin(k.speedNorm, NaN);
     const speedNorm = clamp01(Number.isFinite(sp) ? sp : (fin(ctx.speed, NaN) / fin(k.maxSpeed, 30)));
     const spd = Number.isFinite(speedNorm) ? speedNorm : 1;
@@ -230,10 +232,22 @@ export function createImpairment(slot, game, opts = {}) {
   }
 
   // Accepts visual(t, vp) or the engine's visual({time, viewport?, ...}).
+  //
+  // Event envelopes (lapse blink, hiccup jolt) run on the filter's clock. The
+  // engine stops calling the filter once a human finishes (autopilot), so when
+  // the kart has finished, or the caller's time is more than 0.1 s ahead of the
+  // last filter call, any live event is cleared instead of freezing on screen.
   function visual(t, vp) {
+    let finished = false;
     if (t && typeof t === 'object') {
       vp = vp || t.viewport || t.vp;
+      finished = !!(t.kartState && t.kartState.finished);
       t = t.time;
+    }
+    const stale = Number.isFinite(t) && Number.isFinite(st.lastCtxTime) && t - st.lastCtxTime > 0.1;
+    if (finished || stale) {
+      st.lapseUntil = -1; st.lapseStart = -1;
+      st.hicStart = -1;
     }
     const tt = Number.isFinite(t) ? t : (typeof performance !== 'undefined' ? performance.now() / 1000 : 0);
     const settings = (game && game.session && game.session.settings) || {};
